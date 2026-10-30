@@ -2535,13 +2535,9 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       text(ctx, 'Liquidität ab Öffnen live', Math.max(4 * dpr, Math.min(xm, plotW - 4 * dpr)), plotH - 10 * dpr, dpr * 0.85, F.leise, xm > 90 * dpr ? 'center' : 'left');
     }
     // Kurslinie
-    ctx.beginPath(); let an = false;
-    for (let i = 0; i < n; i++) {
-      const p = S.reihe[i].preis; if (!p || Math.abs(p / mittel - 1) > 0.02) { an = false; continue; }   // Lücke oder Ausreißer (erster Tick einer anderen Quelle): absetzen
-      if (kursSprung(i)) continue;                       // r103: einzelner Sprung gegen die Nachbarsekunden (z. B. erster Kurs beim Öffnen) – überspringen
-      const yy = y(p); if (!an) { ctx.moveTo(xVon(i), yy); an = true; } else ctx.lineTo(xVon(i), yy);
-    }
-    ctx.strokeStyle = mix(F.text, .85); ctx.lineWidth = 1.2 * dpr; ctx.stroke();
+    // Lücke oder Ausreißer (erster Tick einer anderen Quelle) und r103-Sprünge auslassen; r106: kurze Lücken durchziehen statt Splitter
+    ctx.strokeStyle = mix(F.text, .85); ctx.lineWidth = 1.2 * dpr;
+    linieZiehen(ctx, n, xVon, y, (i) => { const p = S.reihe[i].preis; return !p || Math.abs(p / mittel - 1) > 0.02 || kursSprung(i) ? null : p; }, dpr, { brueck: 20 });
     // Trade-Kreise je Sekunde (netto Seite)
     const schwelle = k.gross / 40;
     // Vorlauf: ein Kreis je Minute (Größe relativ zur größten Minute), sonst wäre es ein gleichmäßiger Schlauch
@@ -2811,6 +2807,33 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     ctx.font = `${gew} ${Math.round(11 * dpr)}px ${F.mono}`;
     ctx.fillStyle = farbeT; ctx.textAlign = ausr; ctx.fillText(t, x, yy); ctx.textAlign = 'left';
   }
+  // r106: Linien sauber über Lücken der Aufzeichnung (Mac aus, Börse kurz weg) ziehen – keine Splitter, Striche oder Einzelpunkte mehr.
+  // Kurze Lücken (bis `brueck` Punkte) werden durchgezogen, lange blass gestrichelt verbunden. Gibt die gültigen Punkte zurück.
+  function linieZiehen(ctx, n, xf, yf, wert, dpr, o = {}) {
+    const brueck = o.brueck === undefined ? Math.max(3, Math.round(n * 0.05)) : o.brueck, pts = [];
+    for (let i = 0; i < n; i++) { const v = wert(i); if (v !== null && v !== undefined && Number.isFinite(v)) pts.push([xf(i), yf(v), i]); }
+    if (!pts.length) return pts;
+    const lang = [];
+    ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+    for (let k = 1; k < pts.length; k++) { const a = pts[k - 1], b = pts[k]; if (b[2] - a[2] - 1 > brueck) { lang.push([a, b]); ctx.moveTo(b[0], b[1]); } else ctx.lineTo(b[0], b[1]); }
+    ctx.stroke();
+    if (lang.length && o.luecke !== false) {
+      const alt = ctx.globalAlpha, breit = ctx.lineWidth; ctx.globalAlpha = alt * 0.4; ctx.lineWidth = Math.max(1, breit * 0.7); ctx.setLineDash([2 * dpr, 4 * dpr]);
+      ctx.beginPath(); for (const [a, b] of lang) { ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); } ctx.stroke();
+      ctx.setLineDash([]); ctx.globalAlpha = alt; ctx.lineWidth = breit;
+    }
+    return pts;
+  }
+  function zuschneiden(ctx, x, y, w, h) { ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip(); }
+  // r106: Achse ohne Ausreißer – ein einzelner Spike (z. B. Funding 300 %) drückt sonst alle anderen Linien flach.
+  function robusteSpanne(alle, ohneKappe) {
+    let lo = Math.min(...alle), hi = Math.max(...alle); const kappe = { oben: null, unten: null };
+    if (ohneKappe || alle.length < 20) return { lo, hi, kappe };
+    const s = [...alle].sort((a, b) => a - b), q = (f) => s[Math.round(f * (s.length - 1))], q1 = q(0.02), q9 = q(0.98), sp = (q9 - q1) || Math.abs(q9) || 1;
+    if (hi > q9 + sp) { kappe.oben = hi; hi = q9 + sp * 0.3; }
+    if (lo < q1 - sp) { kappe.unten = lo; lo = q1 - sp * 0.3; }
+    return { lo, hi, kappe };
+  }
 
   function zeichneCvd() {
     const cv = $('cvd'), dpr = groesse(cv), ctx = cv.getContext('2d'), W = cv.width, H = cv.height, r = S.reihe;
@@ -2827,18 +2850,15 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     const y = (v) => 4 * dpr + (hi - v) / (hi - lo) * ph;
     const BR = Math.min(SPALTEN, Math.max(FENSTER_MIN, r.length)), x = (i) => (BR - r.length + i) / (BR - 1) * pw;
     const preise = r.map((q) => q.preis).filter(Boolean);
-    const plo = Math.min(...preise), phi = Math.max(...preise), yp = (p) => 4 * dpr + (phi - p) / ((phi - plo) || 1) * ph;
+    const plo = preise.length ? Math.min(...preise) : 0, phi = preise.length ? Math.max(...preise) : 1, yp = (p) => 4 * dpr + (phi - p) / ((phi - plo) || 1) * ph;
     ctx.strokeStyle = F.linie; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, Math.round(y(0)) + 0.5); ctx.lineTo(pw, Math.round(y(0)) + 0.5); ctx.stroke();
-    const linie = (werte, fb, breite, wy) => {
-      ctx.beginPath(); werte.forEach((v, i) => { if (v === null) return; const yy = wy(v); i ? ctx.lineTo(x(i), yy) : ctx.moveTo(x(i), yy); });
-      ctx.strokeStyle = fb; ctx.lineWidth = breite * dpr; ctx.stroke();
-    };
+    const linie = (werte, fb, breite, wy) => { ctx.strokeStyle = fb; ctx.lineWidth = breite * dpr; linieZiehen(ctx, werte.length, x, wy, (i) => werte[i], dpr, { luecke: false, brueck: Infinity }); };
     if (S.altN && S.altN < r.length) {                     // Grenze Vorlauf | live
       const xl = Math.round(x(S.altN)) + 0.5;
       ctx.strokeStyle = mix(F.wal, .45); ctx.setLineDash([3 * dpr, 3 * dpr]);
       ctx.beginPath(); ctx.moveTo(xl, 0); ctx.lineTo(xl, H); ctx.stroke(); ctx.setLineDash([]);
     }
-    linie(r.map((q) => q.preis || plo), mix(F.leise, .45), 1, yp);
+    linie(r.map((q) => q.preis || null), mix(F.leise, .45), 1, yp);
     linie(spot, F.spot, 1.8, y);
     linie(perp, F.perp, 1.8, y);
     const marke = (v, fb, lab) => { const yy = Math.min(H - 4 * dpr, Math.max(12 * dpr, y(v) + 4 * dpr)); text(ctx, `${lab} ${usd(v, true)}`, pw + 6 * dpr, yy, dpr * 0.95, fb); };
@@ -3360,7 +3380,8 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     const innen = 12 * dpr, x = (i) => links + innen + i * (pw - 2 * innen) / (n - 1);   // Rand, damit Balken nicht in die Achse ragen
     const alle = cfg.reihen.flatMap((r) => r.werte.filter((v) => v !== null && Number.isFinite(v)));
     if (!alle.length) { text(ctx, cfg.leer || 'zu wenig Daten', W / 2, H / 2, dpr, F.leise, 'center'); return; }
-    let lo = Math.min(...alle, cfg.mitNull ? 0 : Infinity), hi = Math.max(...alle, cfg.mitNull ? 0 : -Infinity);
+    const rs = robusteSpanne(alle, cfg.ohneKappe);
+    let lo = Math.min(rs.lo, cfg.mitNull ? 0 : Infinity), hi = Math.max(rs.hi, cfg.mitNull ? 0 : -Infinity);
     const rand = (hi - lo) * 0.12 || 0.5; lo -= rand; hi += rand;
     const y = (v) => top + (hi - v) / (hi - lo) * ph;
     const schritt = netterSchritt((hi - lo) / Math.max(2, Math.floor(ph / (34 * dpr))));
@@ -3371,13 +3392,24 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       ctx.beginPath(); ctx.moveTo(links, yy); ctx.lineTo(W - rechts, yy); ctx.stroke();
       text(ctx, de(v, schritt < 0.1 ? 2 : schritt < 1 ? 1 : 0) + (cfg.einheit || ''), links - 5 * dpr, yy + 4 * dpr, dpr * 0.85, F.leise, 'right');
     }
+    zuschneiden(ctx, links, top - 1 * dpr, pw, ph + 2 * dpr);
+    for (const r of cfg.reihen) {
+      ctx.setLineDash(r.strich ? r.strich.map((s) => s * dpr) : []);
+      ctx.strokeStyle = r.farbe; ctx.lineWidth = (r.breite || 1.8) * dpr;
+      if (r.strich) { ctx.beginPath(); let an = false; r.werte.forEach((v, i) => { if (v === null || !Number.isFinite(v)) { an = false; return; } if (an) ctx.lineTo(x(i), y(v)); else { ctx.moveTo(x(i), y(v)); an = true; } }); ctx.stroke(); }
+      else linieZiehen(ctx, n, x, y, (i) => r.werte[i], dpr);
+      ctx.setLineDash([]);
+    }
+    ctx.restore();
+    const gekappt = (v) => v > hi || v < lo;
+    if (rs.kappe.oben !== null || rs.kappe.unten !== null) {      // abgeschnittene Spitzen ehrlich beschriften
+      const t = [rs.kappe.oben !== null ? `▲ max. ${de(rs.kappe.oben, Math.abs(rs.kappe.oben) < 10 ? 1 : 0)}${cfg.einheit || ''}` : '', rs.kappe.unten !== null ? `▼ min. ${de(rs.kappe.unten, Math.abs(rs.kappe.unten) < 10 ? 1 : 0)}${cfg.einheit || ''}` : ''].filter(Boolean).join('  ');
+      text(ctx, t, W - rechts - 2 * dpr, top + 9 * dpr, dpr * 0.8, F.leise, 'right');
+    }
     for (const r of cfg.reihen) {
       let zuletzt = -Infinity;                // Zahlen nicht übereinander schreiben
-      ctx.beginPath(); let an = false;
-      r.werte.forEach((v, i) => { if (v === null || !Number.isFinite(v)) { an = false; return; } if (an) ctx.lineTo(x(i), y(v)); else { ctx.moveTo(x(i), y(v)); an = true; } });
-      ctx.setLineDash(r.strich ? r.strich.map((s) => s * dpr) : []);
-      ctx.strokeStyle = r.farbe; ctx.lineWidth = (r.breite || 1.8) * dpr; ctx.stroke(); ctx.setLineDash([]);
       r.werte.forEach((v, i) => {
+        if (v !== null && gekappt(v)) return;
         if (v === null || !Number.isFinite(v)) return;
         if (r.punkte) { ctx.beginPath(); ctx.arc(x(i), y(v), 2.6 * dpr, 0, Math.PI * 2); ctx.fillStyle = r.farbe; ctx.fill(); }
         if (r.beschriften && r.beschriften(i, n) && (x(i) - zuletzt >= 34 * dpr || i === n - 1) && (zuletzt = x(i))) text(ctx, de(v, r.nk === undefined ? 1 : r.nk), Math.min(Math.max(x(i), links + 14 * dpr), W - rechts - 14 * dpr), y(v) - 7 * dpr, dpr * 0.85, r.farbe, 'center');
@@ -4554,17 +4586,25 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     const links = 6 * dpr, rechts = 66 * dpr, oben = 8 * dpr, unten = 20 * dpr, pw = W - links - rechts, ph = H - oben - unten;
     const n = v.werte.length, z = v.zeilen, alle = v.werte.flat().filter((x) => x > 0).sort((a, b) => a - b);
     if (!alle.length) { leinwandText(cv, 'Noch keine offenen Stufen'); return; }
-    const top = alle[Math.floor(alle.length * 0.99)] || alle[alle.length - 1], bw = pw / n, bh = ph / z;
+    const top = alle[Math.floor(alle.length * 0.99)] || alle[alle.length - 1], bw = pw / n;
+    // r106: Achse schließt den Kurs ein – vorher lief die Kurslinie unter das Feld und über die Zeitachse, wenn der Kurs
+    // in den ersten Stunden außerhalb der Stufen lag (z. B. HYPE 78 → 93 in 72 Std.).
+    const kOk = (v.kurs || []).filter((k) => k > 0 && Number.isFinite(k));
+    let pLo = v.unten, pHi = v.unten + v.stufe * z;
+    if (kOk.length) { const kl = Math.min(...kOk), kh = Math.max(...kOk), r = (Math.max(pHi, kh) - Math.min(pLo, kl)) * 0.02; if (kl < pLo) pLo = kl - r; if (kh > pHi) pHi = kh + r; }
+    const y = (p) => oben + ph - (p - pLo) / (pHi - pLo) * ph;
+    zuschneiden(ctx, links, oben, pw, ph);
     for (let i = 0; i < n; i++) for (let j = 0; j < z; j++) {
       const w = v.werte[i][j]; if (!w) continue;
-      const li = Math.round(Math.min(1, Math.sqrt(w / top)) * 255) * 3;
+      const li = Math.round(Math.min(1, Math.sqrt(w / top)) * 255) * 3, y1 = y(v.unten + (j + 1) * v.stufe), y0 = y(v.unten + j * v.stufe);
       ctx.fillStyle = `rgb(${LUT[li]},${LUT[li + 1]},${LUT[li + 2]})`;
-      ctx.fillRect(links + i * bw, oben + ph - (j + 1) * bh, Math.ceil(bw) + 0.5, Math.ceil(bh) + 0.5);
+      ctx.fillRect(links + i * bw, y1, Math.ceil(bw) + 0.5, Math.ceil(y0 - y1) + 0.5);
     }
-    const y = (p) => oben + ph - (p - v.unten) / (v.stufe * z) * ph;
-    ctx.beginPath(); v.kurs.forEach((k, i) => { const xx = links + (i + 0.5) * bw; i ? ctx.lineTo(xx, y(k)) : ctx.moveTo(xx, y(k)); }); ctx.strokeStyle = F.text; ctx.lineWidth = 1.5 * dpr; ctx.stroke(); ctx.lineWidth = 1;
-    const sch = _gitter(v.stufe * z, 6);
-    for (let p = Math.ceil(v.unten / sch) * sch; p < v.unten + v.stufe * z; p += sch) text(ctx, preis(p), W - rechts + 6 * dpr, y(p) + 4 * dpr, dpr * 0.8, F.leise);
+    ctx.strokeStyle = F.text; ctx.lineWidth = 1.5 * dpr;
+    linieZiehen(ctx, n, (i) => links + (i + 0.5) * bw, y, (i) => (v.kurs[i] > 0 ? v.kurs[i] : null), dpr);
+    ctx.lineWidth = 1; ctx.restore();
+    const sch = _gitter(pHi - pLo, 6);
+    for (let p = Math.ceil(pLo / sch) * sch; p < pHi; p += sch) text(ctx, preis(p), W - rechts + 6 * dpr, y(p) + 4 * dpr, dpr * 0.8, F.leise);
     const von = d.von || (Date.now() / 1000 - d.stunden * 3600), je = (v.minuten_je_spalte || 1) * 60;
     const jede = Math.max(1, Math.ceil(n / Math.max(1, Math.floor(pw / (70 * dpr)))));
     for (let i = 0; i < n; i += jede) { const t = new Date((von + i * je) * 1000); text(ctx, d.stunden <= 24 ? t.toLocaleTimeString(LOC, { hour: '2-digit', minute: '2-digit' }) : t.toLocaleDateString(LOC, { weekday: 'short' }) + ' ' + t.getHours() + ' Uhr', links + i * bw, H - 5 * dpr, dpr * 0.8, F.leise); }
@@ -4580,10 +4620,15 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     const p0 = d.preis, wl = DEMO ? [[p0 * 0.93, 4.2e7, 'long'], [p0 * 1.11, 2.5e7, 'short'], [p0 * 0.88, 1.1e7, 'long']] : walLiq();
     const dpr = groesse(cv), ctx = cv.getContext('2d'), W = cv.width, H = cv.height;
     ctx.fillStyle = F.feld; ctx.fillRect(0, 0, W, H);
-    const links = 10 * dpr, rechts = 62 * dpr, oben = 24 * dpr, unten = 22 * dpr, pw = W - links - rechts, ph = H - oben - unten;
     const spanne = W / dpr < 600 ? 0.08 : 0.12, lo = p0 * (1 - spanne), hi = p0 * (1 + spanne);
-    const xs = (pr) => links + (pr - lo) / (hi - lo) * pw;
     const st = d.stufen.filter((z) => z[0] >= lo && z[0] <= hi);
+    // aufsummierte Linien: Longs vom Kurs nach unten, Shorts vom Kurs nach oben (eigene Skala rechts)
+    const unter = st.filter((z) => z[0] < p0).sort((a, b) => b[0] - a[0]), ueber = st.filter((z) => z[0] > p0).sort((a, b) => a[0] - b[0]);
+    let sl = 0, ss = 0; const kl = unter.map((z) => [z[0], (sl += z[1])]), ks = ueber.map((z) => [z[0], (ss += z[2])]);
+    const maxK = Math.max(1, sl, ss);
+    ctx.font = `500 ${Math.round(11 * dpr * 0.85)}px ${F.mono}`;          // r106: rechter Rand nach der Beschriftung (vorher abgeschnitten: „99,3 Mio. $“)
+    const links = 10 * dpr, rechts = Math.max(62 * dpr, ctx.measureText(usd(maxK)).width + 12 * dpr), oben = 24 * dpr, unten = 22 * dpr, pw = W - links - rechts, ph = H - oben - unten;
+    const xs = (pr) => links + (pr - lo) / (hi - lo) * pw;
     // Balken je Stufe – bei schmalem Bildschirm zusammengefasst, damit jeder Balken mindestens 2 Pixel hat
     const fach = Math.max(1, Math.ceil(st.length / Math.max(1, pw / (3 * dpr)))), breite = (hi - lo) / Math.max(1, Math.ceil((hi - lo) / (p0 * 0.002 * fach)));
     const bins = new Map();
@@ -4595,10 +4640,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       if (l) { const h = l / maxB * ph * 0.92; ctx.fillStyle = mix(F.verk, .78); ctx.fillRect(x, basis - h, bw, h); }
       if (sh) { const h = sh / maxB * ph * 0.92; ctx.fillStyle = mix(F.kauf, .78); ctx.fillRect(x, basis - h, bw, h); }
     }
-    // aufsummierte Linien: Longs vom Kurs nach unten, Shorts vom Kurs nach oben (eigene Skala rechts)
-    const unter = st.filter((z) => z[0] < p0).sort((a, b) => b[0] - a[0]), ueber = st.filter((z) => z[0] > p0).sort((a, b) => a[0] - b[0]);
-    let sl = 0, ss = 0; const kl = unter.map((z) => [z[0], (sl += z[1])]), ks = ueber.map((z) => [z[0], (ss += z[2])]);
-    const maxK = Math.max(1, sl, ss), yk = (v) => basis - v / maxK * ph * 0.96;
+    const yk = (v) => basis - v / maxK * ph * 0.96;
     const linie = (pkt, farbe) => { if (!pkt.length) return; ctx.strokeStyle = farbe; ctx.lineWidth = 1.6 * dpr; ctx.beginPath(); ctx.moveTo(xs(p0), basis); for (const [pr, v] of pkt) ctx.lineTo(xs(pr), yk(v)); ctx.stroke(); ctx.lineWidth = 1; };
     linie(kl, F.verk); linie(ks, F.kauf);
     text(ctx, usd(maxK), W - rechts + 6 * dpr, oben + 9 * dpr, dpr * 0.85, F.leise);
