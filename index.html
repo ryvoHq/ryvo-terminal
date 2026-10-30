@@ -583,8 +583,8 @@ body { font-family: var(--sans); }
 .legende .punkt { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; vertical-align: 0; }
 .legende span:has(.punkt)::before { display: none; }
 @media (min-width: 1000px) {
-  .raster { grid-template-areas: "heat jetzt" "heat werte" "analyse analyse" "chart chart" "multi multi" "dom cvd" "dom band" "mac liq" "uebersicht uebersicht" "markt markt" "geschichte geschichte" "umfeld umfeld" "rangliste rangliste" "meldungen meldungen" "lkarte lkarte" "gamma gamma" "ofluss ofluss" "olab olab" "danach danach" "bericht bericht" "vol opt" "kurve makro"; }
-  .raster.ohne-opt { grid-template-areas: "heat jetzt" "heat werte" "analyse analyse" "chart chart" "multi multi" "dom cvd" "dom band" "mac liq" "uebersicht uebersicht" "markt markt" "geschichte geschichte" "umfeld umfeld" "rangliste rangliste" "meldungen meldungen" "lkarte lkarte" "gamma gamma" "ofluss ofluss" "olab olab" "danach danach" "bericht bericht" "makro makro"; }
+  .raster { grid-template-areas: "heat jetzt" "heat werte" "analyse analyse" "journal journal" "chart chart" "multi multi" "dom cvd" "dom band" "mac liq" "uebersicht uebersicht" "markt markt" "geschichte geschichte" "umfeld umfeld" "rangliste rangliste" "meldungen meldungen" "lkarte lkarte" "gamma gamma" "ofluss ofluss" "olab olab" "danach danach" "bericht bericht" "vol opt" "kurve makro"; }
+  .raster.ohne-opt { grid-template-areas: "heat jetzt" "heat werte" "analyse analyse" "journal journal" "chart chart" "multi multi" "dom cvd" "dom band" "mac liq" "uebersicht uebersicht" "markt markt" "geschichte geschichte" "umfeld umfeld" "rangliste rangliste" "meldungen meldungen" "lkarte lkarte" "gamma gamma" "ofluss ofluss" "olab olab" "danach danach" "bericht bericht" "makro makro"; }
   .markt { grid-area: markt; }
   .lkarte { grid-area: lkarte; }
   .danach { grid-area: danach; }
@@ -593,12 +593,12 @@ body { font-family: var(--sans); }
   .dom { grid-area: dom; }
   .ofluss { grid-area: ofluss; }
   .uebersicht { grid-area: uebersicht; } .geschichte { grid-area: geschichte; }
-  .analyse { grid-area: analyse; }
+  .analyse { grid-area: analyse; } .journal { grid-area: journal; }
   .olab { grid-area: olab; } .umfeld { grid-area: umfeld; } .rangliste { grid-area: rangliste; } .meldungen { grid-area: meldungen; }
 }
 @media (min-width: 1400px) {
-  .raster { grid-template-areas: "heat jetzt werte" "heat band liq" "analyse analyse analyse" "chart chart dom" "multi multi multi" "cvd cvd cvd" "uebersicht uebersicht uebersicht" "markt markt markt" "geschichte geschichte geschichte" "umfeld umfeld umfeld" "rangliste rangliste rangliste" "meldungen meldungen meldungen" "lkarte lkarte lkarte" "gamma gamma gamma" "ofluss ofluss ofluss" "olab olab olab" "danach danach danach" "bericht bericht bericht" "mac mac mac" "vol vol opt" "kurve makro makro"; }
-  .raster.ohne-opt { grid-template-areas: "heat jetzt werte" "heat band liq" "analyse analyse analyse" "chart chart dom" "multi multi multi" "cvd cvd cvd" "uebersicht uebersicht uebersicht" "markt markt markt" "geschichte geschichte geschichte" "umfeld umfeld umfeld" "rangliste rangliste rangliste" "meldungen meldungen meldungen" "lkarte lkarte lkarte" "gamma gamma gamma" "ofluss ofluss ofluss" "olab olab olab" "danach danach danach" "bericht bericht bericht" "mac mac mac" "makro makro makro"; }
+  .raster { grid-template-areas: "heat jetzt werte" "heat band liq" "analyse analyse analyse" "journal journal journal" "chart chart dom" "multi multi multi" "cvd cvd cvd" "uebersicht uebersicht uebersicht" "markt markt markt" "geschichte geschichte geschichte" "umfeld umfeld umfeld" "rangliste rangliste rangliste" "meldungen meldungen meldungen" "lkarte lkarte lkarte" "gamma gamma gamma" "ofluss ofluss ofluss" "olab olab olab" "danach danach danach" "bericht bericht bericht" "mac mac mac" "vol vol opt" "kurve makro makro"; }
+  .raster.ohne-opt { grid-template-areas: "heat jetzt werte" "heat band liq" "analyse analyse analyse" "journal journal journal" "chart chart dom" "multi multi multi" "cvd cvd cvd" "uebersicht uebersicht uebersicht" "markt markt markt" "geschichte geschichte geschichte" "umfeld umfeld umfeld" "rangliste rangliste rangliste" "meldungen meldungen meldungen" "lkarte lkarte lkarte" "gamma gamma gamma" "ofluss ofluss ofluss" "olab olab olab" "danach danach danach" "bericht bericht bericht" "mac mac mac" "makro makro makro"; }
   .markt-raster { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
@@ -1048,6 +1048,11 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
 @media (min-width: 700px) { .maerkte { flex-basis: 100%; order: 9; } }
 @media (max-width: 699px) { .leiste .maerkte { grid-column: 1 / -1; } .maerkte button { padding: 6px 10px; } }
 
+/* r108 Trade-Journal (Mio 30.10. 13:55): Kennzahlen je Papier-Topf */
+.journal { grid-column: 1 / -1; }
+#journal-liste td.plus { color: var(--kauf); } #journal-liste td.minus { color: var(--verk); }
+#journal-kacheln dd.plus { color: var(--kauf); } #journal-kacheln dd.minus { color: var(--verk); }
+
 /* Test-Fassung: alles kommt live aus dem Browser des Empfängers */
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
 .test-band summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 10px 14px; -webkit-tap-highlight-color: transparent; }
@@ -1192,6 +1197,19 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       <article><h3><i class="gelb"></i>Worauf achten</h3><ul id="an-achten"></ul></article>
     </div>
     <p class="leise stand" id="an-stand"></p>
+  </section>
+
+  <section class="feld journal" aria-labelledby="t-journal" hidden>
+    <div class="feld-kopf"><h2 id="t-journal">Trade-Journal <span class="leise">Papier</span></h2>
+      <div class="zoom" id="journal-topf" role="group" aria-label="Topf"></div>
+      <button type="button" class="was" data-hilfe="journal" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-journal" hidden>
+      <p>Die abgeschlossenen Trades je Papier-Topf auf einen Blick: Trefferquote, Gewinnfaktor (Summe der Gewinne geteilt durch Summe der Verluste – über 1 heißt: unterm Strich im Plus), durchschnittlicher Gewinn und Verlust, Summe in Euro und in R (R = das beim Einstieg eingesetzte Risiko) und der größte Rückgang von der Spitze.</p>
+      <p>Kurve = aufsummierte Ergebnisse nach Kosten, Trade für Trade. Nur Spielgeld. Wenige Trades sagen wenig – Vergangenheit, kein Versprechen.</p>
+    </div>
+    <div class="bt-raster"><div class="leinwand-bt"><canvas id="journal-kurve" role="img" aria-label="Aufsummierte Ergebnisse je Trade"></canvas></div><dl class="kacheln" id="journal-kacheln"></dl></div>
+    <div class="tabelle" id="journal-liste"></div>
+    <p class="leise stand" id="journal-stand"></p>
   </section>
 
   <section class="feld chart" aria-labelledby="t-chart">
@@ -3032,6 +3050,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     const tag = (v) => { const t = new Date(v); return `${t.getUTCDate()}${MON[t.getUTCMonth()]}${String(t.getUTCFullYear()).slice(2)}`; }, rund = (x) => Math.round(x * 100) / 100;
     const kurz = merk.split('-')[0];
     const optionen = d.opts.map(([v, k, art, iv, oi]) => ({ instrument_name: `${kurz}-${tag(v)}-${rund(k * r)}-${art}`, verfall_ms: v, mark_iv: iv, open_interest: oi * 100 / r, underlying_price: d.kurs * r }));
+    gammaAusMac(merk, basis, r);
     return { optionen, futures: [], index: d.kurs * r, quellen: [`CBOE ${basis}${r !== 1 ? ` (umgerechnet ×${de(r, r < 10 ? 3 : 1)})` : ''} · 15 Min. verzögert`], basis, faktor: r };
   }
   const OPT_COINS = new Set(['BTC', 'ETH', 'SOL', 'XRP', 'DOGE', 'BNB']);
@@ -6461,6 +6480,21 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     if (!gammaV.has(c)) { try { const l = JSON.parse(lies('gamma.' + c) || '[]'); gammaV.set(c, Array.isArray(l) ? l.filter((z) => Date.now() / 1000 - z.t < 86400) : []); } catch (e) { gammaV.set(c, []); } }
     return gammaV.get(c);
   }
+  // r107 (Video Aleks Rosme „Interval Map“): Bei Aktien kommt der Gamma-Verlauf der letzten 24 Std. vom Mac-Sammler (alle 15 Min.),
+  // damit die Karte nicht erst ab dem Öffnen der Seite gefüllt ist. Strikes auf den Markt umgerechnet wie die Kette.
+  async function gammaAusMac(merk, basis, r) {
+    try {
+      const d = await holeMitFrist(`${macBasis()}/api/profi/aktienopt_verlauf?coin=${basis}`, 20000);
+      if (!d || !Array.isArray(d.zeilen) || !d.zeilen.length) return;
+      const l = gammaListe(merk), da = new Set(l.map((z) => Math.round(z.t / 60)));
+      for (const z of d.zeilen) {
+        if (da.has(Math.round(z.t / 60)) || !(z.s > 0)) continue;
+        l.push({ t: z.t, s: +(z.s * r).toPrecision(7), flip: z.flip ? +(z.flip * r).toPrecision(7) : null, je: z.je.map(([k, g]) => [+(k * r).toPrecision(7), g]), mac: true });
+      }
+      l.sort((a, b) => a.t - b.t);
+      if (merk === coin) gammaZeigen();
+    } catch (e) { /* ohne Mac-Verlauf: nur die eigenen Aufzeichnungen */ }
+  }
   function gammaAufzeichnen() {
     if (!O || O.coin !== coin || !O.index) return;
     const l = gammaListe(), jetzt = Math.floor(Date.now() / 1000);
@@ -6784,7 +6818,46 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     const tf = [...TF.entries()].filter(([, e]) => e.name === sym).sort((a, b) => (a[1].dex === 'xyz' ? -1 : 0) - (b[1].dex === 'xyz' ? -1 : 0))[0];
     return tf ? tf[0] : (!aktie && /^[A-Z0-9]{1,15}$/.test(sym) ? sym : null);
   }
+  // r108 Trade-Journal (Mio 30.10. 13:55 „Mach“, nach dem LuxAlgo-Video): Kennzahlen je Papier-Topf aus den geschlossenen Trades (Mac /api/kurz)
+  let journalTopf = lies('journalTopf') || null;           // ohne eigene Wahl: der Topf mit den meisten Trades
+  const JOURNAL_NAMEN = [['haupt', 'Hauptkonto'], ['hebel', 'Hebel-Schule'], ['lern', 'Lern-Topf'], ['schnell', 'Schnell-Topf'], ['tages', 'Tages-Topf']];
+  function journalZeigen() {
+    const sec = document.querySelector('section.feld.journal'); if (!sec) return;
+    const j = konto && konto.journal; sec.hidden = !j || typeof j !== 'object';
+    if (sec.hidden) return;
+    const da = JOURNAL_NAMEN.filter(([k]) => Array.isArray(j[k]));
+    if ((!journalTopf || !da.some(([k]) => k === journalTopf)) && da.length) journalTopf = [...da].sort((a, b) => j[b[0]].length - j[a[0]].length)[0][0];
+    $('journal-topf').replaceChildren(...da.map(([k, n]) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.topf = k; b.textContent = `${n} ${j[k].length}`; b.setAttribute('aria-pressed', String(k === journalTopf)); return b; }));
+    const t = j[journalTopf] || [], kach = $('journal-kacheln'), liste = $('journal-liste');
+    $('journal-stand').textContent = `Spielgeld, nach Kosten · ${(JOURNAL_NAMEN.find(([k]) => k === journalTopf) || [, ''])[1]} · Stand ${uhrKurz(kontoZeit || Date.now())} · Vergangenheit, kein Versprechen`;
+    kach.hidden = !t.length;
+    if (!t.length) { kach.replaceChildren(); liste.replaceChildren(); leinwandText($('journal-kurve'), 'Noch keine geschlossenen Trades in diesem Topf'); return; }
+    const gew = t.filter((z) => z[1] > 0), verl = t.filter((z) => z[1] < 0), sG = gew.reduce((a, z) => a + z[1], 0), sV = -verl.reduce((a, z) => a + z[1], 0);
+    const mitR = t.filter((z) => z[2] !== null && Number.isFinite(z[2])), sR = mitR.reduce((a, z) => a + z[2], 0);
+    let summe = 0, hoch = 0, rueck = 0;
+    const kurve = t.map((z) => { summe += z[1]; hoch = Math.max(hoch, summe); rueck = Math.max(rueck, hoch - summe); return summe; });
+    const gf = sV > 0 ? sG / sV : null;
+    kach.replaceChildren(
+      kachel('Trades', de(t.length), `${gew.length} im Plus · ${verl.length} im Minus`),
+      kachel('Trefferquote', proz(gew.length / t.length * 100, 0, false), 'Anteil der Trades im Plus'),
+      kachel('Gewinnfaktor', gf === null ? (sG > 0 ? 'nur Gewinne' : '–') : de(gf, 2), 'Gewinne ÷ Verluste', gf === null ? '' : gf >= 1 ? 'plus' : 'minus'),
+      kachel('Ø Gewinn / Ø Verlust', `${gew.length ? eurK(sG / gew.length) : '–'} / ${verl.length ? eurK(-sV / verl.length) : '–'}`, gew.length && verl.length ? `Verhältnis ${de((sG / gew.length) / (sV / verl.length), 2)}` : ''),
+      kachel('Summe', (summe > 0 ? '+' : '') + eurK(summe), mitR.length ? `${sR > 0 ? '+' : ''}${de(sR, 2)} R (R = eingesetztes Risiko)` : 'nach Kosten', summe >= 0 ? 'plus' : 'minus'),
+      kachel('Größter Rückgang', rueck ? '−' + eurK(rueck) : '0 €', 'von der Spitze der Kurve'));
+    diagramm($('journal-kurve'), { labels: t.map((z) => new Date(z[0] * 1000).toLocaleDateString(LOC, { day: '2-digit', month: '2-digit' })), links: 58, einheit: ' €', mitNull: true, ohneKappe: true,
+      reihen: [{ werte: kurve, farbe: summe >= 0 ? F.kauf : F.verk, breite: 2, punkte: t.length <= 40 }] });
+    const tab = document.createElement('table'), kopf = tab.createTHead().insertRow(), rumpf = tab.createTBody();
+    for (const x of ['Ende', 'Wert', 'Seite', 'Ergebnis', 'R', 'Grund']) { const th = document.createElement('th'); th.textContent = x; kopf.append(th); }
+    for (const z of t.slice(-12).reverse()) {
+      const r = rumpf.insertRow(), zelle = (x, kl) => { const c = r.insertCell(); c.textContent = x; if (kl) c.className = kl; };
+      zelle(tagUhr(z[0] * 1000)); zelle(z[4]); zelle(z[3] === 'short' ? 'Short' : 'Long'); zelle(Math.abs(z[1]) < 0.5 ? '0 €' : (z[1] > 0 ? '+' : '') + eurK(z[1]), Math.abs(z[1]) < 0.5 ? '' : z[1] > 0 ? 'plus' : 'minus');
+      zelle(z[2] === null ? '–' : `${z[2] > 0 ? '+' : ''}${de(z[2], 2)}`, z[2] === null ? '' : z[2] >= 0 ? 'plus' : 'minus'); zelle(z[5]);
+    }
+    liste.replaceChildren(tab);
+  }
+  { const jt = $('journal-topf'); if (jt) jt.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; journalTopf = b.dataset.topf; merke('journalTopf', journalTopf); journalZeigen(); }); }
   function kontoZeigen() {
+    journalZeigen();
     const box = $('konto'); if (!box) return;
     const bot = !!(konto && (konto.trader || konto.haupt || konto.schnell || konto.hebel || konto.lern)), kp = kontenPositionen(), kl = konten();
     box.hidden = DEMO; $('konto-bot').hidden = !bot; $('konto-eigen').hidden = bot && !kl.length;
@@ -6853,7 +6926,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
   // Navigation noch ganz schlecht – nur die Mobile-Version anpassen“). Unten fünf Reiter; jeder zeigt nur seine Bereiche statt einer
   // 20.000 Pixel langen Seite. Nur unter 700 px Breite (CSS), am Computer bleibt alles wie es ist.
   const TABS = [
-    ['ueberblick', 'Überblick', ['heat', 'jetzt', 'werte', 'analyse', 'band', 'liq'], '<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>'],
+    ['ueberblick', 'Überblick', ['heat', 'jetzt', 'werte', 'analyse', 'journal', 'band', 'liq'], '<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>'],
     ['chart', 'Chart', ['chart', 'multi', 'dom', 'cvd'], '<path d="M6 4v16M12 7v12M18 3v14"/><rect x="4" y="8" width="4" height="7" rx="1"/><rect x="10" y="10" width="4" height="5" rx="1"/><rect x="16" y="6" width="4" height="6" rx="1"/>'],
     ['wale', 'Wale', ['mac', 'lkarte', 'rangliste'], '<path d="M3 15c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3 2.5 3 3 3"/><path d="M3 10c2.5 0 2.5-3 5-3s2.5 3 5 3 2.5-3 5-3 2.5 3 3 3" opacity=".5"/>'],
     ['optionen', 'Optionen', ['gamma', 'ofluss', 'olab', 'opt', 'vol', 'kurve'], '<path d="M3 6c4 0 5 12 9 12s5-12 9-12"/><path d="M3 20h18" opacity=".5"/>'],
@@ -6891,7 +6964,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
   }
   // ------------------------------------------------------------------ r99 Sprungleiste fürs Handy (Mio 29.10.: „viel mobile freundlicher“).
   // Feste Leiste oben: Markt und Kurs (antippen = nach oben), daneben alle sichtbaren Bereiche zum Hinspringen; der aktuelle ist markiert.
-  const SPRUNG_NAMEN = { heat: 'Liquidität', jetzt: 'Live', werte: 'Futures', analyse: 'Analyse', chart: 'Chart', multi: 'Mehrere', gamma: 'Gamma-Karte', dom: 'Orderbuch', cvd: 'Kaufdruck', band: 'Große Trades',
+  const SPRUNG_NAMEN = { heat: 'Liquidität', jetzt: 'Live', werte: 'Futures', analyse: 'Analyse', journal: 'Journal', chart: 'Chart', multi: 'Mehrere', gamma: 'Gamma-Karte', dom: 'Orderbuch', cvd: 'Kaufdruck', band: 'Große Trades',
     liq: 'Liquidationen', mac: 'Wale', uebersicht: 'Übersicht', markt: 'Börsen', geschichte: 'Geschichte', umfeld: 'Umfeld', rangliste: 'Rangliste', meldungen: 'Meldungen',
     lkarte: 'Liq.-Karte', ofluss: 'Options-Fluss', olab: 'Options-Labor', danach: 'Was danach', bericht: 'Lagebild', vol: 'Volatilität', opt: 'Optionen', kurve: 'Terminkurve', makro: 'Zinsen' };
   function sprungleiste() {
