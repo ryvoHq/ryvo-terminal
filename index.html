@@ -1212,6 +1212,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       <button type="button" data-ebene="opt">Optionen</button>
       <button type="button" data-ebene="zonen">Zonen</button>
       <button type="button" data-ebene="hvn">Viel Umsatz</button>
+      <button type="button" data-ebene="cluster" title="Häufungen großer Trades auf einem Preis (mind. 3 binnen 15 Min.) – Anzahl, Summe, Kaufanteil">Cluster</button>
     </div>
     <div class="werkzeuge" id="ch-werkzeuge">
       <button type="button" id="ch-linie" aria-pressed="false" title="Tippen in den Chart setzt eine Linie, Tippen auf eine Linie entfernt sie (Taste L)">Linie zeichnen</button>
@@ -2869,7 +2870,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
   // ------------------------------------------------------------------ Kopf, Kacheln, Listen
   function quellenZeigen() {
     const c = C();
-    $('quellen').replaceChildren(...[...(c.tdm ? (c.twin ? ['Twelve Data', 'Hyperliquid'] : ['Twelve Data']) : c.tf ? ['Hyperliquid'] : QUELLEN), ...(OPT_COINS.has(coin) ? ['Deribit'] : [])].map((q) => {
+    $('quellen').replaceChildren(...[...(c.tdm ? (c.twin ? ['Twelve Data', 'Hyperliquid'] : ['Twelve Data']) : c.tf ? ['Hyperliquid'] : QUELLEN), ...(OPT_COINS.has(coin) ? [optBasis(coin) ? 'CBOE' : 'Deribit'] : [])].map((q) => {
       const li = document.createElement('li');
       if (!c.laedt && !hat(q, c)) {         // Markt fehlt für diesen Coin: grau, Rest läuft
         li.className = 'fehlt'; li.textContent = q; li.title = `${coin} wird bei ${q} nicht gehandelt – Quelle aus`;
@@ -3010,6 +3011,29 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
   // r88: Optionen nicht nur BTC/ETH (Deribit), sondern auch Coins mit Optionen bei Bybit und Deribit-USDC (SOL, XRP, DOGE, BNB …).
   // Startliste; ein Coin ohne gefundene Optionen fällt beim ersten Abruf heraus, ein Coin mit Optionen kommt dazu.
   const OPT_DERIBIT = new Set(['BTC', 'ETH']);
+  // r107 Aktien-Optionen (Mio 30.10. 12:37 nach dem GEXRadar-Video): Gamma-Karte, GEX und Options-Stufen auch für Aktien, Indizes und
+  // Rohstoffe. Die Kette kommt von CBOE über den Mac (15 Min. verzögert, nur eigene Nutzung – nie im öffentlichen Link). Indizes und
+  // Rohstoffe über ihren ETF, die Strikes auf den Kurs des Marktes umgerechnet (z. B. QQQ → Nasdaq 100).
+  const OPT_ETF = { XYZ100: 'QQQ', USA100: 'QQQ', USTECH: 'QQQ', SP500: 'SPY', USA500: 'SPY', US500: 'SPY', SMALL2000: 'IWM', GOLD: 'GLD', SILVER: 'SLV',
+    CL: 'USO', WTI: 'USO', USOIL: 'USO', SEMIS: 'SMH', SEMI: 'SMH', XLE: 'XLE', KWEB: 'KWEB', EWZ: 'EWZ', EWJ: 'EWJ', EWY: 'EWY', EWT: 'EWT', USBOND: 'TLT' };
+  const optLeer = new Map();                                // Wert → Zeit, seit der CBOE keine Optionen hat (eine Stunde nicht neu fragen)
+  function optBasis(c = coin) {
+    const e = coinDaten(c); if (!e || !(e.tf || e.tdm) || macBasis() === null) return null;
+    if (e.tdm && e.mic && !/^(XNAS|XNGS|XNCM|XNMS|XNYS|ARCX|BATS|XASE)$/.test(e.mic)) return null;          // nur US-Börsen
+    const n = String(e.tdm ? e.td : e.name).toUpperCase();
+    if (OPT_ETF[n]) return OPT_ETF[n];
+    return /^[A-Z]{1,6}$/.test(n) && (e.tf ? e.art === 'Aktie' : !/index|forex|crypto|devisen|physical/i.test(e.art || '')) ? n : null;
+  }
+  async function optAktieHolen(merk, basis) {
+    const d = await holeMitFrist(`${macBasis()}/api/profi/aktienopt?coin=${basis}`, 45000).catch((e) => ({ fehler: String(e.message || e) }));
+    if (!d || d.fehler || !Array.isArray(d.opts) || !d.opts.length || !(d.kurs > 0)) { const f = new Error((d && d.fehler) || 'leer'); f.leer = /Keine Optionen|leer|HTTP 400/.test(f.message); throw f; }
+    const e = coinDaten(merk), name = String(e.tdm ? e.td : e.name).toUpperCase(), markt = (merk === coin && S && S.last) || e.preis || 0;
+    const r = basis !== name && markt > 0 ? markt / d.kurs : 1;                                // ETF → Markt (z. B. QQQ → Nasdaq 100)
+    const tag = (v) => { const t = new Date(v); return `${t.getUTCDate()}${MON[t.getUTCMonth()]}${String(t.getUTCFullYear()).slice(2)}`; }, rund = (x) => Math.round(x * 100) / 100;
+    const kurz = merk.split('-')[0];
+    const optionen = d.opts.map(([v, k, art, iv, oi]) => ({ instrument_name: `${kurz}-${tag(v)}-${rund(k * r)}-${art}`, verfall_ms: v, mark_iv: iv, open_interest: oi * 100 / r, underlying_price: d.kurs * r }));
+    return { optionen, futures: [], index: d.kurs * r, quellen: [`CBOE ${basis}${r !== 1 ? ` (umgerechnet ×${de(r, r < 10 ? 3 : 1)})` : ''} · 15 Min. verzögert`], basis, faktor: r };
+  }
   const OPT_COINS = new Set(['BTC', 'ETH', 'SOL', 'XRP', 'DOGE', 'BNB']);
   const OPT_PROBE = new Map();          // Coin → Zeit der letzten Suche (Coins außerhalb der Liste werden einmal je Stunde geprüft)
   const VOL_SPALTEN = [-30, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30];   // Abstand Strike zum Terminkurs in %
@@ -3052,6 +3076,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     let oiPut = 0, oiCall = 0;
     for (const x of optionen || []) {
       const z = zerlege(x.instrument_name);
+      if (z && x.verfall_ms) z.v = x.verfall_ms;                              // r107: Aktien verfallen 16:00 New York, nicht 08:00 UTC
       if (!z || z.v - jetzt < 6 * 3600e3) continue;                          // läuft in < 6 Std. ab: nichtssagend
       const e = verf.get(z.v) || { v: z.v, opts: [], fwd: [], oi: 0 };
       const iv = Number(x.mark_iv), oi = Number(x.open_interest) || 0, u = Number(x.underlying_price);
@@ -3171,7 +3196,9 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     return { optionen: [...zeilen.values()], futures: [], index, quellen };
   }
   async function optHolen(erzwingen = false) {
-    if (!OPT_COINS.has(coin) && !DEMO && Date.now() - (OPT_PROBE.get(coin) || 0) > 3600e3) OPT_COINS.add(coin);   // einmal je Stunde nachsehen
+    const ab = DEMO ? null : optBasis(coin);
+    if (ab) { if (Date.now() - (optLeer.get(coin) || 0) > 3600e3) OPT_COINS.add(coin); }
+    else if (!OPT_COINS.has(coin) && !DEMO && Date.now() - (OPT_PROBE.get(coin) || 0) > 3600e3) OPT_COINS.add(coin);   // einmal je Stunde nachsehen
     if (!OPT_COINS.has(coin)) { O = null; optZeigen(); return; }
     if (optLaeuft || (!erzwingen && document.hidden)) return;
     const merk = coin;
@@ -3180,7 +3207,8 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       let roh;
       if (DEMO) roh = demoOptionen(merk);
       else {
-        if (OPT_DERIBIT.has(merk)) {
+        if (ab) roh = await optAktieHolen(merk, ab);
+        else if (OPT_DERIBIT.has(merk)) {
           const [o, f, i] = await Promise.all([
             holeJson(`${DERIBIT}get_book_summary_by_currency?currency=${merk}&kind=option`),
             holeJson(`${DERIBIT}get_book_summary_by_currency?currency=${merk}&kind=future`),
@@ -3198,11 +3226,16 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       optRoh = { ...roh, coin: merk };
       O = optAuswerten(roh.optionen, roh.futures, roh.index, Date.now());
       O.coin = merk; O.quellen = roh.quellen || ['Deribit'];
-      if (!DEMO) optMerken(merk, roh);
+      if (!DEMO && !ab) optMerken(merk, roh);
       optFehler = '';
-      setStatus('Deribit', 'live');
+      if (!ab) setStatus('Deribit', 'live');
     } catch (e) {
       if (merk !== coin) return;
+      if (ab) {                                                               // r107: Aktie ohne Optionen → ausblenden, sonst ehrlich melden
+        if (e.leer) { optLeer.set(merk, Date.now()); OPT_COINS.delete(merk); O = null; optFehler = ''; }
+        else optFehler = 'Optionen vom Mac (CBOE) gerade nicht erreichbar – neuer Versuch in 60 s.';
+        optLaeuft = false; optZeigen(); return;
+      }
       optFehler = O && O.gemerkt ? `Deribit nicht erreichbar – gezeigt wird der Stand von ${tagUhr(O.zeit)}. Neuer Versuch in 60 s.` : 'Deribit nicht erreichbar – neuer Versuch in 60 s.';
       setStatus('Deribit', 'aus');
     } finally { optLaeuft = false; }
@@ -3300,7 +3333,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       const art = t.every((x) => x.jahr > 0) ? 'Contango' : t.every((x) => x.jahr < 0) ? 'Backwardation' : 'gemischt';
       k.push(kachel('Futures-Kurve', art, `Aufschlag aufs Jahr ${proz(t[0].jahr, 1)} … ${proz(t[t.length - 1].jahr, 1)}`, art === 'Backwardation' ? 'minus' : ''));
     } else k.push(kachel('Futures-Kurve', '–', 'keine Terminkontrakte'));
-    k.push(kachel(`Index ${O.coin}`, de(O.index, O.coin === 'BTC' ? 0 : 2), OPT_DERIBIT.has(O.coin) ? 'Deribit-Index (Mittel mehrerer Börsen)' : 'Index der Options-Börse'));
+    k.push(kachel(`Index ${O.coin}`, de(O.index, O.coin === 'BTC' ? 0 : 2), OPT_DERIBIT.has(O.coin) ? 'Deribit-Index (Mittel mehrerer Börsen)' : optBasis(O.coin) ? 'Kurs der Optionskette (CBOE)' : 'Index der Options-Börse'));
     box.replaceChildren(...k);
     // Ein Satz zur Lage, ehrlich als Beobachtung
     const s = [];
@@ -4890,7 +4923,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
   // Volumenprofil; dazu Liquidität (Rückblick) und Optionen (Deribit, aus dem Options-Teil) als Ebenen.
   const CH_STUNDEN = { 1: 3, 5: 12, 15: 48, 60: 48 };
   const ch = { d: null, nr: 0, tf: Number(lies('chTf')) || 5, ansicht: lies('chAnsicht') || 'fp', cw: null, rechts: 0, heat: null,
-    an: (() => { try { return Object.assign({ gross: true, profil: true, heat: false, opt: true, wb: true, zonen: true, hvn: true }, JSON.parse(lies('chEbenen') || '{}')); } catch (e) { return { gross: true, profil: true, heat: false, opt: true }; } })(),
+    an: (() => { try { return Object.assign({ gross: true, profil: true, heat: false, opt: true, wb: true, zonen: true, hvn: true, cluster: true }, JSON.parse(lies('chEbenen') || '{}')); } catch (e) { return { gross: true, profil: true, heat: false, opt: true }; } })(),
     maus: null, zug: null, lage: null };
   const kurzZ = (x) => { const a = Math.abs(x); return a >= 1e6 ? de(a / 1e6, a >= 1e7 ? 0 : 1) + 'M' : a >= 1e3 ? de(a / 1e3, 0) + 'k' : de(a, 0); };
   async function chartLaden() {
@@ -4982,6 +5015,22 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       else if (was === 'play') { if (ch.replay.timer) replayHalt(); else ch.replay.timer = setInterval(() => replaySchritt(1), 1000 / ch.replay.tempo); replayLeiste(); }
     });
   }
+  // r107 Cluster-Stufen (Video „Orderflow Sniper“, Mio 30.10. 12:37): wo sich große Trades auf einem Preis häufen, reagiert der Kurs
+  // laut Video beim nächsten Besuch. Regel wie in labor/zonen/VORAB-CLU.md (dort wird es nach vorn gemessen): mindestens 3 große Trades
+  // binnen 15 Min. innerhalb ±0,05 % → Stufe beim umsatzgewichteten Preis; neue Häufungen bis 0,1 % daneben zählen zur selben Stufe.
+  function clusterStufen(gross) {
+    const g = [...(gross || [])].filter((x) => x[1] > 0 && x[2] > 0).sort((a, b) => a[0] - b[0]), stufen = [];
+    for (let i = 0; i < g.length; i++) {
+      const [t, p] = g[i], nah = [];
+      for (let j = i; j >= 0 && t - g[j][0] <= 900; j--) if (Math.abs(g[j][1] / p - 1) <= 0.0005) nah.push(g[j]);
+      if (nah.length < 3) continue;
+      const vol = nah.reduce((a, x) => a + x[2], 0), lvl = nah.reduce((a, x) => a + x[1] * x[2], 0) / vol;
+      const st = stufen.find((z) => Math.abs(z.p / lvl - 1) <= 0.001) || (stufen.push({ t, p: lvl, n: 0, vol: 0, kauf: 0, psum: 0, drin: new Set() }), stufen[stufen.length - 1]);
+      for (const x of nah) if (!st.drin.has(x)) { st.drin.add(x); st.n++; st.vol += x[2]; st.kauf += x[3] ? x[2] : 0; st.psum += x[1] * x[2]; }
+      st.p = st.psum / st.vol; st.zuletzt = t;
+    }
+    return stufen;
+  }
   function fpZonen(K, schritt) {                           // gestapelte Imbalances → Zonen; Absorption = viel Druck einer Seite ohne Wirkung
     if (ch._zonen && ch._zonen.K === K) return ch._zonen.r;
     const zonen = [], absorption = [], vols = K.map((k) => k.fp.reduce((a, z) => a + z[1] + z[2], 0)), sortiert = [...vols].sort((a, b) => a - b), hochV = sortiert[Math.floor(sortiert.length * 0.8)] || Infinity;
@@ -4989,7 +5038,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       const maxZ = Math.max(1, ...k.fp.map((z) => z[1] + z[2])), nach = new Map(k.fp.map((z) => [Math.round(z[0] / schritt), z])), st = [...nach.keys()].sort((a, b) => a - b);
       for (const kauf of [true, false]) {
         let lauf = [];
-        const schliessen = () => { if (lauf.length >= 3) zonen.push({ i, kauf, unten: lauf[0] * schritt, oben: (lauf[lauf.length - 1] + 1) * schritt, bis: null }); lauf = []; };
+        const schliessen = () => { if (lauf.length >= 3) zonen.push({ i, kauf, unten: lauf[0] * schritt, oben: (lauf[lauf.length - 1] + 1) * schritt, bis: null, n: lauf.length, vol: lauf.reduce((a, s1) => a + (kauf ? nach.get(s1)[1] : nach.get(s1)[2]), 0) }); lauf = []; };
         for (const s0 of st) {
           const z = nach.get(s0), nb = nach.get(kauf ? s0 - 1 : s0 + 1), wert = kauf ? z[1] : z[2], gegen = nb ? (kauf ? nb[2] : nb[1]) : 0;
           if (nb && wert >= 3 * Math.max(1, gegen) && wert > maxZ * 0.05) { if (lauf.length && s0 !== lauf[lauf.length - 1] + 1) schliessen(); lauf.push(s0); } else schliessen();
@@ -5065,6 +5114,11 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
       if (oe.callWand) linie(oe.callWand[0], F.kauf, `Call-Wand ${preis(oe.callWand[0])}`, false);
       if (oe.putWand) linie(oe.putWand[0], F.verk, `Put-Wand ${preis(oe.putWand[0])}`, false);
       if (oe.flip) linie(oe.flip, F.perp, `Gamma-Flip ${preis(oe.flip)}`, true);
+      // r107: Stufen außerhalb des Bildausschnitts am Rand nennen (wie bei GEXRadar immer sichtbar), mit Abstand zum Kurs
+      const jetztP = K.length ? K[K.length - 1].c : null; let nO = 0, nU = 0;
+      const amRand = (p, farbe, lab) => { if (!(p > 0) || (p > lo && p < hi) || !jetztP) return; const oben = p >= hi, yy = oben ? (14 + 14 * nO++) * dpr : H - unten - (8 + 14 * nU++) * dpr;
+        text(ctx, `${oben ? '↑' : '↓'} ${lab} ${preis(p)} (${proz((p / jetztP - 1) * 100, 1)})`, plotW - 8 * dpr, yy, dpr * 0.85, farbe, 'right', 600); };
+      if (oe.callWand) amRand(oe.callWand[0], F.kauf, 'Call-Wand'); if (oe.flip) amRand(oe.flip, F.perp, 'Gamma-Flip'); if (oe.putWand) amRand(oe.putWand[0], F.verk, 'Put-Wand');
     }
     // Wertbereich von gestern (VAH/POC/VAL) und Point of Control von heute
     if (ch.an.wb) {
@@ -5117,12 +5171,29 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
         const x0 = Math.max(0, xk(z.i)), x1 = z.bis === null ? plotW : xk(z.bis) + cw, f = z.kauf ? F.kauf : F.verk;
         ctx.fillStyle = mix(f, z.bis === null ? 0.16 : 0.07); ctx.fillRect(x0, y(z.oben), x1 - x0, Math.max(2, y(z.unten) - y(z.oben)));
         ctx.fillStyle = mix(f, 0.7); ctx.fillRect(x0, y(z.oben), 2 * dpr, Math.max(2, y(z.unten) - y(z.oben)));
+        if (z.n && x1 - x0 > 60 * dpr && y(z.unten) - y(z.oben) > 9 * dpr) text(ctx, `${z.n}× · ${kurzZ(z.vol)}`, x0 + 5 * dpr, (y(z.oben) + y(z.unten)) / 2 + 4 * dpr, dpr * 0.75, mix(f, .95), 'left', 600);   // r107: wie „7x | 25“ im Video
       }
       for (const a of zn.absorption) {
         if (a.i < anfang || a.i >= ende) continue;
         const k = K[a.i], mx = xk(a.i) + cw / 2, r = Math.max(4, Math.min(8, cw / dpr / 3)) * dpr, unten2 = a.kaeufer, yy = unten2 ? y(k.l) + r + 3 * dpr : y(k.h) - r - 3 * dpr;
         ctx.beginPath(); if (unten2) { ctx.moveTo(mx, yy - r); ctx.lineTo(mx - r, yy + r * 0.7); ctx.lineTo(mx + r, yy + r * 0.7); } else { ctx.moveTo(mx, yy + r); ctx.lineTo(mx - r, yy - r * 0.7); ctx.lineTo(mx + r, yy - r * 0.7); }
         ctx.closePath(); ctx.fillStyle = unten2 ? F.kauf : F.verk; ctx.fill(); ctx.strokeStyle = F.chart; ctx.stroke();
+      }
+    }
+    // r107 Cluster-Stufen: Häufungen großer Trades als Band nach rechts, beschriftet mit Anzahl, Summe und Kaufanteil
+    if (ch.an.cluster && d.gross && d.gross.length) {
+      const t0c = V[0].t, tfC = ch.tf * 60, xVonT = (t) => xk(anfang) + (t - t0c) / tfC * cw;
+      const st = clusterStufen(d.gross).filter((z) => z.p > lo && z.p < hi && xVonT(z.t) < plotW).sort((a, b) => b.vol - a.vol).slice(0, 6);
+      const maxV = Math.max(1, ...st.map((z) => z.vol)); let letzteY = [];
+      for (const z of st) {
+        const x0 = Math.max(0, xVonT(z.t)), yy = y(z.p), hB = Math.max(3 * dpr, Math.abs(y(z.p * 1.0005) - y(z.p * 0.9995))), anteil = z.kauf / z.vol;
+        const f = anteil >= 0.55 ? F.kauf : anteil <= 0.45 ? F.verk : F.wal, a = 0.03 + 0.06 * Math.sqrt(z.vol / maxV);
+        ctx.fillStyle = mix(f, a); ctx.fillRect(x0, yy - hB / 2, plotW - x0, hB);                        // blasses Band (±0,05 %), kräftige Linie in der Mitte
+        ctx.strokeStyle = mix(f, 0.45 + 0.45 * Math.sqrt(z.vol / maxV)); ctx.lineWidth = (1 + 1.5 * Math.sqrt(z.vol / maxV)) * dpr;
+        ctx.beginPath(); ctx.moveTo(x0, Math.round(yy) + 0.5); ctx.lineTo(plotW, Math.round(yy) + 0.5); ctx.stroke(); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(x0, yy, 3 * dpr, 0, Math.PI * 2); ctx.fillStyle = mix(f, .9); ctx.fill();
+        if (letzteY.some((v) => Math.abs(v - yy) < 12 * dpr)) continue; letzteY.push(yy);
+        text(ctx, `${z.n}× · ${usd(z.vol)} · ${de(anteil * 100, 0)} % Kauf`, plotW - 6 * dpr, yy - 4 * dpr, dpr * 0.75, mix(f, .95), 'right', 600);
       }
     }
     // Große Trades als Kreise
@@ -5327,7 +5398,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     const box = $('gex-tabelle'); if (!box) return;
     const leer = (t) => { const p = document.createElement('p'); p.className = 'leise'; p.textContent = t; box.replaceChildren(p); };
     if (!OPT_COINS.has(coin)) return leer(`Für ${coin} gibt es keine Optionen.`);
-    if (!O || O.coin !== coin || !O.reihen) return leer('Lade Optionen von Deribit …');
+    if (!O || O.coin !== coin || !O.reihen) return leer(`Lade Optionen von ${optBasis(coin) ? 'CBOE' : 'Deribit'} …`);
     const s = O.index, verf = O.reihen.filter((e) => e.tage > 0 && e.tage <= 35).sort((a, b) => b.oi - a.oi).slice(0, 4).sort((a, b) => a.v - b.v);
     if (!verf.length) return leer('Keine Verfälle in den nächsten 5 Wochen.');
     const je = new Map();                                  // Strike → [GEX je Verfall …]
@@ -5705,7 +5776,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     const leer = (t) => { for (const id of ['ol-vert', 'ol-pos', 'ol-3d', 'ol-payoff']) leinwandText($(id), t); ['ol-kacheln', 'ol-greeks'].forEach((id) => $(id).replaceChildren()); $('ol-chance').textContent = ''; box.replaceChildren(); };
     olVolZeigen();
     if (!OPT_COINS.has(coin)) return leer(`Für ${coin} gibt es an keiner Börse Optionen`);
-    if (!vf.length) return leer('Lade Optionen von Deribit …');
+    if (!vf.length) return leer(`Lade Optionen von ${optBasis(coin) ? 'CBOE' : 'Deribit'} …`);
     if (!olV || !vf.some((e) => e.v === olV)) olV = vf.reduce((a, e) => (Math.abs(e.tage - 30) < Math.abs(a.tage - 30) ? e : a)).v;
     box.replaceChildren(...vf.map((e) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.v = e.v; b.textContent = tagKurz(e.v); b.setAttribute('aria-pressed', String(e.v === olV)); return b; }));
     const e = vf.find((x) => x.v === olV);
@@ -6450,7 +6521,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
     $('gamma-lage').className = 'gamma-lage ' + (pos ? 'plus' : 'minus');
     $('gamma-lage').textContent = pos ? `Positives Gamma: Kurs über dem Kipp-Punkt${e && e.flip ? ' ' + preis(e.flip) : ''} – Händler sichern gegen die Bewegung ab, Ausschläge werden eher gebremst.`
       : `Negatives Gamma: Kurs unter dem Kipp-Punkt${e && e.flip ? ' ' + preis(e.flip) : ''} – Händler sichern mit der Bewegung ab, Ausschläge werden eher verstärkt.`;
-    $('gamma-stand').textContent = `${l.length} Aufzeichnungen seit ${uhrKurz(l[0].t * 1000)} (alle 2 Min., 24 Std. in diesem Browser) · Deribit, Verfälle bis 35 Tage · Beobachtung, kein Signal`;
+    $('gamma-stand').textContent = `${l.length} Aufzeichnungen seit ${uhrKurz(l[0].t * 1000)} (alle 2 Min., 24 Std. in diesem Browser) · ${((O && O.quellen) || ['Deribit']).join(' + ')}, Verfälle bis 35 Tage · Beobachtung, kein Signal`;
   }
   // --- Zonen mit dem meisten Umsatz im Chart (High Volume Nodes, aus dem Volumenprofil)
   function hvnZonen(profil, schritt) {
