@@ -1066,6 +1066,7 @@ html.desk .maerkte button { border-radius: 1px; font-size: 10.5px; letter-spacin
 #selbst-pos button.selbst-wert { border: 0; padding: 0; font-weight: 600; text-decoration: underline dotted; }
 .selbst .leise-knopf { font: 500 12px var(--sans); background: transparent; color: var(--leise); border: 1px solid var(--linie); border-radius: 5px; padding: 3px 8px; cursor: pointer; }
 .selbst .feld-kopf .leise-knopf[aria-pressed="false"] { opacity: .7; }
+@media (max-width: 700px) { #selbst-pos th:nth-child(3), #selbst-pos td:nth-child(3), #selbst-pos th:nth-child(5), #selbst-pos td:nth-child(5), #selbst-pos th:nth-child(7), #selbst-pos td:nth-child(7) { display: none; } }
 
 /* Test-Fassung: alles kommt live aus dem Browser des Empfängers */
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
