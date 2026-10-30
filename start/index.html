@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RYVO Terminal</title>
+<meta name="description" content="Sieh, was hinter dem Kurs passiert: Orderbuch, Orderflow, Optionen und Wale für Krypto, Aktien, Gold und Öl – live im Browser.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0a0b0e">
+<style>
+@font-face { font-family: "Geist"; src: url("schrift/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("schrift/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root {
+  --grund: #0a0b0e; --feld: #111317; --feld-2: #16191e; --linie: #1f232a; --text: #e6e8eb; --text-2: #b8bdc6; --leise: #868c97;
+  --akzent: #e3a857; --kauf: #4fc1d8; --verk: #f0975a;
+  --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif; --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; background: var(--grund); color: var(--text); font: 400 16px/1.6 var(--sans); }
+body::before { content: ""; position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 10; background: linear-gradient(90deg, var(--akzent), transparent); }
+a { color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+.rahmen { width: min(1120px, 100% - 32px); margin-inline: auto; }
+.mono { font-family: var(--mono); }
+
+header.kopf { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--grund) 86%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--linie); }
+.kopf .rahmen { display: flex; align-items: center; gap: 16px; height: 58px; }
+.marke { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 700 13px var(--mono); letter-spacing: .14em; }
+.marke span { color: var(--akzent); }
+.marke svg { flex: none; }
+.kopf nav { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+.sprache { display: inline-flex; border: 1px solid var(--linie); border-radius: 7px; overflow: hidden; }
+.sprache button { font: 600 11px var(--mono); letter-spacing: .06em; padding: 6px 9px; background: transparent; color: var(--leise); border: 0; cursor: pointer; }
+.sprache button[aria-pressed="true"] { background: var(--feld-2); color: var(--text); }
+.knopf { display: inline-flex; align-items: center; gap: 8px; font: 600 14px var(--sans); text-decoration: none; padding: 11px 18px; border-radius: 9px; border: 1px solid transparent; cursor: pointer; white-space: nowrap; }
+.knopf.haupt { background: var(--akzent); color: #16120b; }
+.knopf.haupt:hover { filter: brightness(1.07); }
+.knopf.zweit { border-color: var(--linie); color: var(--text); background: var(--feld); }
+.knopf.zweit:hover { border-color: #2c313a; }
+.kopf .knopf { padding: 8px 14px; font-size: 13px; }
+
+.held { padding: 72px 0 40px; }
+.marke-klein { display: inline-flex; align-items: center; gap: 8px; font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--akzent); border: 1px solid color-mix(in srgb, var(--akzent) 40%, transparent); border-radius: 999px; padding: 4px 11px; }
+.held h1 { font: 650 clamp(36px, 6vw, 64px)/1.05 var(--sans); letter-spacing: -.025em; margin: 20px 0 18px; max-width: 15ch; text-wrap: balance; }
+.held p.unter { font-size: clamp(16px, 2vw, 19px); color: var(--text-2); max-width: 58ch; margin: 0 0 28px; text-wrap: pretty; }
+.held .knoepfe { display: flex; flex-wrap: wrap; gap: 10px; }
+.held .fein { margin-top: 16px; font-size: 13px; color: var(--leise); }
+.buehne { margin-top: 48px; position: relative; }
+.buehne .gross { border: 1px solid var(--linie); border-radius: 14px; overflow: hidden; box-shadow: 0 30px 80px -30px rgba(0,0,0,.8); }
+.buehne .handy { position: absolute; right: -12px; bottom: -36px; width: 22%; min-width: 150px; border: 1px solid var(--linie); border-radius: 22px; overflow: hidden; box-shadow: 0 20px 60px -10px rgba(0,0,0,.85); }
+
+.zahlenleiste { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--linie); border-radius: 12px; margin: 80px 0 0; background: var(--feld); }
+.zahlenleiste div { padding: 18px 20px; border-left: 1px solid var(--linie); }
+.zahlenleiste div:first-child { border-left: 0; }
+.zahlenleiste b { display: block; font: 600 24px var(--mono); letter-spacing: -.01em; }
+.zahlenleiste span { font-size: 13px; color: var(--leise); }
+
+section.block { padding: 96px 0 0; }
+.block h2 { font: 650 clamp(26px, 3.6vw, 38px)/1.15 var(--sans); letter-spacing: -.02em; margin: 0 0 12px; max-width: 22ch; text-wrap: balance; }
+.block p.ein { color: var(--text-2); max-width: 62ch; margin: 0 0 36px; }
+.etikett { font: 600 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--leise); margin-bottom: 14px; display: block; }
+
+.funktion { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: center; padding: 34px 0; border-top: 1px solid var(--linie); }
+.funktion:nth-child(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.funktion:nth-child(even) .text { order: 2; }
+.funktion h3 { font: 600 21px/1.25 var(--sans); margin: 0 0 10px; letter-spacing: -.01em; }
+.funktion p { color: var(--text-2); margin: 0 0 12px; }
+.funktion ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; color: var(--leise); }
+.funktion li::before { content: "—"; color: var(--akzent); margin-right: 8px; }
+.funktion .bild { border: 1px solid var(--linie); border-radius: 12px; overflow: hidden; background: var(--feld); }
+
+.ehrlich { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.karte { background: var(--feld); border: 1px solid var(--linie); border-radius: 12px; padding: 20px; }
+.karte .idee { font: 600 16px var(--sans); margin: 0 0 4px; }
+.karte .woher { font-size: 13px; color: var(--leise); margin: 0 0 16px; }
+.karte .wert { font: 600 28px var(--mono); color: var(--verk); }
+.karte .wert small { font: 500 13px var(--sans); color: var(--leise); margin-left: 6px; }
+.karte .urteil { margin-top: 12px; font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--verk); }
+.ehrlich-fuss { margin-top: 18px; color: var(--leise); font-size: 14px; max-width: 70ch; }
+
+.nicht { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.nicht .karte b { display: block; font: 600 15px var(--sans); margin-bottom: 6px; }
+.nicht .karte span { font-size: 14px; color: var(--leise); }
+
+.schluss { margin: 96px 0 0; padding: 56px 32px; border: 1px solid var(--linie); border-radius: 16px; background: radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--akzent) 12%, var(--feld)) 0%, var(--feld) 55%); text-align: center; }
+.schluss h2 { margin-inline: auto; }
+.schluss p { color: var(--text-2); margin: 0 auto 24px; max-width: 52ch; }
+
+.feedback { display: grid; gap: 10px; max-width: 640px; }
+.feedback textarea, .feedback input { width: 100%; font: 400 15px var(--sans); color: var(--text); background: var(--feld); border: 1px solid var(--linie); border-radius: 10px; padding: 12px 14px; }
+.feedback textarea { min-height: 120px; resize: vertical; }
+.feedback .zeile { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.feedback .hinweis { font-size: 13px; color: var(--leise); }
+
+footer { margin-top: 96px; border-top: 1px solid var(--linie); padding: 28px 0 48px; color: var(--leise); font-size: 13px; }
+footer .rahmen { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+@media (max-width: 860px) {
+  .funktion, .funktion:nth-child(even) { grid-template-columns: 1fr; gap: 20px; }
+  .funktion:nth-child(even) .text { order: 0; }
+  .ehrlich, .nicht { grid-template-columns: 1fr; }
+  .zahlenleiste { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .zahlenleiste div:nth-child(3) { border-left: 0; }
+  .zahlenleiste div:nth-child(n+3) { border-top: 1px solid var(--linie); }
+  .buehne .handy { display: none; }
+  .held { padding-top: 48px; }
+  section.block { padding-top: 72px; }
+  .kopf .knopf { display: none; }
+  .schluss { padding: 40px 20px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="kopf"><div class="rahmen">
+  <a class="marke" href="./" aria-label="RYVO Terminal"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="0.5" y="0.5" width="25" height="25" rx="6" fill="#111317" stroke="#1f232a"/><path d="M5 17l4-5 3 3 4-6 5 7" fill="none" stroke="#4fc1d8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 20h16" stroke="#e3a857" stroke-width="1.8" stroke-linecap="round"/></svg>RYVO <span>TERMINAL</span></a>
+  <nav>
+    <div class="sprache" role="group" aria-label="Sprache"><button type="button" data-sprache="de">DE</button><button type="button" data-sprache="en">EN</button></div>
+    <a class="knopf haupt" href="../" data-t="oeffnen">Terminal öffnen</a>
+  </nav>
+</div></header>
+
+<main>
+  <section class="held"><div class="rahmen">
+    <span class="marke-klein" data-t="beta">Kostenlose Beta</span>
+    <h1 data-t="h1">Sieh, was hinter dem Kurs passiert.</h1>
+    <p class="unter" data-t="unter">Orderbuch, Orderflow, Optionen und Wale in einem Terminal – für Krypto, Aktien, Indizes, Gold und Öl. Live im Browser, ohne Konto, ohne Installation.</p>
+    <div class="knoepfe">
+      <a class="knopf haupt" href="../" data-t="oeffnen">Terminal öffnen</a>
+      <a class="knopf zweit" href="#funktionen" data-t="wie">Was es zeigt</a>
+    </div>
+    <p class="fein" data-t="fein">Nur zum Beobachten und Üben mit Spielgeld. Keine Anlageberatung, keine Kauf- oder Verkaufssignale.</p>
+    <div class="buehne">
+      <div class="gross"><img src="bilder/ganz.jpg" width="2000" height="1388" alt="RYVO Terminal am Computer: Liquiditäts-Karte, Futures-Markt und große Trades für Bitcoin" data-t-alt="alt_ganz"></div>
+      <div class="handy"><img src="bilder/handy.jpg" width="600" height="1298" alt="RYVO Terminal auf dem Handy" data-t-alt="alt_handy" loading="lazy"></div>
+    </div>
+    <div class="zahlenleiste">
+      <div><b>5</b><span data-t="z1">Börsen live zusammengeführt</span></div>
+      <div><b>28</b><span data-t="z2">Bereiche in einem Terminal</span></div>
+      <div><b>0 €</b><span data-t="z3">in der Beta, ohne Anmeldung</span></div>
+      <div><b>0</b><span data-t="z4">Daten auf unseren Servern</span></div>
+    </div>
+  </div></section>
+
+  <section class="block" id="funktionen"><div class="rahmen">
+    <span class="etikett" data-t="e_funktionen">Was es zeigt</span>
+    <h2 data-t="h_funktionen">Die Werkzeuge der Profis, verständlich erklärt.</h2>
+    <p class="ein" data-t="p_funktionen">Jedes Feld hat ein kleines „i“, das in einfachen Worten erklärt, was du siehst. Kein Fachchinesisch nötig.</p>
+    <div class="funktionen">
+      <article class="funktion">
+        <div class="text">
+          <h3 data-t="f1h">Liquidität und Wände</h3>
+          <p data-t="f1p">Wo große Aufträge im Orderbuch warten – Sekunde für Sekunde, über Bybit, OKX und Binance zusammengezählt.</p>
+          <ul><li data-t="f1a">Nächste Kauf- und Verkaufswand mit Standzeit</li><li data-t="f1b">Gezogene Wände: verschwunden, ohne gehandelt zu werden</li><li data-t="f1c">Große Trades als Kreise direkt auf der Karte</li></ul>
+        </div>
+        <div class="bild"><img src="bilder/heat.jpg" width="1200" height="1344" alt="Liquiditäts-Karte mit Wänden und Trades" data-t-alt="alt_heat" loading="lazy"></div>
+      </article>
+      <article class="funktion">
+        <div class="text">
+          <h3 data-t="f2h">Orderflow und Footprint</h3>
+          <p data-t="f2p">Wer kauft aggressiv, wer verkauft? Kaufdruck an Spot- und Futures-Börsen getrennt, dazu Footprint und Volumenprofil.</p>
+          <ul><li data-t="f2a">Kaufdruck Spot gegen Futures</li><li data-t="f2b">Footprint mit Delta je Kerze</li><li data-t="f2c">Point of Control und Value Area</li></ul>
+        </div>
+        <div class="bild"><img src="bilder/chart.jpg" width="1600" height="1033" alt="Chart mit Footprint und Volumenprofil" data-t-alt="alt_chart" loading="lazy"></div>
+      </article>
+      <article class="funktion">
+        <div class="text">
+          <h3 data-t="f3h">Optionen und Gamma</h3>
+          <p data-t="f3p">Was der Optionsmarkt erwartet und wo Händler absichern müssen: Wahrscheinlichkeiten am Verfall, Positionierung je Strike, Gamma-Wände und Volatilität.</p>
+          <ul><li data-t="f3a">Gamma, Vanna und Charm je Strike, Call- und Put-Wand</li><li data-t="f3b">Volatilitäts-Kegel und 3D-Fläche</li><li data-t="f3c">Wahrscheinliche Spanne bis zum Verfall</li></ul>
+        </div>
+        <div class="bild"><img src="bilder/gamma.jpg" width="1600" height="1024" alt="Options-Labor mit Wahrscheinlichkeiten, Positionierung je Strike und Volatilität" data-t-alt="alt_gamma" loading="lazy"></div>
+      </article>
+      <article class="funktion">
+        <div class="text">
+          <h3 data-t="f4h">Wale und Liquidationen</h3>
+          <p data-t="f4p">Wo gehebelte Positionen zwangsweise geschlossen würden – und was die größten Händler auf Hyperliquid gerade halten.</p>
+          <ul><li data-t="f4a">Liquidations-Karte nach Preis</li><li data-t="f4b">Nächste Wal-Liquidation direkt im Chart</li><li data-t="f4c">Rangliste der erfolgreichsten Konten</li></ul>
+        </div>
+        <div class="bild"><img src="bilder/lkarte.jpg" width="1600" height="1024" alt="Liquidations-Karte nach Preis" data-t-alt="alt_lkarte" loading="lazy"></div>
+      </article>
+      <article class="funktion">
+        <div class="text">
+          <h3 data-t="f5h">Selbst handeln – mit Spielgeld</h3>
+          <p data-t="f5p">Übe Long und Short mit 10.000 $ Spielgeld zum Live-Kurs, mit Stop, Ziel, Hebel und echten Kosten. Dein Journal zeigt, wie du wirklich handelst.</p>
+          <ul><li data-t="f5a">Krypto, Aktien, Indizes, Gold, Öl, Devisen</li><li data-t="f5b">Trade-Journal mit Trefferquote und Gewinnfaktor</li><li data-t="f5c">Nichts geht an eine Börse, kein echtes Geld</li></ul>
+        </div>
+        <div class="bild"><img src="bilder/selbst.jpg" width="1600" height="424" alt="Übungskonto mit offener Position" data-t-alt="alt_selbst" loading="lazy"></div>
+      </article>
+    </div>
+  </div></section>
+
+  <section class="block" id="ehrlich"><div class="rahmen">
+    <span class="etikett" data-t="e_ehrlich">Ehrlich gemessen</span>
+    <h2 data-t="h_ehrlich">Wir prüfen Trading-Ideen, bevor wir ihnen glauben.</h2>
+    <p class="ein" data-t="p_ehrlich">Im Netz sieht jede Strategie gut aus – man zeigt den einen Trade, der geklappt hat. Wir rechnen beliebte Ideen über alle Fälle nach, mit Kosten, nach Regeln, die vorher feststehen. Drei Beispiele:</p>
+    <div class="ehrlich">
+      <div class="karte"><p class="idee" data-t="i1">Käufer erschöpft an der Value Area</p><p class="woher" data-t="i1w">BTC, 1.049 Fälle, fast 8 Jahre</p><div class="wert">3 / 4<small data-t="i1z">am Stop</small></div><div class="urteil" data-t="kein">Kein Vorteil</div></div>
+      <div class="karte"><p class="idee" data-t="i2">Absorption an der Zone</p><p class="woher" data-t="i2w">BTC und ETH, 155 Trades, 1 Jahr</p><div class="wert">0,65–0,80<small data-t="gf">Gewinnfaktor</small></div><div class="urteil" data-t="kein">Kein Vorteil</div></div>
+      <div class="karte"><p class="idee" data-t="i3">Retest der Value Area</p><p class="woher" data-t="i3w">BTC und ETH, 498 Trades, 1 Jahr</p><div class="wert">0,48–0,66<small data-t="gf">Gewinnfaktor</small></div><div class="urteil" data-t="kein">Kein Vorteil</div></div>
+    </div>
+    <p class="ehrlich-fuss" data-t="fuss_ehrlich">Gewinnfaktor unter 1 heißt: unterm Strich Verlust. Das Terminal zeigt dir die Daten – was du daraus machst, entscheidest du. Vergangenheit sagt die Zukunft nicht voraus.</p>
+  </div></section>
+
+  <section class="block" id="nicht"><div class="rahmen">
+    <span class="etikett" data-t="e_nicht">Was es nicht ist</span>
+    <h2 data-t="h_nicht">Klar und ohne Haken.</h2>
+    <div class="nicht" style="margin-top:28px">
+      <div class="karte"><b data-t="n1">Keine Signale</b><span data-t="n1t">Kein „jetzt kaufen“. Du siehst Daten und entscheidest selbst.</span></div>
+      <div class="karte"><b data-t="n2">Keine Beratung</b><span data-t="n2t">Kein Anlageberater, kein Gewinnversprechen.</span></div>
+      <div class="karte"><b data-t="n3">Kein Broker</b><span data-t="n3t">Es wird nichts gehandelt. Üben nur mit Spielgeld.</span></div>
+      <div class="karte"><b data-t="n4">Keine Datensammlung</b><span data-t="n4t">Dein Browser holt die Daten direkt von den Börsen. Nichts landet bei uns.</span></div>
+    </div>
+  </div></section>
+
+  <section class="block" id="feedback" hidden><div class="rahmen">
+    <span class="etikett" data-t="e_feedback">Feedback</span>
+    <h2 data-t="h_feedback">Was fehlt dir? Was stört?</h2>
+    <p class="ein" data-t="p_feedback">Die Beta wird mit euren Rückmeldungen besser. Schreib einfach, was dir auffällt.</p>
+    <form class="feedback" id="feedback-form">
+      <textarea id="fb-text" required data-t-ph="ph_text" placeholder="Deine Nachricht …"></textarea>
+      <div class="zeile"><button class="knopf haupt" type="submit" data-t="senden">Per E-Mail senden</button><span class="hinweis" data-t="fb_hinweis">Öffnet dein E-Mail-Programm mit dem Text.</span></div>
+    </form>
+  </div></section>
+
+  <div class="rahmen"><div class="schluss">
+    <h2 data-t="h_schluss">Bereit? Es dauert zwei Sekunden.</h2>
+    <p data-t="p_schluss">Kein Konto, keine Installation. Läuft am Computer und auf dem Handy in Chrome oder Safari.</p>
+    <a class="knopf haupt" href="../" data-t="oeffnen">Terminal öffnen</a>
+  </div></div>
+</main>
+
+<footer><div class="rahmen">
+  <span>© 2026 RYVO · <span data-t="fuss1">Beta – Daten live von Bybit, Binance, OKX, Coinbase, Deribit und Hyperliquid.</span></span>
+  <span data-t="fuss2">Kein Anlageberater, kein Gewinnversprechen.</span>
+</div></footer>
+
+<script>
+(function () {
+  // Feedback-Adresse: erst eintragen, wenn Mio sie freigibt – bis dahin bleibt der Bereich ausgeblendet.
+  var FEEDBACK_MAIL = '';
+  var EN = {
+    oeffnen: 'Open the terminal', beta: 'Free beta', h1: 'See what’s happening behind the price.',
+    unter: 'Order book, order flow, options and whales in one terminal – for crypto, stocks, indices, gold and oil. Live in your browser, no account, no install.',
+    wie: 'What it shows', fein: 'For watching and practising with play money only. No investment advice, no buy or sell signals.',
+    z1: 'exchanges merged live', z2: 'panels in one terminal', z3: 'during the beta, no sign-up', z4: 'data on our servers',
+    e_funktionen: 'What it shows', h_funktionen: 'Pro tools, explained in plain words.', p_funktionen: 'Every panel has a small “i” that explains what you see in simple words. No jargon needed.',
+    f1h: 'Liquidity and walls', f1p: 'Where large orders are waiting in the order book – second by second, aggregated across Bybit, OKX and Binance.',
+    f1a: 'Nearest bid and ask wall with standing time', f1b: 'Pulled walls: gone without being traded', f1c: 'Large trades as bubbles right on the map',
+    f2h: 'Order flow and footprint', f2p: 'Who is buying aggressively, who is selling? Buying pressure on spot and futures separately, plus footprint and volume profile.',
+    f2a: 'Buying pressure spot vs futures', f2b: 'Footprint with delta per candle', f2c: 'Point of control and value area',
+    f3h: 'Options and gamma', f3p: 'What the options market expects and where dealers have to hedge: probabilities at expiry, positioning per strike, gamma walls and volatility.',
+    f3a: 'Gamma, vanna and charm per strike, call and put wall', f3b: 'Volatility cone and 3D surface', f3c: 'Likely range until expiry',
+    f4h: 'Whales and liquidations', f4p: 'Where leveraged positions would be force-closed – and what the biggest traders on Hyperliquid hold right now.',
+    f4a: 'Liquidation map by price', f4b: 'Next whale liquidation right in the chart', f4c: 'Leaderboard of the most successful accounts',
+    f5h: 'Trade yourself – with play money', f5p: 'Practise long and short with $10,000 of play money at live prices, with stop, target, leverage and real costs. Your journal shows how you really trade.',
+    f5a: 'Crypto, stocks, indices, gold, oil, FX', f5b: 'Trade journal with hit rate and profit factor', f5c: 'Nothing goes to an exchange, no real money',
+    e_ehrlich: 'Honestly measured', h_ehrlich: 'We test trading ideas before we believe them.',
+    p_ehrlich: 'Online, every strategy looks good – you see the one trade that worked. We recompute popular ideas over all cases, with costs, using rules fixed in advance. Three examples:',
+    i1: 'Buyer exhaustion at the value area', i1w: 'BTC, 1,049 cases, almost 8 years', i1z: 'hit the stop', kein: 'No edge',
+    i2: 'Absorption at the zone', i2w: 'BTC and ETH, 155 trades, 1 year', gf: 'profit factor', i3: 'Value area retest', i3w: 'BTC and ETH, 498 trades, 1 year',
+    fuss_ehrlich: 'A profit factor below 1 means a net loss. The terminal shows you the data – what you do with it is your decision. The past does not predict the future.',
+    e_nicht: 'What it is not', h_nicht: 'Clear, no catch.',
+    n1: 'No signals', n1t: 'No “buy now”. You see data and decide yourself.', n2: 'No advice', n2t: 'Not an investment adviser, no promise of profit.',
+    n3: 'No broker', n3t: 'Nothing is traded. Practice with play money only.', n4: 'No data collection', n4t: 'Your browser fetches data straight from the exchanges. Nothing reaches us.',
+    e_feedback: 'Feedback', h_feedback: 'What’s missing? What bugs you?', p_feedback: 'The beta gets better with your feedback. Just write what you notice.',
+    ph_text: 'Your message …', senden: 'Send by email', fb_hinweis: 'Opens your email app with the text.',
+    h_schluss: 'Ready? It takes two seconds.', p_schluss: 'No account, no install. Works on computer and phone in Chrome or Safari.',
+    fuss1: 'Beta – live data from Bybit, Binance, OKX, Coinbase, Deribit and Hyperliquid.', fuss2: 'Not an investment adviser, no promise of profit.',
+    alt_ganz: 'RYVO Terminal on a computer: liquidity map, futures market and large trades for Bitcoin', alt_handy: 'RYVO Terminal on a phone',
+    alt_heat: 'Liquidity map with walls and trades', alt_chart: 'Chart with footprint and volume profile', alt_gamma: 'Options lab with probabilities, positioning per strike and volatility',
+    alt_lkarte: 'Liquidation map by price', alt_selbst: 'Practice account with an open position'
+  };
+  var DE = {};
+  document.querySelectorAll('[data-t]').forEach(function (e) { DE[e.dataset.t] = e.textContent; });
+  document.querySelectorAll('[data-t-alt]').forEach(function (e) { DE[e.dataset.tAlt] = e.alt; });
+  document.querySelectorAll('[data-t-ph]').forEach(function (e) { DE[e.dataset.tPh] = e.placeholder; });
+  function setzen(sp) {
+    var w = sp === 'en' ? EN : DE;
+    document.documentElement.lang = sp;
+    document.querySelectorAll('[data-t]').forEach(function (e) { if (w[e.dataset.t]) e.textContent = w[e.dataset.t]; });
+    document.querySelectorAll('[data-t-alt]').forEach(function (e) { if (w[e.dataset.tAlt]) e.alt = w[e.dataset.tAlt]; });
+    document.querySelectorAll('[data-t-ph]').forEach(function (e) { if (w[e.dataset.tPh]) e.placeholder = w[e.dataset.tPh]; });
+    document.querySelectorAll('a[href="../"]').forEach(function (a) { a.href = '../?lang=' + sp; });
+    document.querySelectorAll('.sprache button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.sprache === sp)); });
+    try { localStorage.setItem('profi.sprache', sp); } catch (e) {}
+  }
+  var start = 'de';
+  try { var q = new URLSearchParams(location.search).get('lang'), m = localStorage.getItem('profi.sprache'); start = q === 'de' || q === 'en' ? q : m === 'de' || m === 'en' ? m : (/^de\b/i.test(navigator.language || '') ? 'de' : 'en'); } catch (e) {}
+  setzen(start);
+  document.querySelector('.sprache').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) setzen(b.dataset.sprache); });
+  if (FEEDBACK_MAIL) {
+    document.getElementById('feedback').hidden = false;
+    document.getElementById('feedback-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var t = document.getElementById('fb-text').value.trim(); if (!t) return;
+      location.href = 'mailto:' + FEEDBACK_MAIL + '?subject=' + encodeURIComponent('RYVO Terminal – Feedback') + '&body=' + encodeURIComponent(t);
+    });
+  }
+})();
+</script>
+</body>
+</html>
