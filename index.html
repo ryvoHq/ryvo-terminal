@@ -8340,8 +8340,8 @@ window.PROFI_SPRACHEN = {"es": {" Achtung: Schlüssel liegen unverschlüsselt im
     const [rr, dd] = await Promise.allSettled([rugJson(`https://api.rugcheck.xyz/v1/tokens/${mint}/report`), rugJson(`https://api.dexscreener.com/latest/dex/tokens/${mint}`)]);
     if (nr !== rugLauf) return;
     const r = rr.status === 'fulfilled' ? rr.value : null;
-    const paare = dd.status === 'fulfilled' && dd.value && Array.isArray(dd.value.pairs) ? dd.value.pairs.filter((p) => p.chainId === 'solana') : [];
-    // Hauptpaar = meister Umsatz in 24 Std. (ein großer, aber toter Pool kann einen falschen Preis haben – Bonk-Test 06.11.: 1.256 Mrd. $ statt ~1 Mrd.)
+    const paare = dd.status === 'fulfilled' && dd.value && Array.isArray(dd.value.pairs) ? dd.value.pairs.filter((p) => p.chainId === 'solana' && p.baseToken && p.baseToken.address === mint) : [];
+    // nur Paare mit dem Coin als Basis (nicht als Gegenwährung); Hauptpaar = meister Umsatz in 24 Std. (ein großer, aber toter Pool kann einen falschen Preis haben – Bonk-Test 06.11.: 1.256 Mrd. $ statt ~1 Mrd.)
     const umsatz = (p) => ((p.volume || {}).h24 || 0) * 1e3 + ((p.liquidity || {}).usd || 0) / 1e6;
     const ds = paare.sort((a, b) => umsatz(b) - umsatz(a))[0] || null;
     if (!r && !ds) { box.textContent = 'Keine Daten zu dieser Adresse (RugCheck und DexScreener kennen sie nicht oder sind gerade nicht erreichbar).'; return; }
