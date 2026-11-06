@@ -96,6 +96,9 @@ section.block { padding: 96px 0 0; }
 
 footer { margin-top: 96px; border-top: 1px solid var(--linie); padding: 28px 0 48px; color: var(--leise); font-size: 13px; }
 footer .rahmen { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+footer .recht { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+footer .recht a { color: var(--leise); text-underline-offset: 2px; }
+footer .recht a:hover { color: var(--text); }
 
 @media (max-width: 860px) {
   .funktion, .funktion:nth-child(even) { grid-template-columns: 1fr; gap: 20px; }
@@ -137,8 +140,8 @@ footer .rahmen { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content:
       <div class="handy"><img src="bilder/handy.jpg" width="600" height="1298" alt="RYVO Terminal auf dem Handy" data-t-alt="alt_handy" loading="lazy"></div>
     </div>
     <div class="zahlenleiste">
-      <div><b>5</b><span data-t="z1">Börsen live zusammengeführt</span></div>
-      <div><b>28</b><span data-t="z2">Bereiche in einem Terminal</span></div>
+      <div><b>3</b><span data-t="z1">Börsen live: Bybit, Binance, Hyperliquid</span></div>
+      <div><b>25+</b><span data-t="z2">Bereiche in einem Terminal</span></div>
       <div><b>0 €</b><span data-t="z3">in der Beta, ohne Anmeldung</span></div>
       <div><b>0</b><span data-t="z4">Daten auf unseren Servern</span></div>
     </div>
@@ -152,7 +155,7 @@ footer .rahmen { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content:
       <article class="funktion">
         <div class="text">
           <h3 data-t="f1h">Liquidität und Wände</h3>
-          <p data-t="f1p">Wo große Aufträge im Orderbuch warten – Sekunde für Sekunde, über Bybit, OKX und Binance zusammengezählt.</p>
+          <p data-t="f1p">Wo große Aufträge im Orderbuch warten – Sekunde für Sekunde, über Bybit und Binance zusammengezählt.</p>
           <ul><li data-t="f1a">Nächste Kauf- und Verkaufswand mit Standzeit</li><li data-t="f1b">Gezogene Wände: verschwunden, ohne gehandelt zu werden</li><li data-t="f1c">Große Trades als Kreise direkt auf der Karte</li></ul>
         </div>
         <div class="bild"><img src="bilder/heat.jpg" width="1200" height="1344" alt="Liquiditäts-Karte mit Wänden und Trades" data-t-alt="alt_heat" loading="lazy"></div>
@@ -168,7 +171,7 @@ footer .rahmen { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content:
       <article class="funktion">
         <div class="text">
           <h3 data-t="f3h">Optionen und Gamma</h3>
-          <p data-t="f3p">Was der Optionsmarkt erwartet und wo Händler absichern müssen: Wahrscheinlichkeiten am Verfall, Positionierung je Strike, Gamma-Wände und Volatilität.</p>
+          <p data-t="f3p">Was der Optionsmarkt erwartet und wo Händler absichern müssen: Wahrscheinlichkeiten am Verfall, Positionierung je Strike, Gamma-Wände und Volatilität – aus den Optionen von Bybit für BTC, ETH, SOL und weitere Coins.</p>
           <ul><li data-t="f3a">Gamma, Vanna und Charm je Strike, Call- und Put-Wand</li><li data-t="f3b">Volatilitäts-Kegel und 3D-Fläche</li><li data-t="f3c">Wahrscheinliche Spanne bis zum Verfall</li></ul>
         </div>
         <div class="bild"><img src="bilder/gamma.jpg" width="1600" height="1024" alt="Options-Labor mit Wahrscheinlichkeiten, Positionierung je Strike und Volatilität" data-t-alt="alt_gamma" loading="lazy"></div>
@@ -188,6 +191,22 @@ footer .rahmen { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content:
           <ul><li data-t="f5a">Krypto, Aktien, Indizes, Gold, Öl, Devisen</li><li data-t="f5b">Trade-Journal mit Trefferquote und Gewinnfaktor</li><li data-t="f5c">Nichts geht an eine Börse, kein echtes Geld</li></ul>
         </div>
         <div class="bild"><img src="bilder/selbst.jpg" width="1600" height="424" alt="Übungskonto mit offener Position" data-t-alt="alt_selbst" loading="lazy"></div>
+      </article>
+      <article class="funktion">
+        <div class="text">
+          <h3 data-t="f6h">Zeitmaschine – Plan vorher durchspielen</h3>
+          <p data-t="f6p">Bevor du übst: Wie wäre genau dieser Plan – Richtung, Stop, Ziel, Haltedauer – in den letzten Wochen ausgegangen? Jede volle Stunde als Einstieg, dazu 10.000 zufällige Verläufe.</p>
+          <ul><li data-t="f6a">Was kam zuerst: Ziel, Stop oder keins</li><li data-t="f6b">Vergleich mit der Gewinnschwelle deines Plans</li><li data-t="f6c">Rückblick, keine Vorhersage</li></ul>
+        </div>
+        <div class="bild"><img src="bilder/zeitmaschine.jpg" width="1600" height="813" alt="Zeitmaschine: ein Plan an der Vergangenheit durchgespielt" data-t-alt="alt_zm" loading="lazy"></div>
+      </article>
+      <article class="funktion">
+        <div class="text">
+          <h3 data-t="f7h">Rug-Check für Solana-Memecoins</h3>
+          <p data-t="f7p">Token-Adresse einfügen und in Sekunden sehen, was gegen ihn spricht: offene Mint- oder Freeze-Rechte, Serien-Entwickler, Konzentration bei wenigen Wallets, ganz neue Wallets.</p>
+          <ul><li data-t="f7a">Ampel mit Gründen statt bloßer Punktzahl</li><li data-t="f7b">Gerade gerugged und neu entdeckt, live</li><li data-t="f7c">Grün heißt nicht sicher – nur: kein bekanntes Warnzeichen</li></ul>
+        </div>
+        <div class="bild"><img src="bilder/rug.jpg" width="1600" height="678" alt="Rug-Check eines Solana-Tokens mit Ampel und Gründen" data-t-alt="alt_rug" loading="lazy"></div>
       </article>
     </div>
   </div></section>
@@ -233,8 +252,8 @@ footer .rahmen { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content:
 </main>
 
 <footer><div class="rahmen">
-  <span>© 2026 RYVO · <span data-t="fuss1">Beta – Daten live von Bybit, Binance, OKX, Coinbase, Deribit und Hyperliquid.</span></span>
-  <span data-t="fuss2">Kein Anlageberater, kein Gewinnversprechen.</span>
+  <span>© 2026 RYVO · <span data-t="fuss1">Beta – Daten live von Bybit, Binance und Hyperliquid.</span> <span data-t="fuss2">Kein Anlageberater, kein Gewinnversprechen.</span></span>
+  <nav class="recht" aria-label="Rechtliches"><a href="../recht/impressum.html" data-t="l_imp">Impressum</a><a href="../recht/datenschutz.html" data-t="l_ds">Datenschutz</a><a href="../recht/hinweise.html" data-t="l_hin">Risikohinweis &amp; Nutzungsbedingungen</a><a href="../recht/lizenzen.html" data-t="l_liz">Lizenzen</a></nav>
 </div></footer>
 
 <script>
@@ -245,13 +264,13 @@ footer .rahmen { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content:
     oeffnen: 'Open the terminal', beta: 'Free beta', h1: 'See what’s happening behind the price.',
     unter: 'Order book, order flow, options and whales in one terminal – for crypto, stocks, indices, gold and oil. Live in your browser, no account, no install.',
     wie: 'What it shows', fein: 'For watching and practising with play money only. No investment advice, no buy or sell signals.',
-    z1: 'exchanges merged live', z2: 'panels in one terminal', z3: 'during the beta, no sign-up', z4: 'data on our servers',
+    z1: 'exchanges live: Bybit, Binance, Hyperliquid', z2: 'panels in one terminal', z3: 'during the beta, no sign-up', z4: 'data on our servers',
     e_funktionen: 'What it shows', h_funktionen: 'Pro tools, explained in plain words.', p_funktionen: 'Every panel has a small “i” that explains what you see in simple words. No jargon needed.',
-    f1h: 'Liquidity and walls', f1p: 'Where large orders are waiting in the order book – second by second, aggregated across Bybit, OKX and Binance.',
+    f1h: 'Liquidity and walls', f1p: 'Where large orders are waiting in the order book – second by second, aggregated across Bybit and Binance.',
     f1a: 'Nearest bid and ask wall with standing time', f1b: 'Pulled walls: gone without being traded', f1c: 'Large trades as bubbles right on the map',
     f2h: 'Order flow and footprint', f2p: 'Who is buying aggressively, who is selling? Buying pressure on spot and futures separately, plus footprint and volume profile.',
     f2a: 'Buying pressure spot vs futures', f2b: 'Footprint with delta per candle', f2c: 'Point of control and value area',
-    f3h: 'Options and gamma', f3p: 'What the options market expects and where dealers have to hedge: probabilities at expiry, positioning per strike, gamma walls and volatility.',
+    f3h: 'Options and gamma', f3p: 'What the options market expects and where dealers have to hedge: probabilities at expiry, positioning per strike, gamma walls and volatility – from Bybit options for BTC, ETH, SOL and more coins.',
     f3a: 'Gamma, vanna and charm per strike, call and put wall', f3b: 'Volatility cone and 3D surface', f3c: 'Likely range until expiry',
     f4h: 'Whales and liquidations', f4p: 'Where leveraged positions would be force-closed – and what the biggest traders on Hyperliquid hold right now.',
     f4a: 'Liquidation map by price', f4b: 'Next whale liquidation right in the chart', f4c: 'Leaderboard of the most successful accounts',
@@ -268,10 +287,15 @@ footer .rahmen { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content:
     e_feedback: 'Feedback', h_feedback: 'What’s missing? What bugs you?', p_feedback: 'The beta gets better with your feedback. Just write what you notice.',
     ph_text: 'Your message …', senden: 'Send by email', fb_hinweis: 'Opens your email app with the text.',
     h_schluss: 'Ready? It takes two seconds.', p_schluss: 'No account, no install. Works on computer and phone in Chrome or Safari.',
-    fuss1: 'Beta – live data from Bybit, Binance, OKX, Coinbase, Deribit and Hyperliquid.', fuss2: 'Not an investment adviser, no promise of profit.',
+    fuss1: 'Beta – live data from Bybit, Binance and Hyperliquid.', l_imp: 'Legal notice', l_ds: 'Privacy', l_hin: 'Risk notice & terms', l_liz: 'Licences', fuss2: 'Not an investment adviser, no promise of profit.',
     alt_ganz: 'RYVO Terminal on a computer: liquidity map, futures market and large trades for Bitcoin', alt_handy: 'RYVO Terminal on a phone',
     alt_heat: 'Liquidity map with walls and trades', alt_chart: 'Chart with footprint and volume profile', alt_gamma: 'Options lab with probabilities, positioning per strike and volatility',
-    alt_lkarte: 'Liquidation map by price', alt_selbst: 'Practice account with an open position'
+    alt_lkarte: 'Liquidation map by price', alt_selbst: 'Practice account with an open position',
+    f6h: 'Time machine – play your plan through first', f6p: 'Before you practise: how would exactly this plan – direction, stop, target, holding time – have turned out over the last weeks? Every full hour as an entry, plus 10,000 random paths.',
+    f6a: 'What came first: target, stop or neither', f6b: 'Compared with your plan’s break-even rate', f6c: 'A look back, not a forecast',
+    f7h: 'Rug check for Solana memecoins', f7p: 'Paste a token address and see in seconds what speaks against it: open mint or freeze authority, serial developers, concentration in few wallets, brand-new wallets.',
+    f7a: 'Traffic light with reasons, not just a score', f7b: 'Just rugged and newly found, live', f7c: 'Green does not mean safe – only: no known warning sign',
+    alt_zm: 'Time machine: a plan played through against the past', alt_rug: 'Rug check of a Solana token with traffic light and reasons'
   };
   var DE = {};
   document.querySelectorAll('[data-t]').forEach(function (e) { DE[e.dataset.t] = e.textContent; });
