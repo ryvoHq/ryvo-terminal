@@ -1,0 +1,44 @@
+@font-face { font-family: "Geist"; src: url("../start/schrift/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("../start/schrift/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root {
+  --grund: #0a0b0e; --feld: #111317; --feld-2: #16191e; --linie: #1f232a; --text: #e6e8eb; --text-2: #b8bdc6; --leise: #868c97; --akzent: #e3a857;
+  --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif; --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { --grund: #fbfbfa; --feld: #ffffff; --feld-2: #f1f1ef; --linie: #e3e3df; --text: #17181b; --text-2: #3d4047; --leise: #6b707a; --akzent: #a8680f; color-scheme: light; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--grund); color: var(--text); font: 400 16px/1.65 var(--sans); }
+a { color: var(--akzent); text-underline-offset: 2px; }
+.rahmen { width: min(780px, 100% - 32px); margin-inline: auto; }
+header { border-bottom: 1px solid var(--linie); }
+header .rahmen { display: flex; align-items: center; gap: 14px; min-height: 58px; flex-wrap: wrap; padding-block: 8px; }
+.marke { font: 700 13px var(--mono); letter-spacing: .14em; text-decoration: none; color: var(--text); }
+.marke span { color: var(--akzent); }
+header nav { margin-left: auto; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+header nav a { font-size: 13px; color: var(--text-2); text-decoration: none; padding: 6px 8px; border-radius: 6px; }
+header nav a[aria-current="page"] { color: var(--text); background: var(--feld-2); }
+.sprache { display: inline-flex; border: 1px solid var(--linie); border-radius: 7px; overflow: hidden; margin-left: 4px; }
+.sprache button { font: 600 11px var(--mono); letter-spacing: .06em; padding: 6px 9px; background: transparent; color: var(--leise); border: 0; cursor: pointer; }
+.sprache button[aria-pressed="true"] { background: var(--feld-2); color: var(--text); }
+main { padding: 40px 0 64px; }
+h1 { font: 650 clamp(28px, 4.5vw, 38px)/1.15 var(--sans); letter-spacing: -.02em; margin: 0 0 8px; }
+h2 { font: 600 19px/1.3 var(--sans); margin: 36px 0 8px; letter-spacing: -.01em; }
+h3 { font: 600 16px/1.35 var(--sans); margin: 22px 0 6px; }
+p, li { color: var(--text-2); }
+ul { padding-left: 20px; }
+.stand { font-size: 13px; color: var(--leise); margin: 0 0 24px; }
+.offen { color: var(--akzent); font-style: italic; }
+.kasten { border: 1px solid var(--linie); background: var(--feld); border-radius: 10px; padding: 14px 18px; margin: 18px 0; }
+.kasten p:first-child { margin-top: 0; } .kasten p:last-child { margin-bottom: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 10px 0 4px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--linie); color: var(--text-2); }
+th { color: var(--text); font-weight: 600; }
+.tabelle { overflow-x: auto; }
+address { font-style: normal; color: var(--text); }
+footer { border-top: 1px solid var(--linie); padding: 22px 0 34px; font-size: 13px; color: var(--leise); }
+footer .rahmen { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+footer a { color: var(--leise); }
+[data-sprache-block][hidden] { display: none; }
