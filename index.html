@@ -1795,6 +1795,7 @@ body.hd-auf { overflow: hidden; }
 .zm-ergebnis td.plus { color: var(--kauf); } .zm-ergebnis td.minus { color: var(--verk); }
 .zm-kopf { font: 500 12px var(--mono); margin: 0 0 6px; } .zm-urteil { font-weight: 600; margin: 8px 0 4px; }
 .zm-bild { display: block; width: 100%; margin-top: 6px; }
+@media (max-width: 700px) { .zm-ergebnis table { font-size: 12px; } .zm-ergebnis td:first-child, .zm-ergebnis th { white-space: normal; } .zm-ergebnis td:first-child { min-width: 110px; } }
 
 /* Test-Fassung: alles kommt live aus dem Browser des Empfängers */
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
