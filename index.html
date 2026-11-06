@@ -8287,7 +8287,9 @@ window.PROFI_SPRACHEN = {"es": {" Achtung: Schlüssel liegen unverschlüsselt im
     'Creator sold tokens': 'Entwickler hat verkauft', 'Insider wallets detected': 'Zusammenhängende Insider-Konten erkannt', 'Rugged': 'Bereits gerugged',
   };
   const rugKurz = (a) => (a && a.length > 10 ? a.slice(0, 4) + '…' + a.slice(-4) : a || '–');
-  const rugAlter = (ms) => { const m = Math.max(0, ms) / 6e4; return m < 60 ? `${Math.round(m)} Min.` : m < 2880 ? `${Math.round(m / 60)} Std.` : `${Math.round(m / 1440)} Tage`; };
+  const rugT = (d, e) => (SPRACHE === 'de' ? d : e);      // andere Sprachen bekommen Englisch statt Deutsch
+  const rugAlter = (ms) => { const m = Math.max(0, ms) / 6e4; return m < 60 ? `${Math.round(m)} ${rugT('Min.', 'min')}` : m < 2880 ? `${Math.round(m / 60)} ${rugT('Std.', 'h')}` : `${Math.round(m / 1440)} ${rugT('Tage', 'days')}`; };
+  const rugVor = (ms) => rugT(`vor ${rugAlter(ms)}`, `${rugAlter(ms)} ago`);
   async function rugJson(u, opt = {}) {
     const r = await fetch(u, { ...opt, signal: AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined });
     if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json();
@@ -8306,37 +8308,37 @@ window.PROFI_SPRACHEN = {"es": {" Achtung: Schlüssel liegen unverschlüsselt im
   // Ampel-Regeln (fest, stehen auch in der Anzeige): rot = starke Warnzeichen, gelb = Vorsicht, grün = keine starken Warnzeichen gefunden
   function rugBewerten(r, ds, wal) {
     const rot = [], gelb = [], bekannt = r.knownAccounts || {};
-    if (r.rugged) rot.push('RugCheck führt den Coin als gerugged');
-    if (r.token && r.token.mintAuthority) rot.push('Neue Coins können gedruckt werden (Mint-Recht offen)');
-    if (r.token && r.token.freezeAuthority) rot.push('Konten können eingefroren werden (Freeze-Recht offen)');
+    if (r.rugged) rot.push(rugT('RugCheck führt den Coin als gerugged', 'RugCheck lists the token as rugged'));
+    if (r.token && r.token.mintAuthority) rot.push(rugT('Neue Coins können gedruckt werden (Mint-Recht offen)', 'New tokens can be minted (mint authority open)'));
+    if (r.token && r.token.freezeAuthority) rot.push(rugT('Konten können eingefroren werden (Freeze-Recht offen)', 'Accounts can be frozen (freeze authority open)'));
     const ct = Array.isArray(r.creatorTokens) ? r.creatorTokens : [];
     const tot = ct.filter((c) => (c.marketCap || 0) < RUG_TOT).length;
-    if (ct.length >= 5 && tot / ct.length >= 0.8) rot.push(`Serien-Entwickler: ${ct.length} weitere Coins, ${tot} davon unter ${usd(RUG_TOT)} Börsenwert`);
-    else if (ct.length >= 2) gelb.push(`Entwickler hat ${ct.length} weitere Coins herausgebracht`);
+    if (ct.length >= 5 && tot / ct.length >= 0.8) rot.push(rugT(`Serien-Entwickler: ${ct.length} weitere Coins, ${tot} davon unter ${usd(RUG_TOT)} Börsenwert`, `Serial developer: ${ct.length} other tokens, ${tot} of them below ${usd(RUG_TOT)} market cap`));
+    else if (ct.length >= 2) gelb.push(rugT(`Entwickler hat ${ct.length} weitere Coins herausgebracht`, `Developer launched ${ct.length} other tokens`));
     const halter = (r.topHolders || []).filter((h) => !bekannt[h.owner] && !bekannt[h.address]);
     const groesster = halter[0] ? halter[0].pct : 0, top10 = halter.slice(0, 10).reduce((a, h) => a + (h.pct || 0), 0);
-    if (groesster > 20) rot.push(`Ein Konto besitzt ${proz(groesster, 1, false)} (ohne Börsen-Pools)`);
-    else if (top10 > 30) gelb.push(`Die 10 größten Konten besitzen ${proz(top10, 1, false)} (ohne Börsen-Pools)`);
-    if ((r.graphInsidersDetected || 0) > 0) gelb.push(`${r.graphInsidersDetected} zusammenhängende Insider-Konten erkannt`);
+    if (groesster > 20) rot.push(rugT(`Ein Konto besitzt ${proz(groesster, 1, false)} (ohne Börsen-Pools)`, `One account holds ${proz(groesster, 1, false)} (excluding exchange pools)`));
+    else if (top10 > 30) gelb.push(rugT(`Die 10 größten Konten besitzen ${proz(top10, 1, false)} (ohne Börsen-Pools)`, `Top 10 accounts hold ${proz(top10, 1, false)} (excluding exchange pools)`));
+    if ((r.graphInsidersDetected || 0) > 0) gelb.push(rugT(`${r.graphInsidersDetected} zusammenhängende Insider-Konten erkannt`, `${r.graphInsidersDetected} linked insider accounts detected`));
     const liq = ds && ds.liquidity ? ds.liquidity.usd : r.totalMarketLiquidity;
-    if (liq != null && liq < 10000) gelb.push(`Wenig Liquidität: ${usd(liq)}`);
+    if (liq != null && liq < 10000) gelb.push(rugT(`Wenig Liquidität: ${usd(liq)}`, `Low liquidity: ${usd(liq)}`));
     const schonGezaehlt = new Set(liq != null && liq < 10000 ? ['Low Liquidity'] : []);   // eigene Regel hat das schon erfasst → RugCheck-Meldung nicht doppelt zeigen
     if (groesster > 20 || top10 > 30) ['Single holder ownership', 'High holder concentration', 'Top 10 holders high ownership'].forEach((x) => schonGezaehlt.add(x));
-    if (rot.some((x) => x.startsWith('Serien-Entwickler'))) schonGezaehlt.add('Creator history of rugged tokens');
+    if (rot.some((x) => x.startsWith('Serien-Entwickler') || x.startsWith('Serial developer'))) schonGezaehlt.add('Creator history of rugged tokens');
     for (const x of r.risks || []) {
-      const n = RUG_RISIKO[x.name] || x.name; if (schonGezaehlt.has(x.name) || [...rot, ...gelb].some((s) => s.startsWith(n))) continue;
+      const n = (SPRACHE === 'de' && RUG_RISIKO[x.name]) || x.name; if (schonGezaehlt.has(x.name) || [...rot, ...gelb].some((s) => s.startsWith(n))) continue;
       if (x.level === 'danger') rot.push(n); else if (x.level === 'warn') gelb.push(n);
     }
 
-    if (ds && ds.pairCreatedAt && Date.now() - ds.pairCreatedAt < 3.6e6) gelb.push(`Handel erst seit ${rugAlter(Date.now() - ds.pairCreatedAt)}`);
-    if (wal && wal.erste && !wal.mehr && Date.now() - wal.erste < 864e5) gelb.push(`Entwickler-Wallet ist erst ${rugAlter(Date.now() - wal.erste)} alt`);
+    if (ds && ds.pairCreatedAt && Date.now() - ds.pairCreatedAt < 3.6e6) gelb.push(rugT(`Handel erst seit ${rugAlter(Date.now() - ds.pairCreatedAt)}`, `Trading for only ${rugAlter(Date.now() - ds.pairCreatedAt)}`));
+    if (wal && wal.erste && !wal.mehr && Date.now() - wal.erste < 864e5) gelb.push(rugT(`Entwickler-Wallet ist erst ${rugAlter(Date.now() - wal.erste)} alt`, `Developer wallet is only ${rugAlter(Date.now() - wal.erste)} old`));
     return { stufe: rot.length ? 'rot' : gelb.length ? 'gelb' : 'gruen', rot, gelb, ct, tot, top10, groesster };
   }
   let rugLauf = 0;
   async function rugPruefen(mint) {
     mint = String(mint || '').trim(); const box = $('rug-ergebnis'), nr = ++rugLauf;
-    if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(mint)) { box.textContent = 'Bitte eine gültige Solana-Coin-Adresse eingeben (32–44 Zeichen).'; return; }
-    $('rug-eingabe').value = mint; box.textContent = 'Prüfe … (RugCheck, DexScreener, Solana)';
+    if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(mint)) { box.textContent = rugT('Bitte eine gültige Solana-Coin-Adresse eingeben (32–44 Zeichen).', 'Please enter a valid Solana token address (32–44 characters).'); return; }
+    $('rug-eingabe').value = mint; box.textContent = rugT('Prüfe … (RugCheck, DexScreener, Solana)', 'Checking … (RugCheck, DexScreener, Solana)');
     const [rr, dd] = await Promise.allSettled([rugJson(`https://api.rugcheck.xyz/v1/tokens/${mint}/report`), rugJson(`https://api.dexscreener.com/latest/dex/tokens/${mint}`)]);
     if (nr !== rugLauf) return;
     const r = rr.status === 'fulfilled' ? rr.value : null;
@@ -8344,34 +8346,34 @@ window.PROFI_SPRACHEN = {"es": {" Achtung: Schlüssel liegen unverschlüsselt im
     // nur Paare mit dem Coin als Basis (nicht als Gegenwährung); Hauptpaar = meister Umsatz in 24 Std. (ein großer, aber toter Pool kann einen falschen Preis haben – Bonk-Test 06.11.: 1.256 Mrd. $ statt ~1 Mrd.)
     const umsatz = (p) => ((p.volume || {}).h24 || 0) * 1e3 + ((p.liquidity || {}).usd || 0) / 1e6;
     const ds = paare.sort((a, b) => umsatz(b) - umsatz(a))[0] || null;
-    if (!r && !ds) { box.textContent = 'Keine Daten zu dieser Adresse (RugCheck und DexScreener kennen sie nicht oder sind gerade nicht erreichbar).'; return; }
+    if (!r && !ds) { box.textContent = rugT('Keine Daten zu dieser Adresse (RugCheck und DexScreener kennen sie nicht oder sind gerade nicht erreichbar).', 'No data for this address (RugCheck and DexScreener do not know it or cannot be reached right now).'); return; }
     const wal = r && r.creator ? await rugWalletAlter(r.creator) : null;
     if (nr !== rugLauf) return;
     const b = rugBewerten(r || {}, ds, wal), meta = (r && r.tokenMeta) || {}, basis = (ds && ds.baseToken) || {};
     const name = meta.name || basis.name || rugKurz(mint), sym = meta.symbol || basis.symbol || '';
     const el = (tag, kl, txt) => { const e = document.createElement(tag); if (kl) e.className = kl; if (txt != null) e.textContent = txt; return e; };
     const kopf = el('div', 'rug-kopf');
-    kopf.append(el('span', `rug-ampel ${b.stufe}`, b.stufe === 'rot' ? 'Starke Warnzeichen' : b.stufe === 'gelb' ? 'Vorsicht' : 'Keine starken Warnzeichen gefunden'),
+    kopf.append(el('span', `rug-ampel ${b.stufe}`, b.stufe === 'rot' ? rugT('Starke Warnzeichen', 'Strong warning signs') : b.stufe === 'gelb' ? rugT('Vorsicht', 'Caution') : rugT('Keine starken Warnzeichen gefunden', 'No strong warning signs found')),
       el('b', null, `${name}${sym ? ' · ' + sym : ''}`), el('span', 'leise mono', rugKurz(mint)));
     const kach = el('dl', 'kacheln');
     const mc = ds ? ds.marketCap || ds.fdv : null, liq = ds && ds.liquidity ? ds.liquidity.usd : r && r.totalMarketLiquidity;
-    kach.append(kachel('Börsenwert', mc ? usd(mc) : '–', ds && ds.priceChange && ds.priceChange.h1 != null ? `1 Std. ${proz(ds.priceChange.h1, 1)}` : ''),
+    kach.append(kachel('Börsenwert', mc ? usd(mc) : '–', ds && ds.priceChange && ds.priceChange.h1 != null ? `${rugT('1 Std.', '1h')} ${proz(ds.priceChange.h1, 1)}` : ''),
       kachel('Liquidität', liq != null ? usd(liq) : '–', ds ? ds.dexId || '' : ''),
       kachel('Alter', ds && ds.pairCreatedAt ? rugAlter(Date.now() - ds.pairCreatedAt) : '–', r && r.launchpad ? r.launchpad.name : ''),
-      kachel('Käufe / Verkäufe 1 Std.', ds && ds.txns && ds.txns.h1 ? `${ds.txns.h1.buys} / ${ds.txns.h1.sells}` : '–', ds && ds.volume ? `Umsatz ${usd(ds.volume.h1 || 0)}` : ''),
+      kachel('Käufe / Verkäufe 1 Std.', ds && ds.txns && ds.txns.h1 ? `${ds.txns.h1.buys} / ${ds.txns.h1.sells}` : '–', ds && ds.volume ? `${rugT('Umsatz', 'Volume')} ${usd(ds.volume.h1 || 0)}` : ''),
       kachel('Halter', r && r.totalHolders ? de(r.totalHolders, 0) : '–', b.top10 ? `Top 10: ${proz(b.top10, 1, false)}` : ''),
-      kachel('Entwickler', r && r.creator ? rugKurz(r.creator) : '–', wal && wal.erste ? (wal.mehr ? `aktiv, über ${de(wal.n, 0)} Vorgänge` : `Wallet ${rugAlter(Date.now() - wal.erste)} alt`) : ''));
+      kachel('Entwickler', r && r.creator ? rugKurz(r.creator) : '–', wal && wal.erste ? (wal.mehr ? rugT(`aktiv, über ${de(wal.n, 0)} Vorgänge`, `active, over ${de(wal.n, 0)} transactions`) : rugT(`Wallet ${rugAlter(Date.now() - wal.erste)} alt`, `wallet ${rugAlter(Date.now() - wal.erste)} old`)) : ''));
     const gruende = el('ul', 'rug-gruende');
     for (const s of b.rot) gruende.append(el('li', 'rot', s));
     for (const s of b.gelb) gruende.append(el('li', 'gelb', s));
-    if (!b.rot.length && !b.gelb.length) gruende.append(el('li', 'gruen', 'Keine der Regeln schlägt an. Das ist keine Empfehlung – auch solche Coins fallen oft auf fast null.'));
+    if (!b.rot.length && !b.gelb.length) gruende.append(el('li', 'gruen', rugT('Keine der Regeln schlägt an. Das ist keine Empfehlung – auch solche Coins fallen oft auf fast null.', 'None of the rules fire. This is not a recommendation – such tokens also often fall to almost zero.')));
     const teile = [kopf, kach, gruende];
     if (b.ct.length) {
-      const dev = el('div', 'rug-dev'), ueb = el('h3', null, `Frühere Coins dieses Entwicklers (${b.ct.length}${b.ct.length >= 50 ? '+' : ''}) – ${b.tot} davon unter ${usd(RUG_TOT)} Börsenwert`);
+      const dev = el('div', 'rug-dev'), ueb = el('h3', null, rugT(`Frühere Coins dieses Entwicklers (${b.ct.length}${b.ct.length >= 50 ? '+' : ''}) – ${b.tot} davon unter ${usd(RUG_TOT)} Börsenwert`, `Earlier tokens by this developer (${b.ct.length}${b.ct.length >= 50 ? '+' : ''}) – ${b.tot} of them below ${usd(RUG_TOT)} market cap`));
       const liste = el('ul', 'rug-liste');
       for (const c of b.ct.slice(0, 12)) {
         const li = el('li'), knopf = el('button', 'rug-link', rugKurz(c.mint)); knopf.type = 'button'; knopf.dataset.mint = c.mint;
-        li.append(knopf, el('span', (c.marketCap || 0) < RUG_TOT ? 'minus' : '', ` ${usd(c.marketCap || 0)}`), el('span', 'leise', c.createdAt ? ` · vor ${rugAlter(Date.now() - Date.parse(c.createdAt))}` : ''));
+        li.append(knopf, el('span', (c.marketCap || 0) < RUG_TOT ? 'minus' : '', ` ${usd(c.marketCap || 0)}`), el('span', 'leise', c.createdAt ? ` · ${rugVor(Date.now() - Date.parse(c.createdAt))}` : ''));
         liste.append(li);
       }
       dev.append(ueb, liste); teile.push(dev);
@@ -8380,10 +8382,10 @@ window.PROFI_SPRACHEN = {"es": {" Achtung: Schlüssel liegen unverschlüsselt im
     for (const [t, u] of [['DexScreener', ds && ds.url], ['RugCheck', `https://rugcheck.xyz/tokens/${mint}`], ['Solscan', `https://solscan.io/token/${mint}`]]) {
       if (!u) continue; const a = el('a', null, t); a.href = u; a.target = '_blank'; a.rel = 'noopener'; links.append(a, document.createTextNode(' · '));
     }
-    links.append(document.createTextNode('Regeln: rot bei offenem Mint-/Freeze-Recht, Serien-Entwickler (≥ 5 Coins, ≥ 80 % unter 10 Tsd. $), ein Konto > 20 % oder starkem RugCheck-Risiko; gelb bei Top 10 > 30 %, Liquidität < 10 Tsd. $, Handel < 1 Std., Wallet < 1 Tag, Insidern oder RugCheck-Warnung. Kein Anlageberater.'));
+    links.append(document.createTextNode(rugT('Regeln: rot bei offenem Mint-/Freeze-Recht, Serien-Entwickler (≥ 5 Coins, ≥ 80 % unter 10 Tsd. $), ein Konto > 20 % oder starkem RugCheck-Risiko; gelb bei Top 10 > 30 %, Liquidität < 10 Tsd. $, Handel < 1 Std., Wallet < 1 Tag, Insidern oder RugCheck-Warnung. Kein Anlageberater.', 'Rules: red for open mint/freeze authority, serial developer (≥ 5 tokens, ≥ 80% below $10K), one account > 20% or a strong RugCheck risk; yellow for top 10 > 30%, liquidity < $10K, trading < 1h, wallet < 1 day, insiders or a RugCheck warning. Not investment advice.')));
     teile.push(links);
     box.replaceChildren(...teile);
-    $('rug-stand').textContent = `geprüft ${new Date().toLocaleTimeString(LOC, { hour: '2-digit', minute: '2-digit' })}`;
+    $('rug-stand').textContent = `${rugT('geprüft', 'checked')} ${new Date().toLocaleTimeString(LOC, { hour: '2-digit', minute: '2-digit' })}`;
   }
   async function rugListen() {
     const sec = document.querySelector('section.feld.rug'); if (!sec || sec.hidden || DEMO) return;
@@ -8391,12 +8393,12 @@ window.PROFI_SPRACHEN = {"es": {" Achtung: Schlüssel liegen unverschlüsselt im
     const zeile = (mint, text, nebentext, kl) => { const li = document.createElement('li'), k = document.createElement('button'); k.type = 'button'; k.className = 'rug-link'; k.dataset.mint = mint; k.textContent = text; const s = document.createElement('span'); s.className = kl || 'leise'; s.textContent = nebentext; li.append(k, s); return li; };
     if (t.status === 'fulfilled') {
       const it = (t.value && t.value.items) || [];
-      $('rug-ticker').replaceChildren(...it.slice(0, 8).map((x) => zeile(x.mint, rugKurz(x.mint), ` Spitze ${usd(x.peakMarketCapUSD || 0)} · vor ${rugAlter(Date.now() - x.ruggedAt * 1000)}`)));
+      $('rug-ticker').replaceChildren(...it.slice(0, 8).map((x) => zeile(x.mint, rugKurz(x.mint), ` ${rugT('Spitze', 'peak')} ${usd(x.peakMarketCapUSD || 0)} · ${rugVor(Date.now() - x.ruggedAt * 1000)}`)));
       const stunde = it.filter((x) => Date.now() - x.ruggedAt * 1000 < 3.6e6).length;
-      $('rug-ticker-n').textContent = stunde ? `${stunde} in der letzten Stunde (Auswahl)` : '';
+      $('rug-ticker-n').textContent = stunde ? rugT(`${stunde} in der letzten Stunde (Auswahl)`, `${stunde} in the last hour (sample)`) : '';
     }
     if (n.status === 'fulfilled' && Array.isArray(n.value)) {
-      $('rug-neu').replaceChildren(...n.value.slice(0, 8).map((x) => zeile(x.mint, x.symbol ? String(x.symbol).slice(0, 18) : rugKurz(x.mint), x.createAt ? ` vor ${rugAlter(Date.now() - Date.parse(x.createAt))}` : '')));
+      $('rug-neu').replaceChildren(...n.value.slice(0, 8).map((x) => zeile(x.mint, x.symbol ? String(x.symbol).slice(0, 18) : rugKurz(x.mint), x.createAt ? ` ${rugVor(Date.now() - Date.parse(x.createAt))}` : '')));
     }
   }
   {
