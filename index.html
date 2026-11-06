@@ -2695,6 +2695,10 @@ window.PROFI_SPRACHEN = {"es": {" Achtung: Schlüssel liegen unverschlüsselt im
     }
   }
   FARB_BEREIT = true; farbWoerter();
+  if (TEILEN) {
+    const dv = document.getElementById('g-dvol'); if (dv && dv.closest('.leinwand-gesch')) dv.closest('.leinwand-gesch').parentElement.hidden = true;
+    for (const b of document.querySelectorAll('[data-f]')) if (/oi1h|oi24h|spanne|korea/.test(b.dataset.f)) b.hidden = true;
+  }
   // Rechts-Check 02.11.2026 (RECHT.md, To-do 1): In der Test-Fassung zum Weitergeben (window.RYVO_TEILEN) holen wir nichts von
   // Quellen, deren Bedingungen Anzeige/Weitergabe an Dritte verbieten (OKX §9.4, Deribit 4.6/11.1h, Coinbase §9, DefiLlama §8.7,
   // blockchain.com). Eine Stelle für alle Abrufe: fetch und WebSocket. Die Mac-Ansicht (nur Mio) ist davon nicht betroffen.
@@ -4485,8 +4489,8 @@ window.PROFI_SPRACHEN = {"es": {" Achtung: Schlüssel liegen unverschlüsselt im
     if (t.length) {
       const art = t.every((x) => x.jahr > 0) ? 'Contango' : t.every((x) => x.jahr < 0) ? 'Backwardation' : 'gemischt';
       k.push(kachel('Futures-Kurve', art, `Aufschlag aufs Jahr ${proz(t[0].jahr, 1)} … ${proz(t[t.length - 1].jahr, 1)}`, art === 'Backwardation' ? 'minus' : ''));
-    } else k.push(kachel('Futures-Kurve', '–', 'keine Terminkontrakte'));
-    k.push(kachel(`Index ${O.coin}`, de(O.index, O.coin === 'BTC' ? 0 : 2), OPT_DERIBIT.has(O.coin) ? 'Deribit-Index (Mittel mehrerer Börsen)' : optBasis(O.coin) ? 'Kurs der Optionskette (CBOE)' : 'Index der Options-Börse'));
+    } else if (!TEILEN) k.push(kachel('Futures-Kurve', '–', 'keine Terminkontrakte'));
+    k.push(kachel(`Index ${O.coin}`, de(O.index, O.coin === 'BTC' ? 0 : 2), OPT_DERIBIT.has(O.coin) && !TEILEN ? 'Deribit-Index (Mittel mehrerer Börsen)' : optBasis(O.coin) ? 'Kurs der Optionskette (CBOE)' : 'Index der Options-Börse'));
     box.replaceChildren(...k);
     // Ein Satz zur Lage, ehrlich als Beobachtung
     const s = [];
@@ -6727,7 +6731,7 @@ window.PROFI_SPRACHEN = {"es": {" Achtung: Schlüssel liegen unverschlüsselt im
     const seit = fr.length ? new Date(fr[0][0] * 1000).getFullYear() : null;
     $('g-quelle-f').textContent = d.direkt ? '30-Tage-Mittel, Bybit' : '30-Tage-Mittel, Binance'; $('g-quelle-oi').textContent = d.direkt ? 'Bybit, je Tag' : 'Binance, je Tag';
     olVolZeigen(); umfZeigen();
-    $('gesch-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `${anzeige(coin)}${seit ? ` · Funding seit ${seit}` : ''} · ${d.direkt ? (C().tdm ? 'Kurs von Twelve Data' : C().tf ? 'direkt von Hyperliquid (Kurs, Funding)' : 'direkt von Bybit (Kurs, Funding, offene Positionen, Long-Anteil)') + (OPT_DERIBIT.has(coin) ? ' und Deribit (DVOL)' : '') : 'Binance, Bybit, Deribit · Tageswerte, Long/Short alle 5 Min.'}`;
+    $('gesch-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `${anzeige(coin)}${seit ? ` · Funding seit ${seit}` : ''} · ${d.direkt ? (C().tdm ? 'Kurs von Twelve Data' : C().tf ? 'direkt von Hyperliquid (Kurs, Funding)' : 'direkt von Bybit (Kurs, Funding, offene Positionen, Long-Anteil)') + (OPT_DERIBIT.has(coin) && !TEILEN ? ' und Deribit (DVOL)' : '') : 'Binance, Bybit, Deribit · Tageswerte, Long/Short alle 5 Min.'}`;
   }
 
   // ------------------------------------------------------------------ Umfeld (r81): Angst & Gier, Aktien/Gold/Dollar/VIX, CME-Positionen (COT)
