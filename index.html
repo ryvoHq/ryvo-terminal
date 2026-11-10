@@ -9717,7 +9717,11 @@ window.PROFI_SPRACHEN = {"es":{" Achtung: Schlüssel liegen unverschlüsselt im 
         this.demoSkaliert = this.k.length > 0; this.letzter = k; this.live(k); this.dirty = true;
       }
       if (Date.now() - this.gezeichnet > 1000) this.dirty = true;
-      if (this.dirty || this.animiert) this.zeichnen();
+      if (this.dirty || this.animiert) {
+        // r120 Sicherheitsnetz: bricht das Zeichnen ab, nicht weiß stehen bleiben – Ansicht einmal zurücksetzen und neu zeichnen
+        try { this.zeichnen(); this.rettung = false; }
+        catch (f) { console.error('Chart', f); this.cv.width = this.cv.width; /* Zeichenfläche samt offenem save()/clip() zurücksetzen */ if (!this.rettung) { this.rettung = true; this.sicht = { n: null, rechts: 0 }; this.zug = null; this.dirty = true; } }
+      }
     }
     rechtsGrenze(r) { return Math.max(-Math.round((this.sicht.n || 100) * 0.7), Math.min(Math.max(0, this.k.length - 10), r)); }
     punkt(e) { const r = this.cv.getBoundingClientRect(), d = r.width ? this.cv.width / r.width : 1; return { x: (e.clientX - r.left) * d, y: (e.clientY - r.top) * d, d }; }
@@ -9843,7 +9847,9 @@ window.PROFI_SPRACHEN = {"es":{" Achtung: Schlüssel liegen unverschlüsselt im 
       const iEnde = K.length - 1 - this.sicht.rechts + rand, iStart = iEnde - n + 1, cw = (L.x1 - L.x0) / n;
       L.cw = cw; L.iStart = iStart;
       const xi = (i) => L.x0 + (i - iStart + 0.5) * cw;
-      const a = Math.max(0, iStart), b = Math.min(K.length - 1, iEnde);
+      // r120 (Mio 10.11.: „beim Zoomen sind die Kerzen weg, weißer Screen“): Trackpad schiebt in Bruchteilen (deltaX / 20) – dann waren
+      // iStart/iEnde keine ganzen Zahlen, K[1,3] gab undefined und das Zeichnen brach ab. Lage bleibt stufenlos, Schleifen laufen über ganze Kerzen.
+      const a = Math.max(0, Math.floor(iStart)), b = Math.min(K.length - 1, Math.ceil(iEnde));
       let lo = Infinity, hi = -Infinity, vmax = 0;
       for (let i = a; i <= b; i++) { if (K[i].l < lo) lo = K[i].l; if (K[i].h > hi) hi = K[i].h; if (K[i].v > vmax) vmax = K[i].v; }
       if (!Number.isFinite(lo)) { lo = K[K.length - 1].l; hi = K[K.length - 1].h; }
@@ -9865,7 +9871,7 @@ window.PROFI_SPRACHEN = {"es":{" Achtung: Schlüssel liegen unverschlüsselt im 
       const gm = minuten.find((m) => m >= this.tf && m % this.tf === 0 && (m / this.tf) * cw >= 84 * d) || 43200, gms = gm * 60;
       ctx.textAlign = 'center';
       const jeTag = this.tf >= 1440, proB = 84 * d / cw;           // r119: Tageskerzen (UTC) – Montage, 1./15. oder Monatsanfang, je nach Platz
-      for (let i = Math.max(0, iStart); i <= Math.min(K.length - 1 + rand, iEnde); i++) {
+      for (let i = Math.max(0, Math.floor(iStart)); i <= Math.min(K.length - 1 + rand, Math.ceil(iEnde)); i++) {
         const t = i < K.length ? K[i].t : K[K.length - 1].t + (i - K.length + 1) * tfs, lok = t - new Date(t * 1000).getTimezoneOffset() * 60;
         if (jeTag) {
           const dt = new Date(t * 1000), tg = dt.getUTCDate(), mo = dt.getUTCMonth();
