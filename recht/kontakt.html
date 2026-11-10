@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kontakt · RYVO Terminal</title>
+<meta name="titel-de" content="Kontakt und Fehler melden · RYVO Terminal">
+<meta name="titel-en" content="Contact and bug reports · RYVO Terminal">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a0b0e">
+<!-- VORLAGE (W1a, 10.11.2026). MIO: deine Kontakt-E-Mail NUR hier eintragen, z. B. content="kontakt@deine-domain.de".
+     Leer = die Seite zeigt „Adresse folgt“ und bietet nur „Text kopieren“ an. Dieselbe Adresse gehört ins Impressum und in die
+     Datenschutzerklärung (Abschnitt 1). Die Seite selbst sendet nichts – sie öffnet höchstens dein E-Mail-Programm. -->
+<meta name="ryvo-kontakt" content="">
+<link rel="stylesheet" href="recht.css">
+<style>
+  .bericht textarea { width: 100%; min-height: 140px; font: 14px/1.5 var(--sans); color: var(--text); background: var(--feld); border: 1px solid var(--linie); border-radius: 8px; padding: 10px 12px; resize: vertical; }
+  .bericht pre { white-space: pre-wrap; font: 12px/1.5 var(--mono); color: var(--text-2); background: var(--feld); border: 1px solid var(--linie); border-radius: 8px; padding: 10px 12px; margin: 8px 0 0; }
+  .knoepfe { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .knoepfe button, .knoepfe a { font: 600 14px var(--sans); padding: 9px 14px; border-radius: 8px; border: 1px solid var(--linie); background: var(--feld-2); color: var(--text); cursor: pointer; text-decoration: none; }
+  .knoepfe a[hidden] { display: none; }
+  .knoepfe .haupt { background: var(--akzent); border-color: var(--akzent); color: var(--grund); }
+  .meldung { font-size: 13px; color: var(--leise); min-height: 1.4em; margin: 8px 0 0; }
+  label { display: block; font-weight: 600; color: var(--text); margin: 18px 0 6px; }
+</style>
+</head>
+<body>
+<header><div class="rahmen">
+  <a class="marke" href="../start/">RYVO <span>TERMINAL</span></a>
+  <nav aria-label="Rechtliches">
+    <a href="impressum.html" data-de="Impressum" data-en="Legal notice">Impressum</a>
+    <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy">Datenschutz</a>
+    <a href="hinweise.html" data-de="Risiko &amp; Nutzung" data-en="Risk &amp; terms">Risiko &amp; Nutzung</a>
+    <a href="kontakt.html" aria-current="page" data-de="Kontakt" data-en="Contact">Kontakt</a>
+    <a href="../" data-de="Terminal öffnen" data-en="Open terminal">Terminal öffnen</a>
+    <span class="sprache" role="group" aria-label="Sprache / Language"><button type="button" data-sprache="de">DE</button><button type="button" data-sprache="en">EN</button></span>
+  </nav>
+</div></header>
+
+<main class="rahmen">
+<div data-sprache-block="de">
+  <h1>Kontakt und Fehler melden</h1>
+  <p class="stand">Fragen, Ideen oder ein Fehler im Terminal – schreib uns.</p>
+  <h2>E-Mail</h2>
+  <p data-kontakt-zeile>E-Mail: <span class="offen">Adresse folgt in Kürze</span></p>
+  <p>Wir antworten in der Regel innerhalb weniger Werktage. Bitte schick uns keine Passwörter, API-Schlüssel oder Wallet-Schlüssel – wir fragen nie danach. Wie wir mit deiner Nachricht umgehen, steht in der <a href="datenschutz.html">Datenschutzerklärung</a> (Abschnitt 7).</p>
+  <h2>Einen Fehler melden</h2>
+  <p>Beschreib kurz, was passiert ist. Die technischen Angaben darunter helfen uns beim Nachstellen; sie stammen nur aus deinem Browser und werden erst mitgeschickt, wenn du selbst die E-Mail absendest.</p>
+  <div class="bericht">
+    <label for="was-de">Was ist passiert?</label>
+    <textarea id="was-de" data-was placeholder="Zum Beispiel: Beim Wechsel auf ETH bleibt der Chart leer. Was hast du gemacht, was hast du erwartet, was kam stattdessen?"></textarea>
+    <label>Technische Angaben (automatisch)</label>
+    <pre data-technik></pre>
+    <div class="knoepfe">
+      <a class="haupt" data-mail hidden href="#">E-Mail vorbereiten</a>
+      <button type="button" data-kopieren>Text kopieren</button>
+    </div>
+    <p class="meldung" data-meldung role="status"></p>
+  </div>
+  <h2>Was wir nicht beantworten können</h2>
+  <p>Wir geben keine Anlageberatung und keine Einschätzung zu einzelnen Coins oder Trades. Für Fragen zu deinem Konto bei einer Börse wende dich bitte an die Börse selbst.</p>
+</div>
+
+<div data-sprache-block="en" hidden>
+  <h1>Contact and bug reports</h1>
+  <p class="stand">Questions, ideas or a bug in the terminal – write to us.</p>
+  <h2>Email</h2>
+  <p data-kontakt-zeile>Email: <span class="offen">address coming soon</span></p>
+  <p>We usually reply within a few working days. Please never send us passwords, API keys or wallet keys – we will never ask for them. How we handle your message is described in the <a href="datenschutz.html">privacy policy</a> (section 7).</p>
+  <h2>Report a bug</h2>
+  <p>Briefly describe what happened. The technical details below help us reproduce it; they come only from your browser and are only sent if you send the email yourself.</p>
+  <div class="bericht">
+    <label for="was-en">What happened?</label>
+    <textarea id="was-en" data-was placeholder="For example: after switching to ETH the chart stays empty. What did you do, what did you expect, what happened instead?"></textarea>
+    <label>Technical details (automatic)</label>
+    <pre data-technik></pre>
+    <div class="knoepfe">
+      <a class="haupt" data-mail hidden href="#">Prepare email</a>
+      <button type="button" data-kopieren>Copy text</button>
+    </div>
+    <p class="meldung" data-meldung role="status"></p>
+  </div>
+  <h2>What we cannot answer</h2>
+  <p>We do not give investment advice or opinions on individual coins or trades. For questions about your account at an exchange, please contact the exchange directly.</p>
+</div>
+</main>
+
+<footer><div class="rahmen">
+  <span>© 2026 RYVO</span>
+  <a href="impressum.html" data-de="Impressum" data-en="Legal notice">Impressum</a>
+  <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy">Datenschutz</a>
+  <a href="hinweise.html" data-de="Risikohinweis &amp; Nutzungsbedingungen" data-en="Risk notice &amp; terms">Risikohinweis &amp; Nutzungsbedingungen</a>
+  <a href="lizenzen.html" data-de="Lizenzen" data-en="Licences">Lizenzen</a>
+</div></footer>
+<script src="recht.js"></script>
+<script>
+// Kontakt-/Fehlerseite: nur lokal im Browser. Kein Abruf, kein Speichern; „E-Mail vorbereiten“ öffnet das eigene Mail-Programm.
+(function () {
+  var meta = document.querySelector('meta[name="ryvo-kontakt"]');
+  var adresse = meta ? meta.content.trim() : '';
+  var gueltig = /^[^@\s"<>]+@[^@\s"<>]+\.[a-z]{2,}$/i.test(adresse);
+  var q = new URLSearchParams(location.search);
+  var technik = [
+    'Seite: ' + (q.get('von') || document.referrer || '–').slice(0, 200),
+    'Fassung: ' + (q.get('fassung') || '–').slice(0, 40),
+    'Browser: ' + navigator.userAgent,
+    'Sprache: ' + (navigator.language || '–'),
+    'Bildschirm: ' + screen.width + '×' + screen.height + ' @' + (window.devicePixelRatio || 1),
+    'Zeit: ' + new Date().toISOString()
+  ].join('\n');
+  var bloecke = document.querySelectorAll('[data-sprache-block]');
+  for (var i = 0; i < bloecke.length; i++) (function (b) {
+    var en = b.getAttribute('data-sprache-block') === 'en';
+    var zeile = b.querySelector('[data-kontakt-zeile]');
+    if (gueltig && zeile) {
+      zeile.textContent = (en ? 'Email: ' : 'E-Mail: ');
+      var a = document.createElement('a'); a.href = 'mailto:' + adresse; a.textContent = adresse; zeile.appendChild(a);
+    }
+    b.querySelector('[data-technik]').textContent = technik;
+    var was = b.querySelector('[data-was]'), mail = b.querySelector('[data-mail]'), meldung = b.querySelector('[data-meldung]');
+    function text() { return (was.value.trim() || (en ? '(no description)' : '(keine Beschreibung)')) + '\n\n---\n' + technik; }
+    if (gueltig) {
+      mail.hidden = false;
+      mail.addEventListener('click', function (e) {
+        e.preventDefault();
+        var betreff = en ? 'RYVO Terminal – bug report' : 'RYVO Terminal – Fehlermeldung';
+        location.href = 'mailto:' + adresse + '?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(text().slice(0, 1800));
+      });
+    }
+    b.querySelector('[data-kopieren]').addEventListener('click', function () {
+      var t = text(), ok = function () { meldung.textContent = en ? 'Copied.' : 'Kopiert.'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, function () { was.select(); meldung.textContent = en ? 'Copying not allowed – please copy by hand.' : 'Kopieren nicht erlaubt – bitte von Hand kopieren.'; });
+      else { meldung.textContent = en ? 'Please copy by hand.' : 'Bitte von Hand kopieren.'; }
+    });
+  })(bloecke[i]);
+})();
+</script>
+</body>
+</html>

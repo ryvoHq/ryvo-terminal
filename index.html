@@ -2890,7 +2890,7 @@ window.PROFI_SPRACHEN = {"es": {" Achtung: Schlüssel liegen unverschlüsselt im
   // Quellen, deren Bedingungen Anzeige/Weitergabe an Dritte verbieten (OKX §9.4, Deribit 4.6/11.1h, Coinbase §9, DefiLlama §8.7,
   // blockchain.com). Eine Stelle für alle Abrufe: fetch und WebSocket. Die Mac-Ansicht (nur Mio) ist davon nicht betroffen.
   if (window.RYVO_TEILEN) {
-    const GESPERRT = /(^|\.)(okx\.com|deribit\.com|coinbase\.com|llama\.fi|blockchain\.info|gateio\.ws)$/i;   // r123: Gate.io (Weitergabe ungeklärt)
+    const GESPERRT = /(^|\.)(okx\.com|deribit\.com|coinbase\.com|llama\.fi|defillama\.com|blockchain\.info|blockchain\.com|gateio\.ws|gate\.io|gate\.com|mempool\.space|cboe\.com|finnhub\.io|yahoo\.com|coindesk\.com|cointelegraph\.com|decrypt\.co)$/i;   // r123: Gate.io (Weitergabe ungeklärt)
     const host = (u) => { try { return new URL(String((u && u.url) || u), location.href).hostname; } catch (e) { return ''; } };
     const f0 = window.fetch.bind(window);
     window.fetch = (u, o) => (GESPERRT.test(host(u)) ? Promise.reject(new Error('Quelle in der Test-Fassung aus (Lizenz)')) : f0(u, o));
