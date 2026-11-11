@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "73110dc1", "es": "cd863d06", "fr": "1c858bf6", "it": "23d99d32", "tr": "dc442f56"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "ed7c1584", "es": "02085595", "fr": "25278cce", "it": "80f6fc1d", "tr": "67537d90"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2799,7 +2799,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "73110dc1", "es": "cd863d06", "fr": "1c858bf6", "it": "23d99d32", "tr": "dc442f56"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "ed7c1584", "es": "02085595", "fr": "25278cce", "it": "80f6fc1d", "tr": "67537d90"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -2855,6 +2855,18 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       tr: (n, f) => `Kayıt: ${n} / ${f} dk`, it: (n, f) => `Registrazione: ${n} di ${f} min` },
   };
   const zeitText = (art, ...w) => (ZEIT_TEXT[art][SPRACHE] || ZEIT_TEXT[art].en)(...w);
+  Object.assign(ZEIT_TEXT, {
+    bisT: { de: (t, h, m) => `in ${t} T ${h} Std. ${m} Min.`, en: (t, h, m) => `in ${t} d ${h} h ${m} min`, es: (t, h, m) => `en ${t} d ${h} h ${m} min`,
+      fr: (t, h, m) => `dans ${t} j ${h} h ${m} min`, tr: (t, h, m) => `${t} g ${h} sa ${m} dk sonra`, it: (t, h, m) => `tra ${t} g ${h} h ${m} min` },
+    bisH: { de: (h, m, s) => `in ${h} Std. ${m} Min. ${s} s`, en: (h, m, s) => `in ${h} h ${m} min ${s} s`, es: (h, m, s) => `en ${h} h ${m} min ${s} s`,
+      fr: (h, m, s) => `dans ${h} h ${m} min ${s} s`, tr: (h, m, s) => `${h} sa ${m} dk ${s} sn sonra`, it: (h, m, s) => `tra ${h} h ${m} min ${s} s` },
+    bisM: { de: (m, s) => `in ${m} Min. ${s} s`, en: (m, s) => `in ${m} min ${s} s`, es: (m, s) => `en ${m} min ${s} s`, fr: (m, s) => `dans ${m} min ${s} s`,
+      tr: (m, s) => `${m} dk ${s} sn sonra`, it: (m, s) => `tra ${m} min ${s} s` },
+    vorbei: { de: () => 'vorbei', en: () => 'over', es: () => 'pasado', fr: () => 'passé', tr: () => 'geçti', it: () => 'passato' },
+    istFehlt: { de: () => 'Ist noch nicht da', en: () => 'Actual not out yet', es: () => 'Dato real aún no publicado', fr: () => 'Valeur réelle pas encore publiée',
+      tr: () => 'Gerçekleşen henüz açıklanmadı', it: () => 'Dato effettivo non ancora pubblicato' },
+    seit: { de: (d) => `seit ${d}`, en: (d) => `since ${d}`, es: (d) => `desde ${d}`, fr: (d) => `depuis le ${d}`, tr: (d) => `${d} itibarıyla`, it: (d) => `dal ${d}` },
+  });
   document.documentElement.lang = SPRACHE;
   const UEB = (() => {
     const WB = EN ? EN_WOERTER : SPRACHE === 'de' ? null : Object.assign({}, EN_WOERTER, (window.PROFI_SPRACHEN || {})[SPRACHE] || {});
@@ -5027,9 +5039,16 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   const TERMIN_ART = { zins: 'Fed-Zinsentscheid', arbeitsmarkt: 'Arbeitsmarkt', inflation: 'Inflation (CPI)' };
   let termineListe = TERMINE_ERSATZ, zinsDaten = null;
   function bisText(ms) {
-    if (ms <= 0) return ms > -6 * 3600e3 ? zeitText('stdMinVor', Math.floor(-ms / 3600e3), Math.floor(-ms / 60000) % 60) : deEn('vorbei', 'over');
-    const t = Math.floor(ms / 864e5), h = Math.floor(ms / 3600e3) % 24, m = Math.floor(ms / 60000) % 60, s = Math.floor(ms / 1000) % 60;
-    return t ? `in ${t} T ${h} Std. ${m} Min.` : h ? `in ${h} Std. ${m} Min. ${String(s).padStart(2, '0')} s` : `in ${m} Min. ${String(s).padStart(2, '0')} s`;
+    if (ms <= 0) return ms > -6 * 3600e3 ? zeitText('stdMinVor', Math.floor(-ms / 3600e3), Math.floor(-ms / 60000) % 60) : zeitText('vorbei');
+    const t = Math.floor(ms / 864e5), h = Math.floor(ms / 3600e3) % 24, m = Math.floor(ms / 60000) % 60, s = String(Math.floor(ms / 1000) % 60).padStart(2, '0');
+    return t ? zeitText('bisT', t, h, m) : h ? zeitText('bisH', h, m, s) : zeitText('bisM', m, s);   // r127: fertige Sätze je Sprache (Element mit data-roh)
+  }
+  function nurTerminText(x) {
+    const s = String(x.text || ''), q = /Q(\d)\/(\d{4})/.exec(s), m = /für (Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)(?: (\d{4}))?/.exec(s);
+    let p = q ? `Q${q[1]} ${q[2]}` : '';
+    if (!p && m) { const i = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'].indexOf(m[1]), d = new Date(x.zeit * 1000);
+      const j = m[2] ? Number(m[2]) : d.getUTCFullYear() - (i > d.getUTCMonth() ? 1 : 0); p = new Date(Date.UTC(j, i, 15)).toLocaleDateString(LOC, { month: 'long', year: 'numeric', timeZone: 'UTC' }); }
+    const t = [p, x.quelle || ''].filter(Boolean).join(' · '); if (UEB) UEB.fertig.add(t); return t;
   }
   function termineZeigen() {
     const jetzt = Date.now();
@@ -5039,10 +5058,10 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       const li = document.createElement('li'), ms = x.zeit * 1000 - jetzt;
       if (i === 0) li.className = 'naechster';
       const a = document.createElement('div'); a.className = 'termin-art'; a.textContent = TERMIN_ART[x.art] || 'Termin';
-      const b = document.createElement('div'); b.className = 'termin-text leise'; b.textContent = `${x.text} · ${x.quelle || ''}`;
+      const b = document.createElement('div'); b.className = 'termin-text leise'; b.textContent = SPRACHE === 'de' ? `${x.text} · ${x.quelle || ''}` : nurTerminText(x);   // r127: Text vom Mac ist deutsch
       const c = document.createElement('time'); c.dateTime = new Date(x.zeit * 1000).toISOString();
       c.textContent = new Date(x.zeit * 1000).toLocaleString(LOC, { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-      const d = document.createElement('div'); d.className = 'countdown' + (ms < 36 * 3600e3 && ms > 0 ? ' bald' : ''); d.textContent = bisText(ms);
+      const d = document.createElement('div'); d.className = 'countdown' + (ms < 36 * 3600e3 && ms > 0 ? ' bald' : ''); d.dataset.roh = ''; d.textContent = bisText(ms);
       li.append(a, c, b, d); return li;
     }));
   }
@@ -7358,7 +7377,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       const t = document.createElement('time'); t.textContent = tagUhr(m.t * 1000);
       const b = document.createElement('span'); b.className = 'leise'; b.textContent = m.boerse;
       const a = document.createElement('span'); a.className = 'art-' + m.art; a.textContent = m.art;
-      const x = document.createElement(m.url ? 'a' : 'span'); const ueb = SPRACHE !== 'en' && m.ue && m.ue[SPRACHE]; x.textContent = ueb || m.titel; if (ueb) x.title = m.titel; if (m.url) { x.href = m.url; x.target = '_blank'; x.rel = 'noopener'; }
+      const x = document.createElement(m.url ? 'a' : 'span'); const ueb = SPRACHE !== 'en' && m.ue && m.ue[SPRACHE]; x.textContent = ueb || m.titel; if (ueb) x.title = m.titel; x.translate = false; if (m.url) { x.href = m.url; x.target = '_blank'; x.rel = 'noopener'; }
       const d = document.createElement('div'); d.append(x); li.append(t, b, a, d); return li;
     }));
     $('meld-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `${meld.direkt ? 'Bybit (direkt; Binance und OKX sperren Abrufe aus dem Browser)' : 'Binance, Bybit, OKX'} · Stand ${tagUhr(meld.zeit * 1000)}` + ((meld.fehler || []).length ? ` · gerade nicht erreichbar: ${meld.fehler.join(', ')}` : '');
@@ -7381,10 +7400,94 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   const periodeTxt = (p) => { const s = String(p || ''); const q = /^(\d{4})Q(\d)/.exec(s); if (q) return `Q${q[2]} ${q[1]}`; if (/^\d{4}-\d\d-\d\d$/.test(s)) return tagKurz(Date.parse(s)); return monatTxt(s); };
   const datumTxt = (iso) => new Date(Date.parse(iso)).toLocaleDateString(LOC, { day: '2-digit', month: '2-digit', year: '2-digit', timeZone: 'UTC' });
   const standTxt = (t) => (t ? tagUhr(t * 1000) : '–');
+  const GDELT_TEXT = {
+    de: { aus: (q) => `Schlagzeilen von ${q} gerade nicht verfügbar`, r429: 'die Quelle bremst Abfragen', http: 'Fehler der Quelle', frist: 'keine Antwort in der Frist', sonst: 'keine verwertbare Antwort',
+      seit: (z) => `gestört seit ${z}`, naechst: (z) => `nächster Versuch ${z}`, weiter: 'Regulierung, Coinbase und Termine laufen weiter.' },
+    en: { aus: (q) => `Headlines from ${q} unavailable right now`, r429: 'the source is rate-limiting requests', http: 'source error', frist: 'no response in time', sonst: 'no usable response',
+      seit: (z) => `down since ${z}`, naechst: (z) => `next try ${z}`, weiter: 'Regulation, Coinbase and the calendar keep running.' },
+    es: { aus: (q) => `Titulares de ${q} no disponibles ahora`, r429: 'la fuente está limitando las consultas', http: 'error de la fuente', frist: 'sin respuesta a tiempo', sonst: 'sin respuesta utilizable',
+      seit: (z) => `con fallos desde ${z}`, naechst: (z) => `próximo intento ${z}`, weiter: 'Regulación, Coinbase y el calendario siguen funcionando.' },
+    fr: { aus: (q) => `Titres de ${q} indisponibles pour le moment`, r429: 'la source limite les requêtes', http: 'erreur de la source', frist: 'pas de réponse à temps', sonst: 'pas de réponse exploitable',
+      seit: (z) => `en panne depuis ${z}`, naechst: (z) => `prochain essai ${z}`, weiter: 'Régulation, Coinbase et le calendrier continuent de fonctionner.' },
+    tr: { aus: (q) => `${q} manşetleri şu an kullanılamıyor`, r429: 'kaynak sorguları sınırlıyor', http: 'kaynak hatası', frist: 'zamanında yanıt yok', sonst: 'kullanılabilir yanıt yok',
+      seit: (z) => `${z} itibarıyla sorunlu`, naechst: (z) => `sonraki deneme ${z}`, weiter: 'Düzenleme, Coinbase ve takvim çalışmaya devam ediyor.' },
+    it: { aus: (q) => `Titoli di ${q} non disponibili al momento`, r429: 'la fonte sta limitando le richieste', http: 'errore della fonte', frist: 'nessuna risposta in tempo', sonst: 'nessuna risposta utilizzabile',
+      seit: (z) => `guasto dal ${z}`, naechst: (z) => `prossimo tentativo ${z}`, weiter: 'Regolamentazione, Coinbase e calendario continuano a funzionare.' },
+  };
+  const LOC_VON = { en: 'en-GB', de: 'de-DE', es: 'es-ES', fr: 'fr-FR', tr: 'tr-TR', it: 'it-IT' };
+  const ohnePfad = (s) => String(s || '').replace(/\s*\((?:[\w.-]+\/)+[\w.-]+\)/g, '').replace(/\s*(?:[\w.-]+\/)+[\w-]+\.(?:md|py|json|js|txt|html)\b/g, '').replace(/\s+\./g, '.');
+  function gdeltText(sz, sprache, jetztS) {
+    if (!sz || sz.ok !== false) return '';
+    if (!('gestoert_seit' in sz) && !('naechster_versuch' in sz)) return ohnePfad(sz.text);           // Rückfall: Felder fehlen
+    const w = GDELT_TEXT[sprache] || GDELT_TEXT.en, loc = LOC_VON[sprache] || 'en-GB';
+    const uhr = (t) => { const d = new Date(t * 1000), heute = new Date(jetztS * 1000).toDateString() === d.toDateString();
+      return heute ? d.toLocaleTimeString(loc, { hour: '2-digit', minute: '2-digit' }) : d.toLocaleString(loc, { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); };
+    const roh = String(sz.text || ''), code = (/\bHTTP (\d{3})\b/.exec(roh) || [])[1];
+    const grund = code === '429' ? w.r429 : code ? w.http : /timeout|zeit(?:überschreitung|limit)|frist/i.test(roh) ? w.frist : w.sonst;
+    const teile = [`${w.aus(String(sz.quelle || 'GDELT'))}: ${grund}${code ? ` (HTTP ${code})` : ''}`];
+    if (Number(sz.gestoert_seit) > 0) teile.push(w.seit(uhr(Number(sz.gestoert_seit))));
+    if (Number(sz.naechster_versuch) > jetztS) teile.push(w.naechst(uhr(Number(sz.naechster_versuch))));
+    return teile.join(' · ') + '. ' + w.weiter;
+  }
+  const MONATE_DE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+  const HINWEIS_TEXT = {
+    en: { vor: 'Previous value: ', jr: (m) => `No year-over-year rate${m ? ` for ${m}` : ''}`, fehlt: 'the same month a year earlier is missing at the BLS', sperre: (j) => ` (${j} government shutdown)`, auch: 'The BLS also shows “–” here.',
+      datei: 'Only in the data file; the Atlanta Fed page shows the four nearest windows.', fern: 'Distant windows: less trading, more uncertainty.',
+      unsicher: (g) => `Uncertain estimate (thin options trading this far out): ${g}. Values as in the source – mean and cut/hike disagree slightly here, do not read as an expectation.`,
+      abdeckung: (p) => `only ${p} of the distribution within the file’s ranges`, modus: (a, b) => `most likely value ${a} is ${b} percentage points from the mean`,
+      def: (q) => `Cut/hike = probability that the average SOFR in the window is below/above the target range on the observation day${q}.`, blatt: 'sheet', jeSitzung: 'Not a probability per meeting.' },
+    es: { vor: 'Valor anterior: ', jr: (m) => `Sin tasa interanual${m ? ` para ${m}` : ''}`, fehlt: 'falta el mismo mes del año anterior en el BLS', sperre: (j) => ` (cierre del gobierno de ${j})`, auch: 'El BLS también muestra «–» aquí.',
+      datei: 'Solo en el archivo de datos; la página de la Atlanta Fed muestra las cuatro ventanas más próximas.', fern: 'Ventanas lejanas: menos negociación, más incertidumbre.',
+      unsicher: (g) => `Estimación incierta (poca negociación de opciones tan lejos en el futuro): ${g}. Valores tal como en la fuente – la media y recorte/subida se contradicen un poco aquí, no leer como expectativa.`,
+      abdeckung: (p) => `solo el ${p} de la distribución dentro de los rangos del archivo`, modus: (a, b) => `valor más probable ${a}, a ${b} puntos porcentuales de la media`,
+      def: (q) => `Recorte/subida = probabilidad de que el SOFR medio en la ventana quede por debajo/por encima del rango objetivo en el día de observación${q}.`, blatt: 'hoja', jeSitzung: 'No es una probabilidad por reunión.' },
+    fr: { vor: 'Valeur précédente : ', jr: (m) => `Pas de taux sur un an${m ? ` pour ${m}` : ''}`, fehlt: 'le même mois de l’année précédente manque au BLS', sperre: (j) => ` (shutdown de ${j})`, auch: 'Le BLS affiche aussi « – » ici.',
+      datei: 'Uniquement dans le fichier de données ; la page de la Fed d’Atlanta montre les quatre fenêtres les plus proches.', fern: 'Fenêtres lointaines : moins d’échanges, plus d’incertitude.',
+      unsicher: (g) => `Estimation incertaine (peu d’options négociées si loin dans le futur) : ${g}. Valeurs telles que dans la source – la moyenne et baisse/hausse se contredisent un peu ici, ne pas lire comme une anticipation.`,
+      abdeckung: (p) => `seulement ${p} de la distribution dans les plages du fichier`, modus: (a, b) => `valeur la plus probable ${a}, à ${b} points de pourcentage de la moyenne`,
+      def: (q) => `Baisse/hausse = probabilité que le SOFR moyen de la fenêtre soit sous/au-dessus de la fourchette cible le jour d’observation${q}.`, blatt: 'feuille', jeSitzung: 'Pas une probabilité par réunion.' },
+    tr: { vor: 'Önceki değer: ', jr: (m) => (m ? `${m} için yıllık oran yok` : 'Yıllık oran yok'), fehlt: 'bir önceki yılın aynı ayı BLS verilerinde eksik', sperre: (j) => ` (${j} hükümet kapanması)`, auch: 'BLS de burada „–“ gösteriyor.',
+      datei: 'Yalnızca veri dosyasında; Atlanta Fed sayfası en yakın dört pencereyi gösterir.', fern: 'Uzak pencereler: daha az işlem, daha fazla belirsizlik.',
+      unsicher: (g) => `Belirsiz tahmin (bu kadar uzak vadede opsiyon işlemi az): ${g}. Değerler kaynaktaki gibi – ortalama ile indirim/artış burada biraz çelişiyor, beklenti olarak okunmamalı.`,
+      abdeckung: (p) => `dosyadaki aralıklarda kalan dağılım oranı yalnızca ${p}`, modus: (a, b) => `en olası değer ${a}, ortalamadan ${b} yüzde puan uzakta`,
+      def: (q) => `İndirim/artış = penceredeki ortalama SOFR'un gözlem gününde hedef bandın altında/üstünde olma olasılığı${q}.`, blatt: 'sayfa', jeSitzung: 'Toplantı başına olasılık değildir.' },
+    it: { vor: 'Valore precedente: ', jr: (m) => `Nessun tasso annuo${m ? ` per ${m}` : ''}`, fehlt: 'manca lo stesso mese dell’anno precedente presso il BLS', sperre: (j) => ` (shutdown del governo ${j})`, auch: 'Anche il BLS mostra «–» qui.',
+      datei: 'Solo nel file di dati; la pagina della Fed di Atlanta mostra le quattro finestre più vicine.', fern: 'Finestre lontane: meno scambi, più incertezza.',
+      unsicher: (g) => `Stima incerta (pochi scambi di opzioni così lontano nel futuro): ${g}. Valori come nella fonte – media e taglio/rialzo qui si contraddicono un po’, non leggere come aspettativa.`,
+      abdeckung: (p) => `solo il ${p} della distribuzione negli intervalli del file`, modus: (a, b) => `valore più probabile ${a}, a ${b} punti percentuali dalla media`,
+      def: (q) => `Taglio/rialzo = probabilità che il SOFR medio nella finestra sia sotto/sopra la fascia obiettivo nel giorno di osservazione${q}.`, blatt: 'foglio', jeSitzung: 'Non è una probabilità per riunione.' },
+  };
+  function hinweisText(h, sprache) {
+    const s = String(h || ''), w = HINWEIS_TEXT[sprache];
+    if (!w) return s;                                                               // de: wie geliefert
+    const loc = LOC_VON[sprache] || 'en-GB';
+    const zahl = (x, nk) => Number(String(x).replace(',', '.')).toLocaleString(loc, { minimumFractionDigits: nk, maximumFractionDigits: nk });
+    const pct = (x) => zahl(x, String(x).includes(',') ? String(x).split(',')[1].length : 0) + (sprache === 'en' ? '%' : ' %');
+    let m = /^(Vorwert: )?Keine Jahresrate(?: für (\S+) (\d{4}))?(?: \(Demo\))?: der Vorjahresmonat fehlt bei der BLS(?: \(Haushaltssperre (\d{4})\))?\. Die BLS veröffentlicht hier ebenfalls „–“\.$/.exec(s);
+    if (m) {
+      const mi = m[2] ? MONATE_DE.indexOf(m[2]) : -1; if (m[2] && mi < 0) return s;
+      const mon = mi >= 0 ? new Date(Date.UTC(+m[3], mi, 15)).toLocaleDateString(loc, { month: 'short', year: 'numeric', timeZone: 'UTC' }) : '';
+      return (m[1] ? w.vor : '') + w.jr(mon) + ': ' + w.fehlt + (m[4] ? w.sperre(m[4]) : '') + '. ' + w.auch;
+    }
+    m = /^Nur in der Datendatei(?: \(Demo\))?; die Atlanta-Fed-Seite zeigt die vier nächsten Fenster\.( Ferne Fenster: weniger Handel, größere Unsicherheit\.)?$/.exec(s);
+    if (m) return w.datei + (m[1] ? ' ' + w.fern : '');
+    m = /^Unsichere Schätzung \((?:dünner Optionshandel so weit in der Zukunft|Demo)\): (.+?)\. Werte so in der Quelle – .*nicht als Erwartung lesen\.$/.exec(s);
+    if (m) {
+      const g = m[1].split('; ').map((x) => { let k = /^nur ([\d,]+) % der Verteilung in den Spannen der Datei$/.exec(x); if (k) return w.abdeckung(pct(k[1]));
+        k = /^wahrscheinlichster Wert ([\d,]+) % liegt ([\d,]+) Prozentpunkte vom Mittel$/.exec(x); if (k) return w.modus(pct(k[1]), zahl(k[2], 2)); return null; });
+      return g.includes(null) ? s : w.unsicher(g.join('; '));
+    }
+    m = /^Senkung\/Erhöhung = Wahrscheinlichkeit, dass der durchschnittliche SOFR im Fenster unter\/über dem Zielband am Beobachtungstag liegt(?: \(([^)]*)\))?\.( Keine Wahrscheinlichkeit je Sitzung\.)?$/.exec(s);
+    if (m) {
+      const q = !m[1] ? '' : m[1] === 'Demo' ? ' (Demo)' : /^Atlanta Fed, Blatt [A-Z]+$/.test(m[1]) ? ` (${m[1].replace('Blatt', w.blatt)})` : null;
+      return q === null ? s : w.def(q) + (m[2] ? ' ' + w.jeSitzung : '');
+    }
+    return s;
+  }
   function nurText(t) { const s = String(t || ''); if (UEB) UEB.fertig.add(s.replace(/\s+/g, ' ')), UEB.fertig.add(s); return s; }   // fremde Titel nicht übersetzen
   function linkEl(text, url, fremd = true) {
     const ok = /^https:\/\/[^\s"<>]+$/.test(String(url || ''));
-    const a = document.createElement(ok ? 'a' : 'span'); a.textContent = fremd ? nurText(text) : text;
+    const a = document.createElement(ok ? 'a' : 'span'); a.textContent = fremd ? nurText(text) : text; if (fremd) a.translate = false;   // r127: translate="no" = Inhalt der Quelle (Titel, Name), wie geliefert
     if (ok) { a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; }
     return a;
   }
@@ -7429,7 +7532,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     const z = document.createElement('time'); z.dateTime = new Date(t.zeit * 1000).toISOString();
     z.textContent = new Date(t.zeit * 1000).toLocaleString(LOC, { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
     const c = document.createElement('span'); c.className = 'countdown' + (ms > 0 && ms < 36 * 3600e3 ? ' bald' : ''); c.dataset.zeit = String(t.zeit);
-    c.textContent = ms > 0 ? bisText(ms) : t.veroeffentlicht === false ? 'Ist noch nicht da' : alterSek(-ms / 1000);
+    c.dataset.roh = ''; c.textContent = ms > 0 ? bisText(ms) : t.veroeffentlicht === false ? zeitText('istFehlt') : alterSek(-ms / 1000);   // r127: fertiger Satz je Sprache
     kopf.append(a, z, c);
     const txt = document.createElement('div'); txt.className = 'nt-text leise';
     txt.append(SPRACHE === 'de' ? nurText(t.text || '') : `${MZ_TERMIN[t.art] || ''}${t.periode ? ' · ' + periodeTxt(t.periode) : ''}`, ' · ', linkEl(t.quelle || '–', t.url));
@@ -7437,16 +7540,17 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     if ((t.werte || []).length) {
       const tab = document.createElement('table'), k = tab.createTHead().insertRow();
       for (const h of ['', 'Vorwert', 'Ist']) { const th = document.createElement('th'); th.textContent = h; k.append(th); }
-      const b = tab.createTBody(), fuss = [];
+      const b = tab.createTBody(), fuss = new Map();   // r127: gleicher Hinweis → eine Fußnote, gleiche Markierung (*, verschiedene: *, **, …)
       for (const w of t.werte) {
         const r = b.insertRow(), n = r.insertCell(); n.append(linkEl(w.name, w.link, false));
         const v = r.insertCell(); v.textContent = wertTxt(w, w.vorwert); if (w.vorperiode) v.title = periodeTxt(String(w.vorperiode).replace(/ .*/, ''));
         const i = r.insertCell(); i.textContent = w.ist === null || w.ist === undefined ? (t.veroeffentlicht ? '–' : 'offen') : wertTxt(w, w.ist) + (typeof w.aenderung_bp === 'number' ? ` (${w.aenderung_bp > 0 ? '+' : w.aenderung_bp < 0 ? '−' : '±'}${Math.abs(w.aenderung_bp)} Bp.)` : '');
         if (w.ist !== null && w.ist !== undefined) i.className = 'nt-ist';
-        if (w.hinweis) { const zz = /^Vorwert: /.test(w.hinweis) ? v : i; zz.title = w.hinweis; zz.dataset.roh = ''; const sup = hdEl('sup', 'nt-stern', '*'); zz.append(sup); fuss.push(w.hinweis); }   // r126: „–“ mit Grund (z. B. BLS ohne Jahresrate)
+        if (w.hinweis) { const zz = /^Vorwert: /.test(w.hinweis) ? v : i; zz.title = w.hinweis; const hw = hinweisText(w.hinweis, SPRACHE); zz.title = nurText(hw);   // r126: „–“ mit Grund; r127: bekannte Fälle übersetzt
+          if (!fuss.has(hw)) fuss.set(hw, '*'.repeat(fuss.size + 1)); zz.append(hdEl('sup', 'nt-stern', fuss.get(hw))); }
       }
       const box = document.createElement('div'); box.className = 'tabelle nt-werte'; box.append(tab); li.append(box);
-      for (const h of fuss) { const fn = hdEl('p', 'leise nt-fussnote', '* ' + h); fn.dataset.roh = ''; li.append(fn); }
+      for (const [h, mk] of fuss) { const fn = hdEl('p', 'leise nt-fussnote', mk + ' ' + h); fn.dataset.roh = ''; li.append(fn); }
     }
     return li;
   }
@@ -7494,7 +7598,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       aus.textContent = (sammler ? 'Noch keine Nachrichten vom Sammler am Mac – er läuft alle 2 Minuten.' : news ? `News gerade nicht erreichbar – Stand ${standTxt(news.zeit)}` : 'News gerade nicht erreichbar – Mac oder Deep-Server antwortet nicht.')
         + (sammler && news ? ` Stand ${standTxt(news.zeit)}` : '') + (newsFehler !== 'netz' && !sammler && SPRACHE === 'de' ? ` (${newsFehler})` : '');
     } else aus.hidden = true;
-    { const sz = news && news.schlagzeilen, g = $('news-gdelt'); if (g) { g.hidden = !(sz && sz.ok === false && sz.text); g.dataset.roh = ''; g.textContent = g.hidden ? '' : sz.text; } }   // r126: GDELT gebremst → Klartext über der Liste
+    { const sz = news && news.schlagzeilen, g = $('news-gdelt'); if (g) { g.hidden = !(sz && sz.ok === false && sz.text); g.dataset.roh = ''; g.textContent = g.hidden ? '' : gdeltText(sz, SPRACHE, Date.now() / 1000); } }   // r126: GDELT gebremst → Klartext über der Liste; r127: Satz aus den Feldern, je Sprache, ohne Pfad
     if (!news) { leer(newsFehler ? 'Noch keine Nachrichten geladen.' : 'Lade …'); $('news-stand').textContent = ''; $('news-fuss').textContent = ''; newsTermineZeigen(); return; }
     const jetzt = Date.now() / 1000, liste = news.meldungen || [];
     if (!liste.length) {
@@ -7511,7 +7615,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
         const meta = [];
         if (NEWS_ART_NAME[m.art]) meta.push(NEWS_ART_NAME[m.art]);
         if ((m.coins || []).length) meta.push((m.coins || []).slice(0, 6).join(' '));
-        if ((m.weitere_quellen || []).length) meta.push(`+${m.weitere_quellen.length} weitere Quellen`);
+        if ((m.weitere_quellen || []).length) meta.push(`+${m.weitere_quellen.length} ${m.weitere_quellen.length === 1 ? 'weitere Quelle' : 'weitere Quellen'}`);
         if (meta.length) { const s = document.createElement('small'); s.className = 'leise'; s.textContent = meta.join(' · '); if (NEWS_ART_NAME[m.art]) s.title = 'Thema automatisch aus Stichwörtern im Titel – ungeprüft, keine Wertung'; d.append(s); }
         li.append(t, q, k, d); return li;
       }));
@@ -7624,7 +7728,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     const ab = mzInfJahre ? (() => { const l = monate[monate.length - 1] || '2010-01'; return `${Number(l.slice(0, 4)) - mzInfJahre}${l.slice(4)}`; })() : '';
     const m = monate.filter((x) => x >= ab);
     mzLegende('l-mz-inf', reihen.map(([, nm, f]) => [nm, f()]));
-    { const sp = $('l-mz-inf') ? $('l-mz-inf').children : []; reihen.forEach(([k], i) => { if (sp[i] && inf.reihen[k].name) sp[i].title = `${inf.reihen[k].name}${inf.reihen[k].serie ? ' · BLS ' + inf.reihen[k].serie : ''}`; }); }
+    { const sp = $('l-mz-inf') ? $('l-mz-inf').children : []; reihen.forEach(([k, nm], i) => { if (sp[i] && inf.reihen[k].name) sp[i].title = `${SPRACHE === 'de' ? inf.reihen[k].name : nm}${inf.reihen[k].serie ? ' · BLS ' + inf.reihen[k].serie : ''}`; }); }   // r127: Name der API ist deutsch (ergab „CPI (all Waren and Dienste)“) → sonst Name der Oberfläche
     diagramm(cv, { labels: m.map((x) => `${x.slice(5, 7)}/${x.slice(2, 4)}`), einheit: ' %', mitNull: true, ohneKappe: true, links: 40,
       reihen: reihen.map(([k, , f, br]) => { const w = new Map(inf.reihen[k].werte); return { werte: m.map((x) => (w.has(x) ? w.get(x) : null)), farbe: f(), breite: br, nk: 1, beschriften: (i, n2) => i === n2 - 1 }; }) });
     const lz = reihen.map(([k, nm]) => { const w = inf.reihen[k].werte, x = w[w.length - 1]; const vl = (inf.reihen[k].vorlaeufig || []).includes(x[0]); return `${nm} ${monatTxt(x[0])}: ${pctTxt(x[1], 1)}${vl ? ' (vorläufig)' : ''}`; });
@@ -7661,7 +7765,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   function mzZinsen() {
     const z = mz.zinsen || {}, cv = $('mz-zins'), lz = z.leitzins;
     const k = [];
-    if (lz && lz.zielspanne) k.push(kachel('Leitzins-Zielband', spanneTxt(lz.zielspanne), `seit ${datumTxt(lz.seit)} · Federal Reserve`));
+    if (lz && lz.zielspanne) k.push(kachel('Leitzins-Zielband', spanneTxt(lz.zielspanne), nurText(`${zeitText('seit', datumTxt(lz.seit))} · Federal Reserve`)));   // r127: TR-Wortstellung („11.09.26 itibarıyla“)
     if (!z.fehler && z.beobachtung) k.push(kachel('Atlanta Fed, Stand', datumTxt(z.beobachtung), 'aus CME-SOFR-Optionen'));
     $('mz-zins-kacheln').replaceChildren(...k);
     if (!mzBlock('mz-zinsen', z.fehler || (!(z.fenster || []).length && 'keine Werte'))) { leinwandText(cv, 'keine Daten'); $('mz-zins-tabelle').replaceChildren(); quelleZeile($('mz-zins-q'), 'Federal Reserve Bank of Atlanta', z.link || null, null); return; }
@@ -7684,7 +7788,8 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       c0.textContent = `${datumTxt(x.beginn)} – ${datumTxt(x.ende)}`;
       if (x.unsicher) { r.className = 'mz-unsicher'; c0.append(' ', hdEl('small', 'mz-unsicher-tag', 'unsicher')); }
       if (x.hinweis) {                                       // r126: Hinweis der Prüfung – Maus: Tooltip, Handy/Tastatur: aufklappen
-        r.title = x.hinweis; r.dataset.roh = ''; const k = hdEl('button', 'mz-hinweis-knopf', 'Hinweis'); k.type = 'button'; k.setAttribute('aria-expanded', 'false'); k.setAttribute('aria-controls', 'mz-zh-' + nr); c0.append(' ', k);
+        r.title = x.hinweis; r.title = nurText(hinweisText(x.hinweis, SPRACHE)); r.dataset.roh = '';   // r127: bekannte Fälle übersetzt
+        const k = hdEl('button', 'mz-hinweis-knopf', 'Hinweis'); k.type = 'button'; k.setAttribute('aria-expanded', 'false'); k.setAttribute('aria-controls', 'mz-zh-' + nr); c0.append(' ', k);
         k.addEventListener('click', () => { const z = $('mz-zh-' + nr); if (!z) return; z.hidden = !z.hidden; k.setAttribute('aria-expanded', String(!z.hidden)); });
       }
       r.insertCell().textContent = (x.sitzungen_im_fenster || []).map((d) => tagKurz(Date.parse(d))).join(', ') || '–';
@@ -7692,10 +7797,10 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       r.insertCell().textContent = x.p25_bp === null || x.p25_bp === undefined ? '–' : `${de(x.p25_bp / 100, 2)}–${bp(x.p75_bp)}`;
       r.insertCell().textContent = x.p_senkung === null || x.p_senkung === undefined ? '–' : pctTxt(x.p_senkung, 0);
       r.insertCell().textContent = x.p_erhoehung === null || x.p_erhoehung === undefined ? '–' : pctTxt(x.p_erhoehung, 0);
-      if (x.hinweis) { const h = b.insertRow(); h.className = 'mz-hinweis-zeile' + (x.unsicher ? ' mz-unsicher' : ''); h.id = 'mz-zh-' + nr; h.hidden = true; const td = h.insertCell(); td.colSpan = 6; td.dataset.roh = ''; td.textContent = x.hinweis; }
+      if (x.hinweis) { const h = b.insertRow(); h.className = 'mz-hinweis-zeile' + (x.unsicher ? ' mz-unsicher' : ''); h.id = 'mz-zh-' + nr; h.hidden = true; const td = h.insertCell(); td.colSpan = 6; td.dataset.roh = ''; td.textContent = hinweisText(x.hinweis, SPRACHE); }
     });
     const box = document.createElement('div'); box.className = 'tabelle'; box.append(tab);
-    const def = z.definition ? hdEl('p', 'leise mz-definition', z.definition) : null; if (def) def.dataset.roh = '';
+    const def = z.definition ? hdEl('p', 'leise mz-definition', hinweisText(z.definition, SPRACHE)) : null; if (def) def.dataset.roh = '';
     $('mz-zins-tabelle').replaceChildren(box, ...(def ? [def] : []));
     quelleZeile($('mz-zins-q'), 'Federal Reserve Bank of Atlanta – Market Probability Tracker', z.link, z.stand, 'CME Group market data are used with permission from CME');
   }
@@ -11911,8 +12016,9 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
   }, true);
 
-  const FASSUNG = 'r126';
+  const FASSUNG = 'r127';
   const NEU = [
+    { f: 'r127', tag: '10.11.2026', s: ['News und Makro-Zentrale vollständig in allen sechs Sprachen, Zeiten in deiner Ortszeit.'], mac: true },
     { f: 'r126', tag: '10.11.2026', s: ['Fibonacci-Werkzeug im Chart: zwei Punkte ziehen oder antippen, Stufen von 0 bis 100 %.', 'Eigene Layouts: bis zu drei Ansichten mit Markt, Zeitstufe, Ebenen und Zeichnungen im Browser speichern.',
       'Besser lesbar: stärkere Kontraste, sichtbarer Fokusrahmen, Dialoge mit der Tastatur bedienbar.', 'Der Chart lädt nach schnellem Umschalten sofort.', 'Diese Seite „Was ist neu“.'] },
     { f: 'r125', tag: '10.11.2026', s: ['News: Regulierung, Börsen und Schlagzeilen mit Quelle und Alter.', 'Makro-Zentrale: Inflation, Zinsen, Öl und Engpässe auf einen Blick.'], mac: true },
@@ -12175,7 +12281,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   $('modus').addEventListener('click', (e) => { const b = e.target.closest('button[data-modus]'); if (b) modusSetzen(b.dataset.modus); });
   $('einstieg-knopf').addEventListener('click', () => { if (einstiegNr >= 0) einstiegZu(); else einstieg(0); });
   if (!lies('einstieg') && Q.get('einstieg') !== '0') setTimeout(() => { if (einstiegNr < 0 && !lies('einstieg')) einstieg(0); }, 1500);
-  { const gesehen = lies('fassung'), alt = !!lies('einstieg');           // r126: einmaliger Hinweis nach einem Update (wer schon da war, aber diese Fassung noch nicht kennt)
+  { const gesehen = lies('fassung'), alt = !!lies('einstieg') && !(Number(String(lies('fassung') || '').slice(1)) >= 126);   // r126: einmaliger Hinweis nach einem Update (wer schon da war, aber diese Fassung noch nicht kennt)
     if (gesehen !== FASSUNG) { if (alt && Q.get('einstieg') !== '0') setTimeout(neuHinweis, 2500); merke('fassung', FASSUNG); } }
   sprungleiste(); tabbar(); requestAnimationFrame(hdHandyMasse); setTimeout(hdHandyMasse, 800); linienBedienen(); kontenBedienen(); tastenBedienen(); oeffnenZeigen(); multiBedienen();
   kontenLaden(); setInterval(kontenLaden, 30000);
