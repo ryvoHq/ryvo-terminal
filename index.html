@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "5a9811ba", "es": "cc758d1c", "fr": "d6016905", "it": "75bf50a9", "tr": "ee3c56c2"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "50631c55", "es": "a3f761ff", "fr": "53533b36", "it": "9a4a651d", "tr": "c24659b4"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2096,6 +2096,22 @@ body.fokus-an { overflow: hidden; }
 .news-stumm .zoom { flex-wrap: wrap; margin-top: 6px; }
 .bh-wicht { letter-spacing: 1px; color: var(--wal); }
 
+.hd-mehr-knopf b.zahl { margin-left: 5px; font: 600 10px var(--mono); padding: 0 4px; background: var(--text); color: var(--grund); }
+@media (min-width: 700px) and (min-height: 521px), (min-width: 700px) and (pointer: fine) {
+  .hd-werkzeug:not(.mehr-auf) .hd-mehr-teil { display: none !important; }
+}
+@media (max-width: 699px), (max-height: 520px) and (pointer: coarse) { .hd-werkzeug .hd-mehr-knopf { display: none !important; } }
+
+@media (min-width: 1000px) { main.raster > section.feld.hmap, main.raster > section.feld.weltm, main.raster > section.feld.scanner, main.raster > section.feld.wecker { grid-column: 1 / -1; } }
+.hm-leinwand { height: 340px; }
+@media (min-width: 1000px) { .hm-leinwand { height: 440px; } }
+.ueb-klick, .wk-form, #ueb-screen-zeile, #wk-wort .ueb-filter, #wk-stumm .ueb-filter { flex-wrap: wrap; }
+.ueb-klick select, .wk-form select { font: 500 12.5px var(--mono); color: var(--text); background: var(--feld-2, var(--feld)); border: 1px solid var(--linie); border-radius: 6px; padding: 5px 6px; }
+.ueb-klick input, .wk-form input { flex: 0 1 140px; min-width: 0; }
+.ueb-filter input[type="time"], .ueb-filter input[type="checkbox"] { flex: none; width: auto; }
+#wk-stumm .ueb-filter label { display: inline-flex; align-items: center; gap: 6px; }
+#ueb-bedingungen code, #wk-worte code { font: 500 12px var(--mono); }
+
 
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
 .test-band summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 10px 14px; -webkit-tap-highlight-color: transparent; }
@@ -2400,6 +2416,7 @@ body.fokus-an { overflow: hidden; }
       <p><b>Spanne</b> = höchstes minus niedrigstes Funding der Börsen (Prozent aufs Jahr) – groß heißt: Die Kunden einer Börse zahlen deutlich mehr als anderswo (Überhitzung dort; Profis nutzen das für Arbitrage). Sortieren nach Spanne zeigt die Ausreißer.</p>
       <p><b>Korea</b> = Aufschlag des Kurses bei Upbit (Südkorea, in Won) gegenüber dem Weltkurs. Hoch = koreanische Kleinanleger kaufen stark (oft spätes Stadium einer Rally). Tippe auf eine Spaltenüberschrift zum Sortieren, auf einen Coin zum Öffnen.</p>
       <p><b>Filter</b> (Screener): Bedingungen mit „und“ (oder „oder“) verbinden, z. B. <code>oi24h &gt; 5 und funding &lt; 0</code>. Felder: kurs, ae1h, ae24h (Änderung in %), umsatz, oi (in $), oi1h, oi24h (Änderung in %), funding, binance, bybit, hyperliquid (Funding % aufs Jahr), spanne, korea. Zeichen: &gt; &lt; &gt;= &lt;= =. Der Filter bleibt gespeichert.</p>
+      <p>Ohne Tippen: Feld, Vergleich und Zahl wählen und „Bedingung dazu“ – die Bedingung landet im Filter und lässt sich mit × wieder entfernen. „Spalten“ blendet Spalten ein und aus, „Screen speichern“ merkt Filter, Spalten und Sortierung in diesem Browser. Technische Felder aus den Tageskerzen der 40 größten Coins: rsi (RSI 14), ema (Abstand zur EMA 50 in %), hoch (Abstand zum 30-Tage-Hoch in %), ausbruch (1 = Schluss über der 20-Tage-Spanne, −1 = darunter, 0 = darin) – nur beschreibend.</p>
     </div>
     <dl class="kacheln" id="ueb-kacheln"></dl>
     <div class="screener">
@@ -2411,9 +2428,18 @@ body.fokus-an { overflow: hidden; }
         <button type="button" data-f="ae24h < -5 und oi24h < -5">Fall mit Abbau</button>
         <button type="button" data-f="spanne > 20">Funding-Ausreißer</button>
         <button type="button" data-f="korea > 2">Korea-Aufschlag</button>
+        <button type="button" data-f="rsi > 70">RSI über 70</button>
+        <button type="button" data-f="rsi < 30">RSI unter 30</button>
+        <button type="button" data-f="hoch > -3">Nahe 30-Tage-Hoch</button>
+        <button type="button" data-f="ausbruch = 1 oder ausbruch = -1">Spannen-Ausbruch</button>
       </div>
       <label class="ueb-filter">Filter <input type="text" id="ueb-filter" placeholder="z. B. oi24h > 5 und funding < 0" autocomplete="off" spellcheck="false"></label>
       <span class="leise" id="ueb-filter-info"></span>
+      <div class="ueb-filter ueb-klick" id="ueb-klick"><select id="ueb-k-feld" aria-label="Feld"></select><select id="ueb-k-op" aria-label="Vergleich"><option value="&gt;">&gt;</option><option value="&lt;">&lt;</option><option value="&gt;=">&gt;=</option><option value="&lt;=">&lt;=</option><option value="=">=</option></select><input type="text" id="ueb-k-wert" size="8" maxlength="14" placeholder="Zahl" aria-label="Zahl" inputmode="decimal" autocomplete="off"><button type="button" id="ueb-k-dazu" class="mehr">Bedingung dazu</button><button type="button" id="ueb-k-spalten" class="mehr" aria-expanded="false" aria-controls="ueb-spalten">Spalten</button></div>
+      <div class="ch-schalter" id="ueb-bedingungen" role="group" aria-label="Bedingungen" hidden></div>
+      <div class="ch-schalter" id="ueb-spalten" role="group" aria-label="Spalten" hidden></div>
+      <div class="ueb-filter" id="ueb-screen-zeile"><input type="text" id="ueb-screen-name" maxlength="24" placeholder="Name für den Screen" aria-label="Name für den Screen" autocomplete="off"><button type="button" id="ueb-screen-speichern" class="mehr">Screen speichern</button></div>
+      <div class="ch-schalter" id="ueb-screens" role="group" aria-label="Gespeicherte Screens" hidden></div>
     </div>
     <div class="tabelle ueb-tabelle" id="ueb-tabelle"></div>
     <p class="leise stand"><button type="button" class="mehr" id="ueb-mehr">Alle zeigen</button> <button type="button" class="mehr" id="ueb-csv">Als CSV laden</button> <span id="ueb-stand"></span></p>
@@ -2806,6 +2832,74 @@ body.fokus-an { overflow: hidden; }
     </div>
     <p class="leise stand mz-fuss" id="bh-fuss"></p>
   </section>
+  <section class="feld hmap" aria-labelledby="t-hmap">
+    <div class="feld-kopf"><h2 id="t-hmap">Markt-Heatmap · Kategorien</h2><span class="stand" id="hm-stand"></span>
+      <button type="button" class="was" data-hilfe="hmap" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-hmap" hidden>
+      <p>Jede Fläche ist ein Markt. Größe = Umsatz der letzten 24 Stunden (oder offene Positionen), Farbe = Änderung in 24 Stunden bzw. 1 Stunde – je kräftiger, desto größer die Bewegung. Die Zahlen sind dieselben wie in der Markt-Übersicht. Antippen öffnet den Markt.</p>
+      <p>Kategorien: eigene Einteilung (Layer 1, Layer 2, Meme, KI, DeFi, Börsen-Coins) und Aktien-Sektoren der Aktien-Kontrakte. Ø = nach Umsatz gewichteter Durchschnitt der Änderung. Antippen zeigt nur diese Kategorie in der Heatmap. Nur beschreibend.</p>
+    </div>
+    <p class="ausfall-text" id="hm-ausfall" role="status" hidden></p>
+    <div class="screener">
+      <div class="ch-schalter" id="hm-gruppe" role="group" aria-label="Märkte"><button type="button" data-g="krypto">Krypto</button><button type="button" data-g="aktien">Aktien</button><button type="button" data-g="welt">Indizes, Rohstoffe, Devisen</button></div>
+      <div class="ch-schalter" id="hm-wahl" role="group" aria-label="Fläche und Farbe"><button type="button" data-gr="umsatz">Fläche: Umsatz</button><button type="button" data-gr="oi">Fläche: offene Positionen</button><button type="button" data-fa="ae24h">Farbe: 24 Std.</button><button type="button" data-fa="ae1h">Farbe: 1 Std.</button><button type="button" data-kat="" hidden>Alle Kategorien</button></div>
+    </div>
+    <div class="leinwand-lkarte hm-leinwand"><canvas id="hm-cv" role="img" aria-label="Markt-Heatmap: Fläche nach Umsatz, Farbe nach Änderung" tabindex="0"></canvas></div>
+    <article class="mz-block" id="hm-kat-block"><h3>Kategorien <span class="leise">eigene Einteilung · Aktien-Sektoren</span></h3>
+      <div class="tabelle ueb-tabelle" id="hm-kat"></div></article>
+  </section>
+  <section class="feld weltm" aria-labelledby="t-weltm">
+    <div class="feld-kopf"><h2 id="t-weltm">Weltmärkte · Indizes, Rohstoffe, Devisen</h2><span class="stand" id="wm-stand"></span>
+      <button type="button" class="was" data-hilfe="weltm" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-weltm" hidden>
+      <p>Indizes, Rohstoffe und Devisen in einer Tabelle – als Kontrakte bei Hyperliquid, die dem Kurs folgen (auch außerhalb der Börsenzeiten, dann über Orakel). Es ist nicht der Index selbst; Index-Namen nur zur Erkennung.</p>
+      <p>Was die Quelle nicht (mehr) anbietet, steht unten als „fehlt bei der Quelle“ – ohne Ersatzwert. Antippen öffnet den Markt im Chart.</p>
+    </div>
+    <p class="ausfall-text" id="wm-ausfall" role="status" hidden></p>
+    <div class="tabelle ueb-tabelle" id="wm-tabelle"></div>
+    <p class="leise stand" id="wm-fehlt"></p>
+  </section>
+  <section class="feld scanner" aria-labelledby="t-scanner">
+    <div class="feld-kopf"><h2 id="t-scanner">Ausreißer live · alle Coins</h2><span class="stand" id="sc-stand"></span>
+      <button type="button" class="was" data-hilfe="scanner" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-scanner" hidden>
+      <p>Vergleicht jede Minute alle Coins der Markt-Übersicht mit dem Stand davor und mit allen anderen Coins: ungewöhnlicher Umsatz, Sprung der offenen Positionen, extremes Funding, Kurs-Ausreißer in 1 Stunde und Liquidations-Wellen beim gewählten Coin.</p>
+      <p>Feste Regeln, keine Vorhersage: Ein Ausreißer sagt nur, dass etwas anders ist als sonst – nicht, wohin der Kurs geht.</p>
+    </div>
+    <div class="ch-schalter" id="sc-art" role="group" aria-label="Art"><button type="button" data-a="">Alle</button><button type="button" data-a="umsatz">Umsatz</button><button type="button" data-a="oi">Offene Positionen</button><button type="button" data-a="funding">Funding</button><button type="button" data-a="kurs">Kurs</button><button type="button" data-a="liq">Liquidationen</button></div>
+    <div class="tabelle ueb-tabelle" id="sc-tabelle"></div>
+  </section>
+  <section class="feld wecker" aria-labelledby="t-wecker">
+    <div class="feld-kopf"><h2 id="t-wecker">Alarme · Preis, Markt, Stufen, Meldungen</h2><span class="stand" id="wk-stand"></span>
+      <button type="button" class="was" data-hilfe="wecker" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-wecker" hidden>
+      <p>Nur Hinweise zur Beobachtung, keine Anlageberatung. Alles läuft nur in diesem Tab und bleibt in diesem Browser – kein Konto, kein Push-Dienst. Ist der Tab zu, gibt es keine Hinweise.</p>
+      <p>Preisalarm: über, unter oder ± % seit dem Anlegen; löst genau einmal aus. Im Chart unter „Handeln“ lässt sich eine Alarm-Linie setzen und ziehen. Markt-Alarme nach festen Regeln (Funding kippt, Sprung der offenen Positionen, Kurs-Sprung, Liquidations-Welle), Stufen-Hinweis, wenn der Kurs nahe einer Gamma-Wand oder Liquidations-Zone ist, Wal-Hinweise (große Konten bei Hyperliquid) und Stichwort-Alarm für Börsen-Meldungen und Schlagzeilen.</p>
+      <p>Stummzeiten: In dieser Zeit wird nur protokolliert, ohne Mitteilung. Das Protokoll zeigt alle ausgelösten Hinweise.</p>
+    </div>
+    <div class="mz-raster">
+      <article class="mz-block" id="wk-preis"><h3>Preisalarm <span class="leise">über · unter · ± %</span></h3>
+        <div class="ueb-filter wk-form"><input type="text" id="wk-markt" maxlength="24" placeholder="Markt, z. B. BTC" aria-label="Markt" autocomplete="off" spellcheck="false">
+          <select id="wk-art" aria-label="Art"><option value="ueber">über</option><option value="unter">unter</option><option value="pct">± %</option></select>
+          <input type="text" id="wk-wert" maxlength="16" placeholder="Kurs oder %" aria-label="Kurs oder Prozent" autocomplete="off" inputmode="decimal"><button type="button" id="wk-dazu" class="mehr">Alarm anlegen</button></div>
+        <p class="leise mz-letzte" id="wk-info" aria-live="polite"></p>
+        <div class="tabelle ueb-tabelle" id="wk-liste"></div></article>
+      <article class="mz-block" id="wk-regeln"><h3>Markt-Alarme <span class="leise">feste Regeln · antippen = an/aus</span></h3>
+        <div class="ch-schalter" id="wk-regel-wahl" role="group" aria-label="Markt-Alarme"><button type="button" data-r="funding">Funding kippt</button><button type="button" data-r="oi">Sprung offene Positionen</button><button type="button" data-r="kurs">Kurs-Sprung</button><button type="button" data-r="liq">Liquidations-Welle</button><button type="button" data-r="stufe">Stufen-Hinweis</button><button type="button" data-r="wal">Wal-Hinweise</button></div>
+        <p class="leise mz-letzte" id="wk-regel-info"></p></article>
+      <article class="mz-block" id="wk-wort"><h3>Stichwort-Alarm <span class="leise">Börsen-Meldungen und Schlagzeilen</span></h3>
+        <div class="ueb-filter"><input type="text" id="wk-wort-ein" maxlength="40" placeholder="Stichwort oder Coin, z. B. listing, SOL" aria-label="Stichwort oder Coin" autocomplete="off" spellcheck="false"><button type="button" id="wk-wort-dazu" class="mehr">Dazu</button></div>
+        <div class="ch-schalter" id="wk-worte" role="group" aria-label="Stichworte"></div></article>
+      <article class="mz-block" id="wk-stumm"><h3>Stummzeiten <span class="leise">nur protokollieren, keine Mitteilung</span></h3>
+        <div class="ueb-filter"><label><input type="checkbox" id="wk-stumm-an"> täglich von</label><input type="time" id="wk-stumm-von" value="22:00" aria-label="Stumm von"><span aria-hidden="true">–</span><input type="time" id="wk-stumm-bis" value="07:00" aria-label="Stumm bis">
+          <button type="button" id="wk-stumm-std" class="mehr">1 Std. stumm</button><button type="button" id="wk-stumm-weg" class="mehr" hidden>Stumm aus</button></div>
+        <p class="leise mz-letzte" id="wk-stumm-info" aria-live="polite"></p>
+        <p class="leise mz-letzte"><button type="button" id="wk-mitteilung" class="mehr" hidden>Mitteilungen erlauben</button></p></article>
+      <article class="mz-block mz-breit" id="wk-log"><h3>Protokoll <span class="leise">ausgelöste Hinweise, neueste zuerst</span></h3>
+        <ol class="termine-werte" id="wk-log-liste"></ol>
+        <p class="leise stand"><button type="button" class="mehr" id="wk-log-leeren">Protokoll leeren</button></p></article>
+    </div>
+  </section>
 </main>
 
 <main class="handeln" id="handeln" aria-labelledby="t-handeln" hidden>
@@ -2821,18 +2915,18 @@ body.fokus-an { overflow: hidden; }
   <div class="hd-werkzeug hd-blatt" id="hd-werkzeug" role="toolbar" aria-label="Werkzeuge">
     <div class="hd-blatt-kopf"><h3>Ebenen &amp; Werkzeuge</h3><button type="button" class="hd-blatt-zu" data-blatt-zu aria-label="Schließen">×</button></div>
     <div class="hd-gruppe" id="hd-layout" role="group" aria-label="Layout"><span class="hd-gt">Layout</span><button type="button" data-layout="1" title="Ein großer Chart">1</button><button type="button" data-layout="2" title="Zwei Charts nebeneinander">2</button><button type="button" data-layout="4" title="Vier Charts">4</button></div>
-    <div class="hd-gruppe hd-ebenen" id="hd-ebenen" role="group" aria-label="Ebenen im Chart"><span class="hd-gt">Ebenen</span><button type="button" data-ebene="ema" aria-pressed="false" title="Gleitende Durchschnitte EMA 20, 50 und 200 über den Kerzen">EMA</button><button type="button" data-ebene="wma" aria-pressed="false" title="Gewichteter Durchschnitt WMA 20 (jüngste Kerze am stärksten)">WMA</button><button type="button" data-ebene="rsi" aria-pressed="false" title="RSI 14 (Wilder) unter dem Chart mit 30/70-Linien">RSI</button><button type="button" data-ebene="macd" aria-pressed="false" title="MACD 12/26/9 unter dem Chart: Linie, Signal und Histogramm">MACD</button><button type="button" data-ebene="vp" aria-pressed="false" title="Volumen je Preis mit POC und 70-%-Wertbereich (VAH/VAL), aus den Kerzen geschätzt">Profil</button><button type="button" data-ebene="vwap" aria-pressed="false" title="Volumengewichteter Durchschnittspreis seit Tagesbeginn (UTC) mit ±1σ und ±2σ">VWAP</button><button type="button" data-ebene="heat" aria-pressed="false" title="Liquidität im Orderbuch hinter den Kerzen (Aufzeichnung am Mac, sonst ab Öffnen der Seite)">Heatmap</button><button type="button" data-ebene="fp" aria-pressed="false" title="Footprint: Kauf × Verkauf je Preisstufe beim Hineinzoomen, Delta je Kerze">Footprint</button><button type="button" data-ebene="cvd" aria-pressed="false" title="Kaufdruck: Delta je Kerze und aufsummiert (CVD) unter dem Chart">CVD</button><button type="button" data-ebene="liq" aria-pressed="false" title="Liquidations-Zonen aus der Liq.-Karte als Bänder an der Preisachse, große Wal-Liquidationen als Linien">Liq.-Zonen</button><button type="button" data-ebene="marken" aria-pressed="false" title="Absorption und Stop-Jagd nach festen Regeln markieren – Beobachtung, kein Signal">Orderflow</button><button type="button" data-ebene="gamma" aria-pressed="false" title="Gamma-Wände, Kipp-Punkt und Max-Pain aus den Optionen (BTC, ETH)">Gamma</button><button type="button" data-ebene="termine" aria-pressed="false" title="Termine als senkrechte Marken: Zinsentscheide, Inflation, Arbeitsmarkt, Quartalszahlen, Listungen – beschreibend">Termine</button><button type="button" data-ebene="bb" aria-pressed="false" title="Bollinger-Bänder 20/2 um den gleitenden Durchschnitt">Bollinger</button><button type="button" data-ebene="ichi" aria-pressed="false" title="Ichimoku 9/26/52: Tenkan, Kijun, Wolke, Chikou">Ichimoku</button><button type="button" data-ebene="atr" aria-pressed="false" title="Average True Range 14 unter dem Chart">ATR</button><button type="button" data-ebene="stoch" aria-pressed="false" title="Stochastik 14/3/3 unter dem Chart mit 20/80-Linien">Stochastik</button><button type="button" data-ebene="obv" aria-pressed="false" title="On-Balance-Volumen unter dem Chart">OBV</button><button type="button" data-ebene="sitzung" aria-pressed="false" title="Sitzungen Asien, London, New York (UTC) und Wochenende als Hintergrund, Wochenend-Lücke">Sitzungen</button><button type="button" data-ebene="amt" aria-pressed="false" title="Volumenprofil je Tag oder Sitzung mit POC und Wertbereich (Art und % unter „Profil“)">Profile je Sitzung</button><button type="button" data-ebene="npoc" aria-pressed="false" title="Unberührte POC, VAH und VAL früherer Sitzungen nach rechts verlängert, bis der Kurs sie berührt">Nackte POCs</button><button type="button" data-ebene="ib" aria-pressed="false" title="Initial Balance: Hoch und Tief der ersten Stunde mit Erweiterungen 1,5× und 2×">IB</button><button type="button" data-ebene="pd" aria-pressed="false" title="Über dem Wertbereich des Vortags (Premium) bzw. darunter (Discount) schattiert – beschreibend">Premium/Discount</button><button type="button" data-ebene="bot" aria-pressed="false" hidden title="Positionen und Trades deines Bots (Hauptkonto und Gewinn-Lehrer, Papier) im Chart">Bot</button></div>
-    <div class="hd-gruppe" id="hd-art" role="group" aria-label="Chart-Art"><span class="hd-gt">Chart-Art</span><button type="button" data-art="kerzen">Kerzen</button><button type="button" data-art="ha" title="Heikin-Ashi: geglättete Kerzen">Heikin-Ashi</button><button type="button" data-art="linie">Linie</button><button type="button" data-art="flaeche">Fläche</button><button type="button" data-art="renko" title="Renko: Kästchen in Größe der ATR 14 aus den Schlusskursen">Renko</button><button type="button" data-art="range" title="Range-Bars: feste Preisspanne je Balken (aus den Kerzen), Footprint je Balken zusammengezählt">Range</button><button type="button" data-range="20">20 Ticks</button><button type="button" data-range="40">40 Ticks</button><button type="button" data-range="100">100 Ticks</button></div>
-    <div class="hd-gruppe" id="hd-skala" role="group" aria-label="Skala"><span class="hd-gt">Skala</span><button type="button" data-skala="lin">Normal</button><button type="button" data-skala="log">Log</button><button type="button" data-skala="pct" title="Preisachse in % ab der ersten sichtbaren Kerze">%</button></div>
-    <div class="hd-gruppe" id="hd-profil" role="group" aria-label="Profil"><span class="hd-gt">Profil</span><button type="button" data-amt="tag">Je Tag</button><button type="button" data-amt="sitzung" title="Asien, London, New York (UTC) getrennt">Je Sitzung</button><button type="button" data-amt="composite" title="Ein Profil über alles Sichtbare">Composite</button><button type="button" data-va="68">VA 68 %</button><button type="button" data-va="70">VA 70 %</button><button type="button" data-va="80">VA 80 %</button></div>
+    <div class="hd-gruppe hd-ebenen" id="hd-ebenen" role="group" aria-label="Ebenen im Chart"><span class="hd-gt">Ebenen</span><button type="button" data-ebene="ema" aria-pressed="false" title="Gleitende Durchschnitte EMA 20, 50 und 200 über den Kerzen">EMA</button><button type="button" data-ebene="wma" aria-pressed="false" title="Gewichteter Durchschnitt WMA 20 (jüngste Kerze am stärksten)">WMA</button><button type="button" data-ebene="rsi" aria-pressed="false" title="RSI 14 (Wilder) unter dem Chart mit 30/70-Linien">RSI</button><button type="button" data-ebene="macd" aria-pressed="false" title="MACD 12/26/9 unter dem Chart: Linie, Signal und Histogramm">MACD</button><button type="button" data-ebene="vp" aria-pressed="false" title="Volumen je Preis mit POC und 70-%-Wertbereich (VAH/VAL), aus den Kerzen geschätzt">Profil</button><button type="button" data-ebene="vwap" aria-pressed="false" title="Volumengewichteter Durchschnittspreis seit Tagesbeginn (UTC) mit ±1σ und ±2σ">VWAP</button><button type="button" data-ebene="heat" aria-pressed="false" title="Liquidität im Orderbuch hinter den Kerzen (Aufzeichnung am Mac, sonst ab Öffnen der Seite)">Heatmap</button><button type="button" data-ebene="fp" aria-pressed="false" title="Footprint: Kauf × Verkauf je Preisstufe beim Hineinzoomen, Delta je Kerze">Footprint</button><button type="button" data-ebene="cvd" aria-pressed="false" title="Kaufdruck: Delta je Kerze und aufsummiert (CVD) unter dem Chart">CVD</button><button type="button" data-ebene="liq" aria-pressed="false" title="Liquidations-Zonen aus der Liq.-Karte als Bänder an der Preisachse, große Wal-Liquidationen als Linien">Liq.-Zonen</button><button type="button" data-ebene="marken" aria-pressed="false" title="Absorption und Stop-Jagd nach festen Regeln markieren – Beobachtung, kein Signal">Orderflow</button><button type="button" data-ebene="gamma" aria-pressed="false" title="Gamma-Wände, Kipp-Punkt und Max-Pain aus den Optionen (BTC, ETH)">Gamma</button><button type="button" class="hd-mehr-teil" data-ebene="termine" aria-pressed="false" title="Termine als senkrechte Marken: Zinsentscheide, Inflation, Arbeitsmarkt, Quartalszahlen, Listungen – beschreibend">Termine</button><button type="button" class="hd-mehr-teil" data-ebene="bb" aria-pressed="false" title="Bollinger-Bänder 20/2 um den gleitenden Durchschnitt">Bollinger</button><button type="button" class="hd-mehr-teil" data-ebene="ichi" aria-pressed="false" title="Ichimoku 9/26/52: Tenkan, Kijun, Wolke, Chikou">Ichimoku</button><button type="button" class="hd-mehr-teil" data-ebene="atr" aria-pressed="false" title="Average True Range 14 unter dem Chart">ATR</button><button type="button" class="hd-mehr-teil" data-ebene="stoch" aria-pressed="false" title="Stochastik 14/3/3 unter dem Chart mit 20/80-Linien">Stochastik</button><button type="button" class="hd-mehr-teil" data-ebene="obv" aria-pressed="false" title="On-Balance-Volumen unter dem Chart">OBV</button><button type="button" class="hd-mehr-teil" data-ebene="sitzung" aria-pressed="false" title="Sitzungen Asien, London, New York (mit Sommerzeit je Region) und Wochenende als Hintergrund, Wochenend-Lücke">Sitzungen</button><button type="button" class="hd-mehr-teil" data-ebene="amt" aria-pressed="false" title="Volumenprofil je Tag oder Sitzung mit POC und Wertbereich (Art und % unter „Profil“)">Profile je Sitzung</button><button type="button" class="hd-mehr-teil" data-ebene="npoc" aria-pressed="false" title="Unberührte POC, VAH und VAL früherer Sitzungen nach rechts verlängert, bis der Kurs sie berührt">Nackte POCs</button><button type="button" class="hd-mehr-teil" data-ebene="ib" aria-pressed="false" title="Initial Balance: Hoch und Tief der ersten Stunde mit Erweiterungen 1,5× und 2×">IB</button><button type="button" class="hd-mehr-teil" data-ebene="pd" aria-pressed="false" title="Über dem Wertbereich des Vortags (Premium) bzw. darunter (Discount) schattiert – beschreibend">Premium/Discount</button><button type="button" data-ebene="bot" aria-pressed="false" hidden title="Positionen und Trades deines Bots (Hauptkonto und Gewinn-Lehrer, Papier) im Chart">Bot</button></div>
+    <div class="hd-gruppe hd-mehr-teil" id="hd-art" role="group" aria-label="Chart-Art"><span class="hd-gt">Chart-Art</span><button type="button" data-art="kerzen">Kerzen</button><button type="button" data-art="ha" title="Heikin-Ashi: geglättete Kerzen">Heikin-Ashi</button><button type="button" data-art="linie">Linie</button><button type="button" data-art="flaeche">Fläche</button><button type="button" data-art="renko" title="Renko: Kästchen in Größe der ATR 14 aus den Schlusskursen">Renko</button><button type="button" data-art="range" title="Range-Bars: feste Preisspanne je Balken (aus den Kerzen), Footprint je Balken zusammengezählt">Range</button><button type="button" data-range="20">20 Ticks</button><button type="button" data-range="40">40 Ticks</button><button type="button" data-range="100">100 Ticks</button></div>
+    <div class="hd-gruppe hd-mehr-teil" id="hd-skala" role="group" aria-label="Skala"><span class="hd-gt">Skala</span><button type="button" data-skala="lin">Normal</button><button type="button" data-skala="log">Log</button><button type="button" data-skala="pct" title="Preisachse in % ab der ersten sichtbaren Kerze">%</button></div>
+    <div class="hd-gruppe hd-mehr-teil" id="hd-profil" role="group" aria-label="Profil"><span class="hd-gt">Profil</span><button type="button" data-amt="tag">Je Tag</button><button type="button" data-amt="sitzung" title="Asien, London, New York (mit Sommerzeit je Region) getrennt">Je Sitzung</button><button type="button" data-amt="composite" title="Ein Profil über alles Sichtbare">Composite</button><button type="button" data-va="68">VA 68 %</button><button type="button" data-va="70">VA 70 %</button><button type="button" data-va="80">VA 80 %</button></div>
     <button type="button" id="hd-aufnahme" class="hd-aufnahme-knopf" title="Nur der Chart, Format 9:16, 16:9 oder 1:1 – zum Abfilmen oder für eine Bildschirmaufnahme"><i aria-hidden="true"></i>Aufnahme</button>
     <span class="hd-umbruch" aria-hidden="true"></span>
     <div class="hd-gruppe" id="hd-look" role="group" aria-label="Chart-Look"><span class="hd-gt">Look</span><button type="button" data-look="ws">Weiß-Schwarz</button><button type="button" data-look="neon">Neon</button><button type="button" data-look="desk">Desk</button><button type="button" data-look="thema">Wie Thema</button></div>
-    <div class="hd-gruppe" id="hd-zeichnen" role="group" aria-label="Zeichnen"><span class="hd-gt">Zeichnen</span><button type="button" data-werkzeug="linie" aria-pressed="false">Linie</button><button type="button" data-werkzeug="kreis" aria-pressed="false">Kreis</button><button type="button" data-werkzeug="pfeil" aria-pressed="false">Pfeil</button><button type="button" data-werkzeug="fib" aria-pressed="false" title="Fibonacci-Retracement: zwei Punkte im Chart ziehen oder nacheinander antippen (Stufen 0 bis 100 %). Nur eine Zeichnung, kein Signal.">Fibonacci</button><button type="button" data-werkzeug="rechteck" aria-pressed="false">Rechteck</button><button type="button" data-werkzeug="kanal" aria-pressed="false" title="Kanal: Linie ziehen, die Parallele geht durch den weitesten Kerzen-Punkt dazwischen">Kanal</button><button type="button" data-werkzeug="text" aria-pressed="false" title="Text: im Chart antippen und schreiben">Text</button><button type="button" data-werkzeug="strahl" aria-pressed="false" title="Waagerechter Strahl: im Chart antippen">Strahl</button><button type="button" data-werkzeug="mess" aria-pressed="false" title="Messen: Preis-, Prozent- und Zeitspanne ziehen">Messen</button><button type="button" data-werkzeug="avwap" aria-pressed="false" title="Anchored VWAP: Kerze antippen, ab der gerechnet wird">AVWAP</button><button type="button" data-werkzeug="frvp" aria-pressed="false" title="Bereichs-Profil: Bereich ziehen – POC, VAH und VAL nur dieses Abschnitts">Bereichs-Profil</button><button type="button" data-werkzeug="long" aria-pressed="false" title="Long-Box: vom Einstieg zum Stop ziehen – Ziel 2 R, Risiko in $ und %, ins Papier-Ticket übernommen (senden musst du selbst)">Long</button><button type="button" data-werkzeug="short" aria-pressed="false" title="Short-Box: vom Einstieg zum Stop ziehen – Ziel 2 R, Risiko in $ und %, ins Papier-Ticket übernommen (senden musst du selbst)">Short</button><button type="button" data-werkzeug="weg" title="Letzte Zeichnung in diesem Markt entfernen" aria-label="Letzte Zeichnung entfernen">↶</button><button type="button" data-werkzeug="alle" title="Alle Zeichnungen in diesem Markt löschen">Löschen</button></div>
+    <div class="hd-gruppe" id="hd-zeichnen" role="group" aria-label="Zeichnen"><span class="hd-gt">Zeichnen</span><button type="button" data-werkzeug="linie" aria-pressed="false">Linie</button><button type="button" data-werkzeug="kreis" aria-pressed="false">Kreis</button><button type="button" data-werkzeug="pfeil" aria-pressed="false">Pfeil</button><button type="button" data-werkzeug="fib" aria-pressed="false" title="Fibonacci-Retracement: zwei Punkte im Chart ziehen oder nacheinander antippen (Stufen 0 bis 100 %). Nur eine Zeichnung, kein Signal.">Fibonacci</button><button type="button" class="hd-mehr-teil" data-werkzeug="rechteck" aria-pressed="false">Rechteck</button><button type="button" class="hd-mehr-teil" data-werkzeug="kanal" aria-pressed="false" title="Kanal: Linie ziehen, die Parallele geht durch den weitesten Kerzen-Punkt dazwischen">Kanal</button><button type="button" class="hd-mehr-teil" data-werkzeug="text" aria-pressed="false" title="Text: im Chart antippen und schreiben">Text</button><button type="button" class="hd-mehr-teil" data-werkzeug="strahl" aria-pressed="false" title="Waagerechter Strahl: im Chart antippen">Strahl</button><button type="button" class="hd-mehr-teil" data-werkzeug="mess" aria-pressed="false" title="Messen: Preis-, Prozent- und Zeitspanne ziehen">Messen</button><button type="button" class="hd-mehr-teil" data-werkzeug="avwap" aria-pressed="false" title="Anchored VWAP: Kerze antippen, ab der gerechnet wird">AVWAP</button><button type="button" class="hd-mehr-teil" data-werkzeug="frvp" aria-pressed="false" title="Bereichs-Profil: Bereich ziehen – POC, VAH und VAL nur dieses Abschnitts">Bereichs-Profil</button><button type="button" class="hd-mehr-teil" data-werkzeug="long" aria-pressed="false" title="Long-Box: vom Einstieg zum Stop ziehen – Ziel 2 R, Risiko in $ und %, ins Papier-Ticket übernommen (senden musst du selbst)">Long</button><button type="button" class="hd-mehr-teil" data-werkzeug="short" aria-pressed="false" title="Short-Box: vom Einstieg zum Stop ziehen – Ziel 2 R, Risiko in $ und %, ins Papier-Ticket übernommen (senden musst du selbst)">Short</button><button type="button" class="hd-mehr-teil" data-werkzeug="alarm" aria-pressed="false" title="Alarm-Linie: im Chart antippen – Hinweis, wenn der Kurs die Linie erreicht (nur in diesem Tab); Linie lässt sich ziehen">Alarm-Linie</button><button type="button" data-werkzeug="weg" title="Letzte Zeichnung in diesem Markt entfernen" aria-label="Letzte Zeichnung entfernen">↶</button><button type="button" data-werkzeug="alle" title="Alle Zeichnungen in diesem Markt löschen">Löschen</button></div>
     <div class="hd-gruppe hd-layouts" id="hd-layouts" role="group" aria-label="Eigene Layouts"><span class="hd-gt">Layouts</span><span class="hd-layouts-liste" id="hd-layouts-liste"></span><input type="text" id="hd-layout-name" maxlength="24" placeholder="Name" aria-label="Name für das Layout" autocomplete="off"><button type="button" id="hd-layout-speichern" title="Markt, Zeitstufe, Ansicht, Ebenen und Zeichnungen in diesem Browser merken (bis zu 3 Layouts)">Speichern</button></div>
-    <div class="hd-gruppe hd-layouts" id="hd-vergleich" role="group" aria-label="Vergleich"><span class="hd-gt">Vergleich</span><input type="text" id="hd-vgl" maxlength="40" placeholder="z. B. ETH SOL" aria-label="Märkte zum Vergleich in %" autocomplete="off"><button type="button" id="hd-vgl-weg" title="Vergleich, Verhältnis und Spread beenden">Aus</button></div>
-    <div class="hd-gruppe hd-layouts" id="hd-vorlagen" role="group" aria-label="Vorlagen"><span class="hd-gt">Vorlagen</span><span class="hd-layouts-liste" id="hd-vorlagen-liste"></span><input type="text" id="hd-vorlage-name" maxlength="24" placeholder="Name" aria-label="Name für die Vorlage" autocomplete="off"><button type="button" id="hd-vorlage-speichern" title="Ebenen, Chart-Art, Skala und Profil-Einstellungen als Vorlage merken (bis zu 6)">Speichern</button><button type="button" id="hd-bild" title="Aktiven Chart als Bild speichern (PNG mit Quelle und Zeit)">Bild</button></div>
-    <div class="hd-gruppe" role="group" aria-label="Hilfen"><button type="button" id="hd-klick" aria-pressed="false" title="Klick in den Chart öffnet eine Order an diesem Preis (sonst über das „+“ an der Preisachse)">Order per Klick</button><button type="button" id="hd-buch-an" aria-pressed="true" title="Werkzeug-Paneele rechts ein- oder ausblenden">Paneele</button></div>
+    <div class="hd-gruppe hd-mehr-teil hd-layouts" id="hd-vergleich" role="group" aria-label="Vergleich"><span class="hd-gt">Vergleich</span><input type="text" id="hd-vgl" maxlength="40" placeholder="z. B. ETH SOL" aria-label="Märkte zum Vergleich in %" autocomplete="off"><button type="button" id="hd-vgl-weg" title="Vergleich, Verhältnis und Spread beenden">Aus</button></div>
+    <div class="hd-gruppe hd-mehr-teil hd-layouts" id="hd-vorlagen" role="group" aria-label="Vorlagen"><span class="hd-gt">Vorlagen</span><span class="hd-layouts-liste" id="hd-vorlagen-liste"></span><input type="text" id="hd-vorlage-name" maxlength="24" placeholder="Name" aria-label="Name für die Vorlage" autocomplete="off"><button type="button" id="hd-vorlage-speichern" title="Ebenen, Chart-Art, Skala und Profil-Einstellungen als Vorlage merken (bis zu 6)">Speichern</button><button type="button" id="hd-bild" title="Aktiven Chart als Bild speichern (PNG mit Quelle und Zeit)">Bild</button></div>
+    <div class="hd-gruppe" role="group" aria-label="Hilfen"><button type="button" id="hd-mehr" class="hd-mehr-knopf" aria-expanded="false" title="Weitere Ebenen, Chart-Arten, Skala, Profil, Zeichen-Werkzeuge, Vergleich und Vorlagen">Mehr …<b class="zahl" hidden>0</b></button><button type="button" id="hd-klick" aria-pressed="false" title="Klick in den Chart öffnet eine Order an diesem Preis (sonst über das „+“ an der Preisachse)">Order per Klick</button><button type="button" id="hd-buch-an" aria-pressed="true" title="Werkzeug-Paneele rechts ein- oder ausblenden">Paneele</button></div>
 </div>
   <div class="hd-raster" id="hd-raster">
     <aside class="hd-feld hd-liste" aria-labelledby="t-hd-liste">
@@ -2901,7 +2995,7 @@ body.fokus-an { overflow: hidden; }
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "5a9811ba", "es": "cc758d1c", "fr": "d6016905", "it": "75bf50a9", "tr": "ee3c56c2"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "50631c55", "es": "a3f761ff", "fr": "53533b36", "it": "9a4a651d", "tr": "c24659b4"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -3031,6 +3125,8 @@ b.replaceChildren('Fehler – bitte melden: ', was, ' · ', a);
 } else b.textContent = (EN ? 'Error (please send a screenshot to Mio): ' : 'Fehler (bitte Bildschirmfoto an Mio): ') + was; } catch (x) {   }
 });
 const BETA_TEXTE = /*BETA-TEXTE*/{"ersatz":[
+["h-wecker","für Börsen-Meldungen und Schlagzeilen.","für Börsen-Meldungen (Schlagzeilen nur in der Vollversion)."],
+["wk-wort","Börsen-Meldungen und Schlagzeilen","Börsen-Meldungen (Schlagzeilen nur in der Vollversion)"],
 ["h-dom","Bybit, OKX und Binance zusammen.","Bybit-Futures und Binance-Spot zusammen (wo Bybit gesperrt ist, Hyperliquid statt Bybit)."],
 ["h-markt","aufsummiert: Kaufen Spot-Käufer (Binance, Coinbase), während","aufsummiert (hier aus den Kerzen von Binance Spot und Futures): Kaufen Spot-Käufer, während"],
 ["h-markt","(Binance, OKX, Bybit, Coinbase)","(Bybit-Futures und Binance-Spot, aufgezeichnet ab dem Öffnen der Seite)"],
@@ -5560,7 +5656,7 @@ if (!String(x.symbol).endsWith('USDT')) continue;
 const roh = x.symbol.slice(0, -4), m = /^(1000000|10000|1000)(.+)$/.exec(roh), coinN = m ? m[2] : roh, mult = m ? Number(m[1]) : 1, p = +x.lastPrice / mult;
 if (!(p > 0) || ['USDC', 'USDE', 'FDUSD', 'DAI'].includes(coinN)) continue;
 const f = aufsJahr(+x.fundingRate, Number(x.fundingIntervalHour) || 8);
-coins.push({ coin: coinN, preis: p, ae1h: +x.prevPrice1h > 0 ? (+x.lastPrice / +x.prevPrice1h - 1) * 100 : null, ae24h: +x.price24hPcnt * 100, umsatz: +x.turnover24h,
+coins.push({ sym: x.symbol, coin: coinN, preis: p, ae1h: +x.prevPrice1h > 0 ? (+x.lastPrice / +x.prevPrice1h - 1) * 100 : null, ae24h: +x.price24hPcnt * 100, umsatz: +x.turnover24h,
 oi: +x.openInterestValue, oi1h: null, oi24h: null, funding: f, funding_je: { Bybit: f }, korea: null });
 }
 coins.sort((a, b) => b.oi - a.oi);
@@ -7529,7 +7625,7 @@ const UEB_SPALTEN = [
 ['coin', 'Coin'], ['preis', 'Kurs'], ['ae1h', '1 Std.'], ['ae24h', '24 Std.'], ['umsatz', 'Umsatz 24 Std.'], ['oi', 'Offene Pos.'],
 ['oi1h', 'OI 1 Std.'], ['oi24h', 'OI 24 Std.'], ['funding', 'Funding/Jahr'], ['fb', 'Binance'], ['fy', 'Bybit'], ['fh', 'Hyperliquid'], ['fs', 'Spanne'], ['korea', 'Korea']];
 async function uebLaden() {
-if (!regelnLokal().length && spaeter(uebLaden, 'uebersicht', 'analyse')) return;
+if (!regelnLokal().length && !(W4_BEREIT && w4Braucht()) && spaeter(uebLaden, 'uebersicht', 'analyse', 'hmap', 'scanner', 'wecker')) return;
 const basis = macBasis();
 if (DEMO) { ueb = demoUeb(); uebZeigen(); return; }
 const direkt = async () => { try { ueb = await uebDirekt(); } catch (e) { ueb = { fehler: BYBIT_AUS ? 'Hyperliquid gerade nicht erreichbar (Bybit ist hier gesperrt)' : 'Bybit gerade nicht erreichbar' }; } };
@@ -7545,7 +7641,7 @@ funding_je: { Binance: 10 + Math.sin(i * 3) * 15, Bybit: 9 + Math.sin(i * 3) * 2
 return { zeit: Date.now() / 1000, coins, korea_usdt: 1.4, gesamt: { oi: 1.2e11, umsatz: 2.4e11, funding_gewichtet: 9.4, steigend: 7, anzahl: coins.length } };
 }
 function fSpanne(z) { const w = Object.values(z.funding_je || {}).filter((v) => Number.isFinite(v)); return w.length >= 2 ? Math.max(...w) - Math.min(...w) : null; }
-function uebWert(z, k) { if (k === 'fs') return fSpanne(z); return k === 'fb' ? (z.funding_je || {}).Binance : k === 'fy' ? (z.funding_je || {}).Bybit : k === 'fh' ? (z.funding_je || {}).Hyperliquid : z[k]; }
+function uebWert(z, k) { if (k === 'fs') return fSpanne(z); return k === 'fb' ? (z.funding_je || {}).Binance : k === 'fy' ? (z.funding_je || {}).Bybit : k === 'fh' ? (z.funding_je || {}).Hyperliquid : z[k] === undefined && W4_BEREIT && ['rsi', 'ema', 'hoch', 'ausbruch'].includes(k) ? w4Tech(z, k) : z[k]; }
 const UEB_FELDER = { price: (z) => z.preis, volume: (z) => z.umsatz, change24h: (z) => z.ae24h, kurs: (z) => z.preis, ae1h: (z) => z.ae1h, ae24h: (z) => z.ae24h, umsatz: (z) => z.umsatz, oi: (z) => z.oi, oi1h: (z) => z.oi1h, oi24h: (z) => z.oi24h,
 funding: (z) => z.funding, binance: (z) => (z.funding_je || {}).Binance, bybit: (z) => (z.funding_je || {}).Bybit, hyperliquid: (z) => (z.funding_je || {}).Hyperliquid, spanne: (z) => fSpanne(z), korea: (z) => z.korea };
 function uebFilter(text) {
@@ -7606,6 +7702,7 @@ for (const v of d.direkt ? [z.funding, (z.funding_je || {}).Bybit] : [z.funding,
 if (!d.direkt) { const td = tr.insertCell(), v = fSpanne(z); td.textContent = v === null ? '–' : de(v, 1) + ' Pkt.'; if (v !== null && v >= 20) td.className = 'stark'; td.title = Object.entries(z.funding_je || {}).map(([b, f]) => `${b} ${de(f, 1)} %`).join(' · '); }
 if (!d.direkt) pz(tr.insertCell(), z.korea, 2, 3);
 }
+if (W4_BEREIT) w4UebSpalten(tab, zeilen);
 box.replaceChildren(tab);
 $('ueb-mehr').hidden = uebAlle || !!such || !!filt.f || d.coins.length <= 40;
 $('ueb-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `${d.direkt ? (d.quelle === 'Hyperliquid' ? 'Direkt von Hyperliquid (alle Perpetuals – Bybit ist hier nicht erreichbar)' : TEILEN ? (d.tfDrin && TF.size ? 'Direkt von Bybit (alle USDT-Perpetuals) und Hyperliquid (Aktien, Indizes, Rohstoffe)' : 'Direkt von Bybit (alle USDT-Perpetuals)') : 'Direkt von Bybit (alle USDT-Perpetuals; OI-Änderung und Korea nur mit dem Mac)') : 'Bybit, Binance, OKX, Hyperliquid, Upbit'} · Stand ${uhrKurz((d.zeit || Date.now() / 1000) * 1000)}`;
@@ -10120,7 +10217,8 @@ let w = 0; addEventListener('scroll', () => { if (w) return; w = requestAnimatio
 }
 const SPRUNG_NAMEN = { behoerden: 'Makro & Behörden', rug: 'Rug-Check', heat: 'Liquidität', jetzt: 'Live', werte: 'Futures', analyse: 'Analyse', selbst: 'Selbst handeln', journal: 'Journal', chart: 'Chart', multi: 'Mehrere', gamma: 'Gamma-Karte', gex: 'Dealer-Gamma', dom: 'Orderbuch', cvd: 'Kaufdruck', band: 'Große Trades',
 liq: 'Liquidationen', mac: 'Wale', uebersicht: 'Übersicht', markt: 'Börsen', geschichte: 'Geschichte', umfeld: 'Umfeld', rangliste: 'Rangliste', meldungen: 'Meldungen',
-lkarte: 'Liq.-Karte', ofluss: 'Options-Fluss', olab: 'Options-Labor', danach: 'Was danach', bericht: 'Lagebild', vol: 'Volatilität', opt: 'Optionen', kurve: 'Terminkurve', makro: 'Zinsen' };
+lkarte: 'Liq.-Karte', ofluss: 'Options-Fluss', olab: 'Options-Labor', danach: 'Was danach', bericht: 'Lagebild', vol: 'Volatilität', opt: 'Optionen', kurve: 'Terminkurve', makro: 'Zinsen',
+hmap: 'Heatmap', weltm: 'Weltmärkte', scanner: 'Ausreißer', wecker: 'Alarme' };
 function sprungleiste() {
 const kopf = document.querySelector('.leiste'); if (!kopf || document.querySelector('.sprungleiste')) return;
 const leiste = document.createElement('div'); leiste.className = 'sprungleiste';
@@ -10326,6 +10424,7 @@ selbstMerken(); hdGeaendert(); return null;
 }
 function hdFinde(was, id) { return was === 'order' ? (selbst.orders || []).find((o) => o.id === id) : selbst.offen.find((p) => p.id === id); }
 function hdLabelAktion(h) {
+if (h.was === 'alarm') { w4AlarmWeg(h.ref); return; }
 if (h.was === 'zeich') { const l = HD.zeich[h.markt] || []; if (l[h.ref]) { l.splice(h.ref, 1); hdMerke('zeichnungen', JSON.stringify(HD.zeich)); for (const c of HD.panes) c.dirty = true; } return; }
 const x = hdFinde(h.was === 'order' ? 'order' : 'pos', h.ref); if (!x) return;
 if (h.art === 'neu') {
@@ -10339,6 +10438,7 @@ else if (h.was === 'pos') hdSchliessen(x);
 else { hdSlTp(x, h.was, null); hdEreignis(`${h.was === 'sl' ? 'Stop-Loss' : 'Take-Profit'} entfernt: ${hdName(x.markt)}`); }
 }
 function hdLinieSetzen(h, preis) {
+if (h.was === 'alarm') { w4AlarmVerschieben(h.ref, preis); return; }
 const x = hdFinde(h.was === 'order' ? 'order' : 'pos', h.ref); if (!x) return;
 preis = hdRund(preis, x.markt);
 const f = h.was === 'order' ? hdOrderPreis(x, preis) : hdSlTp(x, h.was, preis);
@@ -10718,6 +10818,7 @@ if (!this.menue.hidden) this.menueZu();
 try { this.cv.setPointerCapture(e.pointerId); } catch (x) {   }
 const h = this.treffen(p.x, p.y), L = this.L;
 if (h && (h.art === 'zu' || h.art === 'neu' || h.art === 'plus')) { this.zug = { art: h.art, h }; return; }
+if (h && h.art === 'zieh') { this.zug = { art: 'zieh', h, x0: p.x, dx: 0, bewegt: false }; return; }
 if (h && h.art === 'linie') { this.zug = { art: 'linie', h, y0: p.y, preis: h.preis, bewegt: false }; return; }
 if (HD.werkzeug && L && p.x < L.x1 && p.y > L.py0 - 20 && p.y < L.y1 && this.k.length) { const a = this.zuWert(p.x, p.y); this.zug = { art: 'zeichnen', a, b: a }; return; }
 this.zug = { art: 'pan', x0: p.x, r0: this.sicht.rechts, bewegt: false };
@@ -10726,11 +10827,12 @@ bewegen(e) {
 const p = this.punkt(e); if (this.zeiger.has(e.pointerId)) this.zeiger.set(e.pointerId, p);
 this.maus = p; this.dirty = true;
 const z = this.zug;
-if (!z) { const h = this.treffen(p.x, p.y); this.cv.style.cursor = h ? (h.art === 'linie' ? 'ns-resize' : 'pointer') : HD.werkzeug ? 'crosshair' : this.L && p.x > this.L.x1 ? 'default' : 'crosshair'; return; }
+if (!z) { const h = this.treffen(p.x, p.y); this.cv.style.cursor = h ? (h.art === 'linie' ? 'ns-resize' : h.art === 'zieh' ? 'ew-resize' : 'pointer') : HD.werkzeug ? 'crosshair' : this.L && p.x > this.L.x1 ? 'default' : 'crosshair'; return; }
 if (z.art === 'pinch') { if (this.zeiger.size === 2) { const [a, b] = [...this.zeiger.values()], d = Math.hypot(a.x - b.x, a.y - b.y); if (d > 0) this.sicht.n = Math.max(15, Math.min(600, z.n0 * z.d0 / d)); } }
 else if (z.art === 'pan' && this.L) { const dx = p.x - z.x0; if (Math.abs(dx) > 4 * p.d) z.bewegt = true; this.sicht.rechts = this.rechtsGrenze(Math.round(z.r0 + dx / this.L.cw)); }
 else if (z.art === 'linie') { if (Math.abs(p.y - z.y0) > 3 * p.d) z.bewegt = true; z.preis = this.zuPreis(p.y); }
 else if (z.art === 'zeichnen') z.b = this.zuWert(p.x, p.y);
+else if (z.art === 'zieh') { z.dx = p.x - z.x0; if (Math.abs(z.dx) > 3 * p.d) z.bewegt = true; }
 }
 hoch(e) {
 const z = this.zug; this.zeiger.delete(e.pointerId); if (this.zeiger.size) return;
@@ -10739,6 +10841,8 @@ const p = this.punkt(e), L = this.L;
 if (z.art === 'zu' || z.art === 'neu') { const h = this.treffen(p.x, p.y); if (h && h.art === z.h.art && h.ref === z.h.ref && h.was === z.h.was) hdLabelAktion(h); }
 else if (z.art === 'plus') this.menueAuf(z.h.preis, p);
 else if (z.art === 'linie' && z.bewegt && z.preis > 0) hdLinieSetzen(z.h, z.preis);
+else if (z.art === 'zieh' && z.bewegt) w4FrvpZiehen(this, z.h, z.dx);
+else if (z.art === 'zeichnen' && HD.werkzeug === 'alarm') w4AlarmAusChart(this.markt, z.b.p);
 else if (z.art === 'zeichnen') {
 const lang = Math.hypot(this.tZuX(z.b.t) - this.tZuX(z.a.t), this.zuY(z.b.p) - this.zuY(z.a.p)) > 6 * p.d;
 if (HD.werkzeug === 'fib' && !lang) {
@@ -10931,9 +11035,10 @@ const zl = (HD.zeich[id] || []).concat(this.zug && this.zug.art === 'zeichnen' ?
 if (HD.werkzeug === 'fib' && HD.fibA && HD.fibA.markt === id && !this.zug) { const m = this.maus && this.maus.x < L.x1 && this.maus.y > L.py0 && this.maus.y < L.y1 ? this.zuWert(this.maus.x, this.maus.y) : null;
 if (m) zl.push({ art: 'fib', a: HD.fibA.a, b: m, neu: true }); else { ctx.fillStyle = f.zeichen; ctx.beginPath(); ctx.arc(this.tZuX(HD.fibA.a.t), Y(HD.fibA.a.p), 4 * d, 0, Math.PI * 2); ctx.fill(); } }
 zl.forEach((z, nr) => {
+if (this.zug && this.zug.art === 'zieh' && this.zug.bewegt && this.zug.h.ref === nr && !z.neu) { const dt = this.zuWert(this.zug.h.x + this.zug.dx, 0).t - this.zuWert(this.zug.h.x, 0).t; z = { ...z, a: { ...z.a, t: z.a.t + dt }, b: { ...z.b, t: z.b.t + dt } }; }
 const ax = this.tZuX(z.a.t), ay = Y(z.a.p), ex = this.tZuX(z.b.t), ey = Y(z.b.p);
 if (z.art === 'fib') { this.fibZeichnen(ctx, z, z.neu ? -1 : nr, ax, ex, Y, d, f, L, id); return; }
-if (W3_ZEICHEN.has(z.art)) { this.w3Zeichnung(ctx, z, ax, ay, ex, ey, Y, d, f, L, id, K); return; }
+if (W3_ZEICHEN.has(z.art)) { this.w3Zeichnung(ctx, z, ax, ay, ex, ey, Y, d, f, L, id, K, z.neu ? -1 : nr); return; }
 ctx.strokeStyle = f.zeichen; ctx.lineWidth = 2 * d; ctx.lineCap = 'round';
 if (f.glow) { ctx.shadowColor = f.zeichen; ctx.shadowBlur = 8 * d; }
 ctx.beginPath();
@@ -10970,6 +11075,7 @@ this.etikett(ctx, xr, klemm(y), [{ t: pfeil(y) + hdMengeTxt(o.marge * o.hebel / 
 if (y >= L.y0 && y <= L.y1) this.achsenEtikett(ctx, y, hdPreisTxt(preis, id), farbe, '#ffffff', d, L);
 });
 }
+this.w4AlarmLinien(ctx, id, Y, d, f, L, lh, xr, klemm, linie, pfeil, zl2, zug);
 for (const p of selbst.offen.filter((x) => x.markt === id && !this.syn)) {
 const w = selbstWert(p, kursJetzt || p.kurs), vz = hdVz(p), menge = hdMenge(p), yE = Y(p.einstieg);
 const alt = this.anz.has(p.id) ? this.anz.get(p.id) : w.eur, neu = Math.abs(w.eur - alt) < 0.005 ? w.eur : alt + (w.eur - alt) * 0.22;
@@ -11177,7 +11283,10 @@ ctx.strokeStyle = f.rahmen; ctx.beginPath(); ctx.moveTo(L.x0, oben + 0.5); ctx.l
 ctx.font = `600 ${Math.round(9.5 * d)}px ${F.mono}`; ctx.fillStyle = f.achseText; ctx.textBaseline = 'top';
 const letzt = cvd[Math.min(b, K.length - 1)];
 ctx.fillText(`CVD ${letzt == null ? '–' : (letzt >= 0 ? '+' : '−') + kurzZ(letzt)} · Delta je Kerze${HX.quelle ? ' · ' + HX.quelle : ''}`, L.x0 + 6 * d, y0 + 1 * d);
-if (letzt == null) { ctx.textAlign = 'center'; ctx.fillText(HX.laeuft || !HX.zeit ? 'Lade Kaufdruck …' : (hlErsatzAktiv(C()) && this.markt === coin ? 'CVD ab Öffnen gesammelt – Werte kommen mit den nächsten Trades' : 'Für diesen Markt gibt es keinen Kaufdruck je Kerze'), (L.x0 + L.x1) / 2, mitte - 5 * d); ctx.textAlign = 'left'; }
+if (letzt == null) {
+const tx = HX.laeuft || !HX.zeit ? 'Lade Kaufdruck …' : (hlErsatzAktiv(C()) && this.markt === coin ? 'CVD ab Öffnen gesammelt – Werte kommen mit den nächsten Trades' : 'Für diesen Markt gibt es keinen Kaufdruck je Kerze'), maxW = L.x1 - L.x0 - 12 * d, w0 = ctx.measureText(tr(tx)).width;
+if (w0 > maxW) { const m = /(\d+(?:\.\d+)?)px/.exec(ctx.font); if (m) ctx.font = ctx.font.replace(m[0], `${Math.max(7 * d, Math.floor(+m[1] * maxW / w0))}px`); }
+ctx.textAlign = 'center'; ctx.fillText(tx, (L.x0 + L.x1) / 2, mitte - 5 * d); ctx.textAlign = 'left'; }
 ctx.textBaseline = 'alphabetic';
 return letzt;
 }
@@ -12134,8 +12243,12 @@ const i = f.indexOf(document.activeElement);
 if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
 }, true);
 
-const FASSUNG = 'r134';
+const FASSUNG = 'r135';
 const NEU = [
+{ f: 'r135', tag: '11.11.2026', s: ['Neu: Markt-Heatmap aller Coins, Aktien und Weltmärkte mit Kategorien und Aktien-Sektoren; Weltmärkte (Indizes, Rohstoffe, Devisen) in einer Tabelle.',
+'Screener: Filter zum Klicken, Spalten wählen, Screens speichern, technische Felder (RSI, EMA-Lage, Abstand zum Hoch, Spannen-Ausbruch); Ausreißer live für alle Coins.',
+'Alarme im offenen Tab: Preisalarm, Alarm-Linie im Chart, Markt-Alarme nach festen Regeln, Stufen-Hinweis, Wal-Hinweise, Stichwort-Alarm, Protokoll und Stummzeiten.',
+'Werkzeugleiste wieder in zwei Zeilen („Mehr …“), Spread Perp − Spot und zwischen Börsen, Bereichs-Profil verschiebbar, Sitzungszeiten mit Sommerzeit.'] },
 { f: 'r134', tag: '11.11.2026', s: ['Charts: Woche und Monat, Heikin-Ashi, Linie, Fläche, Renko und Range-Bars (auch mit Footprint), Log- und Prozent-Skala.',
 'Neue Ebenen: Bollinger, Ichimoku, ATR, Stochastik, OBV, Sitzungen; Auction Market Theory mit Profilen je Sitzung, nackten POCs, Initial Balance und Premium/Discount.',
 'Zeichnen: Rechteck, Kanal, Text, Strahl, Messen, Anchored VWAP, Bereichs-Profil und Long/Short-Box (ins Papier-Ticket übernehmbar).',
@@ -12609,6 +12722,700 @@ if (bybitBekannt) { start(); bybitPruefen(); }
 else Promise.race([bybitPruefen().catch(() => null), new Promise((ok) => setTimeout(ok, 1500))]).then(() => { if (!S) start(); });
 setInterval(bybitPruefen, 10 * 6e4);
 
+function treemap(w, x0, y0, W, H) {
+const out = [], summe = w.reduce((a, b) => a + (b > 0 ? b : 0), 0); if (!(summe > 0) || !(W > 0) || !(H > 0)) return out;
+const fl = w.map((v) => (v > 0 ? v : 0) * W * H / summe);
+let i = 0, x = x0, y = y0, b = W, h = H;
+const schlecht = (r, s, kurz) => { let mx = 0, mn = Infinity; for (const v of r) { if (v > mx) mx = v; if (v < mn) mn = v; } return mn > 0 ? Math.max(kurz * kurz * mx / (s * s), s * s / (kurz * kurz * mn)) : Infinity; };
+while (i < fl.length) {
+const kurz = Math.min(b, h), reihe = [fl[i]]; let s = fl[i], j = i + 1;
+while (j < fl.length && fl[j] > 0 && schlecht(reihe.concat(fl[j]), s + fl[j], kurz) <= schlecht(reihe, s, kurz)) { reihe.push(fl[j]); s += fl[j]; j++; }
+const dicke = kurz > 0 ? s / kurz : 0; let pos = 0;
+reihe.forEach((v, k) => { const len = dicke > 0 ? v / dicke : 0; out.push(b >= h ? { i: i + k, x, y: y + pos, w: dicke, h: len } : { i: i + k, x: x + pos, y, w: len, h: dicke }); pos += len; });
+if (b >= h) { x += dicke; b -= dicke; } else { y += dicke; h -= dicke; }
+i = j;
+}
+return out;
+}
+const W4_KAT = {
+'Layer 1': ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'ADA', 'AVAX', 'TRX', 'TON', 'SUI', 'APT', 'NEAR', 'DOT', 'ATOM', 'SEI', 'INJ', 'HYPE', 'LTC', 'BCH', 'XLM', 'ALGO', 'ICP', 'ETC', 'KAS', 'HBAR', 'TIA', 'EGLD', 'XTZ', 'EOS', 'FIL', 'VET', 'S', 'BERA', 'XMR', 'ZEC', 'DASH', 'IOTA', 'NEO', 'MINA', 'FLOW', 'KAIA'],
+'Layer 2': ['ARB', 'OP', 'POL', 'MATIC', 'STRK', 'MNT', 'IMX', 'ZK', 'METIS', 'BLAST', 'SCR', 'MANTA', 'TAIKO', 'CELO', 'ZRO', 'W', 'LRC', 'SKL', 'BOBA', 'CTSI'],
+Meme: ['DOGE', 'SHIB', 'PEPE', 'WIF', 'BONK', 'FLOKI', 'TRUMP', 'PNUT', 'POPCAT', 'BRETT', 'MEW', 'FARTCOIN', 'SPX', 'PENGU', 'MOODENG', 'NEIRO', 'TURBO', 'GOAT', 'BOME', 'MOG', 'DOGS', 'CHILLGUY', 'BABYDOGE', 'MEME', 'PEOPLE', 'ACT', 'MELANIA', 'BAN', 'MYRO', 'SLERF'],
+KI: ['TAO', 'FET', 'RENDER', 'WLD', 'VIRTUAL', 'AI16Z', 'ARKM', 'GRT', 'IO', 'AIXBT', 'KAITO', 'AKT', 'GRASS', 'NMR', 'THETA', 'AI', 'PHB', 'COOKIE', 'SWARMS', 'ZEREBRO', 'OLAS', 'AGLD', 'CGPT', 'ARC'],
+DeFi: ['UNI', 'AAVE', 'LINK', 'MKR', 'SKY', 'CRV', 'LDO', 'PENDLE', 'ENA', 'JUP', 'DYDX', 'COMP', 'SNX', 'RUNE', 'GMX', 'ONDO', 'ETHFI', 'EIGEN', 'RAY', 'CAKE', '1INCH', 'SUSHI', 'MORPHO', 'JTO', 'PYTH', 'ENS', 'CVX', 'FXS', 'YFI', 'BAL', 'UMA', 'API3', 'BAND', 'ORCA', 'AERO', 'VELO', 'RSR', 'FRAX', 'LQTY', 'SSV', 'REZ', 'HFT'],
+'Börsen-Coins': ['OKB', 'CRO', 'BGB', 'KCS', 'GT', 'LEO', 'MX', 'WOO', 'HT'],
+};
+const W4_SEKTOR = {
+Halbleiter: ['NVDA', 'AMD', 'INTC', 'MU', 'TSM', 'ASML', 'ARM', 'AVGO', 'MRVL', 'SNDK', 'SMSN', 'SKHX', 'KIOXIA', 'LITE', 'SEMIS', 'SEMI'],
+'Software & Internet': ['MSFT', 'GOOGL', 'AMZN', 'META', 'NFLX', 'ORCL', 'PLTR', 'ZM', 'EBAY', 'TENCENT', 'BABA', 'XIAOMI', 'AAPL', 'DELL', 'CRWV'],
+'Krypto-nahe Aktien': ['COIN', 'HOOD', 'MSTR', 'CRCL', 'BMNR'],
+'Auto & Mobilität': ['TSLA', 'RIVN', 'HYUNDAI', 'CAR'],
+'Gesundheit': ['LLY', 'HIMS'],
+'Konsum & Freizeit': ['COST', 'GME', 'DKNG'],
+'Finanzen & Beteiligungen': ['BX', 'SOFTBANK'],
+'Raumfahrt & Rüstung': ['RKLB', 'RTX'],
+};
+function katLeistung(zeilen, liste) {
+const nach = new Map(zeilen.map((z) => [z.name, z])), out = [];
+for (const [k, namen] of Object.entries(liste)) {
+const l = namen.map((n) => nach.get(n)).filter((z) => z && Number.isFinite(z.ae)); if (!l.length) continue;
+const u = l.reduce((a, z) => a + (z.umsatz > 0 ? z.umsatz : 0), 0), s = l.map((z) => z.ae).sort((a, b) => a - b), m = s.length >> 1;
+const mittel = u > 0 ? l.reduce((a, z) => a + z.ae * (z.umsatz > 0 ? z.umsatz : 0), 0) / u : s.reduce((a, b) => a + b, 0) / s.length;
+const best = l.reduce((a, z) => (z.ae > a.ae ? z : a)), schw = l.reduce((a, z) => (z.ae < a.ae ? z : a));
+out.push({ k, n: l.length, mittel, median: s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2, plus: l.filter((z) => z.ae > 0).length, bester: { name: best.name, ae: best.ae }, schwaechster: { name: schw.name, ae: schw.ae }, umsatz: u });
+}
+return out.sort((a, b) => b.mittel - a.mittel);
+}
+function rsiWilder(c, n = 14) {
+if (c.length <= n) return null;
+let g = 0, v = 0; for (let i = 1; i <= n; i++) { const d = c[i] - c[i - 1]; if (d > 0) g += d; else v -= d; }
+g /= n; v /= n;
+for (let i = n + 1; i < c.length; i++) { const d = c[i] - c[i - 1]; g = (g * (n - 1) + (d > 0 ? d : 0)) / n; v = (v * (n - 1) + (d < 0 ? -d : 0)) / n; }
+return v === 0 ? (g === 0 ? 50 : 100) : 100 - 100 / (1 + g / v);
+}
+function emaLetzt(c, n) {
+if (c.length < n) return null;
+let e = c.slice(0, n).reduce((a, b) => a + b, 0) / n; const k = 2 / (n + 1);
+for (let i = n; i < c.length; i++) e = c[i] * k + e * (1 - k);
+return e;
+}
+function technik(K) {
+if (!Array.isArray(K) || K.length < 22) return null;
+const c = K.map((k) => k.c), l = c[c.length - 1], e50 = emaLetzt(c, 50), letzte30 = K.slice(-30), vor20 = K.slice(-21, -1);
+const hoch = Math.max(...letzte30.map((k) => k.h)), h20 = Math.max(...vor20.map((k) => k.h)), t20 = Math.min(...vor20.map((k) => k.l));
+return { rsi: rsiWilder(c, 14), ema: e50 ? (l / e50 - 1) * 100 : null, hoch: hoch > 0 ? (l / hoch - 1) * 100 : null, ausbruch: l > h20 ? 1 : l < t20 ? -1 : 0 };
+}
+function zStat(werte) { const w = werte.filter(Number.isFinite); if (w.length < 5) return null; const m = w.reduce((a, b) => a + b, 0) / w.length, sd = Math.sqrt(w.reduce((a, b) => a + (b - m) ** 2, 0) / w.length); return sd > 0 ? { m, sd } : null; }
+function ausreisserFinden(vorher, jetzt, min) {
+const v = new Map((vorher || []).map((z) => [z.coin, z])), out = [], z1 = zStat(jetzt.map((z) => z.ae1h)), zf = zStat(jetzt.map((z) => z.funding));
+for (const z of jetzt) {
+const a = v.get(z.coin);
+if (Number.isFinite(z.ae1h) && z1 && Math.abs(z.ae1h) >= 3 && Math.abs((z.ae1h - z1.m) / z1.sd) >= 3) out.push({ coin: z.coin, art: 'kurs', wert: z.ae1h, z: (z.ae1h - z1.m) / z1.sd, preis: z.preis });
+if (Number.isFinite(z.funding) && (z.oi || 0) >= 2e6 && (Math.abs(z.funding) >= 100 || (zf && Math.abs((z.funding - zf.m) / zf.sd) >= 4 && Math.abs(z.funding) >= 30))) out.push({ coin: z.coin, art: 'funding', wert: z.funding, preis: z.preis });
+if (!a || !(min > 0)) { if (Number.isFinite(z.oi1h) && Math.abs(z.oi1h) >= 8 && (z.oi || 0) >= 5e6) out.push({ coin: z.coin, art: 'oi', wert: z.oi1h, min: 60, preis: z.preis }); continue; }
+const schnitt = (z.umsatz || 0) / 1440;
+if (schnitt > 0 && z.umsatz >= 2e6 && a.umsatz > 0) { const f = 1 + (z.umsatz - a.umsatz) / (min * schnitt); if (f >= 8) out.push({ coin: z.coin, art: 'umsatz', wert: f, min, preis: z.preis }); }
+if (z.oi > 0 && a.oi > 0 && z.preis > 0 && a.preis > 0 && z.oi >= 5e6) { const d = ((z.oi / z.preis) / (a.oi / a.preis) - 1) * 100; if (Math.abs(d) >= 3) out.push({ coin: z.coin, art: 'oi', wert: d, min, preis: z.preis }); }
+}
+const st = { kurs: (x) => Math.abs(x.z || 0), funding: (x) => Math.abs(x.wert) / 30, umsatz: (x) => x.wert / 3, oi: (x) => Math.abs(x.wert) };
+return out.sort((a, b) => st[b.art](b) - st[a.art](a));
+}
+function alrPruefen(alarme, kursVon, jetzt) {
+const ausgeloest = [];
+for (const a of alarme) {
+if (!a.aktiv) continue;
+const k = kursVon(a.markt); if (!(k > 0)) continue;
+const treffer = a.art === 'ueber' ? k >= a.wert : a.art === 'unter' ? k <= a.wert : a.art === 'pct' && a.basis > 0 ? Math.abs(k / a.basis - 1) * 100 >= a.wert : false;
+if (treffer) { a.aktiv = false; a.ausgeloest = jetzt; a.kursAus = k; ausgeloest.push(a); }
+}
+return ausgeloest;
+}
+function alrStummMin(cfg, minute, jetzt) {
+if (!cfg) return false;
+if (cfg.bisTs > jetzt) return true;
+if (!cfg.an) return false;
+const m = (t) => { const x = /^(\d{1,2}):(\d{2})$/.exec(String(t || '')); return x ? Math.min(23, +x[1]) * 60 + Math.min(59, +x[2]) : null; }, von = m(cfg.von), bis = m(cfg.bis);
+if (von === null || bis === null || von === bis) return false;
+return von < bis ? minute >= von && minute < bis : minute >= von || minute < bis;
+}
+function marktRegeln(stand, alt, jetzt, an, min) {
+const out = [], a = new Map((alt || []).map((z) => [z.coin, z]));
+for (const z of jetzt) {
+if (an.funding && Number.isFinite(z.funding) && Math.abs(z.funding) >= 3) {
+const s = z.funding > 0 ? 1 : -1, v = stand.vz[z.coin];
+if (v && v !== s) out.push({ regel: 'funding', coin: z.coin, wert: z.funding, preis: z.preis });
+stand.vz[z.coin] = s;
+}
+const x = a.get(z.coin); if (!x || !(min > 0)) continue;
+if (an.oi && z.oi > 0 && x.oi > 0 && z.preis > 0 && x.preis > 0 && z.oi >= 5e6) { const d = ((z.oi / z.preis) / (x.oi / x.preis) - 1) * 100; if (Math.abs(d) >= 3) out.push({ regel: 'oi', coin: z.coin, wert: d, min, preis: z.preis }); }
+if (an.kurs && z.preis > 0 && x.preis > 0) { const d = (z.preis / x.preis - 1) * 100; if (Math.abs(d) >= 2) out.push({ regel: 'kurs', coin: z.coin, wert: d, min, preis: z.preis }); }
+}
+return out;
+}
+function stufeNah(kurs, stufen, grenze = 0.3) {
+let best = null;
+for (const s of stufen) { if (!(s.preis > 0) || !(kurs > 0)) continue; const ab = (kurs / s.preis - 1) * 100; if (Math.abs(ab) <= grenze && (!best || Math.abs(ab) < Math.abs(best.abstand))) best = { name: s.name, preis: s.preis, abstand: ab }; }
+return best;
+}
+function stichwortTreffer(meldungen, worte, gesehen) {
+const out = [];
+for (const m of meldungen) {
+const titel = String(m.titel || ''), id = (m.t || 0) + '|' + titel.slice(0, 80); if (gesehen.has(id)) continue;
+for (const x of worte) {
+if (!(m.t > x.seit)) continue;
+const w = String(x.w || '').trim(); if (w.length < 2) continue;
+const re = new RegExp('(^|[^\\p{L}\\p{N}])' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '($|[^\\p{L}\\p{N}])', 'iu');
+if (re.test(titel) || (m.coins || []).some((c) => String(c).toUpperCase() === w.toUpperCase())) { out.push({ wort: w, m }); gesehen.add(id); break; }
+}
+}
+return out;
+}
+const W4_T = {
+ueber: { de: (p) => `über ${p}`, en: (p) => `above ${p}`, es: (p) => `por encima de ${p}`, fr: (p) => `au-dessus de ${p}`, tr: (p) => `${p} üzerinde`, it: (p) => `sopra ${p}` },
+unter: { de: (p) => `unter ${p}`, en: (p) => `below ${p}`, es: (p) => `por debajo de ${p}`, fr: (p) => `en dessous de ${p}`, tr: (p) => `${p} altında`, it: (p) => `sotto ${p}` },
+pct: { de: (x, b) => `± ${x} ab ${b}`, en: (x, b) => `± ${x} from ${b}`, es: (x, b) => `± ${x} desde ${b}`, fr: (x, b) => `± ${x} depuis ${b}`, tr: (x, b) => `${b} seviyesinden ± ${x}`, it: (x, b) => `± ${x} da ${b}` },
+preisAus: { de: (m, b, k) => `${m}: Preisalarm „${b}“ erreicht – Kurs ${k}.`, en: (m, b, k) => `${m}: price alert “${b}” reached – price ${k}.`, es: (m, b, k) => `${m}: alerta de precio «${b}» alcanzada – precio ${k}.`,
+fr: (m, b, k) => `${m} : alerte de prix « ${b} » atteinte – cours ${k}.`, tr: (m, b, k) => `${m}: “${b}” fiyat alarmı tetiklendi – fiyat ${k}.`, it: (m, b, k) => `${m}: avviso di prezzo «${b}» raggiunto – prezzo ${k}.` },
+angelegt: { de: (m, b) => `Alarm angelegt: ${m} ${b}.`, en: (m, b) => `Alert set: ${m} ${b}.`, es: (m, b) => `Alerta creada: ${m} ${b}.`, fr: (m, b) => `Alerte créée : ${m} ${b}.`, tr: (m, b) => `Alarm kuruldu: ${m} ${b}.`, it: (m, b) => `Avviso creato: ${m} ${b}.` },
+schonUeber: { de: (k) => `Kurs ${k} liegt schon über diesem Wert.`, en: (k) => `Price ${k} is already above this value.`, es: (k) => `El precio ${k} ya está por encima de este valor.`, fr: (k) => `Le cours ${k} est déjà au-dessus de cette valeur.`,
+tr: (k) => `Fiyat ${k} zaten bu değerin üzerinde.`, it: (k) => `Il prezzo ${k} è già sopra questo valore.` },
+schonUnter: { de: (k) => `Kurs ${k} liegt schon unter diesem Wert.`, en: (k) => `Price ${k} is already below this value.`, es: (k) => `El precio ${k} ya está por debajo de este valor.`, fr: (k) => `Le cours ${k} est déjà en dessous de cette valeur.`,
+tr: (k) => `Fiyat ${k} zaten bu değerin altında.`, it: (k) => `Il prezzo ${k} è già sotto questo valore.` },
+funding: { de: (c, f) => `${c}: Funding kippt auf ${f} aufs Jahr.`, en: (c, f) => `${c}: funding flips to ${f} annualised.`, es: (c, f) => `${c}: el funding cambia de signo a ${f} anual.`, fr: (c, f) => `${c} : le funding change de signe, ${f} par an.`,
+tr: (c, f) => `${c}: funding işaret değiştirdi, yıllık ${f}.`, it: (c, f) => `${c}: il funding cambia segno, ${f} annuo.` },
+oi: { de: (c, d, m) => `${c}: offene Positionen ${d} in ${m} Min.`, en: (c, d, m) => `${c}: open interest ${d} in ${m} min.`, es: (c, d, m) => `${c}: interés abierto ${d} en ${m} min.`, fr: (c, d, m) => `${c} : positions ouvertes ${d} en ${m} min.`,
+tr: (c, d, m) => `${c}: açık pozisyonlar ${m} dk içinde ${d}.`, it: (c, d, m) => `${c}: posizioni aperte ${d} in ${m} min.` },
+kurs: { de: (c, d, m) => `${c}: Kurs ${d} in ${m} Min.`, en: (c, d, m) => `${c}: price ${d} in ${m} min.`, es: (c, d, m) => `${c}: precio ${d} en ${m} min.`, fr: (c, d, m) => `${c} : cours ${d} en ${m} min.`,
+tr: (c, d, m) => `${c}: fiyat ${m} dk içinde ${d}.`, it: (c, d, m) => `${c}: prezzo ${d} in ${m} min.` },
+liq: { de: (c, u, s) => `${c}: ${s} für ${u} in 5 Min. zwangsgeschlossen.`, en: (c, u, s) => `${c}: ${s} worth ${u} force-closed in 5 min.`, es: (c, u, s) => `${c}: ${s} por ${u} liquidados en 5 min.`, fr: (c, u, s) => `${c} : ${s} pour ${u} liquidés en 5 min.`,
+tr: (c, u, s) => `${c}: 5 dk içinde ${u} tutarında ${s} tasfiye edildi.`, it: (c, u, s) => `${c}: ${s} per ${u} liquidati in 5 min.` },
+stufeUnter: { de: (c, a, n, p) => `${c}: Kurs ${a} unter ${n} ${p}.`, en: (c, a, n, p) => `${c}: price ${a} below ${n} ${p}.`, es: (c, a, n, p) => `${c}: precio ${a} por debajo de ${n} ${p}.`, fr: (c, a, n, p) => `${c} : cours ${a} sous ${n} ${p}.`,
+tr: (c, a, n, p) => `${c}: fiyat ${n} ${p} seviyesinin ${a} altında.`, it: (c, a, n, p) => `${c}: prezzo ${a} sotto ${n} ${p}.` },
+stufeUeber: { de: (c, a, n, p) => `${c}: Kurs ${a} über ${n} ${p}.`, en: (c, a, n, p) => `${c}: price ${a} above ${n} ${p}.`, es: (c, a, n, p) => `${c}: precio ${a} por encima de ${n} ${p}.`, fr: (c, a, n, p) => `${c} : cours ${a} au-dessus de ${n} ${p}.`,
+tr: (c, a, n, p) => `${c}: fiyat ${n} ${p} seviyesinin ${a} üstünde.`, it: (c, a, n, p) => `${c}: prezzo ${a} sopra ${n} ${p}.` },
+wort: { de: (w) => `Meldung mit „${w}“:`, en: (w) => `Announcement with “${w}”:`, es: (w) => `Aviso con «${w}»:`, fr: (w) => `Annonce avec « ${w} » :`, tr: (w) => `“${w}” içeren duyuru:`, it: (w) => `Annuncio con «${w}»:` },
+wal: { de: (w, c, s, a, u) => `Wal ${w}: ${c} ${s} ${a}, jetzt ${u}.`, en: (w, c, s, a, u) => `Whale ${w}: ${c} ${s} ${a}, now ${u}.`, es: (w, c, s, a, u) => `Ballena ${w}: ${c} ${s} ${a}, ahora ${u}.`,
+fr: (w, c, s, a, u) => `Baleine ${w} : ${c} ${s} ${a}, maintenant ${u}.`, tr: (w, c, s, a, u) => `Balina ${w}: ${c} ${s} ${a}, şimdi ${u}.`, it: (w, c, s, a, u) => `Balena ${w}: ${c} ${s} ${a}, ora ${u}.` },
+umsatz: { de: (c, f) => `${c}: Umsatz ≈ ${f}-fach des 24-Std.-Schnitts (geschätzt).`, en: (c, f) => `${c}: volume ≈ ${f}× the 24 h average (estimated).`, es: (c, f) => `${c}: volumen ≈ ${f} veces la media de 24 h (estimado).`,
+fr: (c, f) => `${c} : volume ≈ ${f} fois la moyenne sur 24 h (estimé).`, tr: (c, f) => `${c}: hacim 24 saatlik ortalamanın ≈ ${f} katı (tahmini).`, it: (c, f) => `${c}: volume ≈ ${f} volte la media delle 24 h (stimato).` },
+fundingWeit: { de: (c, f) => `${c}: Funding ${f} aufs Jahr – weit weg vom Rest.`, en: (c, f) => `${c}: funding ${f} annualised – far from the rest.`, es: (c, f) => `${c}: funding ${f} anual – muy lejos del resto.`,
+fr: (c, f) => `${c} : funding ${f} par an – loin du reste.`, tr: (c, f) => `${c}: yıllık funding ${f} – diğerlerinden çok uzak.`, it: (c, f) => `${c}: funding ${f} annuo – lontano dal resto.` },
+kurs1h: { de: (c, d, z) => `${c}: Kurs ${d} in 1 Std. (z = ${z}).`, en: (c, d, z) => `${c}: price ${d} in 1 h (z = ${z}).`, es: (c, d, z) => `${c}: precio ${d} en 1 h (z = ${z}).`, fr: (c, d, z) => `${c} : cours ${d} en 1 h (z = ${z}).`,
+tr: (c, d, z) => `${c}: fiyat 1 saatte ${d} (z = ${z}).`, it: (c, d, z) => `${c}: prezzo ${d} in 1 h (z = ${z}).` },
+technik: { de: (n, g, t) => `Technik: ${n} von ${g} Coins · Stand ${t}`, en: (n, g, t) => `Technicals: ${n} of ${g} coins · as of ${t}`, es: (n, g, t) => `Técnico: ${n} de ${g} monedas · a las ${t}`,
+fr: (n, g, t) => `Technique : ${n} sur ${g} cryptos · à ${t}`, tr: (n, g, t) => `Teknik: ${n} / ${g} coin · ${t} itibarıyla`, it: (n, g, t) => `Tecnica: ${n} su ${g} coin · alle ${t}` },
+stummBis: { de: (t) => `Stumm bis ${t}`, en: (t) => `Muted until ${t}`, es: (t) => `Silencio hasta las ${t}`, fr: (t) => `Muet jusqu’à ${t}`, tr: (t) => `${t} saatine kadar sessiz`, it: (t) => `Silenzioso fino alle ${t}` },
+vlLeer: { de: () => 'Vorlesen: gerade keine Daten – Meldungen laden noch.', en: () => 'Read aloud: no data right now – announcements are still loading.', es: () => 'Leer en voz alta: ahora no hay datos; los avisos aún se están cargando.',
+fr: () => 'Lecture à voix haute : pas de données pour l’instant – les annonces se chargent encore.', tr: () => 'Sesli okuma: şu an veri yok – duyurular hâlâ yükleniyor.', it: () => 'Lettura ad alta voce: al momento nessun dato – gli annunci si stanno ancora caricando.' },
+vlStimme: { de: () => 'Vorlesen: Dieser Browser hat keine Stimme – keine Daten vorlesbar.', en: () => 'Read aloud: this browser has no voice – no data can be read.', es: () => 'Leer en voz alta: este navegador no tiene voz; no hay datos que leer.',
+fr: () => 'Lecture à voix haute : ce navigateur n’a pas de voix – pas de données lisibles.', tr: () => 'Sesli okuma: bu tarayıcının sesi yok – okunacak veri yok.', it: () => 'Lettura ad alta voce: questo browser non ha una voce – nessun dato leggibile.' },
+fehlt: { de: (l) => `Fehlt bei der Quelle: ${l}`, en: (l) => `Not offered by the source: ${l}`, es: (l) => `No disponible en la fuente: ${l}`, fr: (l) => `Absent chez la source : ${l}`, tr: (l) => `Kaynakta yok: ${l}`, it: (l) => `Non offerto dalla fonte: ${l}` },
+};
+const w4T = (art, ...w) => (W4_T[art][SPRACHE] || W4_T[art].en)(...w);
+const W4_WAL_ART = { 'eröffnet': ['opened', 'abierta', 'ouverte', 'açıldı', 'aperta'], 'vergrößert': ['increased', 'aumentada', 'augmentée', 'büyütüldü', 'aumentata'], 'verkleinert': ['reduced', 'reducida', 'réduite', 'küçültüldü', 'ridotta'],
+'geschlossen': ['closed', 'cerrada', 'fermée', 'kapatıldı', 'chiusa'], 'gedreht': ['flipped', 'invertida', 'inversée', 'yön değiştirdi', 'invertita'] };
+const w4WalArt = (a) => (SPRACHE === 'de' || !W4_WAL_ART[a] ? a : W4_WAL_ART[a][['en', 'es', 'fr', 'tr', 'it'].indexOf(SPRACHE)] || W4_WAL_ART[a][0]);
+const W4 = { hm: { gruppe: 'krypto', gr: 'umsatz', fa: 'ae24h', kat: '', rechtecke: [], maus: null, zeilen: [] }, tech: new Map(), techZeit: 0, techLaeuft: false, techGes: 0,
+hist: [], letzterUeb: null, sc: { art: lies('w4ScArt') || '', liste: [], gesehen: new Map() }, regelStand: { vz: {} }, gesehen: new Map(), meldGesehen: new Set(), walZeit: 0, walLaden: 0, meldLaden: 0 };
+try { const x = JSON.parse(lies('w4Hm') || '{}'); if (x && typeof x === 'object') for (const k of ['gruppe', 'gr', 'fa']) if (typeof x[k] === 'string') W4.hm[k] = x[k]; } catch (e) {   }
+const w4Json = (k, alt) => { try { const x = JSON.parse(lies(k) || 'null'); return x === null ? alt : x; } catch (e) { return alt; } };
+const W4_REGELN = ['funding', 'oi', 'kurs', 'liq', 'stufe', 'wal'];
+const w4Regeln = () => { const x = w4Json('w4Regeln', {}); return Object.fromEntries(W4_REGELN.map((r) => [r, !!(x && x[r])])); };
+const w4Alarme = () => { const x = w4Json('w4Alarme', []); return Array.isArray(x) ? x.filter((a) => a && typeof a.markt === 'string' && ['ueber', 'unter', 'pct'].includes(a.art) && a.wert > 0) : []; };
+const w4Worte = () => { const x = w4Json('w4Worte', []); return Array.isArray(x) ? x.filter((w) => w && typeof w.w === 'string').slice(0, 20) : []; };
+const w4StummCfg = () => { const x = w4Json('w4Stumm', {}); return x && typeof x === 'object' ? x : {}; };
+const w4Log = () => { const x = w4Json('w4Log', []); return Array.isArray(x) ? x : []; };
+function w4Braucht() { const r = w4Regeln(); return w4Alarme().some((a) => a.aktiv) || r.funding || r.oi || r.kurs; }
+
+function w4Kurs(m) {
+const k = selbstKurs(m); if (k > 0) return k;
+const z = ueb && Array.isArray(ueb.coins) ? ueb.coins.find((x) => x.coin === m) : null; if (z && z.preis > 0) return z.preis;
+const t = TF.get(m); return t && t.preis > 0 ? t.preis : null;
+}
+const w4Preis = (p, m) => (istTF(m) || TF.get(m) ? de(p, p >= 1000 ? 1 : p >= 10 ? 2 : 4) : uebPreis(p));
+function w4Bed(a) { return a.art === 'ueber' ? w4T('ueber', w4Preis(a.wert, a.markt)) : a.art === 'unter' ? w4T('unter', w4Preis(a.wert, a.markt)) : w4T('pct', proz(a.wert, 2, false), w4Preis(a.basis, a.markt)); }
+
+function w4IstStumm() { const d = new Date(); return alrStummMin(w4StummCfg(), d.getHours() * 60 + d.getMinutes(), Date.now()); }
+function w4Melden(e) {
+const still = w4IstStumm(); e.ts = Date.now(); e.stumm = still;
+const l = w4Log(); l.unshift(e); merke('w4Log', JSON.stringify(l.slice(0, 100)));
+if (!still) {
+const t = w4Text(e); befMelden(t.kopf + (t.titel ? ' ' + t.titel : ''));
+try { if (window.Notification && Notification.permission === 'granted') new Notification('RYVO', { body: t.kopf + (t.titel ? ' ' + t.titel : '') }); } catch (x) {   }
+}
+w4LogZeigen();
+}
+function w4Text(e) {
+const u = (x) => usd(x || 0), pr = (x) => proz(x || 0, 2);
+switch (e.q) {
+case 'preis': return { kopf: w4T('preisAus', hdName(e.markt), w4Bed(e), w4Preis(e.kursAus, e.markt)) };
+case 'regel': return { kopf: e.regel === 'funding' ? w4T('funding', e.coin, proz(e.wert, 1)) : e.regel === 'oi' ? w4T('oi', e.coin, pr(e.wert), de(e.min || 5)) : e.regel === 'kurs' ? w4T('kurs', e.coin, pr(e.wert), de(e.min || 5)) : w4T('liq', e.coin, u(e.wert), e.seite === 'short' ? 'Shorts' : 'Longs') };
+case 'stufe': return { kopf: w4T(e.abstand < 0 ? 'stufeUnter' : 'stufeUeber', e.coin, proz(Math.abs(e.abstand), 2, false), tr(e.name), w4Preis(e.preis, e.coin)) };
+case 'wort': return { kopf: w4T('wort', e.wort), titel: e.titel };
+case 'wal': return { kopf: w4T('wal', e.wal, e.coin, e.seite, w4WalArt(e.art), usd(e.jetzt, true)) };
+default: return { kopf: '' };
+}
+}
+
+function w4TfZeilen(arten) {
+const best = new Map();
+for (const [id, e] of TF) { if (!arten.includes(e.art) || !(e.preis > 0)) continue; const k = e.lang || e.name, x = best.get(k); if (!x || (e.umsatz || 0) > (x.umsatz || 0)) best.set(k, { coin: id, name: e.name, anzeige: e.lang || e.name, art: e.art, preis: e.preis, ae1h: null, ae24h: e.ae24h, umsatz: e.umsatz, oi: e.oi, funding: e.funding, dex: e.dex }); }
+return [...best.values()];
+}
+function w4HmZeilen() {
+const g = W4.hm.gruppe;
+if (g === 'krypto') return ueb && Array.isArray(ueb.coins) ? ueb.coins.filter((z) => !istTF(z.coin)).map((z) => ({ ...z, name: z.coin, anzeige: z.coin })) : [];
+return w4TfZeilen(g === 'aktien' ? ['Aktie'] : ['Index', 'Rohstoff', 'Devisen']);
+}
+function w4HmZeigen() {
+const cv = $('hm-cv'); if (!cv || !cv.clientWidth) return;
+const dpr = groesse(cv), ctx = cv.getContext('2d'), W = cv.width, H = cv.height;
+ctx.fillStyle = F.chart; ctx.fillRect(0, 0, W, H);
+for (const b of document.querySelectorAll('#hm-gruppe button')) b.setAttribute('aria-pressed', String(b.dataset.g === W4.hm.gruppe));
+for (const b of document.querySelectorAll('#hm-wahl button')) b.setAttribute('aria-pressed', String(b.dataset.gr ? b.dataset.gr === W4.hm.gr : b.dataset.fa ? b.dataset.fa === W4.hm.fa : false));
+const alle = w4HmZeilen(), liste = W4.hm.kat ? (W4_KAT[W4.hm.kat] || W4_SEKTOR[W4.hm.kat] || []) : null;
+const kb = document.querySelector('#hm-wahl [data-kat]'); if (kb) { kb.hidden = !W4.hm.kat; kb.textContent = W4.hm.kat ? `${tr(W4.hm.kat)} ×` : 'Alle Kategorien'; }
+const leer = (t) => { leinwandText(cv, t); W4.hm.rechtecke = []; };
+if (W4.hm.gruppe === 'krypto' && (!ueb || ueb.fehler)) return leer(ueb && typeof ueb.fehler === 'string' ? ueb.fehler : 'Lade …');
+if (W4.hm.gruppe !== 'krypto' && !TF.size) { if (DEMO) return leer('Aktien und Weltmärkte gibt es nur mit echten Daten.'); tfLaden(); return leer('Lade …'); }
+const gr = W4.hm.gr, z = alle.filter((x) => (!liste || liste.includes(x.name)) && (x[gr] || 0) > 0).sort((a, b) => b[gr] - a[gr]).slice(0, W / dpr < 600 ? 30 : 64);
+W4.hm.zeilen = z;
+if (!z.length) return leer(W4.hm.gruppe === 'krypto' ? 'Noch keine Übersicht.' : 'Keine Märkte dieser Art bei der Quelle.');
+const pad = Math.round(2 * dpr), R = treemap(z.map((x) => x[gr]), 0, 0, W, H), fa = W4.hm.fa, grenze = fa === 'ae1h' ? 2 : 8;
+W4.hm.rechtecke = R.map((r) => ({ ...r, z: z[r.i] }));
+ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+for (const r of W4.hm.rechtecke) {
+const v = r.z[fa], a = Number.isFinite(v) ? Math.min(1, Math.abs(v) / grenze) : 0, farbe = Number.isFinite(v) ? (v >= 0 ? F.kauf : F.verk) : F.leise, deck = Number.isFinite(v) ? 0.18 + 0.72 * a : 0.12;
+ctx.fillStyle = mix(farbe, deck); ctx.fillRect(r.x + pad / 2, r.y + pad / 2, Math.max(0, r.w - pad), Math.max(0, r.h - pad));
+if (W4.hm.maus && W4.hm.maus.r === r) { ctx.strokeStyle = F.text; ctx.lineWidth = Math.max(1, dpr); ctx.strokeRect(r.x + pad, r.y + pad, Math.max(0, r.w - 2 * pad), Math.max(0, r.h - 2 * pad)); }
+if (r.w < 34 * dpr || r.h < 22 * dpr) continue;
+const gross = Math.max(10, Math.min(22, Math.sqrt(r.w * r.h) / dpr / 6)), fg = lesbarAuf(/^#[0-9a-f]{6}$/i.test(String(farbe)) ? farbe : '#808080', deck, /^#[0-9a-f]{6}$/i.test(String(F.chart)) ? F.chart : '#0a0e13');
+ctx.fillStyle = fg; ctx.font = `700 ${Math.round(gross * dpr)}px ${F.mono}`;
+const name = String(r.z.anzeige || r.z.name).slice(0, Math.max(3, Math.floor(r.w / (gross * 0.62 * dpr)))), zwei = r.h > gross * 2.6 * dpr;
+ctx.fillText(name, r.x + r.w / 2, r.y + r.h / 2 - (zwei ? gross * 0.55 * dpr : 0));
+if (zwei) { ctx.font = `500 ${Math.round(gross * 0.72 * dpr)}px ${F.mono}`; ctx.fillText(Number.isFinite(v) ? proz(v, 2) : '–', r.x + r.w / 2, r.y + r.h / 2 + gross * 0.6 * dpr); }
+}
+const m = W4.hm.maus && W4.hm.maus.r;
+if (m) {
+const x = m.z, zeilen = [String(x.anzeige || x.name), `${tr('Kurs')} ${w4Preis(x.preis, x.coin)}`, `${tr('24 Std.')} ${Number.isFinite(x.ae24h) ? proz(x.ae24h, 2) : '–'} · ${tr('1 Std.')} ${Number.isFinite(x.ae1h) ? proz(x.ae1h, 2) : '–'}`, `${tr('Umsatz 24 Std.')} ${usd(x.umsatz || 0)}`, `${tr('Offene Pos.')} ${x.oi > 0 ? usd(x.oi) : '–'}`];
+ctx.font = `600 ${Math.round(11 * dpr)}px ${F.mono}`; ctx.textAlign = 'left';
+const bw = Math.max(...zeilen.map((t) => ctx.measureText(t).width)) + 16 * dpr, bh = zeilen.length * 16 * dpr + 10 * dpr;
+let bx = W4.hm.maus.x + 14 * dpr, by = W4.hm.maus.y + 14 * dpr; if (bx + bw > W) bx = W4.hm.maus.x - bw - 10 * dpr; if (by + bh > H) by = H - bh - 4 * dpr;
+ctx.fillStyle = F.feld; ctx.globalAlpha = 0.96; ctx.fillRect(Math.max(0, bx), Math.max(0, by), bw, bh); ctx.globalAlpha = 1; ctx.strokeStyle = F.linie; ctx.strokeRect(Math.max(0, bx) + 0.5, Math.max(0, by) + 0.5, bw - 1, bh - 1);
+ctx.fillStyle = F.text; zeilen.forEach((t, i) => ctx.fillText(t, Math.max(0, bx) + 8 * dpr, Math.max(0, by) + 13 * dpr + i * 16 * dpr));
+}
+ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+const st = $('hm-stand'); if (st) st.textContent = (DEMO ? 'Demo-Daten · ' : '') + (W4.hm.gruppe === 'krypto' ? `${ueb && ueb.direkt ? (ueb.quelle || 'Bybit') : '4 Börsen'} · ${tagUhr((ueb && ueb.zeit ? ueb.zeit * 1000 : Date.now()))}` : `Hyperliquid · ${tagUhr(tfZeit || Date.now())}`);
+w4KatZeigen();
+}
+function w4KatZeigen() {
+const box = $('hm-kat'); if (!box) return;
+const krypto = ueb && Array.isArray(ueb.coins) ? ueb.coins.filter((z) => !istTF(z.coin)).map((z) => ({ name: z.coin, ae: z.ae24h, umsatz: z.umsatz })) : [];
+const aktien = w4TfZeilen(['Aktie']).map((z) => ({ name: z.name, ae: z.ae24h, umsatz: z.umsatz }));
+const l = katLeistung(krypto, W4_KAT).map((x) => ({ ...x, gr: 'krypto' })).concat(katLeistung(aktien, W4_SEKTOR).map((x) => ({ ...x, gr: 'aktien' })));
+if (!l.length) { box.replaceChildren(hdEl('p', 'leise', 'Lade …')); return; }
+const tab = document.createElement('table'), kopf = tab.createTHead().insertRow(), rumpf = tab.createTBody();
+for (const t of ['Kategorie', 'Märkte', 'Ø 24 Std.', 'Median', 'Im Plus', 'Stärkster', 'Schwächster', 'Umsatz 24 Std.']) kopf.append(hdEl('th', '', t));
+const pz = (td, v) => { td.textContent = proz(v, 2); td.className = v > 0 ? 'plus' : v < 0 ? 'minus' : ''; };
+for (const x of l) {
+const r = rumpf.insertRow(); r.dataset.kat = x.k; r.dataset.gr = x.gr; if (W4.hm.kat === x.k) r.className = 'mein';
+r.insertCell().textContent = x.k; r.cells[0].className = 'coin'; r.insertCell().textContent = de(x.n);
+pz(r.insertCell(), x.mittel); pz(r.insertCell(), x.median); r.insertCell().textContent = zeitText('von', de(x.plus), de(x.n));
+r.insertCell().textContent = `${x.bester.name} ${proz(x.bester.ae, 1)}`; r.insertCell().textContent = `${x.schwaechster.name} ${proz(x.schwaechster.ae, 1)}`; r.insertCell().textContent = usd(x.umsatz);
+for (const i of [5, 6]) r.cells[i].translate = false;
+}
+box.replaceChildren(tab);
+}
+function w4HmBedienen() {
+const cv = $('hm-cv'); if (!cv) return;
+const treffer = (e) => { const b = cv.getBoundingClientRect(), d = b.width ? cv.width / b.width : 1, x = (e.clientX - b.left) * d, y = (e.clientY - b.top) * d; return { x, y, r: W4.hm.rechtecke.find((r) => x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h) || null }; };
+cv.addEventListener('pointermove', (e) => { W4.hm.maus = treffer(e); cv.style.cursor = W4.hm.maus.r ? 'pointer' : 'default'; w4HmZeigen(); });
+cv.addEventListener('pointerleave', () => { W4.hm.maus = null; w4HmZeigen(); });
+cv.addEventListener('click', (e) => { const t = treffer(e); if (t.r) { wechseln(t.r.z.coin); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
+cv.addEventListener('keydown', (e) => { if (e.key === 'Enter' && W4.hm.zeilen[0]) { wechseln(W4.hm.zeilen[0].coin); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
+const merkeHm = () => merke('w4Hm', JSON.stringify({ gruppe: W4.hm.gruppe, gr: W4.hm.gr, fa: W4.hm.fa }));
+$('hm-gruppe').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; W4.hm.gruppe = b.dataset.g; W4.hm.kat = ''; merkeHm(); if (W4.hm.gruppe !== 'krypto') tfLaden(); w4HmZeigen(); });
+$('hm-wahl').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; if (b.dataset.gr) W4.hm.gr = b.dataset.gr; else if (b.dataset.fa) W4.hm.fa = b.dataset.fa; else if (b.dataset.kat !== undefined) W4.hm.kat = ''; merkeHm(); w4HmZeigen(); });
+$('hm-kat').addEventListener('click', (e) => { const r = e.target.closest('tr[data-kat]'); if (!r) return; W4.hm.kat = W4.hm.kat === r.dataset.kat ? '' : r.dataset.kat; W4.hm.gruppe = r.dataset.gr; merkeHm(); w4HmZeigen(); });
+}
+
+const W4_WELT_WUNSCH = { Index: ['S&P 500', 'Nasdaq 100', 'Russell 2000', 'Nikkei 225', 'KOSPI 200', 'Nifty 50 (Indien)', 'Bovespa (Brasilien)', 'US-Staatsanleihen'],
+Rohstoff: ['Gold', 'Silber', 'Öl (WTI)', 'Öl (Brent)', 'Erdgas', 'Kupfer', 'Platin', 'Palladium', 'Uran'], Devisen: ['Euro in Dollar', 'Dollar in Yen', 'Pfund in Dollar', 'Dollar in Won', 'Dollar-Index', 'VIX (Angst-Index)'] };
+function w4WeltZeigen() {
+const box = $('wm-tabelle'); if (!box) return;
+if (!TF.size) { if (DEMO) { box.replaceChildren(hdEl('p', 'leise', 'Aktien und Weltmärkte gibt es nur mit echten Daten.')); return; } tfLaden(); box.replaceChildren(hdEl('p', 'leise', 'Lade …')); return; }
+if (Date.now() - tfZeit > 5 * 6e4 && feldInSicht(['weltm'])) tfLaden(true);
+const z = w4TfZeilen(['Index', 'Rohstoff', 'Devisen']), tab = document.createElement('table'), kopf = tab.createTHead().insertRow(), rumpf = tab.createTBody();
+for (const t of ['Markt', 'Art', 'Kurs', '24 Std.', 'Umsatz 24 Std.', 'Offene Pos.', 'Funding/Jahr']) kopf.append(hdEl('th', '', t));
+const reihe = { Index: 0, Rohstoff: 1, Devisen: 2 };
+z.sort((a, b) => reihe[a.art] - reihe[b.art] || (b.umsatz || 0) - (a.umsatz || 0));
+for (const x of z) {
+const r = rumpf.insertRow(); r.dataset.coin = x.coin;
+r.insertCell().textContent = x.anzeige; r.cells[0].className = 'coin'; r.insertCell().textContent = x.art; r.insertCell().textContent = w4Preis(x.preis, x.coin);
+const td = r.insertCell(); if (Number.isFinite(x.ae24h)) { td.textContent = proz(x.ae24h, 2); td.className = x.ae24h > 0 ? 'plus' : x.ae24h < 0 ? 'minus' : ''; } else td.textContent = '–';
+r.insertCell().textContent = usd(x.umsatz || 0); r.insertCell().textContent = x.oi > 0 ? usd(x.oi) : '–'; r.insertCell().textContent = Number.isFinite(x.funding) ? proz(x.funding, 1) : '–';
+}
+box.replaceChildren(z.length ? tab : hdEl('p', 'leise', 'Keine Märkte dieser Art bei der Quelle.'));
+const da = new Set(z.map((x) => x.anzeige)), fehlt = Object.values(W4_WELT_WUNSCH).flat().filter((n) => !da.has(n));
+const f = $('wm-fehlt'); if (f) f.textContent = (fehlt.length ? w4T('fehlt', fehlt.map((n) => tr(n)).join(', ')) + ' · ' : '') + `Hyperliquid · ${tagUhr(tfZeit || Date.now())}`;
+}
+const W4_TECH = [['rsi', 'RSI 14'], ['ema', 'EMA 50'], ['hoch', 'Abst. Hoch'], ['ausbruch', 'Spanne 20 T']];
+const W4_FELDER = [['kurs', 'Kurs'], ['ae1h', 'Änderung 1 Std. %'], ['ae24h', 'Änderung 24 Std. %'], ['umsatz', 'Umsatz 24 Std. $'], ['oi', 'Offene Positionen $'], ['oi1h', 'OI 1 Std. %'], ['oi24h', 'OI 24 Std. %'],
+['funding', 'Funding % aufs Jahr'], ['spanne', 'Funding-Spanne'], ['korea', 'Korea-Aufschlag %'], ['rsi', 'RSI 14 (Tag)'], ['ema', 'Abstand EMA 50 %'], ['hoch', 'Abstand 30-Tage-Hoch %'], ['ausbruch', 'Spannen-Ausbruch (1, 0, −1)']];
+const W4_NUR_MAC_FELD = new Set(['oi1h', 'oi24h', 'spanne', 'korea']);
+function w4Tech(z, k) { const t = W4.tech.get(z.coin); return t && Number.isFinite(t[k]) ? t[k] : null; }
+Object.assign(UEB_FELDER, { rsi: (z) => w4Tech(z, 'rsi'), ema: (z) => w4Tech(z, 'ema'), hoch: (z) => w4Tech(z, 'hoch'), ausbruch: (z) => w4Tech(z, 'ausbruch') });
+const w4Versteckt = () => new Set(w4Json('w4UebAus', ['rsi', 'ema', 'hoch', 'ausbruch']));
+const w4TechNoetig = () => { const v = w4Versteckt(); return W4_TECH.some(([k]) => !v.has(k)) || /\b(rsi|ema|hoch|ausbruch)\b/.test(($('ueb-filter') || {}).value || ''); };
+async function w4TechLaden(erzwingen = false) {
+if (W4.techLaeuft || Date.now() - W4.techZeit < (erzwingen ? 5 : 30) * 6e4 || !ueb || !Array.isArray(ueb.coins)) return;
+const n = BYBIT_AUS ? 20 : 40, coins = ueb.coins.filter((z) => !istTF(z.coin) && z.oi > 0).sort((a, b) => b.oi - a.oi).slice(0, n);
+if (!coins.length) return;
+W4.techLaeuft = true; W4.techGes = coins.length;
+try {
+await parallel(coins, BYBIT_AUS ? 2 : 4, async (z) => {
+let roh;
+if (DEMO) roh = hdDemoKerzen(z.coin, 1440).slice(-120).map((k) => [k.t, k.o, k.h, k.l, k.c, k.v]);
+else if (BYBIT_AUS) { const e = Date.now(); roh = ((await hl({ type: 'candleSnapshot', req: { coin: z.coin, interval: '1d', startTime: e - 120 * 864e5, endTime: e } }, 15000, 2)) || []).map((k) => [k.t / 1000, +k.o, +k.h, +k.l, +k.c, +k.v]); }
+else { const s = z.sym || hdSym(z.coin).sym; roh = await bybitKerzen(s, 'D', 120); }
+const t = technik((roh || []).map(([t, o, h, l, c]) => ({ t, o, h, l, c })));
+if (t) W4.tech.set(z.coin, { ...t, zeit: Date.now() });
+});
+W4.techZeit = Date.now();
+} finally { W4.techLaeuft = false; }
+uebZeigen();
+}
+function w4UebSpalten(tab, zeilen) {
+const aus = w4Versteckt(), kopf = tab.tHead && tab.tHead.rows[0]; if (!kopf) return;
+const tech = W4_TECH.filter(([k]) => !aus.has(k));
+for (const [k, t] of tech) { const th = hdEl('th', '', t); th.dataset.k = k; if (k === uebSort) th.setAttribute('aria-sort', uebAuf ? 'ascending' : 'descending'); kopf.append(th); }
+[...tab.tBodies[0].rows].forEach((r, i) => {
+const z = zeilen[i]; if (!z) return;
+for (const [k] of tech) {
+const v = w4Tech(z, k), td = r.insertCell();
+if (v === null) { td.textContent = '–'; continue; }
+if (k === 'rsi') { td.textContent = de(v, 1); td.className = v >= 70 || v <= 30 ? 'stark' : ''; }
+else if (k === 'ausbruch') { td.textContent = v > 0 ? '↑ 1' : v < 0 ? '↓ −1' : '0'; td.className = v > 0 ? 'plus' : v < 0 ? 'minus' : ''; }
+else { td.textContent = proz(v, 1); td.className = v > 0 ? 'plus' : v < 0 ? 'minus' : ''; }
+}
+});
+[...kopf.cells].forEach((th, i) => { if (th.dataset.k !== 'coin' && aus.has(th.dataset.k)) { th.hidden = true; for (const r of tab.tBodies[0].rows) if (r.cells[i]) r.cells[i].hidden = true; } });
+if (tech.length || /\b(rsi|ema|hoch|ausbruch)\b/.test(($('ueb-filter') || {}).value || '')) { w4TechLaden(); const i = $('ueb-filter-info'); if (i && !i.textContent.includes('·') && W4.techZeit) i.textContent = (i.textContent ? i.textContent + ' · ' : '') + w4T('technik', de(W4.tech.size), de(W4.techGes), uhrKurz(W4.techZeit)); }
+w4Bedingungen(); w4SpaltenWahl();
+}
+function w4Teile(t) {
+const out = []; let verb = '';
+for (const s of String(t || '').trim().split(/\s+(und|and|&&|oder|or|\|\|)\s+|\s*,\s*/)) {
+if (s === undefined) continue;
+if (/^(und|and|&&)$/i.test(s)) { verb = 'und'; continue; } if (/^(oder|or|\|\|)$/i.test(s)) { verb = 'oder'; continue; }
+if (s.trim()) { out.push({ text: s.trim(), verb: out.length ? verb || 'und' : '' }); verb = ''; }
+}
+return out;
+}
+function w4FilterSetzen(t) { const f = $('ueb-filter'); if (!f) return; f.value = t; merke('uebFilter', t); uebZeigen(); }
+function w4Bedingungen() {
+const box = $('ueb-bedingungen'); if (!box) return;
+const teile = w4Teile(($('ueb-filter') || {}).value);
+box.hidden = !teile.length;
+box.replaceChildren(...teile.map((x, i) => { const b = hdEl('button', '', ''); b.type = 'button'; b.dataset.i = String(i); b.append(rohEl(regelSyntax(x.text), 'code'), ' ×'); b.title = 'Bedingung entfernen'; return b; }));
+}
+function w4SpaltenWahl() {
+const box = $('ueb-spalten'), knopf = $('ueb-k-spalten'); if (!box || !knopf) return;
+knopf.setAttribute('aria-expanded', String(!box.hidden)); if (box.hidden) return;
+const aus = w4Versteckt(), nurMac = new Set(['oi1h', 'oi24h', 'fb', 'fh', 'fs', 'korea']);
+const sp = UEB_SPALTEN.filter(([k]) => k !== 'coin' && !(ueb && ueb.direkt && nurMac.has(k))).concat(W4_TECH);
+box.replaceChildren(...sp.map(([k, t]) => { const b = hdEl('button', '', t); b.type = 'button'; b.dataset.sp = k; b.setAttribute('aria-pressed', String(!aus.has(k))); return b; }));
+}
+const w4Screens = () => { const x = w4Json('w4Screens', []); return Array.isArray(x) ? x.filter((s) => s && typeof s.n === 'string').slice(0, 12) : []; };
+function w4ScreensZeigen() {
+const box = $('ueb-screens'); if (!box) return;
+const l = w4Screens(); box.hidden = !l.length;
+box.replaceChildren(...l.flatMap((s, i) => { const b = hdEl('button', '', s.n); b.type = 'button'; b.dataset.screen = String(i); b.title = s.f || ''; const x = hdEl('button', '', '×'); x.type = 'button'; x.dataset.screenWeg = String(i); x.setAttribute('aria-label', 'Screen löschen'); return [b, x]; }));
+}
+function w4ScreenSpeichern(name) {
+const n = String(name || '').replace(/[<>"]/g, '').trim().slice(0, 24); if (!n) return false;
+const l = w4Screens().filter((s) => s.n !== n); l.push({ n, f: ($('ueb-filter') || {}).value || '', aus: [...w4Versteckt()], s: uebSort, auf: uebAuf });
+merke('w4Screens', JSON.stringify(l.slice(-12))); w4ScreensZeigen(); return true;
+}
+function w4ScreenAnwenden(s) {
+if (!s) return; merke('w4UebAus', JSON.stringify(Array.isArray(s.aus) ? s.aus : [])); if (typeof s.s === 'string') { uebSort = s.s; uebAuf = !!s.auf; merke('uebSort', uebSort); }
+w4FilterSetzen(s.f || '');
+}
+function w4UebBedienen() {
+const feld = $('ueb-k-feld'); if (!feld) return;
+const felderZeigen = () => { const direkt = !ueb || ueb.direkt; feld.replaceChildren(...W4_FELDER.filter(([k]) => !(direkt && W4_NUR_MAC_FELD.has(k))).map(([k, t]) => { const o = document.createElement('option'); o.value = k; o.textContent = t; return o; })); };
+felderZeigen(); setTimeout(felderZeigen, 15000);
+$('ueb-k-dazu').addEventListener('click', () => {
+const w = String($('ueb-k-wert').value || '').trim().replace(/\s+/g, ''); if (!/^-?\d+([.,]\d+)?(mio|mrd|tsd|k|m|b)?$/i.test(w)) { $('ueb-k-wert').focus(); return; }
+const alt = ($('ueb-filter').value || '').trim(), neu = `${feld.value} ${$('ueb-k-op').value} ${w.toLowerCase()}`;
+w4FilterSetzen(alt ? `${alt} und ${neu}` : neu); $('ueb-k-wert').value = '';
+if (['rsi', 'ema', 'hoch', 'ausbruch'].includes(feld.value)) w4TechLaden();
+});
+$('ueb-k-wert').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('ueb-k-dazu').click(); });
+$('ueb-bedingungen').addEventListener('click', (e) => { const b = e.target.closest('button[data-i]'); if (!b) return; const t = w4Teile($('ueb-filter').value); t.splice(+b.dataset.i, 1); w4FilterSetzen(t.map((x, i) => (i ? (x.verb === 'oder' ? 'oder ' : 'und ') : '') + x.text).join(' ')); });
+$('ueb-k-spalten').addEventListener('click', () => { const b = $('ueb-spalten'); b.hidden = !b.hidden; w4SpaltenWahl(); });
+$('ueb-spalten').addEventListener('click', (e) => { const b = e.target.closest('button[data-sp]'); if (!b) return; const aus = w4Versteckt(); if (aus.has(b.dataset.sp)) aus.delete(b.dataset.sp); else aus.add(b.dataset.sp); merke('w4UebAus', JSON.stringify([...aus])); uebZeigen(); });
+$('ueb-screen-speichern').addEventListener('click', () => { const i = $('ueb-screen-name'); if (w4ScreenSpeichern(i.value)) i.value = ''; else i.focus(); });
+$('ueb-screen-name').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('ueb-screen-speichern').click(); });
+$('ueb-screens').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; const l = w4Screens(); if (b.dataset.screen != null) w4ScreenAnwenden(l[+b.dataset.screen]); else if (b.dataset.screenWeg != null) { l.splice(+b.dataset.screenWeg, 1); merke('w4Screens', JSON.stringify(l)); w4ScreensZeigen(); } });
+w4ScreensZeigen();
+}
+
+function w4Stand() {
+if (!ueb || ueb === W4.letzterUeb || !Array.isArray(ueb.coins) || !ueb.coins.length || ueb.fehler) return false;
+W4.letzterUeb = ueb;
+const t = Date.now(), l = W4.hist[W4.hist.length - 1]; if (l && t - l.t < 40000) return false;
+W4.hist.push({ t, z: ueb.coins.filter((z) => !istTF(z.coin)).map((z) => ({ coin: z.coin, preis: z.preis, umsatz: z.umsatz, oi: z.oi, funding: z.funding, ae1h: z.ae1h, oi1h: z.oi1h })) });
+if (W4.hist.length > 12) W4.hist.shift();
+return true;
+}
+const w4Neu = (schl, ms) => { const t = W4.gesehen.get(schl); if (t && Date.now() - t < ms) return false; W4.gesehen.set(schl, Date.now()); if (W4.gesehen.size > 600) W4.gesehen.delete(W4.gesehen.keys().next().value); return true; };
+function w4Scannen() {
+const h = W4.hist; if (!h.length) return;
+const jetzt = h[h.length - 1], vor = h.length > 1 ? h[h.length - 2] : null, min = vor ? (jetzt.t - vor.t) / 6e4 : 0;
+for (const x of ausreisserFinden(vor ? vor.z : null, jetzt.z, min)) {
+const k = x.coin + '|' + x.art; const t = W4.sc.gesehen.get(k); if (t && jetzt.t - t < 30 * 6e4) continue;
+W4.sc.gesehen.set(k, jetzt.t); W4.sc.liste.unshift({ ...x, ts: jetzt.t, min: Math.max(1, Math.round(x.min || min || 1)) });
+}
+w4LiqScan();
+W4.sc.liste = W4.sc.liste.slice(0, 60);
+w4ScanZeigen();
+}
+function w4LiqScan() {
+if (!S || !Array.isArray(S.liq)) return null;
+const j = Date.now(), k = C(), f = S.liq.filter((x) => j - x.t < 3e5), lw = f.filter((x) => x.wer === 'long').reduce((a, x) => a + x.wert, 0), sw = f.filter((x) => x.wer === 'short').reduce((a, x) => a + x.wert, 0);
+const seite = lw >= sw ? 'long' : 'short', u = Math.max(lw, sw); if (!(k.gross > 0) || u < 4 * k.gross) return null;
+const x = { coin, art: 'liq', wert: u, seite, ts: j, preis: S.last || S.mid };
+const schl = coin + '|liq|' + seite, t = W4.sc.gesehen.get(schl); if (!t || j - t > 15 * 6e4) { W4.sc.gesehen.set(schl, j); W4.sc.liste.unshift(x); }
+return x;
+}
+function w4ScanText(x) {
+switch (x.art) {
+case 'umsatz': return w4T('umsatz', x.coin, de(x.wert, 1));
+case 'oi': return w4T('oi', x.coin, proz(x.wert, 2), de(x.min || 5));
+case 'funding': return w4T('fundingWeit', x.coin, proz(x.wert, 1));
+case 'kurs': return w4T('kurs1h', x.coin, proz(x.wert, 2), de(x.z || 0, 1));
+case 'liq': return w4T('liq', x.coin, usd(x.wert), x.seite === 'short' ? 'Shorts' : 'Longs');
+default: return x.coin;
+}
+}
+function w4ScanZeigen() {
+const box = $('sc-tabelle'); if (!box) return;
+for (const b of document.querySelectorAll('#sc-art button')) b.setAttribute('aria-pressed', String(b.dataset.a === W4.sc.art));
+const l = W4.sc.liste.filter((x) => !W4.sc.art || x.art === W4.sc.art);
+const st = $('sc-stand'); if (st) st.textContent = W4.hist.length ? `${DEMO ? 'Demo-Daten · ' : ''}${tagUhr(W4.hist[W4.hist.length - 1].t)}` : '';
+if (!l.length) { box.replaceChildren(hdEl('p', 'leise', W4.hist.length < 2 ? 'Sammelt Stände der Markt-Übersicht – erste Vergleiche nach etwa einer Minute.' : 'Gerade keine Ausreißer nach den festen Regeln.')); return; }
+const tab = document.createElement('table'), kopf = tab.createTHead().insertRow(), rumpf = tab.createTBody();
+for (const t of ['Zeit', 'Coin', 'Art', 'Beobachtung', 'Kurs']) kopf.append(hdEl('th', '', t));
+const ART = { umsatz: 'Umsatz', oi: 'Offene Positionen', funding: 'Funding', kurs: 'Kurs', liq: 'Liquidationen' };
+for (const x of l.slice(0, 40)) {
+const r = rumpf.insertRow(); r.dataset.coin = x.coin;
+r.insertCell().textContent = uhrKurz(x.ts); r.insertCell().textContent = x.coin; r.cells[1].className = 'coin'; r.insertCell().textContent = ART[x.art] || x.art;
+r.insertCell().textContent = w4ScanText(x); r.cells[3].style.whiteSpace = 'normal'; r.insertCell().textContent = x.preis > 0 ? uebPreis(x.preis) : '–';
+}
+box.replaceChildren(tab);
+}
+function w4RegelnPruefen() {
+const an = w4Regeln(), h = W4.hist; if (!h.length) return;
+const jetzt = h[h.length - 1], top = new Set(jetzt.z.filter((z) => z.oi > 0).sort((a, b) => b.oi - a.oi).slice(0, 30).map((z) => z.coin));
+const alt = [...h].reverse().find((x) => jetzt.t - x.t >= 4 * 6e4 && jetzt.t - x.t <= 12 * 6e4) || null, min = alt ? Math.round((jetzt.t - alt.t) / 6e4) : 0;
+for (const e of marktRegeln(W4.regelStand, alt ? alt.z.filter((z) => top.has(z.coin)) : null, jetzt.z.filter((z) => top.has(z.coin)), an, min)) if (w4Neu('r|' + e.regel + '|' + e.coin, 30 * 6e4)) w4Melden({ q: 'regel', ...e });
+if (an.liq) { const x = w4LiqScan(); if (x && w4Neu('r|liq|' + x.coin + '|' + x.seite, 15 * 6e4)) w4Melden({ q: 'regel', regel: 'liq', coin: x.coin, wert: x.wert, seite: x.seite }); }
+}
+function w4Stufen() {
+const kurs = S && (S.last || S.mid); if (!(kurs > 0)) return;
+const st = [];
+try { const g = gexDaten(); if (g && g.oe) { if (g.oe.callWand) st.push({ name: 'Call-Wand', preis: g.oe.callWand[0] }); if (g.oe.putWand) st.push({ name: 'Put-Wand', preis: g.oe.putWand[0] }); if (g.oe.flip) st.push({ name: 'Zero-Gamma', preis: g.oe.flip }); } } catch (e) {   }
+const z = lkarte && !lkarte.fehler && Array.isArray(lkarte.stufen) && (!lkarte.coin || lkarte.coin === coin) ? lkarte.stufen : [];
+if (z.length) { const max = Math.max(1, ...z.map((x) => Math.max(x[1], x[2]))); for (const [p, l, s] of z) { if (l >= max * 0.35) st.push({ name: 'Liq.-Zone Longs', preis: p }); if (s >= max * 0.35) st.push({ name: 'Liq.-Zone Shorts', preis: p }); } }
+const n = stufeNah(kurs, st, 0.3); if (n && w4Neu('s|' + coin + '|' + n.name + '|' + Math.round(n.preis), 60 * 6e4)) w4Melden({ q: 'stufe', coin, ...n });
+}
+function w4WortPruefen() {
+const worte = w4Worte(); if (!worte.length) return;
+const m = [...(meld && Array.isArray(meld.meldungen) ? meld.meldungen.map((x) => ({ t: x.t, titel: x.titel, coins: x.coins })) : []),
+...(typeof news !== 'undefined' && news && Array.isArray(news.meldungen) ? news.meldungen.map((x) => ({ t: x.zeit, titel: x.titel, coins: x.coins })) : [])];
+for (const x of stichwortTreffer(m, worte, W4.meldGesehen)) w4Melden({ q: 'wort', wort: x.wort, titel: x.m.titel, coin: (x.m.coins || [])[0] || '' });
+if (Date.now() - W4.meldLaden > 5 * 6e4) {
+W4.meldLaden = Date.now();
+if (macBasis() === null && !DEMO) meldDirekt().then((d) => { meld = d; meldZeigen(); }).catch(() => {   }); else meldLaden();
+}
+}
+function w4WalPruefen() {
+const ev = macStand && Array.isArray(macStand.ereignisse) ? macStand.ereignisse : [];
+for (const e of ev) { const t = (e.zeit || 0) * 1000; if (t <= W4.walZeit || Math.max(Math.abs(e.vorher_usd || 0), Math.abs(e.jetzt_usd || 0)) < 1e6) continue; if (w4Neu('w|' + e.wal + '|' + e.coin + '|' + e.zeit, 6e5)) w4Melden({ q: 'wal', wal: e.wal, coin: e.coin, seite: e.seite, art: e.art, jetzt: e.jetzt_usd }); }
+const neu = Math.max(W4.walZeit, ...ev.map((e) => (e.zeit || 0) * 1000)); if (neu > W4.walZeit) W4.walZeit = neu;
+if (Date.now() - W4.walLaden > 4 * 6e4) { W4.walLaden = Date.now(); if (macBasis() === null && !DEMO) macDirekt().then((d) => { if (d) macZeigen(d); }).catch(() => {   }); else macLaden(); }
+}
+
+function w4AlarmAnlegen(markt, art, wert, still = false) {
+markt = befMarkt(befNorm(markt || '')) || String(markt || '').toUpperCase(); const k = w4Kurs(markt);
+if (!SYM.test(markt)) return befT('unbekannt', markt);
+if (!(wert > 0)) return 'Bitte einen Wert eingeben.';
+if (art === 'pct' && !(k > 0)) return 'Noch kein Kurs für diesen Markt.';
+if (art === 'ueber' && k >= wert) return w4T('schonUeber', w4Preis(k, markt));
+if (art === 'unter' && k > 0 && k <= wert) return w4T('schonUnter', w4Preis(k, markt));
+const a = { id: 'a' + Date.now().toString(36) + Math.floor(Math.random() * 1e4), markt, art, wert: art === 'pct' ? Math.min(wert, 99) : wert, basis: art === 'pct' ? k : null, aktiv: true, erstellt: Date.now() };
+const l = w4Alarme().filter((x) => x.aktiv || Date.now() - (x.ausgeloest || 0) < 864e5); l.push(a); merke('w4Alarme', JSON.stringify(l.slice(-40)));
+w4AlarmeZeigen(); for (const c of HD.panes || []) c.dirty = true;
+const t = w4T('angelegt', hdName(markt), w4Bed(a)); if (!still) befMelden(t); return t;
+}
+function w4AlarmePruefen() {
+const l = w4Alarme(); if (!l.some((a) => a.aktiv)) return;
+const aus = alrPruefen(l, w4Kurs, Date.now()); if (!aus.length) return;
+merke('w4Alarme', JSON.stringify(l)); for (const a of aus) w4Melden({ q: 'preis', ...a }); w4AlarmeZeigen(); for (const c of HD.panes || []) c.dirty = true;
+}
+function w4AlarmeZeigen() {
+const box = $('wk-liste'); if (!box) return;
+const l = w4Alarme();
+if (!l.length) { box.replaceChildren(hdEl('p', 'leise', 'Noch keine Preisalarme.')); return; }
+const tab = document.createElement('table'), kopf = tab.createTHead().insertRow(), rumpf = tab.createTBody();
+for (const t of ['Markt', 'Bedingung', 'Kurs', 'Stand', '']) kopf.append(hdEl('th', '', t));
+for (const a of l.slice().reverse()) {
+const r = rumpf.insertRow(), k = w4Kurs(a.markt); r.dataset.coin = a.markt; if (!a.aktiv) r.className = 'leise';
+r.insertCell().textContent = hdName(a.markt); r.cells[0].className = 'coin'; r.insertCell().textContent = w4Bed(a); r.insertCell().textContent = k > 0 ? w4Preis(k, a.markt) : '–';
+r.insertCell().textContent = a.aktiv ? 'aktiv' : `${tr('ausgelöst')} ${tagUhr(a.ausgeloest)}`;
+const x = hdEl('button', 'regel-weg', '×'); x.type = 'button'; x.dataset.alarmWeg = a.id; x.setAttribute('aria-label', 'Alarm löschen'); r.insertCell().append(x);
+}
+box.replaceChildren(tab);
+}
+function w4AlarmWeg(id) { merke('w4Alarme', JSON.stringify(w4Alarme().filter((a) => a.id !== id))); w4AlarmeZeigen(); for (const c of HD.panes || []) c.dirty = true; }
+function w4AlarmVerschieben(id, preis) {
+const l = w4Alarme(), a = l.find((x) => x.id === id); if (!a || !(preis > 0)) return;
+const k = w4Kurs(a.markt); a.wert = hdRund(preis, a.markt); if (a.art !== 'pct' && k > 0) a.art = a.wert > k ? 'ueber' : 'unter'; a.aktiv = true;
+merke('w4Alarme', JSON.stringify(l)); w4AlarmeZeigen(); hdEreignis(w4T('angelegt', hdName(a.markt), w4Bed(a)));
+}
+function w4AlarmAusChart(markt, preis) {
+const k = w4Kurs(markt); if (!(k > 0) || !(preis > 0)) { hdEreignis('Noch kein Live-Kurs für diesen Markt.'); return; }
+hdEreignis(w4AlarmAnlegen(markt, preis > k ? 'ueber' : 'unter', hdRund(preis, markt), true));
+}
+HdChart.prototype.w4AlarmLinien = function (ctx, id, Y, d, f, L, lh, xr, klemm, linie, pfeil, zl2, zug) {
+if (this.syn) return;
+for (const a of w4Alarme().filter((x) => x.aktiv && x.markt === id && x.art !== 'pct')) {
+const preis = zug && zug.h.was === 'alarm' && zug.h.ref === a.id && zug.bewegt ? zug.preis : a.wert, y = Y(preis), farbe = f.wal || '#ff9800';
+linie(y, farbe, [2, 3]);
+this.treffer.push({ x0: L.x0, x1: L.x1, y0: y - 5 * d, y1: y + 5 * d, art: 'linie', was: 'alarm', ref: a.id, preis: a.wert });
+zl2.push(() => {
+this.etikett(ctx, xr - Math.round(60 * d), klemm(y), [{ t: `${pfeil(y)}${a.art === 'ueber' ? '▲' : '▼'} ${tr('Alarm')}`, bg: f.etikettBg, fg: farbe, rand: farbe }, { zu: true, bg: f.etikettBg, fg: farbe, rand: farbe, was: 'alarm', ref: a.id }], lh, d, f, { was: 'alarm', ref: a.id, preis: a.wert });
+if (y >= L.y0 && y <= L.y1) this.achsenEtikett(ctx, y, hdPreisTxt(preis, id), farbe, aufFlaeche(/^#[0-9a-f]{6}$/i.test(String(farbe)) ? farbe : '#ff9800'), d, L);
+});
+}
+};
+function w4LogZeigen() {
+const box = $('wk-log-liste'); if (!box) return;
+const l = w4Log();
+if (!l.length) { const li = hdEl('li', 'leise', 'Noch keine Hinweise ausgelöst.'); box.replaceChildren(li); return; }
+const Q = { preis: 'Preisalarm', regel: 'Markt-Alarm', stufe: 'Stufen-Hinweis', wort: 'Stichwort-Alarm', wal: 'Wal-Hinweis' };
+box.replaceChildren(...l.slice(0, 50).map((e) => {
+const li = document.createElement('li'), k = hdEl('div', 'nt-kopf'), t = hdEl('time', '', tagUhr(e.ts)), x = w4Text(e);
+k.append(hdEl('span', '', Q[e.q] || e.q), t); if (e.stumm) k.append(hdEl('span', 'countdown', 'stumm'));
+const d = hdEl('div', 'nt-text', x.kopf); if (x.titel) { const s = hdEl('span', '', ' ' + x.titel); s.translate = false; d.append(s); }
+li.append(k, d); return li;
+}));
+}
+function w4StummZeigen() {
+const c = w4StummCfg(), an = $('wk-stumm-an'); if (!an) return;
+an.checked = !!c.an; if (c.von) $('wk-stumm-von').value = c.von; if (c.bis) $('wk-stumm-bis').value = c.bis;
+const jetzt = w4IstStumm(), i = $('wk-stumm-info');
+$('wk-stumm-weg').hidden = !(c.bisTs > Date.now());
+if (i) i.textContent = c.bisTs > Date.now() ? w4T('stummBis', uhrKurz(c.bisTs)) : jetzt ? 'Jetzt stumm (Stummzeit).' : c.an ? 'Stummzeit eingestellt, gerade nicht aktiv.' : 'Keine Stummzeit.';
+const m = $('wk-mitteilung'); if (m) m.hidden = !(window.Notification && Notification.permission === 'default');
+}
+function w4RegelnZeigen() {
+const an = w4Regeln();
+for (const b of document.querySelectorAll('#wk-regel-wahl button')) b.setAttribute('aria-pressed', String(!!an[b.dataset.r]));
+const i = $('wk-regel-info'); if (i) i.textContent = W4_REGELN.some((r) => an[r]) ? 'Geprüft jede Minute: 30 größte Coins nach offenen Positionen; Liquidationen und Stufen beim gewählten Coin, sobald dessen Liq.-Karte bzw. Optionen geladen sind.' : 'Alle Regeln aus.';
+const w = $('wk-worte'); if (w) w.replaceChildren(...w4Worte().map((x, i) => { const b = hdEl('button', 'regel-weg', ''); b.type = 'button'; b.dataset.wortWeg = String(i); b.append(rohEl(x.w, 'code'), ' ×'); return b; }));
+}
+function w4WeckerBedienen() {
+if (!$('wk-dazu')) return;
+const ein = $('wk-markt'); ein.value = anzeige(coin) === coin ? coin : '';
+const dazu = () => { const w = Number(String($('wk-wert').value || '').replace(/\s/g, '').replace(/\.(?=\d{3}(\D|$))/g, '').replace(',', '.').replace('%', '')); $('wk-info').textContent = w4AlarmAnlegen(ein.value || coin, $('wk-art').value, w); $('wk-wert').value = ''; };
+$('wk-dazu').addEventListener('click', dazu); $('wk-wert').addEventListener('keydown', (e) => { if (e.key === 'Enter') dazu(); });
+$('wk-liste').addEventListener('click', (e) => { const b = e.target.closest('[data-alarm-weg]'); if (b) w4AlarmWeg(b.dataset.alarmWeg); });
+$('wk-regel-wahl').addEventListener('click', (e) => { const b = e.target.closest('button[data-r]'); if (!b) return; const r = w4Regeln(); r[b.dataset.r] = !r[b.dataset.r]; merke('w4Regeln', JSON.stringify(r)); if (r[b.dataset.r] && b.dataset.r === 'wal') W4.walZeit = Date.now(); w4RegelnZeigen(); uebLaden(); });
+const wortDazu = () => { const i = $('wk-wort-ein'), t = String(i.value || '').replace(/[<>"]/g, '').trim().slice(0, 40); if (t.length < 2) return; for (const w of t.split(/\s*,\s*/).filter((x) => x.length >= 2)) { const l = w4Worte().filter((x) => x.w.toLowerCase() !== w.toLowerCase()); l.push({ w, seit: Date.now() / 1000 }); merke('w4Worte', JSON.stringify(l.slice(-20))); } i.value = ''; W4.meldLaden = 0; w4RegelnZeigen(); w4WortPruefen(); };
+$('wk-wort-dazu').addEventListener('click', wortDazu); $('wk-wort-ein').addEventListener('keydown', (e) => { if (e.key === 'Enter') wortDazu(); });
+$('wk-worte').addEventListener('click', (e) => { const b = e.target.closest('[data-wort-weg]'); if (!b) return; const l = w4Worte(); l.splice(+b.dataset.wortWeg, 1); merke('w4Worte', JSON.stringify(l)); w4RegelnZeigen(); });
+const stummMerken = () => { const c = w4StummCfg(); c.an = $('wk-stumm-an').checked; c.von = $('wk-stumm-von').value || '22:00'; c.bis = $('wk-stumm-bis').value || '07:00'; merke('w4Stumm', JSON.stringify(c)); w4StummZeigen(); };
+for (const id of ['wk-stumm-an', 'wk-stumm-von', 'wk-stumm-bis']) $(id).addEventListener('change', stummMerken);
+$('wk-stumm-std').addEventListener('click', () => { const c = w4StummCfg(); c.bisTs = Date.now() + 36e5; merke('w4Stumm', JSON.stringify(c)); w4StummZeigen(); });
+$('wk-stumm-weg').addEventListener('click', () => { const c = w4StummCfg(); c.bisTs = 0; merke('w4Stumm', JSON.stringify(c)); w4StummZeigen(); });
+$('wk-mitteilung').addEventListener('click', () => { try { Notification.requestPermission().then(w4StummZeigen); } catch (e) {   } });
+$('wk-log-leeren').addEventListener('click', () => { merke('w4Log', '[]'); w4LogZeigen(); });
+w4AlarmeZeigen(); w4RegelnZeigen(); w4StummZeigen(); w4LogZeigen();
+}
+
+const W4_SPREAD = { SPOT: 'spot', KASSA: 'spot', BINANCE: 'bn', BN: 'bn', BYBIT: 'by', BY: 'by', HYPERLIQUID: 'hl', HL: 'hl' };
+function w4RatioName(b) { const m = /^(spot|bn|by|hl):(.+)$/.exec(String(b || '')); if (!m) return hdName(b); return `${hdName(m[2])} ${{ spot: 'Spot', bn: 'Perp Binance', by: 'Perp Bybit', hl: 'Perp Hyperliquid' }[m[1]]}`; }
+function w4QuelleA() { return BYBIT_AUS ? 'Perp Hyperliquid' : 'Perp Bybit'; }
+HdChart.prototype.ratioLadenX = async function () {
+const b = HD.ratio.b, tf = this.tf, sig = b + '|' + tf, [art, id] = b.split(':'); this.ratioSig = sig; this.ratioK = null;
+const s = hdSym(id), basis = (s.sym || '').replace(/^HL:/, ''), c = bybitTeile(basis).coin || id, iv = tf >= 1440 ? '1d' : tf >= 240 ? '4h' : tf >= 60 ? '1h' : tf >= 15 ? '15m' : tf >= 5 ? '5m' : '1m';
+try {
+let roh = [];
+if (DEMO) roh = hdDemoKerzen(id, Math.min(tf, 1440)).map((k) => [k.t, k.o * (art === 'spot' ? 0.9995 : 1.0004), k.h, k.l, k.c * (art === 'spot' ? 0.9995 : 1.0004), k.v]);
+else if (art === 'spot' && !BYBIT_AUS) roh = ((await by(`kline?category=spot&symbol=${c}USDT&interval=${tf >= 1440 ? 'D' : tf}&limit=1000`)).list || []).map((k) => [+k[0] / 1000, +k[1], +k[2], +k[3], +k[4], +k[6]]).reverse();
+else if (art === 'spot') roh = (await holeMitFrist(`${BN_SPOT}klines?symbol=${c}USDT&interval=${iv}&limit=1000`, 15000)).map((k) => [k[0] / 1000, +k[1], +k[2], +k[3], +k[4], +k[7]]);
+else if (art === 'bn') roh = (await holeMitFrist(`${BN_F}klines?symbol=${s.mult > 1 ? s.mult : ''}${c}USDT&interval=${iv}&limit=1000`, 15000)).map((k) => [k[0] / 1000, k[1] / s.mult, k[2] / s.mult, k[3] / s.mult, k[4] / s.mult, +k[7]]);
+else if (art === 'hl') roh = await hlKerzen(c, tf >= 1440 ? 'D' : tf, tf >= 1440 ? 400 : 700);
+else if (art === 'by' && !BYBIT_AUS) roh = ((await by(`kline?category=linear&symbol=${s.sym}&interval=${tf >= 1440 ? 'D' : tf}&limit=1000`)).list || []).map((k) => [+k[0] / 1000, k[1] / s.mult, k[2] / s.mult, k[3] / s.mult, k[4] / s.mult, +k[6]]).reverse();
+let K = roh.map(([t, o, h, l, cc, v]) => ({ t, o: +o, h: +h, l: +l, c: +cc, v: v || 0 })).filter((k) => k.c > 0); if (tf > 1440) K = kerzenBuendeln(K, tf);
+if (this.ratioSig === sig) { this.ratioK = K; this.kAsig = ''; this.dirty = true; if (!K.length) hdEreignis(tr('Für diesen Markt gibt es die zweite Reihe dort nicht.')); }
+} catch (e) { if (this.ratioSig === sig) { this.ratioK = []; this.dirty = true; hdEreignis(tr('Zweite Reihe gerade nicht erreichbar.')); } }
+};
+function w4SpreadBefehl(r, p) {
+const toks = (p.rest || []).map((t) => befNorm(t)), zweit = toks.map((t) => W4_SPREAD[t]).find(Boolean);
+if (r.id !== 'perpspot' && r.id !== 'bspread' && !zweit) return false;
+const m = p.markt || toks.map((t) => befMarkt(t)).find(Boolean) || coin;
+const art = r.id === 'perpspot' ? 'spot' : zweit || (BYBIT_AUS ? 'bn' : 'bn');
+const quelleA = BYBIT_AUS ? 'hl' : 'by'; if (art === quelleA) { hdEreignis(tr('Beide Seiten wären dieselbe Börse.')); return true; }
+ratioSetzen(m, art + ':' + m, r.id === 'ratio' ? 'ratio' : 'spread'); return true;
+}
+function w4FrvpZiehen(c, h, dx) {
+const l = HD.zeich[h.markt] || [], z = l[h.ref]; if (!z || !c.L) return;
+const dt = c.zuWert(h.x + dx, 0).t - c.zuWert(h.x, 0).t; if (!Number.isFinite(dt) || !dt) return;
+z.a = { ...z.a, t: z.a.t + dt }; z.b = { ...z.b, t: z.b.t + dt };
+hdMerke('zeichnungen', JSON.stringify(HD.zeich)); for (const p of HD.panes) p.dirty = true;
+}
+function w4MehrZeigen() {
+const w = $('hd-werkzeug'), b = $('hd-mehr'); if (!w || !b) return;
+const auf = w.classList.contains('mehr-auf'); b.setAttribute('aria-expanded', String(auf));
+const n = w.querySelectorAll('.hd-mehr-teil[aria-pressed="true"][data-ebene], .hd-mehr-teil[aria-pressed="true"][data-werkzeug]').length + (HD.art !== 'kerzen' ? 1 : 0) + (HD.skala !== 'lin' ? 1 : 0) + (HD.vgl.length || HD.ratio ? 1 : 0);
+const z = b.querySelector('b'); if (z) { z.hidden = !n || auf; z.textContent = String(n); }
+const a = w.querySelector('[data-werkzeug="alarm"]'); if (a) a.setAttribute('aria-pressed', String(HD.werkzeug === 'alarm'));
+}
+function w4Mehr(auf) { const w = $('hd-werkzeug'); if (!w) return; w.classList.toggle('mehr-auf', auf); hdMerke('mehr', auf ? '1' : ''); w4MehrZeigen(); dispatchEvent(new Event('resize')); }
+
+function w4Takt() {
+if (document.hidden) return;
+const neu = w4Stand();
+if (neu) { w4Scannen(); w4RegelnPruefen(); if (feldInSicht(['hmap'])) w4HmZeigen(); }
+w4AlarmePruefen();
+const r = w4Regeln(); if (r.stufe) w4Stufen(); if (r.wal) w4WalPruefen(); w4WortPruefen();
+if (feldInSicht(['weltm'])) w4WeltZeigen();
+w4MehrZeigen(); w4StummZeigen();
+}
+function w4Start() {
+w4HmBedienen(); w4UebBedienen(); w4WeckerBedienen();
+const sa = $('sc-art'); if (sa) sa.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; W4.sc.art = b.dataset.a; merke('w4ScArt', W4.sc.art); w4ScanZeigen(); });
+const sc = $('sc-tabelle'); if (sc) sc.addEventListener('click', (e) => { const r = e.target.closest('tr[data-coin]'); if (r && r.dataset.coin !== coin) { wechseln(r.dataset.coin); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
+const wm = $('wm-tabelle'); if (wm) wm.addEventListener('click', (e) => { const r = e.target.closest('tr[data-coin]'); if (r && r.dataset.coin !== coin) { wechseln(r.dataset.coin); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
+const m = $('hd-mehr'); if (m) m.addEventListener('click', () => w4Mehr(!$('hd-werkzeug').classList.contains('mehr-auf')));
+if (hdLies('mehr') === '1') w4Mehr(true);
+const z = $('hd-zeichnen'); if (z) z.addEventListener('click', () => setTimeout(w4MehrZeigen, 0));
+addEventListener('resize', () => { if (feldInSicht(['hmap'])) w4HmZeigen(); });
+w4ScanZeigen(); w4HmZeigen(); w4WeltZeigen();
+setInterval(w4Takt, 15000); setTimeout(w4Takt, 2500);
+window.__ryvoW4 = { treemap, katLeistung, technik, ausreisserFinden, alrPruefen, alrStummMin, marktRegeln, stufeNah, stichwortTreffer,
+heatmap: () => W4.hm.zeilen.map((z) => ({ coin: z.coin, ae24h: z.ae24h, ae1h: z.ae1h, umsatz: z.umsatz, oi: z.oi, preis: z.preis })), gruppe: (g) => { W4.hm.gruppe = g; W4.hm.kat = ''; w4HmZeigen(); },
+uebersicht: () => (ueb && Array.isArray(ueb.coins) ? ueb.coins.map((z) => ({ coin: z.coin, ae24h: z.ae24h, umsatz: z.umsatz, oi: z.oi, preis: z.preis })) : []), tech: () => Object.fromEntries(W4.tech),
+alarm: (m, art, w) => w4AlarmAnlegen(m, art, w, true), alarme: () => w4Alarme(), log: () => w4Log(), pruefen: () => w4AlarmePruefen(), stumm: () => w4IstStumm(), scan: () => W4.sc.liste.slice(), takt: () => w4Takt() };
+}
+async function w4Befehl(r, p) {
+const rest = (p.rest || []).join(' ').trim();
+if (r.id === 'alarm') {
+const toks = (p.rest || []).slice(); let m = p.markt;
+if (!m && toks.length) { const x = befMarkt(befNorm(toks[0])); if (x) { m = x; toks.shift(); } }
+const t = toks.join(' ').replace(/\s+/g, ''), x = /^(>|<|>=|<=|ueber|über|above|unter|below|\+|-|±|\+-)?([\d.,]+)(%)?$/i.exec(t);
+const e = await befOeffnen(BEF_REG.find((y) => y.id === 'alarme'), p), f = $('wk-markt'); if (f && m) f.value = m;
+if (!x) return { ok: e.ok, ziel: e.ziel, text: '' };
+const w = Number(x[2].replace(/\.(?=\d{3}(\D|$))/g, '').replace(',', '.')), mk = m || coin, k = w4Kurs(mk);
+const art = x[3] || /^(±|\+-)$/.test(x[1] || '') ? 'pct' : /^(>|>=|ueber|über|above|\+)$/i.test(x[1] || '') ? 'ueber' : /^(<|<=|unter|below|-)$/i.test(x[1] || '') ? 'unter' : k > 0 && w < k ? 'unter' : 'ueber';
+return { ok: true, ziel: e.ziel, text: w4AlarmAnlegen(mk, art, w, true) };
+}
+if (r.id === 'stumm') {
+const c = w4StummCfg(), n = parseInt(rest, 10);
+if (/^(aus|off|0)$/i.test(rest)) c.bisTs = 0; else if (n > 0) c.bisTs = Date.now() + Math.min(n, 1440) * 6e4;
+merke('w4Stumm', JSON.stringify(c)); w4StummZeigen();
+const e = await befOeffnen(BEF_REG.find((y) => y.id === 'alarme'), p); return { ok: e.ok, ziel: $('wk-stumm') || e.ziel, text: c.bisTs > Date.now() ? w4T('stummBis', uhrKurz(c.bisTs)) : '' };
+}
+if (r.id === 'technik') { merke('w4UebAus', JSON.stringify([...w4Versteckt()].filter((k) => !['rsi', 'ema', 'hoch', 'ausbruch'].includes(k)))); w4TechLaden(true); uebZeigen(); return befOeffnen(r, p); }
+if (r.id === 'perpspot' || r.id === 'bspread') { const z = await hdOeffnen({ hd: 'chart' }); w4SpreadBefehl(r, p); return { ok: true, ziel: z.ziel }; }
+if (r.id === 'stichwort' && rest) { const i = $('wk-wort-ein'); if (i) { i.value = rest; $('wk-wort-dazu').click(); } }
+return befOeffnen(r, p);
+}
+var W4_BEREIT = true;
+
 const HD_ARTEN = ['kerzen', 'ha', 'linie', 'flaeche', 'renko', 'range'], HD_SKALEN = ['lin', 'log', 'pct'], HD_VA = [68, 70, 80], HD_AMT = ['tag', 'sitzung', 'composite'];
 Object.assign(HD, { art: 'kerzen', skala: 'lin', va: 70, amt: 'tag', vgl: [], ratio: null, rangeTicks: 40 });
 { const a = hdLies('art'); if (HD_ARTEN.includes(a)) HD.art = a; const s = hdLies('skala'); if (HD_SKALEN.includes(s)) HD.skala = s; const v = +hdLies('va'); if (HD_VA.includes(v)) HD.va = v;
@@ -12715,7 +13522,14 @@ const lage = kurs > vor.vah ? 'ueber' : kurs < vor.val ? 'unter' : 'im';
 const wanderung = heute.val > vor.vah ? 'hoeher' : heute.vah < vor.val ? 'tiefer' : 'ueberlappend';
 return { lage, wanderung, poc: heute.poc > vor.poc ? 'hoeher' : heute.poc < vor.poc ? 'tiefer' : 'gleich' };
 }
-function amtSitzung(t) { const m = Math.floor(((t % 86400) + 86400) % 86400 / 60); return m < 420 ? 0 : m < 810 ? 1 : 2; }
+function sonntagUtc(j, mon, n) {
+if (n < 0) { const l = new Date(Date.UTC(j, mon + 1, 0)); return Date.UTC(j, mon, l.getUTCDate() - l.getUTCDay()) / 1000; }
+const e = new Date(Date.UTC(j, mon, 1)); return Date.UTC(j, mon, 1 + ((7 - e.getUTCDay()) % 7) + 7 * (n - 1)) / 1000;
+}
+function euSommer(t) { const j = new Date(t * 1000).getUTCFullYear(); return t >= sonntagUtc(j, 2, -1) + 3600 && t < sonntagUtc(j, 9, -1) + 3600; }
+function usSommer(t) { const j = new Date(t * 1000).getUTCFullYear(); return t >= sonntagUtc(j, 2, 2) + 7 * 3600 && t < sonntagUtc(j, 10, 1) + 6 * 3600; }
+function sitzungsZeiten(t) { return { london: euSommer(t) ? 420 : 480, ny: usSommer(t) ? 810 : 870 }; }
+function amtSitzung(t) { const m = Math.floor(((t % 86400) + 86400) % 86400 / 60), z = sitzungsZeiten(Math.floor(t / 86400) * 86400 + 43200); return m < z.london ? 0 : m < z.ny ? 1 : 2; }
 function amtGruppen(K, art, tf) {
 if (!K.length) return [];
 if (art === 'composite') return [{ i0: 0, i1: K.length - 1, name: 'Composite' }];
@@ -12737,6 +13551,7 @@ this.kAsig = sig; this.kA = A === this.k ? null : A; this.w3ind = null;
 return A;
 };
 HdChart.prototype.ratioLaden = async function () {
+if (/^(spot|bn|by|hl):/.test(String(HD.ratio.b))) return this.ratioLadenX();
 const b = HD.ratio.b, tf = this.tf, sig = b + '|' + tf; this.ratioSig = sig; this.ratioK = null;
 try { const s = hdSym(b), roh = DEMO ? hdDemoKerzen(b, Math.min(tf, 1440)).map((k) => [k.t, k.o, k.h, k.l, k.c, k.v]) : await bybitKerzen(s.sym, tf >= 1440 ? 'D' : tf, tf >= 1440 ? 1000 : tf >= 60 ? 700 : 400);
 let K = roh.map(([t, o, h, l, c, v]) => ({ t, o: o / s.mult, h: h / s.mult, l: l / s.mult, c: c / s.mult, v: v || 0 })); if (tf > 1440) K = kerzenBuendeln(K, tf);
@@ -12751,7 +13566,7 @@ if (this.vglSig === sig) { this.vglK[id] = K; this.dirty = true; } } catch (e) {
 }
 };
 HdChart.prototype.w3Ind = function (K) {
-const l = K[K.length - 1], sig = `${K.length}|${K[0].t}|${l.c}|${this.kAsig || ''}`; if (this.w3ind && this.w3ind.sig === sig) return this.w3ind;
+const l = K[K.length - 1], e0 = HD.eb, sig = `${K.length}|${K[0].t}|${l.c}|${this.kAsig || ''}|${['bb', 'ichi', 'atr', 'stoch', 'obv'].map((x) => (e0[x] ? 1 : 0)).join('')}`; if (this.w3ind && this.w3ind.sig === sig) return this.w3ind;
 const c = K.map((k) => k.c), eb = HD.eb;
 this.w3ind = { sig, bb: eb.bb ? bollinger(c) : null, ichi: eb.ichi ? ichimoku(K) : null, atr: eb.atr ? atrReihe(K) : null, stoch: eb.stoch ? stochReihe(K) : null, obv: eb.obv ? obvReihe(K) : null };
 return this.w3ind;
@@ -12761,6 +13576,7 @@ HdChart.prototype.w3UntenListe = function (verf, d) { return W3_UNTEN.filter(([x
 HdChart.prototype.w3UntenZeichnen = function (art, ctx, K, a, b, xi, cw, d, f, L, oben, unten, mi) {
 const ind = this.w3Ind(K), y0 = oben + Math.round(16 * d), y1 = unten - Math.round(3 * d); if (y1 - y0 < 14 * d) return;
 const fa = hdIndFarben(), farbe = art === 'atr' ? fa.e50 : art === 'stoch' ? fa.rsi : fa.e20;
+if (!(art === 'stoch' ? ind.stoch : ind[art])) { this.unterKopf(ctx, oben, f, d, L, [[art === 'atr' ? 'ATR 14' : art === 'stoch' ? 'Stochastik 14/3/3' : 'OBV', f.achseText], ['…', f.achseText]]); return; }
 const reihen = art === 'stoch' ? [[ind.stoch.k, fa.rsi], [ind.stoch.d, fa.e200]] : [[ind[art], farbe]];
 let lo = art === 'stoch' ? 0 : Infinity, hi = art === 'stoch' ? 100 : -Infinity;
 if (art !== 'stoch') for (const [r] of reihen) for (let i = a; i <= b; i++) if (r[i] != null) { lo = Math.min(lo, r[i]); hi = Math.max(hi, r[i]); }
@@ -12850,7 +13666,7 @@ const r = K.map((k) => { const o = m.get(k.t); return o ? ref.c * o.c / r0.c : n
 const l = [...O].reverse().find((k) => k.t <= K[b].t); if (l) info.push([`${hdName(id)} ${proz((l.c / r0.c - 1) * 100, 2)}`, farben[n % farben.length]]); });
 info.push([`${hdName(this.markt)} ${proz((K[b].c / ref.c - 1) * 100, 2)}`, f.text]);
 }
-if (this.syn) info.push([`${HD.ratio.art === 'spread' ? tr('Spread') : tr('Verhältnis')} ${hdName(HD.ratio.a)} ${HD.ratio.art === 'spread' ? '−' : '/'} ${hdName(HD.ratio.b)} · ${tr('aus Eröffnung und Schluss')}`, f.text]);
+if (this.syn) info.push([`${HD.ratio.art === 'spread' ? tr('Spread') : tr('Verhältnis')} ${hdName(HD.ratio.a)}${/:/.test(HD.ratio.b) ? ' ' + w4QuelleA() : ''} ${HD.ratio.art === 'spread' ? '−' : '/'} ${w4RatioName(HD.ratio.b)} · ${tr('aus Eröffnung und Schluss')}`, f.text]);
 if (HD.art !== 'kerzen') info.push([tr({ ha: 'Heikin-Ashi', linie: 'Linie', flaeche: 'Fläche', renko: 'Renko (Kästchen = ATR 14)', range: 'Range-Bars' }[HD.art]) + (HD.art === 'range' ? ` ${HD.rangeTicks} Ticks = ${hdPreisTxt(rangeSpanne(K, this.markt), this.markt)}` : ''), f.achseText]);
 if (HD.skala !== 'lin') info.push([HD.skala === 'log' ? tr('Log-Skala') : tr('Prozent-Skala'), f.achseText]);
 };
@@ -12860,7 +13676,7 @@ ctx.beginPath(); for (let i = a; i <= b; i++) { const y = Y(K[i].c); if (i === a
 if (HD.art === 'flaeche') { ctx.save(); ctx.lineTo(xi(b), L.y1); ctx.lineTo(xi(a), L.y1); ctx.closePath(); ctx.fillStyle = mix(f.auf, 0.14); ctx.fill(); ctx.restore(); ctx.beginPath(); for (let i = a; i <= b; i++) { const y = Y(K[i].c); if (i === a) ctx.moveTo(xi(i), y); else ctx.lineTo(xi(i), y); } }
 ctx.strokeStyle = f.auf; ctx.lineWidth = Math.max(1, 1.6 * d); ctx.stroke(); ctx.lineWidth = 1; return true;
 };
-HdChart.prototype.w3Zeichnung = function (ctx, z, ax, ay, ex, ey, Y, d, f, L, id, K) {
+HdChart.prototype.w3Zeichnung = function (ctx, z, ax, ay, ex, ey, Y, d, f, L, id, K, nr = -1) {
 const nk = hdNkFuer(z.a.p, id), farbe = f.zeichen, txt = (t, x, y, fb = farbe, bg = true) => { ctx.font = `600 ${Math.round(10 * d)}px ${F.mono}`; const w = ctx.measureText(t).width + 8 * d; if (bg) { ctx.fillStyle = f.etikettBg; ctx.fillRect(x, y - 8 * d, w, 16 * d); } ctx.fillStyle = fb; ctx.textBaseline = 'middle'; ctx.fillText(t, x + 4 * d, y); ctx.textBaseline = 'alphabetic'; };
 const idx = (t) => { let i = 0; while (i < K.length - 1 && K[i].t < t) i++; return i; };
 ctx.strokeStyle = farbe; ctx.lineWidth = Math.max(1, 1.6 * d);
@@ -12893,6 +13709,12 @@ const x0 = Math.min(ax, ex), x1 = Math.max(ax, ex), breit = (x1 - x0) * 0.7;
 ctx.fillStyle = mix(farbe.length === 7 ? farbe : '#888888', 0.05); ctx.fillRect(x0, Y(hi), x1 - x0, Y(lo) - Y(hi));
 p.v.forEach((v, j) => { const pr = (p.q0 + j) * st, drin = pr >= p.val - 1e-12 && pr < p.vah - 1e-12, y = Y(pr + st); ctx.fillStyle = mix(farbe.length === 7 ? farbe : '#888888', drin ? 0.38 : 0.16); ctx.fillRect(x0, y, v / p.max * breit, Math.max(1, Y(pr) - y - 1)); });
 for (const [pr, nm, fb] of [[p.poc, 'POC', f.wal], [p.vah, 'VAH', farbe], [p.val, 'VAL', farbe]]) { const y = Math.round(Y(pr)) + 0.5; ctx.strokeStyle = fb; ctx.setLineDash(nm === 'POC' ? [] : [3 * d, 3 * d]); ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); ctx.setLineDash([]); txt(`${nm} ${de(pr, nk)}`, x1 + 2 * d, y, fb); }
+if (nr >= 0) {
+const g = Math.round((HD.grob ? 22 : 15) * d), gx = Math.max(L.x0 + 2 * d, Math.min(L.x1 - g - 2 * d, x0)), gy = Math.round(Math.max(L.py0, Y(hi) - g - 3 * d));
+ctx.fillStyle = f.etikettBg || f.bg; ctx.fillRect(gx, gy, g, g); ctx.strokeStyle = farbe; ctx.strokeRect(gx + 0.5, gy + 0.5, g - 1, g - 1);
+ctx.fillStyle = farbe; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `700 ${Math.round(11 * d)}px ${F.mono}`; ctx.fillText('↔', gx + g / 2, gy + g / 2 + 0.5 * d); ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+this.treffer.push({ x0: gx, x1: gx + g, y0: gy, y1: gy + g, art: 'zieh', was: 'zeich', ref: nr, markt: id, x: gx + g / 2 });
+}
 }
 else if (z.art === 'long' || z.art === 'short') {
 const r = w3Box(z), yE = Y(r.einstieg), yS = Y(r.stop), yZ = Y(r.ziel), x0 = Math.min(ax, ex), x1 = Math.max(ax + 60 * d, ex);
@@ -12923,7 +13745,11 @@ try {
 const h = Math.round(30 * (cv.clientWidth ? cv.width / cv.clientWidth : 1)), c2 = document.createElement('canvas'); c2.width = cv.width; c2.height = cv.height + h;
 const x = c2.getContext('2d'); x.fillStyle = F.feld || '#000'; x.fillRect(0, 0, c2.width, c2.height); x.drawImage(cv, 0, 0);
 x.fillStyle = F.text; x.font = `500 ${Math.round(h * 0.4)}px ${F.mono}`; x.textBaseline = 'middle';
-x.fillText(`RYVO · ${titel} · ${tr('Quelle')}: ${quelle} · ${new Date().toLocaleString(LOC)} · ${tr('keine Anlageberatung')}`, Math.round(h * 0.35), cv.height + h / 2);
+const max = c2.width - 2 * Math.round(h * 0.35), passt = (t) => x.measureText(t).width <= max;
+let t = `RYVO · ${titel} · ${tr('Quelle')}: ${quelle} · ${new Date().toLocaleString(LOC)} · ${tr('keine Anlageberatung')}`;
+for (const k of [`RYVO · ${titel} · ${tr('Quelle')}: ${quelle} · ${tr('keine Anlageberatung')}`, `RYVO · ${titel} · ${quelle} · ${tr('keine Anlageberatung')}`, `RYVO · ${quelle} · ${tr('keine Anlageberatung')}`]) if (!passt(t)) t = k;
+if (!passt(t)) x.font = `500 ${Math.max(6, Math.floor(h * 0.4 * max / x.measureText(t).width))}px ${F.mono}`;
+x.fillText(t, Math.round(h * 0.35), cv.height + h / 2);
 c2.toBlob((b) => { if (!b) return; const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'ryvo-' + String(titel).toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40) + '.png'; document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000); }, 'image/png');
 return true;
 } catch (e) { return false; }
@@ -12996,6 +13822,7 @@ for (const c of HD.panes) { c.ratioSig = ''; c.ratioK = null; c.kAsig = ''; c.di
 async function w3Befehl(r, p) {
 const z = await hdOeffnen({ hd: 'chart' }); const toks = (p.rest || []).map((t) => befMarkt(befNorm(t))).filter(Boolean);
 if (r.id === 'vgl') vglSetzen(toks);
+else if ((r.id === 'ratio' || r.id === 'spread') && w4SpreadBefehl(r, p)) {   }
 else if (r.id === 'ratio' || r.id === 'spread') { const a = toks.length >= 2 ? toks[0] : p.markt || coin, b = toks.length >= 2 ? toks[1] : toks[0]; if (b) ratioSetzen(a, b, r.id); else ratioSetzen(null); }
 else if (r.id === 'art') { const w = befNorm(p.rest[0] || ''), x = HD_ARTEN.find((a) => befNorm(a) === w) || { HEIKIN: 'ha', HEIKINASHI: 'ha', LINE: 'linie', AREA: 'flaeche', CANDLES: 'kerzen', KERZE: 'kerzen' }[w]; w3Setze('art', x || 'kerzen'); }
 else if (r.id === 'vorlage') { const n = p.rest.join(' ').trim(); if (n) { const v = vorlagen().find((x) => befNorm(x.name) === befNorm(n)); if (v) vorlageAnwenden(v); else vorlageSpeichern(n); } if (HD.blatt !== 'werkzeug') { const b = $('hd-ebenen-knopf'); if (b) b.click(); } return { ok: true, ziel: $('hd-werkzeug') || z.ziel }; }
@@ -13263,6 +14090,7 @@ window.__ryvoBh = () => ({ r: Object.fromEntries(Object.entries(BH.r).map(([k, r
 kurve: BH.kurve && BH.kurve.heute, teile: BH.teile, fehler: BH.fehler, laeuft: BH.laeuft, zeigen: () => { try { bhZeigen(); return "ok"; } catch (e) { return String(e.stack).slice(0, 400); } } });
 nsStart(); bhLaden(); setInterval(bhLaden, 10 * 6e4); setInterval(bhUhren, 30000);
 w3Start();
+w4Start();
 
 /*BEFEHL-KERN-ANFANG*/
 const BEF_REG = [
@@ -13293,7 +14121,7 @@ const BEF_REG = [
 { id: 'wal', k: ['WAL', 'WALE'], e: ['WHALE', 'WHALES'], n: 'Wale', s: 'Wale, eigene Alarme und Hyperliquid', b: 'WAL BTC', feld: 'mac', hd: 'wale', g: 'wal' },
 { id: 'rang', k: ['RANG', 'BESTE'], e: ['RANK', 'LEADERBOARD'], n: 'Rangliste', s: 'Beste Trader bei Hyperliquid', b: 'RANG', feld: 'rangliste', g: 'wal' },
 { id: 'rug', k: ['RUG', 'RUGCHECK'], e: ['RUGPULL', 'MEMECHECK'], n: 'Rug-Check', s: 'Rug-Check für Solana-Memecoins', b: 'RUG', feld: 'rug', g: 'wal' },
-{ id: 'alarm', k: ['ALARM', 'ALARME'], e: ['ALERT', 'ALERTS'], n: 'Eigene Alarme', s: 'Eigene Alarme im Feld „Wale“', b: 'ALARM', feld: 'mac', ziel: '.alarme-kopf', g: 'wal' },
+{ id: 'regeln', k: ['REGELN', 'EIGENEREGELN'], e: ['MYRULES', 'CUSTOMRULES'], n: 'Eigene Alarme', s: 'Eigene Alarme im Feld „Wale“', b: 'REGELN', feld: 'mac', ziel: '.alarme-kopf', g: 'wal' },
 { id: 'meld', k: ['MELD', 'MELDUNGEN'], e: ['LIST', 'LISTINGS'], n: 'Meldungen', s: 'Börsen-Meldungen: Listungen und Delistings', b: 'MELD', feld: 'meldungen', g: 'news' },
 { id: 'lage', k: ['LAGE', 'LAGEBILD'], e: ['BRIEF', 'BRIEFING'], n: 'Lagebild', s: 'Lagebild: alles Wichtige in einer Ansicht', b: 'LAGE ETH', feld: 'bericht', hd: 'lage', g: 'news' },
 { id: 'analyse', k: ['ANALYSE', 'TA'], e: ['ANALYSIS', 'AUTO'], n: 'Analyse', s: 'Automatische Analyse in Klartext', b: 'BTC ANALYSE', feld: 'analyse', hd: 'analyse', g: 'news' },
@@ -13359,6 +14187,22 @@ const BEF_REG = [
 { id: 'vorlage', k: ['VORLAGE', 'VORLAGEN'], e: ['TEMPLATE', 'TEMPLATES'], n: 'Chart-Vorlagen', s: 'Ebenen-Sets speichern und laden', b: 'VORLAGE Mein Set', hd: 'chart', par: 'text', g: 'hd' },
 { id: 'bild', k: ['BILD', 'PNG'], e: ['IMAGE', 'SNAPSHOT'], n: 'Bild', s: 'Chart als Bild (PNG mit Quelle und Zeit)', b: 'BILD', hd: 'chart', g: 'hd' },
 { id: 'saison', k: ['SAISON', 'SAISONAL'], e: ['SEASONAL', 'SEASONALITY'], n: 'Saisonalität', s: 'Ø-Rendite je Monat, Wochentag und Stunde', b: 'BTC SAISON', hd: 'saison', g: 'of' },
+{ id: 'heatmap', k: ['HEATMAP', 'HM', 'KARTE'], e: ['MARKETMAP', 'TREEMAP'], n: 'Markt-Heatmap', s: 'Alle Märkte als Flächen: Größe nach Umsatz, Farbe nach Änderung', b: 'HEATMAP', feld: 'hmap', g: 'alr' },
+{ id: 'sektoren', k: ['SEKTOREN', 'KATEGORIEN'], e: ['SECTORS', 'CATEGORIES'], n: 'Kategorien', s: 'Leistung je Kategorie (Layer 1, Meme, KI, DeFi …) und Aktien-Sektor', b: 'SEKTOREN', feld: 'hmap', ziel: '#hm-kat-block', g: 'alr' },
+{ id: 'indizes', k: ['INDIZES', 'WELTMAERKTE'], e: ['INDICES', 'GLOBALMARKETS'], n: 'Weltmärkte', s: 'Indizes, Rohstoffe und Devisen in einer Tabelle', b: 'INDIZES', feld: 'weltm', g: 'alr' },
+{ id: 'devisen', k: ['DEVISEN', 'ROHSTOFFE'], e: ['FX', 'COMMODITIES'], n: 'Devisen & Rohstoffe', s: 'Devisen und Rohstoffe in der Tabelle der Weltmärkte', b: 'ROHSTOFFE', feld: 'weltm', g: 'alr' },
+{ id: 'technik', k: ['TECHNIK', 'TECHFILTER'], e: ['TECHNICALS', 'TECHSCREEN'], n: 'Technik im Screener', s: 'RSI, EMA-Lage, Abstand zum Hoch, Spannen-Ausbruch als Spalten', b: 'TECHNIK', feld: 'uebersicht', ziel: '#ueb-klick', g: 'alr' },
+{ id: 'screens', k: ['SCREENS', 'GESPEICHERT'], e: ['SAVEDSCREENS', 'MYSCREENS'], n: 'Gespeicherte Screens', s: 'Filter, Spalten und Sortierung merken und laden', b: 'SCREENS', feld: 'uebersicht', ziel: '#ueb-screen-zeile', g: 'alr' },
+{ id: 'ausreisser', k: ['AUSREISSER', 'SCANNER'], e: ['OUTLIERS', 'UNUSUAL'], n: 'Ausreißer live', s: 'Ungewöhnlicher Umsatz, offene Positionen, Funding, Kurs, Liquidationen', b: 'AUSREISSER', feld: 'scanner', g: 'alr' },
+{ id: 'alarm', k: ['ALARM'], e: ['ALERT'], n: 'Preisalarm', s: 'Preisalarm über, unter oder ± % (nur in diesem Tab)', b: 'ALARM BTC > 80000', par: 'text', g: 'alr' },
+{ id: 'alarme', k: ['ALARME', 'WECKER'], e: ['ALERTS', 'ALARMS'], n: 'Alarme', s: 'Preisalarme, Markt-Alarme, Stufen, Stichworte, Protokoll', b: 'ALARME', feld: 'wecker', g: 'alr' },
+{ id: 'walhinweis', k: ['WALHINWEIS', 'WALALARM'], e: ['WHALEALERT', 'WHALEALERTS'], n: 'Wal-Hinweise', s: 'Hinweis, wenn große Konten bei Hyperliquid eröffnen, vergrößern oder schließen', b: 'WALHINWEIS', feld: 'wecker', ziel: '#wk-regeln', g: 'alr' },
+{ id: 'stichwort', k: ['STICHWORT', 'LISTUNGSALARM'], e: ['KEYWORD', 'LISTINGALERT'], n: 'Stichwort-Alarm', s: 'Hinweis bei Börsen-Meldungen mit Stichwort oder Coin', b: 'STICHWORT listing', feld: 'wecker', ziel: '#wk-wort', par: 'text', g: 'alr' },
+{ id: 'stumm', k: ['STUMM', 'RUHE'], e: ['MUTE', 'QUIET'], n: 'Stummzeit', s: 'Hinweise für Minuten stumm schalten (STUMM 60, STUMM aus)', b: 'STUMM 60', par: 'text', g: 'alr' },
+{ id: 'protokoll', k: ['PROTOKOLL', 'ALARMLOG'], e: ['ALERTLOG', 'HINTLOG'], n: 'Alarm-Protokoll', s: 'Alle ausgelösten Hinweise mit Zeit', b: 'PROTOKOLL', feld: 'wecker', ziel: '#wk-log', g: 'alr' },
+{ id: 'alarmlinie', k: ['ALARMLINIE', 'WECKLINIE'], e: ['ALERTLINE', 'PRICELINE'], n: 'Alarm-Linie', s: 'Alarm-Linie im Chart setzen und ziehen', b: 'ALARMLINIE', hd: 'chart', aktion: 'alarm', g: 'alr' },
+{ id: 'perpspot', k: ['PERPSPOT', 'KASSASPREAD'], e: ['PERPVSSPOT', 'SPOTGAP'], n: 'Perp − Spot', s: 'Spread Futures minus Spot desselben Coins', b: 'BTC PERPSPOT', hd: 'chart', par: 'text', g: 'eb' },
+{ id: 'bspread', k: ['BSPREAD', 'BOERSENSPREAD'], e: ['XSPREAD', 'VENUESPREAD'], n: 'Börsen-Spread', s: 'Spread desselben Coins zwischen zwei Börsen (z. B. BSPREAD BTC BINANCE)', b: 'BSPREAD BTC BINANCE', hd: 'chart', par: 'text', g: 'eb' },
 { id: 'ab', k: ['AB', 'ARBEITSBEREICH'], e: ['WS', 'WORKSPACE'], n: 'Arbeitsbereich', s: 'Arbeitsbereich öffnen oder speichern', b: 'AB Scalper', par: 'ab', g: 'nav' },
 { id: 'fokus', k: ['FOKUS', 'VOLLBILD'], e: ['FOCUS', 'FULLSCREEN'], n: 'Fokus', s: 'Ein Feld bildschirmfüllend, Esc zurück', b: 'LIQ FOKUS', g: 'nav' },
 { id: 'zurueck', k: ['ZURUECK'], e: ['BACK'], n: 'Zurück', s: 'Zum vorigen Markt oder Feld', b: 'ZURUECK', g: 'nav' },
@@ -13460,7 +14304,7 @@ if (!p.fn && !p.markt && letzte.length >= 2) for (const a of K.abs()) if (befNor
 return aus.sort((a, b) => b.rang - a.rang).slice(0, max);
 }
 /*BEFEHL-KERN-ENDE*/
-const BEF_GRUPPEN = [['of', 'Chart & Orderflow'], ['der', 'Derivate'], ['opt', 'Optionen'], ['wal', 'Wale & On-Chain'], ['news', 'News & Lage'], ['mak', 'Makro'],
+const BEF_GRUPPEN = [['of', 'Chart & Orderflow'], ['der', 'Derivate'], ['opt', 'Optionen'], ['alr', 'Screener & Alarme'], ['wal', 'Wale & On-Chain'], ['news', 'News & Lage'], ['mak', 'Makro'],
 ['hd', 'Handeln (Papier)'], ['eb', 'Ebenen im Chart'], ['nav', 'Navigation'], ['ans', 'Ansicht'], ['hilfe', 'Hilfe']];
 const BEF_T = {
 unbekannt: { de: (x) => `Unbekannt: „${x}“ – HILFE zeigt alle Befehle.`, en: (x) => `Unknown: “${x}” – HELP lists all commands.`, es: (x) => `Desconocido: «${x}» – HELP muestra todos los comandos.`,
@@ -13517,6 +14361,7 @@ const AB_VOR = [
 { id: 'makro', n: 'Makro', f: ['mz', 'behoerden', 'makro', 'umfeld', 'news', 'geschichte', 'meldungen'] },
 { id: 'news', n: 'News', f: ['news', 'meldungen', 'jetzt', 'danach', 'bericht', 'analyse'] },
 { id: 'einsteiger', n: 'Einsteiger', f: ['chart', 'analyse', 'bericht', 'jetzt', 'werte', 'umfeld'] },
+{ id: 'scanner', n: 'Scanner & Alarme', f: ['hmap', 'uebersicht', 'scanner', 'wecker', 'weltm'] },
 { id: 'alle', n: 'Alle Daten' },
 ];
 const AB_SCHMAL = new Set(['jetzt', 'werte', 'band', 'liq', 'mac', 'cvd', 'dom', 'vol', 'opt', 'kurve', 'makro']);
@@ -13783,6 +14628,8 @@ if (r.aktion === 'ebenen') { if (HD.blatt !== 'werkzeug') { const b = $('hd-eben
 if (r.aktion === 'aufnahme') { const b = $('hd-aufnahme'); if (b && !HD.aufnahme) b.click(); }
 if (r.aktion === 'linie' || r.aktion === 'fib' || W3_ZEICHEN.has(r.aktion)) { const b = document.querySelector(`#hd-zeichnen [data-werkzeug="${r.aktion}"]`); if (b && HD.werkzeug !== r.aktion) b.click(); }
 if (r.w3) { const [k, v] = r.w3.split(':'); w3Setze(k, v); }
+if (r.aktion === 'alarm') { const b = document.querySelector('#hd-zeichnen [data-werkzeug="alarm"]'); if (b && HD.werkzeug !== 'alarm') b.click(); }
+if (r.w3 || r.aktion === 'alarm' || W3_ZEICHEN.has(r.aktion) || (r.ebene && document.querySelector(`#hd-ebenen [data-ebene="${r.ebene}"].hd-mehr-teil`))) w4Mehr(true);
 if (r.ziel) { const z = document.querySelector('#handeln ' + r.ziel) || document.querySelector(r.ziel); if (z) { ziel = z; try { z.scrollIntoView({ block: 'nearest' }); } catch (e) {   } } }
 return { ok: true, ziel };
 }
@@ -13843,7 +14690,8 @@ case 'teilen': await linkKopieren(); return fertig(true, '');
 case 'suche': auswahlAuf(); window.scrollTo(0, 0); return fertig(true, hinweis, $('auswahl'));
 case 'tasten': tastenHilfe(true); return fertig(true, hinweis, $('tasten-hilfe'));
 case 'neu': wasNeu(); return fertig(true, hinweis, $('was-neu'));
-case 'vorlesen': return fertig(vorlesenStart(), hinweis);
+case 'vorlesen': { const ok = vorlesenStart(); if (!ok && !meld) meldLaden(); return fertig(ok, ok ? hinweis : w4T(window.speechSynthesis && typeof SpeechSynthesisUtterance !== 'undefined' ? 'vlLeer' : 'vlStimme')); }
+case 'alarm': case 'stumm': case 'technik': case 'perpspot': case 'bspread': case 'stichwort': { const e = await w4Befehl(r, p); if (e.ok) NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'vgl': case 'ratio': case 'spread': case 'art': case 'vorlage': case 'bild': { const e = await w3Befehl(r, p); NAV.f = r.id; return fertig(e.ok, hinweis, e.ziel); }
 case 'einstieg': einstieg(0); return fertig(true, hinweis, $('einstieg'));
 case 'hilfe': verzeichnis(p.rest.join(' ')); return fertig(true, hinweis, $('verzeichnis'));
