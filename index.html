@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "ce73adfe", "es": "5e41fa15", "fr": "803c3384", "it": "d36bd3b0", "tr": "cbe007e0"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "b203fc0c", "es": "9a5eab43", "fr": "2adefb69", "it": "f0b40336", "tr": "7a6f2a94"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2089,6 +2089,12 @@ body.fokus-an { overflow: hidden; }
 @media (max-width: 699px) { .fokus-knopf { display: none; } }   
 
 
+@media (min-width: 1000px) { main.raster > section.feld.behoerden { grid-column: 1 / -1; } }
+.news-stumm summary { cursor: pointer; font-size: 12px; color: var(--leise); }
+.news-stumm .zoom { flex-wrap: wrap; margin-top: 6px; }
+.bh-wicht { letter-spacing: 1px; color: var(--wal); }
+
+
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
 .test-band summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 10px 14px; -webkit-tap-highlight-color: transparent; }
 .test-band summary::-webkit-details-marker { display: none; }
@@ -2513,6 +2519,7 @@ body.fokus-an { overflow: hidden; }
   <section class="feld meldungen" aria-labelledby="t-meld">
     <div class="feld-kopf"><h2 id="t-meld">Börsen-Meldungen</h2>
       <div class="zoom" id="meld-art" role="group" aria-label="Art"><button type="button" data-a="">Alle</button><button type="button" data-a="Listung">Listungen</button><button type="button" data-a="Streichung">Streichungen</button><button type="button" data-a="Handel">Handel</button><button type="button" data-a="Wartung">Wartung</button></div>
+      <div class="zoom" role="group" aria-label="Vorlesen"><button type="button" id="meld-vorlesen" aria-pressed="false" title="Die neuesten Meldungen mit der Sprachausgabe dieses Geräts vorlesen (Titel unverändert, mit Quelle)">Vorlesen</button></div>
       <button type="button" class="was" data-hilfe="meld" aria-expanded="false">Was ist das?</button></div>
     <div class="hilfe" id="h-meld" hidden>
       <p>Die offiziellen Ankündigungen von Binance, Bybit und OKX, alle 10 Minuten vom Mac (Werbung und Kampagnen ausgefiltert). <b>Listungen</b> bewegen kleine Coins oft stark, <b>Streichungen</b> drücken sie; <b>Handel</b> = geänderte Hebel, Margin oder neue Futures; <b>Wartung</b> = Ein- und Auszahlungen gesperrt. Fett = betrifft einen Coin aus deiner Liste.</p>
@@ -2765,6 +2772,38 @@ body.fokus-an { overflow: hidden; }
       <div><h3>Nächste US-Termine</h3><ol class="termine" id="termine"></ol></div>
     </div>
   </section>
+
+  <section class="feld behoerden" aria-labelledby="t-behoerden">
+    <div class="feld-kopf"><h2 id="t-behoerden">Makro &amp; Behörden: Liquidität, Zinsen, Euro, Welt</h2><span class="stand" id="bh-stand"></span>
+      <button type="button" class="was" data-hilfe="behoerden" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-behoerden" hidden>
+      <p>Offizielle Zahlen von Notenbanken, Finanzministerien und Statistikämtern – unverändert übernommen, je Block mit Quelle, Stand und der Angabe, die die Quelle verlangt. Keine Prognose, keine Kauf- oder Verkaufssignale.</p>
+      <p><b>Netto-Liquidität</b>: Bilanzsumme der US-Notenbank minus Guthaben des Finanzministeriums bei der Fed (TGA) minus Reverse Repo – eine eigene Rechnung aus den Wochenständen (H.4.1). Steigt sie, ist mehr Zentralbankgeld im System.</p>
+      <p><b>US-Renditen</b>: ganze Zinskurve von 1 Monat bis 30 Jahre heute, vor einer Woche und vor einem Jahr. <b>Euro-Raum</b>: Leitzinsen der EZB, €STR, Geldmenge M3, Referenzkurse, Inflation (HVPI) für den Euro-Raum und Deutschland, Renditen deutscher Bundesanleihen. <b>Welt</b>: Wirtschaftswachstum (Weltbank) und Frühindikator der OECD (100 = Langzeittrend).</p>
+      <p><b>Auktionen</b>: kommende Versteigerungen von US-Staatsanleihen und Ergebnisse (Rendite, Nachfrage je angebotenem Dollar = Bid-to-Cover). <b>Kalender</b>: Termine mit Wichtigkeit (●●● = bewegt oft alle Märkte), Countdown, Vorwert und Ist – ohne Konsens-Schätzungen. <b>SEC</b>: Quartalszahlen-Termine krypto-naher Firmen (der nächste ist eine Schätzung), Insider-Meldungen (Form 4) und die größten Halter der Bitcoin-ETFs (13F, je Quartal).</p>
+    </div>
+    <p class="ausfall-text" id="bh-ausfall" role="status" hidden></p>
+    <div class="mz-raster">
+      <article class="mz-block" id="bh-liq"><h3>Netto-Liquidität <span class="leise">Fed-Bilanz − TGA − Reverse Repo</span></h3>
+        <p class="mz-fehler" hidden></p><dl class="kacheln mz-kacheln" id="bh-liq-k"></dl><p class="leise mz-letzte" id="bh-liq-teil"></p>
+        <div class="leinwand-mz klein"><canvas id="bh-liq-c" role="img" aria-label="Netto-Liquidität bzw. TGA im Verlauf"></canvas></div><p class="mz-quelle" id="bh-liq-q"></p></article>
+      <article class="mz-block" id="bh-kurve"><h3>US-Renditen <span class="leise">ganze Kurve: heute, vor 1 Woche, vor 1 Jahr</span></h3>
+        <p class="mz-fehler" hidden></p><dl class="kacheln mz-kacheln" id="bh-kurve-k"></dl><div class="legende" id="l-bh-kurve"></div>
+        <div class="leinwand-mz klein"><canvas id="bh-kurve-c" role="img" aria-label="US-Zinskurve heute, vor einer Woche und vor einem Jahr"></canvas></div><p class="mz-quelle" id="bh-kurve-q"></p></article>
+      <article class="mz-block mz-breit" id="bh-euro"><h3>Euro-Raum <span class="leise">EZB-Sätze, €STR, Wechselkurse, HVPI, Bund-Renditen</span></h3>
+        <p class="mz-fehler" hidden></p><dl class="kacheln mz-kacheln" id="bh-euro-k"></dl><div class="legende" id="l-bh-hvpi"></div>
+        <div class="leinwand-mz klein"><canvas id="bh-hvpi-c" role="img" aria-label="Inflation (HVPI) Euro-Raum und Deutschland ggü. Vorjahr"></canvas></div><p class="mz-quelle" id="bh-euro-q"></p></article>
+      <article class="mz-block" id="bh-welt"><h3>Welt <span class="leise">BIP-Wachstum (Weltbank) · Frühindikator (OECD)</span></h3>
+        <p class="mz-fehler" hidden></p><div class="tabelle mz-tab" id="bh-welt-t"></div><p class="mz-quelle" id="bh-welt-q"></p></article>
+      <article class="mz-block" id="bh-auk"><h3>US-Anleihe-Auktionen <span class="leise">kommend · Ergebnisse</span></h3>
+        <p class="mz-fehler" hidden></p><div class="tabelle mz-tab" id="bh-auk-t"></div><p class="mz-quelle" id="bh-auk-q"></p></article>
+      <article class="mz-block" id="bh-kal"><h3>Wirtschaftskalender <span class="leise">Wichtigkeit · Countdown · Vorwert · Ist</span></h3>
+        <p class="mz-fehler" hidden></p><ol class="termine-werte" id="bh-kal-l"></ol><p class="mz-quelle" id="bh-kal-q"></p></article>
+      <article class="mz-block mz-breit" id="bh-sec"><h3>US-Börsenaufsicht (SEC) <span class="leise">Quartalszahlen-Termine · Insider (Form 4) · Halter der Bitcoin-ETFs (13F)</span></h3>
+        <p class="mz-fehler" hidden></p><div class="tabelle mz-tab" id="bh-sec-q4"></div><div class="tabelle mz-tab" id="bh-sec-ins"></div><div class="tabelle mz-tab" id="bh-sec-13f"></div><p class="mz-quelle" id="bh-sec-q"></p></article>
+    </div>
+    <p class="leise stand mz-fuss" id="bh-fuss"></p>
+  </section>
 </main>
 
 <main class="handeln" id="handeln" aria-labelledby="t-handeln" hidden>
@@ -2780,7 +2819,7 @@ body.fokus-an { overflow: hidden; }
   <div class="hd-werkzeug hd-blatt" id="hd-werkzeug" role="toolbar" aria-label="Werkzeuge">
     <div class="hd-blatt-kopf"><h3>Ebenen &amp; Werkzeuge</h3><button type="button" class="hd-blatt-zu" data-blatt-zu aria-label="Schließen">×</button></div>
     <div class="hd-gruppe" id="hd-layout" role="group" aria-label="Layout"><span class="hd-gt">Layout</span><button type="button" data-layout="1" title="Ein großer Chart">1</button><button type="button" data-layout="2" title="Zwei Charts nebeneinander">2</button><button type="button" data-layout="4" title="Vier Charts">4</button></div>
-    <div class="hd-gruppe hd-ebenen" id="hd-ebenen" role="group" aria-label="Ebenen im Chart"><span class="hd-gt">Ebenen</span><button type="button" data-ebene="ema" aria-pressed="false" title="Gleitende Durchschnitte EMA 20, 50 und 200 über den Kerzen">EMA</button><button type="button" data-ebene="wma" aria-pressed="false" title="Gewichteter Durchschnitt WMA 20 (jüngste Kerze am stärksten)">WMA</button><button type="button" data-ebene="rsi" aria-pressed="false" title="RSI 14 (Wilder) unter dem Chart mit 30/70-Linien">RSI</button><button type="button" data-ebene="macd" aria-pressed="false" title="MACD 12/26/9 unter dem Chart: Linie, Signal und Histogramm">MACD</button><button type="button" data-ebene="vp" aria-pressed="false" title="Volumen je Preis mit POC und 70-%-Wertbereich (VAH/VAL), aus den Kerzen geschätzt">Profil</button><button type="button" data-ebene="vwap" aria-pressed="false" title="Volumengewichteter Durchschnittspreis seit Tagesbeginn (UTC) mit ±1σ und ±2σ">VWAP</button><button type="button" data-ebene="heat" aria-pressed="false" title="Liquidität im Orderbuch hinter den Kerzen (Aufzeichnung am Mac, sonst ab Öffnen der Seite)">Heatmap</button><button type="button" data-ebene="fp" aria-pressed="false" title="Footprint: Kauf × Verkauf je Preisstufe beim Hineinzoomen, Delta je Kerze">Footprint</button><button type="button" data-ebene="cvd" aria-pressed="false" title="Kaufdruck: Delta je Kerze und aufsummiert (CVD) unter dem Chart">CVD</button><button type="button" data-ebene="liq" aria-pressed="false" title="Liquidations-Zonen aus der Liq.-Karte als Bänder an der Preisachse, große Wal-Liquidationen als Linien">Liq.-Zonen</button><button type="button" data-ebene="marken" aria-pressed="false" title="Absorption und Stop-Jagd nach festen Regeln markieren – Beobachtung, kein Signal">Orderflow</button><button type="button" data-ebene="gamma" aria-pressed="false" title="Gamma-Wände, Kipp-Punkt und Max-Pain aus den Optionen (BTC, ETH)">Gamma</button><button type="button" data-ebene="bot" aria-pressed="false" hidden title="Positionen und Trades deines Bots (Hauptkonto und Gewinn-Lehrer, Papier) im Chart">Bot</button></div>
+    <div class="hd-gruppe hd-ebenen" id="hd-ebenen" role="group" aria-label="Ebenen im Chart"><span class="hd-gt">Ebenen</span><button type="button" data-ebene="ema" aria-pressed="false" title="Gleitende Durchschnitte EMA 20, 50 und 200 über den Kerzen">EMA</button><button type="button" data-ebene="wma" aria-pressed="false" title="Gewichteter Durchschnitt WMA 20 (jüngste Kerze am stärksten)">WMA</button><button type="button" data-ebene="rsi" aria-pressed="false" title="RSI 14 (Wilder) unter dem Chart mit 30/70-Linien">RSI</button><button type="button" data-ebene="macd" aria-pressed="false" title="MACD 12/26/9 unter dem Chart: Linie, Signal und Histogramm">MACD</button><button type="button" data-ebene="vp" aria-pressed="false" title="Volumen je Preis mit POC und 70-%-Wertbereich (VAH/VAL), aus den Kerzen geschätzt">Profil</button><button type="button" data-ebene="vwap" aria-pressed="false" title="Volumengewichteter Durchschnittspreis seit Tagesbeginn (UTC) mit ±1σ und ±2σ">VWAP</button><button type="button" data-ebene="heat" aria-pressed="false" title="Liquidität im Orderbuch hinter den Kerzen (Aufzeichnung am Mac, sonst ab Öffnen der Seite)">Heatmap</button><button type="button" data-ebene="fp" aria-pressed="false" title="Footprint: Kauf × Verkauf je Preisstufe beim Hineinzoomen, Delta je Kerze">Footprint</button><button type="button" data-ebene="cvd" aria-pressed="false" title="Kaufdruck: Delta je Kerze und aufsummiert (CVD) unter dem Chart">CVD</button><button type="button" data-ebene="liq" aria-pressed="false" title="Liquidations-Zonen aus der Liq.-Karte als Bänder an der Preisachse, große Wal-Liquidationen als Linien">Liq.-Zonen</button><button type="button" data-ebene="marken" aria-pressed="false" title="Absorption und Stop-Jagd nach festen Regeln markieren – Beobachtung, kein Signal">Orderflow</button><button type="button" data-ebene="gamma" aria-pressed="false" title="Gamma-Wände, Kipp-Punkt und Max-Pain aus den Optionen (BTC, ETH)">Gamma</button><button type="button" data-ebene="termine" aria-pressed="false" title="Termine als senkrechte Marken: Zinsentscheide, Inflation, Arbeitsmarkt, Quartalszahlen, Listungen – beschreibend">Termine</button><button type="button" data-ebene="bot" aria-pressed="false" hidden title="Positionen und Trades deines Bots (Hauptkonto und Gewinn-Lehrer, Papier) im Chart">Bot</button></div>
     <button type="button" id="hd-aufnahme" class="hd-aufnahme-knopf" title="Nur der Chart, Format 9:16, 16:9 oder 1:1 – zum Abfilmen oder für eine Bildschirmaufnahme"><i aria-hidden="true"></i>Aufnahme</button>
     <span class="hd-umbruch" aria-hidden="true"></span>
     <div class="hd-gruppe" id="hd-look" role="group" aria-label="Chart-Look"><span class="hd-gt">Look</span><button type="button" data-look="ws">Weiß-Schwarz</button><button type="button" data-look="neon">Neon</button><button type="button" data-look="desk">Desk</button><button type="button" data-look="thema">Wie Thema</button></div>
@@ -2854,7 +2893,7 @@ body.fokus-an { overflow: hidden; }
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "ce73adfe", "es": "5e41fa15", "fr": "803c3384", "it": "d36bd3b0", "tr": "cbe007e0"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "b203fc0c", "es": "9a5eab43", "fr": "2adefb69", "it": "f0b40336", "tr": "7a6f2a94"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -7885,114 +7924,6 @@ if (r.ok || (d && typeof d.fehler === 'string')) return d;
 throw new Error('HTTP ' + r.status);
 } finally { clearTimeout(t); }
 }
-let news = null, newsFehler = null, newsNr = 0, newsKalWerte = null;
-const NEWS_F = (() => { const s = { k: '', c: '', s: 0, kr: false }; try { const x = JSON.parse(lies('newsFilter') || '{}'); if (x && typeof x === 'object') Object.assign(s, x); } catch (e) {   } return s; })();
-async function newsLaden() {
-if (!MAC_NACHRICHTEN) return;
-const nr = ++newsNr;
-if (DEMO) { news = demoNews(NEWS_F, coin); newsFehler = null; newsKalWerte = demoMakro().kalender; newsZeigen(); return; }
-const basis = macBasis();
-try {
-const d = await holeMitFehler(basis + newsPfad(NEWS_F, coin, Date.now() / 1000), 15000);
-if (nr !== newsNr) return;
-if (d && typeof d.fehler === 'string') newsFehler = 'sammler:' + d.fehler; else if (d && Array.isArray(d.meldungen)) { news = d; newsFehler = null; } else newsFehler = 'Antwort ohne Meldungen';
-} catch (e) { if (nr !== newsNr) return; newsFehler = 'netz'; }
-newsZeigen();
-if (!(mz && Array.isArray(mz.kalender))) {
-try { const k = await holeMitFrist(basis + '/api/profi/makro?teil=kalender', 15000); if (k && Array.isArray(k.kalender)) { newsKalWerte = k.kalender; newsTermineZeigen(); } } catch (e) {   }
-}
-}
-function newsFilterZeigen() {
-const setz = (id, attr, w) => { for (const b of document.querySelectorAll(`#${id} button`)) b.setAttribute('aria-pressed', String(b.dataset[attr] === String(w))); };
-setz('news-kat', 'k', NEWS_F.k); setz('news-coin', 'c', NEWS_F.c); setz('news-seit', 's', NEWS_F.s);
-const ak = $('news-coin-akt'); if (ak) ak.textContent = anzeige(coin);
-const kr = $('news-krypto'); if (kr) kr.checked = !!NEWS_F.kr;
-}
-function newsZeigen() {
-const box = $('news-liste'); if (!box || !MAC_NACHRICHTEN) return;
-newsFilterZeigen();
-const leer = (t) => { const li = document.createElement('li'); li.className = 'leise'; li.textContent = t; box.replaceChildren(li); };
-const aus = $('news-ausfall');
-if (newsFehler) {
-aus.hidden = false;
-const sammler = newsFehler.startsWith('sammler:');
-aus.textContent = (sammler ? 'Noch keine Nachrichten vom Sammler am Mac – er läuft alle 2 Minuten.' : news ? `News gerade nicht erreichbar – Stand ${standTxt(news.zeit)}` : 'News gerade nicht erreichbar – Mac oder Deep-Server antwortet nicht.')
-+ (sammler && news ? ` Stand ${standTxt(news.zeit)}` : '') + (newsFehler !== 'netz' && !sammler && SPRACHE === 'de' ? ` (${newsFehler})` : '');
-} else aus.hidden = true;
-{ const sz = news && news.schlagzeilen, g = $('news-gdelt'); if (g) { g.hidden = !(sz && sz.ok === false && sz.text); g.dataset.roh = ''; g.textContent = g.hidden ? '' : gdeltText(sz, SPRACHE, Date.now() / 1000); } }
-if (!news) { leer(newsFehler ? 'Noch keine Nachrichten geladen.' : 'Lade …'); $('news-stand').textContent = ''; $('news-fuss').textContent = ''; newsTermineZeigen(); return; }
-const jetzt = Date.now() / 1000, liste = news.meldungen || [];
-if (!liste.length) {
-leer('Keine Meldung mit diesem Filter.' + (NEWS_F.c === '*' ? ` Coin: ${anzeige(coin)}` : ''));
-} else {
-box.replaceChildren(...liste.map((m) => {
-const li = document.createElement('li'); if ((m.coins || []).some((c2) => c2 === coin)) li.className = 'mein';
-const t = document.createElement('time'); t.dataset.zeit = String(m.zeit || 0); t.textContent = (m.zeit_genau === false ? '~' : '') + alterSek(jetzt - (m.zeit || jetzt));
-t.dateTime = new Date((m.zeit || jetzt) * 1000).toISOString(); t.title = new Date((m.zeit || jetzt) * 1000).toLocaleString(LOC);
-const q = document.createElement('span'); q.className = 'leise'; q.textContent = (m.quelle || '–') + (m.region && m.region !== 'global' ? ' · ' + m.region : '');
-const k = document.createElement('span'); k.className = 'nk nk-' + (m.kategorie || ''); k.textContent = NEWS_KAT_NAME[m.kategorie] || '';
-const d = document.createElement('div');
-d.append(linkEl(m.titel || '–', m.url));
-const meta = [];
-if (NEWS_ART_NAME[m.art]) meta.push(NEWS_ART_NAME[m.art]);
-if (m.sprache === 'Deutsch') meta.push('Sprache: Deutsch');
-if ((m.coins || []).length) meta.push((m.coins || []).slice(0, 6).join(' '));
-if ((m.weitere_quellen || []).length) meta.push(`+${m.weitere_quellen.length} ${m.weitere_quellen.length === 1 ? 'weitere Quelle' : 'weitere Quellen'}`);
-if (meta.length) { const s = document.createElement('small'); s.className = 'leise'; s.textContent = meta.join(' · '); if (NEWS_ART_NAME[m.art]) s.title = 'Thema automatisch aus Stichwörtern im Titel – ungeprüft, keine Wertung'; d.append(s); }
-li.append(t, q, k, d); return li;
-}));
-}
-const live = (news.quellen || []).filter((x) => x.live).length, ges = (news.quellen || []).length;
-$('news-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `Stand ${standTxt(news.zeit)} · ${live}/${ges} Quellen live`;
-const fuss = $('news-fuss'), v = news.verzug_24h && news.verzug_24h.gesamt;
-const alt = (news.alter_s || 0) > 900 ? 'Achtung: Stand ist älter als 15 Minuten – der Sammler läuft sonst alle 2 Minuten. ' : '';
-const szOk = !!(news.schlagzeilen && news.schlagzeilen.ok), aus2 = (news.quellen || []).filter((x) => !x.live && x.fehler && !(szOk && /^gdelt/.test(x.id || ''))).map((x) => x.quelle || x.id);
-fuss.replaceChildren(document.createTextNode(alt + (v && v.n ? `Verzug bis zur Anzeige (24 Std., Median): ${de(v.median_s / 60, 0)} Min. · ` : '')
-+ (news.verzug_24h && news.verzug_24h.erklaerung ? 'Schlagzeilen kommen über GDELT, das seine Listen alle 15 Min. neu baut – dort meist 15 Min. bis einige Stunden Verzug. · ' : '')
-+ (aus2.length ? `gerade gestört: ${[...new Set(aus2)].join(', ')} · ` : '')), document.createTextNode('Nachweis: '), document.createTextNode(news.nachweis || '–'));
-newsTermineZeigen();
-}
-function newsTermineZeigen() {
-const box = $('news-termine'); if (!box || !MAC_NACHRICHTEN) return;
-const jetzt = Date.now(), kal = termineVerbinden((news && news.kalender) || [], (mz && mz.kalender) || newsKalWerte || []);
-const l = kal.filter((t) => t.zeit * 1000 - jetzt > -3 * 864e5).slice(0, 8);
-if (!l.length) { const li = document.createElement('li'); li.className = 'leise'; li.textContent = news ? 'Keine Termine bekannt.' : 'Lade …'; box.replaceChildren(li); return; }
-box.replaceChildren(...l.map((t) => terminLi(t, jetzt)));
-}
-function newsUhren() {
-if (!MAC_NACHRICHTEN || document.hidden) return;
-const j = Date.now();
-for (const t of document.querySelectorAll('#news-liste time[data-zeit]')) { const z = Number(t.dataset.zeit); if (z) t.textContent = (t.textContent.startsWith('~') ? '~' : '') + alterSek(j / 1000 - z); }
-for (const c of document.querySelectorAll('.feld.news .countdown[data-zeit], .feld.mz .countdown[data-zeit]')) { const ms = Number(c.dataset.zeit) * 1000 - j; if (ms > 0) c.textContent = bisText(ms); }
-}
-function demoNews(f, c) {
-const j = Date.now() / 1000;
-const roh = [[420, 'SEC', 'US', 'regulierung', 'klage', 'SEC Charges Operator of Unregistered Crypto Lending Platform', []],
-[1500, 'Coinbase', 'global', 'boerse', 'listing', 'Coinbase Exchange: new trading pair FOO-USD', ['FOO']],
-[3900, 'EZB', 'EU', 'regulierung', 'sonstiges', 'Speech on the digital euro and payments', []],
-[7200, 'GDELT', 'global', 'schlagzeile', 'etf', `Spot ${c} ETF sees record volume`, [c]],
-[16000, 'CFTC', 'US', 'regulierung', 'sonstiges', 'CFTC Staff Issues Advisory on Tokenized Collateral', []],
-[52000, 'Federal Reserve', 'US', 'regulierung', 'sonstiges', 'Federal Reserve Board announces approval of application', []]];
-const meldungen = roh.map(([d, q, r, k, a, t, cs], i) => ({ id: 'demo' + i, titel: t, url: null, quelle: q, kategorie: k, region: r, zeit: j - d, zeit_genau: true, gesehen: j - d + 60, verzug_s: 60, art: a, coins: cs, krypto: !!cs.length || k !== 'regulierung', weitere_quellen: i === 3 ? ['GDELT: example.org'] : [] }))
-.filter((m) => (!f.k || m.kategorie === f.k) && (f.c !== '*' || m.coins.includes(c)) && (!f.s || m.gesehen > j - f.s) && (!f.kr || m.krypto));
-const kal = demoMakro().kalender.map((t) => ({ datum: t.datum, uhr_utc: t.uhr_utc, zeit: t.zeit, art: t.art, text: t.text, quelle: t.quelle, url: null }));
-return { zeit: j - 40, alter_s: 40, quellen: [{ id: 'sec', quelle: 'SEC', live: true }, { id: 'gdelt', quelle: 'GDELT', live: false, fehler: 'HTTP 429' }], quellen_live: 1, meldungen, kalender: kal,
-verzug_24h: { gesamt: { n: 5, median_s: 240, p90_s: 900 } }, nachweis: 'Quellen: Demo-Daten (kein echter Abruf)', nur_mac: true,
-schlagzeilen: { ok: false, quelle: 'GDELT', text: 'Schlagzeilen gerade nicht verfügbar (Demo): GDELT bremst Abfragen. Regulierung, Coinbase und Termine laufen weiter.', gestoert_seit: j - 3600, naechster_versuch: j + 600 } };
-}
-
-let mz = null, mzFehler = null, mzNr = 0, mzInfJahre = Number(lies('mzInfJahre')) || 0;
-async function mzLaden() {
-if (!MAC_NACHRICHTEN) return;
-const nr = ++mzNr;
-if (DEMO) { mz = demoMakro(); mzFehler = null; mzZeigen(); return; }
-try {
-const d = await holeMitFehler(macBasis() + '/api/profi/makro', 25000);
-if (nr !== mzNr) return;
-if (d && typeof d.fehler === 'string') mzFehler = 'sammler:' + d.fehler; else if (d && d.zeit) { mz = d; mzFehler = null; } else mzFehler = 'Antwort ohne Daten';
-} catch (e) { if (nr !== mzNr) return; mzFehler = 'netz'; }
-mzZeigen(); newsTermineZeigen();
-}
 function mzBlock(id, fehler) {
 const art = $(id); if (!art) return false;
 const p = art.querySelector('.mz-fehler');
@@ -8001,217 +7932,9 @@ if (p) { p.hidden = !fehler; p.textContent = fehler ? 'Keine Daten von dieser Qu
 return !fehler;
 }
 function mzLegende(id, eintraege) { const l = $(id); if (l) l.replaceChildren(...eintraege.map(([nm, f]) => { const s = document.createElement('span'); const i = document.createElement('i'); i.className = 'punkt'; i.style.background = f; s.append(i, nm); return s; })); }
-function mzZeigen() {
-const feld = document.querySelector('section.feld.mz'); if (!feld || !MAC_NACHRICHTEN) return;
-const aus = $('mz-ausfall');
-if (mzFehler) { const sammler = mzFehler.startsWith('sammler:'); aus.hidden = false; aus.textContent = (sammler ? 'Noch keine Makro-Daten vom Sammler am Mac – er läuft alle 5 Minuten.' : mz ? `Makro-Daten gerade nicht erreichbar – Stand ${standTxt(mz.zeit)}` : 'Makro-Daten gerade nicht erreichbar – Mac oder Deep-Server antwortet nicht.') + (sammler && mz ? ` Stand ${standTxt(mz.zeit)}` : '') + (mzFehler !== 'netz' && !sammler && SPRACHE === 'de' ? ` (${mzFehler})` : ''); }
-else aus.hidden = true;
-feld.classList.toggle('mz-leer', !mz);
-if (!mz) { $('mz-stand').textContent = ''; $('mz-fuss').textContent = ''; return; }
-const live = (mz.quellen || []).filter((x) => x.live).length;
-$('mz-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `Stand ${standTxt(mz.zeit)} · ${live}/${(mz.quellen || []).length} Quellen live`;
-const alt = (mz.alter_s || 0) > 1800 ? 'Achtung: Stand ist älter als 30 Minuten – der Sammler läuft sonst alle 5 Minuten. ' : '';
-const gestoert = (mz.quellen || []).filter((x) => !x.live).map((x) => x.name);
-$('mz-fuss').replaceChildren(document.createTextNode(alt + (gestoert.length ? `Quellen nicht aktuell: ${gestoert.length}/${(mz.quellen || []).length} · ` : '') + 'Nachweis: '), document.createTextNode(mz.nachweis || '–'));
-if (gestoert.length) $('mz-fuss').title = nurText(gestoert.join(' · '));
-mzNowcast(); mzInflation(); mzBeitraege(); mzZinsen(); mzOel(); mzEngpaesse(); mzKalender();
-}
-function mzNowcast() {
-const n = mz.nowcast || {}; if (!mzBlock('mz-nowcast', n.fehler || (!n.monat && 'keine Werte'))) { $('mz-nc-kacheln').replaceChildren(); $('mz-nc-tabelle').replaceChildren(); quelleZeile($('mz-nc-q'), 'Federal Reserve Bank of Cleveland', n.link, null); return; }
-const l = n.letzter_cpi, lm = l && l.monat, fuer = (liste, zr) => (liste || []).find((x) => x.zeitraum === zr);
-const nachher = (n.monat || []).filter((x) => !lm || x.zeitraum > lm).sort((a, b) => (a.zeitraum < b.zeitraum ? -1 : 1))[0];
-const k = [];
-if (l) k.push(kachel(`CPI ${monatTxt(lm)} · BLS`, pctTxt(l.cpi_mm), `Ist ggü. Vormonat · Kern ${pctTxt(l.kern_mm)} · ggü. Vorjahr ${pctTxt(l.cpi_jj)}`));
-const vorIst = lm && fuer(n.monat, lm);
-if (vorIst) k.push(kachel(`Nowcast ${monatTxt(lm)}`, pctTxt(vorIst.cpi), `Schätzung vor dem Ist · Kern ${pctTxt(vorIst.kern_cpi)}`));
-if (nachher) { const j = fuer(n.jahr, nachher.zeitraum); k.push(kachel(`Nowcast ${monatTxt(nachher.zeitraum)}`, pctTxt(nachher.cpi), `ggü. Vormonat · Kern ${pctTxt(nachher.kern_cpi)}${j ? ` · ggü. Vorjahr ${pctTxt(j.cpi)}` : ''}`)); }
-$('mz-nc-kacheln').replaceChildren(...k);
-const tab = document.createElement('table'), kopf = tab.createTHead().insertRow();
-for (const h of ['', 'CPI', 'Kern-CPI', 'PCE', 'Kern-PCE']) { const th = document.createElement('th'); th.textContent = h; kopf.append(th); }
-const b = tab.createTBody();
-for (const [teil, name] of [['monat', 'ggü. Vormonat'], ['jahr', 'ggü. Vorjahr'], ['quartal', 'Quartal, aufs Jahr']]) {
-for (const z of n[teil] || []) {
-const r = b.insertRow(), c0 = r.insertCell(); c0.textContent = `${periodeTxt(z.zeitraum)} · ${name}`;
-for (const f of ['cpi', 'kern_cpi', 'pce', 'kern_pce']) { const c = r.insertCell(); c.textContent = z[f] === null || z[f] === undefined ? '–' : pctTxt(z[f]); }
-}
-}
-$('mz-nc-tabelle').replaceChildren(tab);
-quelleZeile($('mz-nc-q'), n.quelle || 'Federal Reserve Bank of Cleveland', n.link, n.stand, 'Modell-Schätzung, keine offizielle Zahl · – = Ist schon veröffentlicht');
-}
-const MZ_INF = [['cpi', 'CPI', () => F.wal, 2], ['kern_cpi', 'Kern-CPI', () => F.spot, 1.6], ['ppi', 'PPI Endnachfrage', () => F.perp, 1.4], ['kern_ppi', 'Kern-PPI (ohne Lebensmittel, Energie, Handel)', () => F.leise, 1.2],
-['ppi_ohne_le', 'PPI ohne Lebensmittel und Energie', () => F.kauf, 1.2]];
-let mzPpiLe = lies('mzPpiLe') === '1';
-function mzInflation() {
-const inf = mz.inflation || {}, cv = $('mz-inf');
-for (const b of document.querySelectorAll('#mz-inf-zeit button')) b.setAttribute('aria-pressed', String(Number(b.dataset.jahre) === mzInfJahre));
-if (!mzBlock('mz-inflation', inf.fehler || (!inf.reihen && 'keine Werte'))) { leinwandText(cv, 'keine Daten'); quelleZeile($('mz-inf-q'), 'BLS', inf.link || null, null); return; }
-const le = $('mz-inf-le'); if (le) { le.hidden = !(inf.reihen.ppi_ohne_le && (inf.reihen.ppi_ohne_le.werte || []).length); le.setAttribute('aria-pressed', String(mzPpiLe)); }
-const reihen = MZ_INF.filter(([k]) => inf.reihen[k] && (inf.reihen[k].werte || []).length && (k !== 'ppi_ohne_le' || mzPpiLe));
-const monate = [...new Set(reihen.flatMap(([k]) => inf.reihen[k].werte.map((w) => w[0])))].sort();
-const ab = mzInfJahre ? (() => { const l = monate[monate.length - 1] || '2010-01'; return `${Number(l.slice(0, 4)) - mzInfJahre}${l.slice(4)}`; })() : '';
-const m = monate.filter((x) => x >= ab);
-mzLegende('l-mz-inf', reihen.map(([, nm, f]) => [nm, f()]));
-{ const sp = $('l-mz-inf') ? $('l-mz-inf').children : []; reihen.forEach(([k, nm], i) => { if (sp[i] && inf.reihen[k].name) sp[i].title = `${SPRACHE === 'de' ? inf.reihen[k].name : nm}${inf.reihen[k].serie ? ' · BLS ' + inf.reihen[k].serie : ''}`; }); }
-diagramm(cv, { labels: m.map((x) => `${x.slice(5, 7)}/${x.slice(2, 4)}`), einheit: ' %', mitNull: true, ohneKappe: true, links: 40,
-reihen: reihen.map(([k, , f, br]) => { const w = new Map(inf.reihen[k].werte); return { werte: m.map((x) => (w.has(x) ? w.get(x) : null)), farbe: f(), breite: br, nk: 1, beschriften: (i, n2) => i === n2 - 1 }; }) });
-const lz = reihen.map(([k, nm]) => { const w = inf.reihen[k].werte, x = w[w.length - 1]; const vl = (inf.reihen[k].vorlaeufig || []).includes(x[0]); return `${nm} ${monatTxt(x[0])}: ${pctTxt(x[1], 1)}${vl ? ' (vorläufig)' : ''}`; });
-$('mz-inf-letzte').textContent = lz.join(' · ');
-quelleZeile($('mz-inf-q'), 'BLS', inf.link, inf.stand, 'nicht saisonbereinigt');
-}
-const MZ_GRUPPEN = [['energie', 'Energie', () => F.wal], ['lebensmittel', 'Lebensmittel', () => F.kauf], ['kernwaren', 'Kernwaren', () => F.perp], ['kerndienste', 'Kerndienste', () => F.spot]];
-function mzBeitraege() {
-const b = mz.beitraege || {}, cv = $('mz-beitr');
-if (!mzBlock('mz-beitraege', b.fehler || (!(b.monate || []).length && 'keine Werte'))) { leinwandText(cv, 'keine Daten'); quelleZeile($('mz-beitr-q'), 'BLS', b.link || null, null); return; }
-const monate = b.monate.slice(-60), g = MZ_GRUPPEN.map(([k]) => k), st = stapeln(monate, g);
-mzLegende('l-mz-beitr', [...MZ_GRUPPEN.map(([, nm, f]) => [nm, f()]), ['CPI ggü. Vorjahr', F.text]]);
-const dpr = groesse(cv), ctx = cv.getContext('2d'), W = cv.width, H = cv.height;
-ctx.fillStyle = F.feld; ctx.fillRect(0, 0, W, H);
-const links = 40 * dpr, rechts = 8 * dpr, top = 10 * dpr, unten = 18 * dpr, ph = H - top - unten, pw = W - links - rechts, n = monate.length;
-let lo = Math.min(0, ...st.map((s) => s.unten), ...monate.map((m) => (m.cpi_jj === null ? 0 : m.cpi_jj))), hi = Math.max(0, ...st.map((s) => s.oben), ...monate.map((m) => (m.cpi_jj === null ? 0 : m.cpi_jj)));
-const rand = (hi - lo) * 0.08 || 0.5; lo -= rand; hi += rand;
-const y = (v) => top + (hi - v) / (hi - lo) * ph, bw = pw / n, x = (i) => links + (i + 0.5) * bw;
-const schritt = netterSchritt((hi - lo) / Math.max(2, Math.floor(ph / (34 * dpr))));
-for (let v0 = Math.ceil(lo / schritt) * schritt; v0 <= hi; v0 += schritt) {
-const v = Math.abs(v0) < schritt / 1000 ? 0 : v0, yy = Math.round(y(v)) + 0.5;
-ctx.strokeStyle = v === 0 ? mix(F.leise, .6) : F.linie; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(links, yy); ctx.lineTo(W - rechts, yy); ctx.stroke();
-text(ctx, de(v, schritt < 1 ? 1 : 0) + ' %', links - 5 * dpr, yy + 4 * dpr, dpr * 0.85, F.leise, 'right');
-}
-const breite = Math.max(1, bw * 0.72);
-st.forEach((s, i) => s.teile.forEach(([a, e], j) => { if (a === e) return; ctx.fillStyle = MZ_GRUPPEN[j][2](); ctx.fillRect(x(i) - breite / 2, y(Math.max(a, e)), breite, Math.max(1, Math.abs(y(a) - y(e)))); }));
-ctx.strokeStyle = F.text; ctx.lineWidth = 1.6 * dpr; linieZiehen(ctx, n, x, y, (i) => (monate[i].cpi_jj === null || monate[i].cpi_jj === undefined ? null : monate[i].cpi_jj), dpr);
-const jede = Math.max(1, Math.ceil(n / Math.max(1, Math.floor(pw / (44 * dpr))))); let zuletzt = null;
-monate.forEach((m, i) => { if (i % jede && i !== n - 1) return; if (i !== n - 1 && n - 1 - i < jede) return; const l = `${m.monat.slice(5, 7)}/${m.monat.slice(2, 4)}`; if (l === zuletzt) return; zuletzt = l; text(ctx, l, Math.min(Math.max(x(i), links + 12 * dpr), W - rechts - 14 * dpr), H - 5 * dpr, dpr * 0.85, F.leise, 'center'); });
-const l = monate[n - 1];
-$('mz-beitr-letzte').textContent = `${monatTxt(l.monat)}: ` + MZ_GRUPPEN.map(([k, nm]) => `${nm} ${l[k] > 0 ? '+' : l[k] < 0 ? '−' : ''}${de(Math.abs(l[k]), 2)}`).join(' · ') + ` Pkt. · CPI ${pctTxt(l.cpi_jj, 2)}`;
-quelleZeile($('mz-beitr-q'), 'BLS', b.link, b.stand, 'Prozentpunkte der CPI-Jahresrate, eigene Rechnung aus BLS-Gewichten');
-}
-function mzZinsen() {
-const z = mz.zinsen || {}, cv = $('mz-zins'), lz = z.leitzins;
-const k = [];
-if (lz && lz.zielspanne) k.push(kachel('Leitzins-Zielband', spanneTxt(lz.zielspanne), nurText(`${zeitText('seit', datumTxt(lz.seit))} · Federal Reserve`)));
-if (!z.fehler && z.beobachtung) k.push(kachel('Atlanta Fed, Stand', datumTxt(z.beobachtung), 'aus CME-SOFR-Optionen'));
-$('mz-zins-kacheln').replaceChildren(...k);
-if (!mzBlock('mz-zinsen', z.fehler || (!(z.fenster || []).length && 'keine Werte'))) { leinwandText(cv, 'keine Daten'); $('mz-zins-tabelle').replaceChildren(); quelleZeile($('mz-zins-q'), 'Federal Reserve Bank of Atlanta', z.link || null, null); return; }
-const f = z.fenster, band = /^(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)$/.exec(String((lz && lz.zielspanne) || ''));
-const u0 = f.findIndex((x) => x.unsicher), sicher = (i) => u0 < 0 || i < u0, unsicherTeil = (i) => u0 >= 0 && i >= u0 - 1;
-const wert = (v) => (v === null || v === undefined ? null : v / 100), teil = (feld, w) => f.map((x, i) => (w(i) ? wert(x[feld]) : null));
-mzLegende('l-mz-zins', [['Mittel', F.wal], ['25–75 %', F.spot], ...(band ? [['heutiges Zielband', F.leise]] : []), ...(u0 >= 0 ? [['unsicher (ferne Fenster)', F.leise]] : [])]);
-const beschr = (i, n) => i === 0 || i === n - 1 || i === Math.floor(n / 2);
-diagramm(cv, { labels: f.map((x) => `${x.beginn.slice(5, 7)}/${x.beginn.slice(2, 4)}`), einheit: ' %', ohneKappe: true, links: 44,
-reihen: [...(band ? [{ werte: f.map(() => Number(band[1])), farbe: F.leise, breite: 1, strich: [3, 3] }, { werte: f.map(() => Number(band[2])), farbe: F.leise, breite: 1, strich: [3, 3] }] : []),
-{ werte: teil('p25_bp', sicher), farbe: F.spot, breite: 1.2, strich: [5, 4] }, { werte: teil('p75_bp', sicher), farbe: F.spot, breite: 1.2, strich: [5, 4] },
-...(u0 >= 0 ? [{ werte: teil('p25_bp', unsicherTeil), farbe: F.leise, breite: 1, strich: [2, 4] }, { werte: teil('p75_bp', unsicherTeil), farbe: F.leise, breite: 1, strich: [2, 4] },
-{ werte: teil('mittel_bp', unsicherTeil), farbe: F.leise, breite: 1.6, strich: [4, 4], punkte: true, nk: 2, beschriften: (i, n) => i === n - 1 }] : []),
-{ werte: teil('mittel_bp', sicher), farbe: F.wal, breite: 2.2, punkte: true, nk: 2, beschriften: (i, n) => sicher(i) && beschr(i, n) && (u0 < 0 || i < u0 - 1 || i === 0) }] });
-const tab = document.createElement('table'), kopf = tab.createTHead().insertRow();
-for (const h of ['Fenster', 'Fed-Sitzungen darin', 'Mittel', '25–75 %', 'Senkung', 'Erhöhung']) { const th = document.createElement('th'); th.textContent = h; kopf.append(th); }
-const b = tab.createTBody(), bp = (v) => (v === null || v === undefined ? '–' : pctTxt(v / 100, 2));
-f.forEach((x, nr) => {
-const r = b.insertRow(), c0 = r.insertCell();
-c0.textContent = `${datumTxt(x.beginn)} – ${datumTxt(x.ende)}`;
-if (x.unsicher) { r.className = 'mz-unsicher'; c0.append(' ', hdEl('small', 'mz-unsicher-tag', 'unsicher')); }
-if (x.hinweis) {
-r.title = x.hinweis; r.title = nurText(hinweisText(x.hinweis, SPRACHE)); r.dataset.roh = '';
-const k = hdEl('button', 'mz-hinweis-knopf', 'Hinweis'); k.type = 'button'; k.setAttribute('aria-expanded', 'false'); k.setAttribute('aria-controls', 'mz-zh-' + nr); c0.append(' ', k);
-k.addEventListener('click', () => { const z = $('mz-zh-' + nr); if (!z) return; z.hidden = !z.hidden; k.setAttribute('aria-expanded', String(!z.hidden)); });
-}
-r.insertCell().textContent = (x.sitzungen_im_fenster || []).map((d) => tagKurz(Date.parse(d))).join(', ') || '–';
-r.insertCell().textContent = bp(x.mittel_bp);
-r.insertCell().textContent = x.p25_bp === null || x.p25_bp === undefined ? '–' : `${de(x.p25_bp / 100, 2)}–${bp(x.p75_bp)}`;
-r.insertCell().textContent = x.p_senkung === null || x.p_senkung === undefined ? '–' : pctTxt(x.p_senkung, 0);
-r.insertCell().textContent = x.p_erhoehung === null || x.p_erhoehung === undefined ? '–' : pctTxt(x.p_erhoehung, 0);
-if (x.hinweis) { const h = b.insertRow(); h.className = 'mz-hinweis-zeile' + (x.unsicher ? ' mz-unsicher' : ''); h.id = 'mz-zh-' + nr; h.hidden = true; const td = h.insertCell(); td.colSpan = 6; td.dataset.roh = ''; td.textContent = hinweisText(x.hinweis, SPRACHE); }
-});
-const box = document.createElement('div'); box.className = 'tabelle'; box.append(tab);
-const def = z.definition ? hdEl('p', 'leise mz-definition', hinweisText(z.definition, SPRACHE)) : null; if (def) def.dataset.roh = '';
-$('mz-zins-tabelle').replaceChildren(box, ...(def ? [def] : []));
-quelleZeile($('mz-zins-q'), 'Federal Reserve Bank of Atlanta – Market Probability Tracker', z.link, z.stand, 'CME Group market data are used with permission from CME');
-}
-function mzOel() {
-const o = mz.oel || {}, cv = $('mz-oel-preis'), cv2 = $('mz-bestand');
-const da = (k) => o[k] && !o[k].fehler && (o[k].reihe || []).length;
-const k = [];
-for (const [key, nm] of [['brent', 'Brent'], ['wti', 'WTI']]) if (da(key)) { const e = o[key]; k.push(kachel(nm, '$' + de(e.letzte[1], 2), `${datumTxt(e.letzte[0])} · ${e.aenderung === null ? '' : (e.aenderung > 0 ? '+' : e.aenderung < 0 ? '−' : '±') + de(Math.abs(e.aenderung), 2) + ' $ ggü. Vortag'}`)); }
-for (const [key, nm] of [['bestand', 'US-Rohöl-Bestände'], ['spr', 'Strategische Reserve']]) if (da(key)) { const e = o[key]; k.push(kachel(nm, de(e.letzte[1] / 1000, 1) + ' Mio. Barrel', `${datumTxt(e.letzte[0])} · ${e.aenderung === null ? '' : (e.aenderung > 0 ? '+' : e.aenderung < 0 ? '−' : '±') + de(Math.abs(e.aenderung) / 1000, 1) + ' Mio. ggü. Vorwoche'}`)); }
-$('mz-oel-kacheln').replaceChildren(...k);
-const fehlt = ['brent', 'wti', 'bestand', 'spr'].filter((x) => !da(x));
-if (!mzBlock('mz-oel', fehlt.length === 4 ? ((o.brent && o.brent.fehler) || 'keine Werte') : null)) { leinwandText(cv, 'keine Daten'); leinwandText(cv2, 'keine Daten'); quelleZeile($('mz-oel-q'), 'U.S. Energy Information Administration', null, null); return; }
-$('mz-oel-teil').textContent = fehlt.length ? `Gerade ohne Daten: ${fehlt.map((x) => ({ brent: 'Brent', wti: 'WTI', bestand: 'US-Rohöl-Bestände', spr: 'Strategische Reserve' })[x]).join(', ')}` : '';
-const grenze = new Date(Date.now() - 365 * 864e5).toISOString().slice(0, 10);
-const tage = [...new Set(['brent', 'wti'].filter(da).flatMap((key) => o[key].reihe.map((w) => w[0])))].filter((t) => t >= grenze).sort();
-const sch = Math.max(1, Math.ceil(tage.length / 260)), wahl = tage.filter((_, i) => i % sch === 0 || i === tage.length - 1);
-mzLegende('l-mz-oel', [['Brent', F.wal], ['WTI', F.spot]].filter(([nm]) => da(nm.toLowerCase())));
-diagramm(cv, { labels: wahl.map((t) => `${t.slice(8, 10)}.${t.slice(5, 7)}.`), einheit: ' $', ohneKappe: true, leer: 'keine Daten',
-reihen: [['brent', F.wal], ['wti', F.spot]].filter(([key]) => da(key)).map(([key, f]) => { const m = new Map(o[key].reihe); return { werte: wahl.map((t) => (m.has(t) ? m.get(t) : null)), farbe: f, breite: 1.6, nk: 1, beschriften: (i, n) => i === n - 1 }; }) });
-const g2 = new Date(Date.now() - 3 * 365 * 864e5).toISOString().slice(0, 10), wochen = da('bestand') ? o.bestand.reihe.filter((w) => w[0] >= g2) : [];
-if (wochen.length > 1) diagramm(cv2, { labels: wochen.map((w) => `${w[0].slice(5, 7)}/${w[0].slice(2, 4)}`), einheit: '', ohneKappe: true, links: 40, reihen: [{ werte: wochen.map((w) => w[1] / 1000), farbe: F.perp, breite: 1.6, nk: 1, beschriften: (i, n) => i === n - 1 }] });
-else leinwandText(cv2, 'keine Daten');
-const e = o.brent || o.wti || o.bestand || {};
-quelleZeile($('mz-oel-q'), 'U.S. Energy Information Administration', e.link, e.stand, e.naechste ? `nächste Veröffentlichung ${datumTxt(e.naechste)}` : '');
-}
-function mzEngpaesse() {
-const e = mz.engpaesse || {}, cv = $('mz-eng'), pk = e.punkte || [];
-const gut = pk.filter((p) => !p.fehler && (p.reihe || []).length);
-if (!mzBlock('mz-engpaesse', e.fehler || (!gut.length && ((pk[0] && pk[0].fehler) || 'keine Werte')))) { leinwandText(cv, 'keine Daten'); $('mz-eng-tabelle').replaceChildren(); quelleZeile($('mz-eng-q'), 'IMF PortWatch', e.link || null, null); return; }
-const tab = document.createElement('table'), kopf = tab.createTHead().insertRow();
-for (const h of ['', 'Letzter Tag', 'Schiffe', 'davon Tanker', 'Schnitt 7 Tage', 'Vorjahr (7 Tage)']) { const th = document.createElement('th'); th.textContent = h; kopf.append(th); }
-const b = tab.createTBody();
-for (const p of pk) {
-const r = b.insertRow(); r.insertCell().textContent = p.name;
-if (p.fehler) { const c = r.insertCell(); c.colSpan = 5; c.className = 'leise'; c.textContent = 'gerade keine Daten'; continue; }
-r.insertCell().textContent = datumTxt(p.letzter.tag); r.insertCell().textContent = de(p.letzter.schiffe, 0); r.insertCell().textContent = p.letzter.tanker === null ? '–' : de(p.letzter.tanker, 0);
-r.insertCell().textContent = p.schnitt_7 === null ? '–' : de(p.schnitt_7, 1); r.insertCell().textContent = p.vorjahr_7 === null ? '–' : de(p.vorjahr_7, 1);
-}
-const box = document.createElement('div'); box.className = 'tabelle'; box.append(tab); $('mz-eng-tabelle').replaceChildren(box);
-const farben = [F.wal, F.spot, F.perp], grenze = new Date(Date.now() - 365 * 864e5).toISOString().slice(0, 10);
-const tage = [...new Set(gut.flatMap((p) => p.reihe.map((w) => w[0])))].filter((t) => t >= grenze).sort();
-mzLegende('l-mz-eng', gut.map((p) => [p.name, farben[pk.indexOf(p) % 3]]));
-diagramm(cv, { labels: tage.map((t) => `${t.slice(5, 7)}/${t.slice(2, 4)}`), einheit: '', ohneKappe: true, mitNull: true, leer: 'keine Daten',
-reihen: gut.map((p) => { const r = p.reihe, idx = new Map(r.map((w, i) => [w[0], i])); return { farbe: farben[pk.indexOf(p) % 3], breite: 1.6, nk: 0, beschriften: (i, n) => i === n - 1,
-werte: tage.map((t) => { const i = idx.get(t); if (i === undefined) return null; const f2 = r.slice(Math.max(0, i - 6), i + 1).filter((w) => w[1] !== null); return f2.length >= 4 ? f2.reduce((s, w) => s + w[1], 0) / f2.length : null; }) }; }) });
-const st = Math.max(...gut.map((p) => p.stand || 0));
-quelleZeile($('mz-eng-q'), 'IMF PortWatch (Source: International Monetary Fund)', e.link, st || null, 'Schätzung aus Schiffsdaten (AIS), wird etwa wöchentlich nachgetragen');
-}
-function mzKalender() {
-const box = $('mz-kal'), kal = mz.kalender || [];
-if (!mzBlock('mz-kalender', mz.kalender_fehler || (!Array.isArray(mz.kalender) && 'keine Werte'))) { box.replaceChildren(); return; }
-const l = wochenTermine(kal, Date.now() / 1000), jetzt = Date.now();
-if (!l.length) { const li = document.createElement('li'); li.className = 'leise'; li.textContent = 'Keine Termine in diesen zwei Wochen.'; box.replaceChildren(li); return; }
-box.replaceChildren(...l.map((t) => terminLi(t, jetzt)));
-}
-function demoMakro() {
-const j = Date.now() / 1000, heute = new Date(), mon = (d) => { const x = new Date(Date.UTC(heute.getUTCFullYear(), heute.getUTCMonth() + d, 1)); return x.toISOString().slice(0, 7); };
-const reihe = (f, ab = 2010) => { const out = []; for (let y = ab; ; y++) for (let m = 1; m <= 12; m++) { const p = `${y}-${String(m).padStart(2, '0')}`; if (p > mon(-1)) return out; out.push([p, Math.round(f(out.length) * 1000) / 1000]); } };
-const r = (name, f) => ({ name, werte: reihe(f), vorlaeufig: [] });
-const tagZ = (d, h) => Math.floor(j / 86400 + d) * 86400 + h * 3600;
-const iso = (z) => new Date(z * 1000).toISOString().slice(0, 10);
-const kal = [[-2, 13.5, 'inflation', 'BLS', [['CPI ggü. Vormonat (saisonbereinigt)', '%', 0.31, 0.27], ['CPI ggü. Vorjahr', '%', 2.9, null, 'Keine Jahresrate (Demo): der Vorjahresmonat fehlt bei der BLS. Die BLS veröffentlicht hier ebenfalls „–“.']]],
-[1, 13.5, 'erzeugerpreise', 'BLS', [['PPI Endnachfrage ggü. Vorjahr', '%', 2.6, null]]], [4, 13.5, 'arbeitsmarkt', 'BLS', [['Neue Stellen außerhalb der Landwirtschaft', 'Tsd.', 142, null], ['Arbeitslosenquote', '%', 4.2, null]]],
-[9, 19, 'zins', 'Federal Reserve', [['Leitzins-Zielspanne (Fed Funds)', '%', '3.75-4.00', null]]]]
-.map(([d, h, art, q, w]) => ({ datum: iso(tagZ(d, h)), uhr_utc: '', zeit: tagZ(d, h), art, text: (MZ_TERMIN[art] || art) + ' (Demo)', quelle: q, url: null, periode: mon(-1), veroeffentlicht: d < 0,
-werte: w.map(([name, einheit, vor, ist, hw]) => ({ name, einheit, vorwert: vor, ist: d < 0 ? ist : null, vorperiode: mon(-2), quelle: q, link: null, ...(hw ? { hinweis: hw } : {}) })) }));
-const tage = Array.from({ length: 400 }, (_, i) => iso(j - (399 - i) * 86400));
-return { zeit: j - 120, alter_s: 120, nur_mac: true, nachweis: 'Quellen: Demo-Daten (kein echter Abruf). BLS.gov cannot vouch for the data or analyses derived from these data after the data have been retrieved from BLS.gov.',
-quellen: [{ id: 'nowcast', name: 'Demo', live: true }, { id: 'portwatch', name: 'Demo PortWatch', live: false }],
-nowcast: { stand: j - 3600, quelle: 'Federal Reserve Bank of Cleveland', link: null, monat: [{ zeitraum: mon(0), cpi: 0.21, kern_cpi: 0.24, pce: 0.2, kern_pce: 0.22 }, { zeitraum: mon(-1), cpi: 0.25, kern_cpi: 0.23, pce: null, kern_pce: null }],
-jahr: [{ zeitraum: mon(0), cpi: 2.9, kern_cpi: 3.0, pce: 2.6, kern_pce: 2.8 }], quartal: [{ zeitraum: `${heute.getUTCFullYear()}Q4`, cpi: 2.8, kern_cpi: 3.1, pce: 2.5, kern_pce: 2.7 }],
-letzter_cpi: { monat: mon(-1), cpi_mm: 0.27, kern_mm: 0.22, cpi_jj: 3.0, kern_jj: 3.1 } },
-inflation: { stand: j - 7200, quelle: 'BLS', link: null, reihen: { cpi: r('CPI', (i) => 2.5 + 2.4 * Math.sin(i / 28)), kern_cpi: r('Kern-CPI', (i) => 2.6 + 1.5 * Math.sin(i / 32)),
-ppi: r('PPI', (i) => 2 + 4 * Math.sin(i / 22)), kern_ppi: r('Kern-PPI', (i) => 2.2 + 2 * Math.sin(i / 26)), ppi_ohne_le: r('PPI ohne Lebensmittel und Energie', (i) => 2.4 + 1.8 * Math.sin(i / 24)) } },
-beitraege: { stand: j - 7200, quelle: 'BLS', link: null, monate: reihe((i) => i, 2022).map(([m], i) => { const e = 0.6 * Math.sin(i / 6), l = 0.4 + 0.2 * Math.sin(i / 9), w = 0.3 * Math.sin(i / 7), d = 1.8 + 0.4 * Math.cos(i / 10); return { monat: m, cpi_jj: Math.round((e + l + w + d) * 1000) / 1000, energie: e, lebensmittel: l, kernwaren: w, kerndienste: d }; }) },
-zinsen: { stand: j - 7200, beobachtung: iso(j - 86400), link: null, fenster: Array.from({ length: 8 }, (_, i) => { const b = new Date(Date.UTC(heute.getUTCFullYear(), heute.getUTCMonth() + 1 + 3 * i, 16)).toISOString().slice(0, 10), e = new Date(Date.UTC(heute.getUTCFullYear(), heute.getUTCMonth() + 4 + 3 * i, 16)).toISOString().slice(0, 10), m = 385 - 12 * i;
-const un = i >= 6; return { beginn: b, ende: e, mittel_bp: un ? m + 60 : m, p25_bp: m - 9, p75_bp: un ? m + 140 : m + 8, p_senkung: Math.min(90, 10 + 9 * i), p_erhoehung: un ? 30 : 3, sitzungen_im_fenster: [b], auf_seite: i < 4, unsicher: un,
-hinweis: un ? 'Unsichere Schätzung (Demo): nur 88 % der Verteilung in den Spannen der Datei. Werte so in der Quelle – nicht als Erwartung lesen.' : i >= 4 ? 'Nur in der Datendatei (Demo); die Atlanta-Fed-Seite zeigt die vier nächsten Fenster.' : null }; }),
-definition: 'Senkung/Erhöhung = Wahrscheinlichkeit, dass der durchschnittliche SOFR im Fenster unter/über dem Zielband am Beobachtungstag liegt (Demo).',
-leitzins: { zielspanne: '3.75-4.00', seit: iso(j - 60 * 86400), stand: j - 7200 } },
-oel: { brent: { letzte: [iso(j - 3 * 86400), 74.2], aenderung: -0.4, reihe: tage.map((t, i) => [t, 72 + 6 * Math.sin(i / 40)]), stand: j - 9000, link: null, naechste: iso(j + 2 * 86400) },
-wti: { letzte: [iso(j - 3 * 86400), 70.1], aenderung: -0.3, reihe: tage.map((t, i) => [t, 68 + 6 * Math.sin(i / 40)]), stand: j - 9000, link: null },
-bestand: { letzte: [iso(j - 5 * 86400), 421000], aenderung: -1200, reihe: Array.from({ length: 160 }, (_, i) => [iso(j - (159 - i) * 7 * 86400), 430000 + 15000 * Math.sin(i / 9)]), stand: j - 9000, link: null },
-spr: { fehler: 'Demo: Quelle aus' } },
-engpaesse: { link: null, punkte: [['Straße von Hormus', 30], ['Suezkanal', 45], ['Bab el-Mandeb', 25]].map(([name, b2], k) => ({ id: 'p' + k, name, letzter: { tag: tage[tage.length - 2], schiffe: b2, tanker: Math.round(b2 / 3) }, schnitt_7: b2, tanker_7: b2 / 3, vorjahr_7: b2 + 5, stand: j - 86400,
-reihe: tage.slice(0, -1).map((t, i) => [t, Math.round(b2 + 6 * Math.sin(i / 11 + k)), Math.round(b2 / 3), 0, 0, 0, 0]) })) },
-kalender: kal };
-}
+let news = null, newsFehler = null, mz = null, mzInfJahre = 0, mzPpiLe = false; const NEWS_F = { k: '', c: '', s: 0, kr: false };
+async function newsLaden() { } function newsFilterZeigen() { } function newsZeigen() { } function newsUhren() { } async function mzLaden() { }
+function mzInflation() { } function mzBeitraege() { } function mzZinsen() { } function mzOel() { } function mzEngpaesse() { }
 let korr = null, korrTage = Number(lies('korrTage')) || 90;
 async function korrLaden() {
 if (spaeter(korrLaden, 'umfeld')) return;
@@ -10387,7 +10110,7 @@ nav.append(b);
 document.body.append(nav); document.body.classList.add('mit-tabbar');
 let w = 0; addEventListener('scroll', () => { if (w) return; w = requestAnimationFrame(() => { w = 0; tabMarkieren(); }); }, { passive: true }); tabMarkieren();
 }
-const SPRUNG_NAMEN = { rug: 'Rug-Check', heat: 'Liquidität', jetzt: 'Live', werte: 'Futures', analyse: 'Analyse', selbst: 'Selbst handeln', journal: 'Journal', chart: 'Chart', multi: 'Mehrere', gamma: 'Gamma-Karte', gex: 'Dealer-Gamma', dom: 'Orderbuch', cvd: 'Kaufdruck', band: 'Große Trades',
+const SPRUNG_NAMEN = { behoerden: 'Makro & Behörden', rug: 'Rug-Check', heat: 'Liquidität', jetzt: 'Live', werte: 'Futures', analyse: 'Analyse', selbst: 'Selbst handeln', journal: 'Journal', chart: 'Chart', multi: 'Mehrere', gamma: 'Gamma-Karte', gex: 'Dealer-Gamma', dom: 'Orderbuch', cvd: 'Kaufdruck', band: 'Große Trades',
 liq: 'Liquidationen', mac: 'Wale', uebersicht: 'Übersicht', markt: 'Börsen', geschichte: 'Geschichte', umfeld: 'Umfeld', rangliste: 'Rangliste', meldungen: 'Meldungen',
 lkarte: 'Liq.-Karte', ofluss: 'Options-Fluss', olab: 'Options-Labor', danach: 'Was danach', bericht: 'Lagebild', vol: 'Volatilität', opt: 'Optionen', kurve: 'Terminkurve', makro: 'Zinsen' };
 function sprungleiste() {
@@ -10442,9 +10165,9 @@ grob: false, tabSig: '', ticketMarkt: null,
 eb: { vp: true, vwap: true, heat: true, fp: true, cvd: true, liq: true, marken: true, gamma: true }, tool: 'buch', anteil: null, blatt: null,
 };
 Object.defineProperty(HD, 'vp', { get: () => HD.eb.vp, set: (v) => { HD.eb.vp = !!v; } });
-const HD_EBENEN = ['vp', 'vwap', 'heat', 'fp', 'cvd', 'liq', 'marken', 'gamma', 'ema', 'wma', 'rsi', 'macd'], HD_TOOLS = ['lage', 'buch', 'tape', 'liq', 'wale', 'live', 'analyse', 'opt'];
-const HD_EB_PROFI = { vp: true, vwap: true, heat: true, fp: true, cvd: true, liq: true, marken: true, gamma: true, ema: false, wma: false, rsi: false, macd: false };
-const HD_EB_SWING = { vp: false, vwap: false, heat: false, fp: false, cvd: false, liq: false, marken: false, gamma: true, ema: true, wma: false, rsi: true, macd: true };
+const HD_EBENEN = ['vp', 'vwap', 'heat', 'fp', 'cvd', 'liq', 'marken', 'gamma', 'ema', 'wma', 'rsi', 'macd', 'termine'], HD_TOOLS = ['lage', 'buch', 'tape', 'liq', 'wale', 'live', 'analyse', 'opt'];
+const HD_EB_PROFI = { vp: true, vwap: true, heat: true, fp: true, cvd: true, liq: true, marken: true, gamma: true, ema: false, wma: false, rsi: false, macd: false, termine: false };
+const HD_EB_SWING = { vp: false, vwap: false, heat: false, fp: false, cvd: false, liq: false, marken: false, gamma: true, ema: true, wma: false, rsi: true, macd: true, termine: false };
 const HD_TOOLS_SWING = ['lage', 'analyse', 'opt'], HD_WMA = 20, HD_RUHIG = 15000;
 const hdSchl = (k) => (swing() ? k + '-swing' : k);
 const hdTfName = (t) => (t >= 1440 ? '1D' : t >= 60 ? t / 60 + 'h' : t + 'm');
@@ -11180,6 +10903,7 @@ const ind = eb.ema || eb.wma || eb.rsi || eb.macd ? this.indRechnen(K) : null;
 if (ind && (eb.ema || eb.wma)) this.maZeichnen(ctx, ind, a, b, Y, xi, d, L);
 if (eb.marken && haupt) info.marken = this.markenZeichnen(ctx, K, a, b, Y, xi, cw, d, f, L);
 if (eb.gamma && haupt) info.gamma = this.gammaZeichnen(ctx, lo, hi, Y, d, f, L);
+if (eb.termine) info.termine = this.termineZeichnen(ctx, K, a, b, d, f, L);
 const zl = (HD.zeich[id] || []).concat(this.zug && this.zug.art === 'zeichnen' ? [{ art: HD.werkzeug, a: this.zug.a, b: this.zug.b, neu: true }] : []);
 if (HD.werkzeug === 'fib' && HD.fibA && HD.fibA.markt === id && !this.zug) { const m = this.maus && this.maus.x < L.x1 && this.maus.y > L.py0 && this.maus.y < L.y1 ? this.zuWert(this.maus.x, this.maus.y) : null;
 if (m) zl.push({ art: 'fib', a: HD.fibA.a, b: m, neu: true }); else { ctx.fillStyle = f.zeichen; ctx.beginPath(); ctx.arc(this.tZuX(HD.fibA.a.t), Y(HD.fibA.a.p), 4 * d, 0, Math.PI * 2); ctx.fill(); } }
@@ -12383,8 +12107,13 @@ const i = f.indexOf(document.activeElement);
 if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
 }, true);
 
-const FASSUNG = 'r132';
+const FASSUNG = 'r133';
 const NEU = [
+{ f: 'r133', tag: '11.11.2026', s: ['Neues Feld „Makro & Behörden“: US-Renditen mit ganzer Zinskurve, Euro-Raum (EZB-Sätze, €STR, Wechselkurse, HVPI, Bund-Renditen) und Welt (Weltbank, OECD) – direkt von den Ämtern, mit Quelle und Stand.',
+'Ebene „Termine“ im Chart: Zinsentscheide, Inflation, Listungen und mehr als Marken.', 'Vorlesen: die neuesten Börsen-Meldungen mit der Sprachausgabe deines Geräts.',
+'Neue Befehle: ZINSKURVE, EZB, HVPI, WELT, LIQUI, AUKTION, KALENDER, SEC, INSIDER, 13F, MARKEN, VORLESEN.'] },
+{ f: 'r133', tag: '11.11.2026', s: ['Netto-Liquidität der Fed, Anleihe-Auktionen, Wirtschaftskalender mit Wichtigkeit, SEC (Quartalstermine, Insider, 13F-Halter der Bitcoin-ETFs), Gleichlauf.',
+'News: Suche, Quellen stummschalten, Verzug je Quelle, BaFin-Meldungen und -Warnungen.'], mac: true },
 { f: 'r132', tag: '11.11.2026', s: ['Befehlszeile: / oder Strg/⌘+K öffnet sie – z. B. „BTC LIQ“, „ETH GAMMA“, „SOL 4H“ oder „HILFE“ für alle Befehle.',
 'Arbeitsbereiche: Scalper, Swing, Optionen, Derivate, On-Chain & Wale, Makro, News – die passenden Felder oben, alle anderen bleiben darunter. Eigene speichern, als Datei oder per Link teilen.',
 'Fokus für jedes Feld, Zurück und Vor, eigene Tasten, Einsteiger-Stufe; die Adresse merkt sich Markt, Bereich und Feld.'] },
@@ -12849,6 +12578,239 @@ if (bybitBekannt) { start(); bybitPruefen(); }
 else Promise.race([bybitPruefen().catch(() => null), new Promise((ok) => setTimeout(ok, 1500))]).then(() => { if (!S) start(); });
 setInterval(bybitPruefen, 10 * 6e4);
 
+const BH_Q = {
+fed: ['Federal Reserve H.4.1', 'https://www.federalreserve.gov/releases/h41/', 'Source: Board of Governors of the Federal Reserve System (US), H.4.1'],
+treasury: ['U.S. Treasury FiscalData', 'https://fiscaldata.treasury.gov/datasets/daily-treasury-statement/', 'Source: U.S. Department of the Treasury'],
+kurve: ['U.S. Treasury', 'https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve', 'Source: U.S. Department of the Treasury'],
+ezb: ['ECB Data Portal', 'https://data.ecb.europa.eu/', 'Source: ECB statistics'],
+eurostat: ['Eurostat', 'https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table', 'Source: Eurostat (prc_hicp_minr)'],
+buba: ['Deutsche Bundesbank', 'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen', 'Quelle: Deutsche Bundesbank'],
+wb: ['World Bank', 'https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG', 'The World Bank: World Development Indicators'],
+oecd: ['OECD', 'https://www.oecd.org/en/data/indicators/composite-leading-indicator-cli.html', 'OECD (2026), Composite leading indicators (CLI), OECD Data Explorer'],
+};
+const BH_LAENDER = [['usa', 'USA'], ['deu', 'Deutschland'], ['chn', 'China'], ['jpn', 'Japan'], ['gbr', 'Vereinigtes Königreich'], ['ind', 'Indien'], ['bra', 'Brasilien'], ['emu', 'Euro-Raum'], ['g20', 'G20']];
+const BH = { r: {}, kurve: null, auk: null, kal: null, sec: null, gl: null, ev: null, zeit: 0, fehler: '', laeuft: false, nr: 0, teile: {} };
+const bhDatum = (s) => { s = String(s || ''); return /^\d{4}-\d\d-\d\d/.test(s) ? datumTxt(s.slice(0, 10)) : /^\d{4}-\d\d$/.test(s) ? monatTxt(s) : s; };
+const bhBio = (v) => (Math.abs(v) >= 1e6 ? de(v / 1e6, 2) + ' Bio. $' : de(v / 1e3, 1) + ' Mrd. $');
+const bhPct = (v) => pctTxt(v, Math.abs(v) >= 10 ? 1 : 2);
+function bhSetze(id, werte, q, extra) {
+werte = werte.filter((w) => w && Number.isFinite(w[1])).sort((a, b) => (a[0] < b[0] ? -1 : 1)); if (!werte.length) return;
+const l = werte[werte.length - 1], nurA = extra && extra.nurAenderungen;
+BH.r[id] = Object.assign({ id, letzter: l, vorher: nurA ? [...werte].reverse().find((w) => w[1] !== l[1]) || null : werte[werte.length - 2] || null, werte, link: BH_Q[q][1],
+lizenz: { pflicht: BH_Q[q][2] }, quelle: BH_Q[q][0], abruf: Math.floor(Date.now() / 1000), status: 'ok' }, extra || {});
+}
+const bhTextRoh = (u) => bhText(u);
+async function bhText(u, kopf) {
+const ab = new AbortController(), t = setTimeout(() => ab.abort(), 25000);
+try { const r = await fetch(u, { signal: ab.signal, headers: kopf || {} }); if (!r.ok) throw new Error('HTTP ' + r.status); return await r.text(); } finally { clearTimeout(t); }
+}
+function bhCsv(txt, trenn = ',') {
+const z = String(txt || '').replace(/^﻿/, '').trim().split(/\r?\n/), k = (z.shift() || '').split(trenn);
+return z.map((l) => { const s = l.split(trenn), o = {}; k.forEach((n, i) => { o[n] = s[i]; }); return o; });
+}
+const bhVor = (tage) => new Date(Date.now() - tage * 864e5).toISOString().slice(0, 10);
+function bhKurveAus(xml, reihe) {
+for (const block of String(xml).match(/<(?:\w+:)?properties>[\s\S]*?<\/(?:\w+:)?properties>/g) || []) {
+const datum = /<(?:\w+:)?NEW_DATE[^>]*>(\d{4}-\d{2}-\d{2})/.exec(block); if (!datum) continue;
+const p = []; for (const [lz, feld] of ZINS_FELDER) { const x = new RegExp(`<(?:\\w+:)?${feld}\\b[^>]*>(-?[0-9.]+)<`).exec(block); if (x) p.push([lz.replace('1,5M', '6W'), Number(x[1])]); }
+if (p.length > 5) reihe[datum[1]] = p;
+}
+}
+const BH_BETA = {
+ezb: async () => {
+const E = 'https://data-api.ecb.europa.eu/service/data/', q = '?format=csvdata&detail=dataonly&startPeriod=';
+const bhText = async (u) => { try { return await bhTextRoh(u); } catch (e) { await new Promise((ok) => setTimeout(ok, 2500)); return bhTextRoh(u); } };
+const zins = bhCsv(await bhText(E + 'FM/D.U2.EUR.4F.KR.DFR+MRR_FR+MLFR.LEV' + q + bhVor(800)));
+for (const [k, id] of [['DFR', 'ezb_einlage'], ['MRR_FR', 'ezb_hauptrefi'], ['MLFR', 'ezb_spitzen']]) bhSetze(id, zins.filter((z) => z.KEY && z.KEY.includes('.' + k + '.')).map((z) => [z.TIME_PERIOD, +z.OBS_VALUE]), 'ezb', { nurAenderungen: true });
+bhSetze('ezb_estr', bhCsv(await bhText(E + 'EST/B.EU000A2X2A25.WT' + q + bhVor(40))).map((z) => [z.TIME_PERIOD, +z.OBS_VALUE]), 'ezb');
+bhSetze('ezb_m3', bhCsv(await bhText(E + 'BSI/M.U2.Y.V.M30.X.I.U2.2300.Z01.A' + q + bhVor(400).slice(0, 7))).map((z) => [z.TIME_PERIOD, +z.OBS_VALUE]), 'ezb');
+const fx = bhCsv(await bhText(E + 'EXR/D.USD+GBP+JPY+CHF+CNY.EUR.SP00.A' + q + bhVor(20)));
+for (const w of ['USD', 'GBP', 'JPY', 'CHF', 'CNY']) bhSetze('ezb_' + w.toLowerCase(), fx.filter((z) => z.CURRENCY === w).map((z) => [z.TIME_PERIOD, +z.OBS_VALUE]), 'ezb');
+},
+eurostat: async () => {
+const d = JSON.parse(await bhText('https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_minr?format=JSON&lang=EN&unit=RCH_A&sinceTimePeriod='
++ bhVor(800).slice(0, 7) + '&geo=EA&geo=DE&coicop18=TOTAL&coicop18=TOT_X_NRG_FOOD&coicop18=NRG&coicop18=SERV'));
+const ids = d.id, gr = d.size, idx = ids.map((k) => { const m = {}; for (const [c, i] of Object.entries(d.dimension[k].category.index)) m[i] = c; return m; }), aus = {}, st = {};
+for (const [s, v] of Object.entries(d.value || {})) {
+let n = +s; const pos = {}; for (let i = ids.length - 1; i >= 0; i--) { pos[ids[i]] = idx[i][n % gr[i]]; n = Math.floor(n / gr[i]); }
+const k = (pos.coicop18 || pos.coicop) + '|' + pos.geo; (aus[k] || (aus[k] = [])).push([pos.time, v]); if (d.status && d.status[s]) (st[k] || (st[k] = {}))[pos.time] = d.status[s];
+}
+for (const [k, id] of [['TOTAL|EA', 'hvpi_ea'], ['TOT_X_NRG_FOOD|EA', 'hvpi_ea_kern'], ['NRG|EA', 'hvpi_ea_energie'], ['SERV|EA', 'hvpi_ea_dienste'], ['TOTAL|DE', 'hvpi_de'], ['TOT_X_NRG_FOOD|DE', 'hvpi_de_kern']])
+if (aus[k]) bhSetze(id, aus[k], 'eurostat', { quellen_status: st[k] || {} });
+},
+buba: async () => {
+const z = bhCsv(await bhText('https://api.statistiken.bundesbank.de/rest/data/BBSIS/D.I.ZST.ZI.EUR.S1311.B.A604.R10XX+R02XX.R.A.A._Z._Z.A?startPeriod=' + bhVor(30),
+{ Accept: 'application/vnd.sdmx.data+csv;version=1.0.0' }), ';');
+for (const [k, id] of [['R02XX', 'bund_2j'], ['R10XX', 'bund_10j']]) bhSetze(id, z.filter((x) => x.BBK_SEIS_MATURITY === k).map((x) => [x.TIME_PERIOD, x.OBS_VALUE === '.' ? NaN : +x.OBS_VALUE]), 'buba');
+},
+wb: async () => {
+const d = JSON.parse(await bhText('https://api.worldbank.org/v2/country/USA;DEU;CHN;JPN;GBR;IND;BRA;EMU/indicator/NY.GDP.MKTP.KD.ZG?format=json&mrv=3&per_page=100'));
+const aus = {}; for (const x of (Array.isArray(d) && d[1]) || []) if (x.value != null) (aus[x.countryiso3code] || (aus[x.countryiso3code] = [])).push([x.date, x.value]);
+for (const [k, w] of Object.entries(aus)) bhSetze('wb_bip_' + k.toLowerCase(), w, 'wb');
+},
+oecd: async () => {
+const z = bhCsv(await bhText('https://sdmx.oecd.org/public/rest/data/OECD.SDD.STES,DSD_STES@DF_CLI/USA+DEU+CHN+JPN+GBR+G20.M.LI...AA...H?startPeriod=' + bhVor(200).slice(0, 7) + '&dimensionAtObservation=AllDimensions&format=csvfile'));
+const aus = {}; for (const x of z) if (x.REF_AREA && x.OBS_VALUE) (aus[x.REF_AREA] || (aus[x.REF_AREA] = [])).push([x.TIME_PERIOD, +x.OBS_VALUE]);
+for (const [k, w] of Object.entries(aus)) bhSetze('oecd_cli_' + k.toLowerCase(), w, 'oecd');
+},
+treasury: async () => {
+const d = JSON.parse(await bhText('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?filter=record_date:gte:' + bhVor(120) + '&sort=-record_date&page%5Bsize%5D=400'));
+const w = {}; for (const z of d.data || []) if (/Closing Balance/.test(z.account_type || '')) { const v = Number(z.close_today_bal !== 'null' && z.close_today_bal != null ? z.close_today_bal : z.open_today_bal); if (Number.isFinite(v)) w[z.record_date] = v; }
+bhSetze('tga_taeglich', Object.entries(w), 'treasury');
+},
+kurve: async () => {
+const j = new Date(), m = (n) => { const x = new Date(Date.UTC(j.getUTCFullYear(), j.getUTCMonth() - n, 1)); return `${x.getUTCFullYear()}${String(x.getUTCMonth() + 1).padStart(2, '0')}`; }, reihe = {};
+await Promise.all([m(0), m(1), m(12), m(13)].map(async (mo) => { try { bhKurveAus(await bhText(`https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value_month=${mo}`), reihe); } catch (e) {   } }));
+const tage = Object.keys(reihe).sort(); if (!tage.length) throw new Error('keine Kurve');
+const heute = tage[tage.length - 1], am = (tg) => { const t = tage.filter((x) => x <= tg).pop(); return t ? { tag: t, punkte: reihe[t] } : null; };
+const vor = (n) => new Date(Date.parse(heute) - n * 864e5).toISOString().slice(0, 10);
+BH.kurve = { heute: am(heute), vor_1_woche: am(vor(7)), vor_1_jahr: am(vor(365)), link: BH_Q.kurve[1], lizenz: { pflicht: BH_Q.kurve[2] }, abruf: Math.floor(Date.now() / 1000), quelle: BH_Q.kurve[0] };
+for (const [lz, id] of [['3M', 'us_rendite_3m'], ['2J', 'us_rendite_2j'], ['10J', 'us_rendite_10j'], ['30J', 'us_rendite_30j']]) bhSetze(id, tage.map((t) => [t, (reihe[t].find((p) => p[0] === lz) || [])[1]]), 'kurve');
+const a = BH.r.us_rendite_10j, b = BH.r.us_rendite_2j; if (a && b) bhSetze('us_spread_10j_2j', a.werte.map(([t, v]) => { const x = b.werte.find((y) => y[0] === t); return [t, x ? Math.round((v - x[1]) * 100) / 100 : NaN]; }), 'kurve');
+},
+};
+async function bhBeta() {
+const alt = gemerkt('bh', 6 * 36e5);
+if (alt && alt.r && Object.keys(alt.r).length > 20) { BH.r = alt.r; BH.kurve = alt.kurve; BH.teile = alt.teile || {}; return; }
+const ok = {}; await Promise.all(Object.entries(BH_BETA).map(async ([k, f]) => { try { await f(); ok[k] = true; } catch (e) { ok[k] = false; } BH.teile = ok; try { bhZeigen(); } catch (e) {   } }));
+BH.teile = ok; if (Object.values(ok).filter(Boolean).length >= 5) merkeJson('bh', { r: BH.r, kurve: BH.kurve, teile: ok });
+}
+async function bhMac() { } async function bhEvLaden() { }
+function bhAukZeigen() { bhNurVoll('bh-auk'); } function bhKalZeigen() { bhNurVoll('bh-kal'); } function bhSecZeigen() { bhNurVoll('bh-sec'); } function bhGlZeigen() { }
+function bhTab(kopf, zeilen, roh = []) { const t = document.createElement('table'), k = t.createTHead().insertRow(); for (const h of kopf) k.append(hdEl('th', '', h)); const b = t.createTBody(); for (const z of zeilen) { const r = b.insertRow(); z.forEach((v, i) => { const c = r.insertCell(); if (v instanceof Node) c.append(v); else { c.textContent = v; if (roh.includes(i)) c.dataset.roh = ''; } }); } return t; }
+function bhNurVoll(id) {
+const art = $(id); if (!art) return; art.classList.add('mz-fehlt');
+const p = art.querySelector('.mz-fehler'); if (p) { p.hidden = false; p.textContent = 'Nur in der Vollversion – diese Quelle erlaubt keinen Abruf direkt aus dem Browser.'; }
+}
+function bhQuelle(el, liste, extra) {
+if (!el) return; const t = [];
+for (const [name, url, pflicht, stand] of liste) {
+if (t.length) t.push(document.createTextNode(' · '));
+const eins = pflicht && pflicht.includes(name);
+if (eins) t.push(linkEl(pflicht, url)); else t.push(document.createTextNode('Quelle: '), linkEl(name, url));
+if (stand) t.push(document.createTextNode(` · Stand ${standTxt(stand)}`));
+if (pflicht && !eins) { const p = hdEl('span', '', nurText(pflicht)); p.translate = false; t.push(document.createTextNode(' · '), p); }
+}
+if (extra) t.push(document.createTextNode(' · ' + extra));
+el.replaceChildren(...t);
+}
+function bhQAus(ids) {
+const m = new Map(); for (const id of ids) { const r = BH.r[id]; if (!r || !r.lizenz) continue; const k = r.lizenz.pflicht; if (!m.has(k)) m.set(k, [r.quelle, r.link, k, r.abruf]); else m.get(k)[3] = Math.max(m.get(k)[3] || 0, r.abruf || 0); }
+return [...m.values()];
+}
+const bhPp = (v) => de(v, 2) + ' Pp.';
+function bhKachel(id, name, fmt, mitAend = true) {
+const r = BH.r[id]; if (!r || !r.letzter || !Number.isFinite(r.letzter[1])) return null;
+const [t, v] = r.letzter, vo = r.vorher, st = (r.quellen_status || {})[t];
+let k = bhDatum(t) + (st === 'e' || st === 'p' ? ' · ' + tr('Schnellschätzung') : '');
+if (mitAend && vo && Number.isFinite(vo[1])) { const d = v - vo[1]; k += ' · ' + (d > 0 ? '+' : d < 0 ? '−' : '±') + (fmt === bhPct || fmt === bhPp ? bhPp(Math.abs(d)) : fmt(Math.abs(d))); }
+const x = kachel(name, fmt(v), k); if (r.name && SPRACHE === 'de') x.title = r.name; return x;
+}
+function bhLinie(cv, reihen, labels, einheit, nk = 2) {
+if (!cv) return; if (labels.length < 2) { leinwandText(cv, 'keine Daten'); return; }
+diagramm(cv, { labels, einheit, ohneKappe: true, links: 44, leer: 'keine Daten', reihen: reihen.map(([w, f, br]) => ({ werte: w, farbe: f, breite: br || 1.6, nk, beschriften: (i, n) => i === n - 1 })) });
+}
+function bhZeigen() {
+const sec = document.querySelector('main.raster > section.feld.behoerden'); if (!sec) return;
+const aus = $('bh-ausfall'); if (aus) { aus.hidden = !BH.fehler; aus.textContent = BH.fehler === 'sammler' ? 'Noch keine Daten vom Sammler – er läuft alle 5 Minuten.' : BH.fehler ? 'Gerade nicht erreichbar – neuer Versuch in 10 Minuten.' : ''; }
+const R = BH.r, voll = !TEILEN;
+const lk = [bhKachel('netto_liquiditaet', 'Netto-Liquidität', bhBio), bhKachel('fed_bilanz', 'Fed-Bilanz', bhBio), bhKachel('fed_tga', 'TGA (Wochenstand)', bhBio), bhKachel('tga_taeglich', 'TGA (täglich)', bhBio),
+bhKachel('fed_rrp', 'Reverse Repo (ON RRP)', bhBio), bhKachel('fed_reserven', 'Reserven der Banken', bhBio)].filter(Boolean);
+$('bh-liq-k').replaceChildren(...lk);
+const lt = $('bh-liq-teil'); if (lt) lt.textContent = !R.fed_bilanz ? (TEILEN ? 'Fed-Bilanz und Netto-Liquidität: nur in der Vollversion – die Fed erlaubt keinen Abruf direkt aus dem Browser.' : '') : R.netto_liquiditaet && R.netto_liquiditaet.formel ? 'Netto-Liquidität = eigene Rechnung aus H.4.1 (Mittwochsstände)' : '';
+if (mzBlock('bh-liq', lk.length ? null : 'keine Werte')) {
+const r = R.netto_liquiditaet && (R.netto_liquiditaet.werte || []).length > 2 ? R.netto_liquiditaet : R.tga_taeglich, w = r ? (r.werte || []).slice(-104) : [];
+bhLinie($('bh-liq-c'), [[w.map((x) => x[1] / 1e6), F.wal]], w.map((x) => `${x[0].slice(8, 10)}.${x[0].slice(5, 7)}.`), '', 2);
+}
+bhQuelle($('bh-liq-q'), bhQAus(['fed_bilanz', 'tga_taeglich', 'netto_liquiditaet']), 'Bio. $ = Billionen US-Dollar');
+const kk = [['us_rendite_3m', '3 Monate'], ['us_rendite_2j', '2 Jahre'], ['us_rendite_10j', '10 Jahre'], ['us_rendite_30j', '30 Jahre']].map(([id, n]) => bhKachel(id, n, bhPct));
+kk.push(bhKachel('us_spread_10j_2j', '10 J minus 2 J', bhPp));
+$('bh-kurve-k').replaceChildren(...kk.filter(Boolean));
+const ku = BH.kurve, teile = ku ? [['heute', ku.heute, F.wal, 2], ['vor 1 Woche', ku.vor_1_woche, F.spot, 1.4], ['vor 1 Jahr', ku.vor_1_jahr, F.leise, 1.2]].filter((x) => x[1] && (x[1].punkte || []).length) : [];
+if (mzBlock('bh-kurve', teile.length ? null : 'keine Werte')) {
+const lz = teile[0][1].punkte.map((p) => p[0]);
+mzLegende('l-bh-kurve', teile.map(([n, x, f]) => [tr(n) + ' ' + bhDatum(x.tag), f]));
+bhLinie($('bh-kurve-c'), teile.map(([, x, f, br]) => { const m = new Map(x.punkte); return [lz.map((l) => (m.has(l) ? m.get(l) : null)), f, br]; }), lz, ' %', 2);
+}
+bhQuelle($('bh-kurve-q'), ku ? [[ku.quelle || BH_Q.kurve[0], ku.link || BH_Q.kurve[1], (ku.lizenz || {}).pflicht || BH_Q.kurve[2], ku.abruf]] : []);
+const fx = (w, nk) => (v) => de(v, nk) + ' ' + w;
+const ek = [bhKachel('ezb_einlage', 'EZB-Einlagesatz', bhPct), bhKachel('ezb_hauptrefi', 'EZB-Hauptrefinanzierung', bhPct), bhKachel('ezb_estr', '€STR', bhPct), bhKachel('ezb_m3', 'Geldmenge M3', bhPct),
+bhKachel('hvpi_ea', 'HVPI Euro-Raum', bhPct), bhKachel('hvpi_ea_kern', 'HVPI Kern', bhPct), bhKachel('hvpi_ea_energie', 'HVPI Energie', bhPct), bhKachel('hvpi_ea_dienste', 'HVPI Dienstleistungen', bhPct), bhKachel('hvpi_de', 'HVPI Deutschland', bhPct),
+bhKachel('bund_2j', 'Bund 2 Jahre', bhPct), bhKachel('bund_10j', 'Bund 10 Jahre', bhPct),
+bhKachel('ezb_usd', 'EUR/USD', fx('USD', 4)), bhKachel('ezb_gbp', 'EUR/GBP', fx('GBP', 4)), bhKachel('ezb_chf', 'EUR/CHF', fx('CHF', 4)), bhKachel('ezb_jpy', 'EUR/JPY', fx('JPY', 2)), bhKachel('ezb_cny', 'EUR/CNY', fx('CNY', 4))].filter(Boolean);
+$('bh-euro-k').replaceChildren(...ek);
+if (mzBlock('bh-euro', ek.length ? null : 'keine Werte')) {
+const hv = [['hvpi_ea', 'HVPI Euro-Raum', F.wal], ['hvpi_de', 'HVPI Deutschland', F.spot], ['hvpi_ea_kern', 'HVPI Kern', F.perp]].filter(([id]) => R[id] && (R[id].werte || []).length > 2);
+const mo = [...new Set(hv.flatMap(([id]) => R[id].werte.map((w) => w[0])))].sort().slice(-24);
+mzLegende('l-bh-hvpi', hv.map(([, n, f]) => [n, f]));
+bhLinie($('bh-hvpi-c'), hv.map(([id, , f]) => { const m = new Map(R[id].werte); return [mo.map((x) => (m.has(x) ? m.get(x) : null)), f]; }), mo.map((x) => `${x.slice(5, 7)}/${x.slice(2, 4)}`), ' %', 1);
+}
+bhQuelle($('bh-euro-q'), bhQAus(['ezb_einlage', 'hvpi_ea', 'bund_10j']), 'Werte unverändert, nur gerundet angezeigt');
+const wz = BH_LAENDER.map(([k, n]) => { const b = R['wb_bip_' + k], c = R['oecd_cli_' + k]; if (!b && !c) return null;
+return [n, b ? bhPct(b.letzter[1]) + ' (' + b.letzter[0] + ')' : '–', b && b.vorher ? bhPct(b.vorher[1]) + ' (' + b.vorher[0] + ')' : '–', c ? de(c.letzter[1], 2) + ' (' + bhDatum(c.letzter[0]) + ')' : '–',
+c && c.vorher ? (c.letzter[1] >= c.vorher[1] ? '+' : '−') + de(Math.abs(c.letzter[1] - c.vorher[1]), 2) : '–']; }).filter(Boolean);
+if (mzBlock('bh-welt', wz.length ? null : 'keine Werte')) $('bh-welt-t').replaceChildren(bhTab(['', 'BIP-Wachstum', 'Vorjahr', 'OECD-Frühindikator', 'ggü. Vormonat'], wz));
+bhQuelle($('bh-welt-q'), bhQAus(['wb_bip_usa', 'oecd_cli_usa']), '100 = Langzeittrend');
+if (voll) { bhAukZeigen(); bhKalZeigen(); bhSecZeigen(); bhGlZeigen(); } else { for (const id of ['bh-auk', 'bh-kal', 'bh-sec']) bhNurVoll(id); }
+const st = $('bh-stand'); if (st) st.textContent = BH.zeit ? 'Stand ' + standTxt(BH.zeit) : '';
+const fu = $('bh-fuss'); if (fu) fu.textContent = 'Nur freigegebene Quellen, Werte unverändert · keine Anlageberatung, keine Kauf- oder Verkaufssignale';
+}
+function bhDemo() {
+const t = (n) => bhVor(n), m = (n) => bhVor(n * 30).slice(0, 7);
+bhSetze('tga_taeglich', [[t(3), 910313], [t(2), 922633]], 'treasury');
+bhSetze('ezb_einlage', [[t(150), 2.25], [t(1), 2.5]], 'ezb', { nurAenderungen: true }); bhSetze('ezb_estr', [[t(2), 2.44], [t(1), 2.44]], 'ezb'); bhSetze('ezb_usd', [[t(2), 1.119], [t(1), 1.121]], 'ezb');
+bhSetze('hvpi_ea', Array.from({ length: 12 }, (_, i) => [m(12 - i), 2 + i * 0.15]), 'eurostat'); bhSetze('hvpi_de', Array.from({ length: 12 }, (_, i) => [m(12 - i), 2.2 + i * 0.08]), 'eurostat');
+bhSetze('bund_10j', [[t(2), 3.33], [t(1), 3.31]], 'buba'); bhSetze('wb_bip_usa', [['2024', 2.8], ['2025', 2.2]], 'wb'); bhSetze('oecd_cli_usa', [[m(2), 100.9], [m(1), 100.95]], 'oecd');
+for (const [id, v] of [['us_rendite_3m', 4.3], ['us_rendite_2j', 4.7], ['us_rendite_10j', 5], ['us_rendite_30j', 5.35]]) bhSetze(id, [[t(2), v - 0.05], [t(1), v]], 'kurve');
+const lz = ['1M', '3M', '6M', '1J', '2J', '5J', '10J', '30J'], p = (o) => lz.map((l, i) => [l, 4 + i * 0.15 + o]);
+BH.kurve = { heute: { tag: t(1), punkte: p(0) }, vor_1_woche: { tag: t(8), punkte: p(-0.05) }, vor_1_jahr: { tag: t(366), punkte: p(-0.3) }, quelle: BH_Q.kurve[0], link: BH_Q.kurve[1], lizenz: { pflicht: BH_Q.kurve[2] } };
+}
+async function bhLaden() {
+if (BH.laeuft) return; if (spaeter(bhLaden, 'behoerden')) return;
+BH.laeuft = true;
+try { if (DEMO) bhDemo(); else if (macBasis() !== null && !TEILEN) await bhMac(); else await bhBeta(); } catch (e) { BH.fehler = 'netz'; } finally { BH.laeuft = false; }
+bhZeigen();
+}
+function bhUhren() { if (document.hidden) return; const j = Date.now(); for (const c of document.querySelectorAll('#bh-kal-l .countdown[data-zeit]')) { const ms = Number(c.dataset.zeit) * 1000 - j; if (ms > 0) c.textContent = bisText(ms); } }
+const BH_KURZ = { zins: 'Fed', inflation: 'CPI', erzeugerpreise: 'PPI', arbeitsmarkt: 'Jobs', pce: 'PCE', wachstum: 'BIP', auktion: 'Auktion', ezb: 'EZB' };
+function bhMarken(markt) {
+const l = [];
+for (const e of BH.ev || termineListe || []) l.push({ zeit: e.zeit, kurz: e.art === 'quartalszahlen' ? (e.ticker || 'Q') + (e.geschaetzt ? '?' : '') : tr(BH_KURZ[e.art] || e.art || ''), w: e.wichtigkeit || (e.art === 'zins' || e.art === 'inflation' ? 3 : 2), text: e.text || '' });
+if (meld && Array.isArray(meld.meldungen)) for (const m of meld.meldungen) if ((m.coins || []).includes(markt) && /Listung|Streichung/.test(m.art || '')) l.push({ zeit: m.t, kurz: tr(m.art), w: 2, text: m.titel || '' });
+return l.filter((x) => Number.isFinite(x.zeit));
+}
+HdChart.prototype.termineZeichnen = function (ctx, K, a, b, d, f, L) {
+if (!TEILEN && macBasis() !== null && !DEMO) bhEvLaden();
+const t0 = K[a].t, t1 = K[b].t + this.tf * 60 * 3, liste = bhMarken(this.markt).filter((e) => e.zeit >= t0 && e.zeit <= t1);
+ctx.font = `600 ${Math.round(9.5 * d)}px ${F.mono}`; ctx.textBaseline = 'top'; let n = 0;
+for (const e of liste.sort((x, y) => y.w - x.w)) {
+const x = Math.round(this.tZuX(e.zeit)) + 0.5; if (x < L.x0 || x > L.x1) continue;
+ctx.strokeStyle = mix(f.achseText, e.w >= 3 ? 0.75 : 0.45); ctx.setLineDash([3 * d, 3 * d]); ctx.beginPath(); ctx.moveTo(x, L.py0); ctx.lineTo(x, L.y1); ctx.stroke(); ctx.setLineDash([]);
+const txt = e.kurz, w = ctx.measureText(txt).width + 8 * d, y = L.py0 + 2 * d + (n++ % 3) * 14 * d;
+ctx.fillStyle = f.etikettBg; ctx.fillRect(x - w / 2, y, w, 13 * d); ctx.fillStyle = e.w >= 3 ? f.text : f.achseText; ctx.textAlign = 'center'; ctx.fillText(txt, x, y + 2 * d); ctx.textAlign = 'left';
+}
+ctx.textBaseline = 'middle'; return liste.length;
+};
+const VL = { an: false, knopf: null };
+function vorlesen(eintraege, knopf) {
+const s = window.speechSynthesis; if (!s || typeof SpeechSynthesisUtterance === 'undefined') { if (knopf) knopf.title = tr('Dieses Gerät hat keine Sprachausgabe.'); return false; }
+s.cancel(); if (VL.an && VL.knopf === knopf) { VL.an = false; if (knopf) knopf.setAttribute('aria-pressed', 'false'); return true; }
+if (VL.knopf && VL.knopf !== knopf) VL.knopf.setAttribute('aria-pressed', 'false');
+VL.an = true; VL.knopf = knopf; if (knopf) knopf.setAttribute('aria-pressed', 'true');
+const l = eintraege.slice(0, 6); if (!l.length) { VL.an = false; if (knopf) knopf.setAttribute('aria-pressed', 'false'); return false; }
+l.forEach(([quelle, titel, sprache], i) => { const u = new SpeechSynthesisUtterance(`${quelle}: ${titel}`); u.lang = sprache || 'en-US'; u.rate = 1.02; if (i === l.length - 1) u.onend = () => { VL.an = false; if (knopf) knopf.setAttribute('aria-pressed', 'false'); }; s.speak(u); });
+return true;
+}
+function vorlesenStart() {
+const nb = $('news-vorlesen'); if (nb && news && (news.meldungen || []).length) return vorlesen(news.meldungen.map((m) => [m.quelle || '', m.titel || '', m.region === 'DE' || m.quelle === 'BaFin' ? 'de-DE' : 'en-US']), nb);
+const mb = $('meld-vorlesen'); return vorlesen(((meld && meld.meldungen) || []).filter((m) => !meldArt || m.art === meldArt).map((m) => [m.boerse || '', m.titel || '', 'en-US']), mb);
+}
+function nsStart() { } function bhNewsQuelle() { }
+for (const id of ['news-vorlesen', 'meld-vorlesen']) { const b = $(id); if (b) b.addEventListener('click', () => { const nb = $('news-vorlesen'); if (id === 'meld-vorlesen' || !nb) vorlesen(((meld && meld.meldungen) || []).filter((m) => !meldArt || m.art === meldArt).map((m) => [m.boerse || '', m.titel || '', 'en-US']), b); else vorlesenStart(); }); }
+window.__ryvoBh = () => ({ r: Object.fromEntries(Object.entries(BH.r).map(([k, r]) => [k, { letzter: r.letzter, vorher: r.vorher, quelle: r.quelle, pflicht: (r.lizenz || {}).pflicht }])),
+kurve: BH.kurve && BH.kurve.heute, teile: BH.teile, fehler: BH.fehler, laeuft: BH.laeuft, zeigen: () => { try { bhZeigen(); return "ok"; } catch (e) { return String(e.stack).slice(0, 400); } } });
+nsStart(); bhLaden(); setInterval(bhLaden, 10 * 6e4); setInterval(bhUhren, 30000);
+
 /*BEFEHL-KERN-ANFANG*/
 const BEF_REG = [
 { id: 'chart', k: ['CHART', 'KERZEN'], e: ['CHART', 'CANDLES'], n: 'Chart', s: 'Kerzen-Chart mit Footprint, TPO und Ebenen', b: 'SOL CHART 15', feld: 'chart', hd: 'chart', g: 'of' },
@@ -12885,6 +12847,17 @@ const BEF_REG = [
 { id: 'danach', k: ['DANACH', 'RUECKBLICK'], e: ['AFTER', 'REPLAY'], n: 'Was danach', s: 'Was nach Ereignissen passierte (Rückblick)', b: 'DANACH', feld: 'danach', g: 'news' },
 { id: 'umfeld', k: ['UMFELD', 'STIMMUNG', 'COT'], e: ['SENTIMENT', 'CME'], n: 'Umfeld', s: 'Stimmung, Aktien, Gold und CME-Positionen', b: 'UMFELD', feld: 'umfeld', g: 'mak' },
 { id: 'zins', k: ['ZINS', 'ZINSEN', 'KAL'], e: ['RATES', 'CAL', 'CALENDAR'], n: 'Zinsen', s: 'US-Zinsen und Termine', b: 'ZINS', feld: 'makro', g: 'mak' },
+{ id: 'liqui', k: ['LIQUI', 'FED'], e: ['NETLIQ', 'FEDBS'], n: 'Netto-Liquidität', s: 'Fed-Bilanz, TGA und Reverse Repo (H.4.1, Treasury)', b: 'LIQUI', feld: 'behoerden', ziel: '#bh-liq', g: 'mak' },
+{ id: 'zinskurve', k: ['ZINSKURVE', 'RENDITEN'], e: ['YIELDS', 'YIELDCURVE'], n: 'US-Renditen', s: 'Ganze US-Zinskurve: heute, vor 1 Woche, vor 1 Jahr', b: 'ZINSKURVE', feld: 'behoerden', ziel: '#bh-kurve', g: 'mak' },
+{ id: 'ezb', k: ['EZB', 'EURORAUM', 'HVPI'], e: ['ECB', 'EUROAREA', 'HICP'], n: 'Euro-Raum', s: 'EZB-Sätze, €STR, Wechselkurse, HVPI, Bund-Renditen', b: 'EZB', feld: 'behoerden', ziel: '#bh-euro', g: 'mak' },
+{ id: 'welt', k: ['WELT', 'BIP', 'CLI'], e: ['WORLD', 'GDP', 'LEADING'], n: 'Welt', s: 'BIP-Wachstum (Weltbank) und OECD-Frühindikator', b: 'WELT', feld: 'behoerden', ziel: '#bh-welt', g: 'mak' },
+{ id: 'auktion', k: ['AUKTION', 'AUKTIONEN'], e: ['AUCTION', 'AUCTIONS'], n: 'Anleihe-Auktionen', s: 'US-Anleihe-Auktionen: kommend und Ergebnisse', b: 'AUKTION', feld: 'behoerden', ziel: '#bh-auk', g: 'mak' },
+{ id: 'kalender', k: ['KALENDER', 'TERMINE'], e: ['ECONCAL', 'EVENTS'], n: 'Wirtschaftskalender', s: 'Termine mit Wichtigkeit, Countdown, Vorwert und Ist', b: 'KALENDER', feld: 'behoerden', ziel: '#bh-kal', g: 'mak' },
+{ id: 'sec', k: ['SEC', 'QUARTALE'], e: ['FILINGS', 'EARNINGS'], n: 'SEC', s: 'Quartalszahlen-Termine krypto-naher Firmen (SEC)', b: 'SEC', feld: 'behoerden', ziel: '#bh-sec-q4', g: 'mak' },
+{ id: 'insider', k: ['INSIDER', 'FORM4'], e: ['INSIDERS', 'INSIDERTRADES'], n: 'Insider (Form 4)', s: 'Insider-Meldungen krypto-naher Firmen (SEC Form 4)', b: 'INSIDER', feld: 'behoerden', ziel: '#bh-sec-ins', g: 'mak' },
+{ id: 'f13', k: ['13F', 'HALTER'], e: ['HOLDERS', 'FUNDS13F'], n: '13F-Halter', s: 'Größte Halter der Bitcoin-ETFs und von MSTR/COIN (13F)', b: '13F', feld: 'behoerden', ziel: '#bh-sec-13f', g: 'mak' },
+{ id: 'termine', k: ['MARKEN', 'EREIGNISSE'], e: ['MARKERS', 'EVENTMARKS'], n: 'Termine im Chart', s: 'Ebene im Chart: Termine, Quartalszahlen, Listungen als Marken', b: 'MARKEN', hd: 'chart', ebene: 'termine', g: 'eb' },
+{ id: 'vorlesen', k: ['VORLESEN', 'SQUAWK'], e: ['READALOUD', 'SPEAK'], n: 'Vorlesen', s: 'Neueste Meldungen mit der Sprachausgabe des Geräts vorlesen', b: 'VORLESEN', g: 'news' },
 { id: 'handeln', k: ['HANDELN', 'START', 'PAPIER'], e: ['TRADE', 'PAPER'], n: 'Handeln', s: 'Handeln mit Spielgeld: Chart, Ticket, Positionen', b: 'HANDELN', hd: 'chart', g: 'hd' },
 { id: 'ticket', k: ['TICKET', 'ORDER'], e: ['TICKET', 'ORDER'], n: 'Papier-Order', s: 'Order-Ticket mit Spielgeld, nichts geht an eine Börse', b: 'TICKET BTC', hd: 'chart', ziel: '#hd-ticket', g: 'hd' },
 { id: 'selbst', k: ['SELBST', 'EIGEN'], e: ['SELF', 'MANUAL'], n: 'Selbst handeln', s: 'Selbst handeln (Papier) im Feld unter den Daten', b: 'SELBST', feld: 'selbst', g: 'hd' },
@@ -13025,7 +12998,7 @@ const befName = (r) => tr(r.n);
 const befZeige = (r) => (SPRACHE === 'de' ? r.k[0] : r.e[0]);
 const BEF_ALIAS = befIndex(BEF_REG);
 const BEF_NUR_MAC = { NEWS: 'News', NACHRICHTEN: 'News', HEADLINES: 'News', REG: 'News', REGULIERUNG: 'News', REGULATION: 'News', MAKRO: 'Makro-Zentrale', MACRO: 'Makro-Zentrale',
-CPI: 'Makro-Zentrale', INFLATION: 'Makro-Zentrale', OEL: 'Makro-Zentrale', OIL: 'Makro-Zentrale', ANALYST: 'Dein Analyst', BOT: 'Dein Analyst' };
+CPI: 'Makro-Zentrale', INFLATION: 'Makro-Zentrale', OEL: 'Makro-Zentrale', OIL: 'Makro-Zentrale', ANALYST: 'Dein Analyst', BOT: 'Dein Analyst', BAFIN: 'BaFin', AUFSICHT: 'BaFin', WATCHDOG: 'BaFin', GLEICHLAUF: 'Gleichlauf', KORR: 'Gleichlauf', CORR: 'Gleichlauf', CORRELATION: 'Gleichlauf' };
 const BEF_MARKT_ALIAS = { NASDAQ: 'XYZ100', NDX: 'XYZ100', SP: 'SP500', SPX: 'SP500', SILBER: 'SILVER', OELPREIS: 'CL', WTI: 'CL', NVIDIA: 'NVDA', TESLA: 'TSLA', APPLE: 'AAPL', MICROSOFT: 'MSFT' };
 function befMarkt(t) {
 t = BEF_MARKT_ALIAS[t] || t;
@@ -13056,7 +13029,7 @@ const AB_VOR = [
 { id: 'optionen', n: 'Optionen', f: ['gex', 'gamma', 'ofluss', 'olab', 'opt', 'vol', 'kurve', 'chart'] },
 { id: 'derivate', n: 'Derivate', f: ['werte', 'uebersicht', 'geschichte', 'lkarte', 'markt', 'liq', 'kurve', 'cvd'] },
 { id: 'onchain', n: 'On-Chain & Wale', f: ['mac', 'rangliste', 'lkarte', 'rug', 'band', 'liq'] },
-{ id: 'makro', n: 'Makro', f: ['mz', 'makro', 'umfeld', 'news', 'geschichte', 'meldungen'] },
+{ id: 'makro', n: 'Makro', f: ['mz', 'behoerden', 'makro', 'umfeld', 'news', 'geschichte', 'meldungen'] },
 { id: 'news', n: 'News', f: ['news', 'meldungen', 'jetzt', 'danach', 'bericht', 'analyse'] },
 { id: 'einsteiger', n: 'Einsteiger', f: ['chart', 'analyse', 'bericht', 'jetzt', 'werte', 'umfeld'] },
 { id: 'alle', n: 'Alle Daten' },
@@ -13339,6 +13312,7 @@ if (sec.classList.contains('swing-zu')) { sec.classList.add('swing-offen'); swin
 if (sec.classList.contains('ab-zu')) { AB.offen.add(r.feld); abAnwenden(); }
 if (r.ansicht) { const b = document.querySelector(`#ch-ansicht [data-ansicht="${r.ansicht}"]`); if (b && b.getAttribute('aria-pressed') !== 'true') b.click(); }
 if (r.id === 'scr' && p.rest && p.rest.length) { const f = $('ueb-filter'); if (f) { f.value = p.rest.join(' '); f.dispatchEvent(new Event('input')); } }
+if (r.id === 'bafin') bhNewsQuelle('BaFin');
 if ((r.id === 'news' || r.id === 'reg')) { const k = document.querySelector(`#news-kat [data-k="${r.id === 'reg' ? 'regulierung' : ''}"]`); if (k) k.click(); if (p.markt) { const c = document.querySelector('#news-coin [data-c="*"]'); if (c) c.click(); } }
 await befWarte(30);
 let ziel = sec; if (r.ziel) { const z = sec.querySelector(r.ziel); if (z) ziel = z; }
@@ -13383,6 +13357,7 @@ case 'teilen': await linkKopieren(); return fertig(true, '');
 case 'suche': auswahlAuf(); window.scrollTo(0, 0); return fertig(true, hinweis, $('auswahl'));
 case 'tasten': tastenHilfe(true); return fertig(true, hinweis, $('tasten-hilfe'));
 case 'neu': wasNeu(); return fertig(true, hinweis, $('was-neu'));
+case 'vorlesen': return fertig(vorlesenStart(), hinweis);
 case 'einstieg': einstieg(0); return fertig(true, hinweis, $('einstieg'));
 case 'hilfe': verzeichnis(p.rest.join(' ')); return fertig(true, hinweis, $('verzeichnis'));
 case 'lex': verzeichnis(p.rest.join(' '), true); return fertig(true, hinweis, $('verzeichnis'));
