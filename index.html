@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "3f4dc5b2", "es": "8dba79fd", "fr": "55aaae38", "it": "434a807d", "tr": "e729b128"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "95544842", "es": "c1b74d75", "fr": "28c6d0fe", "it": "80f50b78", "tr": "762a27dc"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2020,6 +2020,75 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
 .mz-tab { min-width: 0; overflow-x: auto; }
 
 
+.befehl { position: fixed; z-index: 75; top: 72px; left: 50%; transform: translateX(-50%); width: min(680px, calc(100vw - 32px)); margin: 0; box-shadow: 0 12px 40px rgba(0, 0, 0, .35); }
+.befehl[hidden] { display: none; }
+.befehl .auswahl-kopf input { flex: 1 1 auto; min-width: 0; }
+.befehl .befehl-nav { padding: 0 10px; min-height: 34px; border: 1px solid var(--linie); background: transparent; color: var(--leise); cursor: pointer; font: 600 11px var(--mono); }
+.befehl .befehl-nav:hover { color: var(--text); border-color: var(--leise); }
+.befehl-liste { list-style: none; margin: 0; padding: 0; max-height: min(52vh, 460px); gap: 2px; }
+.befehl-zeile { display: grid; grid-template-columns: minmax(96px, auto) minmax(0, 1fr) auto auto; align-items: center; gap: 4px 10px; padding: 6px 8px; border: 1px solid transparent; border-radius: 6px; cursor: pointer; }
+.befehl-zeile:hover { border-color: var(--linie-hell, var(--linie)); }
+.befehl-zeile[aria-selected="true"] { border-color: var(--wal); }
+.befehl-cmd { font: 600 13px var(--mono); color: var(--text); white-space: nowrap; }
+.befehl-satz { font-size: 12.5px; color: var(--text-2, var(--text)); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.befehl-art { font: 500 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--leise); white-space: nowrap; }
+.befehl-stern { all: unset; cursor: pointer; color: var(--leise); padding: 0 4px; font-size: 14px; }
+.befehl-stern:hover { color: var(--wal); }
+.befehl-fuss { font-size: 11px; margin: 0; }
+@media (max-width: 699px) {
+  .befehl { top: auto; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column-reverse; gap: 8px; }
+  .befehl[hidden] { display: none; }
+  .befehl-liste { display: flex; flex-direction: column-reverse; max-height: min(48vh, 420px); }
+  .befehl-zeile { grid-template-columns: auto minmax(0, 1fr) auto; padding: 8px; }
+  .befehl-art, .befehl-fuss { display: none; }
+  .tabbar.mit-suche { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+}
+.ab-leiste { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin: 0 0 10px; padding: 8px 12px; border: 1px solid var(--desk-linie, var(--linie)); background: var(--feld); }
+body.im-handeln .ab-leiste { display: none; }
+.ab-leiste button { all: unset; cursor: pointer; flex: none; padding: 3px 9px; border: 1px solid var(--linie); border-radius: 4px; font: 500 11.5px var(--mono); color: var(--text-2, var(--text)); white-space: nowrap; }
+.ab-leiste button:hover { border-color: var(--linie-hell, var(--leise)); }
+.ab-leiste button[aria-pressed="true"] { border-color: var(--wal); color: var(--wal); }
+.ab-leiste button:focus-visible { outline: 2px solid var(--wal); outline-offset: 1px; }
+.ab-leiste button:disabled { opacity: .4; cursor: default; }
+html.desk .ab-leiste button { border-radius: 1px; font-size: 10.5px; letter-spacing: .04em; }
+.ab-strich { width: 1px; align-self: stretch; background: var(--desk-linie, var(--linie)); margin: 0 4px; flex: none; }
+@media (max-width: 699px) { .ab-leiste { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; } .ab-leiste::-webkit-scrollbar { display: none; } .ab-leiste button { padding: 6px 10px; } }
+.ab-trenner { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; padding: 8px 2px 0; border-top: 1px solid var(--desk-linie, var(--linie)); font-size: 12.5px; color: var(--leise); }
+.ab-trenner[hidden] { display: none; }
+.ab-trenner .ab-auf { font: 600 10.5px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; min-height: 26px; border: 1px solid var(--desk-linie, var(--linie)); background: transparent; color: var(--leise); cursor: pointer; }
+.ab-trenner .ab-auf:hover { color: var(--text); border-color: var(--text); }
+main.raster > section.feld.ab-zu { display: none !important; }
+.fokus-knopf { font: 600 12px var(--mono); padding: 2px 8px; min-height: 24px; border: 1px solid var(--desk-linie, var(--linie)); background: transparent; color: var(--leise); cursor: pointer; line-height: 1; }
+.fokus-knopf:hover { color: var(--text); border-color: var(--text); }
+main.raster > section.feld.fokus { position: fixed; z-index: 70; inset: 12px; overflow: auto; overscroll-behavior: contain; box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .62); grid-area: auto !important; }
+body.fokus-an { overflow: hidden; }
+.bef-meldung { z-index: 76; }
+.bef-meldung[hidden] { display: none; }
+.verzeichnis { width: min(760px, calc(100vw - 32px)); max-height: calc(100vh - 96px); }
+.verzeichnis .auswahl-kopf { margin: 4px 0 6px; }
+.was-neu ul.verzeichnis-gruppe { list-style: none; padding: 0; margin: 0 0 4px; display: grid; }
+.verzeichnis-gruppe li { display: grid; grid-template-columns: minmax(110px, 32%) minmax(0, 1fr) auto; gap: 1px 10px; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--linie); margin: 0; }
+.verzeichnis-gruppe li > .leise { grid-column: 2 / 3; font-size: 12px; }
+.verzeichnis-gruppe .befehl-cmd { font-size: 12px; white-space: normal; }
+.verzeichnis-gruppe .befehl-satz { white-space: normal; }
+.verzeichnis-bsp { font: 500 11px var(--mono); padding: 2px 8px; border: 1px solid var(--linie); background: transparent; color: var(--text-2, var(--text)); cursor: pointer; white-space: nowrap; grid-row: 1; grid-column: 3; }
+.verzeichnis-lex:empty { display: none; }
+.verzeichnis-lex { padding: 8px 0; border-bottom: 1px solid var(--linie); margin-bottom: 6px; }
+.verzeichnis-lex p { margin: 0 0 4px; }
+.ab-editor { width: min(480px, calc(100vw - 32px)); }
+.ab-editor .auswahl-kopf { margin: 4px 0 8px; }
+.was-neu ul.ab-felder { list-style: none; margin: 0 0 6px; padding: 0; max-height: 44vh; overflow: auto; display: grid; gap: 2px; }
+.ab-felder li { display: flex; align-items: center; gap: 6px; margin: 0; }
+.ab-felder label { flex: 1; display: flex; gap: 8px; align-items: center; font-size: 13px; cursor: pointer; }
+.ab-felder .leise-knopf { padding: 0 8px; min-height: 26px; border: 1px solid var(--desk-linie, var(--linie)); background: transparent; color: var(--leise); cursor: pointer; }
+.ab-unten { flex-wrap: wrap; }
+.taste-aendern { padding: 0 6px; font: 500 11px var(--sans); border: 1px solid var(--linie); background: transparent; color: var(--leise); cursor: pointer; }
+.tasten-hilfe > .leise-knopf { margin-top: 8px; padding: 3px 9px; border: 1px solid var(--linie); background: transparent; color: var(--leise); cursor: pointer; }
+.hd-befehl { margin-left: auto; }
+.tasten-hilfe { max-height: calc(100vh - 32px); overflow: auto; }
+@media (max-width: 699px) { .fokus-knopf { display: none; } }   
+
+
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
 .test-band summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 10px 14px; -webkit-tap-highlight-color: transparent; }
 .test-band summary::-webkit-details-marker { display: none; }
@@ -2785,7 +2854,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "3f4dc5b2", "es": "8dba79fd", "fr": "55aaae38", "it": "434a807d", "tr": "e729b128"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "95544842", "es": "c1b74d75", "fr": "28c6d0fe", "it": "80f50b78", "tr": "762a27dc"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -9712,13 +9781,18 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     $('multi-iv').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; multi.iv = Number(b.dataset.iv); merke('multiIv', String(multi.iv)); multi.k.clear(); multiZeigen(); multiLaden(); });
     multiZeigen(); setTimeout(multiLaden, 2500); setInterval(multiLaden, 60000);
   }
-  var TASTEN = [['1 2 3', 'BTC, ETH, SOL'], ['/', 'Markt suchen'], ['F K T', 'Footprint, Kerzen, TPO'], ['Q W E R', 'Kerzen 1m, 5m, 15m, 1h'], ['Z', 'Zonen an/aus'], ['L', 'Linie zeichnen an/aus'], ['C', 'zum Chart'], ['H', 'Handeln (Papier) ein/aus'], ['Esc', 'schließen'], ['?', 'diese Hilfe']];
+  var TASTEN = [['1', 'BTC'], ['2', 'ETH'], ['3', 'SOL'], ['/', 'Befehlszeile'], ['m', 'Markt suchen'], ['f', 'Footprint'], ['k', 'Kerzen'], ['t', 'TPO'], ['q', 'Kerzen 1m'], ['w', 'Kerzen 5m'], ['e', 'Kerzen 15m'], ['r', 'Kerzen 1h'],
+    ['z', 'Zonen an/aus'], ['l', 'Linie zeichnen an/aus'], ['c', 'zum Chart'], ['h', 'Handeln (Papier) ein/aus'], ['v', 'Fokus: Feld in der Mitte'], ['[', 'Feld zurück'], [']', 'Feld vor'], ['?', 'diese Hilfe']];
+  const TASTEN_FEST = [['Strg/⌘ K', 'Befehlszeile'], ['Alt ← →', 'Zurück / Vor'], ['Alt 1–9', 'Arbeitsbereich wählen'], ['Esc', 'schließen']];
   function tastenBedienen() {
     addEventListener('keydown', (e) => {
       if (e.metaKey || e.ctrlKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '') || (e.target && e.target.isContentEditable)) return;
-      const k = e.key, klick = (sel) => { const b = document.querySelector(sel); if (b) { b.click(); e.preventDefault(); } };
+      const k = tasteAus(e.key), klick = (sel) => { const b = document.querySelector(sel); if (b) { b.click(); e.preventDefault(); } };
       if (k === '1' || k === '2' || k === '3') { wechseln(['BTC', 'ETH', 'SOL'][Number(k) - 1]); e.preventDefault(); }
-      else if (k === '/') { auswahlAuf(); setTimeout(() => $('suche').focus(), 30); e.preventDefault(); }
+      else if (k === '/') { befehlAuf(); e.preventDefault(); }
+      else if (k === 'm') { auswahlAuf(); setTimeout(() => $('suche').focus(), 30); e.preventDefault(); }
+      else if (k === 'v') { if (HD.bereich === 'daten') { fokus(document.querySelector('main.raster > section.feld.fokus') ? null : feldInMitte()); e.preventDefault(); } }
+      else if (k === '[' || k === ']') { feldSchritt(k === ']' ? 1 : -1); e.preventDefault(); }
       else if (k === 'f' || k === 'k' || k === 't') klick(`#ch-ansicht [data-ansicht="${{ f: 'fp', k: 'kerzen', t: 'tpo' }[k]}"]`);
       else if ('qwer'.includes(k) && k.length === 1) klick(`#ch-tf [data-tf="${{ q: 1, w: 5, e: 15, r: 60 }[k]}"]`);
       else if (k === 'z') klick('#ch-schalter [data-ebene="zonen"]');
@@ -9726,10 +9800,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       else if (k === 'h') { hdBereich(HD.bereich === 'handeln' ? 'daten' : 'handeln'); e.preventDefault(); }
       else if (k === 'c') { if (typeof tabZeigen === 'function' && innerWidth < 700) tabZeigen('chart'); const s = document.querySelector('section.feld.chart'); if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' }); e.preventDefault(); }
       else if (k === 'Escape') { auswahlZu(); const t = $('tasten-hilfe'); if (t) t.hidden = true; const f = $('konto-form'); if (f) f.hidden = true; if (zeichenModus) klick('#ch-linie'); }
-      else if (k === '?') { let t = $('tasten-hilfe'); if (!t) { t = document.createElement('div'); t.id = 'tasten-hilfe'; t.className = 'tasten-hilfe'; t.setAttribute('role', 'dialog'); t.setAttribute('aria-label', 'Tastenkürzel');
-          const h = document.createElement('h3'); h.textContent = 'Tastenkürzel'; const dl = document.createElement('dl');
-          for (const [a, b] of TASTEN) { const dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = a; dd.textContent = b; dl.append(dt, dd); }
-          t.append(h, dl); t.addEventListener('click', () => { t.hidden = true; }); document.body.append(t); } else t.hidden = !t.hidden; e.preventDefault(); }
+      else if (k === '?') { tastenHilfe(); e.preventDefault(); }
     });
   }
   var konto = null, kontoZeit = 0;
@@ -12195,7 +12266,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   }
   function swingRaster() {
     const m = document.querySelector('main.raster'); if (!m) return;
-    m.style.gridTemplateAreas = '';
+    m.style.gridTemplateAreas = AB_BEREIT ? abFlaeche() : '';
     const zu = [...m.querySelectorAll(':scope > section.feld.swing-zu')];
     let leiste = document.getElementById('swing-leiste');
     if (!leiste) { leiste = document.createElement('div'); leiste.id = 'swing-leiste'; leiste.className = 'swing-leiste'; m.before(leiste); }
@@ -12312,8 +12383,11 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
   }, true);
 
-  const FASSUNG = 'r131';
+  const FASSUNG = 'r132';
   const NEU = [
+    { f: 'r132', tag: '11.11.2026', s: ['Befehlszeile: / oder Strg/⌘+K öffnet sie – z. B. „BTC LIQ“, „ETH GAMMA“, „SOL 4H“ oder „HILFE“ für alle Befehle.',
+      'Arbeitsbereiche: Scalper, Swing, Optionen, Derivate, On-Chain & Wale, Makro, News – die passenden Felder oben, alle anderen bleiben darunter. Eigene speichern, als Datei oder per Link teilen.',
+      'Fokus für jedes Feld, Zurück und Vor, eigene Tasten, Einsteiger-Stufe; die Adresse merkt sich Markt, Bereich und Feld.'] },
     { f: 'r131', tag: '11.11.2026', s: ['Options-Gamma: eine Rechnung und eine Zahl auf der ganzen Seite – mit der richtigen Quelle.', 'Wo Bybit und Binance nicht erreichbar sind, bleibt kein Feld mehr leer: Jedes zeigt, was gerade fehlt.', 'Swing-Ansicht ohne leere Flächen; Dollar-Index und VIX entfallen, weil Hyperliquid sie gestrichen hat.', 'Am Handy lädt die große Hyperliquid-Bestenliste (rund 40 MB) erst auf Tippen.'] },
     { f: 'r130', tag: '11.11.2026', s: ['Hilfetexte und Hinweise nennen nur noch die Quellen, die diese Fassung wirklich lädt.'] },
     { f: 'r129', tag: '11.11.2026', s: ['„Mehrere Märkte“ lädt wieder – jedes Feld für sich, ohne Antwort nach 15 s ein klarer Hinweis.', 'Gold, Silber, Öl, S&P 500, Nasdaq 100 und Aktien wie Nvidia sind über die Suche wählbar (Kontrakte bei Hyperliquid).',
@@ -12774,6 +12848,770 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   if (bybitBekannt) { start(); bybitPruefen(); }
   else Promise.race([bybitPruefen().catch(() => null), new Promise((ok) => setTimeout(ok, 1500))]).then(() => { if (!S) start(); });
   setInterval(bybitPruefen, 10 * 6e4);
+
+  /*BEFEHL-KERN-ANFANG*/
+  const BEF_REG = [
+    { id: 'chart', k: ['CHART', 'KERZEN'], e: ['CHART', 'CANDLES'], n: 'Chart', s: 'Kerzen-Chart mit Footprint, TPO und Ebenen', b: 'SOL CHART 15', feld: 'chart', hd: 'chart', g: 'of' },
+    { id: 'fp', k: ['FP', 'FOOTPRINT'], e: ['FP', 'FOOTPRINT'], n: 'Footprint', s: 'Käufe und Verkäufe je Preisstufe in jeder Kerze', b: 'BTC FP 5', feld: 'chart', ansicht: 'fp', g: 'of' },
+    { id: 'tpo', k: ['TPO', 'MARKTPROFIL'], e: ['TPO', 'PROFILE'], n: 'TPO', s: 'Marktprofil: wie lange der Kurs auf jeder Stufe war', b: 'ETH TPO', feld: 'chart', ansicht: 'tpo', g: 'of' },
+    { id: 'heat', k: ['HEAT', 'LIQUIDITAET'], e: ['HEAT', 'LIQUIDITY'], n: 'Liquidität', s: 'Orderbuch-Heatmap: wo große Aufträge warten', b: 'ETH HEAT', feld: 'heat', g: 'of' },
+    { id: 'dom', k: ['DOM', 'BUCH'], e: ['BOOK', 'ORDERBOOK'], n: 'Orderbuch', s: 'Orderbuch-Leiter und Tape', b: 'BTC DOM', feld: 'dom', hd: 'buch', g: 'of' },
+    { id: 'tape', k: ['TAPE', 'GROSSE'], e: ['TRADES', 'PRINTS'], n: 'Große Trades', s: 'Große Trades live, Käufe und Verkäufe', b: 'BTC TAPE', feld: 'band', hd: 'tape', g: 'of' },
+    { id: 'cvd', k: ['CVD', 'KAUFDRUCK'], e: ['DELTA', 'BUYPRESSURE'], n: 'Kaufdruck', s: 'Kaufdruck Spot gegen Futures (CVD)', b: 'BTC CVD', feld: 'cvd', g: 'of' },
+    { id: 'live', k: ['LIVE', 'JETZT'], e: ['NOW', 'FEED'], n: 'Live', s: 'Was gerade passiert – Meldungen aus Live-Daten', b: 'SOL LIVE', feld: 'jetzt', hd: 'live', g: 'of' },
+    { id: 'multi', k: ['MULTI', 'MEHRERE'], e: ['MULTIPLE', 'GRID'], n: 'Mehrere Märkte', s: 'Mehrere Märkte nebeneinander', b: 'MULTI', feld: 'multi', g: 'of' },
+    { id: 'werte', k: ['FUTURES', 'WERTE'], e: ['PERP', 'PERPS'], n: 'Futures', s: 'Futures-Markt: Funding, offene Positionen, Basis', b: 'SOL FUTURES', feld: 'werte', g: 'der' },
+    { id: 'fund', k: ['FUND', 'FINANZIERUNG'], e: ['FUNDING', 'RATE'], n: 'Funding', s: 'Funding-Rate und Basis im Futures-Markt', b: 'SOL FUND', feld: 'werte', g: 'der' },
+    { id: 'oi', k: ['OI', 'POSITIONEN'], e: ['OPENINTEREST', 'POSITIONING'], n: 'Geschichte', s: 'Offene Positionen, Long/Short und Funding über die Zeit', b: 'ETH OI', feld: 'geschichte', g: 'der' },
+    { id: 'ls', k: ['LS', 'LONGSHORT'], e: ['LSR', 'RATIO'], n: 'Long/Short', s: 'Long/Short-Verhältnis über die Zeit', b: 'BTC LS', feld: 'geschichte', g: 'der' },
+    { id: 'liq', k: ['LIQ', 'LIQKARTE'], e: ['LIQMAP', 'HEATLIQ'], n: 'Liq.-Karte', s: 'Liquidations-Karte: wo Positionen mit Hebel enden würden', b: 'BTC LIQ', feld: 'lkarte', hd: 'liq', g: 'der' },
+    { id: 'liqs', k: ['LIQS', 'LIQUIDATIONEN'], e: ['REKT', 'LIQUIDATIONS'], n: 'Liquidationen', s: 'Liquidationen live', b: 'ETH LIQS', feld: 'liq', g: 'der' },
+    { id: 'scr', k: ['SCR', 'UEBERSICHT', 'FILTER'], e: ['SCREENER', 'OVERVIEW'], n: 'Übersicht', s: 'Markt-Übersicht aller Coins mit Filter', b: 'SCR funding > 40', feld: 'uebersicht', par: 'text', g: 'der' },
+    { id: 'boersen', k: ['BOERSEN', 'BVGL'], e: ['EXCHANGES', 'VENUES'], n: 'Börsen', s: 'Börsen im Vergleich', b: 'BTC BOERSEN', feld: 'markt', g: 'der' },
+    { id: 'kurve', k: ['KURVE', 'TERMIN'], e: ['CURVE', 'TERM'], n: 'Terminkurve', s: 'Terminkurven von Futures und Optionen', b: 'BTC KURVE', feld: 'kurve', g: 'der' },
+    { id: 'gamma', k: ['GAMMA', 'GEX'], e: ['GAMMA', 'GEX'], n: 'Dealer-Gamma', s: 'Dealer-Gamma, Wände und Kipp-Punkt', b: 'ETH GAMMA', feld: 'gex', hd: 'opt', g: 'opt' },
+    { id: 'gzeit', k: ['GAMMAZEIT', 'GKARTE'], e: ['GAMMAMAP', 'GAMMATIME'], n: 'Gamma-Karte', s: 'Gamma-Karte über die Zeit', b: 'BTC GAMMAZEIT', feld: 'gamma', g: 'opt' },
+    { id: 'opt', k: ['OPT', 'OPTIONEN'], e: ['OPTIONS', 'SKEW'], n: 'Optionen', s: 'Optionen: Kennzahlen, Skew und Max-Pain', b: 'BTC OPT', feld: 'opt', hd: 'opt', g: 'opt' },
+    { id: 'vol', k: ['VOL', 'VOLA'], e: ['IV', 'SURFACE'], n: 'Volatilität', s: 'Volatilitäts-Fläche der Optionen', b: 'ETH VOL', feld: 'vol', g: 'opt' },
+    { id: 'ofluss', k: ['OFLUSS', 'GELDFLUSS'], e: ['OPTFLOW', 'FLOW'], n: 'Options-Fluss', s: 'Optionen: Geldfluss und Gamma', b: 'BTC OFLUSS', feld: 'ofluss', g: 'opt' },
+    { id: 'olab', k: ['OLAB', 'LABOR'], e: ['OPTLAB', 'LAB'], n: 'Options-Labor', s: 'Options-Labor: Verteilung und Szenarien', b: 'BTC OLAB', feld: 'olab', g: 'opt' },
+    { id: 'wal', k: ['WAL', 'WALE'], e: ['WHALE', 'WHALES'], n: 'Wale', s: 'Wale, eigene Alarme und Hyperliquid', b: 'WAL BTC', feld: 'mac', hd: 'wale', g: 'wal' },
+    { id: 'rang', k: ['RANG', 'BESTE'], e: ['RANK', 'LEADERBOARD'], n: 'Rangliste', s: 'Beste Trader bei Hyperliquid', b: 'RANG', feld: 'rangliste', g: 'wal' },
+    { id: 'rug', k: ['RUG', 'RUGCHECK'], e: ['RUGPULL', 'MEMECHECK'], n: 'Rug-Check', s: 'Rug-Check für Solana-Memecoins', b: 'RUG', feld: 'rug', g: 'wal' },
+    { id: 'alarm', k: ['ALARM', 'ALARME'], e: ['ALERT', 'ALERTS'], n: 'Eigene Alarme', s: 'Eigene Alarme im Feld „Wale“', b: 'ALARM', feld: 'mac', ziel: '.alarme-kopf', g: 'wal' },
+    { id: 'meld', k: ['MELD', 'MELDUNGEN'], e: ['LIST', 'LISTINGS'], n: 'Meldungen', s: 'Börsen-Meldungen: Listungen und Delistings', b: 'MELD', feld: 'meldungen', g: 'news' },
+    { id: 'lage', k: ['LAGE', 'LAGEBILD'], e: ['BRIEF', 'BRIEFING'], n: 'Lagebild', s: 'Lagebild: alles Wichtige in einer Ansicht', b: 'LAGE ETH', feld: 'bericht', hd: 'lage', g: 'news' },
+    { id: 'analyse', k: ['ANALYSE', 'TA'], e: ['ANALYSIS', 'AUTO'], n: 'Analyse', s: 'Automatische Analyse in Klartext', b: 'BTC ANALYSE', feld: 'analyse', hd: 'analyse', g: 'news' },
+    { id: 'danach', k: ['DANACH', 'RUECKBLICK'], e: ['AFTER', 'REPLAY'], n: 'Was danach', s: 'Was nach Ereignissen passierte (Rückblick)', b: 'DANACH', feld: 'danach', g: 'news' },
+    { id: 'umfeld', k: ['UMFELD', 'STIMMUNG', 'COT'], e: ['SENTIMENT', 'CME'], n: 'Umfeld', s: 'Stimmung, Aktien, Gold und CME-Positionen', b: 'UMFELD', feld: 'umfeld', g: 'mak' },
+    { id: 'zins', k: ['ZINS', 'ZINSEN', 'KAL'], e: ['RATES', 'CAL', 'CALENDAR'], n: 'Zinsen', s: 'US-Zinsen und Termine', b: 'ZINS', feld: 'makro', g: 'mak' },
+    { id: 'handeln', k: ['HANDELN', 'START', 'PAPIER'], e: ['TRADE', 'PAPER'], n: 'Handeln', s: 'Handeln mit Spielgeld: Chart, Ticket, Positionen', b: 'HANDELN', hd: 'chart', g: 'hd' },
+    { id: 'ticket', k: ['TICKET', 'ORDER'], e: ['TICKET', 'ORDER'], n: 'Papier-Order', s: 'Order-Ticket mit Spielgeld, nichts geht an eine Börse', b: 'TICKET BTC', hd: 'chart', ziel: '#hd-ticket', g: 'hd' },
+    { id: 'selbst', k: ['SELBST', 'EIGEN'], e: ['SELF', 'MANUAL'], n: 'Selbst handeln', s: 'Selbst handeln (Papier) im Feld unter den Daten', b: 'SELBST', feld: 'selbst', g: 'hd' },
+    { id: 'journal', k: ['JOURNAL', 'TAGEBUCH'], e: ['JOURNAL', 'LOG'], n: 'Trade-Journal', s: 'Trade-Journal der Papier-Töpfe', b: 'JOURNAL', feld: 'journal', g: 'hd' },
+    { id: 'beob', k: ['BEOBACHTUNG', 'LISTE'], e: ['WATCH', 'WATCHLIST'], n: 'Beobachtungsliste', s: 'Beobachtungsliste im Bereich Handeln', b: 'WATCH', hd: 'chart', ziel: '.hd-liste', g: 'hd' },
+    { id: 'ebenen', k: ['EBENEN', 'WERKZEUG'], e: ['LAYERS', 'TOOLS'], n: 'Ebenen & Werkzeuge', s: 'Ebenen im Chart, Look, Zeichnen, Layouts', b: 'EBENEN', hd: 'chart', aktion: 'ebenen', g: 'hd' },
+    { id: 'aufnahme', k: ['AUFNAHME', 'FILM'], e: ['REC', 'RECORD'], n: 'Aufnahme', s: 'Nur der Chart, zum Abfilmen (9:16, 16:9, 1:1)', b: 'AUFNAHME', hd: 'chart', aktion: 'aufnahme', g: 'hd' },
+    { id: 'zeichnen', k: ['ZEICHNEN', 'LINIE'], e: ['DRAW', 'LINE'], n: 'Zeichnen', s: 'Linie im Chart zeichnen', b: 'ZEICHNEN', hd: 'chart', aktion: 'linie', g: 'hd' },
+    { id: 'fib', k: ['FIB', 'FIBONACCI'], e: ['FIBO', 'RETRACE'], n: 'Fibonacci', s: 'Fibonacci-Stufen zwischen zwei Punkten', b: 'FIB', hd: 'chart', aktion: 'fib', g: 'hd' },
+    { id: 'layout', k: ['LAYOUT', 'CHARTS'], e: ['SPLIT', 'PANES'], n: 'Layout', s: 'Ein, zwei oder vier Charts', b: 'LAYOUT 2', hd: 'chart', par: 'layout', g: 'hd' },
+    { id: 'vp', k: ['VP', 'VOLUMENPROFIL'], e: ['VPROFILE', 'VOLPROFILE'], n: 'Volumenprofil', s: 'Ebene im Chart: Volumen je Preisstufe', b: 'VP', hd: 'chart', ebene: 'vp', g: 'eb' },
+    { id: 'vwap', k: ['VWAP'], e: ['AVWAP'], n: 'VWAP', s: 'Ebene im Chart: volumengewichteter Durchschnitt', b: 'VWAP', hd: 'chart', ebene: 'vwap', g: 'eb' },
+    { id: 'ema', k: ['EMA'], e: ['EMAS'], n: 'EMA', s: 'Ebene im Chart: EMA 20, 50 und 200', b: 'BTC EMA', hd: 'chart', ebene: 'ema', g: 'eb' },
+    { id: 'wma', k: ['WMA'], e: ['WMAS'], n: 'WMA', s: 'Ebene im Chart: gewichteter Durchschnitt WMA 20', b: 'WMA', hd: 'chart', ebene: 'wma', g: 'eb' },
+    { id: 'rsi', k: ['RSI'], e: ['RSI14'], n: 'RSI', s: 'Ebene im Chart: RSI 14 mit 30/70-Linien', b: 'RSI', hd: 'chart', ebene: 'rsi', g: 'eb' },
+    { id: 'macd', k: ['MACD'], e: ['MACDS'], n: 'MACD', s: 'Ebene im Chart: MACD', b: 'MACD', hd: 'chart', ebene: 'macd', g: 'eb' },
+    { id: 'ab', k: ['AB', 'ARBEITSBEREICH'], e: ['WS', 'WORKSPACE'], n: 'Arbeitsbereich', s: 'Arbeitsbereich öffnen oder speichern', b: 'AB Scalper', par: 'ab', g: 'nav' },
+    { id: 'fokus', k: ['FOKUS', 'VOLLBILD'], e: ['FOCUS', 'FULLSCREEN'], n: 'Fokus', s: 'Ein Feld bildschirmfüllend, Esc zurück', b: 'LIQ FOKUS', g: 'nav' },
+    { id: 'zurueck', k: ['ZURUECK'], e: ['BACK'], n: 'Zurück', s: 'Zum vorigen Markt oder Feld', b: 'ZURUECK', g: 'nav' },
+    { id: 'vor', k: ['VOR'], e: ['FORWARD', 'FWD'], n: 'Vor', s: 'Wieder vor', b: 'VOR', g: 'nav' },
+    { id: 'teilen', k: ['TEILEN', 'ADRESSE'], e: ['SHARE', 'URL'], n: 'Link kopieren', s: 'Adresse dieser Ansicht kopieren (ohne Server)', b: 'TEILEN', g: 'nav' },
+    { id: 'suche', k: ['SUCHE', 'MAERKTE'], e: ['SEARCH', 'MARKETS'], n: 'Markt suchen', s: 'Alle Märkte: Coins, Aktien, Indizes, Rohstoffe', b: 'SUCHE', aktion: 'suche', g: 'nav' },
+    { id: 'konto', k: ['KONTO', 'KONTEN'], e: ['ACCOUNT', 'ACCOUNTS'], n: 'Deine Konten', s: 'Eigene Konten verbinden (nur lesen)', b: 'KONTO', ziel: '#konto', g: 'nav' },
+    { id: 'hilfe', k: ['HILFE', '?', 'VERZEICHNIS'], e: ['HELP', 'INDEX'], n: 'Funktions-Verzeichnis', s: 'Alle Befehle mit Beispiel, durchsuchbar', b: '? LIQ', par: 'text', g: 'hilfe' },
+    { id: 'lex', k: ['LEX', 'LEXIKON'], e: ['EXPLAIN', 'GLOSSARY'], n: 'Lexikon', s: 'Begriff erklären', b: 'LEX gamma', par: 'text', g: 'hilfe' },
+    { id: 'tasten', k: ['TASTEN', 'KUERZEL'], e: ['KEYS', 'SHORTCUTS'], n: 'Tastenkürzel', s: 'Alle Tasten, anpassbar', b: 'TASTEN', g: 'hilfe' },
+    { id: 'neu', k: ['NEU', 'NEUES'], e: ['NEW', 'CHANGELOG'], n: 'Was ist neu', s: 'Änderungen der letzten Fassungen', b: 'NEU', g: 'hilfe' },
+    { id: 'einstieg', k: ['EINSTIEG', 'TOUR'], e: ['INTRO', 'GUIDE'], n: 'Einstieg', s: 'So liest du das Terminal – fünf Schritte', b: 'EINSTIEG', g: 'hilfe' },
+    { id: 'swing', k: ['SWING'], e: ['SWINGVIEW'], n: 'Swing', s: 'Ansicht Swing: Tages- und Stundenchart, ruhig', b: 'SWING', modus: 'swing', g: 'ans' },
+    { id: 'profi', k: ['PROFI'], e: ['PRO'], n: 'Profi', s: 'Ansicht Profi: Orderflow live', b: 'PROFI', modus: 'profi', g: 'ans' },
+    { id: 'einsteiger', k: ['EINSTEIGER', 'EINFACH'], e: ['BEGINNER', 'SIMPLE'], n: 'Einsteiger', s: 'Einsteiger-Stufe: wenige Felder, Hilfen offen', b: 'EINSTEIGER', stufe: 'einsteiger', g: 'ans' },
+    { id: 'voll', k: ['VOLL', 'ALLES'], e: ['ALLPANELS', 'EXPERT'], n: 'Alle Felder', s: 'Volle Stufe: alle Felder wie gewohnt', b: 'VOLL', stufe: 'voll', g: 'ans' },
+    { id: 'thema', k: ['THEMA'], e: ['THEME'], n: 'Thema', s: 'Dunkel, Bernstein, Graphit oder Hell', b: 'THEMA hell', par: 'thema', g: 'ans' },
+    { id: 'farben', k: ['FARBEN', 'KERZENFARBEN'], e: ['COLORS', 'COLOURS'], n: 'Kerzenfarben', s: 'Blau/Orange, Grün/Rot oder Schwarz/Weiß', b: 'FARBEN gr', par: 'farben', g: 'ans' },
+    { id: 'sprache', k: ['SPRACHE'], e: ['LANG', 'LANGUAGE'], n: 'Sprache', s: 'Deutsch, Englisch, Spanisch, Französisch, Türkisch, Italienisch', b: 'SPRACHE en', par: 'sprache', g: 'ans' },
+  ];
+  const BEF_WAHL = { thema: ['dunkel', 'bernstein', 'graphit', 'hell'], farben: ['bo', 'gr', 'sw'], sprache: ['de', 'en', 'es', 'fr', 'tr', 'it'], layout: ['1', '2', '4'] };
+  const BEF_WAHL_ALIAS = { DARK: 'dunkel', AMBER: 'bernstein', GRAPHITE: 'graphit', LIGHT: 'hell', WHITE: 'hell', BLAU: 'bo', BLUE: 'bo', GRUEN: 'gr', GREEN: 'gr', ROT: 'gr', SCHWARZ: 'sw', BLACK: 'sw' };
+  const befNorm = (s) => String(s == null ? '' : s).normalize('NFC').toUpperCase().replace(/Ä/g, 'AE').replace(/Ö/g, 'OE').replace(/Ü/g, 'UE').replace(/ß/g, 'SS').replace(/[ÉÈÊ]/g, 'E');
+  function befAbstand(a, b, max = 1) {
+    if (Math.abs(a.length - b.length) > max) return max + 1;
+    let v2 = null, v1 = Array.from({ length: b.length + 1 }, (_, j) => j);
+    for (let i = 1; i <= a.length; i++) {
+      const v0 = [i]; let klein = i;
+      for (let j = 1; j <= b.length; j++) {
+        let d = Math.min(v1[j] + 1, v0[j - 1] + 1, v1[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        if (v2 && i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d = Math.min(d, v2[j - 2] + 1);
+        v0.push(d); if (d < klein) klein = d;
+      }
+      if (klein > max) return max + 1;
+      v2 = v1; v1 = v0;
+    }
+    return v1[b.length];
+  }
+  function befZeit(t) {
+    const m = /^@?(\d{1,4})(M|MIN|H|STD|D|T)?$/.exec(befNorm(t)); if (!m) return null;
+    const x = Number(m[1]) * { M: 1, MIN: 1, H: 60, STD: 60, D: 1440, T: 1440 }[m[2] || 'M'];
+    return x > 0 ? x : null;
+  }
+  function befIndex(reg) { const a = new Map(); for (const r of reg) for (const k of r.k.concat(r.e)) { const x = befNorm(k); if (!a.has(x)) a.set(x, r); } return a; }
+  function befParsen(text, K) {
+    const roh = String(text == null ? '' : text).trim(), p = { fn: null, markt: null, tf: null, rest: [], fokus: false, fuzzy: '', unbekannt: [], ungeprueft: false };
+    if (!roh) return p;
+    let toks = roh.split(/\s+/);
+    if (toks[0].length > 1 && toks[0][0] === '?') toks = ['?', toks[0].slice(1), ...toks.slice(1)];
+    for (const roht of toks) {
+      const t = befNorm(roht);
+      if (p.fn && p.fn.par) { const r = K.alias.get(t); if (r && r.id === 'fokus' && p.fn.par !== 'text') p.fokus = true; else p.rest.push(roht); continue; }
+      const r = K.alias.get(t);
+      if (r) {
+        if (r.id === 'fokus') { p.fokus = true; continue; }
+        if (!p.fn) { p.fn = r; continue; }
+      }
+      const z = befZeit(t);
+      if (z && p.tf == null && (t[0] === '@' || /\D/.test(t) || p.markt || p.fn)) { p.tf = z; continue; }
+      const m = p.markt ? null : K.markt(t);
+      if (m) { p.markt = m; continue; }
+      if (!p.fn && t.length >= 4) {
+        let best = null, bw = 9;
+        for (const [a, rr] of K.alias) { if (a.length < 3 || rr.id === 'fokus') continue; const d = befAbstand(t, a); if (d > 1) continue; const w = d * 2 + (t.startsWith(a) || a.startsWith(t) ? 0 : 1); if (w < bw) { bw = w; best = rr; } }
+        if (best) { p.fn = best; p.fuzzy = roht; continue; }
+      }
+      if (!p.markt && K.istSym(t) && !z) { p.markt = t; p.ungeprueft = true; continue; }
+      p.unbekannt.push(roht);
+    }
+    return p;
+  }
+  function befVorschlaege(text, K, max = 12) {
+    const roh = String(text == null ? '' : text), toks = roh.trim().split(/\s+/).filter(Boolean), offen = /\s$/.test(roh) || !toks.length;
+    const letzte = offen ? '' : befNorm(toks[toks.length - 1]), vorne = offen ? toks : toks.slice(0, -1), p = befParsen(vorne.join(' '), K);
+    const vor = p.fn && p.fn.par ? vorne.join(' ') : vorne.map((t) => (/^[a-z0-9@-]+$/i.test(t) ? t.toUpperCase() : t)).join(' '), aus = [], gesehen = new Set(), mit = (x) => (vor ? vor + ' ' : '') + x;
+    const dazu = (cmd, art, r, rang) => { const k = befNorm(cmd); if (gesehen.has(k)) return; gesehen.add(k); aus.push({ cmd, art, r, rang }); };
+    if (p.fn && p.fn.par) {
+      const passt = (x) => !letzte || befNorm(x).startsWith(letzte);
+      if (p.fn.par === 'ab') { for (const a of K.abs()) if (passt(a.n) || passt(a.id)) dazu(mit(a.n), 'ab', a, 60); if (passt('speichern')) dazu(mit('speichern '), 'wahl', null, 10); }
+      else if (BEF_WAHL[p.fn.par]) { for (const w of BEF_WAHL[p.fn.par]) if (passt(w)) dazu(mit(w), 'wahl', w, 50); }
+      else if (p.fn.id === 'lex') { for (const [id, e] of K.lex()) if (passt(id) || passt(e.name)) dazu(mit(id), 'lex', e, 50); }
+      else if (p.fn.id === 'hilfe') { for (const r of K.reg) if (r.k.concat(r.e).some(passt)) dazu(mit(K.zeige(r)), 'fn', r, 40); }
+      return aus.sort((a, b) => b.rang - a.rang).slice(0, max);
+    }
+    if (!letzte) {
+      if (p.markt && !p.fn) for (const id of ['chart', 'liq', 'gamma', 'fund', 'heat', 'wal', 'lage', 'oi', 'news', 'meld']) { const r = K.reg.find((x) => x.id === id); if (r) dazu(mit(K.zeige(r)), 'fn', r, 30); }
+      return aus.slice(0, max);
+    }
+    if (!p.fn) for (const r of K.reg) {
+      let rang = -1, zeig = K.zeige(r);
+      const eigen = new Set(K.zeige(r) === r.k[0] ? r.k : r.e);
+      for (const a0 of r.k.concat(r.e)) { const a = befNorm(a0), w = 80 - a.length + (eigen.has(a0) ? 2 : 0); if (a === letzte) { rang = 100; zeig = a0; break; } if (a.startsWith(letzte) && w > rang) { rang = w; zeig = a0; } }
+      if (rang < 0 && letzte.length >= 3 && (befNorm(r.n).includes(letzte) || befNorm(K.name(r)).includes(letzte))) rang = 35;
+      if (rang < 0 && letzte.length >= 4) for (const a0 of r.k.concat(r.e)) { const a = befNorm(a0); if (a.length >= letzte.length && befAbstand(letzte, a.slice(0, letzte.length)) <= 1) { rang = 25; zeig = a0; break; } }
+      if (rang >= 0) dazu(mit(zeig), 'fn', r, rang + (r.id === 'zurueck' || r.id === 'vor' ? -20 : 0));
+    }
+    if (!p.markt) for (const m of K.maerkte(letzte)) dazu(mit(m.sym), 'markt', m, m.rang);
+    if (!p.fn && !p.markt && letzte.length >= 2) for (const a of K.abs()) if (befNorm(a.n).startsWith(letzte) || befNorm(a.id).startsWith(letzte)) dazu('AB ' + a.n, 'ab', a, 45);
+    return aus.sort((a, b) => b.rang - a.rang).slice(0, max);
+  }
+  /*BEFEHL-KERN-ENDE*/
+  const BEF_GRUPPEN = [['of', 'Chart & Orderflow'], ['der', 'Derivate'], ['opt', 'Optionen'], ['wal', 'Wale & On-Chain'], ['news', 'News & Lage'], ['mak', 'Makro'],
+    ['hd', 'Handeln (Papier)'], ['eb', 'Ebenen im Chart'], ['nav', 'Navigation'], ['ans', 'Ansicht'], ['hilfe', 'Hilfe']];
+  const BEF_T = {
+    unbekannt: { de: (x) => `Unbekannt: „${x}“ – HILFE zeigt alle Befehle.`, en: (x) => `Unknown: “${x}” – HELP lists all commands.`, es: (x) => `Desconocido: «${x}» – HELP muestra todos los comandos.`,
+      fr: (x) => `Inconnu : « ${x} » – HELP affiche toutes les commandes.`, tr: (x) => `Bilinmiyor: “${x}” – HELP tüm komutları gösterir.`, it: (x) => `Sconosciuto: «${x}» – HELP mostra tutti i comandi.` },
+    gemeint: { de: (a, b) => `„${a}“ als ${b} verstanden.`, en: (a, b) => `Read “${a}” as ${b}.`, es: (a, b) => `«${a}» interpretado como ${b}.`, fr: (a, b) => `« ${a} » compris comme ${b}.`,
+      tr: (a, b) => `“${a}”, ${b} olarak anlaşıldı.`, it: (a, b) => `«${a}» interpretato come ${b}.` },
+    nurMac: { de: (n) => `${n} gibt es in dieser Fassung nicht – nur in der Vollversion.`, en: (n) => `${n} is not part of this version – full version only.`, es: (n) => `${n} no está en esta versión, solo en la versión completa.`,
+      fr: (n) => `${n} n’existe pas dans cette version – uniquement dans la version complète.`, tr: (n) => `${n} bu sürümde yok – yalnızca tam sürümde.`, it: (n) => `${n} non è in questa versione – solo nella versione completa.` },
+    nichtDa: { de: (n, c) => `${n}: für ${c} gerade keine Daten.`, en: (n, c) => `${n}: no data for ${c} right now.`, es: (n, c) => `${n}: ahora no hay datos para ${c}.`, fr: (n, c) => `${n} : pas de données pour ${c} pour l’instant.`,
+      tr: (n, c) => `${n}: ${c} için şu an veri yok.`, it: (n, c) => `${n}: al momento nessun dato per ${c}.` },
+    gespeichert: { de: (n) => `Arbeitsbereich „${n}“ gespeichert.`, en: (n) => `Workspace “${n}” saved.`, es: (n) => `Espacio de trabajo «${n}» guardado.`, fr: (n) => `Espace de travail « ${n} » enregistré.`,
+      tr: (n) => `“${n}” çalışma alanı kaydedildi.`, it: (n) => `Area di lavoro «${n}» salvata.` },
+    geteilt: { de: (n) => `Geteilter Arbeitsbereich „${n}“ – „Übernehmen“ speichert ihn hier.`, en: (n) => `Shared workspace “${n}” – “Keep” saves it here.`, es: (n) => `Espacio compartido «${n}» – «Conservar» lo guarda aquí.`,
+      fr: (n) => `Espace partagé « ${n} » – « Garder » l’enregistre ici.`, tr: (n) => `Paylaşılan çalışma alanı “${n}” – “Sakla” buraya kaydeder.`, it: (n) => `Area condivisa «${n}» – «Tieni» la salva qui.` },
+    weitere: { de: (n) => `Weitere Felder (${n}) – eingeklappt in der Einsteiger-Stufe:`, en: (n) => `More panels (${n}) – collapsed in beginner mode:`, es: (n) => `Más paneles (${n}) – plegados en el modo principiante:`,
+      fr: (n) => `Autres panneaux (${n}) – repliés en mode débutant :`, tr: (n) => `Diğer paneller (${n}) – başlangıç modunda kapalı:`, it: (n) => `Altri pannelli (${n}) – chiusi in modalità principiante:` },
+  };
+  const befT = (art, ...w) => (BEF_T[art][SPRACHE] || BEF_T[art].en)(...w);
+  const befName = (r) => tr(r.n);
+  const befZeige = (r) => (SPRACHE === 'de' ? r.k[0] : r.e[0]);
+  const BEF_ALIAS = befIndex(BEF_REG);
+  const BEF_NUR_MAC = { NEWS: 'News', NACHRICHTEN: 'News', HEADLINES: 'News', REG: 'News', REGULIERUNG: 'News', REGULATION: 'News', MAKRO: 'Makro-Zentrale', MACRO: 'Makro-Zentrale',
+    CPI: 'Makro-Zentrale', INFLATION: 'Makro-Zentrale', OEL: 'Makro-Zentrale', OIL: 'Makro-Zentrale', ANALYST: 'Dein Analyst', BOT: 'Dein Analyst' };
+  const BEF_MARKT_ALIAS = { NASDAQ: 'XYZ100', NDX: 'XYZ100', SP: 'SP500', SPX: 'SP500', SILBER: 'SILVER', OELPREIS: 'CL', WTI: 'CL', NVIDIA: 'NVDA', TESLA: 'TSLA', APPLE: 'AAPL', MICROSOFT: 'MSFT' };
+  function befMarkt(t) {
+    t = BEF_MARKT_ALIAS[t] || t;
+    if (!SYM.test(t)) return null;
+    if (COINS[t] || META[t] || TOP30.includes(t) || (markte && markte.karte && markte.karte.has(t)) || TF.has(t)) return t;
+    const tf = [...TF.entries()].filter(([, e]) => e.name === t).sort((a, b) => (a[1].dex === 'xyz' ? -1 : 0) - (b[1].dex === 'xyz' ? -1 : 0))[0];
+    return tf ? tf[0] : null;
+  }
+  function befMaerkte(pre) {
+    if (!pre) return [];
+    const aus = [], gesehen = new Set(), nimm = (sym, rang) => { if (!gesehen.has(sym) && aus.length < 8) { gesehen.add(sym); aus.push({ sym: anzeige(sym) === sym ? sym : befNorm(anzeige(sym)).replace(/[^A-Z0-9-]/g, '') || sym, id: sym, rang }); } };
+    for (const c of Object.keys(COINS).concat(TOP30)) if (c.startsWith(pre)) nimm(c, c === pre ? 95 : 70 - c.length);
+    for (const [id, e] of TF) { const n = befNorm(e.name); if (n.startsWith(pre)) nimm(id, n === pre ? 92 : 62 - n.length); }
+    if (markte && markte.karte) for (const c of markte.karte.keys()) { if (aus.length >= 8) break; if (c.startsWith(pre)) nimm(c, c === pre ? 90 : 55 - c.length); }
+    return aus;
+  }
+  const BEF_K = { reg: BEF_REG, alias: BEF_ALIAS, markt: befMarkt, istSym: (t) => SYM.test(t) && /^[A-Z][A-Z0-9]{1,9}$/.test(t), maerkte: befMaerkte,
+    abs: () => abAlle(), lex: () => Object.entries(LEXIKON), zeige: befZeige, name: befName };
+  window.__ryvoBefehle = { reg: () => BEF_REG.map((r) => ({ id: r.id, k: r.k, e: r.e, feld: r.feld || '', hd: r.hd || '', par: r.par || '', b: r.b })),
+    parsen: (t) => { const p = befParsen(t, BEF_K); return { fn: p.fn && p.fn.id, markt: p.markt, tf: p.tf, rest: p.rest, fokus: p.fokus, unbekannt: p.unbekannt }; },
+    vorschlaege: (t) => befVorschlaege(t, BEF_K).map((v) => ({ cmd: v.cmd, art: v.art })), ausfuehren: (t, o) => befAusfuehren(t, o), ab: () => ({ aktiv: AB.id, alle: abAlle().map((a) => a.id) }),
+    maerkte: () => (markte && markte.karte ? markte.karte.size : 0) + TF.size, abSetzen: (id) => abSetzen(id), eigen: () => JSON.parse(JSON.stringify(AB.eigen)), zustand: () => navZustand(), adresse: () => location.href };
+
+  const AB_VOR = [
+    { id: 'start', n: 'Start', hd: 1 },
+    { id: 'scalper', n: 'Scalper', modus: 'profi', f: ['chart', 'dom', 'band', 'liq', 'cvd', 'heat', 'jetzt', 'lkarte', 'werte'] },
+    { id: 'swing', n: 'Swing', modus: 'swing', f: ['chart', 'analyse', 'bericht', 'geschichte', 'umfeld', 'makro', 'danach', 'multi'] },
+    { id: 'optionen', n: 'Optionen', f: ['gex', 'gamma', 'ofluss', 'olab', 'opt', 'vol', 'kurve', 'chart'] },
+    { id: 'derivate', n: 'Derivate', f: ['werte', 'uebersicht', 'geschichte', 'lkarte', 'markt', 'liq', 'kurve', 'cvd'] },
+    { id: 'onchain', n: 'On-Chain & Wale', f: ['mac', 'rangliste', 'lkarte', 'rug', 'band', 'liq'] },
+    { id: 'makro', n: 'Makro', f: ['mz', 'makro', 'umfeld', 'news', 'geschichte', 'meldungen'] },
+    { id: 'news', n: 'News', f: ['news', 'meldungen', 'jetzt', 'danach', 'bericht', 'analyse'] },
+    { id: 'einsteiger', n: 'Einsteiger', f: ['chart', 'analyse', 'bericht', 'jetzt', 'werte', 'umfeld'] },
+    { id: 'alle', n: 'Alle Daten' },
+  ];
+  const AB_SCHMAL = new Set(['jetzt', 'werte', 'band', 'liq', 'mac', 'cvd', 'dom', 'vol', 'opt', 'kurve', 'makro']);
+  const FELD_EXTRA = { news: 'News', mz: 'Makro-Zentrale', analyst: 'Dein Analyst' }, feldName = (id) => SPRUNG_NAMEN[id] || FELD_EXTRA[id] || id;
+  const abFelder = () => [...document.querySelectorAll('main.raster > section.feld')].map((s) => [...s.classList].find((c) => SPRUNG_NAMEN[c] || FELD_EXTRA[c])).filter(Boolean);
+  const abSec = (id) => document.querySelector(`main.raster > section.feld.${id}`);
+  var AB_BEREIT = false;
+  const AB = { id: 'alle', eigen: [], geteilt: null, stufe: lies('stufe') === 'einsteiger' ? 'einsteiger' : 'voll', offen: new Set(), hilfeAuf: new Set() };
+  try { const x = JSON.parse(lies('abEigen') || '[]'); if (Array.isArray(x)) AB.eigen = x.map(abPruefen).filter(Boolean).slice(0, 12); } catch (e) {   }
+  function abPruefen(a) {
+    if (!a || typeof a !== 'object') return null;
+    const da = new Set(abFelder()), f = (Array.isArray(a.f) ? a.f : []).filter((x) => typeof x === 'string' && da.has(x)).filter((x, i, l) => l.indexOf(x) === i).slice(0, 12);
+    const n = String(a.n || '').replace(/[<>"]/g, '').trim().slice(0, 24);
+    if (!n || !f.length) return null;
+    return { id: /^e\d{1,15}$/.test(a.id || '') ? a.id : 'e' + Date.now() + Math.floor(Math.random() * 1000), n, f, modus: a.modus === 'swing' || a.modus === 'profi' ? a.modus : '' };
+  }
+  function abAlle() {
+    const da = new Set(abFelder());
+    const vor = AB_VOR.map((a) => (a.f ? { ...a, f: a.f.filter((x) => da.has(x)) } : a)).filter((a) => !a.f || a.f.length >= 2);
+    const l = AB.stufe === 'einsteiger' ? vor.filter((a) => ['start', 'einsteiger', 'alle'].includes(a.id)) : vor.filter((a) => a.id !== 'einsteiger');
+    return l.concat(AB.eigen.map((a) => ({ ...a, eigen: 1 })), AB.geteilt ? [{ ...AB.geteilt, id: 'geteilt', geteilt: 1 }] : []);
+  }
+  const abFinden = (x) => { const n = befNorm(x), l = abAlle().concat(AB_VOR.filter((a) => a.id === 'einsteiger')); return l.find((a) => a.id === x) || l.find((a) => befNorm(a.n) === n || befNorm(tr(a.n)) === n) || l.find((a) => befNorm(a.n).startsWith(n) || befNorm(tr(a.n)).startsWith(n)) || null; };
+  function abSpalten() {
+    const m = document.querySelector('main.raster'); if (!m) return 1;
+    return innerWidth >= 1400 ? 3 : innerWidth >= 1000 ? 2 : 1;
+  }
+  function abFlaeche() {
+    const a = abFinden(AB.id); if (!a || !a.f || abSpalten() < 2) return '';
+    const sp = abSpalten(), z = [], reihe = (l) => z.push(l.join(' ')), drin = a.f.filter((x) => abSec(x)), rest = abFelder().filter((x) => !drin.includes(x));
+    if (document.getElementById('willkommen')) reihe(Array(sp).fill('abband'));
+    const legen = (liste) => {
+      let schmal = [];
+      const weg = () => { if (!schmal.length) return; const l = schmal.slice(); while (l.length < sp) l.splice(l.length - 1, 0, l[l.length > 1 ? 0 : 0]); reihe(l.slice(0, sp)); schmal = []; };
+      for (const id of liste) {
+        const s = abSec(id); if (!s || s.classList.contains('ab-zu')) continue;
+        if (s.hidden) { weg(); reihe(Array(sp).fill(id)); continue; }
+        if (AB_SCHMAL.has(id)) { schmal.push(id); if (schmal.length === sp) weg(); } else { weg(); reihe(Array(sp).fill(id)); }
+      }
+      weg();
+    };
+    legen(drin); reihe(Array(sp).fill('abtrenn')); legen(rest);
+    return z.map((x) => `"${x}"`).join(' ');
+  }
+  function abAnwenden() {
+    const m = document.querySelector('main.raster'); if (!m) return;
+    const a = abFinden(AB.id), aktiv = !!(a && a.f), drin = aktiv ? a.f.filter((x) => abSec(x)) : [], alle = abFelder();
+    let tr0 = document.getElementById('ab-trenner');
+    if (aktiv && !tr0) { tr0 = document.createElement('div'); tr0.id = 'ab-trenner'; tr0.className = 'ab-trenner'; m.append(tr0); }
+    m.classList.toggle('ab-aktiv', aktiv);
+    const einst = aktiv && AB.stufe === 'einsteiger', zu = [];
+    alle.forEach((id, i) => {
+      const s = abSec(id); if (!s) return;
+      const k = drin.indexOf(id);
+      s.style.order = aktiv ? String(k >= 0 ? k + 1 : drin.length + 2 + i) : '';
+      s.style.gridArea = aktiv && abSpalten() >= 2 ? id : '';
+      const weg = einst && k < 0 && !AB.offen.has(id);
+      s.classList.toggle('ab-zu', weg); if (weg && !s.hidden) zu.push(s);
+    });
+    const band = document.getElementById('willkommen'); if (band) { band.style.order = aktiv ? '0' : ''; band.style.gridArea = aktiv && abSpalten() >= 2 ? 'abband' : ''; }
+    if (tr0) {
+      tr0.hidden = !aktiv; tr0.style.order = String(drin.length + 1); tr0.style.gridArea = aktiv && abSpalten() >= 2 ? 'abtrenn' : '';
+      if (aktiv) {
+        const t = hdEl('span', '', einst ? befT('weitere', zu.length) : 'Weitere Felder');
+        tr0.replaceChildren(t, ...(einst ? zu.map((s) => { const b = hdEl('button', 'ab-auf', (s.querySelector('h2') || {}).textContent || ''); b.type = 'button'; b.dataset.feld = [...s.classList].find((c) => alle.includes(c)) || ''; return b; }) : []));
+      }
+    }
+    for (const id of [...AB.hilfeAuf]) if (!einst || !drin.includes(id)) { const b = abSec(id) && abSec(id).querySelector('.feld-kopf .was[aria-expanded="true"]'); if (b) b.click(); AB.hilfeAuf.delete(id); }
+    if (einst) for (const id of drin) { const b = abSec(id) && abSec(id).querySelector('.feld-kopf .was[aria-expanded="false"]'); if (b && !AB.hilfeAuf.has(id)) { b.click(); AB.hilfeAuf.add(id); } }
+    swingRaster();
+    abLeiste();
+  }
+  function abSetzen(id, { modus = true, merken = true, still = false } = {}) {
+    const a = abFinden(id); if (!a) return false;
+    if (a.hd) { hdBereich('handeln'); abLeiste(); return true; }
+    AB.id = a.id; if (merken && !a.geteilt) merke('ab', a.id);
+    if (HD.bereich !== 'daten') hdBereich('daten');
+    if (modus && a.modus && a.modus !== MODUS) modusSetzen(a.modus);
+    AB.offen.clear(); abAnwenden();
+    if (!still) window.scrollTo(0, 0);
+    requestAnimationFrame(() => dispatchEvent(new Event('resize')));
+    return true;
+  }
+  function abSpeichern(name, felder, modus = '', alteId = '') {
+    const a = abPruefen({ id: alteId || '', n: name, f: felder, modus }); if (!a) return null;
+    const i = AB.eigen.findIndex((x) => x.id === alteId || befNorm(x.n) === befNorm(a.n));
+    if (i >= 0) { a.id = AB.eigen[i].id; AB.eigen[i] = a; } else { if (AB.eigen.length >= 12) AB.eigen.shift(); AB.eigen.push(a); }
+    merke('abEigen', JSON.stringify(AB.eigen)); return a;
+  }
+  function abLoeschen(id) { AB.eigen = AB.eigen.filter((x) => x.id !== id); merke('abEigen', JSON.stringify(AB.eigen)); if (AB.id === id) abSetzen('alle', { modus: false }); else abLeiste(); }
+  const abKodieren = (a) => 'x:' + btoa(unescape(encodeURIComponent(JSON.stringify({ n: a.n, f: a.f, m: a.modus || '' })))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  function abDekodieren(s) { try { const j = JSON.parse(decodeURIComponent(escape(atob(String(s).slice(2).replace(/-/g, '+').replace(/_/g, '/'))))); return abPruefen({ n: j.n, f: j.f, modus: j.m }); } catch (e) { return null; } }
+  function stufeSetzen(st) {
+    AB.stufe = st === 'einsteiger' ? 'einsteiger' : 'voll'; merke('stufe', AB.stufe); AB.offen.clear();
+    if (AB.stufe === 'einsteiger') abSetzen('einsteiger'); else if (AB.id === 'einsteiger') abSetzen('alle', { modus: false }); else abAnwenden();
+  }
+  function abLeiste() {
+    let l = document.getElementById('ab-leiste');
+    const m = document.querySelector('main.raster'); if (!m) return;
+    if (!l) {
+      l = document.createElement('nav'); l.id = 'ab-leiste'; l.className = 'ab-leiste'; l.setAttribute('aria-label', 'Arbeitsbereich');
+      (document.getElementById('swing-leiste') || m).before(l);
+      l.addEventListener('click', (e) => {
+        const b = e.target.closest('button'); if (!b) return;
+        if (b.dataset.ab) abSetzen(b.dataset.ab);
+        else if (b.dataset.a === 'neu') abEditor(null);
+        else if (b.dataset.a === 'bearbeiten') abEditor(abFinden(AB.id));
+        else if (b.dataset.a === 'stufe') stufeSetzen(AB.stufe === 'einsteiger' ? 'voll' : 'einsteiger');
+        else if (b.dataset.a === 'zurueck') navGehen(-1);
+        else if (b.dataset.a === 'vor') navGehen(1);
+        else if (b.dataset.a === 'teilen') linkKopieren();
+        else if (b.dataset.a === 'befehl') befehlAuf(b);
+        else if (b.dataset.a === 'uebernehmen' && AB.geteilt) { const a = abSpeichern(AB.geteilt.n, AB.geteilt.f, AB.geteilt.modus); AB.geteilt = null; if (a) { abSetzen(a.id); befMelden(befT('gespeichert', a.n)); } }
+      });
+    }
+    const knopf = (t, d, an, titel) => { const b = hdEl('button', '', t); b.type = 'button'; Object.assign(b.dataset, d); if (an != null) b.setAttribute('aria-pressed', String(!!an)); if (titel) b.title = titel; return b; };
+    const teile = [hdEl('span', 'maerkte-titel', 'Arbeitsbereich')];
+    for (const a of abAlle()) teile.push(knopf(a.geteilt ? a.n + ' ↗' : a.n, { ab: a.id }, a.hd ? HD.bereich === 'handeln' : AB.id === a.id && HD.bereich !== 'handeln', a.f ? a.f.map((x) => feldName(x)).join(' · ') : 'Handeln'));
+    if (AB.geteilt) teile.push(knopf('Übernehmen', { a: 'uebernehmen' }));
+    teile.push(hdEl('span', 'ab-strich'), knopf('+ Eigener', { a: 'neu' }, null, 'Eigenen Arbeitsbereich aus den vorhandenen Feldern zusammenstellen'));
+    const akt = abFinden(AB.id); if (akt && akt.eigen) teile.push(knopf('Bearbeiten', { a: 'bearbeiten' }));
+    teile.push(knopf('Einsteiger', { a: 'stufe' }, AB.stufe === 'einsteiger', 'Einsteiger-Stufe: wenige Felder, Hilfen offen'),
+      hdEl('span', 'ab-strich'), knopf('←', { a: 'zurueck' }, null, 'Zurück (Alt+←)'), knopf('→', { a: 'vor' }, null, 'Vor (Alt+→)'),
+      knopf('Link kopieren', { a: 'teilen' }, null, 'Adresse dieser Ansicht kopieren (ohne Server)'), knopf('⌕ Befehl', { a: 'befehl' }, null, 'Befehlszeile (/ oder Strg/⌘+K)'));
+    l.replaceChildren(...teile);
+    const z = l.querySelector('[data-a="zurueck"]'), v = l.querySelector('[data-a="vor"]'); if (z) z.disabled = NAV.i <= 0; if (v) v.disabled = NAV.i >= NAV.stapel.length - 1;
+  }
+  function abEditor(a) {
+    let box = document.getElementById('ab-editor');
+    if (!box) { box = document.createElement('section'); box.id = 'ab-editor'; box.className = 'einstieg was-neu ab-editor'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'ab-editor-titel'); document.body.append(box); }
+    const basis = a && a.f ? a : abFinden(AB.id), vorher = basis && basis.f ? basis.f.filter((x) => abSec(x)) : [];
+    const liste = vorher.concat(abFelder().filter((x) => !vorher.includes(x)));
+    const an = new Set(a && a.f ? a.f : vorher.length ? vorher : ['chart', 'analyse', 'werte']);
+    const kopf = hdEl('div', 'einstieg-kopf'), zu = hdEl('button', 'einstieg-weg', 'Schließen'); zu.type = 'button'; zu.addEventListener('click', () => abEditorZu());
+    kopf.append(hdEl('span', 'einstieg-nr', 'Arbeitsbereich'), zu);
+    const h = hdEl('h3', '', a && a.eigen ? 'Arbeitsbereich bearbeiten' : 'Eigener Arbeitsbereich'); h.id = 'ab-editor-titel';
+    const name = document.createElement('input'); name.type = 'text'; name.maxLength = 24; name.id = 'ab-name'; name.value = a && a.eigen ? a.n : ''; name.placeholder = 'Name, z. B. Mein Setup'; name.setAttribute('aria-label', 'Name'); name.autocomplete = 'off';
+    const nk = hdEl('div', 'auswahl-kopf'); nk.append(name);
+    const ul = hdEl('ul', 'ab-felder');
+    const zeile = (id) => {
+      const li = hdEl('li', ''); li.dataset.feld = id;
+      const lab = document.createElement('label'), cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = an.has(id);
+      const sec = abSec(id); lab.append(cb, hdEl('span', '', feldName(id) !== id ? feldName(id) : (sec && sec.querySelector('h2') ? sec.querySelector('h2').textContent : id)));
+      const hoch = hdEl('button', 'leise-knopf', '▲'), runter = hdEl('button', 'leise-knopf', '▼'); hoch.type = runter.type = 'button'; hoch.setAttribute('aria-label', 'Nach oben'); runter.setAttribute('aria-label', 'Nach unten');
+      hoch.addEventListener('click', () => { if (li.previousElementSibling) li.previousElementSibling.before(li); });
+      runter.addEventListener('click', () => { if (li.nextElementSibling) li.nextElementSibling.after(li); });
+      li.append(lab, hoch, runter); return li;
+    };
+    ul.append(...liste.map(zeile));
+    const gewaehlt = () => [...ul.children].filter((li) => li.querySelector('input').checked).map((li) => li.dataset.feld);
+    const meldung = hdEl('p', 'leise'); meldung.setAttribute('aria-live', 'polite');
+    const k = (t, kl, f) => { const b = hdEl('button', kl, t); b.type = 'button'; b.addEventListener('click', f); return b; };
+    const datei = document.createElement('input'); datei.type = 'file'; datei.accept = '.json,application/json'; datei.hidden = true;
+    datei.addEventListener('change', () => { const f = datei.files && datei.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { const n = abImport(String(r.result)); meldung.textContent = n ? 'Arbeitsbereich importiert.' : 'Datei nicht lesbar.'; if (n) { abEditorZu(); abSetzen(n.id); } }; r.readAsText(f); datei.value = ''; });
+    let zuruecksetzen = 0;
+    const unten = hdEl('div', 'einstieg-unten ab-unten');
+    unten.append(
+      k('Speichern', 'einstieg-weiter', () => { const n = abSpeichern(name.value || 'Mein Setup', gewaehlt(), (basis && basis.modus) || '', a && a.eigen ? a.id : ''); if (!n) { meldung.textContent = 'Mindestens ein Feld wählen.'; return; } abEditorZu(); abSetzen(n.id); befMelden(befT('gespeichert', n.n)); }),
+      ...(a && a.eigen ? [k('Löschen', 'leise-knopf', () => { abLoeschen(a.id); abEditorZu(); })] : []),
+      k('Als Datei', 'leise-knopf', () => { const x = abPruefen({ n: name.value || 'Mein Setup', f: gewaehlt() }); if (!x) { meldung.textContent = 'Mindestens ein Feld wählen.'; return; } abExport(x); }),
+      k('Datei laden', 'leise-knopf', () => datei.click()),
+      k('Link kopieren', 'leise-knopf', () => { const x = abPruefen({ n: name.value || 'Mein Setup', f: gewaehlt() }); if (!x) { meldung.textContent = 'Mindestens ein Feld wählen.'; return; } linkKopieren(abKodieren(x)); meldung.textContent = 'Link kopiert.'; }),
+      k('Zurücksetzen', 'leise-knopf', (e) => { if (!zuruecksetzen) { zuruecksetzen = 1; e.currentTarget.textContent = 'Wirklich alle eigenen löschen?'; return; } AB.eigen = []; merke('abEigen', '[]'); stufeSetzen('voll'); abSetzen('alle', { modus: false }); abEditorZu(); }));
+    box.replaceChildren(kopf, h, nk, ul, meldung, unten, datei, hdEl('p', 'einstieg-fuss', 'Nur in diesem Browser gespeichert · keine Anlageberatung'));
+    dialogAuf(box); box.hidden = false; try { name.focus({ preventScroll: true }); } catch (e) {   }
+  }
+  function abEditorZu() { const box = document.getElementById('ab-editor'); if (!box || box.hidden) return; dialogZu(box); box.hidden = true; }
+  function abExport(a) {
+    const text = JSON.stringify({ ryvo: 'arbeitsbereich', v: 1, n: a.n, f: a.f, modus: a.modus || '' }, null, 1);
+    try { const u = URL.createObjectURL(new Blob([text], { type: 'application/json' })), l = document.createElement('a'); l.href = u; l.download = 'ryvo-arbeitsbereich-' + befNorm(a.n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.json'; document.body.append(l); l.click(); l.remove(); setTimeout(() => URL.revokeObjectURL(u), 5000); } catch (e) {   }
+    return text;
+  }
+  function abImport(text) { try { const j = JSON.parse(text); if (!j || j.ryvo !== 'arbeitsbereich') return null; return abSpeichern(j.n, j.f, j.modus); } catch (e) { return null; } }
+  window.__ryvoBefehle.abExportText = (id) => { const a = abFinden(id); return a && a.f ? JSON.stringify({ ryvo: 'arbeitsbereich', v: 1, n: a.n, f: a.f, modus: a.modus || '' }) : null; };
+  window.__ryvoBefehle.abImport = (t) => { const a = abImport(t); if (a) abLeiste(); return a && a.id; };
+  window.__ryvoBefehle.abLink = (id) => { const a = abFinden(id); return a && a.f ? abKodieren(a) : null; };
+  window.__ryvoBefehle.abAusLink = (s) => abDekodieren(s);
+  window.__ryvoBefehle.abSpeichern = (n, f) => { const a = abSpeichern(n, f); abLeiste(); return a && a.id; };
+  window.__ryvoBefehle.stufe = (s) => stufeSetzen(s);
+
+  function fokus(sec) {
+    const alt = document.querySelector('main.raster > section.feld.fokus');
+    if (alt) { alt.classList.remove('fokus'); const b = alt.querySelector('.fokus-knopf'); if (b) { b.textContent = '⤢'; b.setAttribute('aria-pressed', 'false'); } }
+    const an = !!sec && sec !== alt;
+    if (an) { sec.classList.add('fokus'); const b = sec.querySelector('.fokus-knopf'); if (b) { b.textContent = '×'; b.setAttribute('aria-pressed', 'true'); } sec.scrollTop = 0; }
+    document.body.classList.toggle('fokus-an', an);
+    requestAnimationFrame(() => dispatchEvent(new Event('resize')));
+  }
+  function fokusKnoepfe() {
+    for (const s of document.querySelectorAll('main.raster > section.feld')) {
+      const k = s.querySelector(':scope > .feld-kopf'); if (!k || k.querySelector('.fokus-knopf')) continue;
+      const b = hdEl('button', 'fokus-knopf', '⤢'); b.type = 'button'; b.title = 'Fokus: nur dieses Feld (Esc zurück)'; b.setAttribute('aria-label', 'Fokus: nur dieses Feld (Esc zurück)'); b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', () => fokus(s)); k.append(b);
+    }
+  }
+  const feldInMitte = () => { const l = [...document.querySelectorAll('main.raster > section.feld')].filter((s) => !s.hidden && s.offsetParent !== null), y = innerHeight / 2;
+    return l.find((s) => { const r = s.getBoundingClientRect(); return r.top <= y && r.bottom >= y; }) || l.find((s) => s.getBoundingClientRect().bottom > 80) || null; };
+  function feldSchritt(d) {
+    if (HD.bereich !== 'daten') return;
+    const l = [...document.querySelectorAll('main.raster > section.feld')].filter((s) => !s.hidden && s.offsetParent !== null).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top || a.getBoundingClientRect().left - b.getBoundingClientRect().left);
+    const oben = kopfHoehe() + 10, i = l.findIndex((s) => s.getBoundingClientRect().top >= oben - 4), j = Math.max(0, Math.min(l.length - 1, (i < 0 ? l.length : i) + (d > 0 ? (i >= 0 && l[i].getBoundingClientRect().top <= oben + 4 ? 1 : 0) : -1)));
+    if (l[j]) feldZeigen(l[j]);
+  }
+  function kopfHoehe() {
+    return [...document.querySelectorAll('.leiste, .sprungleiste')].filter((e) => { const p = getComputedStyle(e).position; return (p === 'sticky' || p === 'fixed') && e.offsetParent !== null; })
+      .reduce((m, e) => Math.max(m, e.getBoundingClientRect().bottom > 0 ? e.offsetHeight : 0), 0);
+  }
+  function feldZeigen(sec) { const y = sec.getBoundingClientRect().top + scrollY - kopfHoehe() - 8; window.scrollTo(0, Math.max(0, y)); }
+
+  const NAV = { stapel: [], i: -1, still: 0, f: Q.get('f') || '', sig: '', t: null };
+  function navZustand() { return { coin, bereich: HD.bereich, ab: AB.geteilt && AB.id === 'geteilt' ? abKodieren(AB.geteilt) : AB.id, f: NAV.f, modus: MODUS }; }
+  const navSig = (z) => [z.coin, z.bereich, z.ab, z.f].join('|');
+  function navMerken() {
+    const z = navZustand(), s = navSig(z);
+    adresse(z);
+    if (NAV.still > Date.now() || s === NAV.sig) return;
+    NAV.sig = s; NAV.stapel = NAV.stapel.slice(0, NAV.i + 1); NAV.stapel.push(z); if (NAV.stapel.length > 50) NAV.stapel.shift(); NAV.i = NAV.stapel.length - 1; abLeiste();
+  }
+  function adresse(z) {
+    try {
+      const u = new URL(location.href), q = u.searchParams;
+      q.set('coin', z.coin); q.set('bereich', z.bereich); q.set('modus', z.modus);
+      if (z.bereich === 'daten' && z.ab && z.ab !== 'alle') q.set('ab', z.ab); else q.delete('ab');
+      if (z.f) q.set('f', z.f); else q.delete('f');
+      if (/^#coin-/.test(u.hash) || u.hash === '#daten') u.hash = '';
+      if (u.href !== location.href) history.replaceState(history.state, '', u.href);
+    } catch (e) {   }
+  }
+  async function navGehen(d) {
+    const j = NAV.i + d; if (j < 0 || j >= NAV.stapel.length) return false;
+    NAV.i = j; const z = NAV.stapel[j]; NAV.still = Date.now() + 1500; NAV.sig = navSig(z);
+    if (z.bereich === 'handeln') { if (HD.bereich !== 'handeln') hdBereich('handeln'); }
+    else if (z.ab !== AB.id) abSetzen(z.ab, { modus: false, still: true }); else if (HD.bereich !== 'daten') hdBereich('daten');
+    if (z.coin !== coin) wechseln(z.coin);
+    NAV.f = z.f; if (z.f) { const r = BEF_REG.find((x) => x.id === z.f); if (r) await befOeffnen(r, {}); }
+    abLeiste(); adresse(z); return true;
+  }
+  async function linkKopieren(abCode) {
+    const z = navZustand(); if (abCode) { z.ab = abCode; z.bereich = 'daten'; }
+    adresse(navZustand());
+    let u = location.href; try { const x = new URL(location.href); x.searchParams.delete('demo'); x.searchParams.delete('einstieg'); x.searchParams.delete('aus'); if (abCode) { x.searchParams.set('ab', abCode); x.searchParams.set('bereich', 'daten'); } u = x.href; } catch (e) {   }
+    let ok = false; try { await navigator.clipboard.writeText(u); ok = true; } catch (e) {   }
+    befMelden(ok ? 'Link kopiert.' : 'Link steht in der Adresszeile – von dort kopieren.');
+    return u;
+  }
+
+  const befWarte = (ms) => new Promise((ok) => setTimeout(ok, ms));
+  function befMelden(t) {
+    let h = document.getElementById('bef-meldung');
+    if (!h) { h = hdEl('div', 'neu-hinweis bef-meldung'); h.id = 'bef-meldung'; h.setAttribute('role', 'status'); document.body.append(h); }
+    h.replaceChildren(hdEl('span', '', t)); h.hidden = false; clearTimeout(befMelden.t); befMelden.t = setTimeout(() => { h.hidden = true; }, 4500);
+    const st = document.getElementById('befehl-stand'); if (st) st.textContent = t;
+  }
+  async function hdOeffnen(r) {
+    if (HD.bereich !== 'handeln') hdBereich('handeln');
+    await befWarte(40);
+    let ziel = document.querySelector('#handeln .hd-pane') || $('handeln');
+    if (r.hd && r.hd !== 'chart') {
+      const buchAn = $('hd-buch-an'); if (buchAn && buchAn.getAttribute('aria-pressed') === 'false') buchAn.click();
+      hdToolSetzen(r.hd); ziel = $('hd-tools') || ziel; try { ziel.scrollIntoView({ block: 'nearest' }); } catch (e) {   }
+    }
+    if (r.ebene) { const b = document.querySelector(`#hd-ebenen [data-ebene="${r.ebene}"]`); if (b && b.getAttribute('aria-pressed') !== 'true') b.click(); }
+    if (r.aktion === 'ebenen') { if (HD.blatt !== 'werkzeug') { const b = $('hd-ebenen-knopf'); if (b) b.click(); } ziel = $('hd-werkzeug') || ziel; }
+    if (r.aktion === 'aufnahme') { const b = $('hd-aufnahme'); if (b && !HD.aufnahme) b.click(); }
+    if (r.aktion === 'linie' || r.aktion === 'fib') { const b = document.querySelector(`#hd-zeichnen [data-werkzeug="${r.aktion}"]`); if (b && HD.werkzeug !== r.aktion) b.click(); }
+    if (r.ziel) { const z = document.querySelector('#handeln ' + r.ziel) || document.querySelector(r.ziel); if (z) { ziel = z; try { z.scrollIntoView({ block: 'nearest' }); } catch (e) {   } } }
+    return { ok: true, ziel };
+  }
+  async function befOeffnen(r, p) {
+    if (r.feld && !abSec(r.feld)) return { ok: false, text: befT('nurMac', tr(r.n)) };
+    const imHandeln = HD.bereich === 'handeln' && r.hd && !(swing() && r.hd !== 'chart' && !HD_TOOLS_SWING.includes(r.hd)) && !p.fokus;
+    if (!r.feld || imHandeln) return hdOeffnen(r);
+    const sec = abSec(r.feld);
+    if (HD.bereich !== 'daten') hdBereich('daten');
+    for (let i = 0; i < 15 && sec.hidden; i++) await befWarte(100);
+    if (sec.hidden) return { ok: false, ziel: null, text: befT('nichtDa', tr(r.n), anzeige(coin)) };
+    if (sec.classList.contains('swing-zu')) { sec.classList.add('swing-offen'); swingFelder(); }
+    if (sec.classList.contains('ab-zu')) { AB.offen.add(r.feld); abAnwenden(); }
+    if (r.ansicht) { const b = document.querySelector(`#ch-ansicht [data-ansicht="${r.ansicht}"]`); if (b && b.getAttribute('aria-pressed') !== 'true') b.click(); }
+    if (r.id === 'scr' && p.rest && p.rest.length) { const f = $('ueb-filter'); if (f) { f.value = p.rest.join(' '); f.dispatchEvent(new Event('input')); } }
+    if ((r.id === 'news' || r.id === 'reg')) { const k = document.querySelector(`#news-kat [data-k="${r.id === 'reg' ? 'regulierung' : ''}"]`); if (k) k.click(); if (p.markt) { const c = document.querySelector('#news-coin [data-c="*"]'); if (c) c.click(); } }
+    await befWarte(30);
+    let ziel = sec; if (r.ziel) { const z = sec.querySelector(r.ziel); if (z) ziel = z; }
+    if (p.fokus) fokus(sec); else { if (document.querySelector('main.raster > section.feld.fokus')) fokus(null); feldZeigen(sec); if (ziel !== sec) try { ziel.scrollIntoView({ block: 'center' }); } catch (e) {   } }
+    sec.classList.add('einstieg-ziel'); setTimeout(() => sec.classList.remove('einstieg-ziel'), 1600);
+    requestAnimationFrame(() => dispatchEvent(new Event('resize')));
+    return { ok: true, ziel: sec };
+  }
+  function tfSetzen(tf) {
+    if (HD.bereich === 'daten') { const b = document.querySelector(`#ch-tf [data-tf="${tf}"]`); if (b) { b.click(); return true; } }
+    if (HD.bereich !== 'handeln') hdBereich('handeln');
+    const b = document.querySelector(`.hd-pane[data-nr="0"] .hd-tf [data-tf="${tf}"]`); if (b) { b.click(); return true; }
+    return false;
+  }
+  async function befAusfuehren(text, o = {}) {
+    const p = befParsen(text, BEF_K); let r = p.fn, ziel = null;
+    const fertig = (ok, t, z) => { if (t) befMelden(t); if (ok) befVerlauf(text); return { ok, text: t || '', ziel: z ? (z.id ? '#' + z.id : z.classList && z.classList.contains('feld') ? 'main.raster > section.feld.' + [...z.classList].find((c) => SPRUNG_NAMEN[c] || FELD_EXTRA[c]) : '') : '', fn: r ? r.id : '', markt: p.markt || '' }; };
+    if (o.fokus) p.fokus = true;
+    if (!r && !p.markt && p.tf == null) {
+      const w = p.unbekannt[0] ? befNorm(p.unbekannt[0]) : '';
+      if (TEILEN && BEF_NUR_MAC[w]) return fertig(false, befT('nurMac', tr(BEF_NUR_MAC[w])));
+      if (p.fokus) { const s = feldInMitte(); if (s && HD.bereich === 'daten') { fokus(s); return fertig(true, '', s); } }
+      return fertig(false, befT('unbekannt', String(text || '').trim()));
+    }
+    if (p.markt) {
+      if (p.ungeprueft && markte && markte.karte) return fertig(false, befT('unbekannt', p.markt));
+      wechseln(p.markt);
+    }
+    let hinweis = p.fuzzy ? befT('gemeint', p.fuzzy, befZeige(r)) : '';
+    if (!r) {
+      if (p.tf != null) tfSetzen(p.tf);
+      ziel = HD.bereich === 'handeln' ? document.querySelector('#handeln .hd-pane') : abSec('chart');
+      if (HD.bereich === 'daten' && p.tf != null) { const s = abSec('chart'); if (s) feldZeigen(s); }
+      NAV.f = ''; return fertig(true, hinweis, ziel);
+    }
+    if (r.modus) { modusSetzen(r.modus); return fertig(true, hinweis, document.getElementById('modus')); }
+    if (r.stufe) { stufeSetzen(r.stufe); return fertig(true, hinweis, document.getElementById('ab-leiste')); }
+    switch (r.id) {
+      case 'zurueck': return fertig(await navGehen(-1), hinweis);
+      case 'vor': return fertig(await navGehen(1), hinweis);
+      case 'teilen': await linkKopieren(); return fertig(true, '');
+      case 'suche': auswahlAuf(); window.scrollTo(0, 0); return fertig(true, hinweis, $('auswahl'));
+      case 'tasten': tastenHilfe(true); return fertig(true, hinweis, $('tasten-hilfe'));
+      case 'neu': wasNeu(); return fertig(true, hinweis, $('was-neu'));
+      case 'einstieg': einstieg(0); return fertig(true, hinweis, $('einstieg'));
+      case 'hilfe': verzeichnis(p.rest.join(' ')); return fertig(true, hinweis, $('verzeichnis'));
+      case 'lex': verzeichnis(p.rest.join(' '), true); return fertig(true, hinweis, $('verzeichnis'));
+      case 'konto': if (HD.bereich !== 'daten') hdBereich('daten'); { const k = $('konto'); if (!k || k.hidden) return fertig(false, befT('nichtDa', tr(r.n), anzeige(coin))); if (k) { window.scrollTo(0, 0); k.classList.add('einstieg-ziel'); setTimeout(() => k.classList.remove('einstieg-ziel'), 1600); } return fertig(true, hinweis, k); }
+      case 'thema': case 'farben': {
+        const w = befNorm(p.rest[0] || ''), x = BEF_WAHL[r.par].find((v) => befNorm(v) === w) || BEF_WAHL_ALIAS[w];
+        const b = x && document.querySelector(`#${r.id === 'thema' ? 'thema-wahl' : 'kerzen-wahl'} [data-wert="${x}"]`); if (b) b.click(); else { const k = $('ansicht-knopf'); if (k) k.click(); }
+        return fertig(true, hinweis, $('ansicht-knopf'));
+      }
+      case 'sprache': { const w = (p.rest[0] || '').toLowerCase(), s = document.querySelector('#sprache select'); if (s && SPRACHEN.includes(w) && w !== SPRACHE) { befVerlauf(text); s.value = w; s.dispatchEvent(new Event('change', { bubbles: true })); } else if (s) s.focus(); return fertig(true, hinweis, $('sprache')); }
+      case 'layout': { const w = p.rest[0] || (p.tf != null ? String(p.tf) : ''); const z = await hdOeffnen(r); const b = document.querySelector(`#hd-layout [data-layout="${w}"]`); if (b) b.click(); return fertig(true, hinweis, z.ziel); }
+      case 'ab': {
+        const rest = p.rest.join(' ').trim(), w = befNorm(p.rest[0] || '');
+        if (w === 'SPEICHERN' || w === 'SAVE') { const name = p.rest.slice(1).join(' ').trim() || 'Mein Setup', a0 = abFinden(AB.id); const n = abSpeichern(name, a0 && a0.f ? a0.f : abFelder().filter((x) => abSec(x) && !abSec(x).hidden).slice(0, 9), MODUS); if (n) { abSetzen(n.id, { modus: false }); return fertig(true, befT('gespeichert', n.n), $('ab-leiste')); } return fertig(false, ''); }
+        if (w === 'NEU' || w === 'NEW') { abEditor(null); return fertig(true, '', $('ab-editor')); }
+        if (!rest) { if (HD.bereich !== 'daten') hdBereich('daten'); const l = $('ab-leiste'); if (l) window.scrollTo(0, 0); return fertig(true, hinweis, l); }
+        const a = abFinden(rest); if (!a) return fertig(false, befT('unbekannt', rest));
+        abSetzen(a.id); return fertig(true, hinweis, a.hd ? $('handeln') : $('ab-leiste'));
+      }
+      default: break;
+    }
+    if (r.id === 'fokus') { const s = feldInMitte(); if (s && HD.bereich === 'daten') fokus(s); return fertig(!!s, hinweis, s); }
+    const e = await befOeffnen(r, p);
+    if (e.ok && p.tf != null && (r.id === 'chart' || r.id === 'fp' || r.id === 'tpo' || r.hd === 'chart')) tfSetzen(p.tf);
+    if (e.ok) NAV.f = r.id;
+    return fertig(e.ok, e.ok ? hinweis : e.text, e.ziel);
+  }
+
+  const BEF_V = { verlauf: [], fav: [] };
+  try { const x = JSON.parse(lies('befehle') || '{}'); if (Array.isArray(x.verlauf)) BEF_V.verlauf = x.verlauf.filter((t) => typeof t === 'string').slice(0, 30); if (Array.isArray(x.fav)) BEF_V.fav = x.fav.filter((t) => typeof t === 'string').slice(0, 20); } catch (e) {   }
+  const befSchoen = (t) => String(t || '').trim().split(/\s+/).map((w, i, l) => (befParsen(l.slice(0, i).join(' '), BEF_K).fn && befParsen(l.slice(0, i).join(' '), BEF_K).fn.par ? w : w.toUpperCase())).join(' ');
+  function befVerlauf(t) { const s = befSchoen(t); if (!s) return; BEF_V.verlauf = [s].concat(BEF_V.verlauf.filter((x) => befNorm(x) !== befNorm(s))).slice(0, 30); merke('befehle', JSON.stringify(BEF_V)); }
+  function befFav(t) { const s = befSchoen(t), n = befNorm(s); BEF_V.fav = BEF_V.fav.some((x) => befNorm(x) === n) ? BEF_V.fav.filter((x) => befNorm(x) !== n) : [s].concat(BEF_V.fav).slice(0, 20); merke('befehle', JSON.stringify(BEF_V)); }
+
+  let befWahl = 0, befListe = [], befVon = null;
+  function befehlBauen() {
+    let box = document.getElementById('befehl'); if (box) return box;
+    box = document.createElement('section'); box.id = 'befehl'; box.className = 'auswahl befehl'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Befehlszeile'); box.hidden = true;
+    const kopf = hdEl('div', 'auswahl-kopf'), ein = document.createElement('input');
+    ein.type = 'search'; ein.id = 'befehl-ein'; ein.placeholder = 'Befehl, z. B. BTC LIQ · ETH GAMMA · SOL 4H · HILFE'; ein.autocomplete = 'off'; ein.spellcheck = false; ein.setAttribute('autocapitalize', 'characters'); ein.enterKeyHint = 'go';
+    ein.setAttribute('role', 'combobox'); ein.setAttribute('aria-expanded', 'true'); ein.setAttribute('aria-controls', 'befehl-liste'); ein.setAttribute('aria-autocomplete', 'list'); ein.setAttribute('aria-label', 'Befehlszeile');
+    const z = hdEl('button', 'leise-knopf befehl-nav', '←'), v = hdEl('button', 'leise-knopf befehl-nav', '→'); z.type = v.type = 'button'; z.title = 'Zurück (Alt+←)'; v.title = 'Vor (Alt+→)';
+    z.addEventListener('click', () => navGehen(-1)); v.addEventListener('click', () => navGehen(1));
+    const zu = hdEl('button', 'zu', 'Schließen'); zu.type = 'button'; zu.addEventListener('click', () => befehlZu());
+    kopf.append(ein, z, v, zu);
+    const stand = hdEl('p', 'leise auswahl-stand'); stand.id = 'befehl-stand'; stand.setAttribute('aria-live', 'polite');
+    const ul = hdEl('ul', 'auswahl-liste befehl-liste'); ul.id = 'befehl-liste'; ul.setAttribute('role', 'listbox'); ul.setAttribute('aria-label', 'Vorschläge');
+    const fuss = hdEl('p', 'leise befehl-fuss', '↵ öffnen · Strg/⌘+↵ im Fokus · Tab übernehmen · ☆ anheften · Esc schließen · HILFE: alle Befehle');
+    box.append(kopf, stand, ul, fuss); document.body.append(box);
+    ein.addEventListener('input', () => { befWahl = 0; befZeigen(); });
+    ein.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); if (befListe.length) { befWahl = (befWahl + (e.key === 'ArrowDown' ? 1 : -1) + befListe.length) % befListe.length; befMarkieren(); } }
+      else if (e.key === 'Tab' && !e.shiftKey && befListe[befWahl]) { e.preventDefault(); ein.value = befListe[befWahl].cmd + (befListe[befWahl].art === 'fn' && befListe[befWahl].r && befListe[befWahl].r.par ? ' ' : ''); befWahl = 0; befZeigen(); }
+      else if (e.key === 'Enter') { e.preventDefault(); befLos(e.ctrlKey || e.metaKey); }
+      else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); befehlZu(); }
+    });
+    ul.addEventListener('click', (e) => {
+      const st = e.target.closest('button.befehl-stern'); if (st) { e.stopPropagation(); befFav(st.dataset.cmd); befZeigen(); return; }
+      const li = e.target.closest('li[data-i]'); if (li) { befWahl = Number(li.dataset.i); befLos(false); }
+    });
+    return box;
+  }
+  function befehlAuf(von) {
+    const box = befehlBauen(); befVon = von || document.activeElement;
+    markteLaden(); tfLaden(); dialogAuf(box, befVon);
+    box.hidden = false; document.body.classList.add('befehl-offen');
+    const ein = $('befehl-ein'); ein.value = ''; befWahl = 0; befZeigen();
+    try { ein.focus({ preventScroll: true }); } catch (e) {   }
+  }
+  function befehlZu() { const box = $('befehl'); if (!box || box.hidden) return; dialogZu(box); box.hidden = true; document.body.classList.remove('befehl-offen'); }
+  function befZeigen() {
+    const ein = $('befehl-ein'), ul = $('befehl-liste'); if (!ein || !ul) return;
+    const t = ein.value, t0 = performance.now();
+    let l = befVorschlaege(t, BEF_K, 12);
+    if (!t.trim()) {
+      const f = new Set(BEF_V.fav.map(befNorm));
+      l = BEF_V.fav.map((c) => ({ cmd: c, art: 'fav' })).concat(BEF_V.verlauf.filter((c) => !f.has(befNorm(c))).slice(0, 8).map((c) => ({ cmd: c, art: 'verlauf' })));
+      if (!l.length) l = ['BTC LIQ', 'ETH GAMMA', 'SOL 4H', 'AB Scalper', 'HILFE'].map((c) => ({ cmd: c, art: 'beispiel' }));
+    }
+    befListe = l; befVorschlaege.ms = performance.now() - t0;
+    const fav = new Set(BEF_V.fav.map(befNorm));
+    const ART = { fn: 'Funktion', markt: 'Markt', ab: 'Arbeitsbereich', wahl: 'Auswahl', lex: 'Lexikon', fav: 'Favorit', verlauf: 'Zuletzt', beispiel: 'Beispiel' };
+    ul.replaceChildren(...l.map((v, i) => {
+      const li = hdEl('li', 'befehl-zeile'); li.dataset.i = String(i); li.id = 'befehl-v' + i; li.setAttribute('role', 'option');
+      const b = hdEl('b', 'befehl-cmd', v.cmd); b.dataset.roh = ''; b.translate = false;
+      const p0 = v.art === 'fn' ? v.r : v.art === 'fav' || v.art === 'verlauf' || v.art === 'beispiel' ? befParsen(v.cmd, BEF_K).fn : null;
+      const satz = v.art === 'markt' ? (TF.get(v.r.id) ? TF.get(v.r.id).lang || anzeige(v.r.id) : 'Markt wechseln') : v.art === 'ab' ? (v.r.f ? v.r.f.map((x) => feldName(x)).join(' · ') : 'Handeln')
+        : v.art === 'lex' ? v.r.name : p0 ? (AB.stufe === 'einsteiger' ? p0.n + ' – ' + p0.s : p0.s) : '';
+      const s = hdEl('span', 'befehl-satz', satz);
+      const art = hdEl('small', 'befehl-art', ART[v.art] || '');
+      const st = hdEl('button', 'befehl-stern', fav.has(befNorm(v.cmd)) ? '★' : '☆'); st.type = 'button'; st.dataset.cmd = v.cmd; st.tabIndex = -1; st.setAttribute('aria-label', 'Anheften');
+      li.append(b, s, art, st); return li;
+    }));
+    ein.setAttribute('aria-expanded', String(l.length > 0));
+    const p = befParsen(t, BEF_K);
+    $('befehl-stand').textContent = t.trim() && !l.length && !p.fn && !p.markt ? befT('unbekannt', t.trim()) : '';
+    befMarkieren();
+  }
+  function befMarkieren() {
+    const ul = $('befehl-liste'); if (!ul) return;
+    for (const li of ul.children) li.setAttribute('aria-selected', String(Number(li.dataset.i) === befWahl));
+    const a = ul.children[befWahl]; $('befehl-ein').setAttribute('aria-activedescendant', a ? a.id : '');
+    if (a) a.scrollIntoView({ block: 'nearest' });
+  }
+  async function befLos(fo) {
+    const ein = $('befehl-ein'); if (!ein) return;
+    let t = ein.value.trim();
+    const v = befListe[befWahl], pt = befParsen(t, BEF_K);
+    if (v && (!t || befWahl > 0 || pt.unbekannt.length || (!pt.fn && !pt.markt && pt.tf == null))) t = v.cmd;
+    if (!t) return;
+    const p = befParsen(t, BEF_K);
+    if (p.fn && p.fn.par && !p.rest.length && p.fn.id !== 'hilfe' && p.fn.id !== 'scr') { ein.value = befSchoen(t) + ' '; befWahl = 0; befZeigen(); return; }
+    befehlZu();
+    const r = await befAusfuehren(t, { fokus: fo });
+    if (!r.ok && r.text) { befehlAuf(befVon); $('befehl-ein').value = t; befZeigen(); $('befehl-stand').textContent = r.text; }
+  }
+
+  function verzeichnis(filter = '', lex = false) {
+    let box = $('verzeichnis');
+    if (!box) {
+      box = document.createElement('section'); box.id = 'verzeichnis'; box.className = 'einstieg was-neu verzeichnis'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'verzeichnis-titel');
+      const kopf = hdEl('div', 'einstieg-kopf'), zu = hdEl('button', 'einstieg-weg', 'Schließen'); zu.type = 'button'; zu.addEventListener('click', () => verzeichnisZu());
+      kopf.append(hdEl('span', 'einstieg-nr', 'Befehlszeile: / oder Strg/⌘+K'), zu);
+      const h = hdEl('h3', '', 'Funktions-Verzeichnis'); h.id = 'verzeichnis-titel';
+      const nk = hdEl('div', 'auswahl-kopf'), ein = document.createElement('input'); ein.type = 'search'; ein.id = 'verzeichnis-ein'; ein.placeholder = 'Funktion suchen, z. B. Gamma'; ein.autocomplete = 'off'; ein.setAttribute('aria-label', 'Funktion suchen'); nk.append(ein);
+      const lexBox = hdEl('div', 'verzeichnis-lex'); lexBox.id = 'verzeichnis-lex';
+      const liste = hdEl('div', 'was-neu-liste verzeichnis-liste'); liste.id = 'verzeichnis-liste';
+      box.append(kopf, h, nk, lexBox, liste, hdEl('p', 'einstieg-fuss', 'Syntax: [Markt] Funktion [Zusatz] [@Zeit] – Reihenfolge und Groß-/Kleinschreibung egal, deutsche und englische Kürzel · keine Anlageberatung'));
+      document.body.append(box);
+      ein.addEventListener('input', () => verzeichnisFuellen(ein.value));
+      liste.addEventListener('click', (e) => { const b = e.target.closest('button[data-cmd]'); if (b) { verzeichnisZu(); befAusfuehren(b.dataset.cmd); } });
+    }
+    dialogAuf(box); box.hidden = false;
+    const ein = $('verzeichnis-ein'); ein.value = lex ? '' : filter; verzeichnisFuellen(lex ? '' : filter);
+    const lb = $('verzeichnis-lex'); lb.replaceChildren();
+    const w = befNorm(filter); let e = null;
+    if (w) { const lexId = Object.keys(LEXIKON).find((k) => befNorm(k) === w) || Object.keys(LEXIKON).find((k) => befNorm(LEXIKON[k].name).startsWith(w)); e = lexId ? LEXIKON[lexId] : null; }
+    if (e) lb.append(hdEl('p', 'lex-name', e.name), hdEl('p', 'lex-frage', 'Was ist das?'), hdEl('p', '', e.was), hdEl('p', 'lex-frage', 'Warum bewegt es den Kurs?'), hdEl('p', '', e.warum), hdEl('p', 'leise', 'Nur Erklärung, keine Vorhersage.'));
+    else if (lex && w) lb.append(hdEl('p', 'leise', befT('unbekannt', filter)));
+    try { ein.focus({ preventScroll: true }); } catch (x) {   }
+  }
+  function verzeichnisFuellen(f) {
+    const liste = $('verzeichnis-liste'); if (!liste) return;
+    const w = befNorm(f).trim(), teile = [];
+    for (const [g, titel] of BEF_GRUPPEN) {
+      const l = BEF_REG.filter((r) => r.g === g && (!w || r.k.concat(r.e).some((a) => befNorm(a).includes(w)) || befNorm(r.n).includes(w) || befNorm(tr(r.n)).includes(w) || befNorm(r.s).includes(w) || befNorm(tr(r.s)).includes(w)));
+      if (!l.length) continue;
+      teile.push(hdEl('h4', '', titel));
+      const ul = hdEl('ul', 'verzeichnis-gruppe');
+      for (const r of l) {
+        const li = hdEl('li', ''), b = hdEl('button', 'leise-knopf verzeichnis-bsp'), bt = hdEl('span', '', r.b); bt.dataset.roh = ''; b.append(bt); b.type = 'button'; b.dataset.cmd = r.b; b.title = 'Ausführen';
+        const k = hdEl('b', 'befehl-cmd', (SPRACHE === 'de' ? r.k.concat(r.e) : r.e.concat(r.k)).filter((x, i, l) => l.indexOf(x) === i).join(' / ')); k.dataset.roh = '';
+        li.append(k, hdEl('span', 'befehl-satz', r.n), hdEl('span', 'leise', r.s), b); ul.append(li);
+      }
+      teile.push(ul);
+    }
+    if (!teile.length) teile.push(hdEl('p', 'leise', befT('unbekannt', f)));
+    liste.replaceChildren(...teile);
+  }
+  function verzeichnisZu() { const box = $('verzeichnis'); if (!box || box.hidden) return; dialogZu(box); box.hidden = true; }
+
+  let TASTE_EIGEN = {}; try { TASTE_EIGEN = JSON.parse(lies('tasten') || '{}') || {}; } catch (e) { TASTE_EIGEN = {}; }
+  function tasteAus(k) {
+    if (!k || k.length !== 1) return k;
+    const x = k.toLowerCase();
+    for (const [std, neu] of Object.entries(TASTE_EIGEN)) if (neu === x) return std;
+    if (TASTE_EIGEN[x] && TASTE_EIGEN[x] !== x) return '';
+    return k;
+  }
+  let tasteWarten = null;
+  function tastenHilfe(auf) {
+    let t = $('tasten-hilfe');
+    if (!t) { t = document.createElement('div'); t.id = 'tasten-hilfe'; t.className = 'tasten-hilfe'; t.setAttribute('role', 'dialog'); t.setAttribute('aria-label', 'Tastenkürzel'); t.hidden = true; document.body.append(t);
+      t.addEventListener('click', (e) => { const b = e.target.closest('button[data-taste]'); if (b) { e.stopPropagation(); tasteWarten = b.dataset.taste; b.textContent = 'Taste drücken …'; return; } if (e.target.closest('button[data-a="std"]')) { e.stopPropagation(); TASTE_EIGEN = {}; merke('tasten', '{}'); tastenHilfeFuellen(); return; } t.hidden = true; }); }
+    tastenHilfeFuellen();
+    t.hidden = auf === undefined ? !t.hidden : !auf;
+  }
+  function tastenHilfeFuellen() {
+    const t = $('tasten-hilfe'); if (!t) return;
+    const h = hdEl('h3', '', 'Tastenkürzel'), dl = document.createElement('dl');
+    for (const [a, b] of TASTEN) {
+      const dt = hdEl('dt', '', (TASTE_EIGEN[a] || a).toUpperCase()), dd = hdEl('dd', '', b);
+      if (a !== '?') { const k = hdEl('button', 'leise-knopf taste-aendern', 'ändern'); k.type = 'button'; k.dataset.taste = a; dd.append(' ', k); }
+      dl.append(dt, dd);
+    }
+    for (const [a, b] of TASTEN_FEST) dl.append(hdEl('dt', '', a), hdEl('dd', '', b));
+    const std = hdEl('button', 'leise-knopf', 'Standard'); std.type = 'button'; std.dataset.a = 'std';
+    t.replaceChildren(h, dl, std);
+  }
+  addEventListener('keydown', (e) => {
+    if (!tasteWarten) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    const k = e.key && e.key.length === 1 ? e.key.toLowerCase() : null, std = tasteWarten; tasteWarten = null;
+    if (k && e.key !== 'Escape') { for (const [s, n] of Object.entries(TASTE_EIGEN)) if (n === k) delete TASTE_EIGEN[s]; if (k === std) delete TASTE_EIGEN[std]; else TASTE_EIGEN[std] = k; merke('tasten', JSON.stringify(TASTE_EIGEN)); }
+    tastenHilfeFuellen();
+  }, true);
+  addEventListener('keydown', (e) => {
+    const tag = (e.target && e.target.tagName) || '';
+    if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey && (e.key === 'k' || e.key === 'K')) { e.preventDefault(); if ($('befehl') && !$('befehl').hidden) befehlZu(); else befehlAuf(); return; }
+    if (e.altKey && !e.ctrlKey && !e.metaKey && (e.key === 'ArrowLeft' || e.key === 'ArrowRight') && !/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) { e.preventDefault(); navGehen(e.key === 'ArrowLeft' ? -1 : 1); return; }
+    if (e.altKey && !e.ctrlKey && !e.metaKey && /^Digit[1-9]$/.test(e.code || '') && !/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) { const a = abAlle()[Number(e.code.slice(5)) - 1]; if (a) { e.preventDefault(); abSetzen(a.id); } return; }
+    if (e.key === 'Escape') {
+      if ($('befehl') && !$('befehl').hidden) { befehlZu(); e.stopPropagation(); return; }
+      if ($('verzeichnis') && !$('verzeichnis').hidden) { verzeichnisZu(); e.stopPropagation(); return; }
+      if ($('ab-editor') && !$('ab-editor').hidden) { abEditorZu(); e.stopPropagation(); return; }
+      if (document.querySelector('main.raster > section.feld.fokus')) { fokus(null); e.stopPropagation(); }
+    }
+  }, true);
+  document.addEventListener('click', (e) => { const b = e.target.closest && e.target.closest('#ab-trenner button[data-feld]'); if (b) { AB.offen.add(b.dataset.feld); abAnwenden(); const s = abSec(b.dataset.feld); if (s) requestAnimationFrame(() => { dispatchEvent(new Event('resize')); feldZeigen(s); }); } });
+
+  {
+    AB_BEREIT = true; fokusKnoepfe();
+    const tb = document.querySelector('.tabbar');
+    if (tb && !tb.querySelector('[data-tab="befehl"]')) {
+      const b = document.createElement('button'); b.type = 'button'; b.dataset.tab = 'befehl'; b.setAttribute('aria-label', 'Befehlszeile');
+      b.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg>';
+      b.append(hdEl('span', '', 'Suche')); b.addEventListener('click', (e) => { e.stopPropagation(); befehlAuf(b); }); tb.append(b); tb.classList.add('mit-suche');
+    }
+    const ad = document.querySelector('#handeln .hd-alle-daten');
+    if (ad && !$('hd-befehl')) { const b = hdEl('button', 'hd-alle-daten hd-befehl', '⌕ Befehl'); b.type = 'button'; b.id = 'hd-befehl'; b.title = 'Befehlszeile (/ oder Strg/⌘+K)'; b.addEventListener('click', () => befehlAuf(b)); ad.before(b); }
+    const st = Q.get('ab');
+    if (st && /^x:/.test(st)) { const g = abDekodieren(st); if (g) { AB.geteilt = g; AB.id = 'geteilt'; hdBereich('daten', false); abAnwenden(); setTimeout(() => befMelden(befT('geteilt', g.n)), 1200); } }
+    else { const a = abFinden(st || lies('ab') || 'alle'); AB.id = a && a.f ? a.id : 'alle'; if (st && a && a.f) hdBereich('daten', false); abAnwenden(); }
+    for (const s of document.querySelectorAll('main.raster > section.feld')) new MutationObserver(() => { if (AB.id !== 'alle') abAnwenden(); }).observe(s, { attributes: true, attributeFilter: ['hidden'] });
+    addEventListener('resize', () => { if (AB.id !== 'alle') { clearTimeout(abAnwenden.t); abAnwenden.t = setTimeout(abAnwenden, 120); } });
+    document.addEventListener('click', (e) => { if (e.target.closest && e.target.closest('#bereiche [data-bereich], .hd-alle-daten[data-bereich], #hd-tools-mehr')) setTimeout(abLeiste, 0); });
+    if (Q.get('f')) setTimeout(() => { const r = BEF_REG.find((x) => x.id === Q.get('f')); if (r) befOeffnen(r, {}); }, 1500);
+    setInterval(navMerken, 700); setTimeout(navMerken, 300);
+  }
 })();
 
 </script>
