@@ -3182,7 +3182,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     P.clearRect = function (x, y, w, h) { leeren(this, x, y, w, h); return crL.call(this, x, y, w, h); };
     P.fillText = function (t, x, y, ...r) {
       const s = st(this.canvas), roh = String(t).trim();
-      if (!LADE_KURZ.test(roh) && roh !== s.ersatz) { s.nurLade = false; s.t0 = 0; s.lade = false; LW.delete(this.canvas); return ftL.call(this, t, x, y, ...r); }
+      if (!LADE_KURZ.test(roh) && !LADE_DOM.has(roh) && roh !== s.ersatz) { s.nurLade = false; s.t0 = 0; s.lade = false; LW.delete(this.canvas); return ftL.call(this, t, x, y, ...r); }
       if (!s.t0) s.t0 = performance.now();
       s.lade = true; if (roh !== s.ersatz) s.text = roh; LW.add(this.canvas);
       if (performance.now() - s.t0 < LADE_FRIST) return ftL.call(this, t, x, y, ...r);
