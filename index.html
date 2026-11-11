@@ -6401,9 +6401,10 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       if (SPRACHE !== 'de' && e.titel_en && e.text_en) return { titel: [fertigText(e.titel_en)], text: [fertigText(e.text_en)], lang: 'en' };
       return { titel: [String(e.titel || e.coin || '')], text: [String(e.text || '')], lang: SPRACHE === 'de' ? null : 'de' };
     }
-    const w = { coin: e.coin, preis: preisA(e.preis), usd: usdA(f.usd), pct: Number.isFinite(f.pct) ? proz(f.pct, 2) : '–', abstand: Number.isFinite(f.abstand) ? proz(f.abstand, 2, false) : '–',
+    const nb = (x) => String(x).replace(/ /g, '\u00a0');      // Zahl und Einheit nie getrennt umbrechen („−0,17 / %“ am Handy)
+    const w = { coin: e.coin, preis: preisA(e.preis), usd: nb(usdA(f.usd)), pct: Number.isFinite(f.pct) ? nb(proz(f.pct, 2)) : '–', abstand: Number.isFinite(f.abstand) ? nb(proz(f.abstand, 2, false)) : '–',
       stufe: preisA(f.stufe), liq: preisA(f.liq), wal: f.wal, name: f.name, bedingung: f.bedingung === undefined ? undefined : regelSyntax(f.bedingung),
-      ae24h: Number.isFinite(f.ae24h) ? proz(f.ae24h, 1) : '–', funding: Number.isFinite(f.funding) ? proz(f.funding, 1) : '–', oi: usdA(f.oi || 0), n: f.anzahl };
+      ae24h: Number.isFinite(f.ae24h) ? nb(proz(f.ae24h, 1)) : '–', funding: Number.isFinite(f.funding) ? nb(proz(f.funding, 1)) : '–', oi: nb(usdA(f.oi || 0)), n: f.anzahl };
     if (e.art === 'regel' && f.lokal) return { titel: alarmTeile(ALARM_TITEL.regel_lokal, w), text: alarmTeile(ALARM_TEXT.regel_lokal, w, ['bedingung']) };
     if (e.art === 'regel') {
       const coins = (f.coins || []).join(', ') + ((f.anzahl || 0) > (f.coins || []).length ? ' …' : '');
@@ -6414,7 +6415,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     if (!ALARM_TITEL[e.art] || !ALARM_TEXT[tk]) return { titel: [String(e.titel || e.coin || '')], text: [String(e.text || '')], lang: SPRACHE === 'de' ? null : 'de' };
     const text = alarmTeile(ALARM_TEXT[tk], w, ['wal']), fr = f.frueher;
     if (fr && Number.isFinite(fr.n)) {
-      const wf = { n: de(fr.n), h: de(fr.h || 15), hoeher: proz(fr.hoeher, 0, false), mittel: proz(fr.mittel, 2), sonst: Number.isFinite(fr.sonst) ? proz(fr.sonst, 0, false) : null };
+      const wf = { n: de(fr.n), h: de(fr.h || 15), hoeher: nb(proz(fr.hoeher, 0, false)), mittel: nb(proz(fr.mittel, 2)), sonst: Number.isFinite(fr.sonst) ? nb(proz(fr.sonst, 0, false)) : null };
       text.push(fertigText(' '), ...alarmTeile(wf.sonst === null ? ALARM_TEXT.frueher : ALARM_TEXT.frueher_sonst, wf));
     }
     return { titel: alarmTeile(ALARM_TITEL[e.art], w), text };
