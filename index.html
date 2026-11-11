@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "ed7c1584", "es": "02085595", "fr": "25278cce", "it": "80f6fc1d", "tr": "67537d90"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "86ad5d6c", "es": "1af8cb63", "fr": "851e1d2d", "it": "d4265c89", "tr": "02726bdb"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2799,7 +2799,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "ed7c1584", "es": "02085595", "fr": "25278cce", "it": "80f6fc1d", "tr": "67537d90"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "86ad5d6c", "es": "1af8cb63", "fr": "851e1d2d", "it": "d4265c89", "tr": "02726bdb"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -2865,6 +2865,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     vorbei: { de: () => 'vorbei', en: () => 'over', es: () => 'pasado', fr: () => 'passé', tr: () => 'geçti', it: () => 'passato' },
     istFehlt: { de: () => 'Ist noch nicht da', en: () => 'Actual not out yet', es: () => 'Dato real aún no publicado', fr: () => 'Valeur réelle pas encore publiée',
       tr: () => 'Gerçekleşen henüz açıklanmadı', it: () => 'Dato effettivo non ancora pubblicato' },
+    zuletzt: { de: (d) => `zuletzt ${d}`, en: (d) => `last ${d}`, es: (d) => `última vez ${d}`, fr: (d) => `dernière fois ${d}`, tr: (d) => `son ${d}`, it: (d) => `ultima volta ${d}` },   // r128
     seit: { de: (d) => `seit ${d}`, en: (d) => `since ${d}`, es: (d) => `desde ${d}`, fr: (d) => `depuis le ${d}`, tr: (d) => `${d} itibarıyla`, it: (d) => `dal ${d}` },
   });
   document.documentElement.lang = SPRACHE;
@@ -5750,9 +5751,9 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       const f = uebFilter(r.text).f; if (!f) continue;
       for (const z of ueb.coins.filter(f).slice(0, 5)) {
         if (alle.some((a) => a.regel === r.text && a.coin === z.coin && jetzt - a.ts < 3600)) continue;
-        const text = `${r.text} – erfüllt: Kurs ${de(z.preis, z.preis >= 100 ? 0 : 4)}, 24 Std. ${proz(z.ae24h || 0, 1)}, Funding ${z.funding === null ? '–' : proz(z.funding, 1)} aufs Jahr, OI ${usd(z.oi || 0)}`;
-        alle.unshift({ ts: jetzt, coin: z.coin, regel: r.text, art: 'regel', titel: `${z.coin}: ${r.text}`, text }); neu++;
-        try { if (window.Notification && Notification.permission === 'granted') new Notification(`RYVO: ${z.coin}`, { body: text }); } catch (e) { /* ohne Mitteilung */ }
+        const a = { ts: jetzt, coin: z.coin, regel: r.text, art: 'regel', preis: z.preis, felder: { lokal: true, bedingung: r.text, ae24h: z.ae24h || 0, funding: z.funding, oi: z.oi || 0 } };
+        alle.unshift(a); neu++;
+        try { if (window.Notification && Notification.permission === 'granted') { const t = alarmSatz(a); new Notification(`RYVO: ${klartext(t.titel)}`, { body: klartext(t.text) }); } } catch (e) { /* ohne Mitteilung */ }
       }
     }
     if (neu) merke('alarmeLokal', JSON.stringify(alle.slice(0, 60)));
@@ -5763,9 +5764,9 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     const regeln = regelnLokal();
     const kopf = document.createElement('span'); kopf.textContent = regeln.length ? 'Eigene Regeln (jede Minute, alle Coins, nur in diesem Browser): ' : 'Eigene Regel anlegen – Sprache wie im Screener-Filter, z. B. „funding > 40 und ae24h > 5“ (Felder: kurs, ae1h, ae24h, umsatz, oi, funding). ';
     el.append(kopf);
-    regeln.forEach((r, i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'regel-weg'; b.textContent = `${r.text} ✕`; b.title = 'Regel löschen';
+    regeln.forEach((r, i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'regel-weg'; b.append(rohEl(regelSyntax(r.text), 'code'), ' ✕'); b.title = 'Regel löschen';   // r128: Bedingung wie geschrieben (translate="no")
       b.addEventListener('click', () => { const l = regelnLokal(); l.splice(i, 1); merke('regelnLokal', JSON.stringify(l)); regelnBedienen(); }); el.append(b, ' '); });
-    const inp = document.createElement('input'); inp.type = 'text'; inp.placeholder = 'funding > 40 und ae24h > 5'; inp.size = 28; inp.setAttribute('aria-label', 'Neue Regel');
+    const inp = document.createElement('input'); inp.type = 'text'; inp.placeholder = regelSyntax('funding > 40 und ae24h > 5'); inp.size = 28; inp.setAttribute('aria-label', 'Neue Regel');
     const ok = document.createElement('button'); ok.type = 'button'; ok.textContent = 'Regel dazu';
     const info = document.createElement('span'); info.className = 'leise';
     const dazu = () => { const t = inp.value.trim(); const f = uebFilter(t); if (!t || !f.f) { info.textContent = ' ' + (f.fehler || 'Bitte eine Bedingung eingeben.'); return; } const l = regelnLokal(); l.push({ text: t }); merke('regelnLokal', JSON.stringify(l.slice(0, 20))); regelnBedienen(); regelnPruefen(); alarmeLaden(); };
@@ -5904,16 +5905,16 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   function alarmeEingebaut() {
     if (!S || !(S.last || S.mid)) return;
     const jetzt = Date.now(), k = C(), kurs = S.last || S.mid, alle = alarmeLokal(); let neu = 0;
-    const dazu = (art, titel, text) => {
+    const dazu = (art, felder) => {                       // r128: Felder statt Satz – Text in der Sprache der Oberfläche
       if (alle.some((a) => a.art === art && a.coin === coin && jetzt / 1000 - a.ts < 1800)) return;
-      alle.unshift({ ts: jetzt / 1000, coin, art, titel: `${coin}: ${titel}`, text }); neu++;
-      try { if (window.Notification && Notification.permission === 'granted') new Notification(`RYVO: ${coin} – ${titel}`, { body: text }); } catch (e) { /* ohne Mitteilung */ }
+      const a = { ts: jetzt / 1000, coin, art, preis: kurs, felder }; alle.unshift(a); neu++;
+      try { if (window.Notification && Notification.permission === 'granted') { const t = alarmSatz(a); new Notification(`RYVO: ${klartext(t.titel)}`, { body: klartext(t.text) }); } } catch (e) { /* ohne Mitteilung */ }
     };
     const fuenf = S.liq.filter((x) => jetzt - x.t < 3e5), lw = fuenf.filter((x) => x.wer === 'long').reduce((a, x) => a + x.wert, 0), sw = fuenf.filter((x) => x.wer === 'short').reduce((a, x) => a + x.wert, 0);
-    if (lw >= 4 * k.gross) dazu('liq_long', 'Long-Liquidationswelle', `Longs für ${usd(lw)} in 5 Min. zwangsgeschlossen, Kurs ${preis(kurs)}.`);
-    if (sw >= 4 * k.gross) dazu('liq_short', 'Short-Liquidationswelle', `Shorts für ${usd(sw)} in 5 Min. zwangsgeschlossen, Kurs ${preis(kurs)}.`);
+    if (lw >= 4 * k.gross) dazu('liq_long', { usd: lw });
+    if (sw >= 4 * k.gross) dazu('liq_short', { usd: sw });
     const nah = walLiq().filter((x) => x[1] >= 5e6 && Math.abs(x[0] / kurs - 1) < 0.005).sort((a, b) => b[1] - a[1])[0];
-    if (nah) dazu('liq_stufe', 'Kurs nahe großer Wal-Liquidation', `${preis(nah[0])} ist ${proz(Math.abs(nah[0] / kurs - 1) * 100, 2, false)} vom Kurs ${preis(kurs)} entfernt: dort müsste ein Wal ${nah[2]} für ${usd(nah[1])} zwangsweise schließen (Hyperliquid).`);
+    if (nah) dazu('wal_naehe', { wal: nah[3] || null, seite: nah[2], usd: nah[1], liq: nah[0], abstand: Math.abs(nah[0] / kurs - 1) * 100 });
     if (neu) merke('alarmeLokal', JSON.stringify(alle.slice(0, 60)));
   }
   const GED_TAGE = 7;
@@ -6338,27 +6339,109 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       { titel: 'Offene Positionen springen', n: 18, zuletzt: jetzt - 40000, h: h(52, 50, 44) }, { titel: 'Offene Positionen brechen ein', n: 7, zuletzt: jetzt - 90000, h: h(70, 66, 61) }]
       .map((e, j) => ({ ...e, art: 'demo' + j, faelle: Array.from({ length: e.n }, (_, i) => [jetzt - (e.n - i) * 20000, 0.1 * Math.sin(i + j), 0.2 * Math.sin(i * 1.3 + j) + (e.h[15].hoeher - 50) / 300, 0.4 * Math.sin(i * 0.7 + j) + (e.h[60].hoeher - 50) / 200]) })) };
   }
+  const ALARM_TITEL = {
+    liq_long: '{coin}: Long-Liquidationswelle', liq_short: '{coin}: Short-Liquidationswelle', kaufdruck: '{coin}: starker Kaufdruck in Futures',
+    verkaufsdruck: '{coin}: starker Verkaufsdruck in Futures', oi_hoch: '{coin}: offene Positionen springen', oi_runter: '{coin}: offene Positionen brechen ein',
+    liq_stufe: '{coin}: Kurs nahe großer Liquidations-Stufe', wal_naehe: '{coin}: Wal kurz vor der Liquidation', regel_lokal: '{coin}: eigene Regel erfüllt',
+  };
+  const ALARM_TEXT = {
+    liq_long: 'Longs für {usd} in 5 Min. zwangsgeschlossen, Kurs {preis}.', liq_short: 'Shorts für {usd} in 5 Min. zwangsgeschlossen, Kurs {preis}.',
+    kaufdruck: 'Netto {usd} aggressiv gekauft in 5 Min., Kurs {preis}.', verkaufsdruck: 'Netto {usd} aggressiv verkauft in 5 Min., Kurs {preis}.',
+    oi_hoch: '{pct} in 5 Min. (Binance, Bybit, OKX) – neues Geld mit Hebel, Kurs {preis}.', oi_runter: '{pct} in 5 Min. – Positionen werden geschlossen, Kurs {preis}.',
+    liq_stufe_long: '{preis} ist {abstand} von {stufe} entfernt: dort würden geschätzt Longs für {usd} zwangsgeschlossen (Modell, keine Messung).',
+    liq_stufe_short: '{preis} ist {abstand} von {stufe} entfernt: dort würden geschätzt Shorts für {usd} zwangsgeschlossen (Modell, keine Messung).',
+    wal_naehe_long: 'Wal {wal} (Long, {usd}) wird bei {liq} liquidiert – Kurs {preis}, {abstand} entfernt (Hyperliquid, gemessen).',
+    wal_naehe_short: 'Wal {wal} (Short, {usd}) wird bei {liq} liquidiert – Kurs {preis}, {abstand} entfernt (Hyperliquid, gemessen).',
+    frueher: 'Früher danach ({n} Fälle): nach {h} Min. in {hoeher} der Fälle höher, im Mittel {mittel}.',
+    frueher_sonst: 'Früher danach ({n} Fälle): nach {h} Min. in {hoeher} der Fälle höher, im Mittel {mittel} – sonst {sonst}.',
+    regel_1: 'Regel „{name}“: {n} Coin', regel_n: 'Regel „{name}“: {n} Coins',
+    regel_lokal: '{bedingung} – erfüllt: Kurs {preis}, 24 Std. {ae24h}, Funding {funding} aufs Jahr, OI {oi}', fehler: '– FEHLER: nicht verstanden: {teil}',
+  };
+  const vorlage = (dt) => { if (SPRACHE === 'de') return dt; const w = UEB && UEB.karte.get(dt); return w !== undefined ? w : (EN_WOERTER[dt] || dt); };
+  const regelSyntax = (t) => (SPRACHE === 'de' ? String(t) : String(t).replace(/\s+und\s+/gi, ' and ').replace(/\s+oder\s+/gi, ' or '));   // wie der Hinweis zur Regel-Sprache
+  function rohEl(t, tag = 'span') { const s = document.createElement(tag); s.textContent = String(t); s.translate = false; s.dataset.roh = ''; return s; }   // Inhalt wie geschrieben
+  const fertigText = (t) => { if (UEB) { UEB.fertig.add(t); UEB.fertig.add(t.replace(/\s+/g, ' ')); } return t; };
+  function alarmTeile(dt, w, roh = []) {            // Vorlage in der Sprache der Oberfläche, {feld} ersetzt → Liste aus Text und translate="no"-Elementen
+    const t = vorlage(dt), aus = []; let i = 0, puffer = '';
+    for (const m of t.matchAll(/\{(\w+)\}/g)) {
+      puffer += t.slice(i, m.index); i = m.index + m[0].length;
+      const v = w[m[1]] === undefined || w[m[1]] === null || w[m[1]] === '' ? '–' : String(w[m[1]]);
+      if (roh.includes(m[1]) && v !== '–') { if (puffer) aus.push(fertigText(puffer)); puffer = ''; aus.push(rohEl(v, m[1] === 'bedingung' ? 'code' : 'span')); } else puffer += v;
+    }
+    puffer += t.slice(i); if (puffer) aus.push(fertigText(puffer));
+    return aus;
+  }
+  const klartext = (teile) => teile.map((x) => (typeof x === 'string' ? x : x.textContent)).join('');
+  const preisA = (p) => (Number.isFinite(Number(p)) && p !== null ? de(p, p >= 1000 ? 0 : p >= 10 ? 2 : p >= 1 ? 3 : 4) : '–');
+  const usdA = (x) => (Number.isFinite(Number(x)) && x !== null ? (UEB ? tr(usd(x)) : usd(x)) : '–');   // „4,2 Mio. $“ → Einheit der Sprache wie überall im Terminal
+  const dzA = (x) => Number(String(x).replace(/\./g, '').replace(',', '.').replace('−', '-'));
+  const usdAlt = (x) => { const m = /^([\d.,]+) (Mrd\.|Mio\.|Tsd\.) \$$/.exec(String(x).trim()); return m ? dzA(m[1]) * { 'Mrd.': 1e9, 'Mio.': 1e6, 'Tsd.': 1e3 }[m[2]] : null; };
+  const FRUEHER_ALT = /^ Früher danach \((\d+) Fälle\): nach (\d+) Min\. in (\d+) % der Fälle höher, im Mittel ([+−]?)([\d.,]+) %(?: – sonst (\d+) %)?\.$/;
+  function alarmFelderAlt(e) {
+    const t = String(e.text || ''); let m, f = null, rest = '';
+    if (e.art === 'regel') {
+      const k = /^Regel „(.+)“: (\d+) Coins?$/.exec(String(e.titel || '')), x = /^(.*) → (.+?)( …)?$/.exec(t);
+      return k && x ? { name: k[1], bedingung: x[1], coins: x[2].split(', '), anzahl: Number(k[2]) } : null;
+    }
+    if ((e.art === 'liq_long' || e.art === 'liq_short') && (m = /^(?:Longs|Shorts) für (.+? \$) in 5 Min\. zwangsgeschlossen, Kurs [\d.,]+\.(.*)$/.exec(t))) { f = { usd: usdAlt(m[1]) }; rest = m[2]; }
+    else if ((e.art === 'kaufdruck' || e.art === 'verkaufsdruck') && (m = /^Netto −?(.+? \$) aggressiv (?:gekauft|verkauft) in 5 Min\., Kurs [\d.,]+\.(.*)$/.exec(t))) { f = { usd: usdAlt(m[1]) }; rest = m[2]; }
+    else if (e.art === 'oi_hoch' && (m = /^\+([\d.,]+) % in 5 Min\. \(Binance, Bybit, OKX\) – neues Geld mit Hebel, Kurs [\d.,]+\.(.*)$/.exec(t))) { f = { pct: dzA(m[1]) }; rest = m[2]; }
+    else if (e.art === 'oi_runter' && (m = /^−([\d.,]+) % in 5 Min\. – Positionen werden geschlossen, Kurs [\d.,]+\.(.*)$/.exec(t))) { f = { pct: -dzA(m[1]) }; rest = m[2]; }
+    else if (e.art === 'liq_stufe' && (m = /^[\d.,]+ ist ([\d.,]+) % von ([\d.,]+) entfernt: dort würden geschätzt (Longs|Shorts) für (.+? \$) zwangsgeschlossen \(Modell, keine Messung\)\.$/.exec(t)))
+      f = { abstand: dzA(m[1]), stufe: dzA(m[2]), seite: m[3] === 'Longs' ? 'long' : 'short', usd: usdAlt(m[4]) };
+    else if (e.art === 'wal_naehe' && (m = /^Wal (\S+) \((long|short), (.+? \$)\) wird bei ([\d.,]+) liquidiert – Kurs [\d.,]+, ([\d.,]+) % entfernt \(Hyperliquid, gemessen\)\.$/.exec(t)))
+      f = { wal: m[1], seite: m[2], usd: usdAlt(m[3]), liq: dzA(m[4]), abstand: dzA(m[5]) };
+    if (!f || Object.values(f).some((v) => v === null || (typeof v === 'number' && !Number.isFinite(v)))) return null;
+    if (rest) { const r = FRUEHER_ALT.exec(rest); if (!r) return null; f.frueher = { n: Number(r[1]), h: Number(r[2]), hoeher: Number(r[3]), mittel: (r[4] === '−' ? -1 : 1) * dzA(r[5]), sonst: r[6] === undefined ? null : Number(r[6]) }; }
+    return f;
+  }
+  function alarmSatz(e) {                         // → { titel: [...], text: [...], lang }
+    const f = e.felder && typeof e.felder === 'object' ? e.felder : (e.art !== 'regel' || !e.regel ? alarmFelderAlt(e) : null);
+    if (!f) {                                     // nicht lesbar: DE wie geliefert, sonst Englisch (falls vorhanden)
+      if (SPRACHE !== 'de' && e.titel_en && e.text_en) return { titel: [fertigText(e.titel_en)], text: [fertigText(e.text_en)], lang: 'en' };
+      return { titel: [String(e.titel || e.coin || '')], text: [String(e.text || '')], lang: SPRACHE === 'de' ? null : 'de' };
+    }
+    const w = { coin: e.coin, preis: preisA(e.preis), usd: usdA(f.usd), pct: Number.isFinite(f.pct) ? proz(f.pct, 2) : '–', abstand: Number.isFinite(f.abstand) ? proz(f.abstand, 2, false) : '–',
+      stufe: preisA(f.stufe), liq: preisA(f.liq), wal: f.wal, name: f.name, bedingung: f.bedingung === undefined ? undefined : regelSyntax(f.bedingung),
+      ae24h: Number.isFinite(f.ae24h) ? proz(f.ae24h, 1) : '–', funding: Number.isFinite(f.funding) ? proz(f.funding, 1) : '–', oi: usdA(f.oi || 0), n: f.anzahl };
+    if (e.art === 'regel' && f.lokal) return { titel: alarmTeile(ALARM_TITEL.regel_lokal, w), text: alarmTeile(ALARM_TEXT.regel_lokal, w, ['bedingung']) };
+    if (e.art === 'regel') {
+      const coins = (f.coins || []).join(', ') + ((f.anzahl || 0) > (f.coins || []).length ? ' …' : '');
+      return { titel: alarmTeile(f.anzahl === 1 ? ALARM_TEXT.regel_1 : ALARM_TEXT.regel_n, w, ['name']), text: [rohEl(w.bedingung || '–', 'code'), fertigText(' → ' + coins)] };
+    }
+    const seite = f.seite === 'short' ? 'short' : 'long';
+    const tk = e.art === 'liq_stufe' || e.art === 'wal_naehe' ? `${e.art}_${seite}` : e.art;
+    if (!ALARM_TITEL[e.art] || !ALARM_TEXT[tk]) return { titel: [String(e.titel || e.coin || '')], text: [String(e.text || '')], lang: SPRACHE === 'de' ? null : 'de' };
+    const text = alarmTeile(ALARM_TEXT[tk], w, ['wal']), fr = f.frueher;
+    if (fr && Number.isFinite(fr.n)) {
+      const wf = { n: de(fr.n), h: de(fr.h || 15), hoeher: proz(fr.hoeher, 0, false), mittel: proz(fr.mittel, 2), sonst: Number.isFinite(fr.sonst) ? proz(fr.sonst, 0, false) : null };
+      text.push(fertigText(' '), ...alarmTeile(wf.sonst === null ? ALARM_TEXT.frueher : ALARM_TEXT.frueher_sonst, wf));
+    }
+    return { titel: alarmTeile(ALARM_TITEL[e.art], w), text };
+  }
   async function alarmeLaden() {
     const box = $('alarme'), basis = macBasis();
     const leer = (t) => { const li = document.createElement('li'); li.className = 'leise'; li.textContent = t; box.replaceChildren(li); };
     let d = null;
     if (DEMO) { const j = Date.now() / 1000; d = { laeuft: true, alarme: [
-      { ts: j - 720, titel: 'BTC: Long-Liquidationswelle', art: 'liq_long', text: 'Longs für 4,2 Mio. $ in 5 Min. zwangsgeschlossen, Kurs 99.870. Früher danach (41 Fälle): nach 15 Min. in 61 % der Fälle höher, im Mittel +0,04 % – sonst 51 %.' },
-      { ts: j - 4000, titel: 'BTC: Kurs nahe großer Liquidations-Stufe', art: 'liq_stufe', text: '100.120 ist 0,31 % von 99.810 entfernt: dort würden geschätzt Longs für 92,4 Mio. $ zwangsgeschlossen (Modell, keine Messung).' }] }; }
+      { ts: j - 720, coin: 'BTC', art: 'liq_long', preis: 99870, felder: { usd: 4.2e6, frueher: { n: 41, h: 15, hoeher: 61, mittel: 0.04, sonst: 51 } } },
+      { ts: j - 4000, coin: 'BTC', art: 'liq_stufe', preis: 100120, felder: { stufe: 99810, abstand: 0.31, usd: 92.4e6, seite: 'long' } },
+      { ts: j - 9000, coin: 'PEPE', art: 'regel', preis: 0.0000123, felder: { name: 'Überhitzt', bedingung: 'funding > 40 und oi24h > 10', coins: ['PEPE'], anzahl: 1 } }] }; }
     else if (basis === null) { regelnPruefen(); alarmeEingebaut(); d = { laeuft: true, direkt: true, alarme: alarmeLokal().filter((a) => Date.now() / 1000 - a.ts < 3 * 86400) }; }
     else { try { d = await holeMitFrist(`${basis}/api/profi/alarme?seit=${Math.floor(Date.now() / 1000 - 3 * 86400)}`, 10000); } catch (e) { return leer('Mac nicht erreichbar.'); } }
     $('alarme-stand').textContent = d.direkt ? `· Liquidations-Wellen und Wal-Liquidationen ${coin}, eigene Regeln für alle Coins – jede Minute, solange die Seite offen ist` : d.laeuft ? `· prüft jede Minute ${MAC_LISTE}` : '· Alarm-Wache läuft gerade nicht';
     if (d.direkt) { if (!$('regeln').querySelector('input')) regelnBedienen(); } else regelnLaden(basis);
     if (!d || !Array.isArray(d.alarme)) return leer('Alarme gerade nicht lesbar.');
-    if (!d.alarme.length) return leer(d.direkt ? 'Noch kein Alarm. Unten eine eigene Regel anlegen – die Live-Meldungen zum gewählten Coin stehen oben bei „Jetzt“.' : 'Keine Alarme in den letzten 3 Tagen.');
-    box.replaceChildren(...d.alarme.slice(0, 12).map((e) => {
+    const liste = d.alarme.filter((e) => e && (SPRACHE === 'de' || !d.direkt || e.felder));   // r128: alte Browser-Alarme (vor r128, nur deutsch, ≤ 3 Tage) nur auf Deutsch
+    if (!liste.length) return leer(d.direkt ? 'Noch kein Alarm. Unten eine eigene Regel anlegen – die Live-Meldungen zum gewählten Coin stehen oben bei „Jetzt“.' : 'Keine Alarme in den letzten 3 Tagen.');
+    box.replaceChildren(...liste.slice(0, 12).map((e) => {
       const li = document.createElement('li');
       const t = document.createElement('time'); t.textContent = tagUhr(e.ts * 1000); t.dateTime = new Date(e.ts * 1000).toISOString();
       const div = document.createElement('div');
-      const enT = EN && e.titel_en ? e.titel_en : null, enX = EN && e.text_en ? e.text_en : null;
-      if (UEB) { if (enT) UEB.fertig.add(enT); if (enX) UEB.fertig.add(enX); }
-      const a = document.createElement('div'); a.className = 'art ' + ({ regel: 'wal', liq_long: 'verk', verkaufsdruck: 'verk', oi_runter: 'verk', liq_short: 'kauf', kaufdruck: 'kauf', oi_hoch: 'kauf' }[e.art] || 'wal'); a.textContent = enT || e.titel;
-      const x = document.createElement('div'); x.textContent = enX || e.text;
+      const s = alarmSatz(e);
+      const a = document.createElement('div'); a.className = 'art ' + ({ regel: 'wal', liq_long: 'verk', verkaufsdruck: 'verk', oi_runter: 'verk', liq_short: 'kauf', kaufdruck: 'kauf', oi_hoch: 'kauf' }[e.art] || 'wal'); const tt = document.createElement('span'); tt.append(...s.titel); a.append(tt);   // eine Spanne: .art ist im Stil RYVO inline-flex (sonst Lücken um den Regel-Namen)
+      const x = document.createElement('div'); x.append(...s.text);
+      if (s.lang) div.lang = s.lang;
       div.append(a, x); li.append(t, div); return li;
     }));
   }
@@ -6367,8 +6450,15 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     let r = DEMO ? { regeln: [{ name: 'Überhitzt', text: 'funding > 40 und oi24h > 10', coins: null }] } : null;
     if (!r && basis !== null) { try { r = await holeMitFrist(`${basis}/api/profi/regeln`, 10000); } catch (e) { r = null; } }
     const liste = (r && r.regeln) || [];
-    el.textContent = liste.length ? 'Eigene Regeln (alle 5 Min., alle Coins): ' + liste.map((x) => `${x.name}: ${x.text}${x.coins ? ` (${x.coins.join(', ')})` : ''}${x.fehler ? ` – FEHLER ${x.fehler}` : ''}`).join(' · ')
-      : 'Eigene Regeln: noch keine. Sag Claude z. B. „Alarm, wenn Funding über 40 und OI in 24 Std. über 10 %“ – Sprache wie im Screener-Filter der Übersicht.';
+    if (!liste.length) { el.textContent = 'Eigene Regeln: noch keine. Sag Claude z. B. „Alarm, wenn Funding über 40 und OI in 24 Std. über 10 %“ – Sprache wie im Screener-Filter der Übersicht.'; return; }
+    const teile = ['Eigene Regeln (alle 5 Min., alle Coins): '];      // r128: Name und Bedingung wie geschrieben (translate="no"), Rest in der Sprache der Oberfläche
+    liste.forEach((x, i) => {
+      if (i) teile.push(' · ');
+      teile.push(rohEl(x.name), ': ', rohEl(regelSyntax(x.text), 'code'));
+      if (x.coins) teile.push(` (${x.coins.join(', ')})`);
+      if (x.fehler) { const m = /^nicht verstanden: (.*)$/.exec(x.fehler); teile.push(' ', ...alarmTeile(ALARM_TEXT.fehler, { teil: m ? m[1] : x.fehler }, ['teil'])); }
+    });
+    el.replaceChildren(...teile);
   }
   const bt = { art: lies('btArt') || '', h: Number(lies('btH')) || 15, seite: lies('btSeite') || 'kauf', gebuehr: Number(lies('btGeb') || '0.1') };
   function btZeigen() {
@@ -6421,7 +6511,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       const tr = rumpf.insertRow(), td = tr.insertCell();
       td.textContent = e.titel;
       if (e.zuletzt && jetzt - e.zuletzt < 3600) { const s2 = document.createElement('span'); s2.className = 'aktiv'; s2.textContent = zeitText('minVor', Math.max(1, Math.round((jetzt - e.zuletzt) / 60))); td.append(s2); }
-      else if (e.zuletzt) { const sm = document.createElement('small'); sm.className = 'leise'; sm.textContent = ` zuletzt ${tagUhr(e.zuletzt * 1000)}`; td.append(sm); }
+      else if (e.zuletzt) { const sm = document.createElement('small'); sm.className = 'leise'; sm.textContent = ' ' + zeitText('zuletzt', tagUhr(e.zuletzt * 1000)); td.append(sm); }   // r128: „zuletzt“ blieb in es/fr/tr/it deutsch
       tr.insertCell().textContent = de(e.n);
       for (const h of ['5', '15', '60']) zelle(tr, e.h[h], d.basis[h], e.n);
     }
@@ -7985,12 +8075,12 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     if (hlRang.fehler) return leer(hlRang.fehler);
     const k = hlRang.konten || []; if (!k.length) return leer('Keine Konten erfüllen gerade die Bedingungen.');
     const tab = document.createElement('table'), kopf = tab.createTHead().insertRow(), rumpf = tab.createTBody();
-    for (const t of ['#', 'Konto', 'Score', 'Kontowert', 'Gewinn Monat', 'Rendite Monat', 'Woche', 'Tag', 'Gewinn gesamt', 'Rendite gesamt', 'Umsatz Monat']) { const th = document.createElement('th'); th.textContent = t; kopf.append(th); }
+    for (const t of ['#', 'Konto', 'Score', 'Kontowert', 'Gewinn Monat', 'Rendite Monat', 'Woche', 'Tag', 'Gewinn gesamt', 'Rendite gesamt', 'Umsatz Monat']) { const th = document.createElement('th'); th.textContent = t; if (t === 'Konto') th.title = 'Name, den sich das Konto bei Hyperliquid selbst gegeben hat – wird nicht übersetzt.'; kopf.append(th); }
     const pz = (td, v) => { if (v === null || v === undefined) { td.textContent = '–'; return; } td.textContent = proz(v * 100, 1); td.className = v > 0 ? 'plus' : v < 0 ? 'minus' : ''; };
     k.forEach((e, i) => {
       const tr = rumpf.insertRow();
       tr.insertCell().textContent = String(i + 1);
-      const a = document.createElement('a'); a.href = `https://app.hyperliquid.xyz/explorer/address/${e.adresse}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = e.name || `${e.adresse.slice(0, 6)}…${e.adresse.slice(-4)}`; tr.insertCell().append(a);
+      const a = document.createElement('a'); a.href = `https://app.hyperliquid.xyz/explorer/address/${e.adresse}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = e.name || `${e.adresse.slice(0, 6)}…${e.adresse.slice(-4)}`; a.translate = false; a.dataset.roh = ''; tr.insertCell().append(a);   // r128: selbst gewählter Name (z. B. „NAKED SHORTS ONLY“) = Inhalt der Quelle
       const sc = tr.insertCell(); sc.textContent = de(e.score, 0); sc.className = e.score >= 80 ? 'plus stark' : '';
       tr.insertCell().textContent = usd(e.wert);
       const gm = tr.insertCell(); gm.textContent = usd(e.pnl_month, true); gm.className = 'plus';
@@ -12016,8 +12106,9 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
   }, true);
 
-  const FASSUNG = 'r127';
+  const FASSUNG = 'r128';
   const NEU = [
+    { f: 'r128', tag: '11.11.2026', s: ['Alarme vollständig in allen sechs Sprachen – Zahlen im Format deiner Sprache, Namen von Konten und Regeln wie geschrieben.'] },
     { f: 'r127', tag: '10.11.2026', s: ['News und Makro-Zentrale vollständig in allen sechs Sprachen, Zeiten in deiner Ortszeit.'], mac: true },
     { f: 'r126', tag: '10.11.2026', s: ['Fibonacci-Werkzeug im Chart: zwei Punkte ziehen oder antippen, Stufen von 0 bis 100 %.', 'Eigene Layouts: bis zu drei Ansichten mit Markt, Zeitstufe, Ebenen und Zeichnungen im Browser speichern.',
       'Besser lesbar: stärkere Kontraste, sichtbarer Fokusrahmen, Dialoge mit der Tastatur bedienbar.', 'Der Chart lädt nach schnellem Umschalten sofort.', 'Diese Seite „Was ist neu“.'] },
