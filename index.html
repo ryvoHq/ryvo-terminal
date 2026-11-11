@@ -4885,6 +4885,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       optRoh = { ...roh, coin: merk };
       O = optAuswerten(roh.optionen, roh.futures, roh.index, Date.now());
       O.coin = merk; O.quellen = roh.quellen || ['Deribit']; O.faktor = roh.faktor || 1; O.einheit = roh.einheit || 1;
+      if (merk === 'BTC' && macStand) { try { macZeigen(macStand); } catch (e) {   } }
       if (!DEMO && !ab) optMerken(merk, roh);
       optFehler = '';
       if (!ab && !TEILEN) setStatus('Deribit', 'live');
