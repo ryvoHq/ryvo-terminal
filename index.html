@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "f743591b", "es": "42ea2a29", "fr": "e3807afe", "it": "3bd72cc1", "tr": "9b5e7dba"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "63cabc80", "es": "e05f4feb", "fr": "daacf9db", "it": "db14806b", "tr": "ee178500"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2158,6 +2158,15 @@ html[data-dichte="gross"] main.raster > section.feld :is(p, li) { font-size: 15p
 html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26px; }
 
 
+.wl-form { flex-wrap: wrap; }                                                      
+.wl-form input { min-width: 0; }
+@media (max-width: 700px) { .wl-form input, .wl-form input#wl-name { flex: 1 1 calc(100% - 90px); max-width: none; } }
+#rang-tabelle .leise-knopf { font: 600 12px var(--sans); background: transparent; color: var(--text); border: 1px solid var(--linie); border-radius: 5px; padding: 4px 10px; cursor: pointer; }   
+:root[data-thema="hell"] #kurs-dazu.plus { color: color-mix(in srgb, var(--kauf) 85%, #000); }   
+:root[data-thema="hell"] #kurs-dazu.minus { color: color-mix(in srgb, var(--verk) 85%, #000); }
+.hd-saison-wahl { margin: 2px 0 4px; }                                             
+
+
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
 .test-band summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 10px 14px; -webkit-tap-highlight-color: transparent; }
 .test-band summary::-webkit-details-marker { display: none; }
@@ -2472,7 +2481,7 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
       <div class="ch-schalter" id="ueb-vorlagen" role="group" aria-label="Filter-Vorlagen">
         <button type="button" data-f="">Alle</button>
         <button type="button" data-f="oi24h > 5 und funding < 0">OI steigt, Funding negativ</button>
-        <button type="button" data-f="funding > 30">Funding überhitzt</button>
+        <button type="button" data-f="funding > 30">Funding hoch</button>
         <button type="button" data-f="ae24h > 5 und oi24h > 10">Anstieg mit neuem Geld</button>
         <button type="button" data-f="ae24h < -5 und oi24h < -5">Fall mit Abbau</button>
         <button type="button" data-f="spanne > 20">Funding-Ausreißer</button>
@@ -3083,7 +3092,7 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "f743591b", "es": "42ea2a29", "fr": "e3807afe", "it": "3bd72cc1", "tr": "9b5e7dba"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "63cabc80", "es": "e05f4feb", "fr": "daacf9db", "it": "db14806b", "tr": "ee178500"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -6022,7 +6031,7 @@ if (umfCache && Date.now() - umfCache.zeit < (umfCache.voll ? 6 * 36e5 : 10 * 6e
 const bc = (n) => holeMitFrist(`https://api.blockchain.info/charts/${n}?timespan=8years&format=json&sampled=false&cors=true`, 30000).then((d) => (d.values || []).map((x) => [x.x, x.y]));
 const KEYS = ['angst_gier', 'btc_kurs', 'gold', 'miner_umsatz', 'hashrate', 'cot_BTC', 'cot_ETH', 'spx', 'ndx'];
 const hlTage = (cn, jahre) => hl({ type: 'candleSnapshot', req: { coin: cn, interval: '1d', startTime: Date.now() - jahre * 365 * 864e5, endTime: Date.now() } }).then((k) => (k || []).map((x) => [x.t / 1000, Number(x.c)]));
-const d = { direkt: true, stand: Date.now() / 1000, btc_kurs: [], quellen: new Set() };
+const d = { direkt: true, stand: Date.now() / 1000, btc_kurs: [], quellen: new Set(), laeuft: true, fehlt: new Set() };
 const QUELLE = { angst_gier: 'alternative.me', btc_kurs: 'Binance', gold: 'Binance', miner_umsatz: 'blockchain.com', hashrate: 'blockchain.com', cot_BTC: 'CFTC', cot_ETH: 'CFTC', spx: 'Hyperliquid', ndx: 'Hyperliquid' };
 let zeigT = null;
 const alle = Promise.allSettled([
@@ -6036,9 +6045,9 @@ bc('miners-revenue'), bc('hash-rate'), cftc('133741', 5), cftc('146021', 50),
 const k = KEYS[i]; if (v == null || (Array.isArray(v) && !v.length) || (v.reihe && !v.reihe.length)) return;
 d[k] = v; if (k === 'btc_kurs' && d.btcHl) d.quellen.add('Hyperliquid'); else d.quellen.add(QUELLE[k]);
 if (nachher && !zeigT) zeigT = setTimeout(() => { zeigT = null; nachher(d); }, 300);
-})));
+}, () => { d.fehlt.add(KEYS[i]); })));
 const hat = () => d.btc_kurs.length || d.angst_gier || d.cot_BTC || d.spx;
-alle.then(() => { if (hat()) umfCache = { zeit: Date.now(), d, voll: d.btc_kurs.length > 0 && !!d.angst_gier }; });
+alle.then(() => { d.laeuft = false; if (hat()) umfCache = { zeit: Date.now(), d, voll: d.btc_kurs.length > 0 && !!d.angst_gier }; if (nachher) nachher(d); });
 await Promise.race([alle, new Promise((ok) => setTimeout(ok, 12000))]);
 if (!hat()) await Promise.race([alle, new Promise((ok) => setTimeout(ok, 20000))]);
 if (!hat()) throw new Error('nichts erreichbar');
@@ -7861,7 +7870,8 @@ olVolZeigen(); umfZeigen(); if (typeof gexAllesZeigen === 'function') gexAllesZe
 $('gesch-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `${anzeige(coin)}${seit ? ` · Funding seit ${seit}` : ''} · ${d.direkt ? (C().tdm ? 'Kurs von Twelve Data' : C().tf ? 'direkt von Hyperliquid (Kurs, Funding)' : 'direkt von Bybit (Kurs, Funding, offene Positionen, Long-Anteil)') + (OPT_DERIBIT.has(coin) && !TEILEN ? ' und Deribit (DVOL)' : '') : 'Binance, Bybit, Deribit · Tageswerte, Long/Short alle 5 Min.'}`;
 }
 
-let umf = null, umfNr = 0;
+let umf = null, umfNr = 0, umfStart = 0;
+const UMF_LADE_MS = 8000;
 let vixK = null;
 async function vixKurveLaden() {
 const basis = macBasis(), box = $('umf-vixk-box'); if (!box) return;
@@ -7883,7 +7893,8 @@ if (spaeter(umfLaden, 'umfeld')) return;
 vixKurveLaden();
 const nr = ++umfNr, basis = macBasis();
 if (DEMO) { umf = demoUmf(); umfZeigen(); return; }
-if (basis === null) { try { const d = await umfDirekt((x) => { if (umf === x) umfZeigen(); }); if (nr === umfNr) umf = d; } catch (e) { if (nr === umfNr) umf = { fehler: 'Keine Daten: Die Quellen des Umfelds antworten hier gerade nicht.' }; } if (nr === umfNr) umfZeigen(); return; }
+umfStart = Date.now(); setTimeout(() => { if (nr === umfNr && (!umf || umf.laeuft)) umfZeigen(); }, UMF_LADE_MS + 300);
+if (basis === null) { try { const d = await umfDirekt((x) => { if (nr === umfNr && !(umf && umf.fehler)) { umf = x; umfZeigen(); } }); if (nr === umfNr) umf = d; } catch (e) { if (nr === umfNr) umf = { fehler: 'Keine Daten: Die Quellen des Umfelds antworten hier gerade nicht.' }; } if (nr === umfNr) umfZeigen(); return; }
 try { const d = await holeMitFrist(`${basis}/api/profi/umfeld`, 25000); if (nr === umfNr) { umf = d; umfZeigen(); } }
 catch (e) { if (nr === umfNr) { umf = { fehler: 'Mac nicht erreichbar' }; umfZeigen(); } }
 }
@@ -8153,9 +8164,9 @@ tr.insertCell().textContent = korr.vol[a] ? de(korr.vol[a], 0) + ' %' : '–';
 box.replaceChildren(tab);
 }
 function gleitend(reihe, n) { const out = []; let s2 = 0; reihe.forEach(([t, v], i) => { s2 += v; if (i >= n) s2 -= reihe[i - n][1]; out.push([t, i >= n - 1 ? s2 / n : null]); }); return out; }
-function umfZyklus(u, ab) {
+function umfZyklus(u, ab, leer = 'noch keine Bitcoin-Geschichte') {
 const k = u.btc_kurs || [], lz = (r) => { for (let i = r.length - 1; i >= 0; i--) if (r[i][1] !== null) return r[i][1]; return null; };
-if (k.length < 400) { leinwandText($('umf-zyklus'), 'noch keine Bitcoin-Geschichte'); leinwandText($('umf-puell'), 'noch keine Bitcoin-Geschichte'); return []; }
+if (k.length < 400) { leinwandText($('umf-zyklus'), leer); leinwandText($('umf-puell'), leer); return []; }
 const w200 = gleitend(k, 1400), t111 = gleitend(k, 111), t350 = gleitend(k, 350).map(([t, v]) => [t, v === null ? null : v * 2]), t200 = gleitend(k, 200);
 const idx = k.map((x, i) => i).filter((i) => k[i][0] >= ab), schritt = Math.max(1, Math.ceil(idx.length / 300)), wahl = idx.filter((_, j) => j % schritt === 0 || j === idx.length - 1);
 const reihen = [['BTC', k, F.text, 1.6], ['200 Wochen', w200, F.kauf, 1.4], ['111 Tage', t111, F.wal, 1.2], ['2 × 350 Tage', t350, F.verk, 1.2]];
@@ -8185,11 +8196,13 @@ return (teile.length ? ' · direkt geladen: ' + teile.join(', ') : '') + (fehlt.
 function umfZeigen() {
 const ids = ['umf-angst', 'umf-vergleich', 'umf-cot', 'umf-vix', 'umf-zyklus', 'umf-puell'], u = umf;
 if (!$('umf-angst')) return;
-if (!u || u.fehler) { for (const id of ids) leinwandText($(id), u && u.fehler ? u.fehler : 'Lade …'); $('umf-kacheln').replaceChildren(); $('umf-stand').textContent = ''; return; }
+const warte = () => (Date.now() - umfStart < UMF_LADE_MS ? 'Lade …' : 'Quellen antworten langsam – wartet noch auf Antwort');
+if (!u || u.fehler) { for (const id of ids) leinwandText($(id), u && u.fehler ? u.fehler : warte()); $('umf-kacheln').replaceChildren(); $('umf-stand').textContent = ''; return; }
+const grund = (keys, leer) => (u.fehlt && keys.length && keys.every((k) => u.fehlt.has(k)) ? 'Quelle gerade nicht erreichbar – neuer Versuch beim nächsten Öffnen' : u.laeuft ? warte() : leer);
 const ab = geschTage ? Date.now() / 1000 - geschTage * 86400 : 0, datum = (t) => monatJahr(t);
 const linie = (id, reihe, farbe, cfg = {}) => { const r = verdichten(reihe || [], ab, 300); if (r.length < 2) { leinwandText($(id), cfg.leer || 'noch keine Daten'); return; } diagramm($(id), { labels: r.map((x) => datum(x[0])), reihen: [{ werte: r.map((x) => x[1]), farbe, breite: 1.6, nk: cfg.nk ?? 0 }], einheit: cfg.einheit || '', links: 44, leer: cfg.leer }); };
-linie('umf-angst', u.angst_gier, F.wal, { leer: 'noch kein Angst-&-Gier-Verlauf' });
-linie('umf-vix', u.vix, F.verk, { nk: 1, leer: 'noch kein VIX' });
+linie('umf-angst', u.angst_gier, F.wal, { leer: grund(['angst_gier'], 'noch kein Angst-&-Gier-Verlauf') });
+linie('umf-vix', u.vix, F.verk, { nk: 1, leer: grund([], 'noch kein VIX') });
 const vixBox = $('umf-vix') && $('umf-vix').closest('.gesch-raster > div'); if (vixBox) vixBox.hidden = !!u.direkt && !(u.vix || []).length;
 const vt = $('umf-vergleich-titel'); if (vt && vt.firstChild && vt.firstChild.nodeType === 3) { const t = u.dxy && u.dxy.length ? 'Bitcoin neben Aktien, Gold, Dollar ' : 'Bitcoin neben Aktien und Gold '; if (vt.dataset.de !== t) { vt.dataset.de = t; vt.firstChild.data = t; } }
 const g = gesch && !gesch.fehler && gesch.coin === coin ? gesch : null, haupt = (g && g.kurs) || [];
@@ -8199,7 +8212,7 @@ if (achse.length >= 2 && teile.length) {
 const reihen = teile.map(([nm, r, f]) => { const m = new Map(r.map(([t, v]) => [tagNr(t), v])); let letzt = null, basis = null; const werte = achse.map((t) => { for (let d = tagNr(t); d > tagNr(t) - 5; d--) if (m.has(d)) { letzt = m.get(d); break; } if (letzt !== null && basis === null) basis = letzt; return letzt === null ? null : letzt / basis * 100; }); return { nm, werte, farbe: f, breite: nm === coin ? 2 : 1.4, nk: 0 }; });
 $('l-umf-vergleich').replaceChildren(...reihen.map((r) => { const sp = document.createElement('span'); const i = document.createElement('i'); i.className = 'punkt'; i.style.background = r.farbe; sp.append(i, `${r.nm} ${de(letzter(r.werte) ?? 0, 0)}`); return sp; }));
 diagramm($('umf-vergleich'), { labels: achse.map(datum), reihen, einheit: '', links: 44, leer: 'zu wenig Daten' });
-} else { leinwandText($('umf-vergleich'), 'noch keine Daten'); $('l-umf-vergleich').replaceChildren(); }
+} else { leinwandText($('umf-vergleich'), grund(['spx', 'ndx', 'gold'], 'noch keine Daten')); $('l-umf-vergleich').replaceChildren(); }
 const ct = coin === 'ETH' ? u.cot_ETH : u.cot_BTC, cn = coin === 'ETH' ? 'ETH' : 'BTC';
 $('umf-cot-titel').textContent = `netto in ${cn}, wöchentlich`;
 if (ct && (ct.reihe || []).length >= 2) {
@@ -8207,8 +8220,8 @@ const r = ct.reihe.filter((z) => z[0] >= ab), gr = ct.groesse || 1, tsd = cn ===
 const verw = r.map((z) => (z[2] - z[3]) * gr / tsd), hebel = r.map((z) => (z[4] - z[5]) * gr / tsd);
 $('l-umf-cot').replaceChildren(...[['Vermögensverwalter', F.spot, verw], ['Hebel-Fonds', F.verk, hebel]].map(([nm, f, w]) => { const sp = document.createElement('span'); const i = document.createElement('i'); i.className = 'punkt'; i.style.background = f; sp.append(i, `${nm} ${de(letzter(w) ?? 0, 1)} Tsd. ${cn}`); return sp; }));
 diagramm($('umf-cot'), { labels: r.map((z) => datum(z[0])), reihen: [{ werte: verw, farbe: F.spot, breite: 1.7, nk: 1 }, { werte: hebel, farbe: F.verk, breite: 1.7, nk: 1 }], einheit: ' Tsd.', mitNull: true, links: 52, leer: 'zu wenig Wochen' });
-} else { leinwandText($('umf-cot'), 'noch kein CME-Bericht'); $('l-umf-cot').replaceChildren(); }
-const zyk = umfZyklus(u, ab);
+} else { leinwandText($('umf-cot'), grund([coin === 'ETH' ? 'cot_ETH' : 'cot_BTC'], 'noch kein CME-Bericht')); $('l-umf-cot').replaceChildren(); }
+const zyk = umfZyklus(u, ab, grund(['btc_kurs'], 'noch keine Bitcoin-Geschichte'));
 const fg = (u.angst_gier || []).slice(-1)[0], fgV = fg ? fg[1] : null, fgText = fgV === null ? '' : fgV < 25 ? 'extreme Angst' : fgV < 45 ? 'Angst' : fgV <= 55 ? 'neutral' : fgV <= 75 ? 'Gier' : 'extreme Gier';
 const korr = (r) => (haupt.length && r && r.length ? korrelation(haupt, r) : null), kText = (k) => (k === null ? '' : `Gleichlauf mit ${coin} ${de(k, 2)}`);
 const kach = [['Angst & Gier', fgV === null ? '–' : String(fgV), fgText, fgV !== null && fgV < 25 ? 'plus' : fgV > 75 ? 'minus' : ''],
@@ -9246,6 +9259,7 @@ gexDatenHolen(); gexWandAlarm();
 for (const t of sec.querySelectorAll('.coin-tag')) t.textContent = anzeige(coin);
 for (const b of document.querySelectorAll('#gex-modus button')) b.setAttribute('aria-pressed', String(b.dataset.m === gexModus));
 for (const b of document.querySelectorAll('#gex-jahre button')) b.setAttribute('aria-pressed', String(Number(b.dataset.j) === gexJahre));
+try { gammaAufzeichnen(); } catch (e) {   }
 if (sec.offsetParent === null) return;
 const g = gexDaten();
 gexKopf(g); gexVolZeichnen(); gexProfilZeichnen(g); gexZeitZeichnen(g); gexListeZeigen();
@@ -9411,11 +9425,20 @@ gexLegende('l-gex-profil', gexModus === 'cp' ? [[`Calls ${usd(sum[1])}`, F.kauf]
 : gexModus === 'fluss' ? [[`Calls ${de(sum[1], 0)}`, F.kauf], [`Puts ${de(-sum[0], 0)}`, F.verk], [sum[1] > 0 ? `Put/Call ${de(-sum[0] / sum[1], 2)}` : null, F.leise], ['! = Volumen über offenen Positionen', F.wal]]
 : [['Plus (bremst)', F.kauf], ['Minus (verstärkt)', F.verk], [gexModus === 'delta' && g.alt10 !== null ? `Summe ${usd(g.netto10 - g.alt10, true)}` : `Summe ${usd(g.netto10, true)}`, F.leise]]);
 }
+const R137_SAMMLE = { de: (n, g, m) => `Sammle Messungen – ${n} von ${g}, Verlauf in ca. ${m} Min.`, en: (n, g, m) => `Collecting readings – ${n} of ${g}, chart in about ${m} min`,
+es: (n, g, m) => `Recopilando mediciones – ${n} de ${g}, gráfico en unos ${m} min`, fr: (n, g, m) => `Collecte des mesures – ${n} sur ${g}, graphique dans env. ${m} min`,
+tr: (n, g, m) => `Ölçümler toplanıyor – ${n}/${g}, grafik yaklaşık ${m} dk içinde`, it: (n, g, m) => `Raccolta misurazioni – ${n} di ${g}, grafico tra circa ${m} min` };
+function gexSammleText(Z, jetzt = Date.now() / 1000) {
+if (!Z.length && !O) return optFehler || 'Lade Optionen …';
+const l = gammaListe(), letzt = l.length ? l[l.length - 1].t : jetzt, b = Z.length ? Math.round(Z[0].t / 300) : Math.round(jetzt / 300);
+const ab = (b + 0.5) * 300, tE = Z.length ? letzt + GAMMA_ABSTAND * Math.max(1, Math.ceil((ab - letzt) / GAMMA_ABSTAND)) : ab + GAMMA_ABSTAND;
+return fertigText((R137_SAMMLE[SPRACHE] || R137_SAMMLE.en)(Math.min(Z.length, 1), 2, Math.max(1, Math.ceil((tE - jetzt) / 60))));
+}
 function gexZeitZeichnen(g) {
 const cv = $('gex-zeit'); if (!cv) return;
 const dpr = groesse(cv), ctx = cv.getContext('2d'), W = cv.width, H = cv.height, Z = g ? g.zeilen : [];
 ctx.fillStyle = F.feld; ctx.fillRect(0, 0, W, H);
-if (Z.length < 2) { textUmbruch(ctx, !O && optFehler ? optFehler : W / dpr < 560 ? 'Sammle Messungen …' : TEILEN ? 'Sammle Messungen … (alle 2 Min. in diesem Browser)' : 'Sammle Messungen … (alle 2 Min. in diesem Browser, dazu der Mac)', W / 2, H / 2, W - 24 * dpr, dpr, F.leise); gexLegende('l-gex-zeit', []); return; }
+if (Z.length < 2) { textUmbruch(ctx, gexSammleText(Z), W / 2, H / 2, W - 24 * dpr, dpr, F.leise); gexLegende('l-gex-zeit', []); return; }
 const links = 8 * dpr, achse = 84 * dpr, oben = 10 * dpr, unten = 16 * dpr, pw = W - links - achse, ph = H - oben - unten, kursH = ph * 0.58, balkenY0 = oben + kursH + 8 * dpr, balkenH = ph - kursH - 8 * dpr;
 const t0 = Z[0].t, t1 = Math.max(Z[Z.length - 1].t, t0 + 1), X = (t) => links + (t - t0) / (t1 - t0) * pw;
 const ps = Z.flatMap((z) => [z.s, z.flip].filter((v) => v > 0)), plo = Math.min(...ps), phi = Math.max(...ps), pr = Math.max(phi - plo, phi * 0.002), P = (p) => oben + (phi + pr * 0.08 - p) / (pr * 1.16) * kursH;
@@ -11246,7 +11269,9 @@ if (eb.marken && haupt) zeile2(schmal ? `A/S${ik.marken ? ` ${ik.marken}` : ''}`
 if (ik.bot && ik.bot.haupt) zeile2(schmal ? 'Bot' : 'Bot = Hauptkonto', f.bot);
 if (ik.bot && ik.bot.gewinn) zeile2(schmal ? 'Lehrer' : 'Lehrer = Gewinn-Lehrer', f.bot2 || f.bot);
 if (!haupt && (eb.heat || eb.fp || eb.cvd || eb.liq || eb.marken || eb.gamma)) zeile2(schmal ? 'Orderflow nur Chart 1' : 'Orderflow-Ebenen im Hauptmarkt (Chart 1)', f.achseText);
-for (const [t2, f2] of this.w3Info || []) zeile2(t2, f2);
+for (const [t2, f2, art2] of this.w3Info || []) if (art2 !== 'satz') zeile2(t2, f2);
+const satz = (this.w3Info || []).find((z) => z[2] === 'satz');
+if (satz) { const max = L.x1 - 16 * d; let t3 = satz[0]; if (ctx.measureText(t3).width > max) t3 = t3.split(' · ')[0]; if (ctx.measureText(t3).width <= max) { ctx.fillStyle = satz[1]; ctx.fillText(t3, 10 * d, y2 + 15 * d); } }
 ctx.textBaseline = 'alphabetic';
 } else this.kopfZeichnen(ctx, d, s, f, W, kopfH, last);
 if (auf || HD.look !== 'thema') {
@@ -11858,7 +11883,9 @@ hdEreignis('Layout geladen: ' + L.name);
 }
 function hdZeichnungDazu(markt, z) {
 if (!z.art) return;
-const l = HD.zeich[markt] || (HD.zeich[markt] = []); l.push({ art: z.art, a: { t: Math.round(z.a.t), p: z.a.p }, b: { t: Math.round(z.b.t), p: z.b.p } });
+const l = HD.zeich[markt] || (HD.zeich[markt] = []), neu = { art: z.art, a: { t: Math.round(z.a.t), p: z.a.p }, b: { t: Math.round(z.b.t), p: z.b.p } };
+if (z.art === 'text' && typeof z.text === 'string' && z.text.trim()) neu.text = z.text.replace(/[<>]/g, '').trim().slice(0, 80);
+l.push(neu);
 if (l.length > 60) l.splice(0, l.length - 60);
 hdMerke('zeichnungen', JSON.stringify(HD.zeich));
 }
@@ -12337,8 +12364,12 @@ const i = f.indexOf(document.activeElement);
 if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
 }, true);
 
-const FASSUNG = 'r136';
+const FASSUNG = 'r137';
 const NEU = [
+{ f: 'r137', tag: '11.11.2026', s: ['Text-Werkzeug im Chart zeichnet wieder (bleibt nach Neuladen); Bereichs- und Sitzungs-Profile nennen Bereich bzw. Sitzung und Tag, laufende Sitzung mit wenig Kerzen ohne Schein-Wertbereich.',
+'Stufen-Hinweis nur einmal je Annäherung; Ebenen-Befehle schalten wie die Knöpfe um, mit AN oder AUS fest (z. B. BB AUS); DICHTE ändert nur die Dichte.',
+'Umfeld sagt nach wenigen Sekunden, worauf es wartet oder welche Quelle nicht antwortet; Gamma-Karte über die Zeit zeigt Fortschritt und Minuten bis zum Verlauf.',
+'Mein Tag zählt Aktien-Perpetuals nicht mehr als Krypto, Listen und Mein Tag nennen ihre Quelle, Saisonalität umschaltbar (Monat, Wochentag, Stunde).'] },
 { f: 'r136', tag: '11.11.2026', s: ['Neu: Kacheln frei anordnen – ziehen, Breite und Höhe, ausblenden, je Arbeitsbereich gespeichert; „Standard“ setzt zurück (Ansicht → Kacheln oder RASTER).',
 'Kachel in eigenes Fenster ohne zweiten Abruf (FENSTER), Reiter mit mehreren Arbeitsbereichen (REITER), Dichte kompakt, normal oder groß (Ansicht oder DICHTE).',
 'Charts unter „Handeln“ koppeln: Markt, Fadenkreuz und Zeitraum für Charts mit demselben Symbol (○ ● ▲ ■, KOPPELN).',
@@ -12917,6 +12948,19 @@ const BOERSEN = [
 { id: 'krypto', n: 'Krypto', b: 'rund um die Uhr', immer: 1 },
 ];
 const boerseVersatz = (b, t) => (b.z + (b.so === 'eu' ? (euSommer(t) ? 1 : 0) : b.so === 'us' ? (usSommer(t) ? 1 : 0) : 0)) * 3600;
+function cmeLuecken(K, b) {
+const out = []; if (!K.length || !b) return out;
+let sa = Math.floor(K[0].t / 86400) * 86400; while (new Date(sa * 1000).getUTCDay() !== 6) sa += 86400;
+for (; sa <= K[K.length - 1].t; sa += 7 * 86400) {
+const f = boerseZustand(b, sa - 43200), z = boerseZustand(b, sa + 43200); if (!f.offen || z.offen || !f.wechsel || !z.wechsel) continue;
+const tZu = f.wechsel, tAuf = z.wechsel; let iZu = -1, iAuf = -1;
+for (let i = 0; i < K.length; i++) { if (K[i].t < tZu) iZu = i; if (iAuf < 0 && K[i].t >= tAuf) iAuf = i; }
+if (iZu < 0 || iAuf < 0) continue;
+const zu = K[iZu].c, auf = K[iAuf].o; let g = -1; for (let j = iAuf; j < K.length; j++) if (K[j].l <= zu && K[j].h >= zu) { g = j; break; }
+if (zu > 0) out.push({ tZu, tAuf, iZu, iAuf, zu, auf, pct: (auf / zu - 1) * 100, gefuellt: g });
+}
+return out;
+}
 function boerseZustand(b, t) {
 if (b.immer) return { offen: true, wechsel: null, ort: null };
 const v = boerseVersatz(b, t), lok = t + v, tag0 = Math.floor(lok / 86400), iv = [];
@@ -13424,7 +13468,7 @@ r.insertCell().textContent = z.oi ? usd(z.oi) : '–'; r.insertCell().textConten
 if (!g) { const x = hdEl('button', 'regel-weg', '×'); x.type = 'button'; x.dataset.weg = z.id; x.title = 'Aus der Liste nehmen'; x.setAttribute('aria-label', 'Aus der Liste nehmen'); r.insertCell().append(x); }
 }
 box.replaceChildren(tab);
-const st = $('wl-stand'); if (st) st.textContent = (DEMO ? 'Demo-Daten · ' : '') + (ueb && ueb.zeit ? tagUhr(ueb.zeit * 1000) : '');
+const st = $('wl-stand'); if (st) st.textContent = (DEMO ? 'Demo-Daten · ' : '') + `${tr('Quelle')}: ${w2Quellen()}` + (ueb && ueb.zeit ? ' · ' + tagUhr(ueb.zeit * 1000) : '');
 }
 function w2ListeDazu(text) {
 const L = w2Listen(), akt = L.l[L.a], info = $('wl-info'), aus = [];
@@ -13488,9 +13532,10 @@ const j = new Date(), a = new Date(j.getFullYear(), j.getMonth(), j.getDate()).g
 const alle = (BH.ev || termineListe || []).filter((x) => x && Number.isFinite(x.zeit)).sort((x, y) => x.zeit - y.zeit);
 return { heute: alle.filter((x) => x.zeit >= a && x.zeit < e), naechster: alle.find((x) => x.zeit >= e) || null };
 }
+const w2Quellen = () => (DEMO ? 'Demo' : [ueb && ueb.direkt ? ueb.quelle || 'Bybit' : ueb ? '4 Börsen' : null, TF.size ? 'Hyperliquid' : null].filter((x, i, a) => x && a.indexOf(x) === i).join(' + ') || '–');
 function w2MeinTag() {
 const box = $('mt-lage'); if (!box) return;
-const krypto = ueb && Array.isArray(ueb.coins) ? ueb.coins.filter((z) => Number.isFinite(z.ae24h) && !istTF(z.coin) && !W4_NICHT_KRYPTO.has(z.coin)) : [];
+const krypto = ueb && Array.isArray(ueb.coins) ? ueb.coins.filter((z) => Number.isFinite(z.ae24h) && w4Krypto(z.coin)) : [];
 const welt = [...TF.values()].filter((e) => Number.isFinite(e.ae24h) && e.umsatz > 2e5), T = w2HeuteTermine(), log = w4Log().filter((x) => Date.now() - x.ts < 864e5);
 const btc = krypto.find((z) => z.coin === 'BTC'), f = krypto.map((z) => z.funding).filter(Number.isFinite).sort((x, y) => x - y), fm = f.length ? f[Math.floor(f.length / 2)] : null;
 const top = krypto.slice().sort((x, y) => Math.abs(y.ae24h) - Math.abs(x.ae24h))[0];
@@ -13521,7 +13566,7 @@ if (al) {
 if (!log.length) al.replaceChildren(hdEl('li', 'leise', 'Keine Alarme in den letzten 24 Std. – anlegen unter „Alarme“ (ALARM).'));
 else al.replaceChildren(...log.slice(0, 6).map((e) => { const li = document.createElement('li'), k = hdEl('div', 'nt-kopf'), x = w4Text(e); k.append(hdEl('time', '', tagUhr(e.ts))); const d = hdEl('div', 'nt-text', x.kopf); if (x.titel) { const s = hdEl('span', '', ' ' + x.titel); s.translate = false; d.append(s); } li.append(k, d); return li; }));
 }
-const st = $('mt-stand'); if (st) st.textContent = (DEMO ? 'Demo-Daten · ' : '') + new Date().toLocaleDateString(LOC, { weekday: 'long', day: '2-digit', month: '2-digit' });
+const st = $('mt-stand'); if (st) st.textContent = (DEMO ? 'Demo-Daten · ' : '') + `${tr('Quelle')}: ${w2Quellen()} · ` + new Date().toLocaleDateString(LOC, { weekday: 'long', day: '2-digit', month: '2-digit' }) + (ueb && ueb.zeit ? ' ' + uhrKurz(ueb.zeit * 1000) : '');
 const cb = $('mt-start'); if (cb) cb.checked = lies('w2Start') === '1';
 }
 function w2Weltuhr() {
@@ -13582,7 +13627,7 @@ async function w2Befehl(r, p) {
 const rest = (p.rest || []).concat(p.unbekannt || []), w = befNorm(rest[0] || '');
 if (r.id === 'raster') { if (HD.bereich !== 'daten') hdBereich('daten'); w2Anordnen(!(w === 'AUS' || w === 'OFF' || w === 'FERTIG' || w === 'DONE') && (!W2.an || !!w)); await befWarte(30); const l = $('w2-leiste'); if (l && !l.hidden) window.scrollTo(0, Math.max(0, l.getBoundingClientRect().top + scrollY - 120)); return { ok: true, ziel: W2.an ? l : $('ab-leiste') }; }
 if (r.id === 'zuruecksetzen') { if (HD.bereich !== 'daten') hdBereich('daten'); w2Zuruecksetzen(); window.scrollTo(0, 0); return { ok: true, ziel: $('ab-leiste') }; }
-if (r.id === 'dichte') { const x = { KOMPAKT: 'kompakt', COMPACT: 'kompakt', GROSS: 'gross', LARGE: 'gross', GRANDE: 'gross', NORMAL: '' }[w]; const d = w2Dichte(x !== undefined ? x : W2.dichte === '' ? 'kompakt' : W2.dichte === 'kompakt' ? 'gross' : ''); if (HD.bereich !== 'daten') hdBereich('daten'); return { ok: true, ziel: feldInMitte() || $('ab-leiste'), text: `${tr('Dichte')}: ${tr({ kompakt: 'Kompakt', gross: 'Groß', normal: 'Normal' }[d])}` }; }
+if (r.id === 'dichte') { const x = { KOMPAKT: 'kompakt', COMPACT: 'kompakt', GROSS: 'gross', LARGE: 'gross', GRANDE: 'gross', NORMAL: '' }[w]; const anker = HD.bereich === 'daten' ? feldInMitte() : null, vorTop = anker ? anker.getBoundingClientRect().top : 0, d = w2Dichte(x !== undefined ? x : W2.dichte === '' ? 'kompakt' : W2.dichte === 'kompakt' ? 'gross' : ''); const halten = () => { if (anker) window.scrollBy(0, anker.getBoundingClientRect().top - vorTop); }; halten(); requestAnimationFrame(() => requestAnimationFrame(halten)); setTimeout(halten, 250); return { ok: true, ziel: anker, text: `${tr('Dichte')}: ${tr({ kompakt: 'Kompakt', gross: 'Groß', normal: 'Normal' }[d])}` }; }
 if (r.id === 'koppeln') { const z = await hdOeffnen({ hd: 'chart' }); const x = w2Koppeln(rest); return { ok: true, ziel: $('hd-panes') || z.ziel, text: w2T('kopplung', x === 'AUS' ? tr('aus') : `${x} ${tr('Hauptmarkt')}`) }; }
 if (r.id === 'fenster') {
 if (HD.bereich !== 'daten') hdBereich('daten');
@@ -13758,6 +13803,16 @@ let best = null;
 for (const s of stufen) { if (!(s.preis > 0) || !(kurs > 0)) continue; const ab = (kurs / s.preis - 1) * 100; if (Math.abs(ab) <= grenze && (!best || Math.abs(ab) < Math.abs(best.abstand))) best = { name: s.name, preis: s.preis, abstand: ab }; }
 return best;
 }
+function stufeAnnaeherung(gemeldet, coin, kurs, stufen, nah = 0.3, weg = 0.6) {
+if (!(kurs > 0)) return null;
+for (const k of [...gemeldet]) {
+const [c, name] = k.split('|'); if (c !== coin) continue;
+const ab = stufen.filter((s) => s.name === name && s.preis > 0).map((s) => Math.abs((kurs / s.preis - 1) * 100));
+if (ab.length && Math.min(...ab) > weg) gemeldet.delete(k);
+}
+const n = stufeNah(kurs, stufen, nah); if (!n || gemeldet.has(coin + '|' + n.name)) return null;
+gemeldet.add(coin + '|' + n.name); return n;
+}
 function stichwortTreffer(meldungen, worte, gesehen) {
 const out = [];
 for (const m of meldungen) {
@@ -13817,7 +13872,8 @@ const W4_WAL_ART = { 'eröffnet': ['opened', 'abierta', 'ouverte', 'açıldı', 
 'geschlossen': ['closed', 'cerrada', 'fermée', 'kapatıldı', 'chiusa'], 'gedreht': ['flipped', 'invertida', 'inversée', 'yön değiştirdi', 'invertita'] };
 const w4WalArt = (a) => (SPRACHE === 'de' || !W4_WAL_ART[a] ? a : W4_WAL_ART[a][['en', 'es', 'fr', 'tr', 'it'].indexOf(SPRACHE)] || W4_WAL_ART[a][0]);
 const W4 = { hm: { gruppe: 'krypto', gr: 'umsatz', fa: 'ae24h', kat: '', rechtecke: [], maus: null, zeilen: [] }, tech: new Map(), techZeit: 0, techLaeuft: false, techGes: 0,
-hist: [], letzterUeb: null, sc: { art: lies('w4ScArt') || '', liste: [], gesehen: new Map() }, regelStand: { vz: {} }, gesehen: new Map(), meldGesehen: new Set(), walZeit: 0, walLaden: 0, meldLaden: 0 };
+hist: [], letzterUeb: null, sc: { art: lies('w4ScArt') || '', liste: [], gesehen: new Map() }, regelStand: { vz: {} }, gesehen: new Map(), meldGesehen: new Set(), walZeit: 0, walLaden: 0, meldLaden: 0, stufeGemeldet: new Set() };
+try { const x = JSON.parse(lies('w4StufeGem') || '[]'); if (Array.isArray(x)) for (const k of x.slice(0, 40)) if (typeof k === 'string') W4.stufeGemeldet.add(k); } catch (e) {   }
 try { const x = JSON.parse(lies('w4Hm') || '{}'); if (x && typeof x === 'object') for (const k of ['gruppe', 'gr', 'fa']) if (typeof x[k] === 'string') W4.hm[k] = x[k]; } catch (e) {   }
 const w4Json = (k, alt) => { try { const x = JSON.parse(lies(k) || 'null'); return x === null ? alt : x; } catch (e) { return alt; } };
 const W4_REGELN = ['funding', 'oi', 'kurs', 'liq', 'stufe', 'wal'];
@@ -13865,7 +13921,19 @@ return [...best.values()];
 }
 const W4_NICHT_KRYPTO = new Set(['XAU', 'XAG', 'XPT', 'XPD', 'NG', 'BZ', 'QQQ', 'SPY', 'IWM', 'DIA', 'SOXL', 'SOXS', 'TQQQ', 'SQQQ', 'KORU', 'SKHYNIX', 'SKHY', 'NBIS', 'SPCX', 'SNXX', 'TSLL', 'NVDL', 'MSTU', 'MSTX',
 'CONL', 'GLD', 'SLV', 'USO', 'UVXY', 'MUU', 'SECZ', 'AXTI', 'BE', 'IREN', 'CRCL', 'HOOD', 'COIN', 'MSTR', 'CIFR', 'WULF', 'APLD', 'OKLO', 'SMR', 'IONQ', 'RGTI', 'QBTS', 'GME', 'AMC', 'TSM', ...Object.keys(TF_NAMEN)]);
-const w4Krypto = (c) => !istTF(c) && !W4_NICHT_KRYPTO.has(c);
+const BY_ARTEN = { set: new Set(), zeit: 0, laeuft: false };
+try { const x = JSON.parse(lies('byArten') || 'null'); if (x && Array.isArray(x.l) && Date.now() - x.zeit < 24 * 36e5) { BY_ARTEN.set = new Set(x.l); BY_ARTEN.zeit = x.zeit; } } catch (e) {   }
+async function byArtenLaden() {
+if (DEMO || BYBIT_AUS || BY_ARTEN.laeuft || Date.now() - BY_ARTEN.zeit < 6 * 36e5) return;
+BY_ARTEN.laeuft = true;
+try { const l = new Set(); let cur = '';
+for (let n = 0; n < 4; n++) { const r = await by('instruments-info?category=linear&limit=1000' + (cur ? '&cursor=' + encodeURIComponent(cur) : ''), 20000);
+for (const x of r.list || []) if (/^(stock|etf|commodity|forex)$/i.test(String(x.symbolType || ''))) { const b = String(x.baseCoin || ''); if (b) l.add(b); if (String(x.symbol).endsWith('USDT')) l.add(String(x.symbol).slice(0, -4)); }
+cur = r.nextPageCursor || ''; if (!cur) break; }
+if (l.size) { BY_ARTEN.set = l; BY_ARTEN.zeit = Date.now(); merke('byArten', JSON.stringify({ zeit: BY_ARTEN.zeit, l: [...l] })); try { w2MeinTag(); w4HmZeigen(); } catch (e) {   } }
+} catch (e) { BY_ARTEN.zeit = Date.now() - 5.5 * 36e5; } finally { BY_ARTEN.laeuft = false; }
+}
+const w4Krypto = (c) => { byArtenLaden(); return !istTF(c) && !W4_NICHT_KRYPTO.has(c) && !BY_ARTEN.set.has(c); };
 function w4HmZeilen() {
 const g = W4.hm.gruppe;
 if (g === 'krypto') return ueb && Array.isArray(ueb.coins) ? ueb.coins.filter((z) => w4Krypto(z.coin)).map((z) => ({ ...z, name: z.coin, anzeige: z.coin })) : [];
@@ -14132,7 +14200,8 @@ const st = [];
 try { const g = gexDaten(); if (g && g.oe) { if (g.oe.callWand) st.push({ name: 'Call-Wand', preis: g.oe.callWand[0] }); if (g.oe.putWand) st.push({ name: 'Put-Wand', preis: g.oe.putWand[0] }); if (g.oe.flip) st.push({ name: 'Zero-Gamma', preis: g.oe.flip }); } } catch (e) {   }
 const z = lkarte && !lkarte.fehler && Array.isArray(lkarte.stufen) && (!lkarte.coin || lkarte.coin === coin) ? lkarte.stufen : [];
 if (z.length) { const max = Math.max(1, ...z.map((x) => Math.max(x[1], x[2]))); for (const [p, l, s] of z) { if (l >= max * 0.35) st.push({ name: 'Liq.-Zone Longs', preis: p }); if (s >= max * 0.35) st.push({ name: 'Liq.-Zone Shorts', preis: p }); } }
-const n = stufeNah(kurs, st, 0.3); if (n && w4Neu('s|' + coin + '|' + n.name + '|' + Math.round(n.preis), 60 * 6e4)) w4Melden({ q: 'stufe', coin, ...n });
+const vor = [...W4.stufeGemeldet].join(), n = stufeAnnaeherung(W4.stufeGemeldet, coin, kurs, st, 0.3, 0.6); if (n) w4Melden({ q: 'stufe', coin, ...n });
+if ([...W4.stufeGemeldet].join() !== vor) merke('w4StufeGem', JSON.stringify([...W4.stufeGemeldet].slice(-40)));
 }
 function w4WortPruefen() {
 const worte = w4Worte(); if (!worte.length) return;
@@ -14314,7 +14383,28 @@ setInterval(w4Takt, 5000); setTimeout(w4Takt, 2500);
 window.__ryvoW4 = { treemap, katLeistung, technik, ausreisserFinden, alrPruefen, alrStummMin, marktRegeln, stufeNah, stichwortTreffer,
 heatmap: () => W4.hm.zeilen.map((z) => ({ coin: z.coin, ae24h: z.ae24h, ae1h: z.ae1h, umsatz: z.umsatz, oi: z.oi, preis: z.preis })), gruppe: (g) => { W4.hm.gruppe = g; W4.hm.kat = ''; w4HmZeigen(); },
 uebersicht: () => (ueb && Array.isArray(ueb.coins) ? ueb.coins.map((z) => ({ coin: z.coin, ae24h: z.ae24h, umsatz: z.umsatz, oi: z.oi, preis: z.preis })) : []), tech: () => Object.fromEntries(W4.tech),
-alarm: (m, art, w) => w4AlarmAnlegen(m, art, w, true), alarme: () => w4Alarme(), log: () => w4Log(), pruefen: () => w4AlarmePruefen(), stumm: () => w4IstStumm(), scan: () => W4.sc.liste.slice(), takt: () => w4Takt() };
+alarm: (m, art, w) => w4AlarmAnlegen(m, art, w, true), alarme: () => w4Alarme(), log: () => w4Log(), pruefen: () => w4AlarmePruefen(), stumm: () => w4IstStumm(), scan: () => W4.sc.liste.slice(), takt: () => w4Takt(),
+demo: (art) => w4Demo(art) };
+}
+function w4Demo(art) {
+if (!DEMO) return { ok: false, text: 'nur im Demo-Modus' };
+const jetzt = Date.now(), vorher = w4Log().length;
+if (art === 'regel') {
+const basis = (W4.hist[W4.hist.length - 1] || { z: (ueb && ueb.coins || []).map((z) => ({ coin: z.coin, preis: z.preis, oi: z.oi, funding: z.funding })) }).z.filter((z) => z.preis > 0 && z.oi > 5e6);
+if (!basis.length) return { ok: false, text: 'keine Demo-Übersicht' };
+const alt = basis.map((z) => ({ ...z })), neu = basis.map((z, i) => (i ? { ...z } : { ...z, preis: z.preis * 1.03, oi: z.oi * 1.03 * 1.06 }));
+W4.hist.push({ t: jetzt - 5 * 6e4, z: alt }, { t: jetzt, z: neu }); w4RegelnPruefen(); w4RegelnPruefen();
+} else if (art === 'wal') {
+macStand = Object.assign({}, macStand || {}, { ereignisse: [{ zeit: Math.floor(jetzt / 1000), wal: 'Demo-Wal 0xd3m0', coin: 'BTC', seite: 'Long', art: 'eröffnet', vorher_usd: 0, jetzt_usd: 2.5e6 }] });
+w4WalPruefen(); w4WalPruefen();
+} else if (art === 'wort') {
+const m = { t: Math.floor(jetzt / 1000), titel: 'Demo: Bybit lists DEMOCOIN perpetual', coins: ['DEMOCOIN'] };
+meld = Object.assign({}, meld || {}, { meldungen: [m, ...((meld && meld.meldungen) || [])] }); w4WortPruefen(); w4WortPruefen();
+} else if (art === 'stufe') {
+const k0 = (S && (S.last || S.mid)) || 100000, st = [{ name: 'Zero-Gamma', preis: k0 }]; W4.stufeGemeldet.delete(coin + '|Zero-Gamma');
+for (const f of [1.001, 1.0012, 1.0015, 1.002, 1.0018, 1.01, 1.001, 1.0011]) { const n = stufeAnnaeherung(W4.stufeGemeldet, coin, k0 * f, st, 0.3, 0.6); if (n) w4Melden({ q: 'stufe', coin, ...n }); }
+} else return { ok: false, text: 'regel | wal | wort | stufe' };
+return { ok: true, neu: w4Log().length - vorher };
 }
 async function w4Befehl(r, p) {
 const rest = (p.rest || []).join(' ').trim();
@@ -14462,6 +14552,11 @@ const r = [], tag = tf >= 1440 ? 7 * 86400 : 86400, schl = (k) => (art === 'sitz
 let s = null; K.forEach((k, i) => { const x = schl(k); if (!s || s.x !== x) { s = { x, i0: i, i1: i, name: art === 'sitzung' && tf < 1440 ? ['Asien', 'London', 'New York'][amtSitzung(k.t)] : '' }; r.push(s); } else s.i1 = i; });
 return r;
 }
+function amtWenig(g, n, art, tf) {
+if (!g || g.i1 !== n - 1 || art === 'composite') return false;
+const dauer = tf >= 1440 ? 7 * 86400 : art === 'sitzung' ? 8 * 3600 : 86400, soll = dauer / (tf * 60);
+return g.i1 - g.i0 + 1 < Math.max(4, soll * 0.25);
+}
 function rangeSpanne(K, id) {
 const p = K.length ? Math.abs(K[K.length - 1].c) : 0; let lo = Infinity, hi = -Infinity; for (const k of K) { if (k.l < lo) lo = k.l; if (k.h > hi) hi = k.h; }
 return Math.max(HD.rangeTicks * hdSchritt(Math.max(1e-12, p * 0.00005)), hi > lo ? (hi - lo) / 4000 : 0);
@@ -14528,6 +14623,15 @@ if (i > 0 && k.t - K[i - 1].t > Math.max(2 * 86400, 3 * this.tf * 60)) { const x
 ctx.font = `500 ${Math.round(9 * d)}px ${F.mono}`; ctx.fillStyle = f.achseText; ctx.textBaseline = 'top'; ctx.fillText(`${tr('Wochenend-Lücke')} ${proz((k.o / K[i - 1].c - 1) * 100, 2)}`, x + 3 * d, L.py0 + 30 * d); }
 }
 ctx.textBaseline = 'alphabetic'; info.push([tr('Sitzungen (UTC)'), f.achseText]);
+if (!this.syn && !istTF(this.markt) && this.tf <= 240) {
+for (const g of cmeLuecken(K, BOERSEN.find((x) => x.id === 'cme'))) {
+if (Math.abs(g.pct) < 0.05 || g.iAuf > b || (g.gefuellt >= 0 && g.gefuellt < a)) continue;
+const y = Math.round(Y(g.zu)) + 0.5, x0 = Math.max(L.x0, xi(g.iAuf) - cw / 2), x1 = g.gefuellt >= 0 ? Math.min(L.x1, xi(g.gefuellt)) : L.x1; if (x1 <= x0) continue;
+ctx.strokeStyle = f.achseText; ctx.setLineDash([5 * d, 4 * d]); ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); ctx.setLineDash([]);
+ctx.font = `500 ${Math.round(9 * d)}px ${F.mono}`; ctx.fillStyle = f.achseText; ctx.textBaseline = 'bottom';
+ctx.fillText(`${tr('CME-Lücke (genähert)')} ${proz(g.pct, 2)}${g.gefuellt < 0 ? ' · ' + tr('nicht gefüllt') : ''}`, x0 + 3 * d, y - 2 * d); ctx.textBaseline = 'alphabetic';
+}
+}
 }
 if (!(eb.amt || eb.npoc || eb.ib || eb.pd)) return;
 const st = hdSchritt((L.hi - L.lo) / 70), art = this.tf >= 1440 && HD.amt === 'sitzung' ? 'tag' : HD.amt, anteil = HD.va / 100;
@@ -14543,11 +14647,13 @@ if (eb.amt) {
 for (const g of gruppen) {
 const x0 = xi(Math.max(g.i0, a)) - cw / 2, x1 = xi(Math.min(g.i1, b)) + cw / 2, breit = (art === 'composite' ? Math.min(220 * d, (L.x1 - L.x0) * 0.25) : Math.max(8 * d, (x1 - x0) * 0.6)), p = g.p;
 if (g.i1 < a || x1 - x0 < 6 * d) continue;
+const wenig = amtWenig(g, K.length, art, this.tf), datum = new Date(K[g.i0].t * 1000).toLocaleDateString(LOC, { day: '2-digit', month: '2-digit', timeZone: 'UTC' });
+if (wenig) { if (x1 - x0 > 30 * d || g.i1 === K.length - 1) { ctx.font = `600 ${Math.round(9 * d)}px ${F.mono}`; ctx.fillStyle = f.achseText; ctx.textBaseline = 'top'; ctx.fillText(`${g.name ? tr(g.name) + ' ' : ''}${datum} · ${tr('Sitzung läuft, wenig Daten')}`, Math.min(x0 + 3 * d, L.x1 - 230 * d), L.py0 + 16 * d); ctx.textBaseline = 'alphabetic'; } continue; }
 p.v.forEach((v, j) => { const pr = (p.q0 + j) * st, drin = pr >= p.val - 1e-12 && pr < p.vah - 1e-12, w = v / p.max * breit, y = Y(pr + st), h = Math.max(1, Y(pr) - y - 1);
 ctx.fillStyle = mix(j === Math.round(p.poc / st - 0.5) - p.q0 ? f.wal : f.achseText.length === 7 ? f.achseText : '#888888', drin ? 0.32 : 0.14); ctx.fillRect(x0, y, w, h); });
 for (const [pr, fb, strich] of [[p.poc, f.wal, []], [p.vah, f.achseText, [3, 3]], [p.val, f.achseText, [3, 3]]]) { const y = Math.round(Y(pr)) + 0.5; ctx.strokeStyle = fb; ctx.setLineDash(strich.map((x) => x * d)); ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); }
 ctx.setLineDash([]);
-if (g.name && x1 - x0 > 50 * d) { ctx.font = `600 ${Math.round(9 * d)}px ${F.mono}`; ctx.fillStyle = f.achseText; ctx.textBaseline = 'top'; ctx.fillText(tr(g.name), x0 + 3 * d, L.py0 + 16 * d); ctx.textBaseline = 'alphabetic'; }
+if (x1 - x0 > 50 * d) { ctx.font = `600 ${Math.round(9 * d)}px ${F.mono}`; ctx.fillStyle = f.achseText; ctx.textBaseline = 'top'; ctx.fillText(g.name ? `${tr(g.name)} ${datum}` : datum, x0 + 3 * d, L.py0 + 16 * d); ctx.textBaseline = 'alphabetic'; }
 }
 info.push([`${tr(art === 'sitzung' ? 'Profile je Sitzung' : art === 'composite' ? 'Composite-Profil' : 'Profile je Tag')} · VA ${HD.va} %`, f.wal]);
 }
@@ -14575,7 +14681,7 @@ const l = gruppen.filter((x) => x.ibText).pop(); info.push([`IB 1,5× 2× · ${t
 }
 if (tage.length >= 2) {
 const x = amtLage(tage[tage.length - 2].p, tage[tage.length - 1].p, K[K.length - 1].c);
-if (x) { this.amtSatz = x; info.push([`${tr({ ueber: 'Kurs über dem Wertbereich des Vortags', im: 'Kurs im Wertbereich des Vortags', unter: 'Kurs unter dem Wertbereich des Vortags' }[x.lage])} ${tr(x.lage === 'im' ? '(Gleichgewicht)' : '(Ungleichgewicht)')} · ${tr({ hoeher: 'Wertbereich höher als am Vortag', tiefer: 'Wertbereich tiefer als am Vortag', ueberlappend: 'Wertbereich überlappend' }[x.wanderung])}`, f.text]); }
+if (x) { this.amtSatz = x; info.push([`${tr({ ueber: 'Kurs über dem Wertbereich des Vortags', im: 'Kurs im Wertbereich des Vortags', unter: 'Kurs unter dem Wertbereich des Vortags' }[x.lage])} ${tr(x.lage === 'im' ? '(Gleichgewicht)' : '(Ungleichgewicht)')} · ${tr({ hoeher: 'Wertbereich höher als am Vortag', tiefer: 'Wertbereich tiefer als am Vortag', ueberlappend: 'Wertbereich überlappend' }[x.wanderung])}`, f.text, 'satz']); }
 }
 };
 HdChart.prototype.w3Oben = function (ctx, K, a, b, Y, xi, cw, d, f, L) {
@@ -14637,6 +14743,8 @@ const x0 = Math.min(ax, ex), x1 = Math.max(ax, ex), breit = (x1 - x0) * 0.7;
 ctx.fillStyle = mix(farbe.length === 7 ? farbe : '#888888', 0.05); ctx.fillRect(x0, Y(hi), x1 - x0, Y(lo) - Y(hi));
 p.v.forEach((v, j) => { const pr = (p.q0 + j) * st, drin = pr >= p.val - 1e-12 && pr < p.vah - 1e-12, y = Y(pr + st); ctx.fillStyle = mix(farbe.length === 7 ? farbe : '#888888', drin ? 0.38 : 0.16); ctx.fillRect(x0, y, v / p.max * breit, Math.max(1, Y(pr) - y - 1)); });
 for (const [pr, nm, fb] of [[p.poc, 'POC', f.wal], [p.vah, 'VAH', farbe], [p.val, 'VAL', farbe]]) { const y = Math.round(Y(pr)) + 0.5; ctx.strokeStyle = fb; ctx.setLineDash(nm === 'POC' ? [] : [3 * d, 3 * d]); ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); ctx.setLineDash([]); txt(`${nm} ${de(pr, nk)}`, x1 + 2 * d, y, fb); }
+{ const zt = (t) => new Date(t * 1000).toLocaleString(LOC, this.tf >= 1440 ? { day: '2-digit', month: '2-digit', timeZone: 'UTC' } : { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
+txt(`${tr('Bereichs-Profil')} ${zt(T[0].t)}–${zt(T[T.length - 1].t)} UTC · ${T.length} ${tr('Kerzen')}${T.length < 10 ? ' · ' + tr('wenig Daten') : ''}`, x0, Y(lo) + 12 * d, farbe); }
 if (nr >= 0) {
 const g = Math.round((HD.grob ? 22 : 15) * d), gx = Math.max(L.x0 + 2 * d, Math.min(L.x1 - g - 2 * d, x0)), gy = Math.round(Math.max(L.py0, Y(hi) - g - 3 * d));
 ctx.fillStyle = f.etikettBg || f.bg; ctx.fillRect(gx, gy, g, g); ctx.strokeStyle = farbe; ctx.strokeRect(gx + 0.5, gy + 0.5, g - 1, g - 1);
@@ -14719,8 +14827,10 @@ const MON = Array.from({ length: 12 }, (_, i) => new Date(Date.UTC(2026, i, 15))
 const tab = (titel, namen, l) => { const t = document.createElement('table'), k = t.createTHead().insertRow(); for (const h of [titel, 'Ø', tr('positiv'), 'n']) k.append(hdEl('th', '', h)); const b = t.createTBody();
 l.forEach((x, i) => { const r = b.insertRow(); r.insertCell().textContent = namen[i]; const c = r.insertCell(); c.textContent = x.mittel == null ? '–' : proz(x.mittel, 2); c.className = x.mittel > 0 ? 'plus' : x.mittel < 0 ? 'minus' : ''; r.insertCell().textContent = x.plus == null ? '–' : de(x.plus, 0) + ' %'; r.insertCell().textContent = String(x.n); });
 const d = hdEl('div', 'tabelle'); d.append(t); return d; };
-box.replaceChildren(hdEl('p', 'leise hd-klein', `${hdName(SAISON.markt)} · ${tr('Saisonalität aus der eigenen Geschichte (UTC) – beschreibend, keine Vorhersage')} · ${SAISON.d.tage} ${tr('Tage')}, ${SAISON.d.std} ${tr('Stunden')} · ${tr('Quelle')}: ${hdQuelle(SAISON.markt)}`),
-tab(tr('Monat'), MON, SAISON.d.mon), tab(tr('Wochentag'), WT, SAISON.d.wt), tab(tr('Stunde'), Array.from({ length: 24 }, (_, i) => String(i).padStart(2, '0') + ':00'), SAISON.d.hh));
+const an = ['mon', 'wt', 'hh'].includes(lies('saisonAnsicht')) ? lies('saisonAnsicht') : 'mon', wahl = hdEl('div', 'ch-schalter hd-saison-wahl'); wahl.setAttribute('role', 'group'); wahl.setAttribute('aria-label', tr('Saisonalität'));
+for (const [k, t] of [['mon', 'Monat'], ['wt', 'Wochentag'], ['hh', 'Stunde']]) { const b = hdEl('button', '', tr(t)); b.type = 'button'; b.dataset.saison = k; b.setAttribute('aria-pressed', String(k === an)); b.addEventListener('click', () => { merke('saisonAnsicht', k); saisonZeigen(); }); wahl.append(b); }
+box.replaceChildren(hdEl('p', 'leise hd-klein', `${hdName(SAISON.markt)} · ${tr('Saisonalität aus der eigenen Geschichte (UTC) – beschreibend, keine Vorhersage')} · ${SAISON.d.tage} ${tr('Tage')}, ${SAISON.d.std} ${tr('Stunden')} · ${tr('Quelle')}: ${hdQuelle(SAISON.markt)}`), wahl,
+an === 'mon' ? tab(tr('Monat'), MON, SAISON.d.mon) : an === 'wt' ? tab(tr('Wochentag'), WT, SAISON.d.wt) : tab(tr('Stunde'), Array.from({ length: 24 }, (_, i) => String(i).padStart(2, '0') + ':00'), SAISON.d.hh));
 }
 const vorlagen = () => { const l = hdJson('vorlagen', []); return Array.isArray(l) ? l.filter((x) => x && typeof x.name === 'string' && x.eb && typeof x.eb === 'object').slice(0, 6) : []; };
 function vorlagenZeigen() {
@@ -14774,6 +14884,15 @@ const r = $('hd-tools-reiter'); if (r) r.addEventListener('click', (e) => { cons
 w3Knoepfe(); vorlagenZeigen(); setTimeout(bildKnoepfe, 1500);
 }
 window.__ryvoW3 = { amtProfil, amtIB, amtLage, rangeBars, renko, heikinAshi, kerzenBuendeln, bollinger, atrReihe, stochReihe, obvReihe, ichimoku,
+anzeige: (nr = 0) => { const c = HD.panes[nr]; if (!c || !c.k || !c.k.length) return null; const K = c.kAnzeige(); if (!K || K.length < 3) return null;
+const n = K.length, i = n - 2, cl = K.map((k) => k.c), bb = bollinger(cl), at = atrReihe(K), st = stochReihe(K), ob = obvReihe(K), ic = ichimoku(K), L = c.L, schritt = L && L.hi > L.lo ? hdSchritt((L.hi - L.lo) / 70) : null;
+const tage = amtGruppen(K, 'tag', c.tf), prof = (g) => (g && schritt ? amtProfil(K.slice(g.i0, g.i1 + 1), schritt, HD.va / 100) : null), pv = prof(tage[tage.length - 2]), ph = prof(tage[tage.length - 1]);
+const gl = amtGruppen(K, c.tf >= 1440 && HD.amt === 'sitzung' ? 'tag' : HD.amt, c.tf), nIb = Math.max(1, Math.round(60 / c.tf)), gi = gl.filter((g) => g.i1 - g.i0 + 1 > nIb).pop(), ib = gi ? amtIB(K, gi.i0, nIb) : null;
+const w = (x) => (x == null ? null : x);
+return { markt: c.markt, tf: c.tf, syn: !!c.syn, n, i, t: K[i].t, t0: K[0].t, kurs: K[n - 1].c, bb: { u: w(bb.u[i]), m: w(bb.m[i]), o: w(bb.o[i]) }, atr: w(at[i]), stochK: w(st.k[i]), stochD: w(st.d[i]), obv: w(ob[i]),
+tenkan: w(ic.tenkan[i]), kijun: w(ic.kijun[i]), schritt, va: HD.va, vortag: pv && { poc: pv.poc, vah: pv.vah, val: pv.val, t0: K[tage[tage.length - 2].i0].t }, heute: ph && { poc: ph.poc, vah: ph.vah, val: ph.val },
+ib: ib && gi ? { h: ib.h, l: ib.l, t0: K[gi.i0].t, n: nIb, art: HD.amt } : null, satz: c.amtSatz || null, info: (c.w3Info || []).map((x) => x[0]), kerzen: K.map((k) => [k.t, k.o, k.h, k.l, k.c, k.v]) }; },
+yPreis: (p, nr = 0) => { const c = HD.panes[nr]; if (!c || !c.cv || !c.L) return null; const r = c.cv.getBoundingClientRect(); return { y: r.top + c.zuY(p) * r.height / c.cv.height, x: r.left + r.width * 0.45 }; },
 zustand: () => ({ art: HD.art, skala: HD.skala, va: HD.va, amt: HD.amt, vgl: HD.vgl, ratio: HD.ratio, eb: { ...HD.eb } }), kerzen: (nr = 0) => { const c = HD.panes[nr]; return c ? { roh: c.k.map((k) => ({ ...k })), anzeige: c.kAnzeige().map((k) => ({ t: k.t, o: k.o, h: k.h, l: k.l, c: k.c, v: k.v })), tf: c.tf, markt: c.markt } : null; } };
 HdChart.prototype.fpMitRange = function (ctx, K, a, b, Y, xi, cw, d, f, L) {
 if (HD.art !== 'range' || !K.length || !K[0].q) return this.fpZeichnen(ctx, K, a, b, Y, xi, cw, d, f, L);
@@ -14860,11 +14979,6 @@ const z = bhCsv(await bhText('https://sdmx.oecd.org/public/rest/data/OECD.SDD.ST
 const aus = {}; for (const x of z) if (x.REF_AREA && x.OBS_VALUE) (aus[x.REF_AREA] || (aus[x.REF_AREA] = [])).push([x.TIME_PERIOD, +x.OBS_VALUE]);
 for (const [k, w] of Object.entries(aus)) bhSetze('oecd_cli_' + k.toLowerCase(), w, 'oecd');
 },
-treasury: async () => {
-const d = JSON.parse(await bhText('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?filter=record_date:gte:' + bhVor(120) + '&sort=-record_date&page%5Bsize%5D=400'));
-const w = {}; for (const z of d.data || []) if (/Closing Balance/.test(z.account_type || '')) { const v = Number(z.close_today_bal !== 'null' && z.close_today_bal != null ? z.close_today_bal : z.open_today_bal); if (Number.isFinite(v)) w[z.record_date] = v; }
-bhSetze('tga_taeglich', Object.entries(w), 'treasury');
-},
 kurve: async () => {
 const j = new Date(), m = (n) => { const x = new Date(Date.UTC(j.getUTCFullYear(), j.getUTCMonth() - n, 1)); return `${x.getUTCFullYear()}${String(x.getUTCMonth() + 1).padStart(2, '0')}`; }, reihe = {};
 await Promise.all([m(0), m(1), m(12), m(13)].map(async (mo) => { try { bhKurveAus(await bhText(`https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value_month=${mo}`), reihe); } catch (e) {   } }));
@@ -14878,8 +14992,9 @@ const a = BH.r.us_rendite_10j, b = BH.r.us_rendite_2j; if (a && b) bhSetze('us_s
 };
 async function bhBeta() {
 const alt = gemerkt('bh', 6 * 36e5);
+if (TEILEN && alt && alt.r) delete alt.r.tga_taeglich;
 if (alt && alt.r && Object.keys(alt.r).length > 20) { BH.r = alt.r; BH.kurve = alt.kurve; BH.teile = alt.teile || {}; return; }
-const ok = {}; await Promise.all(Object.entries(BH_BETA).map(async ([k, f]) => { try { await f(); ok[k] = true; } catch (e) { ok[k] = false; } BH.teile = ok; try { bhZeigen(); } catch (e) {   } }));
+const ok = {}; await Promise.all(Object.entries(BH_BETA).filter(([k]) => !(TEILEN && k === 'treasury')).map(async ([k, f]) => { try { await f(); ok[k] = true; } catch (e) { ok[k] = false; } BH.teile = ok; try { bhZeigen(); } catch (e) {   } }));
 BH.teile = ok; if (Object.values(ok).filter(Boolean).length >= 5) merkeJson('bh', { r: BH.r, kurve: BH.kurve, teile: ok });
 }
 async function bhMac() { } async function bhEvLaden() { }
@@ -14924,8 +15039,8 @@ const R = BH.r, voll = !TEILEN;
 const lk = [bhKachel('netto_liquiditaet', 'Netto-Liquidität', bhBio), bhKachel('fed_bilanz', 'Fed-Bilanz', bhBio), bhKachel('fed_tga', 'TGA (Wochenstand)', bhBio), bhKachel('tga_taeglich', 'TGA (täglich)', bhBio),
 bhKachel('fed_rrp', 'Reverse Repo (ON RRP)', bhBio), bhKachel('fed_reserven', 'Reserven der Banken', bhBio)].filter(Boolean);
 $('bh-liq-k').replaceChildren(...lk);
-const lt = $('bh-liq-teil'); if (lt) lt.textContent = !R.fed_bilanz ? (TEILEN ? 'Fed-Bilanz und Netto-Liquidität: nur in der Vollversion – die Fed erlaubt keinen Abruf direkt aus dem Browser.' : '') : R.netto_liquiditaet && R.netto_liquiditaet.formel ? 'Netto-Liquidität = eigene Rechnung aus H.4.1 (Mittwochsstände)' : '';
-if (mzBlock('bh-liq', lk.length ? null : 'keine Werte')) {
+const lt = $('bh-liq-teil'); if (lt) lt.textContent = !R.fed_bilanz ? (TEILEN ? 'Fed-Bilanz, TGA und Netto-Liquidität: nur in der Vollversion – Fed und Treasury-FiscalData erlauben keinen Abruf direkt aus dem Browser.' : '') : R.netto_liquiditaet && R.netto_liquiditaet.formel ? 'Netto-Liquidität = eigene Rechnung aus H.4.1 (Mittwochsstände)' : '';
+if (mzBlock('bh-liq', lk.length ? null : TEILEN ? 'Nur in der Vollversion' : 'keine Werte')) {
 const r = R.netto_liquiditaet && (R.netto_liquiditaet.werte || []).length > 2 ? R.netto_liquiditaet : R.tga_taeglich, w = r ? (r.werte || []).slice(-104) : [];
 bhLinie($('bh-liq-c'), [[w.map((x) => x[1] / 1e6), F.wal]], w.map((x) => `${x[0].slice(8, 10)}.${x[0].slice(5, 7)}.`), '', 2);
 }
@@ -15199,6 +15314,7 @@ if (r) {
 if (r.id === 'fokus') { p.fokus = true; continue; }
 if (!p.fn) { p.fn = r; continue; }
 }
+if (p.fn && p.fn.ebene && p.schalter == null && /^(AN|EIN|ON|AUS|OFF)$/.test(t)) { p.schalter = /^(AN|EIN|ON)$/.test(t); continue; }
 const z = befZeit(t);
 if (z && p.tf == null && (t[0] === '@' || /\D/.test(t) || p.markt || p.fn)) { p.tf = z; continue; }
 const m = p.markt ? null : K.markt(t);
@@ -15554,7 +15670,7 @@ if (!h) { h = hdEl('div', 'neu-hinweis bef-meldung'); h.id = 'bef-meldung'; h.se
 h.replaceChildren(hdEl('span', '', t)); h.hidden = false; clearTimeout(befMelden.t); befMelden.t = setTimeout(() => { h.hidden = true; }, 4500);
 const st = document.getElementById('befehl-stand'); if (st) st.textContent = t;
 }
-async function hdOeffnen(r) {
+async function hdOeffnen(r, p = {}) {
 if (HD.bereich !== 'handeln') hdBereich('handeln');
 await befWarte(40);
 let ziel = document.querySelector('#handeln .hd-pane') || $('handeln');
@@ -15562,7 +15678,9 @@ if (r.hd && r.hd !== 'chart') {
 const buchAn = $('hd-buch-an'); if (buchAn && buchAn.getAttribute('aria-pressed') === 'false') buchAn.click();
 hdToolSetzen(r.hd); ziel = $('hd-tools') || ziel; try { ziel.scrollIntoView({ block: 'nearest' }); } catch (e) {   }
 }
-if (r.ebene) { const b = document.querySelector(`#hd-ebenen [data-ebene="${r.ebene}"]`); if (b && b.getAttribute('aria-pressed') !== 'true') b.click(); }
+let text = '';
+if (r.ebene) { const b = document.querySelector(`#hd-ebenen [data-ebene="${r.ebene}"]`), an = !!b && b.getAttribute('aria-pressed') === 'true', soll = p && p.schalter != null ? p.schalter : !an;
+if (b && an !== soll) b.click(); if (b) text = `${tr(r.n)}: ${tr(soll ? 'eingeschaltet' : 'ausgeschaltet')}`; }
 if (r.aktion === 'ebenen') { if (HD.blatt !== 'werkzeug') { const b = $('hd-ebenen-knopf'); if (b) b.click(); } ziel = $('hd-werkzeug') || ziel; }
 if (r.aktion === 'aufnahme') { const b = $('hd-aufnahme'); if (b && !HD.aufnahme) b.click(); }
 if (r.aktion === 'linie' || r.aktion === 'fib' || W3_ZEICHEN.has(r.aktion)) { const b = document.querySelector(`#hd-zeichnen [data-werkzeug="${r.aktion}"]`); if (b && HD.werkzeug !== r.aktion) b.click(); }
@@ -15570,12 +15688,12 @@ if (r.w3) { const [k, v] = r.w3.split(':'); w3Setze(k, v); }
 if (r.aktion === 'alarm') { const b = document.querySelector('#hd-zeichnen [data-werkzeug="alarm"]'); if (b && HD.werkzeug !== 'alarm') b.click(); }
 if (r.w3 || r.aktion === 'alarm' || W3_ZEICHEN.has(r.aktion) || (r.ebene && document.querySelector(`#hd-ebenen [data-ebene="${r.ebene}"].hd-mehr-teil`))) w4Mehr(true);
 if (r.ziel) { const z = document.querySelector('#handeln ' + r.ziel) || document.querySelector(r.ziel); if (z) { ziel = z; try { z.scrollIntoView({ block: 'nearest' }); } catch (e) {   } } }
-return { ok: true, ziel };
+return { ok: true, ziel, text };
 }
 async function befOeffnen(r, p) {
 if (r.feld && !abSec(r.feld)) return { ok: false, text: befT('nurMac', tr(r.n)) };
 const imHandeln = HD.bereich === 'handeln' && r.hd && !(swing() && r.hd !== 'chart' && !HD_TOOLS_SWING.includes(r.hd)) && !p.fokus;
-if (!r.feld || imHandeln) return hdOeffnen(r);
+if (!r.feld || imHandeln) return hdOeffnen(r, p);
 const sec = abSec(r.feld);
 if (HD.bereich !== 'daten') hdBereich('daten');
 for (let i = 0; i < 15 && sec.hidden; i++) await befWarte(100);
@@ -15659,7 +15777,7 @@ if (r.id === 'fokus') { const s = feldInMitte(); if (s && HD.bereich === 'daten'
 const e = await befOeffnen(r, p);
 if (e.ok && p.tf != null && (r.id === 'chart' || r.id === 'fp' || r.id === 'tpo' || r.hd === 'chart')) tfSetzen(p.tf);
 if (e.ok) NAV.f = r.id;
-return fertig(e.ok, e.ok ? hinweis : e.text, e.ziel);
+return fertig(e.ok, e.ok ? hinweis || (r.ebene ? e.text : '') : e.text, e.ziel);
 }
 
 const BEF_V = { verlauf: [], fav: [] };
@@ -15763,7 +15881,8 @@ const h = hdEl('h3', '', 'Funktions-Verzeichnis'); h.id = 'verzeichnis-titel';
 const nk = hdEl('div', 'auswahl-kopf'), ein = document.createElement('input'); ein.type = 'search'; ein.id = 'verzeichnis-ein'; ein.placeholder = 'Funktion suchen, z. B. Gamma'; ein.autocomplete = 'off'; ein.setAttribute('aria-label', 'Funktion suchen'); nk.append(ein);
 const lexBox = hdEl('div', 'verzeichnis-lex'); lexBox.id = 'verzeichnis-lex';
 const liste = hdEl('div', 'was-neu-liste verzeichnis-liste'); liste.id = 'verzeichnis-liste';
-box.append(kopf, h, nk, lexBox, liste, hdEl('p', 'einstieg-fuss', 'Syntax: [Markt] Funktion [Zusatz] [@Zeit] – Reihenfolge und Groß-/Kleinschreibung egal, deutsche und englische Kürzel · keine Anlageberatung'));
+box.append(kopf, h, nk, lexBox, liste, hdEl('p', 'einstieg-fuss', 'Syntax: [Markt] Funktion [Zusatz] [@Zeit] – Reihenfolge und Groß-/Kleinschreibung egal, deutsche und englische Kürzel · keine Anlageberatung'),
+hdEl('p', 'einstieg-fuss', 'Ebenen im Chart (BB, ICHIMOKU, ATR, EMA …): ohne Zusatz umschalten wie der Knopf, mit AN oder AUS (englisch ON oder OFF) fest setzen – z. B. „BB AUS“.'));
 document.body.append(box);
 ein.addEventListener('input', () => verzeichnisFuellen(ein.value));
 liste.addEventListener('click', (e) => { const b = e.target.closest('button[data-cmd]'); if (b) { verzeichnisZu(); befAusfuehren(b.dataset.cmd); } });
