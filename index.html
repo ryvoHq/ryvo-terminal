@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "50631c55", "es": "a3f761ff", "fr": "53533b36", "it": "9a4a651d", "tr": "c24659b4"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "f743591b", "es": "42ea2a29", "fr": "e3807afe", "it": "3bd72cc1", "tr": "9b5e7dba"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2113,6 +2113,51 @@ body.fokus-an { overflow: hidden; }
 #ueb-bedingungen code, #wk-worte code { font: 500 12px var(--mono); }
 
 
+@media (min-width: 1000px) { main.raster > section.feld.meintag, main.raster > section.feld.wlisten, main.raster > section.feld.weltuhr { grid-column: 1 / -1; } }
+main.raster > [data-w2-aus] { display: none !important; }
+.w2-leiste[hidden], .w2-reiter[hidden] { display: none !important; }
+.w2-leiste { flex-wrap: wrap !important; overflow: visible !important; gap: 6px 8px; }
+.w2-leiste .w2-satz { flex: 1 1 320px; min-width: 0; font-size: 12px; line-height: 1.45; color: var(--leise); white-space: normal; }
+main.raster > section.feld > .w2-werkzeug, main.raster > section.feld > .w2-ecke { display: none; }
+body.w2-anordnen main.raster > section.feld { position: relative; outline: 1px dashed var(--linie-hell, var(--linie)); outline-offset: -1px; }
+body.w2-anordnen main.raster > section.feld > .w2-werkzeug { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 0 calc(-1 * var(--pad, 12px)); padding: 4px 8px; background: var(--desk-kopf, var(--feld)); border-bottom: 1px solid var(--desk-linie, var(--linie)); }
+html.desk body.w2-anordnen main.raster > section.feld > .w2-werkzeug { margin: 0 -12px; }
+.w2-werkzeug .w2-wz { min-width: 26px; height: 24px; padding: 0 6px; font: 600 12px var(--mono); color: var(--text-2, var(--text)); background: transparent; border: 1px solid var(--desk-linie, var(--linie)); border-radius: 1px; cursor: pointer; }
+.w2-werkzeug .w2-wz:hover { color: var(--text); border-color: var(--linie-hell, var(--leise)); }
+.w2-werkzeug .w2-wz:focus-visible, .hd-kopplung:focus-visible { outline: 2px solid var(--wal); outline-offset: 1px; }
+.w2-werkzeug .w2-griff { cursor: grab; touch-action: none; }
+.w2-werkzeug .w2-kopp { margin-left: auto; font: 500 10.5px var(--mono); color: var(--leise); }
+body.w2-anordnen main.raster > section.feld > .w2-ecke { display: block; position: absolute; right: 0; bottom: 0; width: 18px; height: 18px; cursor: nwse-resize; touch-action: none;
+  background: linear-gradient(135deg, transparent 52%, var(--leise) 52%, var(--leise) 60%, transparent 60%, transparent 70%, var(--leise) 70%, var(--leise) 78%, transparent 78%); }
+main.raster > section.feld.w2-zieht { opacity: .6; }
+main.raster > section.feld.w2-ziel-vor { box-shadow: inset 3px 0 0 var(--wal); }
+main.raster > section.feld.w2-ziel-nach { box-shadow: inset -3px 0 0 var(--wal); }
+main.raster > section.feld[data-w2-vorschau]::after { content: attr(data-w2-vorschau); position: absolute; right: 24px; bottom: 4px; font: 600 11px var(--mono); color: var(--text); background: var(--feld); padding: 2px 6px; border: 1px solid var(--linie); }
+main.raster > section.feld.w2-knapp { overflow: auto; }
+main.raster > section.feld.w2-schwebend { position: fixed; z-index: 66; overflow: auto; resize: both; grid-area: auto !important; min-width: 280px; min-height: 160px; max-width: calc(100vw - 8px); max-height: calc(100vh - 8px);
+  border: 1px solid var(--linie-hell, var(--linie)); box-shadow: 0 18px 48px rgba(0, 0, 0, .5); }
+main.raster > section.feld.w2-schwebend > .feld-kopf { cursor: move; position: sticky; top: 0; z-index: 2; touch-action: none; }
+.hd-kopplung { position: absolute; top: 6px; right: 80px; z-index: 3; min-width: 22px; height: 22px; padding: 0 4px; font: 600 12px var(--mono); line-height: 20px; color: var(--text); background: var(--feld); border: 1px solid var(--desk-linie, var(--linie)); border-radius: 1px; cursor: pointer; }
+.hd-kopplung[data-gruppe="-"] { color: var(--leise); }
+.hd-panes[data-layout="1"] .hd-kopplung, #hd-panes[data-layout="1"] .hd-kopplung { display: none; }
+.am-text button { padding: 7px 4px; }
+#wl-reiter button { max-width: 220px; overflow: hidden; text-overflow: ellipsis; }
+.wl-form input#wl-name { max-width: 180px; }
+#wl-tabelle th[data-k] { cursor: pointer; }
+
+html[data-dichte="kompakt"] main.raster > section.feld { padding: 0 8px 8px; gap: 6px; }
+html[data-dichte="kompakt"] main.raster > section.feld > .feld-kopf { margin-inline: -8px; padding-inline: 8px; min-height: 26px; }
+html[data-dichte="kompakt"] main.raster > section.feld :is(td, th) { padding-top: 2px; padding-bottom: 2px; font-size: 11px; }
+html[data-dichte="kompakt"] main.raster > section.feld :is(p, li) { font-size: 12px; line-height: 1.4; }
+html[data-dichte="kompakt"] main.raster > section.feld .kacheln dd { font-size: 17px; }
+html[data-dichte="gross"] main.raster > section.feld { padding: 0 16px 16px; gap: 14px; }
+html[data-dichte="gross"] main.raster > section.feld > .feld-kopf { margin-inline: -16px; padding-inline: 16px; min-height: 40px; }
+html[data-dichte="gross"] main.raster > section.feld > .feld-kopf h2 { font-size: 12.5px; }
+html[data-dichte="gross"] main.raster > section.feld :is(td, th) { padding-top: 6px; padding-bottom: 6px; font-size: 14px; }
+html[data-dichte="gross"] main.raster > section.feld :is(p, li) { font-size: 15px; line-height: 1.55; }
+html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26px; }
+
+
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
 .test-band summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 10px 14px; -webkit-tap-highlight-color: transparent; }
 .test-band summary::-webkit-details-marker { display: none; }
@@ -2189,6 +2234,10 @@ body.fokus-an { overflow: hidden; }
       </div>
       <p class="am-titel">Schnellwahl</p>
       <div class="am-reihe am-schnell"><button type="button" id="ansicht-ws" aria-pressed="false"><svg class="am-kerze" viewBox="0 0 34 30" aria-hidden="true"><rect x="0.5" y="0.5" width="33" height="29" class="k-ws-grund"/><line x1="11" y1="4" x2="11" y2="26" class="k-ws"/><rect x="7.75" y="9.75" width="6.5" height="11.5" class="k-ws-hohl"/><line x1="23" y1="3" x2="23" y2="24" class="k-ws"/><rect x="19.75" y="7" width="6.5" height="12" class="k-ws"/></svg><span>Weiß-Schwarz <small>Hell + Kerzen S/W</small></span></button></div>
+      <p class="am-titel">Dichte</p>
+      <div class="am-reihe am-kerzen am-text" id="dichte-wahl" role="radiogroup" aria-label="Dichte"><button type="button" role="radio" data-wert="kompakt"><span>Kompakt</span></button><button type="button" role="radio" data-wert="normal"><span>Normal</span></button><button type="button" role="radio" data-wert="gross"><span>Groß</span></button></div>
+      <p class="am-titel">Kacheln</p>
+      <div class="am-reihe am-kerzen am-text" id="w2-am" role="group" aria-label="Kacheln"><button type="button" data-w2="anordnen"><span>Anordnen</span></button><button type="button" data-w2="reiter"><span>Neuer Reiter</span></button><button type="button" data-w2="standard"><span>Standard</span></button></div>
     </div>
   </div>
   <label class="sprache" id="sprache" aria-label="Language"><select aria-label="Language"><option value="de">DE</option><option value="en">EN</option><option value="es">ES</option><option value="fr">FR</option><option value="tr">TR</option><option value="it">IT</option></select></label>
@@ -2900,6 +2949,45 @@ body.fokus-an { overflow: hidden; }
         <p class="leise stand"><button type="button" class="mehr" id="wk-log-leeren">Protokoll leeren</button></p></article>
     </div>
   </section>
+  <section class="feld meintag" aria-labelledby="t-meintag">
+    <div class="feld-kopf"><h2 id="t-meintag">Mein Tag · Termine, Bewegungen, Alarme, Lage</h2><span class="stand" id="mt-stand"></span>
+      <button type="button" class="was" data-hilfe="meintag" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-meintag" hidden>
+      <p>Der Tag auf einen Blick: Termine von heute (Ortszeit), die größten Bewegungen der letzten 24 Stunden bei Coins und Weltmärkten, Alarme der letzten 24 Stunden und die Lage in drei Sätzen – nur beschreibend, keine Wertung und kein Rat.</p>
+      <p>Alle Zahlen kommen aus den Feldern, die es schon gibt (Markt-Übersicht, Weltmärkte, Termine, Alarme) – kein eigener Abruf. „Beim Öffnen zeigen“ macht „Mein Tag“ zum Startbildschirm (nur in diesem Browser). Befehl: MEINTAG.</p>
+    </div>
+    <div class="mz-raster">
+      <article class="mz-block" id="mt-lage-block"><h3>Lage in drei Sätzen <span class="leise">nur beschreibend</span></h3><ol class="termine-werte" id="mt-lage"></ol></article>
+      <article class="mz-block" id="mt-termine-block"><h3>Termine heute <span class="leise">Ortszeit</span></h3><ol class="termine-werte" id="mt-termine"></ol></article>
+      <article class="mz-block" id="mt-beweg-block"><h3>Größte Bewegungen <span class="leise">24 Std. · antippen öffnet</span></h3><div class="tabelle ueb-tabelle" id="mt-beweg"></div></article>
+      <article class="mz-block" id="mt-alarme-block"><h3>Neue Alarme <span class="leise">letzte 24 Std.</span></h3><ol class="termine-werte" id="mt-alarme"></ol></article>
+    </div>
+    <p class="leise stand"><label><input type="checkbox" id="mt-start"> Beim Öffnen zeigen (Startbildschirm)</label></p>
+  </section>
+  <section class="feld wlisten" aria-labelledby="t-wlisten">
+    <div class="feld-kopf"><h2 id="t-wlisten">Beobachtungslisten · Kennzahlen</h2><span class="stand" id="wl-stand"></span>
+      <button type="button" class="was" data-hilfe="wlisten" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-wlisten" hidden>
+      <p>Mehrere eigene Listen mit Kurs, Änderung in 1 und 24 Stunden, Funding aufs Jahr, offenen Positionen und Umsatz – aus der Markt-Übersicht und den Hyperliquid-Märkten, die das Terminal ohnehin lädt. Spaltenkopf antippen sortiert.</p>
+      <p>Antippen eines Markts öffnet ihn in den Charts mit demselben Kopplungs-Symbol (● Hauptmarkt, ▲ oder ■ für Charts unter „Handeln“). „Link kopieren“ teilt die Liste ohne Konto und ohne Server: Name und Märkte stehen im Link selbst (nach dem #). Befehle: LISTEN, LISTETEILEN.</p>
+    </div>
+    <div class="ch-schalter" id="wl-reiter" role="group" aria-label="Listen"></div>
+    <div class="ueb-filter wl-form"><input type="text" id="wl-markt" maxlength="60" placeholder="Markt dazu, z. B. SOL oder GOLD" aria-label="Markt dazu" autocomplete="off" spellcheck="false"><button type="button" id="wl-dazu" class="mehr">Dazu</button>
+      <input type="text" id="wl-name" maxlength="24" placeholder="Name der Liste" aria-label="Name der Liste" autocomplete="off"><button type="button" id="wl-teilen" class="mehr">Link kopieren</button><button type="button" id="wl-kopplung" class="mehr">Antippen öffnet in ●</button><button type="button" id="wl-weg" class="mehr">Liste löschen</button></div>
+    <p class="leise mz-letzte" id="wl-geteilt" role="status" hidden></p>
+    <p class="leise mz-letzte" id="wl-info" aria-live="polite"></p>
+    <div class="tabelle ueb-tabelle" id="wl-tabelle"></div>
+  </section>
+  <section class="feld weltuhr" aria-labelledby="t-weltuhr">
+    <div class="feld-kopf"><h2 id="t-weltuhr">Weltuhr · Börsenzeiten</h2><span class="stand" id="wu-stand">ohne Feiertage</span>
+      <button type="button" class="was" data-hilfe="weltuhr" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-weltuhr" hidden>
+      <p>Ortszeit und regulärer Handel der großen Börsen mit Countdown bis zum Öffnen oder Schließen – Sommerzeit je Region (Europa und USA eigene Regeln). Tokio und Hongkong mit Mittagspause, CME-Futures (Chicago) von Sonntagabend bis Freitag mit täglicher Pause von einer Stunde. Feiertage sind nicht berücksichtigt.</p>
+      <p>Darunter die Krypto-Sitzung nach UTC (Asien, London, New York) wie im Chart unter „Sitzungen“. Befehl: WELTUHR.</p>
+    </div>
+    <div class="tabelle ueb-tabelle" id="wu-tabelle"></div>
+    <p class="leise stand" id="wu-sitzung"></p>
+  </section>
 </main>
 
 <main class="handeln" id="handeln" aria-labelledby="t-handeln" hidden>
@@ -2995,7 +3083,7 @@ body.fokus-an { overflow: hidden; }
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "50631c55", "es": "a3f761ff", "fr": "53533b36", "it": "9a4a651d", "tr": "c24659b4"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "f743591b", "es": "42ea2a29", "fr": "e3807afe", "it": "3bd72cc1", "tr": "9b5e7dba"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -7625,7 +7713,7 @@ const UEB_SPALTEN = [
 ['coin', 'Coin'], ['preis', 'Kurs'], ['ae1h', '1 Std.'], ['ae24h', '24 Std.'], ['umsatz', 'Umsatz 24 Std.'], ['oi', 'Offene Pos.'],
 ['oi1h', 'OI 1 Std.'], ['oi24h', 'OI 24 Std.'], ['funding', 'Funding/Jahr'], ['fb', 'Binance'], ['fy', 'Bybit'], ['fh', 'Hyperliquid'], ['fs', 'Spanne'], ['korea', 'Korea']];
 async function uebLaden() {
-if (!regelnLokal().length && !(W4_BEREIT && w4Braucht()) && spaeter(uebLaden, 'uebersicht', 'analyse', 'hmap', 'scanner', 'wecker')) return;
+if (!regelnLokal().length && !(W4_BEREIT && w4Braucht()) && spaeter(uebLaden, 'uebersicht', 'analyse', 'hmap', 'scanner', 'wecker', 'meintag', 'wlisten')) return;
 const basis = macBasis();
 if (DEMO) { ueb = demoUeb(); uebZeigen(); return; }
 const direkt = async () => { try { ueb = await uebDirekt(); } catch (e) { ueb = { fehler: BYBIT_AUS ? 'Hyperliquid gerade nicht erreichbar (Bybit ist hier gesperrt)' : 'Bybit gerade nicht erreichbar' }; } };
@@ -8422,6 +8510,7 @@ cv.addEventListener('pointerup', () => { zug = null; }); cv.addEventListener('po
 const verschoben = new Map();
 function feldInSicht(klassen) {
 if (document.hidden) return false;
+if (W2_BEREIT && W2.draussen.size && klassen.some((k) => W2.draussen.has(k))) return true;
 if (HD.bereich === 'handeln') {
 const z = new Set(HD.tool === 'lage' ? [] : [HD_TOOL_ZIEL[HD.tool]]);
 if (HD.tool === 'analyse') { z.add('uebersicht'); z.add('mac'); }
@@ -10218,7 +10307,8 @@ let w = 0; addEventListener('scroll', () => { if (w) return; w = requestAnimatio
 const SPRUNG_NAMEN = { behoerden: 'Makro & Behörden', rug: 'Rug-Check', heat: 'Liquidität', jetzt: 'Live', werte: 'Futures', analyse: 'Analyse', selbst: 'Selbst handeln', journal: 'Journal', chart: 'Chart', multi: 'Mehrere', gamma: 'Gamma-Karte', gex: 'Dealer-Gamma', dom: 'Orderbuch', cvd: 'Kaufdruck', band: 'Große Trades',
 liq: 'Liquidationen', mac: 'Wale', uebersicht: 'Übersicht', markt: 'Börsen', geschichte: 'Geschichte', umfeld: 'Umfeld', rangliste: 'Rangliste', meldungen: 'Meldungen',
 lkarte: 'Liq.-Karte', ofluss: 'Options-Fluss', olab: 'Options-Labor', danach: 'Was danach', bericht: 'Lagebild', vol: 'Volatilität', opt: 'Optionen', kurve: 'Terminkurve', makro: 'Zinsen',
-hmap: 'Heatmap', weltm: 'Weltmärkte', scanner: 'Ausreißer', wecker: 'Alarme' };
+hmap: 'Heatmap', weltm: 'Weltmärkte', scanner: 'Ausreißer', wecker: 'Alarme',
+meintag: 'Mein Tag', wlisten: 'Listen', weltuhr: 'Weltuhr' };
 function sprungleiste() {
 const kopf = document.querySelector('.leiste'); if (!kopf || document.querySelector('.sprungleiste')) return;
 const leiste = document.createElement('div'); leiste.className = 'sprungleiste';
@@ -10727,7 +10817,7 @@ this.cv = el.querySelector('canvas'); this.menue = el.querySelector('.hd-menue')
 el.addEventListener('pointerdown', () => hdAktiv(this.nr), true);
 el.addEventListener('focusin', () => hdAktiv(this.nr));
 el.querySelector('.hd-tf').addEventListener('click', (e) => { const b = e.target.closest('button[data-tf]'); if (b) { this.setzen(this.markt, +b.dataset.tf); hdPanesMerken(); } });
-this.wahl.addEventListener('change', () => { const id = this.wahl.value; if (!id) return; if (this.nr === 0) wechseln(id); else { this.setzen(id, this.tf); hdPanesMerken(); hdKurseLaden(); } });
+this.wahl.addEventListener('change', () => { const id = this.wahl.value; if (!id) return; if (W2_BEREIT && w2PaneMarkt(this.nr, id)) return; if (this.nr === 0) wechseln(id); else { this.setzen(id, this.tf); hdPanesMerken(); hdKurseLaden(); } });
 const cv = this.cv;
 cv.addEventListener('pointerdown', (e) => this.runter(e));
 cv.addEventListener('pointermove', (e) => this.bewegen(e));
@@ -11184,6 +11274,7 @@ ctx.strokeStyle = farbe; ctx.lineWidth = Math.max(1, Math.round(breite * d)); ct
 ctx.beginPath(); ctx.moveTo(x0, Math.round(y) + 0.5); ctx.lineTo(L.x1, Math.round(y) + 0.5); ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth = 1;
 }
 heatZeichnen(ctx, K, a, b, lo, hi, Y, xi, cw, d, f, L) {
+if (this.syn || !(K[K.length - 1].c > 0)) return null;
 if (DEMO) hxDemoHeat(K.slice(Math.max(0, a - 2), b + 1), this.tf);
 const ref = K[K.length - 1].c, st = hdSchritt(ref * 0.001), tf = this.tf, zellen = [], alle = [];
 if (HX.cache.size > 6000) HX.cache.clear();
@@ -11691,7 +11782,8 @@ const sichtbar = HD.panes.slice(0, n);
 if (HD.aufnahme && HD.buehnePane && !sichtbar.includes(HD.buehnePane)) hdAufnahme(false);
 box.replaceChildren(...sichtbar.map((c) => c.el));
 if (HD.aktiv >= n) HD.aktiv = 0;
-sichtbar.forEach((c, i) => { c.el.classList.toggle('aktiv', i === HD.aktiv && n > 1); c.setzen(i === 0 ? coin : HD.pc[i].markt, HD.pc[i].tf); c.dirty = true; });
+sichtbar.forEach((c, i) => { c.el.classList.toggle('aktiv', i === HD.aktiv && n > 1); c.setzen(i === 0 || (W2_BEREIT && w2Gr(i) === 'A') ? coin : HD.pc[i].markt, HD.pc[i].tf); c.dirty = true; });
+if (W2_BEREIT) w2PaneKoepfe();
 for (const b of document.querySelectorAll('#hd-layout [data-layout]')) b.setAttribute('aria-pressed', String(b.dataset.layout === HD.layout));
 hdKurseLaden(); hdTicketZeigen();
 }
@@ -11859,6 +11951,7 @@ li.classList.toggle('gehalten', gehalten.has(id)); li.querySelector('.hd-beob-ma
 }
 function hdMarktWaehlen(id) {
 const c = HD.panes[HD.aktiv];
+if (W2_BEREIT && w2PaneMarkt(HD.aktiv, id)) return;
 if (!c || HD.aktiv === 0 || hdN() === 1) { wechseln(id); return; }
 c.setzen(id, c.tf); hdPanesMerken(); hdKurseLaden(); hdTicketZeigen(); hdListeZeigen();
 }
@@ -12139,6 +12232,7 @@ b.addEventListener('click', () => { sec.classList.add('swing-offen'); swingFelde
 return b;
 }));
 }
+if (W2_BEREIT && AB_BEREIT && w2Raster(m)) return;
 const Z = new Set(zu.map((sec) => getComputedStyle(sec).gridRowStart).filter((n) => n && n !== 'auto'));
 const roh = getComputedStyle(m).gridTemplateAreas, zeilen = roh && roh !== 'none' ? (roh.match(/"[^"]*"/g) || []).map((z) => z.slice(1, -1).trim().split(/\s+/)) : [];
 if (!Z.size || !zeilen.length) return;
@@ -12243,8 +12337,12 @@ const i = f.indexOf(document.activeElement);
 if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
 }, true);
 
-const FASSUNG = 'r135';
+const FASSUNG = 'r136';
 const NEU = [
+{ f: 'r136', tag: '11.11.2026', s: ['Neu: Kacheln frei anordnen – ziehen, Breite und Höhe, ausblenden, je Arbeitsbereich gespeichert; „Standard“ setzt zurück (Ansicht → Kacheln oder RASTER).',
+'Kachel in eigenes Fenster ohne zweiten Abruf (FENSTER), Reiter mit mehreren Arbeitsbereichen (REITER), Dichte kompakt, normal oder groß (Ansicht oder DICHTE).',
+'Charts unter „Handeln“ koppeln: Markt, Fadenkreuz und Zeitraum für Charts mit demselben Symbol (○ ● ▲ ■, KOPPELN).',
+'Mein Tag (MEINTAG), Beobachtungslisten mit Kennzahlen und Teilen per Link (LISTEN), Weltuhr mit Börsenzeiten (WELTUHR), Suche über Hilfetexte, Lexikon und Meldungen (FINDEN).'] },
 { f: 'r135', tag: '11.11.2026', s: ['Neu: Markt-Heatmap aller Coins, Aktien und Weltmärkte mit Kategorien und Aktien-Sektoren; Weltmärkte (Indizes, Rohstoffe, Devisen) in einer Tabelle.',
 'Screener: Filter zum Klicken, Spalten wählen, Screens speichern, technische Felder (RSI, EMA-Lage, Abstand zum Hoch, Spannen-Ausbruch); Ausreißer live für alle Coins.',
 'Alarme im offenen Tab: Preisalarm, Alarm-Linie im Chart, Markt-Alarme nach festen Regeln, Stufen-Hinweis, Wal-Hinweise, Stichwort-Alarm, Protokoll und Stummzeiten.',
@@ -12383,6 +12481,7 @@ function hdNeuerMarkt() {
 if (!HD || !HD.init || !HD.panes.length) return;
 HD.panes[0].setzen(coin, HD.panes[0].tf); hdTicketZeigen(); hdListeZeigen(); hdBuchZeigen();
 const t = $('hd-tape'); if (t) t.replaceChildren();
+if (W2_BEREIT) w2GruppeFolgen();
 }
 function hdBereich(neu, merken = true) {
 neu = neu === 'handeln' ? 'handeln' : 'daten';
@@ -12721,6 +12820,828 @@ const bybitBekannt = DEMO || BYBIT_TEST || (() => { try { const x = JSON.parse(l
 if (bybitBekannt) { start(); bybitPruefen(); }
 else Promise.race([bybitPruefen().catch(() => null), new Promise((ok) => setTimeout(ok, 1500))]).then(() => { if (!S) start(); });
 setInterval(bybitPruefen, 10 * 6e4);
+
+function rasterPacken(items, sp) {
+sp = Math.max(1, Math.floor(sp) || 1);
+const z = [], lage = new Map(), zeile = (r) => { while (z.length <= r) z.push(Array(sp).fill(null)); return z[r]; };
+let r0 = 0, c0 = 0;
+for (const it of items) {
+const w = Math.max(1, Math.min(sp, Math.round(it.w) || 1)), h = Math.max(1, Math.min(3, Math.round(it.h) || 1));
+let r = r0, c = c0;
+for (;;) {
+if (c + w > sp) { r++; c = 0; continue; }
+let ok = true;
+for (let i = r; i < r + h && ok; i++) for (let j = c; j < c + w; j++) if (z[i] && z[i][j]) { ok = false; break; }
+if (ok) break;
+c++;
+}
+for (let i = r; i < r + h; i++) { const zz = zeile(i); for (let j = c; j < c + w; j++) zz[j] = it.id; }
+lage.set(it.id, { r0: r, r1: r + h - 1, c0: c, c1: c + w - 1 });
+r0 = r; c0 = c + w;
+}
+for (let runde = 0, neu = true; neu && runde < 200; runde++) {
+neu = false;
+for (let r = 0; r < z.length && !neu; r++) for (let c = 0; c < sp && !neu; c++) {
+if (z[r][c]) continue;
+const kand = [];
+if (c > 0 && z[r][c - 1]) kand.push([z[r][c - 1], 1]);
+if (c < sp - 1 && z[r][c + 1]) kand.push([z[r][c + 1], -1]);
+if (r > 0 && z[r - 1][c]) kand.push([z[r - 1][c], 0]);
+for (const [id, rtg] of kand) {
+const L = lage.get(id);
+if (rtg) {
+const k = rtg > 0 ? L.c1 + 1 : L.c0 - 1; if (k !== c) continue;
+let frei = true; for (let i = L.r0; i <= L.r1; i++) if (z[i][k]) frei = false;
+if (!frei) continue;
+for (let i = L.r0; i <= L.r1; i++) z[i][k] = id;
+if (rtg > 0) L.c1 = k; else L.c0 = k;
+} else {
+const q = L.r1 + 1; if (q !== r) continue;
+let frei = true; for (let j = L.c0; j <= L.c1; j++) if (z[q][j]) frei = false;
+if (!frei) continue;
+for (let j = L.c0; j <= L.c1; j++) z[q][j] = id;
+L.r1 = q;
+}
+neu = true; break;
+}
+}
+}
+return { zeilen: z.map((zz) => zz.map((x) => x || '.')), lage };
+}
+const rasterFlaeche = (zeilen) => zeilen.map((z) => `"${z.join(' ')}"`).join(' ');
+function rasterLesen(flaeche) {
+const z = (String(flaeche || '').match(/"[^"]*"/g) || []).map((x) => x.slice(1, -1).trim().split(/\s+/)), o = {};
+z.forEach((zz, r) => zz.forEach((id, c) => { if (id === '.') return; const x = o[id] || (o[id] = { r0: r, r1: r, c0: c, c1: c }); x.r0 = Math.min(x.r0, r); x.r1 = Math.max(x.r1, r); x.c0 = Math.min(x.c0, c); x.c1 = Math.max(x.c1, c); }));
+return o;
+}
+function rasterAbleiten(rects, starts) {
+const tops = [...new Set(rects.map((x) => Math.round(x.t)))].sort((a, b) => a - b).filter((t, i, l) => i === 0 || t - l[i - 1] > 3);
+const sp = (x) => { let k = 0, d = Infinity; starts.forEach((s, i) => { const e = Math.abs(s - x); if (e < d) { d = e; k = i; } }); return k; };
+return rects.map((x) => {
+const c0 = sp(x.l), r0 = Math.max(0, tops.findIndex((t) => Math.abs(t - x.t) <= 3));
+const c1 = Math.max(c0, starts.filter((s) => s < x.r - 3).length - 1), r1 = Math.max(r0, tops.filter((t) => t < x.b - 3).length - 1);
+return { id: x.id, w: c1 - c0 + 1, h: Math.min(3, r1 - r0 + 1), r0, c0 };
+}).sort((a, b) => a.r0 - b.r0 || a.c0 - b.c0).map(({ id, w, h }) => ({ id, w, h }));
+}
+function kopplungZiele(gr, nr) {
+const g = (i) => (i === 0 ? 'A' : (gr && gr[i]) || ''), s = g(nr);
+if (!s) return [nr];
+const l = []; for (let i = 0; i < Math.max(4, (gr || []).length); i++) if (g(i) === s) l.push(i);
+return l;
+}
+function zeitAusIndex(K, tf, i) {
+const n = K.length, s = tf * 60; if (!n || !Number.isFinite(i)) return null;
+if (i <= 0) return K[0].t + i * s;
+if (i >= n - 1) return K[n - 1].t + (i - (n - 1)) * s;
+const j = Math.floor(i); return K[j].t + (i - j) * (K[j + 1].t - K[j].t);
+}
+function indexAusZeit(K, tf, t) {
+const n = K.length, s = tf * 60; if (!n || !Number.isFinite(t)) return null;
+if (t <= K[0].t) return (t - K[0].t) / s;
+if (t >= K[n - 1].t) return n - 1 + (t - K[n - 1].t) / s;
+let a = 0, b = n - 1; while (b - a > 1) { const m = (a + b) >> 1; if (K[m].t <= t) a = m; else b = m; }
+return a + (t - K[a].t) / ((K[b].t - K[a].t) || s);
+}
+function sichtFolgen(K, tf, tA, tB) {
+if (!K || !K.length || !(tB >= tA)) return null;
+const iA = indexAusZeit(K, tf, tA), iB = indexAusZeit(K, tf, tB), n = Math.max(15, Math.min(600, Math.round(iB - iA + 1))), rand = Math.max(3, Math.round(n * 0.06));
+return { n, rechts: K.length - 1 + rand - iB };
+}
+const BOERSEN = [
+{ id: 'tokio', n: 'Tokio', b: 'Japan Exchange', z: 9, s: [[540, 690], [750, 930]] },
+{ id: 'hongkong', n: 'Hongkong', b: 'HKEX', z: 8, s: [[570, 720], [780, 960]] },
+{ id: 'frankfurt', n: 'Frankfurt', b: 'Xetra', z: 1, so: 'eu', s: [[540, 1050]] },
+{ id: 'london', n: 'London', b: 'LSE', z: 0, so: 'eu', s: [[480, 990]] },
+{ id: 'newyork', n: 'New York', b: 'NYSE · Nasdaq', z: -5, so: 'us', s: [[570, 960]] },
+{ id: 'cme', n: 'Chicago', b: 'CME Globex (Futures)', z: -6, so: 'us', tage: { 0: [[1020, 1440]], 1: [[0, 960], [1020, 1440]], 2: [[0, 960], [1020, 1440]], 3: [[0, 960], [1020, 1440]], 4: [[0, 960], [1020, 1440]], 5: [[0, 960]], 6: [] } },
+{ id: 'krypto', n: 'Krypto', b: 'rund um die Uhr', immer: 1 },
+];
+const boerseVersatz = (b, t) => (b.z + (b.so === 'eu' ? (euSommer(t) ? 1 : 0) : b.so === 'us' ? (usSommer(t) ? 1 : 0) : 0)) * 3600;
+function boerseZustand(b, t) {
+if (b.immer) return { offen: true, wechsel: null, ort: null };
+const v = boerseVersatz(b, t), lok = t + v, tag0 = Math.floor(lok / 86400), iv = [];
+for (let d = -1; d <= 9; d++) {
+const tag = tag0 + d, wt = ((tag + 4) % 7 + 7) % 7;
+for (const [a, e] of (b.tage ? b.tage[wt] || [] : wt >= 1 && wt <= 5 ? b.s : [])) {
+const la = tag * 86400 + a * 60, le = tag * 86400 + e * 60;
+iv.push([la - boerseVersatz(b, la - b.z * 3600), le - boerseVersatz(b, le - b.z * 3600)]);
+}
+}
+iv.sort((x, y) => x[0] - y[0]);
+const m = []; for (const x of iv) { const l = m[m.length - 1]; if (l && x[0] <= l[1]) l[1] = Math.max(l[1], x[1]); else m.push(x.slice()); }
+const ort = Math.floor((((lok % 86400) + 86400) % 86400) / 60), jetzt = m.find(([a, e]) => t >= a && t < e);
+if (jetzt) return { offen: true, wechsel: jetzt[1], ort };
+const n = m.find(([a]) => a > t); return { offen: false, wechsel: n ? n[0] : null, ort };
+}
+const suchNorm = (s) => String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/ß/g, 'ss');
+function sucheTreffer(text, eintraege, max = 8) {
+const w = suchNorm(text).split(/[^\p{L}\p{N}%&.+-]+/u).filter((x) => x.length >= 2); if (!w.length) return [];
+const aus = [];
+for (const e of eintraege) {
+const ti = suchNorm(e.titel), tx = suchNorm(e.text); let p = 0, ok = true;
+for (const x of w) {
+const i = ti.indexOf(x), j = tx.indexOf(x);
+if (i < 0 && j < 0) { ok = false; break; }
+p += i === 0 || (i > 0 && /[^\p{L}\p{N}]/u.test(ti[i - 1])) ? 6 : i > 0 ? 3 : (j === 0 || /[^\p{L}\p{N}]/u.test(tx[j - 1]) ? 1.5 : 1);
+}
+if (ok) aus.push({ e, p: p - Math.min(2, ti.length / 60) });
+}
+return aus.sort((a, b) => b.p - a.p).slice(0, max).map((x) => x.e);
+}
+function suchAuszug(text, wort, n = 90) {
+const t = String(text || '').replace(/\s+/g, ' ').trim(), i = suchNorm(t).indexOf(suchNorm(wort).split(/\s+/)[0] || ' ');
+if (i < 0 || t.length <= n) return t.slice(0, n) + (t.length > n ? ' …' : '');
+const a = Math.max(0, i - 30); return (a > 0 ? '… ' : '') + t.slice(a, a + n).trim() + (a + n < t.length ? ' …' : '');
+}
+const LISTE_MARKT = /^[A-Z0-9]{1,20}(-[A-Z0-9]{2,8}){0,2}$/;
+function listeKodieren(l) {
+const j = JSON.stringify({ v: 1, n: String(l.n || '').slice(0, 24), m: (l.m || []).filter((x) => LISTE_MARKT.test(x)).slice(0, 60) });
+return btoa(unescape(encodeURIComponent(j))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+function listeDekodieren(s) {
+try {
+const j = JSON.parse(decodeURIComponent(escape(atob(String(s || '').replace(/-/g, '+').replace(/_/g, '/')))));
+const n = String(j.n || '').replace(/[<>"]/g, '').trim().slice(0, 24), m = (Array.isArray(j.m) ? j.m : []).map((x) => String(x).toUpperCase()).filter((x) => LISTE_MARKT.test(x)).filter((x, i, l) => l.indexOf(x) === i).slice(0, 60);
+return m.length ? { n: n || 'Liste', m } : null;
+} catch (e) { return null; }
+}
+function lageDrei(d) {
+const s = [];
+if (d.btc != null && d.n) s.push(['lage1', d.btc, d.plus, d.n]);
+if (d.top) s.push(['lage2', d.top.name, d.top.ae, d.funding]);
+s.push(d.termine ? ['lage3', d.termine, d.alarme] : ['lage3leer', d.alarme]);
+return s;
+}
+const W2_T = {
+lage1: { de: (x, p, n) => `Bitcoin ${x} in 24 Std.; ${p} von ${n} Coins im Plus.`, en: (x, p, n) => `Bitcoin ${x} over 24 h; ${p} of ${n} coins up.`, es: (x, p, n) => `Bitcoin ${x} en 24 h; ${p} de ${n} monedas al alza.`,
+fr: (x, p, n) => `Bitcoin ${x} sur 24 h ; ${p} cryptos sur ${n} en hausse.`, tr: (x, p, n) => `Bitcoin 24 saatte ${x}; ${n} coinin ${p} tanesi artıda.`, it: (x, p, n) => `Bitcoin ${x} in 24 h; ${p} coin su ${n} in rialzo.` },
+lage2: { de: (c, x, f) => `Größte Bewegung: ${c} ${x} in 24 Std.; Funding im Mittel ${f} aufs Jahr.`, en: (c, x, f) => `Largest move: ${c} ${x} over 24 h; median funding ${f} annualised.`,
+es: (c, x, f) => `Mayor movimiento: ${c} ${x} en 24 h; funding mediano ${f} anual.`, fr: (c, x, f) => `Plus forte variation : ${c} ${x} sur 24 h ; funding médian ${f} par an.`,
+tr: (c, x, f) => `En büyük hareket: ${c} 24 saatte ${x}; medyan funding yıllık ${f}.`, it: (c, x, f) => `Movimento maggiore: ${c} ${x} in 24 h; funding mediano ${f} annuo.` },
+lage3: { de: (k, a) => `Heute ${k} Termine im Kalender, ${a} Alarme in den letzten 24 Std.`, en: (k, a) => `Today ${k} calendar events, ${a} alerts in the last 24 h.`, es: (k, a) => `Hoy ${k} citas en el calendario, ${a} alertas en las últimas 24 h.`,
+fr: (k, a) => `Aujourd’hui ${k} événements au calendrier, ${a} alertes sur les dernières 24 h.`, tr: (k, a) => `Bugün takvimde ${k} etkinlik, son 24 saatte ${a} alarm.`, it: (k, a) => `Oggi ${k} eventi in calendario, ${a} avvisi nelle ultime 24 h.` },
+lage3leer: { de: (a) => `Heute keine bekannten Termine im Kalender, ${a} Alarme in den letzten 24 Std.`, en: (a) => `No known calendar events today, ${a} alerts in the last 24 h.`, es: (a) => `Hoy no hay citas conocidas en el calendario, ${a} alertas en las últimas 24 h.`,
+fr: (a) => `Aucun événement connu au calendrier aujourd’hui, ${a} alertes sur les dernières 24 h.`, tr: (a) => `Bugün takvimde bilinen etkinlik yok, son 24 saatte ${a} alarm.`, it: (a) => `Oggi nessun evento noto in calendario, ${a} avvisi nelle ultime 24 h.` },
+naechster: { de: (t) => `Heute keine bekannten Termine – nächster: ${t}`, en: (t) => `No known events today – next: ${t}`, es: (t) => `Hoy no hay citas conocidas – próxima: ${t}`, fr: (t) => `Aucun événement connu aujourd’hui – prochain : ${t}`,
+tr: (t) => `Bugün bilinen etkinlik yok – sonraki: ${t}`, it: (t) => `Oggi nessun evento noto – prossimo: ${t}` },
+offen: { de: (x) => `offen · schließt ${x}`, en: (x) => `open · closes ${x}`, es: (x) => `abierta · cierra ${x}`, fr: (x) => `ouverte · ferme ${x}`, tr: (x) => `açık · ${x} kapanır`, it: (x) => `aperta · chiude ${x}` },
+zu: { de: (x) => `geschlossen · öffnet ${x}`, en: (x) => `closed · opens ${x}`, es: (x) => `cerrada · abre ${x}`, fr: (x) => `fermée · ouvre ${x}`, tr: (x) => `kapalı · ${x} açılır`, it: (x) => `chiusa · apre ${x}` },
+fenster: { de: (n) => `${n} im eigenen Fenster – die Daten kommen aus diesem Fenster, kein zweiter Abruf.`, en: (n) => `${n} in its own window – data comes from this window, no second request.`,
+es: (n) => `${n} en su propia ventana: los datos vienen de esta ventana, sin segunda consulta.`, fr: (n) => `${n} dans sa propre fenêtre – les données viennent de cette fenêtre, sans second appel.`,
+tr: (n) => `${n} kendi penceresinde – veriler bu pencereden gelir, ikinci istek yok.`, it: (n) => `${n} in una finestra propria – i dati arrivano da questa finestra, nessuna seconda richiesta.` },
+schwebt: { de: (n) => `${n} schwebt über der Seite – am Kopf ziehen, Größe unten rechts, × schließt.`, en: (n) => `${n} floats over the page – drag by the header, resize at the bottom right, × closes.`,
+es: (n) => `${n} flota sobre la página: arrastra por la cabecera, cambia el tamaño abajo a la derecha, × cierra.`, fr: (n) => `${n} flotte au-dessus de la page – glisser par l’en-tête, taille en bas à droite, × ferme.`,
+tr: (n) => `${n} sayfanın üzerinde yüzüyor – başlıktan sürükle, sağ alttan boyutlandır, × kapatır.`, it: (n) => `${n} fluttua sopra la pagina – trascina dall’intestazione, ridimensiona in basso a destra, × chiude.` },
+kopplung: { de: (x) => `Charts gekoppelt: ${x}`, en: (x) => `Charts linked: ${x}`, es: (x) => `Gráficos vinculados: ${x}`, fr: (x) => `Graphiques liés : ${x}`, tr: (x) => `Grafikler bağlı: ${x}`, it: (x) => `Grafici collegati: ${x}` },
+keinChart: { de: (s) => `Kein Chart mit ${s} – unter „Handeln“ (2 oder 4 Charts) einem Chart ${s} geben.`, en: (s) => `No chart with ${s} – give a chart ${s} under “Trade” (2 or 4 charts).`,
+es: (s) => `Ningún gráfico con ${s}: asigna ${s} a un gráfico en «Operar» (2 o 4 gráficos).`, fr: (s) => `Aucun graphique avec ${s} – attribuer ${s} à un graphique sous « Trader » (2 ou 4 graphiques).`,
+tr: (s) => `${s} olan grafik yok – “İşlem” altında (2 veya 4 grafik) bir grafiğe ${s} ver.`, it: (s) => `Nessun grafico con ${s} – assegna ${s} a un grafico in «Trading» (2 o 4 grafici).` },
+geteilt: { de: (n, k) => `Geteilte Liste „${n}“ mit ${k} Märkten – „Übernehmen“ speichert sie hier.`, en: (n, k) => `Shared list “${n}” with ${k} markets – “Keep” saves it here.`,
+es: (n, k) => `Lista compartida «${n}» con ${k} mercados: «Conservar» la guarda aquí.`, fr: (n, k) => `Liste partagée « ${n} » avec ${k} marchés – « Garder » l’enregistre ici.`,
+tr: (n, k) => `${k} piyasalı paylaşılan liste “${n}” – “Sakla” buraya kaydeder.`, it: (n, k) => `Lista condivisa «${n}» con ${k} mercati – «Tieni» la salva qui.` },
+dabei: { de: (m) => `${m} ist schon in der Liste.`, en: (m) => `${m} is already in the list.`, es: (m) => `${m} ya está en la lista.`, fr: (m) => `${m} est déjà dans la liste.`, tr: (m) => `${m} zaten listede.`, it: (m) => `${m} è già nella lista.` },
+unbekannt: { de: (m) => `Markt „${m}“ nicht gefunden.`, en: (m) => `Market “${m}” not found.`, es: (m) => `Mercado «${m}» no encontrado.`, fr: (m) => `Marché « ${m} » introuvable.`, tr: (m) => `“${m}” piyasası bulunamadı.`, it: (m) => `Mercato «${m}» non trovato.` },
+reiter: { de: (n) => `Reiter „${n}“`, en: (n) => `Tab “${n}”`, es: (n) => `Pestaña «${n}»`, fr: (n) => `Onglet « ${n} »`, tr: (n) => `“${n}” sekmesi`, it: (n) => `Scheda «${n}»` },
+};
+const w2T = (art, ...w) => (W2_T[art][SPRACHE] || W2_T[art].en)(...w);
+const w2Json = (k, alt) => { try { const x = JSON.parse(lies(k) || 'null'); return x === null || typeof x !== 'object' ? alt : x; } catch (e) { return alt; } };
+const W2_GR = ['', 'A', 'B', 'C'], W2_SYM = { '': '○', A: '●', B: '▲', C: '■' };
+const W2_SYM_NAME = { '': 'nicht gekoppelt', A: 'Hauptmarkt', B: 'Gruppe B', C: 'Gruppe C' };
+const W2 = { an: false, cfg: w2Json('w2Raster', {}), temp: null, schwebend: new Map(), fenster: new Map(), draussen: new Set(), pos: {},
+gr: (() => { const x = hdJson('kopplung', null); return [0, 1, 2, 3].map((i) => (i === 0 ? 'A' : Array.isArray(x) && W2_GR.includes(x[i]) ? x[i] : '')); })(),
+kreuz: null, fuehrt: { nr: -1, bis: 0 }, sichtSig: '', listen: null, geteilt: null, reiter: w2Json('w2Reiter', null), dichte: '', spiegelT: null, sort: { k: '', auf: false } };
+if (!W2.cfg || Array.isArray(W2.cfg)) W2.cfg = {};
+const w2Id = (s) => (s ? [...s.classList].find((c) => SPRUNG_NAMEN[c] || FELD_EXTRA[c]) || '' : '');
+
+const w2Schl = () => (AB.id === 'geteilt' ? 'geteilt' : AB.id || 'alle');
+function w2Cfg() { const c = W2.cfg[w2Schl()]; return c && Array.isArray(c.o) ? c : W2.temp; }
+function w2Speichern() { merke('w2Raster', JSON.stringify(W2.cfg)); }
+function w2Sichtbar() {
+const m = document.querySelector('main.raster'); if (!m) return [];
+return [...m.querySelectorAll(':scope > section.feld')].filter((s) => !s.hidden && s.dataset.w2Aus === undefined && !s.classList.contains('swing-zu') && !s.classList.contains('ab-zu') && !s.classList.contains('w2-schwebend') && w2Id(s));
+}
+function w2AusMarken(c) {
+const aus = new Set(c && Array.isArray(c.aus) ? c.aus : []);
+for (const s of document.querySelectorAll('main.raster > section.feld')) { const a = aus.has(w2Id(s)); if (a && s.dataset.w2Aus === undefined) s.dataset.w2Aus = ''; else if (!a && s.dataset.w2Aus !== undefined) delete s.dataset.w2Aus; }
+const t = document.getElementById('ab-trenner'); if (t) { if (c) t.dataset.w2Aus = ''; else delete t.dataset.w2Aus; }
+}
+function w2Raster(m) {
+const c = w2Cfg(); w2AusMarken(c);
+if (!c) return false;
+const sicht = w2Sichtbar(), ids = sicht.map(w2Id), sp = abSpalten();
+const o = c.o.filter((id) => ids.includes(id)).concat(ids.filter((id) => !c.o.includes(id)));
+if (sp < 2) { m.style.gridTemplateAreas = ''; sicht.forEach((s) => { s.style.gridArea = ''; s.style.order = String(o.indexOf(w2Id(s)) + 1); }); return true; }
+const P = rasterPacken(o.map((id) => ({ id, w: c.o.includes(id) ? (c.w && c.w[id]) || 1 : sp, h: (c.h && c.h[id]) || 1 })), sp);
+const band = document.getElementById('willkommen'), zeilen = band && band.parentElement === m && getComputedStyle(band).display !== 'none' ? [Array(sp).fill('w2band')].concat(P.zeilen) : P.zeilen;
+m.style.gridTemplateAreas = rasterFlaeche(zeilen);
+if (band && band.parentElement === m) { band.style.gridArea = zeilen[0][0] === 'w2band' ? 'w2band' : ''; band.style.order = ''; }
+for (const s of sicht) { s.style.gridArea = w2Id(s); s.style.order = ''; }
+return true;
+}
+function w2Ableiten() {
+if (W2.temp) return JSON.parse(JSON.stringify(W2.temp));
+const m = document.querySelector('main.raster'), cs = getComputedStyle(m), mr = m.getBoundingClientRect();
+const x0 = mr.left + (parseFloat(cs.borderLeftWidth) || 0) + (parseFloat(cs.paddingLeft) || 0), gap = parseFloat(cs.columnGap) || 0;
+const spur = String(cs.gridTemplateColumns || '').split(/\s+/).map(parseFloat).filter((x) => Number.isFinite(x) && x > 0), starts = []; let x = x0;
+for (const w of spur.length ? spur : [mr.width]) { starts.push(x); x += w + gap; }
+const rects = w2Sichtbar().map((s) => { const r = s.getBoundingClientRect(); return { id: w2Id(s), l: r.left, t: r.top + scrollY, r: r.right, b: r.bottom + scrollY }; }).filter((r) => r.r > r.l);
+const it = rasterAbleiten(rects, starts);
+return { v: 1, o: it.map((i) => i.id), w: Object.fromEntries(it.map((i) => [i.id, i.w])), h: Object.fromEntries(it.filter((i) => i.h > 1).map((i) => [i.id, i.h])), f: {}, aus: [] };
+}
+function w2Aendern(fn) {
+let c = W2.cfg[w2Schl()];
+if (!c || !Array.isArray(c.o)) c = w2Ableiten();
+fn(c); c.v = 1; W2.cfg[w2Schl()] = c; w2Speichern();
+abAnwenden(); w2Hoehen(); w2Leiste(); requestAnimationFrame(() => dispatchEvent(new Event('resize')));
+}
+function w2Aktion(id, art) {
+if (art === 'fenster') return w2Fenster(id);
+const sp = Math.max(1, abSpalten());
+w2Aendern((c) => {
+c.w = c.w || {}; c.h = c.h || {}; c.f = c.f || {}; c.aus = c.aus || [];
+if (!c.o.includes(id)) c.o.push(id);
+const i = c.o.indexOf(id);
+if (art === 'frueher' && i > 0) { c.o.splice(i, 1); c.o.splice(i - 1, 0, id); }
+else if (art === 'spaeter' && i < c.o.length - 1) { c.o.splice(i, 1); c.o.splice(i + 1, 0, id); }
+else if (art === 'schmaler') c.w[id] = Math.max(1, Math.min(sp, c.w[id] || 1) - 1);
+else if (art === 'breiter') c.w[id] = Math.min(sp, (c.w[id] || 1) + 1);
+else if (art === 'niedriger') c.f[id] = Math.max(0.5, Math.round(((c.f[id] || 1) - 0.25) * 100) / 100);
+else if (art === 'hoeher') c.f[id] = Math.min(2.5, Math.round(((c.f[id] || 1) + 0.25) * 100) / 100);
+else if (art === 'aus' && !c.aus.includes(id)) c.aus.push(id);
+else if (art === 'ein') c.aus = c.aus.filter((x) => x !== id);
+});
+return { ok: true };
+}
+function w2Verschieben(id, ziel, nach) {
+if (!id || !ziel || id === ziel) return;
+w2Aendern((c) => { for (const x of [id, ziel]) if (!c.o.includes(x)) c.o.push(x); c.o.splice(c.o.indexOf(id), 1); c.o.splice(c.o.indexOf(ziel) + (nach ? 1 : 0), 0, id); });
+}
+function w2Zuruecksetzen() {
+delete W2.cfg[w2Schl()]; w2Speichern();
+for (const id of [...W2.schwebend.keys()]) w2Schweben(id, false, true);
+W2.temp = null; abAnwenden(); w2Hoehen(); w2Leiste(); requestAnimationFrame(() => dispatchEvent(new Event('resize')));
+}
+function w2Hoehen() {
+const c = w2Cfg(), fd = W2.dichte === 'kompakt' ? 0.85 : W2.dichte === 'gross' ? 1.15 : 1;
+for (const s of document.querySelectorAll('main.raster > section.feld')) {
+const f = Math.max(0.4, Math.min(3, ((c && c.f && c.f[w2Id(s)]) || 1) * fd)), flaechen = s.querySelectorAll('[class^="leinwand-"], [class*=" leinwand-"]');
+let n = 0;
+for (const el of flaechen) {
+if (el.dataset.w2H === undefined && el.style.height) continue;
+n++;
+if (Math.abs(f - 1) < 0.01) { if (el.dataset.w2H !== undefined) { el.style.height = ''; delete el.dataset.w2H; } continue; }
+if (el.dataset.w2H === undefined || !+el.dataset.w2H) { el.style.height = ''; const h = el.getBoundingClientRect().height; if (!h) continue; el.dataset.w2H = String(h); }
+el.style.height = Math.round(+el.dataset.w2H * f) + 'px';
+}
+const knapp = !n && f < 0.99; s.classList.toggle('w2-knapp', knapp); s.style.maxHeight = knapp ? Math.round(560 * f) + 'px' : '';
+}
+}
+addEventListener('resize', () => { clearTimeout(w2Hoehen.t); w2Hoehen.t = setTimeout(() => { if (!w2Cfg() && !W2.dichte) return; for (const el of document.querySelectorAll('main.raster [data-w2-h]')) { el.style.height = ''; delete el.dataset.w2H; } w2Hoehen(); }, 250); });
+
+function w2Anordnen(an) {
+if (an && HD.bereich !== 'daten') hdBereich('daten');
+W2.an = !!an; document.body.classList.toggle('w2-anordnen', W2.an);
+if (W2.an) w2Werkzeuge();
+w2Leiste(); requestAnimationFrame(() => dispatchEvent(new Event('resize')));
+return W2.an;
+}
+function w2Leiste() {
+const m = document.querySelector('main.raster'); if (!m) return;
+let l = document.getElementById('w2-leiste');
+if (!W2.an) { if (l) l.hidden = true; return; }
+if (!l) {
+l = hdEl('div', 'ab-leiste w2-leiste'); l.id = 'w2-leiste'; l.setAttribute('role', 'region'); l.setAttribute('aria-label', 'Kacheln anordnen'); m.before(l);
+l.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; if (b.dataset.a === 'fertig') w2Anordnen(false); else if (b.dataset.a === 'standard') w2Zuruecksetzen(); else if (b.dataset.ein) w2Aktion(b.dataset.ein, 'ein'); });
+}
+const k = (t, d) => { const b = hdEl('button', '', t); b.type = 'button'; Object.assign(b.dataset, d); return b; };
+const c = W2.cfg[w2Schl()], aus = c && Array.isArray(c.aus) ? c.aus.filter((id) => abSec(id)) : [];
+l.replaceChildren(hdEl('span', 'w2-satz', 'Kacheln anordnen: am Griff ⠿ ziehen, « » Reihenfolge, ◂ ▸ Breite, ▴ ▾ Höhe, ⧉ eigenes Fenster, × ausblenden – gespeichert je Arbeitsbereich in diesem Browser.'),
+...(aus.length ? [hdEl('span', 'leise', 'Ausgeblendet:'), ...aus.map((id) => k('+ ' + (feldName(id) || id), { ein: id }))] : []),
+k('Standard', { a: 'standard' }), k('Fertig', { a: 'fertig' }));
+l.hidden = false;
+}
+const W2_WZ = [['griff', '⠿', 'Verschieben: ziehen'], ['frueher', '«', 'Nach vorn'], ['spaeter', '»', 'Nach hinten'], ['schmaler', '◂', 'Schmaler'], ['breiter', '▸', 'Breiter'],
+['niedriger', '▴', 'Niedriger'], ['hoeher', '▾', 'Höher'], ['fenster', '⧉', 'In eigenes Fenster'], ['aus', '×', 'Ausblenden']];
+function w2Werkzeuge() {
+for (const s of document.querySelectorAll('main.raster > section.feld')) {
+if (s.querySelector(':scope > .w2-werkzeug')) continue;
+const id = w2Id(s); if (!id) continue;
+const w = hdEl('div', 'w2-werkzeug'); w.setAttribute('role', 'toolbar'); w.setAttribute('aria-label', 'Kachel anordnen');
+for (const [a, z, t] of W2_WZ) { const b = hdEl('button', 'w2-wz' + (a === 'griff' ? ' w2-griff' : ''), z); b.type = 'button'; b.dataset.a = a; b.title = t; b.setAttribute('aria-label', t); w.append(b); }
+const kopp = hdEl('span', 'w2-kopp', '● ' + tr('folgt dem Hauptmarkt')); kopp.title = 'Kopplung: Felder unter „Alle Daten“ folgen immer dem Hauptmarkt (●).';
+w.append(kopp);
+const ecke = hdEl('div', 'w2-ecke'); ecke.title = 'Größe ziehen'; ecke.setAttribute('aria-hidden', 'true');
+s.prepend(w); s.append(ecke);
+w.addEventListener('click', (e) => { const b = e.target.closest('button[data-a]'); if (!b || b.dataset.a === 'griff') return; w2Aktion(id, b.dataset.a); });
+w.querySelector('.w2-griff').addEventListener('pointerdown', (e) => w2Ziehen(e, s, id));
+ecke.addEventListener('pointerdown', (e) => w2Groesse(e, s, id));
+}
+}
+function w2Ziehen(e, s, id) {
+e.preventDefault(); const g = e.currentTarget; try { g.setPointerCapture(e.pointerId); } catch (x) {   }
+s.classList.add('w2-zieht'); let ziel = null, nach = false;
+const mark = (x, y) => {
+for (const a of document.querySelectorAll('.w2-ziel-vor, .w2-ziel-nach')) a.classList.remove('w2-ziel-vor', 'w2-ziel-nach');
+const el = document.elementFromPoint(x, y), t = el && el.closest ? el.closest('main.raster > section.feld') : null;
+ziel = t && t !== s ? w2Id(t) : null; if (!ziel) return;
+const r = t.getBoundingClientRect(); nach = r.width > r.height * 1.6 ? y > r.top + r.height / 2 : x > r.left + r.width / 2;
+t.classList.add(nach ? 'w2-ziel-nach' : 'w2-ziel-vor');
+};
+const weiter = (ev) => { mark(ev.clientX, ev.clientY); if (ev.clientY < 60) scrollBy(0, -18); else if (ev.clientY > innerHeight - 60) scrollBy(0, 18); };
+const ende = () => { g.removeEventListener('pointermove', weiter); g.removeEventListener('pointerup', ende); g.removeEventListener('pointercancel', ende); s.classList.remove('w2-zieht');
+for (const a of document.querySelectorAll('.w2-ziel-vor, .w2-ziel-nach')) a.classList.remove('w2-ziel-vor', 'w2-ziel-nach'); if (ziel) w2Verschieben(id, ziel, nach); };
+g.addEventListener('pointermove', weiter); g.addEventListener('pointerup', ende); g.addEventListener('pointercancel', ende);
+}
+function w2Groesse(e, s, id) {
+e.preventDefault(); const g = e.currentTarget; try { g.setPointerCapture(e.pointerId); } catch (x) {   }
+const r0 = s.getBoundingClientRect(), x0 = e.clientX, y0 = e.clientY, m = document.querySelector('main.raster'), sp = Math.max(1, abSpalten());
+const spalte = (m.getBoundingClientRect().width) / sp, c0 = w2Cfg() || w2Ableiten(), w0 = Math.max(1, Math.round(r0.width / spalte)), f0 = (c0.f && c0.f[id]) || 1;
+s.classList.add('w2-zieht');
+const weiter = (ev) => { s.style.outlineOffset = '-2px'; s.dataset.w2Vorschau = `${Math.max(1, Math.min(sp, Math.round((r0.width + ev.clientX - x0) / spalte)))} × ${de(Math.max(0.5, Math.min(2.5, f0 * (r0.height + ev.clientY - y0) / r0.height)), 2)}`; };
+const ende = (ev) => {
+g.removeEventListener('pointermove', weiter); g.removeEventListener('pointerup', ende); g.removeEventListener('pointercancel', ende); s.classList.remove('w2-zieht'); delete s.dataset.w2Vorschau; s.style.outlineOffset = '';
+const w = Math.max(1, Math.min(sp, Math.round((r0.width + ev.clientX - x0) / spalte))), f = Math.max(0.5, Math.min(2.5, Math.round(f0 * (r0.height + ev.clientY - y0) / r0.height * 20) / 20));
+if (w === w0 && Math.abs(f - f0) < 0.05) return;
+w2Aendern((c) => { c.w = c.w || {}; c.f = c.f || {}; if (!c.o.includes(id)) c.o.push(id); c.w[id] = w; c.f[id] = f; });
+};
+g.addEventListener('pointermove', weiter); g.addEventListener('pointerup', ende); g.addEventListener('pointercancel', ende);
+}
+
+const W2_KIND_CSS = 'body.w2-kind { margin: 0; padding: 8px; background: var(--grund); } body.w2-kind main.raster { display: block; } body.w2-kind section.feld { position: static !important; width: auto !important; height: auto !important; max-height: none !important; }'
++ ' body.w2-kind .w2-fuss { margin: 8px 2px 0; font: 500 11px var(--mono); color: var(--leise); } body.w2-kind .w2-werkzeug, body.w2-kind .w2-ecke, body.w2-kind .fokus-knopf, body.w2-kind .w2-zu { display: none !important; }';
+function w2Fenster(id, art = '') {
+const s = abSec(id); if (!s) return { ok: false, text: '' };
+if (HD.bereich !== 'daten') hdBereich('daten');
+const name = (s.querySelector('.feld-kopf h2') || {}).textContent || feldName(id);
+if (art !== 'schwebend' && !(window.PROFI_APP || window.RYVO_TERMINAL_APP) && typeof window.open === 'function') {
+let w = W2.fenster.get(id); if (w && w.closed) w = null;
+if (!w) {
+const r = s.getBoundingClientRect();
+try { w = window.open('', 'ryvo-' + id, `popup=yes,width=${Math.round(Math.min(1200, Math.max(440, r.width + 24)))},height=${Math.round(Math.min(940, Math.max(340, r.height + 70)))}`); } catch (e) { w = null; }
+if (w) { try { w2KindAufbauen(w, id, name); } catch (e) { try { w.close(); } catch (x) {   } w = null; } }
+}
+if (w) {
+W2.fenster.set(id, w); W2.draussen.add(id); w2Spiegeln(); try { w.focus(); } catch (e) {   } feldZeigen(s);
+if (!W2.spiegelT) W2.spiegelT = setInterval(w2Spiegeln, 1000);
+return { ok: true, art: 'fenster', text: w2T('fenster', name), ziel: s };
+}
+}
+w2Schweben(id, true); return { ok: true, art: 'schwebend', text: w2T('schwebt', name), ziel: s };
+}
+function w2KindAufbauen(w, id, name) {
+const d = w.document, css = [...document.styleSheets].map((sh) => { try { return [...sh.cssRules].map((r) => r.cssText).join('\n'); } catch (e) { return ''; } }).join('\n');
+d.open(); d.write('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RYVO</title></head><body></body></html>'); d.close();
+for (const a of document.documentElement.attributes) d.documentElement.setAttribute(a.name, a.value);
+const base = d.createElement('base'); base.href = location.href; d.head.prepend(base);
+const st = d.createElement('style'); st.textContent = css + '\n' + W2_KIND_CSS; d.head.append(st);
+d.title = 'RYVO · ' + name; d.body.className = 'w2-kind';
+const main = d.createElement('main'); main.className = 'raster'; const fuss = d.createElement('p'); fuss.className = 'w2-fuss';
+fuss.textContent = tr('Spiegel aus dem RYVO-Hauptfenster – keine eigenen Abrufe. Hauptfenster offen lassen; Knöpfe wirken dort.');
+d.body.append(main, fuss);
+d.addEventListener('click', (e) => {
+const el = e.target.closest ? e.target.closest('button, a, tr[data-coin], [data-coin], [data-kat], summary, label') : null; if (!el) return;
+e.preventDefault();
+const weg = []; for (let n = el; n && n !== main; n = n.parentElement) { const p = n.parentElement; if (!p) break; weg.unshift([...p.children].indexOf(n)); }
+let o = abSec(id); if (!o) return; for (const i of weg.slice(1)) { o = o && o.children[i]; }
+if (o && typeof o.click === 'function') { o.click(); setTimeout(w2Spiegeln, 150); }
+}, true);
+}
+function w2Spiegeln() {
+for (const [id, w] of [...W2.fenster]) {
+let d = null; try { d = !w || w.closed ? null : w.document; } catch (e) { d = null; }
+if (!d) { W2.fenster.delete(id); if (!W2.schwebend.has(id)) W2.draussen.delete(id); continue; }
+const s = abSec(id), main = d.querySelector('main'); if (!s || !main) continue;
+const k = s.cloneNode(true); k.hidden = false; k.classList.remove('w2-schwebend', 'fokus', 'einstieg-ziel', 'ab-zu', 'swing-zu'); k.removeAttribute('style'); delete k.dataset.w2Aus;
+for (const x of k.querySelectorAll('input, select, textarea')) { x.readOnly = true; if (x.tagName === 'SELECT') x.disabled = true; }
+main.replaceChildren(k);
+const alt = s.querySelectorAll('canvas'), neu = k.querySelectorAll('canvas');
+neu.forEach((cv, i) => { const o = alt[i]; if (!o || !o.width || !o.height) return; cv.width = o.width; cv.height = o.height; try { cv.getContext('2d').drawImage(o, 0, 0); } catch (e) {   } });
+}
+if (!W2.fenster.size && W2.spiegelT) { clearInterval(W2.spiegelT); W2.spiegelT = null; }
+}
+function w2Schweben(id, an, still = false) {
+const s = abSec(id); if (!s) return;
+if (an) {
+if (W2.schwebend.has(id)) return;
+if (!w2Cfg()) W2.temp = w2Ableiten();
+const r = s.getBoundingClientRect(), n = W2.schwebend.size, w0 = Math.min(Math.max(320, r.width), innerWidth - 16, 760), p = W2.pos[id] || { x: Math.max(8, innerWidth - w0 - 24 - n * 24), y: 96 + n * 24, w: w0, h: Math.min(Math.max(240, r.height), innerHeight - 120) };
+s.classList.add('w2-schwebend'); Object.assign(s.style, { left: p.x + 'px', top: p.y + 'px', width: p.w + 'px', height: p.h + 'px' });
+const k = s.querySelector(':scope > .feld-kopf');
+if (k && !k.querySelector('.w2-zu')) {
+const b = hdEl('button', 'fokus-knopf w2-zu', '×'); b.type = 'button'; b.title = 'Zurück ins Raster'; b.setAttribute('aria-label', 'Zurück ins Raster');
+b.addEventListener('click', (e) => { e.stopPropagation(); w2Schweben(id, false); }); k.append(b);
+k.addEventListener('pointerdown', (e) => w2SchwebZiehen(e, s, id));
+}
+if (!s.w2Ro && window.ResizeObserver) { s.w2Ro = new ResizeObserver(() => { if (!s.classList.contains('w2-schwebend')) return; clearTimeout(s.w2RoT); s.w2RoT = setTimeout(() => { const q = s.getBoundingClientRect(); W2.pos[id] = { x: q.left, y: q.top, w: q.width, h: q.height }; dispatchEvent(new Event('resize')); }, 120); }); s.w2Ro.observe(s); }
+W2.schwebend.set(id, true); W2.draussen.add(id);
+} else {
+if (!W2.schwebend.has(id)) return;
+s.classList.remove('w2-schwebend'); for (const x of ['left', 'top', 'width', 'height']) s.style[x] = '';
+const b = s.querySelector('.w2-zu'); if (b) b.remove();
+W2.schwebend.delete(id); if (!W2.fenster.has(id)) W2.draussen.delete(id);
+if (!W2.schwebend.size) W2.temp = null;
+}
+if (!still) { abAnwenden(); w2Hoehen(); requestAnimationFrame(() => dispatchEvent(new Event('resize'))); }
+}
+function w2SchwebZiehen(e, s, id) {
+if (!s.classList.contains('w2-schwebend') || e.target.closest('button, a, input, select, label')) return;
+e.preventDefault(); const k = e.currentTarget; try { k.setPointerCapture(e.pointerId); } catch (x) {   }
+const r = s.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+const weiter = (ev) => { const x = Math.max(0, Math.min(innerWidth - 80, ev.clientX - dx)), y = Math.max(0, Math.min(innerHeight - 40, ev.clientY - dy)); s.style.left = x + 'px'; s.style.top = y + 'px'; };
+const ende = () => { k.removeEventListener('pointermove', weiter); k.removeEventListener('pointerup', ende); k.removeEventListener('pointercancel', ende); const q = s.getBoundingClientRect(); W2.pos[id] = { x: q.left, y: q.top, w: q.width, h: q.height }; };
+k.addEventListener('pointermove', weiter); k.addEventListener('pointerup', ende); k.addEventListener('pointercancel', ende);
+}
+
+const w2Gr = (i) => (i === 0 ? 'A' : W2.gr[i] || '');
+function w2PaneKoepfe() {
+for (const c of HD.panes) {
+if (!c.w2Knopf) {
+const b = hdEl('button', 'hd-kopplung'); b.type = 'button';
+b.addEventListener('click', (e) => { e.stopPropagation(); if (c.nr === 0) return; const i = W2_GR.indexOf(w2Gr(c.nr)); w2GruppeSetzen(c.nr, W2_GR[(i + 1) % W2_GR.length]); });
+(c.leinwand || c.el).append(b);
+c.w2Knopf = b;
+const fuehre = () => { W2.fuehrt = { nr: c.nr, bis: Date.now() + 1500 }; };
+c.cv.addEventListener('wheel', fuehre, { passive: true }); c.cv.addEventListener('keydown', fuehre); c.cv.addEventListener('dblclick', fuehre);
+c.cv.addEventListener('pointerdown', fuehre); c.cv.addEventListener('pointermove', (e) => { if (e.buttons) fuehre(); });
+}
+const g = w2Gr(c.nr); c.w2Knopf.textContent = W2_SYM[g];
+const t = c.nr === 0 ? tr('Kopplung: ● Hauptmarkt (dieser Chart folgt immer dem Markt oben)') : `${tr('Kopplung')}: ${W2_SYM[g]} ${tr(W2_SYM_NAME[g])} – ${tr('antippen wechselt')} (○ ● ▲ ■)`;
+c.w2Knopf.title = t; c.w2Knopf.setAttribute('aria-label', t); c.w2Knopf.dataset.gruppe = g || '-';
+}
+}
+function w2GruppeSetzen(nr, g) {
+if (nr === 0 || !W2_GR.includes(g)) return;
+W2.gr[nr] = g; hdMerke('kopplung', JSON.stringify(W2.gr));
+const c = HD.panes[nr];
+if (g && c) { const vor = g === 'A' ? coin : (HD.panes.find((x) => x !== c && x.nr < hdN() && w2Gr(x.nr) === g) || {}).markt; if (vor && vor !== c.markt) { c.setzen(vor, c.tf); hdPanesMerken(); hdKurseLaden(); } }
+w2PaneKoepfe(); for (const x of HD.panes) x.dirty = true;
+}
+function w2PaneMarkt(nr, id) {
+const ziele = kopplungZiele(W2.gr, nr);
+if (ziele.length <= 1 && w2Gr(nr) !== 'A') return false;
+if (ziele.includes(0)) { wechseln(id); return true; }
+for (const i of ziele) { const c = HD.panes[i]; if (c && i < hdN()) c.setzen(id, c.tf); else HD.pc[i] = { markt: id, tf: (HD.pc[i] || {}).tf || 5 }; }
+hdPanesMerken(); hdKurseLaden(); hdTicketZeigen(); hdListeZeigen(); return true;
+}
+function w2GruppeFolgen() {
+let n = 0;
+for (let i = 1; i < 4; i++) { if (w2Gr(i) !== 'A') continue; const c = HD.panes[i]; if (c && i < hdN()) { if (c.markt !== coin) { c.setzen(coin, c.tf); n++; } } else if (HD.pc[i]) HD.pc[i] = { ...HD.pc[i], markt: coin }; }
+if (n) { hdPanesMerken(); hdKurseLaden(); }
+}
+function w2GruppeMarkt(g, id) {
+if (g === 'A') { wechseln(id); return true; }
+const l = [1, 2, 3].filter((i) => w2Gr(i) === g); if (!l.length) return false;
+return w2PaneMarkt(l[0], id);
+}
+function w2NachZeichnen(c) {
+if (HD.bereich !== 'handeln' || hdN() < 2 || !c.L || c.nr >= hdN()) return;
+const g = w2Gr(c.nr); if (!g) return;
+const K = c.kA || c.k; if (!K || !K.length) return;
+const L = c.L, n = Math.max(15, Math.min(600, Math.round(c.sicht.n || 0)));
+if (c.maus && !c.zug && c.maus.x < L.x1 && c.maus.y > L.y0 && c.maus.y < L.yZ) {
+const t = zeitAusIndex(K, c.tf, L.iStart + (c.maus.x - L.x0) / L.cw - 0.5);
+if (!W2.kreuz || W2.kreuz.t !== t || W2.kreuz.nr !== c.nr) { W2.kreuz = { g, t, nr: c.nr }; for (const i of kopplungZiele(W2.gr, c.nr)) if (HD.panes[i] && i !== c.nr) HD.panes[i].dirty = true; }
+} else if (W2.kreuz && W2.kreuz.nr === c.nr) { W2.kreuz = null; for (const i of kopplungZiele(W2.gr, c.nr)) if (HD.panes[i] && i !== c.nr) HD.panes[i].dirty = true; }
+if (W2.fuehrt.nr === c.nr && Date.now() < W2.fuehrt.bis && n) {
+const tA = zeitAusIndex(K, c.tf, L.iStart), tB = zeitAusIndex(K, c.tf, L.iStart + n - 1), sig = `${c.nr}|${Math.round(tA)}|${Math.round(tB)}`;
+if (sig !== W2.sichtSig) {
+W2.sichtSig = sig;
+for (const i of kopplungZiele(W2.gr, c.nr)) { const o = HD.panes[i]; if (!o || o === c || i >= hdN()) continue; const s = sichtFolgen(o.kA || o.k, o.tf, tA, tB); if (s) { o.sicht = { n: s.n, rechts: o.rechtsGrenze(s.rechts) }; o.dirty = true; } }
+}
+}
+const k = W2.kreuz; if (!k || k.nr === c.nr || k.g !== g) return;
+const i = indexAusZeit(K, c.tf, k.t); if (i == null) return;
+const x = L.x0 + (i - L.iStart + 0.5) * L.cw; if (!(x >= L.x0 && x <= L.x1)) return;
+const ctx = c.cv.getContext('2d'), d = c.cv.clientWidth ? c.cv.width / c.cv.clientWidth : 1, f = hdFarben();
+ctx.save(); ctx.strokeStyle = f.kreuz; ctx.lineWidth = Math.max(1, d); ctx.setLineDash([4 * d, 4 * d]); ctx.beginPath(); ctx.moveTo(Math.round(x) + 0.5, L.y0); ctx.lineTo(Math.round(x) + 0.5, L.yZ); ctx.stroke(); ctx.restore();
+}
+{ const alt = HdChart.prototype.zeichnen; HdChart.prototype.zeichnen = function () { alt.call(this); try { w2NachZeichnen(this); } catch (e) {   } }; }
+function w2Koppeln(rest) {
+const w = befNorm(rest[0] || '');
+if (w === 'AUS' || w === 'OFF') { for (let i = 1; i < 4; i++) W2.gr[i] = ''; }
+else {
+if (w === '4' || w === '2') { const b = document.querySelector(`#hd-layout [data-layout="${w}"]`); if (b) b.click(); }
+else if (hdN() < 2 && !hdHandy()) { const b = document.querySelector('#hd-layout [data-layout="2"]'); if (b) b.click(); }
+for (let i = 1; i < 4; i++) W2.gr[i] = 'A';
+}
+hdMerke('kopplung', JSON.stringify(W2.gr)); w2GruppeFolgen(); w2PaneKoepfe(); for (const c of HD.panes) c.dirty = true;
+return w === 'AUS' || w === 'OFF' ? 'AUS' : '●';
+}
+
+function w2Dichte(x, merken = true) {
+const d = x === 'kompakt' || x === 'gross' ? x : '';
+W2.dichte = d; if (d) document.documentElement.dataset.dichte = d; else delete document.documentElement.dataset.dichte;
+if (merken) merke('dichte', d);
+for (const b of document.querySelectorAll('#dichte-wahl [data-wert]')) b.setAttribute('aria-checked', String(b.dataset.wert === (d || 'normal')));
+for (const el of document.querySelectorAll('main.raster [data-w2-h]')) { el.style.height = ''; delete el.dataset.w2H; }
+w2Hoehen(); requestAnimationFrame(() => dispatchEvent(new Event('resize')));
+return d || 'normal';
+}
+
+function w2ReiterOk() { const r = W2.reiter; return r && Array.isArray(r.l) && r.l.length >= 2 ? r : null; }
+const w2ReiterName = (x) => x.n || `${(abFinden(x.z.ab) || {}).n ? tr(abFinden(x.z.ab).n) : tr('Alle Daten')} · ${anzeige(x.z.coin)}`;
+function w2ReiterMerken() { const r = w2ReiterOk(); if (r && r.l[r.a]) { r.l[r.a].z = navZustand(); r.l[r.a].y = scrollY; } merke('w2Reiter', JSON.stringify(W2.reiter || null)); }
+function w2ReiterNeu() {
+const z = navZustand();
+if (!w2ReiterOk()) W2.reiter = { l: [{ n: '', z }], a: 0 };
+const r = W2.reiter; if (r.l.length >= 9) return false;
+w2ReiterMerken(); r.l.push({ n: '', z: { ...z } }); r.a = r.l.length - 1; w2ReiterMerken(); w2ReiterLeiste(); return true;
+}
+function w2ReiterWahl(i) {
+const r = w2ReiterOk(); if (!r || !r.l[i]) return false;
+if (i === r.a) return true;
+w2ReiterMerken(); r.a = i; const z = r.l[i].z;
+if (z.bereich === 'handeln') { if (HD.bereich !== 'handeln') hdBereich('handeln'); }
+else { const a = abFinden(z.ab); if (a && a.f) abSetzen(a.id, { modus: false, still: true }); else { abSetzen('alle', { modus: false, still: true }); } if (HD.bereich !== 'daten') hdBereich('daten'); }
+if (z.modus && z.modus !== MODUS) modusSetzen(z.modus);
+if (z.coin && z.coin !== coin) wechseln(z.coin);
+merke('w2Reiter', JSON.stringify(W2.reiter)); w2ReiterLeiste();
+const y = r.l[i].y || 0; setTimeout(() => window.scrollTo(0, y), 60);
+return true;
+}
+function w2ReiterZu(i) {
+const r = w2ReiterOk(); if (!r) return false;
+i = i == null ? r.a : i; r.l.splice(i, 1);
+if (r.l.length < 2) { W2.reiter = null; merke('w2Reiter', 'null'); w2ReiterLeiste(); return true; }
+r.a = Math.min(r.a, r.l.length - 1); merke('w2Reiter', JSON.stringify(r)); w2ReiterWahl(r.a); w2ReiterLeiste(); return true;
+}
+function w2ReiterLeiste() {
+const ab = document.getElementById('ab-leiste'); let l = document.getElementById('w2-reiter');
+const r = w2ReiterOk();
+if (!r) { if (l) l.hidden = true; return; }
+if (!l) {
+if (!ab) return;
+l = document.createElement('nav'); l.id = 'w2-reiter'; l.className = 'ab-leiste w2-reiter'; l.setAttribute('aria-label', 'Reiter'); ab.before(l);
+l.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; if (b.dataset.r) w2ReiterWahl(+b.dataset.r); else if (b.dataset.a === 'neu') w2ReiterNeu(); else if (b.dataset.a === 'zu') w2ReiterZu(); });
+}
+const teile = [hdEl('span', 'maerkte-titel', 'Reiter')];
+r.l.forEach((x, i) => { const b = hdEl('button', '', `${i + 1} · ${w2ReiterName(i === r.a ? { ...x, z: navZustand() } : x)}`); b.type = 'button'; b.dataset.r = String(i); b.setAttribute('aria-pressed', String(i === r.a)); b.translate = false; teile.push(b); });
+const k = (t, a, ti) => { const b = hdEl('button', '', t); b.type = 'button'; b.dataset.a = a; b.title = ti; b.setAttribute('aria-label', ti); return b; };
+teile.push(hdEl('span', 'ab-strich'), k('+', 'neu', 'Neuer Reiter (wie dieser)'), k('×', 'zu', 'Diesen Reiter schließen'));
+l.replaceChildren(...teile); l.hidden = false;
+}
+
+function w2Listen() {
+if (W2.listen && W2.listen.gespeichert) return W2.listen;
+const x = w2Json('w2Listen', null), vor = W2.listen || { a: 0, g: 'A' };
+W2.listen = x && Array.isArray(x.l) && x.l.length ? { l: x.l.map((a) => ({ n: String(a.n || 'Liste').replace(/[<>"]/g, '').slice(0, 24), m: (Array.isArray(a.m) ? a.m : []).filter((y) => LISTE_MARKT.test(y)).slice(0, 60) })).slice(0, 12), a: Math.max(0, Math.min(+x.a || 0, x.l.length - 1)), g: ['A', 'B', 'C'].includes(x.g) ? x.g : 'A', gespeichert: 1 }
+: { l: [{ n: tr('Meine Liste'), m: (HD.liste || hdListeStandard()).slice(0, 40) }, { n: tr('Makro'), m: ['BTC', 'ETH'].concat(['GOLD', 'SP500', 'XYZ100', 'CL'].map((n) => hdTfId(n)).filter(Boolean)) }], a: Math.min(vor.a, 1), g: vor.g };
+return W2.listen;
+}
+const w2ListenMerken = () => { W2.listen.gespeichert = 1; merke('w2Listen', JSON.stringify({ l: W2.listen.l, a: W2.listen.a, g: W2.listen.g })); };
+function w2ListenWert(id) {
+const z = ueb && Array.isArray(ueb.coins) ? ueb.coins.find((x) => x.coin === id) : null, t = TF.get(id), q = z || t || {};
+const k = selbstKurs(id) || q.preis || null;
+return { preis: k, ae1h: Number.isFinite(q.ae1h) ? q.ae1h : null, ae24h: Number.isFinite(q.ae24h) ? q.ae24h : (hdAe(id) != null ? hdAe(id) : null), funding: Number.isFinite(q.funding) ? q.funding : null, oi: q.oi > 0 ? q.oi : null, umsatz: q.umsatz > 0 ? q.umsatz : null };
+}
+const W2_LSP = [['markt', 'Markt'], ['preis', 'Kurs'], ['ae1h', '1 Std.'], ['ae24h', '24 Std.'], ['funding', 'Funding/Jahr'], ['oi', 'Offene Pos.'], ['umsatz', 'Umsatz 24 Std.']];
+function w2ListenZeigen() {
+const box = $('wl-tabelle'); if (!box) return;
+const L = w2Listen(), akt = L.l[L.a] || L.l[0];
+const reiter = $('wl-reiter');
+if (reiter) {
+const k = L.l.map((x, i) => { const b = hdEl('button', '', x.n); b.type = 'button'; b.dataset.l = String(i); b.setAttribute('aria-pressed', String(i === L.a)); b.translate = false; b.dataset.roh = ''; return b; });
+const neu = hdEl('button', '', '+ Neue Liste'); neu.type = 'button'; neu.dataset.a = 'neu';
+reiter.replaceChildren(...k, neu);
+}
+const kb = $('wl-kopplung'); if (kb) { kb.textContent = `${tr('Antippen öffnet in')} ${W2_SYM[L.g]}`; kb.title = `${tr('Kopplung')}: ${W2_SYM[L.g]} ${tr(W2_SYM_NAME[L.g])} – ${tr('antippen wechselt')} (● ▲ ■)`; }
+const nm = $('wl-name'); if (nm && document.activeElement !== nm) nm.value = akt.n;
+const g = W2.geteilt, gi = $('wl-geteilt');
+if (gi) { gi.hidden = !g; if (g) { gi.replaceChildren(hdEl('span', '', w2T('geteilt', g.n, g.m.length))); const b = hdEl('button', 'mehr', 'Übernehmen'); b.type = 'button'; b.dataset.a = 'uebernehmen'; const x = hdEl('button', 'mehr', 'Verwerfen'); x.type = 'button'; x.dataset.a = 'verwerfen'; gi.append(' ', b, ' ', x); } }
+const zeilen = (g ? g.m : akt.m).map((id) => ({ id, ...w2ListenWert(id) }));
+if (W2.sort.k) { const k = W2.sort.k, v = W2.sort.auf ? 1 : -1; zeilen.sort((a, b) => (k === 'markt' ? String(hdName(a.id)).localeCompare(String(hdName(b.id))) * -v : ((a[k] == null ? -Infinity : a[k]) - (b[k] == null ? -Infinity : b[k]))) * v); }
+if (!zeilen.length) { box.replaceChildren(hdEl('p', 'leise', 'Noch keine Märkte – oben einen Markt eintragen, z. B. SOL.')); return; }
+const tab = document.createElement('table'), kopf = tab.createTHead().insertRow(), rumpf = tab.createTBody();
+for (const [k, t] of W2_LSP) { const th = hdEl('th', '', t); th.dataset.k = k; th.tabIndex = 0; th.setAttribute('aria-sort', W2.sort.k === k ? (W2.sort.auf ? 'ascending' : 'descending') : 'none'); kopf.append(th); }
+if (!g) kopf.append(hdEl('th', '', ''));
+const pz = (td, v) => { td.textContent = v == null ? '–' : proz(v, 2); td.className = v > 0 ? 'plus' : v < 0 ? 'minus' : ''; };
+for (const z of zeilen) {
+const r = rumpf.insertRow(); r.dataset.coin = z.id;
+const c0 = r.insertCell(); c0.className = 'coin'; c0.textContent = hdName(z.id); c0.translate = false; if (TF.get(z.id) && TF.get(z.id).lang) c0.title = TF.get(z.id).lang;
+r.insertCell().textContent = z.preis ? hdPreisTxt(z.preis, z.id) : '–'; pz(r.insertCell(), z.ae1h); pz(r.insertCell(), z.ae24h);
+const fu = r.insertCell(); fu.textContent = z.funding == null ? '–' : proz(z.funding, 1); fu.className = z.funding > 0 ? 'plus' : z.funding < 0 ? 'minus' : '';
+r.insertCell().textContent = z.oi ? usd(z.oi) : '–'; r.insertCell().textContent = z.umsatz ? usd(z.umsatz) : '–';
+if (!g) { const x = hdEl('button', 'regel-weg', '×'); x.type = 'button'; x.dataset.weg = z.id; x.title = 'Aus der Liste nehmen'; x.setAttribute('aria-label', 'Aus der Liste nehmen'); r.insertCell().append(x); }
+}
+box.replaceChildren(tab);
+const st = $('wl-stand'); if (st) st.textContent = (DEMO ? 'Demo-Daten · ' : '') + (ueb && ueb.zeit ? tagUhr(ueb.zeit * 1000) : '');
+}
+function w2ListeDazu(text) {
+const L = w2Listen(), akt = L.l[L.a], info = $('wl-info'), aus = [];
+for (const roh of String(text || '').split(/[\s,;]+/).filter(Boolean)) {
+const t = befNorm(roh), id = befMarkt(t) || (TF.size ? hdTfId(t) : null) || (LISTE_MARKT.test(t) && /^[A-Z][A-Z0-9]{1,9}$/.test(t) && !markte ? t : null);
+if (!id) { aus.push(w2T('unbekannt', roh)); continue; }
+if (akt.m.includes(id)) { aus.push(w2T('dabei', hdName(id))); continue; }
+if (akt.m.length < 60) akt.m.push(id);
+}
+w2ListenMerken(); w2ListenZeigen(); if (info) info.textContent = aus.join(' ');
+}
+function w2ListeLink() {
+const L = w2Listen(), akt = L.l[L.a]; let u = location.href;
+try { const x = new URL(location.href); for (const k of ['demo', 'einstieg', 'aus', 'ab', 'f']) x.searchParams.delete(k); x.searchParams.set('bereich', 'daten'); x.hash = 'liste=' + listeKodieren(akt); u = x.href; } catch (e) { u = location.href.split('#')[0] + '#liste=' + listeKodieren(akt); }
+return u;
+}
+function w2ListenBedienen() {
+const box = $('wl-tabelle'); if (!box) return;
+box.addEventListener('click', (e) => {
+const x = e.target.closest('button[data-weg]'); if (x) { const L = w2Listen(), akt = L.l[L.a]; akt.m = akt.m.filter((m) => m !== x.dataset.weg); w2ListenMerken(); w2ListenZeigen(); return; }
+const th = e.target.closest('th[data-k]'); if (th) { W2.sort = { k: th.dataset.k, auf: W2.sort.k === th.dataset.k ? !W2.sort.auf : false }; w2ListenZeigen(); return; }
+const r = e.target.closest('tr[data-coin]'); if (!r) return;
+const g = w2Listen().g; if (!w2GruppeMarkt(g, r.dataset.coin)) { $('wl-info').textContent = w2T('keinChart', W2_SYM[g]); return; }
+if (g === 'A') window.scrollTo({ top: 0, behavior: 'smooth' }); else hdBereich('handeln');
+});
+box.addEventListener('keydown', (e) => { const th = e.target.closest && e.target.closest('th[data-k]'); if (th && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); th.click(); } });
+$('wl-reiter').addEventListener('click', (e) => {
+const b = e.target.closest('button'); if (!b) return; const L = w2Listen();
+if (b.dataset.a === 'neu') { if (L.l.length >= 12) return; L.l.push({ n: `${tr('Liste')} ${L.l.length + 1}`, m: [] }); L.a = L.l.length - 1; }
+else L.a = +b.dataset.l;
+W2.geteilt = null; w2ListenMerken(); w2ListenZeigen();
+});
+const dazu = () => { const i = $('wl-markt'); w2ListeDazu(i.value); i.value = ''; };
+$('wl-dazu').addEventListener('click', dazu); $('wl-markt').addEventListener('keydown', (e) => { if (e.key === 'Enter') dazu(); });
+$('wl-name').addEventListener('change', () => { const L = w2Listen(), n = String($('wl-name').value || '').replace(/[<>"]/g, '').trim().slice(0, 24); if (n) { L.l[L.a].n = n; w2ListenMerken(); w2ListenZeigen(); } });
+$('wl-weg').addEventListener('click', (e) => {
+const L = w2Listen(), b = e.currentTarget;
+if (b.dataset.sicher !== '1') { b.dataset.sicher = '1'; b.textContent = tr('Wirklich löschen?'); setTimeout(() => { b.dataset.sicher = ''; b.textContent = tr('Liste löschen'); }, 4000); return; }
+b.dataset.sicher = ''; b.textContent = tr('Liste löschen');
+if (L.l.length <= 1) L.l[0].m = []; else { L.l.splice(L.a, 1); L.a = Math.max(0, L.a - 1); }
+w2ListenMerken(); w2ListenZeigen();
+});
+$('wl-teilen').addEventListener('click', async () => { const u = w2ListeLink(); let ok = false; try { await navigator.clipboard.writeText(u); ok = true; } catch (e) {   } $('wl-info').textContent = ok ? tr('Link kopiert – die Liste steckt im Link selbst (nach #), kein Server, kein Konto.') : u; });
+$('wl-kopplung').addEventListener('click', () => { const L = w2Listen(), l = ['A', 'B', 'C']; L.g = l[(l.indexOf(L.g) + 1) % l.length]; w2ListenMerken(); w2ListenZeigen(); });
+$('wl-geteilt').addEventListener('click', (e) => {
+const b = e.target.closest('button[data-a]'); if (!b || !W2.geteilt) return;
+if (b.dataset.a === 'uebernehmen') { const L = w2Listen(); if (L.l.length >= 12) L.l.shift(); L.l.push({ n: W2.geteilt.n, m: W2.geteilt.m.slice() }); L.a = L.l.length - 1; w2ListenMerken(); }
+W2.geteilt = null; w2ListenZeigen();
+});
+}
+function w2ListeAusAdresse() {
+const m = /(?:^#|&)liste=([A-Za-z0-9_-]+)/.exec(location.hash || ''); if (!m) return false;
+const l = listeDekodieren(m[1]); if (!l) return false;
+W2.geteilt = l;
+try { const u = new URL(location.href); u.hash = ''; history.replaceState(history.state, '', u.href); } catch (e) {   }
+return true;
+}
+
+function w2HeuteTermine() {
+const j = new Date(), a = new Date(j.getFullYear(), j.getMonth(), j.getDate()).getTime() / 1000, e = a + 86400;
+const alle = (BH.ev || termineListe || []).filter((x) => x && Number.isFinite(x.zeit)).sort((x, y) => x.zeit - y.zeit);
+return { heute: alle.filter((x) => x.zeit >= a && x.zeit < e), naechster: alle.find((x) => x.zeit >= e) || null };
+}
+function w2MeinTag() {
+const box = $('mt-lage'); if (!box) return;
+const krypto = ueb && Array.isArray(ueb.coins) ? ueb.coins.filter((z) => Number.isFinite(z.ae24h) && !istTF(z.coin) && !W4_NICHT_KRYPTO.has(z.coin)) : [];
+const welt = [...TF.values()].filter((e) => Number.isFinite(e.ae24h) && e.umsatz > 2e5), T = w2HeuteTermine(), log = w4Log().filter((x) => Date.now() - x.ts < 864e5);
+const btc = krypto.find((z) => z.coin === 'BTC'), f = krypto.map((z) => z.funding).filter(Number.isFinite).sort((x, y) => x - y), fm = f.length ? f[Math.floor(f.length / 2)] : null;
+const top = krypto.slice().sort((x, y) => Math.abs(y.ae24h) - Math.abs(x.ae24h))[0];
+const saetze = krypto.length ? lageDrei({ btc: btc ? proz(btc.ae24h, 2) : null, plus: krypto.filter((z) => z.ae24h > 0).length, n: krypto.length, top: top ? { name: top.coin, ae: proz(top.ae24h, 2) } : null, funding: fm == null ? '–' : proz(fm, 1), termine: T.heute.length, alarme: log.length }) : [];
+box.replaceChildren(...(saetze.length ? saetze.map(([k, ...w]) => { const li = hdEl('li', ''); li.append(hdEl('div', 'nt-text', w2T(k, ...w))); li.lastChild.dataset.roh = ''; return li; }) : [hdEl('li', 'leise', 'Noch keine Marktdaten – die Lage erscheint, sobald die Markt-Übersicht geladen ist.')]));
+const tl = $('mt-termine');
+if (tl) {
+const zeile = (x) => { const li = document.createElement('li'), k = hdEl('div', 'nt-kopf'); k.append(hdEl('span', '', TERMIN_ART[x.art] || x.titel || 'Termin'), hdEl('time', '', uhrKurz(x.zeit * 1000)));
+const ms = x.zeit * 1000 - Date.now(), c = hdEl('span', 'countdown' + (ms > 0 && ms < 36e5 * 3 ? ' bald' : ''), bisText(ms)); c.dataset.roh = ''; k.append(c);
+const t = hdEl('div', 'nt-text', SPRACHE === 'de' ? `${x.text || ''}${x.quelle ? ' · ' + x.quelle : ''}` : nurTerminText(x)); li.append(k, t); return li; };
+if (T.heute.length) tl.replaceChildren(...T.heute.slice(0, 8).map(zeile));
+else { const li = hdEl('li', 'leise', T.naechster ? w2T('naechster', new Date(T.naechster.zeit * 1000).toLocaleString(LOC, { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) + ' · ' + tr(TERMIN_ART[T.naechster.art] || 'Termin')) : tr('Keine Termine bekannt.')); li.dataset.roh = ''; tl.replaceChildren(li); }
+}
+const bw = $('mt-beweg');
+if (bw) {
+const l = krypto.slice().sort((x, y) => Math.abs(y.ae24h) - Math.abs(x.ae24h)).slice(0, 6).map((z) => ({ id: z.coin, ae: z.ae24h, preis: z.preis, art: 'Krypto' }))
+.concat(welt.sort((x, y) => Math.abs(y.ae24h) - Math.abs(x.ae24h)).slice(0, 4).map((e) => ({ id: [...TF.entries()].find(([, v]) => v === e)[0], ae: e.ae24h, preis: e.preis, art: e.art })));
+if (!l.length) bw.replaceChildren(hdEl('p', 'leise', ueb && typeof ueb.fehler === 'string' ? ueb.fehler : 'Lade …'));
+else {
+const tab = document.createElement('table'), kopf = tab.createTHead().insertRow(), rumpf = tab.createTBody();
+for (const t of ['Markt', 'Art', 'Kurs', '24 Std.']) kopf.append(hdEl('th', '', t));
+for (const x of l) { const r = rumpf.insertRow(); r.dataset.coin = x.id; const c = r.insertCell(); c.className = 'coin'; c.textContent = hdName(x.id); c.translate = false; r.insertCell().textContent = tr(x.art); r.insertCell().textContent = x.preis ? hdPreisTxt(x.preis, x.id) : '–'; const p = r.insertCell(); p.textContent = proz(x.ae, 2); p.className = x.ae > 0 ? 'plus' : x.ae < 0 ? 'minus' : ''; }
+bw.replaceChildren(tab);
+}
+}
+const al = $('mt-alarme');
+if (al) {
+if (!log.length) al.replaceChildren(hdEl('li', 'leise', 'Keine Alarme in den letzten 24 Std. – anlegen unter „Alarme“ (ALARM).'));
+else al.replaceChildren(...log.slice(0, 6).map((e) => { const li = document.createElement('li'), k = hdEl('div', 'nt-kopf'), x = w4Text(e); k.append(hdEl('time', '', tagUhr(e.ts))); const d = hdEl('div', 'nt-text', x.kopf); if (x.titel) { const s = hdEl('span', '', ' ' + x.titel); s.translate = false; d.append(s); } li.append(k, d); return li; }));
+}
+const st = $('mt-stand'); if (st) st.textContent = (DEMO ? 'Demo-Daten · ' : '') + new Date().toLocaleDateString(LOC, { weekday: 'long', day: '2-digit', month: '2-digit' });
+const cb = $('mt-start'); if (cb) cb.checked = lies('w2Start') === '1';
+}
+function w2Weltuhr() {
+const box = $('wu-tabelle'); if (!box) return;
+const t = Date.now() / 1000;
+let tab = box.querySelector('table');
+if (!tab) {
+tab = document.createElement('table'); const kopf = tab.createTHead().insertRow(), rumpf = tab.createTBody();
+for (const x of ['Börse', 'Handelsplatz', 'Ortszeit', 'Jetzt']) kopf.append(hdEl('th', '', x));
+for (const b of BOERSEN) { const r = rumpf.insertRow(); r.dataset.b = b.id; const c = r.insertCell(); c.className = 'coin'; c.textContent = b.n; r.insertCell().textContent = b.b; r.insertCell().dataset.roh = ''; const z = r.insertCell(); z.dataset.roh = ''; }
+box.replaceChildren(tab);
+}
+for (const r of tab.tBodies[0].rows) {
+const b = BOERSEN.find((x) => x.id === r.dataset.b), z = boerseZustand(b, t);
+r.cells[2].textContent = z.ort == null ? '–' : `${String(Math.floor(z.ort / 60)).padStart(2, '0')}:${String(z.ort % 60).padStart(2, '0')}`;
+r.cells[3].textContent = b.immer ? tr('offen · rund um die Uhr') : z.wechsel ? w2T(z.offen ? 'offen' : 'zu', bisText((z.wechsel - t) * 1000)) : '–';
+r.cells[3].className = z.offen ? 'plus' : 'leise';
+}
+const s = $('wu-sitzung'); if (s) { const i = amtSitzung(Math.floor(t)), n = ['Asien', 'London', 'New York']; s.textContent = `${tr('Krypto-Sitzung jetzt')}: ${tr(n[i])} · ${tr('Ortszeit hier')} ${new Date().toLocaleTimeString(LOC, { hour: '2-digit', minute: '2-digit' })} · UTC ${new Date().toISOString().slice(11, 16)}`; }
+}
+
+function w2SucheEintraege() {
+const l = [];
+for (const h of document.querySelectorAll('main.raster > section.feld .hilfe[id^="h-"]')) {
+const s = h.closest('section.feld'); if (!s || s.hidden) continue; const id = w2Id(s);
+l.push({ gruppe: 'Hilfe', titel: (s.querySelector('.feld-kopf h2') || {}).textContent || feldName(id), text: h.textContent, feld: id, hilfe: h.id.slice(2) });
+}
+for (const s of document.querySelectorAll('main.raster > section.feld')) { if (s.hidden) continue; const id = w2Id(s); if (id) l.push({ gruppe: 'Kachel', titel: (s.querySelector('.feld-kopf h2') || {}).textContent || feldName(id), text: tr(feldName(id)), feld: id }); }
+for (const [id, e] of Object.entries(LEXIKON)) l.push({ gruppe: 'Lexikon', titel: tr(e.name), text: tr(e.was) + ' ' + tr(e.warum), lex: id });
+if (meld && Array.isArray(meld.meldungen)) for (const m of meld.meldungen.slice(0, 300)) if (m && typeof m.titel === 'string') l.push({ gruppe: 'Meldung', titel: (SPRACHE !== 'en' && m.ue && m.ue[SPRACHE]) || m.titel, text: `${m.boerse || ''} ${m.art || ''} ${(m.coins || []).join(' ')}`, url: m.url || '', roh: 1 });
+return l;
+}
+function w2SucheDazu(text, l) {
+const t = String(text || '').trim(); if (t.length < 3) return l;
+const p = befParsen(t, BEF_K); if (p.fn && !p.unbekannt.length && p.fn.par !== 'text' && p.fn.id !== 'finden') return l;
+const frei = p.fn && p.fn.id === 'finden', q = frei ? p.rest.join(' ') : t; if (q.length < (frei ? 2 : 3)) return l;
+const tr0 = sucheTreffer(q, w2SucheEintraege(), 8);
+if (frei) l = befVorschlaege(q, BEF_K, 8).filter((v) => v.art === 'fn' || v.art === 'markt' || v.art === 'ab');
+return l.slice(0, 12).concat(tr0.map((e) => ({ cmd: e.titel.length > 60 ? e.titel.slice(0, 58) + ' …' : e.titel, art: 'such', gruppe: e.gruppe, satz: suchAuszug(e.text, q), e })));
+}
+async function w2SucheOeffnen(v) {
+const e = v.e || {};
+if (e.gruppe === 'Lexikon') { verzeichnis(e.lex, true); return true; }
+if (e.gruppe === 'Meldung') { const r = BEF_REG.find((x) => x.id === 'meld'); if (r) await befOeffnen(r, {}); if (e.url) try { window.open(e.url, '_blank', 'noopener'); } catch (x) {   } return true; }
+if (e.feld) {
+const s = abSec(e.feld); if (!s) return false;
+if (HD.bereich !== 'daten') hdBereich('daten');
+if (s.classList.contains('ab-zu')) { AB.offen.add(e.feld); abAnwenden(); }
+if (s.classList.contains('swing-zu')) { s.classList.add('swing-offen'); swingFelder(); }
+if (e.hilfe) { const b = s.querySelector(`.feld-kopf .was[data-hilfe="${e.hilfe}"]`); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); }
+await befWarte(40); feldZeigen(s); s.classList.add('einstieg-ziel'); setTimeout(() => s.classList.remove('einstieg-ziel'), 1600);
+return true;
+}
+return false;
+}
+
+async function w2Befehl(r, p) {
+const rest = (p.rest || []).concat(p.unbekannt || []), w = befNorm(rest[0] || '');
+if (r.id === 'raster') { if (HD.bereich !== 'daten') hdBereich('daten'); w2Anordnen(!(w === 'AUS' || w === 'OFF' || w === 'FERTIG' || w === 'DONE') && (!W2.an || !!w)); await befWarte(30); const l = $('w2-leiste'); if (l && !l.hidden) window.scrollTo(0, Math.max(0, l.getBoundingClientRect().top + scrollY - 120)); return { ok: true, ziel: W2.an ? l : $('ab-leiste') }; }
+if (r.id === 'zuruecksetzen') { if (HD.bereich !== 'daten') hdBereich('daten'); w2Zuruecksetzen(); window.scrollTo(0, 0); return { ok: true, ziel: $('ab-leiste') }; }
+if (r.id === 'dichte') { const x = { KOMPAKT: 'kompakt', COMPACT: 'kompakt', GROSS: 'gross', LARGE: 'gross', GRANDE: 'gross', NORMAL: '' }[w]; const d = w2Dichte(x !== undefined ? x : W2.dichte === '' ? 'kompakt' : W2.dichte === 'kompakt' ? 'gross' : ''); if (HD.bereich !== 'daten') hdBereich('daten'); return { ok: true, ziel: feldInMitte() || $('ab-leiste'), text: `${tr('Dichte')}: ${tr({ kompakt: 'Kompakt', gross: 'Groß', normal: 'Normal' }[d])}` }; }
+if (r.id === 'koppeln') { const z = await hdOeffnen({ hd: 'chart' }); const x = w2Koppeln(rest); return { ok: true, ziel: $('hd-panes') || z.ziel, text: w2T('kopplung', x === 'AUS' ? tr('aus') : `${x} ${tr('Hauptmarkt')}`) }; }
+if (r.id === 'fenster') {
+if (HD.bereich !== 'daten') hdBereich('daten');
+const schweb = rest.some((x) => /^(SCHWEBEND|FLOAT|FLOATING)$/.test(befNorm(x))), wort = rest.filter((x) => !/^(SCHWEBEND|FLOAT|FLOATING)$/.test(befNorm(x)));
+let id = ''; if (wort.length) { const q = befParsen(wort.join(' '), BEF_K); id = (q.fn && q.fn.feld) || (abSec(befNorm(wort[0]).toLowerCase()) ? befNorm(wort[0]).toLowerCase() : ''); }
+if (!id) { const s = feldInMitte(); id = s ? w2Id(s) : 'chart'; }
+const e = w2Fenster(id, schweb ? 'schwebend' : ''); return { ok: e.ok, ziel: e.ziel || abSec(id), text: e.text || '' };
+}
+if (r.id === 'reiter') {
+const x = rest.join(' ').trim(), n = parseInt(x, 10) || (p.tf != null && !x ? p.tf : NaN);
+if (/^(NEU|NEW|\+)$/.test(w) || (!x && !w2ReiterOk())) w2ReiterNeu();
+else if (/^(ZU|CLOSE|X|×)$/.test(w)) w2ReiterZu();
+else if (n > 0) w2ReiterWahl(n - 1);
+else if (/^(NAME|UMBENENNEN|RENAME)$/.test(w) && w2ReiterOk()) { const r0 = W2.reiter; r0.l[r0.a].n = rest.slice(1).join(' ').replace(/[<>"]/g, '').trim().slice(0, 24); w2ReiterMerken(); }
+if (HD.bereich !== 'daten') hdBereich('daten');
+w2ReiterLeiste(); window.scrollTo(0, 0);
+const l = $('w2-reiter'); return { ok: true, ziel: l && !l.hidden ? l : $('ab-leiste') };
+}
+if (r.id === 'listeteilen') { const e = await befOeffnen(BEF_REG.find((y) => y.id === 'wlisten'), p); if (e.ok) $('wl-teilen').click(); return { ok: e.ok, ziel: e.ziel, text: e.text || '' }; }
+if (r.id === 'finden') { befehlAuf(); const ein = $('befehl-ein'); if (ein) { ein.value = 'FINDEN ' + rest.join(' '); befWahl = 0; befZeigen(); } return { ok: true, ziel: $('befehl') }; }
+return befOeffnen(r, p);
+}
+function w2Start() {
+w2Dichte(lies('dichte') || '', false);
+{ const am = $('w2-am'); if (am) am.addEventListener('click', (e) => { const b = e.target.closest('button[data-w2]'); if (!b) return; const x = b.dataset.w2; const m = $('ansicht-menue'); if (m) m.hidden = true; const k = $('ansicht-knopf'); if (k) k.setAttribute('aria-expanded', 'false');
+if (x === 'anordnen') { w2Anordnen(true); setTimeout(() => { const l = $('w2-leiste'); if (l) window.scrollTo(0, Math.max(0, l.getBoundingClientRect().top + scrollY - 120)); }, 60); } else if (x === 'reiter') { if (HD.bereich !== 'daten') hdBereich('daten'); w2ReiterNeu(); window.scrollTo(0, 0); } else if (x === 'standard') { w2Dichte(''); w2Zuruecksetzen(); } }); }
+for (const b of document.querySelectorAll('#dichte-wahl [data-wert]')) b.addEventListener('click', () => w2Dichte(b.dataset.wert === 'normal' ? '' : b.dataset.wert));
+w2Dichte(W2.dichte, false);
+w2ListenBedienen();
+const mt = $('mt-beweg'); if (mt) mt.addEventListener('click', (e) => { const r = e.target.closest('tr[data-coin]'); if (r && r.dataset.coin !== coin) { wechseln(r.dataset.coin); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
+const ms = $('mt-start'); if (ms) ms.addEventListener('change', () => merke('w2Start', ms.checked ? '1' : ''));
+document.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if (W2.an && !document.querySelector('[role="dialog"]:not([hidden]), #befehl:not([hidden])')) w2Anordnen(false); });
+addEventListener('pagehide', () => { for (const w of W2.fenster.values()) try { w.close(); } catch (e) {   } });
+if (w2ListeAusAdresse()) setTimeout(() => { const r = BEF_REG.find((x) => x.id === 'wlisten'); if (r) befOeffnen(r, {}); }, 1400);
+else if (lies('w2Start') === '1' && !Q.get('bereich') && !Q.get('f') && !Q.get('ab') && !/^#/.test(location.hash || '')) setTimeout(() => { if (HD.bereich !== 'daten') hdBereich('daten'); const s = abSec('meintag'); if (s && !s.hidden) fokus(s); }, 900);
+w2ReiterLeiste(); w2PaneKoepfe();
+if (AB.id && w2Cfg()) abAnwenden();
+const mo = new MutationObserver(() => { if (!w2Cfg()) return; clearTimeout(W2.moT); W2.moT = setTimeout(() => { abAnwenden(); w2Hoehen(); }, 150); });
+for (const s of document.querySelectorAll('main.raster > section.feld')) mo.observe(s, { attributes: true, attributeFilter: ['hidden'] });
+const takt = () => {
+if (document.hidden) return;
+if (feldInSicht(['meintag'])) w2MeinTag();
+if (feldInSicht(['wlisten'])) w2ListenZeigen();
+if (W2.reiter && w2ReiterOk() && !(document.activeElement && document.activeElement.closest && document.activeElement.closest('#w2-reiter'))) w2ReiterLeiste();
+};
+setInterval(takt, 5000); setTimeout(takt, 1200);
+setInterval(() => { if (document.hidden) return; if (feldInSicht(['weltuhr'])) w2Weltuhr(); if (w2ReiterOk()) { const sig = navSig(navZustand()); if (sig !== W2.reiterSig) { W2.reiterSig = sig; w2ReiterLeiste(); } } }, 1000); setTimeout(w2Weltuhr, 400);
+let sichtT = 0; addEventListener('scroll', () => { if (sichtT) return; sichtT = setTimeout(() => { sichtT = 0; if (feldInSicht(['meintag']) && Date.now() - (W2.mtZeit || 0) > 2000) { W2.mtZeit = Date.now(); w2MeinTag(); } if (feldInSicht(['wlisten']) && Date.now() - (W2.wlZeit || 0) > 2000) { W2.wlZeit = Date.now(); w2ListenZeigen(); } }, 250); }, { passive: true });
+window.__ryvoW2 = { rasterPacken, rasterFlaeche, rasterLesen, kopplungZiele, sichtFolgen, boerseZustand, BOERSEN, sucheTreffer, listeKodieren, listeDekodieren,
+anordnen: (an) => w2Anordnen(an), aktion: (id, a) => w2Aktion(id, a), verschieben: (a, b, n) => w2Verschieben(a, b, n), zuruecksetzen: () => w2Zuruecksetzen(),
+cfg: () => JSON.parse(JSON.stringify(W2.cfg)), flaeche: () => (document.querySelector('main.raster') || {}).style.gridTemplateAreas || '',
+gruppen: () => W2.gr.slice(), gruppeSetzen: (nr, g) => w2GruppeSetzen(nr, g),
+paneMarkt: (nr, id) => { if (!w2PaneMarkt(nr, id)) { if (nr === 0) wechseln(id); else if (HD.panes[nr]) { HD.panes[nr].setzen(id, HD.panes[nr].tf); hdPanesMerken(); } } return HD.panes.slice(0, hdN()).map((c) => c.markt); },
+maerkte: () => HD.panes.slice(0, hdN()).map((c) => c.markt), kreuz: () => (W2.kreuz ? { ...W2.kreuz } : null), sicht: () => HD.panes.slice(0, hdN()).map((c) => { const K = c.kA || c.k, n = Math.round(c.sicht.n || 0); return c.L && K.length ? [zeitAusIndex(K, c.tf, c.L.iStart), zeitAusIndex(K, c.tf, c.L.iStart + n - 1)] : null; }), koppeln: (x) => w2Koppeln([x || '']), fenster: (id, a) => w2Fenster(id, a), offen: () => ({ fenster: [...W2.fenster.keys()], schwebend: [...W2.schwebend.keys()] }),
+spiegeln: () => w2Spiegeln(), schweben: (id, an) => w2Schweben(id, an), dichte: (x) => w2Dichte(x), listen: () => JSON.parse(JSON.stringify(w2Listen())), listeLink: () => w2ListeLink(), listeDazu: (t) => w2ListeDazu(t),
+geteilt: () => W2.geteilt, reiter: () => JSON.parse(JSON.stringify(W2.reiter)), reiterNeu: () => w2ReiterNeu(), reiterWahl: (i) => w2ReiterWahl(i), reiterZu: () => w2ReiterZu(),
+suche: (t) => sucheTreffer(t, w2SucheEintraege(), 8).map((e) => ({ gruppe: e.gruppe, titel: e.titel })), meinTag: () => { w2MeinTag(); return [...document.querySelectorAll('#mt-lage li')].map((li) => li.textContent); }, weltuhr: () => { w2Weltuhr(); return [...document.querySelectorAll('#wu-tabelle tbody tr')].map((r) => [r.cells[0].textContent, r.cells[3].textContent]); } };
+}
+var W2_BEREIT = true;
 
 function treemap(w, x0, y0, W, H) {
 const out = [], summe = w.reduce((a, b) => a + (b > 0 ? b : 0), 0); if (!(summe > 0) || !(W > 0) || !(H > 0)) return out;
@@ -13541,8 +14462,11 @@ const r = [], tag = tf >= 1440 ? 7 * 86400 : 86400, schl = (k) => (art === 'sitz
 let s = null; K.forEach((k, i) => { const x = schl(k); if (!s || s.x !== x) { s = { x, i0: i, i1: i, name: art === 'sitzung' && tf < 1440 ? ['Asien', 'London', 'New York'][amtSitzung(k.t)] : '' }; r.push(s); } else s.i1 = i; });
 return r;
 }
-function rangeSpanne(K, id) { const p = K.length ? K[K.length - 1].c : 0; return HD.rangeTicks * hdSchritt(Math.max(1e-12, p * 0.00005)); }
-function renkoBox(K) { const a = atrReihe(K, 14), x = a[a.length - 1]; return x > 0 ? hdSchritt(x) : hdSchritt(K[K.length - 1].c * 0.005); }
+function rangeSpanne(K, id) {
+const p = K.length ? Math.abs(K[K.length - 1].c) : 0; let lo = Infinity, hi = -Infinity; for (const k of K) { if (k.l < lo) lo = k.l; if (k.h > hi) hi = k.h; }
+return Math.max(HD.rangeTicks * hdSchritt(Math.max(1e-12, p * 0.00005)), hi > lo ? (hi - lo) / 4000 : 0);
+}
+function renkoBox(K) { const a = atrReihe(K, 14), x = a[a.length - 1]; return x > 0 ? hdSchritt(x) : hdSchritt(Math.max(1e-9, Math.abs(K[K.length - 1].c) * 0.005)); }
 HdChart.prototype.kAnzeige = function () {
 let K = this.k; this.syn = null;
 if (this.nr === 0 && HD.ratio && this.markt === HD.ratio.a) { if (this.ratioSig !== HD.ratio.b + '|' + this.tf) this.ratioLaden(); if (this.ratioK && this.ratioK.length) { K = synthetisch(K, this.ratioK, HD.ratio.art); this.syn = HD.ratio; } }
@@ -14226,8 +15150,19 @@ const BEF_REG = [
 { id: 'thema', k: ['THEMA'], e: ['THEME'], n: 'Thema', s: 'Dunkel, Bernstein, Graphit oder Hell', b: 'THEMA hell', par: 'thema', g: 'ans' },
 { id: 'farben', k: ['FARBEN', 'KERZENFARBEN'], e: ['COLORS', 'COLOURS'], n: 'Kerzenfarben', s: 'Blau/Orange, Grün/Rot oder Schwarz/Weiß', b: 'FARBEN gr', par: 'farben', g: 'ans' },
 { id: 'sprache', k: ['SPRACHE'], e: ['LANG', 'LANGUAGE'], n: 'Sprache', s: 'Deutsch, Englisch, Spanisch, Französisch, Türkisch, Italienisch', b: 'SPRACHE en', par: 'sprache', g: 'ans' },
+{ id: 'raster', k: ['RASTER', 'ANORDNEN'], e: ['ARRANGE', 'TILES'], n: 'Kacheln anordnen', s: 'Ziehen, Breite, Höhe, ausblenden – je Arbeitsbereich gespeichert', b: 'RASTER', par: 'raster', g: 'ans' },
+{ id: 'zuruecksetzen', k: ['ZURUECKSETZEN', 'STANDARD'], e: ['RESET', 'DEFAULT'], n: 'Anordnung zurücksetzen', s: 'Kacheln wieder wie im Standard', b: 'ZURUECKSETZEN', g: 'ans' },
+{ id: 'dichte', k: ['DICHTE'], e: ['DENSITY'], n: 'Dichte', s: 'Kompakt, normal oder groß', b: 'DICHTE kompakt', par: 'dichte', g: 'ans' },
+{ id: 'reiter', k: ['REITER'], e: ['TABS', 'TABGROUP'], n: 'Reiter', s: 'Mehrere Arbeitsbereiche als Reiter: neu, wechseln, schließen', b: 'REITER', par: 'reiter', g: 'nav' },
+{ id: 'fenster', k: ['FENSTER', 'ABKOPPELN'], e: ['POPOUT', 'WINDOW'], n: 'Eigenes Fenster', s: 'Kachel in eigenes Fenster (Spiegel, kein zweiter Abruf) oder schwebend', b: 'FENSTER', par: 'text', g: 'ans' },
+{ id: 'koppeln', k: ['KOPPELN', 'KOPPLUNG'], e: ['SYNC', 'COUPLE'], n: 'Charts koppeln', s: 'Markt, Fadenkreuz und Zeit gemeinsam (2 oder 4 Charts)', b: 'KOPPELN', par: 'koppeln', g: 'of' },
+{ id: 'meintag', k: ['MEINTAG', 'HEUTE'], e: ['MYDAY', 'TODAY'], n: 'Mein Tag', s: 'Termine heute, größte Bewegungen, neue Alarme, Lage in drei Sätzen', b: 'MEINTAG', feld: 'meintag', g: 'news' },
+{ id: 'wlisten', k: ['LISTEN', 'BEOBLISTEN'], e: ['WATCHLISTS', 'LISTS'], n: 'Beobachtungslisten', s: 'Mehrere Listen mit Kurs, Änderung, Funding, offenen Positionen', b: 'LISTEN', feld: 'wlisten', g: 'alr' },
+{ id: 'listeteilen', k: ['LISTETEILEN'], e: ['SHARELIST'], n: 'Liste teilen', s: 'Link mit der Liste im Link selbst – kein Konto, kein Server', b: 'LISTETEILEN', g: 'alr' },
+{ id: 'finden', k: ['FINDEN', 'VOLLTEXT'], e: ['FIND', 'LOOKUP'], n: 'Suche überall', s: 'Märkte, Befehle, Hilfetexte, Lexikon, Kacheln und Meldungen', b: 'FINDEN gamma', par: 'text', g: 'nav' },
+{ id: 'weltuhr', k: ['WELTUHR', 'BOERSENZEITEN'], e: ['CLOCK', 'WORLDCLOCK'], n: 'Weltuhr', s: 'Börsenzeiten mit Countdown, Sommerzeit je Region', b: 'WELTUHR', feld: 'weltuhr', g: 'mak' },
 ];
-const BEF_WAHL = { art: ['kerzen', 'ha', 'linie', 'flaeche', 'renko', 'range'], thema: ['dunkel', 'bernstein', 'graphit', 'hell'], farben: ['bo', 'gr', 'sw'], sprache: ['de', 'en', 'es', 'fr', 'tr', 'it'], layout: ['1', '2', '4'] };
+const BEF_WAHL = { art: ['kerzen', 'ha', 'linie', 'flaeche', 'renko', 'range'], thema: ['dunkel', 'bernstein', 'graphit', 'hell'], farben: ['bo', 'gr', 'sw'], sprache: ['de', 'en', 'es', 'fr', 'tr', 'it'], layout: ['1', '2', '4'], dichte: ['kompakt', 'normal', 'gross'], raster: ['aus'], koppeln: ['aus', '2', '4'], reiter: ['neu', 'zu', 'name'] };
 const BEF_WAHL_ALIAS = { DARK: 'dunkel', AMBER: 'bernstein', GRAPHITE: 'graphit', LIGHT: 'hell', WHITE: 'hell', BLAU: 'bo', BLUE: 'bo', GRUEN: 'gr', GREEN: 'gr', ROT: 'gr', SCHWARZ: 'sw', BLACK: 'sw' };
 const befNorm = (s) => String(s == null ? '' : s).normalize('NFC').toUpperCase().replace(/Ä/g, 'AE').replace(/Ö/g, 'OE').replace(/Ü/g, 'UE').replace(/ß/g, 'SS').replace(/[ÉÈÊ]/g, 'E');
 function befAbstand(a, b, max = 1) {
@@ -14668,6 +15603,7 @@ async function befAusfuehren(text, o = {}) {
 const p = befParsen(text, BEF_K); let r = p.fn, ziel = null;
 const fertig = (ok, t, z) => { if (t) befMelden(t); if (ok) befVerlauf(text); return { ok, text: t || '', ziel: z ? (z.id ? '#' + z.id : z.classList && z.classList.contains('feld') ? 'main.raster > section.feld.' + [...z.classList].find((c) => SPRUNG_NAMEN[c] || FELD_EXTRA[c]) : '') : '', fn: r ? r.id : '', markt: p.markt || '' }; };
 if (o.fokus) p.fokus = true;
+if (W2_BEREIT && r && r.id === 'suche' && /\s\S/.test(String(text || '').trim())) { const e = await w2Befehl({ id: 'finden' }, { rest: String(text).trim().split(/\s+/).slice(1) }); return fertig(true, '', e.ziel); }
 if (!r && !p.markt && p.tf == null) {
 const w = p.unbekannt[0] ? befNorm(p.unbekannt[0]) : '';
 if (TEILEN && BEF_NUR_MAC[w]) return fertig(false, befT('nurMac', tr(BEF_NUR_MAC[w])));
@@ -14696,6 +15632,7 @@ case 'tasten': tastenHilfe(true); return fertig(true, hinweis, $('tasten-hilfe')
 case 'neu': wasNeu(); return fertig(true, hinweis, $('was-neu'));
 case 'vorlesen': { const ok = vorlesenStart(); if (!ok && !meld) meldLaden(); return fertig(ok, ok ? hinweis : w4T(window.speechSynthesis && typeof SpeechSynthesisUtterance !== 'undefined' ? 'vlLeer' : 'vlStimme')); }
 case 'alarm': case 'stumm': case 'technik': case 'perpspot': case 'bspread': case 'stichwort': { const e = await w4Befehl(r, p); if (e.ok) NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
+case 'raster': case 'zuruecksetzen': case 'dichte': case 'koppeln': case 'fenster': case 'reiter': case 'listeteilen': case 'finden': { const e = await w2Befehl(r, p); return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'vgl': case 'ratio': case 'spread': case 'art': case 'vorlage': case 'bild': { const e = await w3Befehl(r, p); NAV.f = r.id; return fertig(e.ok, hinweis, e.ziel); }
 case 'einstieg': einstieg(0); return fertig(true, hinweis, $('einstieg'));
 case 'hilfe': verzeichnis(p.rest.join(' ')); return fertig(true, hinweis, $('verzeichnis'));
@@ -14771,6 +15708,7 @@ function befZeigen() {
 const ein = $('befehl-ein'), ul = $('befehl-liste'); if (!ein || !ul) return;
 const t = ein.value, t0 = performance.now();
 let l = befVorschlaege(t, BEF_K, 12);
+if (W2_BEREIT) l = w2SucheDazu(t, l);
 if (!t.trim()) {
 const f = new Set(BEF_V.fav.map(befNorm));
 l = BEF_V.fav.map((c) => ({ cmd: c, art: 'fav' })).concat(BEF_V.verlauf.filter((c) => !f.has(befNorm(c))).slice(0, 8).map((c) => ({ cmd: c, art: 'verlauf' })));
@@ -14783,12 +15721,12 @@ ul.replaceChildren(...l.map((v, i) => {
 const li = hdEl('li', 'befehl-zeile'); li.dataset.i = String(i); li.id = 'befehl-v' + i; li.setAttribute('role', 'option');
 const b = hdEl('b', 'befehl-cmd', v.cmd); b.dataset.roh = ''; b.translate = false;
 const p0 = v.art === 'fn' ? v.r : v.art === 'fav' || v.art === 'verlauf' || v.art === 'beispiel' ? befParsen(v.cmd, BEF_K).fn : null;
-const satz = v.art === 'markt' ? (TF.get(v.r.id) ? TF.get(v.r.id).lang || anzeige(v.r.id) : 'Markt wechseln') : v.art === 'ab' ? (v.r.f ? v.r.f.map((x) => feldName(x)).join(' · ') : 'Handeln')
+const satz = v.art === 'such' ? v.satz : v.art === 'markt' ? (TF.get(v.r.id) ? TF.get(v.r.id).lang || anzeige(v.r.id) : 'Markt wechseln') : v.art === 'ab' ? (v.r.f ? v.r.f.map((x) => feldName(x)).join(' · ') : 'Handeln')
 : v.art === 'lex' ? v.r.name : p0 ? (AB.stufe === 'einsteiger' ? p0.n + ' – ' + p0.s : p0.s) : '';
-const s = hdEl('span', 'befehl-satz', satz);
-const art = hdEl('small', 'befehl-art', ART[v.art] || '');
+const s = hdEl('span', 'befehl-satz', satz); if (v.art === 'such') { s.dataset.roh = ''; s.translate = false; }
+const art = hdEl('small', 'befehl-art', ART[v.art] || (v.art === 'such' ? v.gruppe : ''));
 const st = hdEl('button', 'befehl-stern', fav.has(befNorm(v.cmd)) ? '★' : '☆'); st.type = 'button'; st.dataset.cmd = v.cmd; st.tabIndex = -1; st.setAttribute('aria-label', 'Anheften');
-li.append(b, s, art, st); return li;
+if (v.art === 'such') li.append(b, s, art); else li.append(b, s, art, st); return li;
 }));
 ein.setAttribute('aria-expanded', String(l.length > 0));
 const p = befParsen(t, BEF_K);
@@ -14805,10 +15743,11 @@ async function befLos(fo) {
 const ein = $('befehl-ein'); if (!ein) return;
 let t = ein.value.trim();
 const v = befListe[befWahl], pt = befParsen(t, BEF_K);
+if (W2_BEREIT && v && v.art === 'such' && (befWahl > 0 || !t || pt.unbekannt.length || (!pt.fn && !pt.markt && pt.tf == null) || (pt.fn && pt.fn.id === 'finden'))) { befehlZu(); await w2SucheOeffnen(v); return; }
 if (v && (!t || befWahl > 0 || pt.unbekannt.length || (!pt.fn && !pt.markt && pt.tf == null))) t = v.cmd;
 if (!t) return;
 const p = befParsen(t, BEF_K);
-if (p.fn && p.fn.par && !p.rest.length && p.fn.id !== 'hilfe' && p.fn.id !== 'scr') { ein.value = befSchoen(t) + ' '; befWahl = 0; befZeigen(); return; }
+if (p.fn && p.fn.par && !p.rest.length && p.fn.id !== 'hilfe' && p.fn.id !== 'scr' && !['raster', 'koppeln', 'fenster', 'reiter', 'dichte'].includes(p.fn.id)) { ein.value = befSchoen(t) + ' '; befWahl = 0; befZeigen(); return; }
 befehlZu();
 const r = await befAusfuehren(t, { fokus: fo });
 if (!r.ok && r.text) { befehlAuf(befVon); $('befehl-ein').value = t; befZeigen(); $('befehl-stand').textContent = r.text; }
@@ -14926,6 +15865,7 @@ document.addEventListener('click', (e) => { if (e.target.closest && e.target.clo
 if (Q.get('f')) setTimeout(() => { const r = BEF_REG.find((x) => x.id === Q.get('f')); if (r) befOeffnen(r, {}); }, 1500);
 setInterval(navMerken, 700); setTimeout(navMerken, 300);
 }
+w2Start();
 })();
 
 </script>
