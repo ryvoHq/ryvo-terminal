@@ -2165,6 +2165,7 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
 :root[data-thema="hell"] #kurs-dazu.plus { color: color-mix(in srgb, var(--kauf) 85%, #000); }   
 :root[data-thema="hell"] #kurs-dazu.minus { color: color-mix(in srgb, var(--verk) 85%, #000); }
 .hd-saison-wahl { margin: 2px 0 4px; }                                             
+@media (min-width: 1200px) { .hd-raster, .hd-raster.ohne-buch { grid-template-rows: auto 1fr; } }   
 
 
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
@@ -8132,7 +8133,7 @@ function mzBlock(id, fehler) {
 const art = $(id); if (!art) return false;
 const p = art.querySelector('.mz-fehler');
 art.classList.toggle('mz-fehlt', !!fehler);
-if (p) { p.hidden = !fehler; p.textContent = fehler ? 'Keine Daten von dieser Quelle – der Sammler versucht es beim nächsten Lauf erneut.' + (SPRACHE === 'de' && typeof fehler === 'string' ? ` (${fehler})` : '') : ''; }
+if (p) { p.hidden = !fehler; p.textContent = fehler && fehler.satz ? tr(fehler.satz) : fehler ? 'Keine Daten von dieser Quelle – der Sammler versucht es beim nächsten Lauf erneut.' + (SPRACHE === 'de' && typeof fehler === 'string' ? ` (${fehler})` : '') : ''; }
 return !fehler;
 }
 function mzLegende(id, eintraege) { const l = $(id); if (l) l.replaceChildren(...eintraege.map(([nm, f]) => { const s = document.createElement('span'); const i = document.createElement('i'); i.className = 'punkt'; i.style.background = f; s.append(i, nm); return s; })); }
@@ -8196,7 +8197,7 @@ return (teile.length ? ' · direkt geladen: ' + teile.join(', ') : '') + (fehlt.
 function umfZeigen() {
 const ids = ['umf-angst', 'umf-vergleich', 'umf-cot', 'umf-vix', 'umf-zyklus', 'umf-puell'], u = umf;
 if (!$('umf-angst')) return;
-const warte = () => (Date.now() - umfStart < UMF_LADE_MS ? 'Lade …' : 'Quellen antworten langsam – wartet noch auf Antwort');
+const warte = () => (!umfStart || Date.now() - umfStart < UMF_LADE_MS ? 'Lade …' : 'Quellen antworten langsam – wartet noch auf Antwort');
 if (!u || u.fehler) { for (const id of ids) leinwandText($(id), u && u.fehler ? u.fehler : warte()); $('umf-kacheln').replaceChildren(); $('umf-stand').textContent = ''; return; }
 const grund = (keys, leer) => (u.fehlt && keys.length && keys.every((k) => u.fehlt.has(k)) ? 'Quelle gerade nicht erreichbar – neuer Versuch beim nächsten Öffnen' : u.laeuft ? warte() : leer);
 const ab = geschTage ? Date.now() / 1000 - geschTage * 86400 : 0, datum = (t) => monatJahr(t);
@@ -15039,8 +15040,8 @@ const R = BH.r, voll = !TEILEN;
 const lk = [bhKachel('netto_liquiditaet', 'Netto-Liquidität', bhBio), bhKachel('fed_bilanz', 'Fed-Bilanz', bhBio), bhKachel('fed_tga', 'TGA (Wochenstand)', bhBio), bhKachel('tga_taeglich', 'TGA (täglich)', bhBio),
 bhKachel('fed_rrp', 'Reverse Repo (ON RRP)', bhBio), bhKachel('fed_reserven', 'Reserven der Banken', bhBio)].filter(Boolean);
 $('bh-liq-k').replaceChildren(...lk);
-const lt = $('bh-liq-teil'); if (lt) lt.textContent = !R.fed_bilanz ? (TEILEN ? 'Fed-Bilanz, TGA und Netto-Liquidität: nur in der Vollversion – Fed und Treasury-FiscalData erlauben keinen Abruf direkt aus dem Browser.' : '') : R.netto_liquiditaet && R.netto_liquiditaet.formel ? 'Netto-Liquidität = eigene Rechnung aus H.4.1 (Mittwochsstände)' : '';
-if (mzBlock('bh-liq', lk.length ? null : TEILEN ? 'Nur in der Vollversion' : 'keine Werte')) {
+const lt = $('bh-liq-teil'); if (lt) lt.textContent = !R.fed_bilanz ? (TEILEN && lk.length ? 'Fed-Bilanz, TGA und Netto-Liquidität: nur in der Vollversion – Fed und Treasury-FiscalData erlauben keinen Abruf direkt aus dem Browser.' : '') : R.netto_liquiditaet && R.netto_liquiditaet.formel ? 'Netto-Liquidität = eigene Rechnung aus H.4.1 (Mittwochsstände)' : '';
+if (mzBlock('bh-liq', lk.length ? null : TEILEN ? { satz: 'Fed-Bilanz, TGA und Netto-Liquidität: nur in der Vollversion – Fed und Treasury-FiscalData erlauben keinen Abruf direkt aus dem Browser.' } : 'keine Werte')) {
 const r = R.netto_liquiditaet && (R.netto_liquiditaet.werte || []).length > 2 ? R.netto_liquiditaet : R.tga_taeglich, w = r ? (r.werte || []).slice(-104) : [];
 bhLinie($('bh-liq-c'), [[w.map((x) => x[1] / 1e6), F.wal]], w.map((x) => `${x[0].slice(8, 10)}.${x[0].slice(5, 7)}.`), '', 2);
 }
