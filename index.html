@@ -12942,9 +12942,12 @@ const best = new Map();
 for (const [id, e] of TF) { if (!arten.includes(e.art) || !(e.preis > 0)) continue; const k = e.lang || e.name, x = best.get(k); if (!x || (e.umsatz || 0) > (x.umsatz || 0)) best.set(k, { coin: id, name: e.name, anzeige: e.lang || e.name, art: e.art, preis: e.preis, ae1h: null, ae24h: e.ae24h, umsatz: e.umsatz, oi: e.oi, funding: e.funding, dex: e.dex }); }
 return [...best.values()];
 }
+const W4_NICHT_KRYPTO = new Set(['XAU', 'XAG', 'XPT', 'XPD', 'NG', 'BZ', 'QQQ', 'SPY', 'IWM', 'DIA', 'SOXL', 'SOXS', 'TQQQ', 'SQQQ', 'KORU', 'SKHYNIX', 'SKHY', 'NBIS', 'SPCX', 'SNXX', 'TSLL', 'NVDL', 'MSTU', 'MSTX',
+'CONL', 'GLD', 'SLV', 'USO', 'UVXY', 'MUU', 'SECZ', 'AXTI', 'BE', 'IREN', 'CRCL', 'HOOD', 'COIN', 'MSTR', 'CIFR', 'WULF', 'APLD', 'OKLO', 'SMR', 'IONQ', 'RGTI', 'QBTS', 'GME', 'AMC', 'TSM', ...Object.keys(TF_NAMEN)]);
+const w4Krypto = (c) => !istTF(c) && !W4_NICHT_KRYPTO.has(c);
 function w4HmZeilen() {
 const g = W4.hm.gruppe;
-if (g === 'krypto') return ueb && Array.isArray(ueb.coins) ? ueb.coins.filter((z) => !istTF(z.coin)).map((z) => ({ ...z, name: z.coin, anzeige: z.coin })) : [];
+if (g === 'krypto') return ueb && Array.isArray(ueb.coins) ? ueb.coins.filter((z) => w4Krypto(z.coin)).map((z) => ({ ...z, name: z.coin, anzeige: z.coin })) : [];
 return w4TfZeilen(g === 'aktien' ? ['Aktie'] : ['Index', 'Rohstoff', 'Devisen']);
 }
 function w4HmZeigen() {
@@ -12956,7 +12959,7 @@ for (const b of document.querySelectorAll('#hm-wahl button')) b.setAttribute('ar
 const alle = w4HmZeilen(), liste = W4.hm.kat ? (W4_KAT[W4.hm.kat] || W4_SEKTOR[W4.hm.kat] || []) : null;
 const kb = document.querySelector('#hm-wahl [data-kat]'); if (kb) { kb.hidden = !W4.hm.kat; kb.textContent = W4.hm.kat ? `${tr(W4.hm.kat)} ×` : 'Alle Kategorien'; }
 const leer = (t) => { leinwandText(cv, t); W4.hm.rechtecke = []; };
-if (W4.hm.gruppe === 'krypto' && (!ueb || ueb.fehler)) return leer(ueb && typeof ueb.fehler === 'string' ? ueb.fehler : 'Lade …');
+if (W4.hm.gruppe === 'krypto' && (!ueb || typeof ueb.fehler === 'string')) return leer(ueb && typeof ueb.fehler === 'string' ? ueb.fehler : 'Lade …');
 if (W4.hm.gruppe !== 'krypto' && !TF.size) { if (DEMO) return leer('Aktien und Weltmärkte gibt es nur mit echten Daten.'); tfLaden(); return leer('Lade …'); }
 const gr = W4.hm.gr, z = alle.filter((x) => (!liste || liste.includes(x.name)) && (x[gr] || 0) > 0).sort((a, b) => b[gr] - a[gr]).slice(0, W / dpr < 600 ? 30 : 64);
 W4.hm.zeilen = z;
@@ -13142,7 +13145,7 @@ w4ScreensZeigen();
 }
 
 function w4Stand() {
-if (!ueb || ueb === W4.letzterUeb || !Array.isArray(ueb.coins) || !ueb.coins.length || ueb.fehler) return false;
+if (!ueb || ueb === W4.letzterUeb || !Array.isArray(ueb.coins) || !ueb.coins.length || typeof ueb.fehler === 'string') return false;
 W4.letzterUeb = ueb;
 const t = Date.now(), l = W4.hist[W4.hist.length - 1]; if (l && t - l.t < 40000) return false;
 W4.hist.push({ t, z: ueb.coins.filter((z) => !istTF(z.coin)).map((z) => ({ coin: z.coin, preis: z.preis, umsatz: z.umsatz, oi: z.oi, funding: z.funding, ae1h: z.ae1h, oi1h: z.oi1h })) });
@@ -13191,7 +13194,7 @@ const ART = { umsatz: 'Umsatz', oi: 'Offene Positionen', funding: 'Funding', kur
 for (const x of l.slice(0, 40)) {
 const r = rumpf.insertRow(); r.dataset.coin = x.coin;
 r.insertCell().textContent = uhrKurz(x.ts); r.insertCell().textContent = x.coin; r.cells[1].className = 'coin'; r.insertCell().textContent = ART[x.art] || x.art;
-r.insertCell().textContent = w4ScanText(x); r.cells[3].style.whiteSpace = 'normal'; r.insertCell().textContent = x.preis > 0 ? uebPreis(x.preis) : '–';
+r.insertCell().textContent = w4ScanText(x); r.cells[3].style.whiteSpace = 'normal'; r.cells[2].style.textAlign = r.cells[3].style.textAlign = 'left'; r.insertCell().textContent = x.preis > 0 ? uebPreis(x.preis) : '–';
 }
 box.replaceChildren(tab);
 }
@@ -13372,7 +13375,8 @@ const neu = w4Stand();
 if (neu) { w4Scannen(); w4RegelnPruefen(); if (feldInSicht(['hmap'])) w4HmZeigen(); }
 w4AlarmePruefen();
 const r = w4Regeln(); if (r.stufe) w4Stufen(); if (r.wal) w4WalPruefen(); w4WortPruefen();
-if (feldInSicht(['weltm'])) w4WeltZeigen();
+if (feldInSicht(['weltm']) || tfZeit !== W4.tfGesehen) { W4.tfGesehen = tfZeit; w4WeltZeigen(); if (W4.hm.gruppe !== 'krypto') w4HmZeigen(); }
+else if (!W4.hm.rechtecke.length && feldInSicht(['hmap'])) w4HmZeigen();
 w4MehrZeigen(); w4StummZeigen();
 }
 function w4Start() {
@@ -13385,7 +13389,7 @@ if (hdLies('mehr') === '1') w4Mehr(true);
 const z = $('hd-zeichnen'); if (z) z.addEventListener('click', () => setTimeout(w4MehrZeigen, 0));
 addEventListener('resize', () => { if (feldInSicht(['hmap'])) w4HmZeigen(); });
 w4ScanZeigen(); w4HmZeigen(); w4WeltZeigen();
-setInterval(w4Takt, 15000); setTimeout(w4Takt, 2500);
+setInterval(w4Takt, 5000); setTimeout(w4Takt, 2500);
 window.__ryvoW4 = { treemap, katLeistung, technik, ausreisserFinden, alrPruefen, alrStummMin, marktRegeln, stufeNah, stichwortTreffer,
 heatmap: () => W4.hm.zeilen.map((z) => ({ coin: z.coin, ae24h: z.ae24h, ae1h: z.ae1h, umsatz: z.umsatz, oi: z.oi, preis: z.preis })), gruppe: (g) => { W4.hm.gruppe = g; W4.hm.kat = ''; w4HmZeigen(); },
 uebersicht: () => (ueb && Array.isArray(ueb.coins) ? ueb.coins.map((z) => ({ coin: z.coin, ae24h: z.ae24h, umsatz: z.umsatz, oi: z.oi, preis: z.preis })) : []), tech: () => Object.fromEntries(W4.tech),
