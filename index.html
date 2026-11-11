@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "f5222262", "es": "b5087b57", "fr": "88ccd1b3", "it": "24614de7", "tr": "bb1cd099"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "eb574e04", "es": "23484ce6", "fr": "0e469bcf", "it": "01048630", "tr": "91e5666c"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2144,7 +2144,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       </div>
       <button type="button" class="was" data-hilfe="heat" aria-expanded="false">Was ist das?</button>
     </div>
-    <p data-farbwort class="hilfe" id="h-heat" hidden>Jede senkrechte Spalte ist eine Sekunde Orderbuch, zusammengezählt über Bybit-Futures (live) und Binance-Spot (je 5.000 Stufen, etwa ±0,8 %; grau getönt, wo kein Buch hinreicht). Alle Preise sind auf Bybit-Futures umgerechnet. Helle Bänder sind Preise, an denen viel Geld auf Käufer oder Verkäufer wartet („Wände“, Liquidität). Die Kreise sind echte Trades von Bybit und Binance: grün = jemand hat aggressiv gekauft, rot = verkauft, je größer, desto mehr Geld. Rechts das Volumen je Preis seit Beginn des Bildes: dort wurde am meisten gehandelt. Beim Öffnen sind sofort die letzten 15 Minuten da (links der gestrichelten Linie „live“): Kurs und Trades von den Börsen – je Minute, darum gröber als live. Profis schauen, ob der Kurs an einer Wand abprallt, ob sie verschwindet („gezogen“) oder ob sie aufgefressen wird. Die Zeile über der Karte nennt die nächste große Kauf- und Verkaufswand (mindestens 6× eine normale Stufe, 0,02 bis 0,5 % vom Kurs, seit mindestens 10 Sekunden), wie lange sie schon steht und wie oft in den letzten 15 Minuten Wände verschwanden, ohne gehandelt zu werden („gezogen“). Das beschreibt nur, was im Buch passiert – ob Wände den Kurs aufhalten, ist damit nicht gesagt.</p>
+    <p data-farbwort class="hilfe" id="h-heat" hidden>Jede senkrechte Spalte ist eine Sekunde Orderbuch, zusammengezählt über Bybit-Futures (live), OKX-Futures und Binance-Spot (je 5.000 Stufen, etwa ±0,8 %; grau getönt, wo kein Buch hinreicht). Alle Preise sind auf Bybit-Futures umgerechnet. Helle Bänder sind Preise, an denen viel Geld auf Käufer oder Verkäufer wartet („Wände“, Liquidität). Die Kreise sind echte Trades aller vier Börsen: grün = jemand hat aggressiv gekauft, rot = verkauft, je größer, desto mehr Geld. Rechts das Volumen je Preis seit Beginn des Bildes: dort wurde am meisten gehandelt. Beim Öffnen sind sofort die letzten 15 Minuten da (links der gestrichelten Linie „live“): vom Mac mit Liquidität je Minute in 0,1-%-Stufen, ohne Mac nur Kurs und Trades von den Börsen – je Minute, darum gröber als live. Profis schauen, ob der Kurs an einer Wand abprallt, ob sie verschwindet („gezogen“) oder ob sie aufgefressen wird. Die Zeile über der Karte nennt die nächste große Kauf- und Verkaufswand (mindestens 6× eine normale Stufe, 0,02 bis 0,5 % vom Kurs, seit mindestens 10 Sekunden), wie lange sie schon steht und wie oft in den letzten 15 Minuten Wände verschwanden, ohne gehandelt zu werden („gezogen“). Das beschreibt nur, was im Buch passiert – ob Wände den Kurs aufhalten, ist damit nicht gesagt.</p>
     <p class="heat-waende leise" id="heat-waende" aria-live="off"></p>
     <div class="leinwand-heat"><canvas id="heat" aria-label="Liquiditäts-Karte mit Trades und Volumen je Preis" role="img"></canvas></div>
     <div class="legende"><span class="l-kauf">Kauf-Trade</span><span class="l-verk">Verkauf-Trade</span><span class="l-wand">Liquidität (wenig → viel)</span><span class="l-profil">Volumen je Preis</span></div>
@@ -2270,11 +2270,11 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     </div>
     <div class="hilfe" id="h-chart" hidden>
       <p><b>Footprint</b>: Jede Kerze zeigt je Preisstufe, wie viel aggressiv <b>verkauft</b> (links) und <b>gekauft</b> (rechts) wurde – zusammen über Binance Spot, Bybit Futures und Coinbase, in Dollar. Kräftige Farbe = Ungleichgewicht (eine Seite mindestens 3× so stark wie die schräg darunter/darüber). Rahmen = Stufe mit dem meisten Handel (Point of Control). Unter jeder Kerze: Delta (Kauf minus Verkauf) und Volumen.</p>
-      <p data-farbwort><b>Große Trades</b>: Kreise = einzelne Trades über der Grenze des Coins (grün Kauf, rot Verkauf). <b>Volumenprofil</b>: Handel je Preis im ganzen Zeitraum, mit Point of Control und 70-%-Wertbereich. <b>Wertbereich</b>: gestrichelt die Grenzen und der Point of Control von gestern (UTC-Tag) – scheitern Käufer oben daran oder Verkäufer unten, ist das oft eine Wendestelle; dazu der Point of Control von heute. <b>Liquidität</b>: wartende Aufträge im Orderbuch im Hintergrund (ab dem Öffnen der Seite). <b>Optionen</b> (Krypto: Deribit/Bybit; S&amp;P 500, Nasdaq 100, Aktien: CBOE, 15 Min. verzögert): Max-Pain, erwartete Spanne bis zum nächsten Verfall, Call-/Put-Wand (gestrichelt die zweiten Wände), Zero-Gamma, offene Positionen je Strike links und das Netto-Gamma je Strike als Balken am rechten Rand (GEX). Steht der Kurs an einer Wand, erscheint oben links ein Hinweis. <b>Sitzungen</b>: je Tag ein Volumenprofil ab Tagesbeginn, beschriftet mit POC (P), VAH und VAL.</p>
+      <p data-farbwort><b>Große Trades</b>: Kreise = einzelne Trades über der Grenze des Coins (grün Kauf, rot Verkauf). <b>Volumenprofil</b>: Handel je Preis im ganzen Zeitraum, mit Point of Control und 70-%-Wertbereich. <b>Wertbereich</b>: gestrichelt die Grenzen und der Point of Control von gestern (UTC-Tag) – scheitern Käufer oben daran oder Verkäufer unten, ist das oft eine Wendestelle; dazu der Point of Control von heute. <b>Liquidität</b>: wartende Aufträge im Orderbuch im Hintergrund (Aufzeichnung am Mac). <b>Optionen</b> (Krypto: Deribit/Bybit; S&amp;P 500, Nasdaq 100, Aktien: CBOE, 15 Min. verzögert): Max-Pain, erwartete Spanne bis zum nächsten Verfall, Call-/Put-Wand (gestrichelt die zweiten Wände), Zero-Gamma, offene Positionen je Strike links und das Netto-Gamma je Strike als Balken am rechten Rand (GEX). Steht der Kurs an einer Wand, erscheint oben links ein Hinweis. <b>Sitzungen</b>: je Tag ein Volumenprofil ab Tagesbeginn, beschriftet mit POC (P), VAH und VAL.</p>
       <p data-farbwort><b>Zonen</b>: Wo in einer Kerze mindestens drei Preisstufen übereinander ein Ungleichgewicht haben (gestapelte Imbalance), entsteht eine Zone – grün Käufer, rot Verkäufer. Sie gilt, bis ein Kerzenschluss sie durchbricht (danach blass). Oft halten solche Zonen beim nächsten Test. <b>Dreiecke</b> = Absorption: sehr viel Handel, eine Seite drückt deutlich, aber der Kurs bewegt sich nicht in ihre Richtung – die Gegenseite hat alles aufgenommen (Dreieck unten: Käufer halten, oben: Verkäufer halten).</p>
       <p data-farbwort><b>TPO</b> (Market Profile): je Tag ein Profil, jede halbe Stunde ein Buchstabe an jedem Preis, den sie berührt hat (A = 0:00 UTC). Wo die Zeile am breitesten ist, war der Markt am längsten (Point of Control); das Band zeigt, wo 70 % der Zeit verbracht wurde. Grün = erste Stunde (Initial Balance). Nimmt die 15-Minuten-Kerzen der letzten zwei Tage.</p>
       <p><b>Replay</b>: spielt die Aufzeichnung Kerze für Kerze ab, ohne zu zeigen, was danach kam – zum Üben und Nachprüfen. Tempo 1×, 4×, 16× Kerzen je Sekunde; „Replay“ noch einmal = zurück zu live.</p>
-      <p>Bedienen: Mausrad oder zwei Finger = zoomen, ziehen = verschieben, Doppelklick = zurück zum Jetzt. Aufzeichnung ab dem Öffnen der Seite.</p>
+      <p>Bedienen: Mausrad oder zwei Finger = zoomen, ziehen = verschieben, Doppelklick = zurück zum Jetzt. Aufzeichnung am Mac, eine bis zwei Minuten Verzögerung.</p>
     </div>
     <div class="replay-leiste" id="ch-replay-leiste" hidden><button type="button" data-r="anfang" aria-label="zum Anfang">⏮</button><button type="button" data-r="zurueck" aria-label="eine Kerze zurück">◀</button><button type="button" data-r="play" id="rp-play" aria-label="abspielen">▶</button><button type="button" data-r="vor" aria-label="eine Kerze vor">▶|</button><button type="button" data-r="tempo" id="rp-tempo">1×</button><span class="leise" id="rp-text"></span></div>
     <div class="leinwand-chart"><canvas id="chart" role="img" aria-label="Footprint-Chart"></canvas><div class="ch-info" id="ch-info" hidden></div></div>
@@ -2392,7 +2392,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       <p><b>Börsen-Umfeld</b>: Bitcoin neben S&amp;P 500, Nasdaq 100, Gold und Dollar-Index, alle auf 100 am Anfang des Zeitraums. Die Kacheln zeigen die Änderung über 30 Tage und den Gleichlauf (Korrelation, 90 Tage, −1 bis +1) mit Bitcoin.</p>
       <p><b>Bitcoin-Zyklus</b> (immer Bitcoin): <b>200-Wochen-Schnitt</b> – lag in allen bisherigen Bärenmärkten nahe am Tief. <b>Pi-Cycle</b>: kreuzt der 111-Tage-Schnitt den doppelten 350-Tage-Schnitt von unten, lag das bisher nahe an Zyklus-Hochs. <b>Mayer-Multiple</b> = Kurs geteilt durch 200-Tage-Schnitt (über 2,4 selten). <b>Puell-Multiple</b> = Tageseinnahmen der Miner geteilt durch ihren Jahresschnitt (unter 0,5 Stress bei Minern, über 3 Überhitzung). <b>Hash-Ribbons</b>: fällt der 30-Tage-Schnitt der Rechenleistung unter den 60-Tage-Schnitt, geben Miner auf; das Ende davon war oft ein guter Zeitpunkt. Nur Rückblick, keine Vorhersage.</p>
       <p><b>Gleichlauf der Coins</b>: +1 = bewegen sich immer gleich, 0 = unabhängig, −1 = gegenläufig. <b>Beta</b> = wie stark ein Coin im Mittel mitgeht, wenn Bitcoin 1 % macht (1,5 = 1,5 %). Hohe Korrelation heißt: mehrere solcher Coins zu halten streut kaum.</p>
-      <p><b>VIX-Kurve</b> (nur in der Vollversion, CBOE, 15 Min. verzögert): erwartete Schwankung des S&amp;P 500 für 9 Tage, 30 Tage, 3, 6 und 12 Monate. Normal steigt die Kurve nach rechts (Contango, ruhig). Liegt kurz über lang (Backwardation), rechnet der Markt jetzt mit mehr Unruhe als später – das war oft in Ausverkäufen so. Gestrichelt = Vortag. Beobachtung, kein Signal.</p>
+      <p><b>VIX-Kurve</b> (nur am Mac, CBOE, 15 Min. verzögert): erwartete Schwankung des S&amp;P 500 für 9 Tage, 30 Tage, 3, 6 und 12 Monate. Normal steigt die Kurve nach rechts (Contango, ruhig). Liegt kurz über lang (Backwardation), rechnet der Markt jetzt mit mehr Unruhe als später – das war oft in Ausverkäufen so. Gestrichelt = Vortag. Beobachtung, kein Signal.</p>
       <p><b>CME-Positionen</b> (wöchentlicher Bericht der US-Aufsicht CFTC): Netto-Position der Vermögensverwalter (Fonds, ETFs) und der Hebel-Fonds (Hedgefonds) in Bitcoin bzw. Ether. Hebel-Fonds sind oft short, weil sie Spot oder ETFs kaufen und Futures verkaufen (Basis-Handel).</p>
     </div>
     <dl class="kacheln" id="umf-kacheln"></dl>
@@ -2443,7 +2443,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       <div class="zoom" id="meld-art" role="group" aria-label="Art"><button type="button" data-a="">Alle</button><button type="button" data-a="Listung">Listungen</button><button type="button" data-a="Streichung">Streichungen</button><button type="button" data-a="Handel">Handel</button><button type="button" data-a="Wartung">Wartung</button></div>
       <button type="button" class="was" data-hilfe="meld" aria-expanded="false">Was ist das?</button></div>
     <div class="hilfe" id="h-meld" hidden>
-      <p>Die offiziellen Ankündigungen von Bybit, direkt geladen (Werbung und Kampagnen ausgefiltert). <b>Listungen</b> bewegen kleine Coins oft stark, <b>Streichungen</b> drücken sie; <b>Handel</b> = geänderte Hebel, Margin oder neue Futures; <b>Wartung</b> = Ein- und Auszahlungen gesperrt. Fett = betrifft einen Coin aus deiner Liste.</p>
+      <p>Die offiziellen Ankündigungen von Binance, Bybit und OKX, alle 10 Minuten vom Mac (Werbung und Kampagnen ausgefiltert). <b>Listungen</b> bewegen kleine Coins oft stark, <b>Streichungen</b> drücken sie; <b>Handel</b> = geänderte Hebel, Margin oder neue Futures; <b>Wartung</b> = Ein- und Auszahlungen gesperrt. Fett = betrifft einen Coin aus deiner Liste.</p>
     </div>
     <ol class="ereignisse meld-liste" id="meld-liste"><li class="leise">Lade …</li></ol>
     <p class="leise stand" id="meld-stand"></p>
@@ -2572,9 +2572,9 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       </div>
       <button type="button" class="was" data-hilfe="danach" aria-expanded="false">Was ist das?</button></div>
     <div class="hilfe" id="h-danach" hidden>
-      <p>Für jedes Ereignis der letzten Tage: Wie oft stand der Kurs 5, 15 und 60 Minuten später höher – und um wie viel im Mittel? Die letzte Zeile zeigt dasselbe für <b>alle</b> Minuten. Nur der Abstand zu dieser Zeile sagt etwas.</p>
+      <p>Für jedes Ereignis aus der Aufzeichnung am Mac: Wie oft stand der Kurs 5, 15 und 60 Minuten später höher – und um wie viel im Mittel? Die letzte Zeile zeigt dasselbe für <b>alle</b> Minuten. Nur der Abstand zu dieser Zeile sagt etwas.</p>
       <p>Ein Ereignis = die extremsten Minuten des Zeitraums (oberstes 1 bzw. 5 %). Eine Welle zählt einmal je 30 Minuten. Fett = deutlich anders als sonst und mindestens 10 Fälle. Vergangenheit, kein Versprechen.</p>
-      <p><b>Backtest-Labor</b>: Was wäre gewesen, wenn man bei jedem Fall eines Ereignisses gekauft (oder verkauft) und nach 5, 15 oder 60 Minuten wieder geschlossen hätte – nach Gebühr, ohne Hebel, ohne Ausführungs-Verzögerung. Kurve = aufsummierte Ergebnisse in %. Nur Rückblick; wenige Fälle sind Zufall.</p>
+      <p><b>Backtest-Labor</b>: Was wäre gewesen, wenn man bei jedem Fall eines Ereignisses gekauft (oder verkauft) und nach 5, 15 oder 60 Minuten wieder geschlossen hätte – nach Gebühr, ohne Hebel, ohne Ausführungs-Verzögerung. Kurve = aufsummierte Ergebnisse in %. Nur Rückblick auf die Aufzeichnung am Mac; wenige Fälle sind Zufall.</p>
     </div>
     <h3 class="alarme-kopf">Eigene Alarme <span class="leise" id="alarme-stand"></span></h3>
     <ol class="ereignisse alarme" id="alarme"><li class="leise">Lade …</li></ol>
@@ -2596,7 +2596,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     <div class="feld-kopf"><h2 id="t-bericht">Lagebild</h2>
       <button type="button" class="was" data-hilfe="bericht" aria-expanded="false">Was ist das?</button></div>
     <div class="hilfe" id="h-bericht" hidden>
-      <p>Der Engine-Bericht in einer Ansicht: Geldfluss, Wale, Hebel, Optionen, Stimmung, Zinsen und Termine, Papier-Trader – jeweils mit „Was heißt das?“. Wird in diesem Browser aus den Live-Daten zusammengestellt.</p>
+      <p>Der Engine-Bericht in einer Ansicht: Geldfluss, Wale, Hebel, Optionen, Bitcoin-Netz, Stimmung, Zinsen und Termine, Papier-Trader – jeweils mit „Was heißt das?“. Wird am Mac alle 5 Minuten neu zusammengestellt.</p>
       <p>Punkt vor dem Titel = Lizenz der Quelle: grün = eigene Kennzahl oder Weitergabe erlaubt, gelb = ungeklärt, rot = nur für uns (TEILEN.md). Keine Anlageberatung, keine Empfehlung.</p>
     </div>
     <p class="bericht-kurz" id="bericht-kurz"></p>
@@ -2777,12 +2777,12 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   <span class="status"><i aria-hidden="true"></i><b id="status-text">Live</b></span>
   <span id="uhr" class="zahl"></span>
   <ul class="quellen" id="quellen-fuss" aria-hidden="true"></ul>
-  <span>Daten holt dein Browser selbst live von Bybit, Binance, Hyperliquid und Behörden-Seiten · nichts geht an unseren Server · ohne Gewähr</span>
+  <span id="fuss-daten">Daten live von Bybit, Binance, OKX, Coinbase, Deribit, Hyperliquid · nur zur eigenen Nutzung, nichts wird gespeichert oder weitergegeben · ohne Gewähr</span>
   <span class="rechts">Nur Beobachtung · keine Anlageberatung, keine Anlageempfehlung, nicht auf deine persönliche Lage zugeschnitten · Papier-Ergebnisse sind simuliert · Totalverlust möglich · kein Gewinnversprechen</span>
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "f5222262", "es": "b5087b57", "fr": "88ccd1b3", "it": "24614de7", "tr": "bb1cd099"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "eb574e04", "es": "23484ce6", "fr": "0e469bcf", "it": "01048630", "tr": "91e5666c"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -2911,6 +2911,55 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
         b.replaceChildren('Fehler – bitte melden: ', was, ' · ', a);
       } else b.textContent = (EN ? 'Error (please send a screenshot to Mio): ' : 'Fehler (bitte Bildschirmfoto an Mio): ') + was; } catch (x) {   }
   });
+  const BETA_TEXTE = /*BETA-TEXTE*/{"ersatz":[
+    ["h-dom","Bybit, OKX und Binance zusammen.","Bybit-Futures und Binance-Spot zusammen (wo Bybit gesperrt ist, Hyperliquid statt Bybit)."],
+    ["h-markt","aufsummiert: Kaufen Spot-Käufer (Binance, Coinbase), während","aufsummiert (hier aus den Kerzen von Binance Spot und Futures): Kaufen Spot-Käufer, während"],
+    ["h-markt","(Binance, OKX, Bybit, Coinbase)","(Bybit-Futures und Binance-Spot, aufgezeichnet ab dem Öffnen der Seite)"],
+    ["h-cvd","(echte Coins: Binance, Coinbase, OKX), eine für Futures (Wetten mit Hebel: Bybit, OKX)","(echte Coins: Binance), eine für Futures (Wetten mit Hebel: Bybit; wo Bybit gesperrt ist, Hyperliquid)"],
+    ["h-ueb","zusammen über Binance, Bybit, OKX und Hyperliquid und wie stark sie in 1 und 24 Stunden gewachsen sind,","in Dollar und"],
+    ["h-ueb","aufs Jahr je Börse.","aufs Jahr – direkt von Bybit (alle USDT-Perpetuals; wo Bybit gesperrt ist, alle Perpetuals von Hyperliquid). Tippe auf eine Spaltenüberschrift zum Sortieren, auf einen Coin zum Öffnen."],
+    ["h-ueb","oi24h > 5 und funding < 0","ae24h > 5 und funding < 0"],
+    ["h-ueb","oi (in $), oi1h, oi24h (Änderung in %), funding, binance, bybit, hyperliquid (Funding % aufs Jahr), spanne, korea.","oi (in $), funding (% aufs Jahr)."],
+    ["h-lkarte","Jede Minute, in der die offenen Positionen bei Binance, Bybit und OKX wachsen, gilt der Zuwachs als neu eröffnet – Long oder Short nach dem Kaufdruck in Futures, mit Hebel 10×, 25×, 50× und 100×. Erreicht der Kurs eine Stufe, ist sie verbraucht.","Alle 5 Minuten, in denen die offenen Positionen bei Bybit wachsen, gilt der Zuwachs als neu eröffnet – Long oder Short nach dem Kerzenkörper (Käufer-Anteil geschätzt), mit Hebel 10×, 25×, 50× und 100×. Erreicht der Kurs eine Stufe, ist sie verbraucht. Ist Bybit hier gesperrt, gibt es in dieser Fassung keine Karte."],
+    ["h-gex","Quellen: Krypto live von Deribit (BTC, ETH) bzw. Bybit; Indizes und Aktien von der CBOE über den Mac, 15 Min. verzögert, alle 15 Min. aufgezeichnet.","Quellen: Optionen live von Bybit (BTC, ETH, SOL und weitere Coins mit Optionen dort); der Verlauf wird alle 2 Min. in diesem Browser aufgezeichnet. Aktien- und Index-Optionen gibt es in dieser Fassung nicht."],
+    ["h-chart","zusammen über Binance Spot, Bybit Futures und Coinbase, in Dollar.","zusammen über Binance Spot und Bybit Futures (wo Bybit gesperrt ist, Hyperliquid), in Dollar, gezählt ab dem Öffnen der Seite."],
+    ["h-chart","(Krypto: Deribit/Bybit; S&P 500, Nasdaq 100, Aktien: CBOE, 15 Min. verzögert):","(Krypto-Optionen von Bybit; Aktien- und Index-Optionen gibt es in dieser Fassung nicht):"],
+    ["h-gamma","offenen Deribit-Optionen","offenen Bybit-Optionen"],
+    ["h-olab","(implizite Verteilung, Deribit)","(implizite Verteilung, Optionen von Bybit)"],
+    ["h-olab","offene Positionen von Deribit, OKX und Bybit zusammen.","offene Positionen der Bybit-Optionen."],
+    ["h-olab","was die Optionen an Schwankung einpreisen (DVOL) gegen die tatsächliche Schwankung der letzten 30 Tage, und wo das im Jahresvergleich steht.","was die Optionen an Schwankung für etwa 30 Tage einpreisen (Bybit-Optionen am Geld) gegen die tatsächliche Schwankung der letzten 30 Tage."],
+    ["h-vol","bei Deribit (größte Krypto-Optionsbörse)","bei Bybit"],
+    ["konto-form","Bei Bybit, Binance und OKX bitte","Bei Bybit und Binance bitte"],
+    ["h-heat","zusammengezählt über Bybit-Futures (live), OKX-Futures und Binance-Spot","zusammengezählt über Bybit-Futures (live) und Binance-Spot"],
+    ["h-heat","Die Kreise sind echte Trades aller vier Börsen","Die Kreise sind echte Trades von Bybit und Binance"],
+    ["h-heat","vom Mac mit Liquidität je Minute in 0,1-%-Stufen, ohne Mac nur Kurs und Trades von den Börsen","Kurs und Trades von den Börsen"],
+    ["h-chart","(Aufzeichnung am Mac).","(ab dem Öffnen der Seite)."],
+    ["h-chart","Aufzeichnung am Mac, eine bis zwei Minuten Verzögerung.","Aufzeichnung ab dem Öffnen der Seite."],
+    ["h-meld","Die offiziellen Ankündigungen von Binance, Bybit und OKX, alle 10 Minuten vom Mac (Werbung und Kampagnen ausgefiltert).","Die offiziellen Ankündigungen von Bybit, direkt geladen (Werbung und Kampagnen ausgefiltert)."],
+    ["h-danach","Für jedes Ereignis aus der Aufzeichnung am Mac:","Für jedes Ereignis der letzten Tage:"],
+    ["h-danach","Nur Rückblick auf die Aufzeichnung am Mac;","Nur Rückblick;"],
+    ["h-bericht","Der Engine-Bericht in einer Ansicht: Geldfluss, Wale, Hebel, Optionen, Bitcoin-Netz, Stimmung, Zinsen und Termine, Papier-Trader – jeweils mit „Was heißt das?“. Wird am Mac alle 5 Minuten neu zusammengestellt.","Der Engine-Bericht in einer Ansicht: Hebel, Wale, Kaufdruck, Stimmung, Zinsen und Termine – jeweils mit „Was heißt das?“. Wird in diesem Browser aus den Live-Daten zusammengestellt."],
+    ["fuss-daten","Daten live von Bybit, Binance, OKX, Coinbase, Deribit, Hyperliquid · nur zur eigenen Nutzung, nichts wird gespeichert oder weitergegeben · ohne Gewähr","Daten holt dein Browser selbst live von Bybit, Binance, Hyperliquid und Behörden-Seiten · nichts geht an unseren Server · ohne Gewähr"],
+    ["zins-hinweis","Die Zinskurve kommt vom Mac (Sammler profi.py, einmal am Tag) – nur über die Ansicht am Mac oder die App mit Tailscale.","Die Zinskurve lädt dein Browser direkt vom US-Finanzministerium – gerade keine Antwort, neuer Versuch in wenigen Minuten."]],
+  "absatz":[
+    ["h-gex","Implizit gegen realisiert","<b>Volatilität</b>: die tatsächliche Schwankung der letzten 30 Tage aus den Tageskursen, aufs Jahr gerechnet; gestrichelt steht, was danach tatsächlich kam. Eine Reihe der impliziten Volatilität (was die Optionen einpreisen) gibt es in dieser Fassung nicht."],
+    ["h-gex","Gamma je Strike","<b>Gamma je Strike</b>: Netto, Calls und Puts getrennt, die <b>Änderung seit dem vorigen Handelstag</b> (neues Gamma = neue Positionen) und der <b>Options-Fluss</b> (Volumen je Strike, „!“ = heute mehr gehandelt als offen war – oft neue Positionen). <b>Netto-Gamma über die Zeit</b>: wie sich die Lage verschoben hat, mit Kurs und Zero-Gamma."]],
+  "weg":[["h-werte","Coinbase-Prämie"],["h-ueb","Spanne"],["h-ueb","Korea"],["h-umfeld","VIX-Kurve"],["h-ofluss","Geldfluss"],["h-ofluss","Skew-Verlauf"],["h-ofluss","Große Trades"],
+    ["h-ofluss","Nur BTC und ETH"],["h-kurve","Futures-Terminkurve"],["h-opt","Futures-Kurve"]],
+  "attr":[["#hd-ebenen [data-ebene=\"heat\"]","title","Liquidität im Orderbuch hinter den Kerzen (ab Öffnen der Seite)"],["#ueb-filter","placeholder","z. B. ae24h > 5 und funding < 0"]]};
+  function betaTexte(B) {
+    const fehlt = [], p = (id, anfang) => [...document.querySelectorAll('#' + id + ' p, p#' + id)].filter((x) => x.textContent.trim().startsWith(anfang));
+    for (const [id, alt, neu] of B.ersatz) {
+      const el = document.getElementById(id); let ok = false;
+      if (el) { const g = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); for (let n = g.nextNode(); n; n = g.nextNode()) if (n.data.includes(alt)) { n.data = n.data.replace(alt, () => neu); ok = true; } }
+      if (!ok) fehlt.push(id + ': ' + alt.slice(0, 40));
+    }
+    for (const [id, anfang, html] of B.absatz) { const l = p(id, anfang); if (l.length === 1) l[0].innerHTML = html; else fehlt.push(id + ': ' + anfang); }
+    for (const [id, anfang] of B.weg) { const l = p(id, anfang); if (l.length) l.forEach((x) => x.remove()); else fehlt.push(id + ': ' + anfang); }
+    for (const [sel, a, neu] of B.attr) { const el = document.querySelector(sel); if (el && el.hasAttribute(a)) el.setAttribute(a, neu); else fehlt.push(sel + ' @' + a); }
+    return fehlt;
+  }
+  if (TEILEN) { const f = betaTexte(BETA_TEXTE); if (f.length) console.warn('r130 Beta-Texte nicht gefunden:', f.join(' | ')); }
   if (UEB) {
     const ATTR = ['title', 'aria-label', 'placeholder', 'alt'];
     const attrs = (n) => { if (n.dataset && n.dataset.roh !== undefined) return; for (const a of ATTR) { const v = n.getAttribute(a); if (v) { const t = tr(v); if (t !== v) n.setAttribute(a, t); } } };
@@ -2963,7 +3012,6 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     for (const id of ['of', 'of-skew', 'of-gross']) { const el = document.getElementById(id), box = el && el.closest('.of-raster > div'); if (box) { box.hidden = true; box.style.display = 'none'; } }
     { const oz = document.getElementById('of-zeit'); if (oz) { oz.hidden = true; oz.style.display = 'none'; } }
     { const t = document.getElementById('t-ofluss'); if (t) t.textContent = 'Optionen · Gamma je Strike'; }
-    document.querySelectorAll('#h-ofluss p').forEach((p, i) => { if (i !== 1) p.hidden = true; });
     { const tm = document.getElementById('termine'), box = tm && tm.parentElement; if (box) { box.hidden = true; box.style.display = 'none'; } }
     const dv = document.getElementById('g-dvol'); if (dv && dv.closest('.leinwand-gesch')) dv.closest('.leinwand-gesch').parentElement.hidden = true;
     for (const b of document.querySelectorAll('[data-f]')) if (/oi1h|oi24h|spanne|korea/.test(b.dataset.f)) b.hidden = true;
@@ -5188,7 +5236,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
   const LAUFZEITEN = ['1M', '1,5M', '2M', '3M', '4M', '6M', '1J', '2J', '3J', '5J', '7J', '10J', '20J', '30J'];
   function zeichneZins() {
     const cv = $('zins'), k = zinsDaten;
-    if (!k) { leinwandText(cv, 'Zinskurve kommt vom Mac'); return; }
+    if (!k) { leinwandText(cv, TEILEN ? 'Zinskurve: US-Finanzministerium gerade nicht erreichbar' : 'Zinskurve kommt vom Mac'); return; }
     const lz = LAUFZEITEN.filter((x) => k.heute[x] !== undefined);
     const v = k.vorher || {};
     diagramm(cv, {
@@ -6257,7 +6305,8 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     diagramm($('m-cvd'), { labels, links: 62, einheit: ' Mio.', mitNull: true, reihen: reihen(cvdMio, 1), leer: 'noch keine Aufzeichnung' });
     const sl = m.liq_long.reduce((a, b) => a + b, 0), ss = m.liq_short.reduce((a, b) => a + b, 0);
     $('l-m-liq').replaceChildren(...[['Longs', F.verk, sl], ['Shorts', F.kauf, ss]].map(([nm, f, v]) => { const s = document.createElement('span'); const i = document.createElement('i'); i.className = 'punkt'; i.style.background = f; s.append(i, `${nm} ${usd(v)}`); return s; }));
-    balkenDiagramm($('m-liq'), labels, m.liq_short, m.liq_long);
+    if (TEILEN && m.direkt && !sl && !ss) { $('l-m-liq').replaceChildren(); leinwandText($('m-liq'), 'In dieser Fassung keine Liquidations-Geschichte – neue Liquidationen live im Feld „Liquidationen“'); }
+    else balkenDiagramm($('m-liq'), labels, m.liq_short, m.liq_long);
     const legende = (id, liste) => $(id).replaceChildren(...liste.map(([nm, f]) => { const sp = document.createElement('span'); const i = document.createElement('i'); i.className = 'punkt'; i.style.background = f; sp.append(i, nm); return sp; }));
     const bu = m.buch_ungleich;
     if (bu && Object.values(bu).some((w) => w.some((v) => v !== null))) {
@@ -6999,7 +7048,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     const dpr = groesse(cv), ctx = cv.getContext('2d'), W = cv.width, H = cv.height, d = ch.replay && ch.d && ch.d.kerzen ? replaySicht(ch.d) : ch.d;
     replayLeiste();
     ctx.fillStyle = F.chart; ctx.fillRect(0, 0, W, H); ch.lage = null;
-    if (!d || d.fehler || !d.kerzen) { text(ctx, d && d.fehler ? d.fehler : 'Lade Footprint vom Mac …', W / 2, H / 2, dpr, F.leise, 'center'); $('ch-stand').textContent = ''; return; }
+    if (!d || d.fehler || !d.kerzen) { text(ctx, d && d.fehler ? d.fehler : TEILEN ? 'Lade Footprint …' : 'Lade Footprint vom Mac …', W / 2, H / 2, dpr, F.leise, 'center'); $('ch-stand').textContent = ''; return; }
     const K = d.kerzen;
     if (!K.length) { text(ctx, 'Noch keine Footprint-Aufzeichnung – der Mac sammelt sie seit dem letzten Neustart', W / 2, H / 2, dpr, F.leise, 'center'); $('ch-stand').textContent = ''; return; }
     if (ch.ansicht === 'tpo') { zeichneTpo(ctx, dpr, W, H, d); return; }
@@ -7591,7 +7640,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       const x = document.createElement(m.url ? 'a' : 'span'); const ueb = SPRACHE !== 'en' && m.ue && m.ue[SPRACHE]; x.textContent = ueb || m.titel; if (ueb) x.title = m.titel; x.translate = false; if (m.url) { x.href = m.url; x.target = '_blank'; x.rel = 'noopener'; }
       const d = document.createElement('div'); d.append(x); li.append(t, b, a, d); return li;
     }));
-    $('meld-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `${meld.direkt ? 'Bybit (direkt; Binance und OKX sperren Abrufe aus dem Browser)' : 'Binance, Bybit, OKX'} · Stand ${tagUhr(meld.zeit * 1000)}` + ((meld.fehler || []).length ? ` · gerade nicht erreichbar: ${meld.fehler.join(', ')}` : '');
+    $('meld-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `${meld.direkt ? (TEILEN ? 'Bybit, direkt geladen' : 'Bybit (direkt; Binance und OKX sperren Abrufe aus dem Browser)') : 'Binance, Bybit, OKX'} · Stand ${tagUhr(meld.zeit * 1000)}` + ((meld.fehler || []).length ? ` · gerade nicht erreichbar: ${meld.fehler.join(', ')}` : '');
   }
   const MAC_NACHRICHTEN = !TEILEN && (DEMO || macBasis() !== null);
   const NEWS_KATEGORIEN = ['regulierung', 'boerse', 'schlagzeile'];
@@ -9396,7 +9445,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     const cv = $('gex-zeit'); if (!cv) return;
     const dpr = groesse(cv), ctx = cv.getContext('2d'), W = cv.width, H = cv.height, Z = g ? g.zeilen : [];
     ctx.fillStyle = F.feld; ctx.fillRect(0, 0, W, H);
-    if (Z.length < 2) { text(ctx, !O && optFehler ? optFehler : W / dpr < 560 ? 'Sammle Messungen …' : 'Sammle Messungen … (alle 2 Min. in diesem Browser, dazu der Mac)', W / 2, H / 2, dpr, F.leise, 'center'); gexLegende('l-gex-zeit', []); return; }
+    if (Z.length < 2) { text(ctx, !O && optFehler ? optFehler : W / dpr < 560 ? 'Sammle Messungen …' : TEILEN ? 'Sammle Messungen … (alle 2 Min. in diesem Browser)' : 'Sammle Messungen … (alle 2 Min. in diesem Browser, dazu der Mac)', W / 2, H / 2, dpr, F.leise, 'center'); gexLegende('l-gex-zeit', []); return; }
     const links = 8 * dpr, achse = 84 * dpr, oben = 10 * dpr, unten = 16 * dpr, pw = W - links - achse, ph = H - oben - unten, kursH = ph * 0.58, balkenY0 = oben + kursH + 8 * dpr, balkenH = ph - kursH - 8 * dpr;
     const t0 = Z[0].t, t1 = Math.max(Z[Z.length - 1].t, t0 + 1), X = (t) => links + (t - t0) / (t1 - t0) * pw;
     const ps = Z.flatMap((z) => [z.s, z.flip].filter((v) => v > 0)), plo = Math.min(...ps), phi = Math.max(...ps), pr = Math.max(phi - plo, phi * 0.002), P = (p) => oben + (phi + pr * 0.08 - p) / (pr * 1.16) * kursH;
@@ -9469,9 +9518,9 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     if (c.bybit) l.push(['TradingView', tv(`BYBIT:${c.bybit}.P`)], ['Bybit', `https://www.bybit.com/trade/usdt/${c.bybit}`]);
     if (c.fapi) l.push(['Binance', `https://www.binance.com/en/futures/${c.fapi}`]);
     else if (c.binance) l.push(['Binance', `https://www.binance.com/en/trade/${String(c.binance).toUpperCase().replace(/(USDT|USDC|BTC)$/, '_$1')}`]);
-    if (c.okxSwap) l.push(['OKX', `https://www.okx.com/trade-swap/${String(c.okxSwap).toLowerCase()}`]);
+    if (c.okxSwap && !TEILEN) l.push(['OKX', `https://www.okx.com/trade-swap/${String(c.okxSwap).toLowerCase()}`]);
     if (COINS[coin] || coin === 'HYPE') l.push(['Hyperliquid', `https://app.hyperliquid.xyz/trade/${coin}`]);
-    if (OPT_COINS.has(coin)) l.push(['Deribit', `https://www.deribit.com/options/${coin}`]);
+    if (OPT_COINS.has(coin) && !TEILEN) l.push(['Deribit', `https://www.deribit.com/options/${coin}`]);
     return l;
   }
   function oeffnenZeigen() {
@@ -9983,7 +10032,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     const zs = []; const sp = (t) => Object.assign(document.createElement('span'), { textContent: t });
     if (bot) zs.push(sp('Bot: Paper, kein echtes Geld – nur Anzeige, der Bot wird hier nicht gesteuert'), ' · ', sp(tagUhr(kontoZeit)));
     if (kl.length) { if (zs.length) zs.push(' · '); zs.push(sp('Deine Konten: nur lesen, Schlüssel nur auf diesem Gerät')); const f = [...kontenStand.values()].find((x) => x.fehler); if (f) zs.push(' · ', sp(f.fehler)); }
-    else if (!bot) zs.push(sp('Eigene Positionen von Hyperliquid, Bybit, Binance oder OKX anzeigen – nur lesen, kein Handel'));
+    else if (!bot) zs.push(sp(TEILEN ? 'Eigene Positionen von Hyperliquid, Bybit oder Binance anzeigen – nur lesen, kein Handel' : 'Eigene Positionen von Hyperliquid, Bybit, Binance oder OKX anzeigen – nur lesen, kein Handel'));
     $('konto-stand').replaceChildren(...zs);
     knoepfeGehalten();
     if (typeof HD !== 'undefined' && HD && HD.init) { hdBotKopf(); for (const c of HD.panes) c.dirty = true; }
@@ -12069,7 +12118,7 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
       }
     } else if (t === 'opt') {
       const oe = optEbenen(), kurs = S && (S.last || S.mid);
-      if (!oe) teile.push(hdEl('p', 'leise', O && O.coin === coin ? 'Optionen geladen, aber ohne Gamma-Daten für diesen Markt.' : `Gamma-Wände und Zero-Gamma gibt es für Märkte mit Optionen (Krypto: Deribit/Bybit; S&P 500, Nasdaq 100, Aktien: CBOE über den Mac)${OPT_COINS.has(coin) ? ' – lade …' : ''}.`));
+      if (!oe) teile.push(hdEl('p', 'leise', O && O.coin === coin ? 'Optionen geladen, aber ohne Gamma-Daten für diesen Markt.' : `${TEILEN ? 'Gamma-Wände und Zero-Gamma gibt es für Coins mit Optionen bei Bybit (z. B. BTC, ETH, SOL)' : 'Gamma-Wände und Zero-Gamma gibt es für Märkte mit Optionen (Krypto: Deribit/Bybit; S&P 500, Nasdaq 100, Aktien: CBOE über den Mac)'}${OPT_COINS.has(coin) ? ' – lade …' : ''}.`));
       else {
         const ab = (p) => (kurs && p ? ` (${proz((p / kurs - 1) * 100, 1)})` : '');
         teile.push(hdEl('h4', '', `Optionen · ${anzeige(coin)}`));
@@ -12248,8 +12297,9 @@ a:focus-visible, select:focus-visible, summary:focus-visible, input:focus-visibl
     if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
   }, true);
 
-  const FASSUNG = 'r129';
+  const FASSUNG = 'r130';
   const NEU = [
+    { f: 'r130', tag: '11.11.2026', s: ['Hilfetexte und Hinweise nennen nur noch die Quellen, die diese Fassung wirklich lädt.'] },
     { f: 'r129', tag: '11.11.2026', s: ['„Mehrere Märkte“ lädt wieder – jedes Feld für sich, ohne Antwort nach 15 s ein klarer Hinweis.', 'Gold, Silber, Öl, S&P 500, Nasdaq 100 und Aktien wie Nvidia sind über die Suche wählbar (Kontrakte bei Hyperliquid).',
       'Ist eine Börse hier nicht erreichbar, steht nach 15 s ein ehrlicher Hinweis statt „Lade …“; Quellen, die antworten, zeigen ihre Daten trotzdem.', 'Hinweise im Chart brechen um statt abgeschnitten zu werden; Quellenangaben nennen die wirklich genutzte Quelle.', 'Kurse in der Markt-Übersicht einheitlich im Zahlenformat deiner Sprache.'] },
     { f: 'r128', tag: '11.11.2026', s: ['Alarme vollständig in allen sechs Sprachen – Zahlen im Format deiner Sprache, Namen von Konten und Regeln wie geschrieben.'] },
