@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "218ed9a9", "es": "efb5e9dc", "fr": "e556fdee", "it": "0a4eb8e0", "tr": "a01bb066"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "ae57c682", "es": "06cbe36c", "fr": "8326badf", "it": "61045b99", "tr": "aa489100"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2113,6 +2113,31 @@ body.fokus-an { overflow: hidden; }
 #ueb-bedingungen code, #wk-worte code { font: 500 12px var(--mono); }
 
 
+@media (min-width: 1000px) { main.raster > section.lern { grid-column: 1 / -1; } }
+.lern #le-check td:nth-child(2) { white-space: normal; text-align: left; width: 100%; }
+.lern #le-check td:first-child { width: 22px; }
+.lern #le-frage { flex: 1 1 320px; }
+.lern select { max-width: 100%; }
+.sr-text { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+@media (max-width: 699px) {
+  .jour .tabelle:not(#jo-kal) > table, .jour .tabelle:not(#jo-kal) > table > tbody, .ueben .tabelle > table, .ueben .tabelle > table > tbody { display: block; }
+  .jour .tabelle:not(#jo-kal) > table > thead, .ueben .tabelle > table > thead { display: none; }
+  .jour .tabelle:not(#jo-kal) tr, .ueben .tabelle tr { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 12px; padding: 7px 0; border-top: 1px solid var(--linie); }
+  .jour .tabelle:not(#jo-kal) td, .ueben .tabelle td { border-top: 0; padding: 0; text-align: left; white-space: normal; overflow-wrap: anywhere; }
+  .jour .tabelle:not(#jo-kal) td[data-k]::before, .ueben .tabelle td[data-k]::before { content: attr(data-k) "\00a0\00a0"; color: var(--leise); font: 600 10px var(--sans); }
+  #jo-kal > table { table-layout: fixed; }
+  #jo-kal th, #jo-kal td { text-align: center; padding: 4px 1px; font-size: 10px; white-space: normal; }
+  .jour select, .ueben select { max-width: 100%; }
+}
+
+@media (min-width: 1000px) { main.raster > section.jour, main.raster > section.ueben { grid-column: 1 / -1; } }
+.jour textarea { display: block; width: 100%; box-sizing: border-box; resize: vertical; margin: 6px 0; font: 500 12.5px var(--mono); color: var(--text); background: transparent; border: 1px solid var(--linie); border-radius: 6px; padding: 6px 8px; }
+.jour .wk-form textarea { flex: 1 1 100%; margin: 0; }
+.jour input[type="file"], .jour .wk-form input[type="file"] { flex: 0 1 auto; max-width: 260px; border: 0; padding: 0; }
+.jour .jo-bild { display: block; max-width: 220px; max-height: 140px; border-radius: 4px; }
+
+
 @media (min-width: 1000px) { main.raster > section.feld.meintag, main.raster > section.feld.wlisten, main.raster > section.feld.weltuhr { grid-column: 1 / -1; } }
 main.raster > [data-w2-aus] { display: none !important; }
 .w2-leiste[hidden], .w2-reiter[hidden] { display: none !important; }
@@ -2168,6 +2193,8 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
 @media (min-width: 1200px) { .hd-raster, .hd-raster.ohne-buch { grid-template-rows: auto 1fr; } }   
 
 @media (min-width: 1000px) { main.raster > section.feld.ofw, main.raster > section.feld.derw, main.raster > section.feld.walw { grid-column: 1 / -1; } }
+
+@media (min-width: 1000px) { main.raster > .feld.optw, main.raster > .feld.posw { grid-column: 1 / -1; } }
 
 
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
@@ -2271,10 +2298,10 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
   <p class="leise konto-stand" id="konto-stand"></p>
   <div class="konto-form" id="konto-form" hidden>
     <div class="kf-zeile">
-      <label>Börse <select id="kf-art"><option value="hl">Hyperliquid (Adresse)</option><option value="bybit">Bybit</option><option value="binance">Binance Futures</option></select></label>
+      <label>Börse <select id="kf-art"><option value="hl">Hyperliquid (Adresse)</option></select></label>
       <label data-fuer="hl">Adresse <input id="kf-adresse" placeholder="0x…" autocomplete="off" spellcheck="false"></label>
-      <label data-fuer="bybit binance okx" hidden>API-Schlüssel <input id="kf-key" autocomplete="off" spellcheck="false"></label>
-      <label data-fuer="bybit binance okx" hidden>Geheimnis <input id="kf-secret" type="password" autocomplete="off"></label>
+      <label data-fuer="schluessel-aus" hidden>API-Schlüssel <input id="kf-key" autocomplete="off" spellcheck="false"></label>
+      <label data-fuer="schluessel-aus" hidden>Geheimnis <input id="kf-secret" type="password" autocomplete="off"></label>
       <label data-fuer="okx-aus" hidden>Passphrase <input id="kf-pass" type="password" autocomplete="off"></label>
       <button type="button" id="kf-speichern">Verbinden</button><button type="button" id="kf-zu" class="leise-knopf">Schließen</button>
     </div>
@@ -3000,6 +3027,26 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
     <div class="tabelle ueb-tabelle" id="wu-tabelle"></div>
     <p class="leise stand" id="wu-sitzung"></p>
   </section>
+  <section class="feld lern" aria-labelledby="t-lern">
+    <div class="feld-kopf"><h2 id="t-lern">Erklären und Lernen · Kachel erklärt, Tageslage, Abläufe, Lern-Ecke</h2><span class="stand" id="le-stand" data-roh></span>
+      <button type="button" class="was" data-hilfe="lern" aria-expanded="false">Was ist das?</button></div>
+  </section>
+  <section class="feld jour" aria-labelledby="t-jour">
+    <div class="feld-kopf"><h2 id="t-jour">Journal und Portfolio · Notizen, Kalender, Rechner, Import</h2><span class="stand" id="jo-stand"></span>
+      <button type="button" class="was" data-hilfe="jour" aria-expanded="false">Was ist das?</button></div>
+  </section>
+  <section class="feld ueben" aria-labelledby="t-ueben">
+    <div class="feld-kopf"><h2 id="t-ueben">Üben und Studien · Replay-Übungshandel, Ereignis-Studien</h2><span class="stand" id="ue-stand"></span>
+      <button type="button" class="was" data-hilfe="ueben" aria-expanded="false">Was ist das?</button></div>
+  </section>
+  <section class="feld optw" aria-labelledby="t-optw">
+    <div class="feld-kopf"><h2 id="t-optw">Options-Werkzeuge · Kette, Skew, Geldfluss, Vol-Index</h2><span class="stand" id="ow-stand"></span>
+      <button type="button" class="was" data-hilfe="optw" aria-expanded="false">Was ist das?</button></div>
+  </section>
+  <section class="feld posw" aria-labelledby="t-posw">
+    <div class="feld-kopf"><h2 id="t-posw">Positionen je Preisbereich · Netto-Long/Short, Hebel, Marktanteile</h2><span class="stand" id="pw-stand"></span>
+      <button type="button" class="was" data-hilfe="posw" aria-expanded="false">Was ist das?</button></div>
+  </section>
   <section class="feld ofw" aria-labelledby="t-ofw">
     <div class="feld-kopf"><h2 id="t-ofw">Orderflow-Werkzeuge · Tape, Buch, Slippage, Tiefe</h2><span class="stand" id="ofw-stand"></span>
       <button type="button" class="was" data-hilfe="ofw" aria-expanded="false">Was ist das?</button></div>
@@ -3173,7 +3220,7 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "218ed9a9", "es": "efb5e9dc", "fr": "e556fdee", "it": "0a4eb8e0", "tr": "a01bb066"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "ae57c682", "es": "06cbe36c", "fr": "8326badf", "it": "61045b99", "tr": "aa489100"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -3322,7 +3369,6 @@ const BETA_TEXTE = /*BETA-TEXTE*/{"ersatz":[
 ["h-olab","offene Positionen von Deribit, OKX und Bybit zusammen.","offene Positionen der Bybit-Optionen."],
 ["h-olab","was die Optionen an Schwankung einpreisen (DVOL) gegen die tatsächliche Schwankung der letzten 30 Tage, und wo das im Jahresvergleich steht.","was die Optionen an Schwankung für etwa 30 Tage einpreisen (Bybit-Optionen am Geld) gegen die tatsächliche Schwankung der letzten 30 Tage."],
 ["h-vol","bei Deribit (größte Krypto-Optionsbörse)","bei Bybit"],
-["konto-form","Bei Bybit, Binance und OKX bitte","Bei Bybit und Binance bitte"],
 ["h-heat","zusammengezählt über Bybit-Futures (live), OKX-Futures und Binance-Spot","zusammengezählt über Bybit-Futures (live) und Binance-Spot"],
 ["h-heat","Die Kreise sind echte Trades aller vier Börsen","Die Kreise sind echte Trades von Bybit und Binance"],
 ["h-heat","vom Mac mit Liquidität je Minute in 0,1-%-Stufen, ohne Mac nur Kurs und Trades von den Börsen","Kurs und Trades von den Börsen"],
@@ -3337,6 +3383,7 @@ const BETA_TEXTE = /*BETA-TEXTE*/{"ersatz":[
 ["h-umfeld", "Bitcoin neben S&P 500, Nasdaq 100, Gold und Dollar-Index", "Bitcoin neben S&P 500, Nasdaq 100 und Gold"],
 ["fuss-lizenzen", "Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0)", "Übersetzungen von Hand geprüft (Grundlage teils Argos Translate mit OPUS-MT-Modellen, J. Tiedemann u. a., CC BY 4.0)"]],
 "absatz":[
+["konto-form","Nur lesen: Hyperliquid braucht nur deine öffentliche Adresse.","Nur lesen: In der Beta nur deine öffentliche Hyperliquid-Adresse – keine Börsen-Schlüssel. Die Adresse bleibt nur auf diesem Gerät, abgerufen werden nur öffentliche Daten direkt bei Hyperliquid. Aus dem Terminal wird nie gehandelt."],
 ["h-gex","Implizit gegen realisiert","<b>Volatilität</b>: die tatsächliche Schwankung der letzten 30 Tage aus den Tageskursen, aufs Jahr gerechnet; gestrichelt steht, was danach tatsächlich kam. Eine Reihe der impliziten Volatilität (was die Optionen einpreisen) gibt es in dieser Fassung nicht."],
 ["h-gex","Gamma je Strike","<b>Gamma je Strike</b>: Netto, Calls und Puts getrennt, die <b>Änderung seit dem vorigen Handelstag</b> (neues Gamma = neue Positionen) und der <b>Options-Fluss</b> (Volumen je Strike, „!“ = heute mehr gehandelt als offen war – oft neue Positionen). <b>Netto-Gamma über die Zeit</b>: wie sich die Lage verschoben hat, mit Kurs und Zero-Gamma."]],
 "weg":[["h-werte","Coinbase-Prämie"],["h-ueb","Spanne"],["h-ueb","Korea"],["h-umfeld","VIX-Kurve"],["h-ofluss","Geldfluss"],["h-ofluss","Skew-Verlauf"],["h-ofluss","Große Trades"],
@@ -9671,7 +9718,7 @@ $('ch-linie').addEventListener('click', () => { zeichenModus = !zeichenModus; $(
 $('ch-linien-weg').addEventListener('click', () => { linienSpeichern([]); zeichneChart(); });
 }
 var KONTO_ARTEN = { hl: 'Hyperliquid', bybit: 'Bybit', binance: 'Binance', okx: 'OKX' };
-var konten = () => { try { return JSON.parse(lies('konten') || '[]').filter((k) => k && KONTO_ARTEN[k.art]); } catch (e) { return []; } };
+var konten = () => { try { const l = JSON.parse(lies('konten') || '[]').filter((k) => k && KONTO_ARTEN[k.art]); if (TEILEN && l.some((k) => k.art !== 'hl')) { const n = l.filter((k) => k.art === 'hl'); merke('konten', JSON.stringify(n)); return n; } return l; } catch (e) { return []; } };
 var kontenStand = new Map();
 var kontenPositionen = () => [...kontenStand.values()].flatMap((s) => s.pos || []);
 async function hmac(secret, text, b64 = false) {
@@ -9699,6 +9746,7 @@ if (!d || d.code !== '0') throw new Error((d && d.msg) || 'OKX antwortet nicht')
 }
 async function kontoPruefen(k) {
 if (k.art === 'hl') { if (!/^0x[0-9a-fA-F]{40}$/.test(k.adresse || '')) throw new Error('Bitte eine Hyperliquid-Adresse (0x…, 42 Zeichen) eintragen'); return; }
+if (TEILEN) throw new Error('In der Beta nur die öffentliche Hyperliquid-Adresse – keine Börsen-Schlüssel.');
 if (!k.key || !k.secret) throw new Error('Schlüssel und Geheimnis eintragen');
 if (k.art === 'bybit') { const r = await bybitP(k, '/v5/user/query-api'); if (Number(r.readOnly) !== 1) throw new Error(NUR_LESEN); return; }
 if (k.art === 'binance') { const r = await binanceP(k, 'https://api.binance.com', '/sapi/v1/account/apiRestrictions'); if (['enableSpotAndMarginTrading', 'enableFutures', 'enableWithdrawals', 'enableMargin', 'enableInternalTransfer', 'enableVanillaOptions', 'permitsUniversalTransfer'].some((x) => r[x])) throw new Error(NUR_LESEN); return; }
@@ -10442,7 +10490,10 @@ liq: 'Liquidationen', mac: 'Wale', uebersicht: 'Übersicht', markt: 'Börsen', g
 lkarte: 'Liq.-Karte', ofluss: 'Options-Fluss', olab: 'Options-Labor', danach: 'Was danach', bericht: 'Lagebild', vol: 'Volatilität', opt: 'Optionen', kurve: 'Terminkurve', makro: 'Zinsen',
 hmap: 'Heatmap', weltm: 'Weltmärkte', scanner: 'Ausreißer', wecker: 'Alarme',
 meintag: 'Mein Tag', wlisten: 'Listen', weltuhr: 'Weltuhr',
-ofw: 'Orderflow-Werkzeuge', derw: 'Derivate-Werkzeuge', walw: 'Wal-Werkzeuge' };
+ofw: 'Orderflow-Werkzeuge', derw: 'Derivate-Werkzeuge', walw: 'Wal-Werkzeuge',
+optw: 'Options-Werkzeuge', posw: 'Positionen je Preisbereich' };
+Object.assign(SPRUNG_NAMEN, { jour: 'Journal & Portfolio', ueben: 'Üben & Studien' });
+Object.assign(SPRUNG_NAMEN, { lern: 'Erklären & Lernen' });
 function sprungleiste() {
 const kopf = document.querySelector('.leiste'); if (!kopf || document.querySelector('.sprungleiste')) return;
 const leiste = document.createElement('div'); leiste.className = 'sprungleiste';
@@ -10646,10 +10697,20 @@ const lq = liqPreis(p); if (feld === 'sl' && lq && vz * (wert - lq) <= 0) return
 p[feld] = wert; if (feld === 'sl') p.stop = null; else p.ziel = null;
 selbstMerken(); hdGeaendert(); return null;
 }
-function hdFinde(was, id) { return was === 'order' ? (selbst.orders || []).find((o) => o.id === id) : selbst.offen.find((p) => p.id === id); }
+function hdFinde(was, id) { return was === 'order' || was === 'osl' || was === 'otp' ? (selbst.orders || []).find((o) => o.id === id) : selbst.offen.find((p) => p.id === id); }
+function hdOrderSlTp(o, feld, wert) {
+const vz = o.seite === 'short' ? -1 : 1;
+if (wert == null) { o[feld] = null; selbstMerken(); hdGeaendert(); return null; }
+if (!(wert > 0)) return 'Ungültiger Preis.';
+if (feld === 'sl' && vz * (wert - o.preis) >= 0) return vz > 0 ? 'Stop-Loss eines Long muss unter dem Einstieg liegen.' : 'Stop-Loss eines Short muss über dem Einstieg liegen.';
+if (feld === 'tp' && vz * (wert - o.preis) <= 0) return vz > 0 ? 'Take-Profit eines Long muss über dem Einstieg liegen.' : 'Take-Profit eines Short muss unter dem Einstieg liegen.';
+const lq = o.hebel > 1 ? o.preis * (1 - vz * 0.995 / o.hebel) : null; if (feld === 'sl' && lq && vz * (wert - lq) <= 0) return `Stop-Loss liegt hinter der Liquidation (≈ ${hdPreisTxt(lq, o.markt)}).`;
+o[feld] = wert; selbstMerken(); hdGeaendert(); return null;
+}
 function hdLabelAktion(h) {
 if (h.was === 'alarm') { w4AlarmWeg(h.ref); return; }
 if (h.was === 'zeich') { const l = HD.zeich[h.markt] || []; if (l[h.ref]) { l.splice(h.ref, 1); hdMerke('zeichnungen', JSON.stringify(HD.zeich)); for (const c of HD.panes) c.dirty = true; } return; }
+if (h.was === 'osl' || h.was === 'otp') { const o = hdFinde(h.was, h.ref); if (o) { hdOrderSlTp(o, h.was === 'osl' ? 'sl' : 'tp', null); hdEreignis(`OCO: ${h.was === 'osl' ? 'Stop-Loss' : 'Take-Profit'} entfernt: ${hdName(o.markt)}`); } return; }
 const x = hdFinde(h.was === 'order' ? 'order' : 'pos', h.ref); if (!x) return;
 if (h.art === 'neu') {
 const k = selbstKurs(x.markt) || x.einstieg, vz = hdVz(x), lq = liqPreis(x);
@@ -10663,6 +10724,8 @@ else { hdSlTp(x, h.was, null); hdEreignis(`${h.was === 'sl' ? 'Stop-Loss' : 'Tak
 }
 function hdLinieSetzen(h, preis) {
 if (h.was === 'alarm') { w4AlarmVerschieben(h.ref, preis); return; }
+if (h.was === 'osl' || h.was === 'otp') { const o = hdFinde(h.was, h.ref); if (!o) return; preis = hdRund(preis, o.markt); const f = hdOrderSlTp(o, h.was === 'osl' ? 'sl' : 'tp', preis);
+hdEreignis(f || `OCO: ${h.was === 'osl' ? 'Stop-Loss' : 'Take-Profit'} verschoben auf ${hdPreisTxt(preis, o.markt)}`); return; }
 const x = hdFinde(h.was === 'order' ? 'order' : 'pos', h.ref); if (!x) return;
 preis = hdRund(preis, x.markt);
 const f = h.was === 'order' ? hdOrderPreis(x, preis) : hdSlTp(x, h.was, preis);
@@ -11298,6 +11361,17 @@ this.etikett(ctx, xr, klemm(y), [{ t: pfeil(y) + hdMengeTxt(o.marge * o.hebel / 
 { zu: true, bg: f.etikettBg, fg: farbe, rand: farbe, was: 'order', ref: o.id }], lh, d, f, { was: 'order', ref: o.id, preis: o.preis });
 if (y >= L.y0 && y <= L.y1) this.achsenEtikett(ctx, y, hdPreisTxt(preis, id), farbe, '#ffffff', d, L);
 });
+for (const [was, preis0, farbe2] of [['osl', o.sl, f.minus], ['otp', o.tp, f.plus]]) {
+if (!preis0) continue;
+const pr = zug && zug.h.was === was && zug.h.ref === o.id && zug.bewegt ? zug.preis : preis0, y2 = Y(pr);
+linie(y2, mix(farbe2, 0.75), [2, 4]);
+this.treffer.push({ x0: L.x0, x1: L.x1, y0: y2 - 5 * d, y1: y2 + 5 * d, art: 'linie', was, ref: o.id, preis: preis0 });
+zl2.push(() => {
+this.etikett(ctx, xr, klemm(y2), [{ t: pfeil(y2) + (was === 'osl' ? 'SL' : 'TP'), bg: farbe2, fg: '#ffffff' }, { t: 'OCO', bg: f.etikettBg, fg: farbe2, rand: farbe2, klein: true },
+{ zu: true, bg: f.etikettBg, fg: farbe2, rand: farbe2, was, ref: o.id }], lh, d, f, { was, ref: o.id, preis: preis0 });
+if (y2 >= L.y0 && y2 <= L.y1) this.achsenEtikett(ctx, y2, hdPreisTxt(pr, id), farbe2, '#ffffff', d, L);
+});
+}
 }
 this.w4AlarmLinien(ctx, id, Y, d, f, L, lh, xr, klemm, linie, pfeil, zl2, zug);
 for (const p of selbst.offen.filter((x) => x.markt === id && !this.syn)) {
@@ -12475,8 +12549,18 @@ const i = f.indexOf(document.activeElement);
 if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
 }, true);
 
-const FASSUNG = 'r138';
+const FASSUNG = 'r141';
 const NEU = [
+{ f: 'r141', tag: '12.11.2026', s: ['Neu: Erklären & Lernen – jede Kachel mit den aktuellen Zahlen erklärt, auch unter „Was ist das?“, dazu eine Tageslage aus der Markt-Übersicht (ERKLAER, TAGESLAGE). Regelbasiert, ohne Sprachmodell und ohne Kosten.',
+'Befehle in eigenen Worten in sechs Sprachen, z. B. „zeig Coins mit Funding über 50 %“ öffnet den Screener mit Filter (FRAGE oder direkt in die Befehlszeile tippen).',
+'Abläufe mit Arbeitsbereich und Checkliste, z. B. vor dem CPI oder zum Wochenstart (ABLAUF), und eine Lern-Ecke: jeder Begriff mit Beispiel aus Live-Daten (LERNEN).',
+'Barrierefreiheit: jeder Chart mit Text-Zusammenfassung für Screenreader, Kerzen-Charts mit Datentabelle (CHARTTEXT). Am Handy passen Journal-Tabellen und PnL-Kalender jetzt in die Breite.'] },
+{ f: 'r140', tag: '12.11.2026', s: ['Neu: Journal & Portfolio – Notizen, Schlagwörter, Fehler-Art und Bild je Trade, PnL-Kalender, Portfolio über alle Konten, Positionsgrößen-Rechner, Notizblock je Markt (TRADENOTIZ, PNLKALENDER, PORTFOLIO, RECHNER, MARKTNOTIZ).',
+'Import echter Trades als CSV deiner Börse (Bybit, Binance, Hyperliquid, OKX) – nur im Browser gelesen, nichts hochgeladen; Export eigener Daten als CSV und JSON-Sicherung (IMPORT, EXPORT, SICHERUNG).',
+'Üben & Studien: Papier-Handel im Replay mit verdeckter Zukunft und Ereignis-Studien mit Fallzahl (UEBEN, STUDIE); Ergebnis-Karte mit festem Stempel „Papierhandel – kein echtes Geld“ (PNLKARTE).',
+'Papier-Orders: Stop-Loss und Take-Profit hängen als OCO an der wartenden Order und lassen sich im Chart ziehen (OCO). In der Beta: Konten nur über die öffentliche Hyperliquid-Adresse, keine Schlüssel.'] },
+{ f: 'r139', tag: '12.11.2026', s: ['Neu: Options-Kette mit Griechen, Skew-Verlauf, eigener Vol-Index, Geldfluss, große Trades, OI-Änderung und Optionen-Screener aus Bybit-Optionen (KETTE, SKEWVERLAUF, VOLINDEX, PRAEMIENFLUSS, BLOCK, OIAENDERUNG, OPTSCR).',
+'Positionen je Preisbereich: Netto-Long/Short-Heatmap (Modell), Hebel-Verteilung und Börsen-Marktanteile (NETTOHEAT, HEBELVERTEILUNG, MARKTANTEIL).'] },
 { f: 'r138', tag: '12.11.2026', s: ['Neu: Tape aller Börsen (Spot und Perp) mit Filtern und gebündelten Teilausführungen, Töne für große Trades und Liquidationen (Standard aus), Slippage-Rechner und Markttiefe ±0,5/1/2 % je Börse (TAPEFILTER, TOENE, SLIPPAGE, TIEFE).',
 'Buch-Beobachtungen: Nachfüllung (Eisberg möglich), gezogene Wände und ein Muster, das bei Spoofing vorkommt – beschreibend, als Verdacht, nie als Vorwurf (EISBERG, GEZOGEN).',
 'Derivate: Basis Perp gegen Spot und Index je Börse mit Premium-Index, vorhergesagtes und OI-gewichtetes Funding, Kaskaden-Rechner aus dem Liq.-Modell, Depeg-Wache (BASIS, FUNDVOR, KASKADE, DEPEG).',
@@ -12510,17 +12594,6 @@ const NEU = [
 { f: 'r129', tag: '11.11.2026', s: ['„Mehrere Märkte“ lädt wieder – jedes Feld für sich, ohne Antwort nach 15 s ein klarer Hinweis.', 'Gold, Silber, Öl, S&P 500, Nasdaq 100 und Aktien wie Nvidia sind über die Suche wählbar (Kontrakte bei Hyperliquid).',
 'Ist eine Börse hier nicht erreichbar, steht nach 15 s ein ehrlicher Hinweis statt „Lade …“; Quellen, die antworten, zeigen ihre Daten trotzdem.', 'Hinweise im Chart brechen um statt abgeschnitten zu werden; Quellenangaben nennen die wirklich genutzte Quelle.', 'Kurse in der Markt-Übersicht einheitlich im Zahlenformat deiner Sprache.'] },
 { f: 'r128', tag: '11.11.2026', s: ['Alarme vollständig in allen sechs Sprachen – Zahlen im Format deiner Sprache, Namen von Konten und Regeln wie geschrieben.'] },
-{ f: 'r127', tag: '10.11.2026', s: ['News und Makro-Zentrale vollständig in allen sechs Sprachen, Zeiten in deiner Ortszeit.'], mac: true },
-{ f: 'r127', tag: '10.11.2026', s: ['Countdowns und Zeitangaben in deiner Sprache; Namen aus den Quellen bleiben, wie sie dort stehen.'] },
-{ f: 'r126', tag: '10.11.2026', s: ['Fibonacci-Werkzeug im Chart: zwei Punkte ziehen oder antippen, Stufen von 0 bis 100 %.', 'Eigene Layouts: bis zu drei Ansichten mit Markt, Zeitstufe, Ebenen und Zeichnungen im Browser speichern.',
-'Besser lesbar: stärkere Kontraste, sichtbarer Fokusrahmen, Dialoge mit der Tastatur bedienbar.', 'Der Chart lädt nach schnellem Umschalten sofort.', 'Diese Seite „Was ist neu“.'] },
-{ f: 'r125', tag: '10.11.2026', s: ['News: Regulierung, Börsen und Schlagzeilen mit Quelle und Alter.', 'Makro-Zentrale: Inflation, Zinsen, Öl und Engpässe auf einen Blick.'], mac: true },
-{ f: 'r125', tag: '10.11.2026', s: ['Startet auf Englisch fast dreimal so schnell.'] },
-{ f: 'r124', tag: '10.11.2026', s: ['Fällt eine Börse aus, zeigt der Chart einen klaren Hinweis statt einer leeren Fläche.', 'Felder laden erst, wenn sie ins Bild kommen – die Seite ist schneller da.', 'Seite für Kontakt und Fehlermeldungen.'] },
-{ f: 'r123', tag: '10.11.2026', s: ['Spanisch, Französisch, Türkisch und Italienisch vollständig.'] },
-{ f: 'r122', tag: '10.11.2026', s: ['Ist Bybit nicht erreichbar, kommen die Kurse von Hyperliquid.', 'Gamma zählt auch Optionen, die heute verfallen.', 'Knopf „Für TradingView kopieren“.'] },
-{ f: 'r121', tag: '10.11.2026', s: ['Automatischer Qualitäts-Check mit Hunderten Bedienschritten – alle gefundenen Fehler behoben.'] },
-{ f: 'r120', tag: '10.11.2026', s: ['Beim Zoomen mit dem Trackpad verschwinden keine Kerzen mehr.'] },
 ];
 function wasNeu(von) {
 let box = $('was-neu');
@@ -13107,6 +13180,88 @@ function w5Befehl(r, p) { return w5Laden().then((f) => f.w5Befehl(r, p)); }
 function w5ProfilLaden(a) { return w5Laden().then((f) => f.w5ProfilLaden(a)); }
 function w5Start() { let t = 0; const los = () => { if (!feldInSicht(["ofw", "derw", "walw"])) return; clearInterval(t); w5Laden().then((f) => f.w5Start()).catch(() => { t = setInterval(los, 5000); }); }; t = setInterval(los, 1500); setTimeout(los, 900); }
 var W5_BEREIT = true;
+
+let W6_LAZY = null;
+function w6Laden() {
+if (!W6_LAZY) W6_LAZY = new Promise((ok, nein) => { if (window.RYVO_W6_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w6.js?v=8cb6633d"; s.onload = ok; s.onerror = () => { W6_LAZY = null; nein(new Error("w6.js")); }; document.head.append(s); })
+.then(() => { const f = eval(window.RYVO_W6_CODE); window.RYVO_W6_CODE = null; return f; });
+return W6_LAZY;
+}
+function w6Befehl(r, p) { return w6Laden().then((f) => f.w6Befehl(r, p)); }
+function w6Start() { let t = 0; const los = () => { if (!feldInSicht(["optw", "posw"])) return; clearInterval(t); w6Laden().then((f) => f.w6Start()).catch(() => { t = setInterval(los, 5000); }); }; t = setInterval(los, 1500); setTimeout(los, 900); }
+var W6_BEREIT = true;
+
+let W8_LAZY = null;
+function w8Laden() {
+if (!W8_LAZY) W8_LAZY = new Promise((ok, nein) => { if (window.RYVO_W8_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w8.js?v=21e020bb"; s.onload = ok; s.onerror = () => { W8_LAZY = null; nein(new Error("w8.js")); }; document.head.append(s); })
+.then(() => { const f = eval(window.RYVO_W8_CODE); window.RYVO_W8_CODE = null; return f; });
+return W8_LAZY;
+}
+function w8Befehl(r, p) { return w8Laden().then((f) => f.w8Befehl(r, p)); }
+function w8Start() { let t = 0; const los = () => { if (!feldInSicht(["jour", "ueben"])) return; clearInterval(t); w8Laden().then((f) => f.w8Start()).catch(() => { t = setInterval(los, 5000); }); }; t = setInterval(los, 1500); setTimeout(los, 900); }
+var W8_BEREIT = true;
+
+let W9_LAZY = null, W9_F = null;
+function w9Laden() {
+if (!W9_LAZY) W9_LAZY = new Promise((ok, nein) => { if (window.RYVO_W9_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w9.js?v=3c7eb989"; s.onload = ok; s.onerror = () => { W9_LAZY = null; nein(new Error("w9.js")); }; document.head.append(s); })
+.then(() => { const f = eval(window.RYVO_W9_CODE); window.RYVO_W9_CODE = null; W9_F = f; return f; });
+return W9_LAZY;
+}
+function w9Befehl(r, p) { return w9Laden().then((f) => f.w9Befehl(r, p)); }
+function w9HilfeJetzt(s) { return w9Laden().then((f) => f.w9HilfeJetzt(s)); }
+function w9KlartextLaden(t) { return w9Laden().then((f) => f.w9KlartextLaden(t)); }
+function w9KlartextSofort(t) { return W9_F ? W9_F.w9KlartextSofort(t) : null; }
+function w9Vorladen() { w9Laden().catch(() => {}); }
+function w9Start() { let t = 0; const los = () => { if (!feldInSicht(["lern"])) return; clearInterval(t); w9Laden().then((f) => f.w9Start()).catch(() => { t = setInterval(los, 5000); }); }; t = setInterval(los, 1500); setTimeout(los, 900); }
+var W9_BEREIT = true;
+
+function kachelWerte(sec) {
+const t = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : '');
+if (!sec) return { titel: '', stand: '', kach: [] };
+const kach = [...sec.querySelectorAll('dl.kacheln > div')].filter((d) => !d.closest('[hidden]')).map((d) => [t(d.querySelector('dt')), t(d.querySelector('dd')), t(d.querySelector('small'))]).filter((x) => x[0] && x[1] && x[1] !== '–');
+return { titel: t(sec.querySelector('.feld-kopf h2')), stand: t(sec.querySelector('.feld-kopf .stand')), kach };
+}
+function chartText(cv) {
+const t = (x) => String(x || '').replace(/\s+/g, ' ').trim(), name = t(cv.getAttribute('aria-label')), pane = cv.closest('.hd-pane');
+if (pane && typeof HD !== 'undefined' && HD.panes) {
+const c = HD.panes.find((x) => x.el === pane), K = c && Array.isArray(c.k) ? c.k : [];
+if (!c || !K.length) return { satz: `${name}. ${c && c.fehler ? c.fehler : tr('Lade …')}` };
+const l = K[K.length - 1], z = K.slice(-50), hoch = Math.max(...z.map((k) => k.h)), tief = Math.min(...z.map((k) => k.l)), p = (v) => hdPreisTxt(v, c.markt);
+return { satz: `${name}. ${anzeige(c.markt)} · ${hdTfName(c.tf)} · ${tr('Kurs')} ${p(l.c)} · ${tr('letzte 50 Kerzen')}: ${proz((l.c / z[0].o - 1) * 100, 2)}, ${tr('Höchster Kurs')} ${p(hoch)}, ${tr('Tiefster Kurs')} ${p(tief)}.`,
+tab: [[tr('Zeit'), tr('Eröffnungskurs'), tr('Höchster Kurs'), tr('Tiefster Kurs'), tr('Schlusskurs')], K.slice(-10).reverse().map((k) => [tagUhr(k.t * 1000), p(k.o), p(k.h), p(k.l), p(k.c)])], titel: `${anzeige(c.markt)} ${hdTfName(c.tf)}` };
+}
+const sec = cv.closest('section.feld'); if (!sec) return { satz: name };
+const w = kachelWerte(sec), box = cv.closest('.mz-block, article') || sec, le = box.querySelector('.legende'), leg = le ? [...le.childNodes].map((x) => t(x.textContent)).filter(Boolean).join(' · ') : '';
+return { satz: [name, w.titel, w.kach.slice(0, 6).map(([a, b, c0]) => `${a} ${b}${c0 ? ` (${c0})` : ''}`).join(' · '), leg, w.stand].filter(Boolean).join('. ') };
+}
+function a11yTabelle(tab) {
+const x = document.createElement('table'), k = x.createTHead().insertRow(), b = x.createTBody();
+for (const h of tab[0]) { const th = document.createElement('th'); th.textContent = h; th.scope = 'col'; k.append(th); }
+for (const z of tab[1]) { const r = b.insertRow(); for (const v of z) r.insertCell().textContent = v; }
+return x;
+}
+function a11yTakt() {
+let box = $('a11y-texte');
+if (!box) { box = document.createElement('div'); box.id = 'a11y-texte'; box.className = 'sr-text'; box.dataset.roh = ''; document.body.append(box); }
+let n = Number(box.dataset.n || 0);
+for (const cv of document.querySelectorAll('canvas')) {
+if (cv.classList.contains('zm-bild') || !cv.isConnected) continue;
+if (!cv.hasAttribute('role')) cv.setAttribute('role', 'img');
+if (!cv.getAttribute('aria-label')) { const sec = cv.closest('section.feld'); cv.setAttribute('aria-label', sec ? (sec.querySelector('.feld-kopf h2') || {}).textContent || 'Chart' : 'Chart'); }
+let id = cv.getAttribute('aria-describedby');
+if (!id) { id = 'a11y-' + (++n); cv.setAttribute('aria-describedby', id); }
+if (cv.closest('[hidden]') && !cv.closest('.hd-pane') && $(id)) continue;
+let p = $(id); if (!p) { p = document.createElement('div'); p.id = id; box.append(p); }
+const x = chartText(cv), sig = x.satz + (x.tab ? JSON.stringify(x.tab[1][0]) : '');
+if (p.dataset.sig === sig) continue; p.dataset.sig = sig;
+const s = document.createElement('p'); s.textContent = x.satz;
+if (x.tab) { const tb = a11yTabelle(x.tab), cap = tb.createCaption(); cap.textContent = x.titel || x.satz.split('.')[0]; p.replaceChildren(s, tb); } else p.replaceChildren(s);
+}
+box.dataset.n = String(n);
+for (const p of [...box.children]) if (!document.querySelector(`canvas[aria-describedby="${p.id}"]`)) p.remove();
+}
+function a11yStart() { setTimeout(a11yTakt, 2500); setInterval(a11yTakt, 10000); }
+document.addEventListener('click', (e) => { const b = e.target.closest && e.target.closest('.feld-kopf .was'); if (!b) return; setTimeout(() => { if (b.getAttribute('aria-expanded') === 'true') Promise.resolve(w9HilfeJetzt(b.closest('section.feld'))).catch(() => {}); }, 80); });
 
 function rasterPacken(items, sp) {
 sp = Math.max(1, Math.floor(sp) || 1);
@@ -15391,6 +15546,10 @@ nsStart(); bhLaden(); setInterval(bhLaden, 10 * 6e4); setInterval(bhUhren, 30000
 w3Start();
 w4Start();
 w5Start();
+w6Start();
+w8Start();
+w9Start();
+a11yStart();
 
 /*BEFEHL-KERN-ANFANG*/
 const BEF_REG = [
@@ -15547,8 +15706,37 @@ const BEF_REG = [
 { id: 'kohorten', k: ['KOHORTEN', 'GRUPPEN'], e: ['COHORTS', 'COHORT'], n: 'Kohorten-Lage', s: 'Große, mittlere und kleine Konten netto long oder short je Markt', b: 'KOHORTEN', feld: 'walw', ziel: '#ww-koh-block', g: 'wal' },
 { id: 'tprofil', k: ['TRADERPROFIL', 'KONTOPROFIL'], e: ['TRADERPROFILE', 'WALLETPROFILE'], n: 'Trader-Profil', s: 'Kurve, Kennzahlen, Märkte und Trades eines Hyperliquid-Kontos', b: 'TRADERPROFIL', feld: 'walw', ziel: '#ww-profil-block', par: 'text', g: 'wal' },
 { id: 'adressen', k: ['ADRESSEN', 'WALLETS'], e: ['ADDRESSES', 'WALLETWATCH'], n: 'Adressen beobachten', s: 'Eigene Liste von Hyperliquid-Adressen (nur in diesem Browser)', b: 'ADRESSEN', feld: 'walw', ziel: '#ww-adr-block', par: 'text', g: 'wal' },
+{ id: 'okette', k: ['KETTE', 'OKETTE'], e: ['CHAIN', 'OPTCHAIN'], n: 'Options-Kette', s: 'Strikes eines Verfalls mit IV, OI und Griechen', b: 'BTC KETTE', feld: 'optw', ziel: '#ow-kette-block', par: 'text', g: 'opt' },
+{ id: 'oskew', k: ['SKEWVERLAUF', 'RRBF'], e: ['SKEWHIST', 'RISKREV'], n: 'Skew-Verlauf', s: 'Risk-Reversal und Butterfly über die Zeit', b: 'ETH SKEWVERLAUF', feld: 'optw', ziel: '#ow-skew-block', g: 'opt' },
+{ id: 'ovix', k: ['VOLINDEX', 'RYVOVOL'], e: ['VOLIDX', 'IVINDEX'], n: 'Vol-Index (RYVO)', s: 'Eigener Volatilitäts-Index 30 Tage', b: 'BTC VOLINDEX', feld: 'optw', ziel: '#ow-vix-block', g: 'opt' },
+{ id: 'ogeld', k: ['PRAEMIENFLUSS', 'OPTGELD'], e: ['NETPREMIUM', 'PREMIUMFLOW'], n: 'Options-Geldfluss', s: 'Netto-Prämie Calls und Puts', b: 'BTC PRAEMIENFLUSS', feld: 'optw', ziel: '#ow-fluss-block', g: 'opt' },
+{ id: 'oblock', k: ['BLOCK', 'GROSSTRADES'], e: ['BLOCKS', 'BIGPRINTS'], n: 'Große Options-Trades', s: 'Trades ab 1 Mio. $ und Blocks', b: 'BTC BLOCK', feld: 'optw', ziel: '#ow-block-block', g: 'opt' },
+{ id: 'oiaend', k: ['OIAENDERUNG', 'OIDELTA'], e: ['OICHANGE', 'OIDIFF'], n: 'OI-Änderung je Strike', s: 'OI je Strike gegen den Vortag', b: 'BTC OIAENDERUNG', feld: 'optw', ziel: '#ow-oi-block', g: 'opt' },
+{ id: 'optscr', k: ['OPTSCR', 'OPTFILTER'], e: ['OPTSCREEN', 'OPTSCAN'], n: 'Optionen-Screener', s: 'IV-Rang, Skew-Extreme, OI-Änderung', b: 'OPTSCR SKEW', feld: 'optw', ziel: '#ow-scr-block', par: 'text', g: 'opt' },
+{ id: 'nettoheat', k: ['NETTOHEAT', 'LSKARTE'], e: ['NETHEAT', 'NLNS'], n: 'Netto-Long/Short-Heatmap', s: 'Long und Short je Preisbereich (Modell)', b: 'BTC NETTOHEAT', feld: 'posw', ziel: '#pw-netto-block', g: 'der' },
+{ id: 'hebelvert', k: ['HEBELVERTEILUNG', 'HEBELKARTE'], e: ['LEVDIST', 'LEVERAGEMAP'], n: 'Hebel-Verteilung', s: 'Große Hyperliquid-Konten nach Preis und Hebel', b: 'ETH HEBELVERTEILUNG', feld: 'posw', ziel: '#pw-hebel-block', g: 'der' },
+{ id: 'anteile', k: ['MARKTANTEIL', 'ANTEILE'], e: ['MKTSHARE', 'SHARES'], n: 'Börsen-Marktanteile', s: 'Umsatz, OI und Funding-Spanne je Börse', b: 'SOL MARKTANTEIL', feld: 'posw', ziel: '#pw-anteil-block', g: 'der' },
+{ id: 'jnotiz', k: ['TRADENOTIZ', 'JNOTIZ'], e: ['TRADENOTE', 'TAGS'], n: 'Trades mit Notizen', s: 'Notiz, Schlagwörter, Fehler-Art und Bild je Trade', b: 'TRADENOTIZ', feld: 'jour', ziel: '#jo-trades-block', g: 'hd' },
+{ id: 'pnlkal', k: ['PNLKALENDER', 'PNLKAL'], e: ['PNLCAL', 'PNLCALENDAR'], n: 'PnL-Kalender', s: 'Ergebnis je Tag als Kalender', b: 'PNLKALENDER', feld: 'jour', ziel: '#jo-kal-block', g: 'hd' },
+{ id: 'portf', k: ['PORTFOLIO', 'BESTAND'], e: ['HOLDINGS', 'PORTF'], n: 'Portfolio über alle Konten', s: 'Bestand, PnL und Verteilung', b: 'PORTFOLIO', feld: 'jour', ziel: '#jo-port-block', g: 'hd' },
+{ id: 'lesekonto', k: ['LESEKONTO', 'ADRESSKONTO'], e: ['READONLY', 'WATCHACCOUNT'], n: 'Konten nur lesen', s: 'Öffentliche Hyperliquid-Adresse verbinden', b: 'LESEKONTO', feld: 'jour', ziel: '#jo-konto-block', g: 'hd' },
+{ id: 'rechner', k: ['RECHNER', 'GROESSE'], e: ['SIZE', 'POSSIZE'], n: 'Positionsgrößen-Rechner', s: 'Konto, Risiko und Stop ergeben die Menge', b: 'BTC RECHNER', feld: 'jour', ziel: '#jo-rechner-block', g: 'hd' },
+{ id: 'jimport', k: ['IMPORT', 'EINLESEN'], e: ['IMPORTCSV', 'LOADCSV'], n: 'Import echter Trades', s: 'CSV der Börse, nur im Browser gelesen', b: 'IMPORT', feld: 'jour', ziel: '#jo-import-block', g: 'hd' },
+{ id: 'mnotiz', k: ['MARKTNOTIZ', 'NOTIZBLOCK'], e: ['MNOTE', 'NOTEPAD'], n: 'Notizblock je Markt', s: 'Eigene Notizen zum Markt', b: 'ETH MARKTNOTIZ', feld: 'jour', ziel: '#jo-notiz-block', g: 'hd' },
+{ id: 'pkarte', k: ['PNLKARTE', 'ERGEBNISKARTE'], e: ['PNLCARD', 'RESULTCARD'], n: 'Ergebnis-Karte', s: 'Bild der Papier-Ergebnisse mit Stempel', b: 'PNLKARTE', feld: 'jour', ziel: '#jo-teilen-block', g: 'hd' },
+{ id: 'export', k: ['EXPORT', 'CSVEXPORT'], e: ['CSV', 'DOWNLOAD'], n: 'Export eigener Daten', s: 'CSV eigener Tabellen und Reihen', b: 'EXPORT', feld: 'jour', ziel: '#jo-export-block', g: 'hd' },
+{ id: 'sicherung', k: ['SICHERUNG', 'BACKUP'], e: ['JSONBACKUP', 'RESTORE'], n: 'JSON-Sicherung', s: 'Eigene Daten sichern und wieder laden', b: 'SICHERUNG', feld: 'jour', ziel: '#jo-export-block', g: 'hd' },
+{ id: 'ueben', k: ['UEBEN', 'UEBUNG'], e: ['PRACTICE', 'REPLAYTRADE'], n: 'Übungsmodus', s: 'Papier-Handel im Replay, Zukunft verdeckt', b: 'BTC UEBEN', feld: 'ueben', ziel: '#ue-replay-block', par: 'text', g: 'hd' },
+{ id: 'studie', k: ['STUDIE', 'EREIGNISSTUDIE'], e: ['STUDY', 'EVENTSTUDY'], n: 'Ereignis-Studien', s: 'Was im Mittel nach Ereignissen geschah', b: 'BTC STUDIE FUNDING', feld: 'ueben', ziel: '#ue-studie-block', par: 'text', g: 'news' },
+{ id: 'oco', k: ['OCO', 'KLAMMER'], e: ['BRACKET', 'OCOORDER'], n: 'Papier-Order mit OCO', s: 'Stop-Loss und Take-Profit an der wartenden Order', b: 'OCO', hd: 'chart', ziel: '#hd-ticket', g: 'hd' },
+{ id: 'erklaer', k: ['ERKLAER', 'ERKLAERE'], e: ['EXPLAINTILE', 'WHATSTHIS'], n: 'Kachel erklärt', s: 'Was eine Kachel zeigt, mit den aktuellen Zahlen', b: 'ERKLAER LIQ', feld: 'lern', ziel: '#le-erkl-block', par: 'text', g: 'hilfe' },
+{ id: 'tageslage', k: ['TAGESLAGE', 'ZUSAMMENFASSUNG'], e: ['DAYBRIEF', 'SUMMARY'], n: 'Tageslage', s: 'Tageszusammenfassung aus Live-Daten, nur beschreibend', b: 'TAGESLAGE', feld: 'lern', ziel: '#le-lage-block', g: 'news' },
+{ id: 'frage', k: ['FRAGE', 'KLARTEXT'], e: ['ASK', 'PLAINTEXT'], n: 'Klartext-Befehl', s: 'Befehl in eigenen Worten, sechs Sprachen, ohne Sprachmodell', b: 'FRAGE zeig Coins mit Funding über 50 %', par: 'text', g: 'nav' },
+{ id: 'ablauf', k: ['ABLAUF', 'CHECKLISTE'], e: ['PLAYBOOK', 'CHECKLIST'], n: 'Ablauf-Vorlage', s: 'Arbeitsbereich und Checkliste, z. B. vor dem CPI oder zum Wochenstart', b: 'ABLAUF cpi', feld: 'lern', ziel: '#le-ablauf-block', par: 'ablauf', g: 'nav' },
+{ id: 'lernen', k: ['LERNEN', 'LERNECKE'], e: ['LEARN', 'ACADEMY'], n: 'Lern-Ecke', s: 'Begriff mit Beispiel aus Live-Daten', b: 'LERNEN funding', feld: 'lern', ziel: '#le-lern-block', par: 'text', g: 'hilfe' },
+{ id: 'charttext', k: ['CHARTTEXT', 'BESCHREIBUNG'], e: ['CHARTDESC', 'ALTTEXT'], n: 'Chart als Text', s: 'Zusammenfassung und Datentabelle eines Charts', b: 'CHARTTEXT', feld: 'lern', ziel: '#le-text-block', par: 'text', g: 'hilfe' },
 ];
-const BEF_WAHL = { art: ['kerzen', 'ha', 'linie', 'flaeche', 'renko', 'range'], thema: ['dunkel', 'bernstein', 'graphit', 'hell'], farben: ['bo', 'gr', 'sw'], sprache: ['de', 'en', 'es', 'fr', 'tr', 'it'], layout: ['1', '2', '4'], dichte: ['kompakt', 'normal', 'gross'], raster: ['aus'], koppeln: ['aus', '2', '4'], reiter: ['neu', 'zu', 'name'] };
+const BEF_WAHL = { art: ['kerzen', 'ha', 'linie', 'flaeche', 'renko', 'range'], thema: ['dunkel', 'bernstein', 'graphit', 'hell'], farben: ['bo', 'gr', 'sw'], sprache: ['de', 'en', 'es', 'fr', 'tr', 'it'], layout: ['1', '2', '4'], dichte: ['kompakt', 'normal', 'gross'], raster: ['aus'], koppeln: ['aus', '2', '4'], reiter: ['neu', 'zu', 'name'], ablauf: ['cpi', 'fomc', 'woche', 'tag', 'bewegung'] };
 const BEF_WAHL_ALIAS = { DARK: 'dunkel', AMBER: 'bernstein', GRAPHITE: 'graphit', LIGHT: 'hell', WHITE: 'hell', BLAU: 'bo', BLUE: 'bo', GRUEN: 'gr', GREEN: 'gr', ROT: 'gr', SCHWARZ: 'sw', BLACK: 'sw' };
 const befNorm = (s) => String(s == null ? '' : s).normalize('NFC').toUpperCase().replace(/Ä/g, 'AE').replace(/Ö/g, 'OE').replace(/Ü/g, 'UE').replace(/ß/g, 'SS').replace(/[ÉÈÊ]/g, 'E');
 function befAbstand(a, b, max = 1) {
@@ -15635,6 +15823,7 @@ const BEF_GRUPPEN = [['of', 'Chart & Orderflow'], ['der', 'Derivate'], ['opt', '
 const BEF_T = {
 unbekannt: { de: (x) => `Unbekannt: „${x}“ – HILFE zeigt alle Befehle.`, en: (x) => `Unknown: “${x}” – HELP lists all commands.`, es: (x) => `Desconocido: «${x}» – HELP muestra todos los comandos.`,
 fr: (x) => `Inconnu : « ${x} » – HELP affiche toutes les commandes.`, tr: (x) => `Bilinmiyor: “${x}” – HELP tüm komutları gösterir.`, it: (x) => `Sconosciuto: «${x}» – HELP mostra tutti i comandi.` },
+klartext: { de: (c) => `Verstanden als: ${c}`, en: (c) => `Understood as: ${c}`, es: (c) => `Entendido como: ${c}`, fr: (c) => `Compris comme : ${c}`, tr: (c) => `Şöyle anlaşıldı: ${c}`, it: (c) => `Interpretato come: ${c}` },
 gemeint: { de: (a, b) => `„${a}“ als ${b} verstanden.`, en: (a, b) => `Read “${a}” as ${b}.`, es: (a, b) => `«${a}» interpretado como ${b}.`, fr: (a, b) => `« ${a} » compris comme ${b}.`,
 tr: (a, b) => `“${a}”, ${b} olarak anlaşıldı.`, it: (a, b) => `«${a}» interpretato come ${b}.` },
 nurMac: { de: (n) => `${n} gibt es in dieser Fassung nicht – nur in der Vollversion.`, en: (n) => `${n} is not part of this version – full version only.`, es: (n) => `${n} no está en esta versión, solo en la versión completa.`,
@@ -15988,10 +16177,18 @@ if (HD.bereich !== 'handeln') hdBereich('handeln');
 const b = document.querySelector(`.hd-pane[data-nr="0"] .hd-tf [data-tf="${tf}"]`); if (b) { b.click(); return true; }
 return false;
 }
+function befIstSatz(text, p) {
+const n = String(text || '').trim().split(/\s+/).filter(Boolean).length;
+return (p.unbekannt.length > 0 || !!p.fuzzy || !!p.ungeprueft) && (n >= 2 || (!p.fn && !p.markt));
+}
 async function befAusfuehren(text, o = {}) {
 const p = befParsen(text, BEF_K); let r = p.fn, ziel = null;
 const fertig = (ok, t, z) => { if (t) befMelden(t); if (ok) befVerlauf(text); return { ok, text: t || '', ziel: z ? (z.id ? '#' + z.id : z.classList && z.classList.contains('feld') ? 'main.raster > section.feld.' + [...z.classList].find((c) => SPRUNG_NAMEN[c] || FELD_EXTRA[c]) : '') : '', fn: r ? r.id : '', markt: p.markt || '' }; };
 if (o.fokus) p.fokus = true;
+if (W9_BEREIT && !o.ohneKlartext && befIstSatz(text, p)) {
+const k = await w9KlartextLaden(String(text)).catch(() => null);
+if (k && k.cmd && (k.punkte > 0 || !r) && befNorm(k.cmd) !== befNorm(text)) { const e = await befAusfuehren(k.cmd, { ...o, ohneKlartext: true }); befMelden(befT('klartext', k.cmd)); return { ...e, klartext: k.cmd }; }
+}
 if (W2_BEREIT && r && r.id === 'suche' && /\s\S/.test(String(text || '').trim())) { const e = await w2Befehl({ id: 'finden' }, { rest: String(text).trim().split(/\s+/).slice(1) }); return fertig(true, '', e.ziel); }
 if (!r && !p.markt && p.tf == null) {
 const w = p.unbekannt[0] ? befNorm(p.unbekannt[0]) : '';
@@ -16023,6 +16220,9 @@ case 'vorlesen': { const ok = vorlesenStart(); if (!ok && !meld) meldLaden(); re
 case 'alarm': case 'stumm': case 'technik': case 'perpspot': case 'bspread': case 'stichwort': { const e = await w4Befehl(r, p); if (e.ok) NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'raster': case 'zuruecksetzen': case 'dichte': case 'koppeln': case 'fenster': case 'reiter': case 'listeteilen': case 'finden': { const e = await w2Befehl(r, p); return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'toene': case 'slip': case 'tprofil': case 'adressen': case 'tapefilter': { const e = await w5Befehl(r, p); NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
+case 'okette': case 'oskew': case 'ovix': case 'ogeld': case 'oblock': case 'oiaend': case 'optscr': case 'nettoheat': case 'hebelvert': case 'anteile': { const e = await w6Befehl(r, p); NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
+case 'erklaer': case 'tageslage': case 'frage': case 'ablauf': case 'lernen': case 'charttext': { const e = await w9Befehl(r, p); NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
+case 'jnotiz': case 'pnlkal': case 'portf': case 'lesekonto': case 'rechner': case 'jimport': case 'mnotiz': case 'pkarte': case 'export': case 'sicherung': case 'ueben': case 'studie': case 'oco': { const e = await w8Befehl(r, p); NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'vgl': case 'ratio': case 'spread': case 'art': case 'vorlage': case 'bild': { const e = await w3Befehl(r, p); NAV.f = r.id; return fertig(e.ok, hinweis, e.ziel); }
 case 'einstieg': einstieg(0); return fertig(true, hinweis, $('einstieg'));
 case 'hilfe': verzeichnis(p.rest.join(' ')); return fertig(true, hinweis, $('verzeichnis'));
@@ -16089,6 +16289,7 @@ return box;
 function befehlAuf(von) {
 const box = befehlBauen(); befVon = von || document.activeElement;
 markteLaden(); tfLaden(); dialogAuf(box, befVon);
+if (W9_BEREIT) w9Vorladen();
 box.hidden = false; document.body.classList.add('befehl-offen');
 const ein = $('befehl-ein'); ein.value = ''; befWahl = 0; befZeigen();
 try { ein.focus({ preventScroll: true }); } catch (e) {   }
@@ -16099,6 +16300,7 @@ const ein = $('befehl-ein'), ul = $('befehl-liste'); if (!ein || !ul) return;
 const t = ein.value, t0 = performance.now();
 let l = befVorschlaege(t, BEF_K, 12);
 if (W2_BEREIT) l = w2SucheDazu(t, l);
+if (W9_BEREIT && t.trim()) { const p0 = befParsen(t, BEF_K); if (befIstSatz(t, p0)) { const k = w9KlartextSofort(t); if (k && k.cmd && (k.punkte > 0 || !p0.fn)) l = [{ cmd: k.cmd, art: 'klartext' }].concat(l.filter((x) => befNorm(x.cmd) !== befNorm(k.cmd))).slice(0, 12); } }
 if (!t.trim()) {
 const f = new Set(BEF_V.fav.map(befNorm));
 l = BEF_V.fav.map((c) => ({ cmd: c, art: 'fav' })).concat(BEF_V.verlauf.filter((c) => !f.has(befNorm(c))).slice(0, 8).map((c) => ({ cmd: c, art: 'verlauf' })));
@@ -16106,11 +16308,11 @@ if (!l.length) l = ['BTC LIQ', 'ETH GAMMA', 'SOL 4H', 'AB Scalper', 'HILFE'].map
 }
 befListe = l; befVorschlaege.ms = performance.now() - t0;
 const fav = new Set(BEF_V.fav.map(befNorm));
-const ART = { fn: 'Funktion', markt: 'Markt', ab: 'Arbeitsbereich', wahl: 'Auswahl', lex: 'Lexikon', fav: 'Favorit', verlauf: 'Zuletzt', beispiel: 'Beispiel' };
+const ART = { klartext: 'Klartext', fn: 'Funktion', markt: 'Markt', ab: 'Arbeitsbereich', wahl: 'Auswahl', lex: 'Lexikon', fav: 'Favorit', verlauf: 'Zuletzt', beispiel: 'Beispiel' };
 ul.replaceChildren(...l.map((v, i) => {
 const li = hdEl('li', 'befehl-zeile'); li.dataset.i = String(i); li.id = 'befehl-v' + i; li.setAttribute('role', 'option');
 const b = hdEl('b', 'befehl-cmd', v.cmd); b.dataset.roh = ''; b.translate = false;
-const p0 = v.art === 'fn' ? v.r : v.art === 'fav' || v.art === 'verlauf' || v.art === 'beispiel' ? befParsen(v.cmd, BEF_K).fn : null;
+const p0 = v.art === 'fn' ? v.r : v.art === 'fav' || v.art === 'verlauf' || v.art === 'beispiel' || v.art === 'klartext' ? befParsen(v.cmd, BEF_K).fn : null;
 const satz = v.art === 'such' ? v.satz : v.art === 'markt' ? (TF.get(v.r.id) ? TF.get(v.r.id).lang || anzeige(v.r.id) : 'Markt wechseln') : v.art === 'ab' ? (v.r.f ? v.r.f.map((x) => feldName(x)).join(' · ') : 'Handeln')
 : v.art === 'lex' ? v.r.name : p0 ? (AB.stufe === 'einsteiger' ? p0.n + ' – ' + p0.s : p0.s) : '';
 const s = hdEl('span', 'befehl-satz', satz); if (v.art === 'such') { s.dataset.roh = ''; s.translate = false; }
@@ -16137,9 +16339,10 @@ if (W2_BEREIT && v && v.art === 'such' && (befWahl > 0 || !t || pt.unbekannt.len
 if (v && (!t || befWahl > 0 || pt.unbekannt.length || (!pt.fn && !pt.markt && pt.tf == null))) t = v.cmd;
 if (!t) return;
 const p = befParsen(t, BEF_K);
-if (p.fn && p.fn.par && !p.rest.length && p.fn.id !== 'hilfe' && p.fn.id !== 'scr' && !['raster', 'koppeln', 'fenster', 'reiter', 'dichte'].includes(p.fn.id)) { ein.value = befSchoen(t) + ' '; befWahl = 0; befZeigen(); return; }
+if (p.fn && p.fn.par && !p.rest.length && p.fn.id !== 'hilfe' && p.fn.id !== 'scr' && !['raster', 'koppeln', 'fenster', 'reiter', 'dichte', 'erklaer', 'lernen', 'charttext', 'ablauf'].includes(p.fn.id)) { ein.value = befSchoen(t) + ' '; befWahl = 0; befZeigen(); return; }
 befehlZu();
 const r = await befAusfuehren(t, { fokus: fo });
+if (v && v.art === 'klartext' && t === v.cmd && r.ok) befMelden(befT('klartext', t));
 if (!r.ok && r.text) { befehlAuf(befVon); $('befehl-ein').value = t; befZeigen(); $('befehl-stand').textContent = r.text; }
 }
 
