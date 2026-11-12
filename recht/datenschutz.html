@@ -53,18 +53,31 @@
     <tr><th>Anbieter</th><th>Wofür</th><th>Wann</th></tr>
     <tr><td>Bybit (api.bybit.com, stream.bybit.com)</td><td>Kurse, Orderbuch, Trades, Funding, offene Positionen, Optionen, Kerzen, Ankündigungen</td><td>beim Öffnen, laufend</td></tr>
     <tr><td>Binance (api.binance.com, fapi.binance.com, stream.binance.com, fstream.binance.com)</td><td>Kurse, Orderbuch, Trades, Futures-Daten</td><td>beim Öffnen, laufend</td></tr>
+    <tr><td>Binance-Optionen (eapi.binance.com)</td><td>Offene Positionen, Umsatz und Volatilität der Optionen (Feld „Fortgeschritten“, Optionen mehrerer Börsen)</td><td>wenn das Feld „Fortgeschritten“ sichtbar ist, höchstens alle 5 Min., bzw. auf Klick</td></tr><!-- r144 W12 -->
     <tr><td>Hyperliquid (api.hyperliquid.xyz, stats-data.hyperliquid.xyz)</td><td>Kurse, Rangliste und Positionen großer Konten, weitere Märkte (Aktien, Rohstoffe)</td><td>beim Öffnen und bei Auswahl</td></tr>
     <tr><td>alternative.me (api.alternative.me)</td><td>Angst-und-Gier-Index</td><td>beim Öffnen</td></tr>
-    <tr><td>U.S. Department of the Treasury (home.treasury.gov)</td><td>US-Zinskurve (das Guthaben des Finanzministeriums, TGA, nur in der Vollversion)</td><td>beim Öffnen bzw. wenn „Makro &amp; Behörden“ ins Bild kommt</td></tr>
+    <tr><td>U.S. Department of the Treasury (home.treasury.gov)</td><td>US-Zinskurve</td><td>beim Öffnen bzw. wenn „Makro &amp; Behörden“ ins Bild kommt</td></tr>
     <tr><td>Europäische Zentralbank (data-api.ecb.europa.eu)</td><td>Leitzinsen, €STR, Geldmenge, Referenzkurse</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 6 Std.)</td></tr>
     <tr><td>Eurostat (ec.europa.eu)</td><td>Inflation (HVPI)</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 6 Std.)</td></tr>
     <tr><td>Deutsche Bundesbank (api.statistiken.bundesbank.de)</td><td>Renditen von Bundeswertpapieren</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 6 Std.)</td></tr>
     <tr><td>World Bank (api.worldbank.org)</td><td>BIP-Wachstum</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 6 Std.)</td></tr>
     <tr><td>OECD (sdmx.oecd.org)</td><td>Frühindikator (CLI)</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 6 Std.)</td></tr>
+    <tr><td>U.S. Treasury (home.treasury.gov)</td><td>Zinskurve der letzten drei Jahre (CSV)</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 6 Std.)</td></tr><!-- r146 W13 -->
+    <tr><td>BLS (api.bls.gov)</td><td>Benzin- und Dieselpreise; Reihen des Überraschungs-Index, soweit nicht schon geladen</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 20 Std.)</td></tr><!-- r146 W13 -->
+    <tr><td>EZB (data-api.ecb.europa.eu), Eurostat (ec.europa.eu)</td><td>HVPI saisonbereinigt, EUR/USD; Arbeitslosigkeit, Industrie, Einzelhandel</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 12 bzw. 6 Std.)</td></tr><!-- r146 W13 -->
+    <tr><td>BLS (api.bls.gov)</td><td>Wirtschaftskalender, CPI und PPI</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 12 Std. bzw. nach einem BLS-Termin)</td></tr><!-- r145 W7 -->
+    <tr><td>U.S. Treasury FiscalData (api.fiscaldata.treasury.gov)</td><td>TGA täglich, Anleihe-Auktionen</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 6 Std.)</td></tr><!-- r145 W7 -->
+    <tr><td>New York Fed (markets.newyorkfed.org)</td><td>Reverse Repo (ON RRP)</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 6 Std.)</td></tr><!-- r145 W7 -->
+    <tr><td>Federal Register (www.federalregister.gov)</td><td>Veröffentlichungen von SEC, CFTC und Fed</td><td>wenn „Makro &amp; Behörden“ ins Bild kommt (höchstens alle 30 Min.)</td></tr><!-- r145 W7 -->
     <tr><td>U.S. CFTC (publicreporting.cftc.gov)</td><td>Positionen der Terminmarkt-Teilnehmer (COT)</td><td>beim Öffnen</td></tr>
     <tr><td>RugCheck (api.rugcheck.xyz)</td><td>Rug-Check eines Solana-Tokens</td><td>nur wenn du einen Token prüfst</td></tr>
     <tr><td>DexScreener (api.dexscreener.com)</td><td>Preis und Handelspaare eines Solana-Tokens</td><td>nur wenn du einen Token prüfst</td></tr>
     <tr><td>Solana-Knoten (solana-rpc.publicnode.com, api.mainnet-beta.solana.com)</td><td>Alter von Wallets beim Rug-Check (öffentliche Blockchain-Daten)</td><td>nur wenn du einen Token prüfst</td></tr>
+    <tr><td>PublicNode (ethereum-rpc.publicnode.com, tron-evm-rpc.publicnode.com, base-rpc.publicnode.com, arbitrum-one-rpc.publicnode.com, solana-rpc.publicnode.com)</td><td>Stablecoin-Menge, große Überweisungen, Entwickler- und Wallet-Abfragen (öffentliche Blockchain-Daten)</td><td>wenn das Feld „On-Chain und DEX“ sichtbar ist bzw. auf Klick</td></tr><!-- r143 W11 -->
+    <tr><td>DexScreener (api.dexscreener.com)</td><td>Neue DEX-Paare, Paar-Karte, Memecoin-Friedhof</td><td>wenn das Feld „On-Chain und DEX“ sichtbar ist</td></tr><!-- r143 W11 -->
+    <tr><td>Hyperliquid (api.hyperliquid.xyz)</td><td>Wallet-Ansicht einer öffentlichen Adresse, neue Listungen</td><td>auf Klick bzw. wenn das Feld sichtbar ist</td></tr><!-- r143 W11 -->
+    <tr><td>GitHub (api.github.com)</td><td>Software-Releases der Netze</td><td>wenn das Feld sichtbar ist, höchstens alle 6 Std.</td></tr><!-- r143 W11 -->
+    <tr><td>GDELT Project (api.gdeltproject.org)</td><td>Medien-Ton je Coin, Schlagzeilen für das Narrativ-Radar</td><td>wenn das Feld sichtbar ist, höchstens alle 15 Min.</td></tr><!-- r143 W11 -->
   </table></div>
   <p>Links zu weiteren Seiten (zum Beispiel TradingView, Solscan oder die Websites der Börsen) öffnen diese Seiten erst, wenn du darauf klickst.</p>
 
@@ -111,18 +124,31 @@
     <tr><th>Provider</th><th>Purpose</th><th>When</th></tr>
     <tr><td>Bybit (api.bybit.com, stream.bybit.com)</td><td>Prices, order book, trades, funding, open interest, options, candles, announcements</td><td>on opening, continuously</td></tr>
     <tr><td>Binance (api.binance.com, fapi.binance.com, stream.binance.com, fstream.binance.com)</td><td>Prices, order book, trades, futures data</td><td>on opening, continuously</td></tr>
+    <tr><td>Binance options (eapi.binance.com)</td><td>Open interest, volume and volatility of options (field “Advanced”, options from several exchanges)</td><td>when the “Advanced” field is visible, at most every 5 min, or on click</td></tr><!-- r144 W12 -->
     <tr><td>Hyperliquid (api.hyperliquid.xyz, stats-data.hyperliquid.xyz)</td><td>Prices, leaderboard and positions of large accounts, further markets (stocks, commodities)</td><td>on opening and on selection</td></tr>
     <tr><td>alternative.me (api.alternative.me)</td><td>Fear &amp; Greed Index</td><td>on opening</td></tr>
-    <tr><td>U.S. Department of the Treasury (home.treasury.gov)</td><td>US yield curve (Treasury General Account, TGA, only in the full version)</td><td>on opening or when “Macro &amp; agencies” comes into view</td></tr>
+    <tr><td>U.S. Department of the Treasury (home.treasury.gov)</td><td>US yield curve</td><td>on opening or when “Macro &amp; agencies” comes into view</td></tr>
     <tr><td>European Central Bank (data-api.ecb.europa.eu)</td><td>Policy rates, €STR, money supply, reference rates</td><td>when “Macro &amp; agencies” comes into view (at most every 6 h)</td></tr>
     <tr><td>Eurostat (ec.europa.eu)</td><td>Inflation (HICP)</td><td>when “Macro &amp; agencies” comes into view (at most every 6 h)</td></tr>
     <tr><td>Deutsche Bundesbank (api.statistiken.bundesbank.de)</td><td>German government bond yields</td><td>when “Macro &amp; agencies” comes into view (at most every 6 h)</td></tr>
     <tr><td>World Bank (api.worldbank.org)</td><td>GDP growth</td><td>when “Macro &amp; agencies” comes into view (at most every 6 h)</td></tr>
     <tr><td>OECD (sdmx.oecd.org)</td><td>Composite leading indicator (CLI)</td><td>when “Macro &amp; agencies” comes into view (at most every 6 h)</td></tr>
+    <tr><td>U.S. Treasury (home.treasury.gov)</td><td>Yield curve of the last three years (CSV)</td><td>when “Macro &amp; agencies” comes into view (at most every 6 h)</td></tr><!-- r146 W13 -->
+    <tr><td>BLS (api.bls.gov)</td><td>Gasoline and diesel prices; surprise index series not loaded yet</td><td>when “Macro &amp; agencies” comes into view (at most every 20 h)</td></tr><!-- r146 W13 -->
+    <tr><td>ECB (data-api.ecb.europa.eu), Eurostat (ec.europa.eu)</td><td>HICP seasonally adjusted, EUR/USD; unemployment, industry, retail</td><td>when “Macro &amp; agencies” comes into view (at most every 12 or 6 h)</td></tr><!-- r146 W13 -->
+    <tr><td>BLS (api.bls.gov)</td><td>Economic calendar, CPI and PPI</td><td>when “Macro &amp; agencies” comes into view (at most every 12 h or after a BLS release)</td></tr><!-- r145 W7 -->
+    <tr><td>U.S. Treasury FiscalData (api.fiscaldata.treasury.gov)</td><td>Daily TGA, bond auctions</td><td>when “Macro &amp; agencies” comes into view (at most every 6 h)</td></tr><!-- r145 W7 -->
+    <tr><td>New York Fed (markets.newyorkfed.org)</td><td>Reverse repo (ON RRP)</td><td>when “Macro &amp; agencies” comes into view (at most every 6 h)</td></tr><!-- r145 W7 -->
+    <tr><td>Federal Register (www.federalregister.gov)</td><td>Publications of the SEC, CFTC and Fed</td><td>when “Macro &amp; agencies” comes into view (at most every 30 min)</td></tr><!-- r145 W7 -->
     <tr><td>U.S. CFTC (publicreporting.cftc.gov)</td><td>Commitments of Traders positioning</td><td>on opening</td></tr>
     <tr><td>RugCheck (api.rugcheck.xyz)</td><td>Rug check of a Solana token</td><td>only when you check a token</td></tr>
     <tr><td>DexScreener (api.dexscreener.com)</td><td>Price and trading pairs of a Solana token</td><td>only when you check a token</td></tr>
     <tr><td>Solana nodes (solana-rpc.publicnode.com, api.mainnet-beta.solana.com)</td><td>Wallet age during a rug check (public blockchain data)</td><td>only when you check a token</td></tr>
+    <tr><td>PublicNode (ethereum-rpc.publicnode.com, tron-evm-rpc.publicnode.com, base-rpc.publicnode.com, arbitrum-one-rpc.publicnode.com, solana-rpc.publicnode.com)</td><td>Stablecoin supply, large transfers, developer and wallet queries (public blockchain data)</td><td>when the “On-chain and DEX” field is visible or on click</td></tr><!-- r143 W11 -->
+    <tr><td>DexScreener (api.dexscreener.com)</td><td>New DEX pairs, pair card, memecoin graveyard</td><td>when the “On-chain and DEX” field is visible</td></tr><!-- r143 W11 -->
+    <tr><td>Hyperliquid (api.hyperliquid.xyz)</td><td>Wallet view of a public address, new listings</td><td>on click or when the field is visible</td></tr><!-- r143 W11 -->
+    <tr><td>GitHub (api.github.com)</td><td>Software releases of the networks</td><td>when the field is visible, at most every 6 h</td></tr><!-- r143 W11 -->
+    <tr><td>GDELT Project (api.gdeltproject.org)</td><td>Media tone per coin, headlines for the narrative radar</td><td>when the field is visible, at most every 15 min</td></tr><!-- r143 W11 -->
   </table></div>
   <p>Links to other sites (for example TradingView, Solscan or the exchanges' websites) only open those sites when you click them.</p>
 
