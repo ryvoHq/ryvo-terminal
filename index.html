@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "66570350", "es": "f4c2c3a1", "fr": "ea33180f", "it": "df685f38", "tr": "f07840be"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "46c19eca", "es": "7af09883", "fr": "72304546", "it": "461cb371", "tr": "a61561e1"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -1902,9 +1902,9 @@ main.raster > section.feld.swing-zu { display: none !important; }
 .swing-leiste { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 10px; padding: 8px 12px; border: 1px solid var(--desk-linie, var(--linie)); background: var(--feld); font-size: 12.5px; color: var(--leise); }
 .swing-leiste[hidden], body.im-handeln .swing-leiste, body:not(.swing) .swing-leiste { display: none; }
 .swing-leiste .swing-auf { margin-left: 0; }
-.swing-auf { margin-left: auto; font: 600 10.5px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; min-height: 26px; border: 1px solid var(--desk-linie, var(--linie)); background: transparent; color: var(--leise); cursor: pointer; }
-.swing-auf:hover { color: var(--text); border-color: var(--text); }
-.swing-auf[hidden] { display: none; }
+.swing-auf, .ab-klappe { margin-left: auto; font: 600 10.5px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; min-height: 26px; border: 1px solid var(--desk-linie, var(--linie)); background: transparent; color: var(--leise); cursor: pointer; }
+.swing-auf:hover, .ab-klappe:hover { color: var(--text); border-color: var(--text); }
+.swing-auf[hidden], .ab-klappe[hidden] { display: none; }
 
 .hd-lage { display: grid; gap: 1px; margin: 0; background: var(--desk-linie, var(--linie)); border: 1px solid var(--desk-linie, var(--linie)); }
 .hd-lage > div { background: var(--feld); padding: 6px 8px; display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 2px 8px; align-items: baseline; }
@@ -2060,6 +2060,9 @@ html.desk .ab-leiste button { border-radius: 1px; font-size: 10.5px; letter-spac
 .ab-trenner .ab-auf { font: 600 10.5px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; min-height: 26px; border: 1px solid var(--desk-linie, var(--linie)); background: transparent; color: var(--leise); cursor: pointer; }
 .ab-trenner .ab-auf:hover { color: var(--text); border-color: var(--text); }
 main.raster > section.feld.ab-zu { display: none !important; }
+
+main.raster > section.feld.ab-klein > :not(.feld-kopf) { display: none !important; }
+main.raster > section.feld.ab-klein { gap: 0; padding-bottom: 0; }
 .fokus-knopf { font: 600 12px var(--mono); padding: 2px 8px; min-height: 24px; border: 1px solid var(--desk-linie, var(--linie)); background: transparent; color: var(--leise); cursor: pointer; line-height: 1; }
 .fokus-knopf:hover { color: var(--text); border-color: var(--text); }
 main.raster > section.feld.fokus { position: fixed; z-index: 70; inset: 12px; overflow: auto; overscroll-behavior: contain; box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .62); grid-area: auto !important; }
@@ -2257,7 +2260,9 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
 @media (max-width: 699px) { .test-band summary { align-items: flex-start; padding: 10px 12px; } .test-band .band-satz { font-size: 12.5px; } .test-band p { padding: 0 12px 12px; font-size: 12.5px; } }
 .test-band .start-schritte { margin: 0; padding: 0 14px 10px 34px; display: grid; gap: 6px; color: var(--text); }
 .hd-beta { margin: 0; display: flex; gap: 10px; align-items: baseline; font-size: 12px; line-height: 1.45; color: var(--leise); border: 1px solid var(--linie); background: var(--feld); padding: 6px 10px; }
+.hd-beta .beta-lang { display: none; } .hd-beta .beta-kurz { display: inline !important; }   
 .hd-beta .beta-marke { flex: none; font: 600 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--spot); border: 1px solid color-mix(in srgb, var(--spot) 45%, transparent); border-radius: 5px; padding: 2px 6px; }
+.test-band .band-voll { padding-top: 0; color: var(--text-2, var(--text)); }
 .test-band .start-schritte b { font-weight: 600; } .test-band .start-schritte a { color: var(--spot); }
 @media (max-width: 699px) { .test-band .start-schritte { padding: 0 12px 10px 30px; font-size: 12.5px; } }
 #regeln input { font: inherit; padding: 3px 6px; border: 1px solid var(--linie); border-radius: 6px; background: var(--feld); color: var(--text); }
@@ -2361,7 +2366,7 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
 </section>
 
 <main class="raster">
-  <details class="test-band" id="willkommen" role="note"><summary><span class="beta-marke">Beta</span><span class="band-satz">Frühe Testfassung – zum Beobachten und Üben mit Spielgeld. Keine Anlageberatung, keine Anlageempfehlung, keine Kauf- oder Verkaufssignale; nicht auf deine persönliche Lage zugeschnitten. Papier-Ergebnisse sind simuliert, Daten ohne Gewähr.</span><span class="band-mehr">So fängst du an</span></summary><ol class="start-schritte"><li><b>Ansicht wählen</b> – oben „Swing“ für Tages- und Stundenchart mit EMA, RSI und MACD (ruhig), „Profi“ für Orderflow live im Sekundentakt. „?“ erklärt das Terminal in fünf Schritten.</li><li><b>Markt wählen</b> – oben Bitcoin, Ethereum und weitere Coins, unter „Märkte“ und „Mehr …“ auch Aktien, Indizes, Gold, Öl und Devisen. Jede Grafik zeigt dann diesen Markt.</li><li><b>Ansehen</b> – Chart, Liquidität (wo große Aufträge warten), Kaufdruck und Optionen. Das kleine „i“ an jedem Feld erklärt, was du siehst.</li><li><b>Üben</b> – im Bereich <a href="?bereich=handeln" data-bereich="handeln">Handeln</a> mit 10.000 $ Spielgeld: Markt-, Limit- und Stop-Orders, Stop-Loss und Take-Profit direkt im Chart. Nichts geht an eine Börse, es gibt kein echtes Geld.</li></ol><p>Alle Daten lädt dein Browser selbst live von den öffentlichen Schnittstellen der Börsen (Bybit, Binance, Hyperliquid u. a.); dabei sieht die jeweilige Börse deine IP-Adresse. Nichts wird an unseren Server gesendet. Einige Quellen der Vollversion (OKX, Deribit, Coinbase, Gate.io, mempool.space, DefiLlama, CBOE, Twelve Data) sind hier aus Lizenzgründen nicht enthalten; Optionen kommen hier von Bybit. Footprint, Liquidität im Rückblick, Orderbuch-Verlauf und Ordergrößen füllen sich ab dem Öffnen der Seite. Rangliste und Wale brauchen beim ersten Mal etwa eine Minute. Was dein Browser aufzeichnet und dein Übungskonto bleiben nur auf deinem Gerät. Die automatische Analyse ist eine Momentaufnahme ohne Garantie. Kein Anlageberater, kein Gewinnversprechen – Vergangenheit sagt die Zukunft nicht voraus. Läuft am Computer und auf dem Handy in Chrome oder Safari.</p><p class="band-recht"><a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a></p></details><script>(function () { var d = document.getElementById("willkommen"); try { if (!localStorage.getItem("profi.willkommen")) d.open = true; } catch (e) {} d.addEventListener("toggle", function () { if (!d.open) try { localStorage.setItem("profi.willkommen", "1"); } catch (e) {} }); d.addEventListener("click", function (e) { var a = e.target.closest("a[data-sprung]"); if (!a) return; e.preventDefault(); var z = document.querySelector("section.feld." + a.dataset.sprung); if (z) z.scrollIntoView({ behavior: "smooth", block: "start" }); }); })();</script>
+  <details class="test-band" id="willkommen" role="note"><summary><span class="beta-marke">Beta</span><span class="band-satz">Testfassung mit Spielgeld · keine Anlageberatung, keine Signale · Ergebnisse simuliert, ohne Gewähr</span><span class="band-mehr">So fängst du an</span></summary><p class="band-voll">Frühe Testfassung – zum Beobachten und Üben mit Spielgeld. Keine Anlageberatung, keine Anlageempfehlung, keine Kauf- oder Verkaufssignale; nicht auf deine persönliche Lage zugeschnitten. Papier-Ergebnisse sind simuliert, Daten ohne Gewähr.</p><ol class="start-schritte"><li><b>Ansicht wählen</b> – oben „Swing“ für Tages- und Stundenchart mit EMA, RSI und MACD (ruhig), „Profi“ für Orderflow live im Sekundentakt. „?“ erklärt das Terminal in fünf Schritten.</li><li><b>Markt wählen</b> – oben Bitcoin, Ethereum und weitere Coins, unter „Märkte“ und „Mehr …“ auch Aktien, Indizes, Gold, Öl und Devisen. Jede Grafik zeigt dann diesen Markt.</li><li><b>Ansehen</b> – Chart, Liquidität (wo große Aufträge warten), Kaufdruck und Optionen. Das kleine „i“ an jedem Feld erklärt, was du siehst.</li><li><b>Üben</b> – im Bereich <a href="?bereich=handeln" data-bereich="handeln">Handeln</a> mit 10.000 $ Spielgeld: Markt-, Limit- und Stop-Orders, Stop-Loss und Take-Profit direkt im Chart. Nichts geht an eine Börse, es gibt kein echtes Geld.</li></ol><p>Alle Daten lädt dein Browser selbst live von den öffentlichen Schnittstellen der Börsen (Bybit, Binance, Hyperliquid u. a.); dabei sieht die jeweilige Börse deine IP-Adresse. Nichts wird an unseren Server gesendet. Einige Quellen der Vollversion (OKX, Deribit, Coinbase, Gate.io, mempool.space, DefiLlama, CBOE, Twelve Data) sind hier aus Lizenzgründen nicht enthalten; Optionen kommen hier von Bybit. Footprint, Liquidität im Rückblick, Orderbuch-Verlauf und Ordergrößen füllen sich ab dem Öffnen der Seite. Rangliste und Wale brauchen beim ersten Mal etwa eine Minute. Was dein Browser aufzeichnet und dein Übungskonto bleiben nur auf deinem Gerät. Die automatische Analyse ist eine Momentaufnahme ohne Garantie. Kein Anlageberater, kein Gewinnversprechen – Vergangenheit sagt die Zukunft nicht voraus. Läuft am Computer und auf dem Handy in Chrome oder Safari.</p><p class="band-recht"><a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a></p></details><script>(function () { var d = document.getElementById("willkommen"); try { if (!localStorage.getItem("profi.willkommen")) d.open = true; } catch (e) {} d.addEventListener("toggle", function () { if (!d.open) try { localStorage.setItem("profi.willkommen", "1"); } catch (e) {} }); d.addEventListener("click", function (e) { var a = e.target.closest("a[data-sprung]"); if (!a) return; e.preventDefault(); var z = document.querySelector("section.feld." + a.dataset.sprung); if (z) z.scrollIntoView({ behavior: "smooth", block: "start" }); }); })();</script>
   <section class="feld heat" aria-labelledby="t-heat">
     <div class="feld-kopf">
       <h2 id="t-heat">Liquidität und Orderflow <span class="coin-tag">BTC</span></h2>
@@ -3279,7 +3284,7 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "66570350", "es": "f4c2c3a1", "fr": "ea33180f", "it": "df685f38", "tr": "f07840be"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "46c19eca", "es": "7af09883", "fr": "72304546", "it": "461cb371", "tr": "a61561e1"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -3732,8 +3737,9 @@ if (/(^|\.)binance\.com$/i.test(h)) p.then(() => { QUELL_STAND.Binance.ok = Date
 return p;
 };
 }
-function ladeEhrlich() {
+function ladeEhrlich(el) {
 const aus = [BYBIT_AUS && 'Bybit', QUELL_STAND.Binance.fehl > QUELL_STAND.Binance.ok && 'Binance'].filter(Boolean);
+if (TEILEN && BYBIT_AUS && el && el.closest('.gex,.gamma,.olab,.vol,.kurve,.ofluss,.optw')) return 'Bybit ist hier gerade nicht erreichbar – Optionen und Terminkurven kommen in dieser Fassung nur von Bybit, einen Ersatz gibt es hier nicht.';
 if (aus.length === 2) return 'Noch keine Daten nach 15 s. Bybit und Binance sind hier nicht erreichbar – ersatzweise lädt Hyperliquid, das nur wenige Abrufe je Minute erlaubt. Das kann einige Minuten dauern.';
 return aus.length ? `Noch keine Daten nach 15 s. Hier nicht erreichbar: ${aus.join(', ')}.` : 'Noch keine Daten nach 15 s – die Quelle antwortet hier gerade nicht.';
 }
@@ -3752,7 +3758,7 @@ if (!LADE_KURZ.test(roh) && !LADE_DOM.has(roh) && roh !== s.ersatz) { s.nurLade 
 if (!s.t0) s.t0 = performance.now();
 s.lade = true; if (roh !== s.ersatz) s.text = roh; LW.add(this.canvas);
 if (performance.now() - s.t0 < LADE_FRIST) return ftL.call(this, t, x, y, ...r);
-const e = ladeEhrlich(); s.ersatz = e;
+const e = ladeEhrlich(this.canvas); s.ersatz = e;
 const satz = String(tr(e)), maxW = Math.max(40, this.canvas.width - 20), zeilen = [];
 if (this.textAlign !== 'center' || this.measureText(satz).width <= maxW) zeilen.push(satz);
 else { let z = ''; for (const w of satz.split(/\s+/)) { const n = z ? z + ' ' + w : w; if (z && this.measureText(n).width > maxW) { zeilen.push(z); z = w; } else z = n; } if (z) zeilen.push(z); }
@@ -3779,7 +3785,7 @@ const t = n.data.trim(); if (!t || t.length > 60 || !(LADE_KURZ.test(t) || LADE_
 const el = n.parentElement, feld = el && el.closest('main.raster > section.feld, #handeln, .hd-werkzeug'); if (!feld) continue;
 const ort = el.closest('[id]'), k = (ort ? ort.id : '') + '|' + t; gesehen.add(k);
 const o = LADE_ORTE.get(k); if (!o) { LADE_ORTE.set(k, { t0: jetzt, zuletzt: jetzt }); continue; }
-o.zuletzt = jetzt; if (jetzt - o.t0 >= LADE_FRIST) n.data = ladeEhrlich();
+o.zuletzt = jetzt; if (jetzt - o.t0 >= LADE_FRIST) n.data = ladeEhrlich(el);
 }
 for (const [k, o] of [...LADE_ORTE]) if (!gesehen.has(k) && jetzt - o.zuletzt > 12e4) LADE_ORTE.delete(k);
 }, 2500);
@@ -6762,6 +6768,7 @@ const fb = BOERSEN_FARBE();
 box.replaceChildren(...namen.map((nm) => { const s = document.createElement('span'); const i = document.createElement('i'); i.className = 'punkt'; i.style.background = fb[nm] || F.leise;
 s.append(i, nm + (werte && werte[nm] !== undefined ? ' ' + werte[nm] : '')); return s; }));
 }
+const ab0 = (l) => { const i = Math.min(...l.map((w) => w.findIndex((v) => v !== null && v !== 0)).filter((i) => i >= 0)); return i > 0 && i < Infinity ? Math.min(i, l[0].length - 2) : 0; };
 function letzter(reihe) { for (let i = reihe.length - 1; i >= 0; i--) if (reihe[i] !== null && Number.isFinite(reihe[i])) return reihe[i]; return null; }
 function marktZeigen() {
 for (const b of document.querySelectorAll('#markt-zeit button')) b.setAttribute('aria-pressed', String(Number(b.dataset.stunden) === marktStunden));
@@ -6791,13 +6798,15 @@ const bu = m.buch_ungleich;
 if (bu && Object.values(bu).some((w) => w.some((v) => v !== null))) {
 const bf = [['0.5', plusMinus(0.5), F.wal], ['1', plusMinus(1), F.spot], ['2', plusMinus(2), F.text]];
 legende('l-m-buch', bf.map(([k, nm, f]) => [`${nm} ${letzter(bu[k]) === null ? '–' : de(letzter(bu[k]), 0)}`, f]));
-diagramm($('m-buch'), { labels, links: 44, einheit: '', mitNull: true, reihen: bf.map(([k, , f]) => ({ werte: bu[k], farbe: f, breite: 1.5, nk: 0 })), leer: 'noch keine Aufzeichnung' });
+const a0 = ab0(Object.values(bu));
+diagramm($('m-buch'), { labels: labels.slice(a0), links: 44, einheit: '', mitNull: true, reihen: bf.map(([k, , f]) => ({ werte: bu[k].slice(a0), farbe: f, breite: 1.5, nk: 0, punkte: a0 > 0 })), leer: 'noch keine Aufzeichnung' });
 } else { leinwandText($('m-buch'), m.direkt ? 'füllt sich ab dem ersten Öffnen' : 'noch keine Orderbuch-Aufzeichnung'); $('l-m-buch').replaceChildren(); }
 const cg = m.cvd_groesse;
 if (cg && cg.some((w) => w.some((v) => v !== null && v !== 0))) {
 const gf = [['unter 10 Tsd.', F.leise], ['10–100 Tsd.', F.text], ['100 Tsd.–1 Mio.', F.spot], ['ab 1 Mio.', F.wal]];
 legende('l-m-groesse', gf.map(([nm, f], j) => [`${nm} ${usd(letzter(cg[j]) || 0, true)}`, f]));
-diagramm($('m-groesse'), { labels, links: 62, einheit: ' Mio.', mitNull: true, reihen: cg.map((w, j) => ({ werte: w.map((v) => (v === null ? null : v / 1e6)), farbe: gf[j][1], breite: j === 3 ? 2 : 1.5, nk: 1 })), leer: 'noch keine Aufzeichnung' });
+const a1 = ab0(cg);
+diagramm($('m-groesse'), { labels: labels.slice(a1), links: 62, einheit: ' Mio.', mitNull: true, reihen: cg.map((w, j) => ({ werte: w.slice(a1).map((v) => (v === null ? null : v / 1e6)), farbe: gf[j][1], breite: j === 3 ? 2 : 1.5, nk: 1, punkte: a1 > 0 })), leer: 'noch keine Aufzeichnung' });
 } else { leinwandText($('m-groesse'), m.direkt ? 'füllt sich ab dem ersten Öffnen' : 'noch keine Aufzeichnung – der Mac zählt die Größen seit r81'); $('l-m-groesse').replaceChildren(); }
 $('markt-stand').textContent = DEMO ? 'Demo-Daten' : m.direkt && C().tdm ? `Kurs von Twelve Data (${C().boerse || ''}, ${C().waehrung || ''}) · keine Funding- und Positionsdaten bei Aktien · Stand ${uhrKurz(Date.now())}` : m.direkt && C().tf ? `Direkt von Hyperliquid (Kurs, Funding; Kontrakt, folgt dem Kurs von ${anzeige(coin)}) · Orderbuch-Verlauf und Ordergrößen ${seitText()} · offene Positionen nur als aktueller Wert oben · Stand ${uhrKurz(Date.now())}` : m.direkt ? `Direkt von den Börsen (Funding: ${Object.keys(m.funding).join(', ')} · offene Positionen: ${Object.keys(m.oi).join(', ')}${TEILEN ? '' : ' · Liquidationen: OKX, nur die letzten 100'} · Kaufdruck: ${Object.keys(m.cvd || {}).length ? 'Binance Spot und Futures aus den Kerzen' : 'Binance hier nicht erreichbar'}) · Orderbuch-Verlauf und Ordergrößen ${seitText()} · Stand ${uhrKurz(Date.now())}` : `Aufzeichnung am Mac · ${m.stunden === 24 ? 'je 15 Min.' : 'je Stunde'} · Stand ${uhrKurz(Date.now())}`;
 }
@@ -8055,21 +8064,8 @@ $('gesch-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `${anzeige(coin)
 let umf = null, umfNr = 0, umfStart = 0, umfWachT = 0;
 const UMF_LADE_MS = 8000;
 let vixK = null;
-async function vixKurveLaden() {
-const basis = macBasis(), box = $('umf-vixk-box'); if (!box) return;
-if (basis === null || DEMO) { box.hidden = true; return; }
-try { const d = await holeMitFrist(`${basis}/api/profi/vix`, 25000); vixK = d && !d.fehler && Array.isArray(d.punkte) ? d : null; } catch (e) { vixK = null; }
-vixKurveZeigen();
-}
-function vixKurveZeigen() {
-const box = $('umf-vixk-box'); if (!box) return;
-box.hidden = !vixK; if (!vixK) return;
-const p = vixK.punkte, jetzt = p.map((x) => x[1]), vortag = p.map((x) => x[2]);
-const kurz = jetzt[1], lang = jetzt[2], verh = kurz && lang ? kurz / lang : null, stress = verh !== null && verh > 1;
-$('umf-vixk-titel').textContent = verh === null ? 'erwartete Schwankung 9 Tage bis 1 Jahr' : `VIX ÷ VIX 3 M. = ${de(verh, 2)} · ${stress ? 'kurz über lang: Stress (Backwardation)' : 'steigt nach rechts: ruhig (Contango)'}`;
-$('l-umf-vixk').replaceChildren(...[['heute', stress ? F.verk : F.kauf], ['Vortag', F.leise]].map(([nm, f]) => { const s2 = document.createElement('span'); const i = document.createElement('i'); i.className = 'punkt'; i.style.background = f; s2.append(i, nm); return s2; }));
-diagramm($('umf-vixk'), { labels: p.map((x) => x[0]), links: 44, ohneKappe: true, reihen: [{ werte: vortag, farbe: F.leise, breite: 1.4, strich: [4, 3] }, { werte: jetzt, farbe: stress ? F.verk : F.kauf, breite: 2.2, punkte: true, beschriften: () => true, nk: 1 }] });
-}
+async function vixKurveLaden() { const b = $('umf-vixk-box'); if (b) b.hidden = true; }
+function vixKurveZeigen() { }
 async function umfLaden() {
 if (spaeter(umfLaden, 'umfeld')) return;
 vixKurveLaden();
@@ -8133,6 +8129,7 @@ const NEWS_KATEGORIEN = ['regulierung', 'boerse', 'schlagzeile'];
 const NEWS_KAT_NAME = { regulierung: 'Regulierung', boerse: 'Börse', schlagzeile: 'Schlagzeile' };
 const NEWS_ART_NAME = { hack: 'Hack', streichung: 'Streichung', klage: 'Klage/Strafe', freigabe: 'Token-Freigabe', ausfall: 'Ausfall', abfluss: 'Abfluss',
 etf: 'ETF', listing: 'Listung', zukauf: 'Kauf/Zukauf', partnerschaft: 'Partnerschaft', neuerung: 'Neuerung', kursfall: 'Kursrückgang', kursanstieg: 'Kursanstieg', meinung: 'Meinung/Prognose' };
+const NEWS_MEINUNG = /\?/;
 const MZ_TERMIN = { zins: 'Fed-Zinsentscheid', arbeitsmarkt: 'Arbeitsmarkt', inflation: 'Inflation (CPI)', erzeugerpreise: 'Erzeugerpreise (PPI)', pce: 'PCE-Preise', wachstum: 'Wirtschaftsleistung (BIP)' };
 const ALTER_TEXT = {
 std: { de: (n) => `vor ${n} Std.`, en: (n) => `${n} h ago`, es: (n) => `hace ${n} h`, fr: (n) => `il y a ${n} h`, tr: (n) => `${n} sa önce`, it: (n) => `${n} h fa` },
@@ -8374,7 +8371,8 @@ const teile = [['alternative.me', 'alternative.me'], ['Binance', u.btcHl ? 'Bina
 ['Hyperliquid', u.btcHl ? 'Hyperliquid (Bitcoin-Tageskurse, S&P 500, Nasdaq 100 – seit Listung)' : 'Hyperliquid-Kontrakte (S&P 500, Nasdaq 100 – seit Listung)'],
 ['CFTC', 'CFTC'], ['blockchain.com', 'blockchain.com']].filter(([k]) => q.has(k)).map(([, t]) => t);
 const fehlt = ['alternative.me', 'Binance', 'Hyperliquid', 'CFTC'].filter((k) => !q.has(k));
-return (teile.length ? ' · direkt geladen: ' + teile.join(', ') : '') + (fehlt.length ? ' · noch ohne Antwort: ' + fehlt.join(', ') : '');
+return (teile.length ? ' · direkt geladen: ' + teile.join(', ') : '') + (fehlt.length ? ' · noch ohne Antwort: ' + fehlt.join(', ') : '')
++ (TEILEN ? ' · VIX und Dollar-Index fehlen hier: CBOE-Daten nur zur eigenen Nutzung, die Hyperliquid-Kontrakte wurden gestrichen' : '');
 }
 function umfZeigen() {
 const ids = ['umf-angst', 'umf-vergleich', 'umf-cot', 'umf-vix', 'umf-zyklus', 'umf-puell'], u = umf;
@@ -10371,7 +10369,7 @@ const DEX_VON = '013456789@$!|€£¡ıøłđаеорсхуіјкмнтвѕгп�
 const dexRot = (s) => s.replace(/[a-z]/g, (c) => String.fromCharCode((c.charCodeAt(0) - 84) % 26 + 97));
 function dexRegeln(liste) {
 const g = (k) => liste.split(/\s+/).filter((w) => (k ? w[0] === k : /^[a-z]/.test(w))).map((w) => w.replace(/^[=^]/, '').replace(/[a-z]/g, '$&+')).join('|') || '$^';
-return [new RegExp(g('')), new RegExp(`(?:^| )(?:(?:${g('=')})(?= |$)|${g('^')})`)];
+return [new RegExp(g('')), new RegExp(`(?:^| )(?:(?:${g('=')})(?=(?:coins?|inu|token|swap|dao|ai)?(?: |$))|${g('^')})`)];
 }
 function dexNorm(t) {
 const s = [...String(t || '').replace(/([a-z])([A-Z])/g, '$1 $2').normalize('NFKD').toLowerCase().replace(/[\u0300-\u036f]/g, '').replace(/ß/g, 'ss').replace(/æ/g, 'ae').replace(/œ/g, 'oe')]
@@ -10380,7 +10378,7 @@ return [s.replace(/\b(?:[a-z] )+[a-z]\b/g, (m) => m.replace(/ /g, '')), s.replac
 }
 function dexTreffer(t, r) { const [w, k] = dexNorm(t); return r[0].test(k) || r[1].test(w) || /(?:^|\D)14\W?88(?!\d)/.test(String(t || '')); }
 let DEX_SPERR = null;
-{ const s = document.createElement('script'); s.src = 'sprachen/dex.js?v=4d1b0210'; s.onload = () => { if (window.RYVO_DEX) { DEX_SPERR = dexRegeln(dexRot(String(window.RYVO_DEX))); rugListen(); } }; document.head.append(s); }
+{ const s = document.createElement('script'); s.src = 'sprachen/dex.js?v=d66d7549'; s.onload = () => { if (window.RYVO_DEX) { DEX_SPERR = dexRegeln(dexRot(String(window.RYVO_DEX))); rugListen(); } }; document.head.append(s); }
 function dexNameSicher(name, symbol, bild) {
 const aus = !DEX_SPERR || dexTreffer(name, DEX_SPERR) || dexTreffer(symbol, DEX_SPERR), x = DEX_AUS[SPRACHE] || DEX_AUS.en;
 return { name: aus ? x : String(name || ''), sym: aus ? x : String(symbol || ''), aus, bild: aus || TEILEN ? '' : String(bild || '') };
@@ -10525,6 +10523,7 @@ function tabZeigen(neu) {
 if (neu === 'handeln') { hdBereich('handeln'); tabMarkieren(); return; }
 if (HD && HD.bereich === 'handeln') { hdBereich('daten'); requestAnimationFrame(() => tabZeigen(neu)); return; }
 tab = neu;
+if (W15.auf) { const t = TABS.find((x) => x[0] === neu); if (t && t[2][0]) W15.auf(t[2][0]); }
 const l = tabSektionen(neu).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0]; if (!l) return;
 const leiste = document.querySelector('.sprungleiste'), y = l.getBoundingClientRect().top + scrollY - (leiste ? leiste.offsetHeight : 0) - 8;
 window.scrollTo({ top: Math.max(0, y), behavior: sanft() });
@@ -12492,7 +12491,7 @@ swingRaster();
 function swingRaster() {
 const m = document.querySelector('main.raster'); if (!m) return;
 m.style.gridTemplateAreas = AB_BEREIT ? abFlaeche() : '';
-const zu = [...m.querySelectorAll(':scope > section.feld.swing-zu')];
+const zu = [...m.querySelectorAll(':scope > section.feld.swing-zu:not(.ab-zu):not(.w15-zu)')];
 let leiste = document.getElementById('swing-leiste');
 if (!leiste) { leiste = document.createElement('div'); leiste.id = 'swing-leiste'; leiste.className = 'swing-leiste'; m.before(leiste); }
 leiste.hidden = !zu.length;
@@ -12609,9 +12608,9 @@ const i = f.indexOf(document.activeElement);
 if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
 }, true);
 
-const FASSUNG = 'r146c';
+const FASSUNG = 'r148';
 let NEU = null;
-function neuLaden(von) { const s = document.createElement("script"); s.src = "sprachen/neu.js?v=7d7d7244"; s.onload = () => { NEU = window.RYVO_NEU || []; wasNeu(von); }; document.head.append(s); }
+function neuLaden(von) { const s = document.createElement("script"); s.src = "sprachen/neu.js?v=4a1c9724"; s.onload = () => { NEU = window.RYVO_NEU || []; wasNeu(von); }; document.head.append(s); }
 function wasNeu(von) {
 if (!NEU) { neuLaden(von); return; }
 let box = $('was-neu');
@@ -13240,7 +13239,7 @@ var W5_BEREIT = true;
 
 let W6_LAZY = null;
 function w6Laden() {
-if (!W6_LAZY) W6_LAZY = new Promise((ok, nein) => { if (window.RYVO_W6_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w6.js?v=9581df54"; s.onload = ok; s.onerror = () => { W6_LAZY = null; nein(new Error("w6.js")); }; document.head.append(s); })
+if (!W6_LAZY) W6_LAZY = new Promise((ok, nein) => { if (window.RYVO_W6_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w6.js?v=5cce2df7"; s.onload = ok; s.onerror = () => { W6_LAZY = null; nein(new Error("w6.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W6_CODE); window.RYVO_W6_CODE = null; return f; });
 return W6_LAZY;
 }
@@ -13250,7 +13249,7 @@ var W6_BEREIT = true;
 
 let W8_LAZY = null;
 function w8Laden() {
-if (!W8_LAZY) W8_LAZY = new Promise((ok, nein) => { if (window.RYVO_W8_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w8.js?v=55f88291"; s.onload = ok; s.onerror = () => { W8_LAZY = null; nein(new Error("w8.js")); }; document.head.append(s); })
+if (!W8_LAZY) W8_LAZY = new Promise((ok, nein) => { if (window.RYVO_W8_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w8.js?v=47139008"; s.onload = ok; s.onerror = () => { W8_LAZY = null; nein(new Error("w8.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W8_CODE); window.RYVO_W8_CODE = null; return f; });
 return W8_LAZY;
 }
@@ -13362,7 +13361,8 @@ W10_TEXT.set(sec, { t: Date.now(), x }); return x;
 function w10Status(sec) {
 if (DEMO) return { z: 'demo', titel: w10T('tDemo') };
 const id = w2Id(sec), inhalt = w10Inhalt(sec), jetzt = Date.now();
-if (W10_RE.gesperrt.test(inhalt)) return { z: 'gesperrt', titel: w10T('tGesperrt') };
+const echt = [...sec.querySelectorAll('td,dd')].some((x) => /\d/.test(x.textContent)) || [...sec.querySelectorAll('canvas')].some((c) => c.__lw && !c.__lw.nurLade);
+if (!echt && W10_RE.gesperrt.test(inhalt)) return { z: 'gesperrt', titel: w10T('tGesperrt') };
 if (W10_LIVE.has(id)) {
 const li = [...document.querySelectorAll('#quellen > li')], an = li.filter((x) => x.className !== 'fehlt'), live = an.filter((x) => x.className === 'live');
 const ersatz = li.some((x) => x.className === 'fehlt' && /Hyperliquid/.test(x.title || '')) ? ' · ' + w10T('ersatz', 'Hyperliquid') : '';
@@ -13481,13 +13481,22 @@ verz: () => w10VerzJe(), bewegung: () => ({ wahl: W10.bewegung, ruhig: ruhig() }
 var W10_BEREIT = true;
 let W11_LAZY = null;
 function w11Laden() {
-if (!W11_LAZY) W11_LAZY = new Promise((ok, nein) => { if (window.RYVO_W11_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w11.js?v=1d9e28dc"; s.onload = ok; s.onerror = () => { W11_LAZY = null; nein(new Error("w11.js")); }; document.head.append(s); })
+if (!W11_LAZY) W11_LAZY = new Promise((ok, nein) => { if (window.RYVO_W11_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w11.js?v=afcbb62a"; s.onload = ok; s.onerror = () => { W11_LAZY = null; nein(new Error("w11.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W11_CODE); window.RYVO_W11_CODE = null; return f; });
 return W11_LAZY;
 }
 function w11Befehl(r, p) { return w11Laden().then((f) => f.w11Befehl(r, p)); }
 function w11Start() { let t = 0; const los = () => { if (!feldInSicht(["onchain"])) return; clearInterval(t); w11Laden().then((f) => f.w11Start()).catch(() => { t = setInterval(los, 5000); }); }; t = setInterval(los, 1500); setTimeout(los, 900); }
 var W11_BEREIT = true;
+let W14_LAZY = null;
+function w14Lazy() {
+if (!W14_LAZY) W14_LAZY = new Promise((ok, nein) => { if (window.RYVO_W14_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w14.js?v=9e08f780"; s.onload = ok; s.onerror = () => { W14_LAZY = null; nein(new Error("w14.js")); }; document.head.append(s); })
+.then(() => { const f = eval(window.RYVO_W14_CODE); window.RYVO_W14_CODE = null; return f; });
+return W14_LAZY;
+}
+function w14Befehl(r, p) { return w14Lazy().then((f) => f.w14Befehl(r, p)); }
+function w14Start() { const t = setInterval(() => { if (feldInSicht(["onchain"])) { clearInterval(t); w14Lazy().then((f) => f.w14Start()).catch(() => {}); } }, 1500); }
+var W14_BEREIT = true;
 
 var W12_Z = null;
 function w12HdMuster(c, ctx, K, a, b, Y, xi, cw, d, f, L) { if (W12_Z) W12_Z.muster(c, ctx, K, a, b, Y, xi, cw, d, f, L); else w12Vorladen(); }
@@ -13495,7 +13504,7 @@ function w12HdFormel(c, ctx, K, a, b, xi, d, f, L, oben, unten, mi) { if (W12_Z)
 function w12UebDazu(tab, zeilen) { if (W12_Z) W12_Z.spalten(tab, zeilen); else if ((lies('w12.spalten') || '[]') !== '[]') w12Vorladen(); }
 let W12_LAZY = null;
 function w12Laden() {
-if (!W12_LAZY) W12_LAZY = new Promise((ok, nein) => { if (window.RYVO_W12_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w12.js?v=71d1e31f"; s.onload = ok; s.onerror = () => { W12_LAZY = null; nein(new Error("w12.js")); }; document.head.append(s); })
+if (!W12_LAZY) W12_LAZY = new Promise((ok, nein) => { if (window.RYVO_W12_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w12.js?v=e8a2c764"; s.onload = ok; s.onerror = () => { W12_LAZY = null; nein(new Error("w12.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W12_CODE); window.RYVO_W12_CODE = null; return f; });
 return W12_LAZY;
 }
@@ -14305,12 +14314,14 @@ function w2SucheDazu(text, l) {
 const t = String(text || '').trim(); if (t.length < 3) return l;
 const p = befParsen(t, BEF_K); if (p.fn && !p.unbekannt.length && p.fn.par !== 'text' && p.fn.id !== 'finden') return l;
 const frei = p.fn && p.fn.id === 'finden', q = frei ? p.rest.join(' ') : t; if (q.length < (frei ? 2 : 3)) return l;
-const tr0 = sucheTreffer(q, w2SucheEintraege(), 8);
+const k15 = W15.suche ? W15.suche(q) : [], ids = new Set(k15.map((v) => v.e.feld).filter(Boolean));
+const tr0 = sucheTreffer(q, w2SucheEintraege(), 8).filter((e) => !(e.gruppe === 'Kachel' && ids.has(e.feld)));
 if (frei) l = befVorschlaege(q, BEF_K, 8).filter((v) => v.art === 'fn' || v.art === 'markt' || v.art === 'ab');
-return l.slice(0, 12).concat(tr0.map((e) => ({ cmd: e.titel.length > 60 ? e.titel.slice(0, 58) + ' …' : e.titel, art: 'such', gruppe: e.gruppe, satz: suchAuszug(e.text, q), e })));
+return l.slice(0, 12).concat(k15, tr0.map((e) => ({ cmd: e.titel.length > 60 ? e.titel.slice(0, 58) + ' …' : e.titel, art: 'such', gruppe: e.gruppe, satz: suchAuszug(e.text, q), e })));
 }
 async function w2SucheOeffnen(v) {
 const e = v.e || {};
+if (e.w15g && W15.gruppe) { W15.gruppe(e.w15g); return true; }
 if (e.gruppe === 'Lexikon') { verzeichnis(e.lex, true); return true; }
 if (e.gruppe === 'Meldung') { const r = BEF_REG.find((x) => x.id === 'meld'); if (r) await befOeffnen(r, {}); if (e.url) try { window.open(e.url, '_blank', 'noopener'); } catch (x) {   } return true; }
 if (e.feld) {
@@ -14318,6 +14329,8 @@ const s = abSec(e.feld); if (!s) return false;
 if (HD.bereich !== 'daten') hdBereich('daten');
 if (s.classList.contains('ab-zu')) { AB.offen.add(e.feld); abAnwenden(); }
 if (s.classList.contains('swing-zu')) { s.classList.add('swing-offen'); swingFelder(); }
+if (s.classList.contains('ab-klein')) { AB.kleinAuf.add(e.feld); abAnwenden(); }
+if (W15.auf) W15.auf(e.feld);
 if (e.hilfe) { const b = s.querySelector(`.feld-kopf .was[data-hilfe="${e.hilfe}"]`); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); }
 await befWarte(40); feldZeigen(s); s.classList.add('einstieg-ziel'); setTimeout(() => s.classList.remove('einstieg-ziel'), 1600);
 return true;
@@ -15673,6 +15686,7 @@ w9Start();
 a11yStart();
 w10Start();
 w11Start();
+w14Start();
 w12Start();
 
 /*BEFEHL-KERN-ANFANG*/
@@ -15884,6 +15898,9 @@ tr: "ASK fonlaması %50'nin üzerinde olan coinleri göster", it: 'ASK mostra le
 { id: 'solpnl', k: ['SOLPNL', 'SOLWALLET'], e: ['SOLANAPNL', 'WALLETPNL'], n: 'Solana-Wallet-PnL', s: 'Ausgegeben und zurück erhalten je Token einer öffentlichen Adresse', b: 'SOLPNL <Adresse>', feld: 'onchain', ziel: '#w11-pnl-block', par: 'text', g: 'wal' },
 { id: 'listung', k: ['LISTUNGEN', 'NEUGELISTET'], e: ['NEWLISTINGS', 'HLLISTINGS'], n: 'Neu bei Hyperliquid', s: 'Zuletzt aufgenommene Futures-Märkte mit Datum', b: 'LISTUNGEN', feld: 'onchain', ziel: '#w11-list-block', g: 'news' },
 { id: 'releases', k: ['RELEASES', 'UPGRADES'], e: ['FORKS', 'NODERELEASES'], n: 'Software-Releases', s: 'Neue Versionen der Knoten-Software von Bitcoin, Ethereum, Solana und mehr', b: 'RELEASES', feld: 'onchain', ziel: '#w11-rel-block', g: 'news' },
+{ id: 'lebenszyklus', k: ['LEBENSZYKLUS', 'STARTKURVE'], e: ['LIFECYCLE', 'NEWTOKENS'], n: 'Lebenszyklus neuer Tokens', s: 'Solana: neu gestartet, kurz vor dem Wechsel, gewechselt', b: 'LEBENSZYKLUS', feld: 'onchain', ziel: '#w14-zyklus-block', g: 'wal' },
+{ id: 'dexblasen', k: ['DEXBLASEN', 'DEXTRADES'], e: ['DEXBUBBLES', 'TOKENTRADES'], n: 'DEX-Trade-Blasen', s: 'Käufe und Verkäufe eines DEX-Tokens als Kreise, Preis oder Marktwert', b: 'DEXBLASEN <Token-Adresse>', feld: 'onchain', ziel: '#w14-chart-block', par: 'text', g: 'wal' },
+{ id: 'dexpapier', k: ['DEXPAPIER', 'DEXUEBEN'], e: ['DEXPAPER', 'DEXPRACTICE'], n: 'DEX-Papierhandel', s: 'Spielgeld in SOL für DEX-Tokens, Teilverkauf in Prozent', b: 'DEXPAPIER', feld: 'onchain', ziel: '#w14-papier-block', par: 'text', g: 'hd' },
 { id: 'medienton', k: ['MEDIENTON', 'NEWSTON'], e: ['MEDIATONE', 'NEWSTONE'], n: 'Medien-Ton je Coin', s: 'Erwähnungen und Ton in Nachrichten, nur beschreibend', b: 'SOL MEDIENTON', feld: 'onchain', ziel: '#w11-ton-block', g: 'news' },
 { id: 'tick', k: ['TICKKERZEN', 'SEKUNDENKERZEN'], e: ['TICKCHART', 'SECONDCANDLES'], n: 'Sekunden- und Tick-Kerzen', s: 'Kerzen aus einzelnen Trades: 1 bis 30 Sekunden oder 100 bis 1000 Trades', b: 'TICKKERZEN 500t', feld: 'fortg', ziel: '#w12-tick-block', par: 'text', g: 'of' },
 { id: 'formel', k: ['FORMEL', 'EIGENEKENNZAHL'], e: ['FORMULA', 'CUSTOMMETRIC'], n: 'Eigene Formel als Linie', s: 'Formel aus Kurs, Umsatz, OI und Funding unter dem Chart', b: 'FORMEL oi / (close * volume)', feld: 'fortg', ziel: '#w12-formel-block', par: 'text', g: 'eb' },
@@ -16043,7 +16060,10 @@ const FELD_EXTRA = { news: 'News', mz: 'Makro-Zentrale', analyst: 'Dein Analyst'
 const abFelder = () => [...document.querySelectorAll('main.raster > section.feld')].map((s) => [...s.classList].find((c) => SPRUNG_NAMEN[c] || FELD_EXTRA[c])).filter(Boolean);
 const abSec = (id) => document.querySelector(`main.raster > section.feld.${id}`);
 var AB_BEREIT = false;
-const AB = { id: 'alle', eigen: [], geteilt: null, stufe: lies('stufe') === 'einsteiger' ? 'einsteiger' : 'voll', offen: new Set(), hilfeAuf: new Set() };
+const AB = { id: 'alle', eigen: [], geteilt: null, stufe: lies('stufe') === 'einsteiger' ? 'einsteiger' : 'voll', offen: new Set(), hilfeAuf: new Set(), alleZeigen: false, kleinAuf: new Set() };
+const AB_KLEIN = { scalper: ['heat', 'lkarte'], swing: ['umfeld', 'danach', 'multi'], optionen: ['olab', 'chart'], derivate: ['uebersicht', 'lkarte', 'markt'], onchain: ['lkarte', 'walw'], makro: ['behoerden'], scanner: ['hmap', 'weltm'], einsteiger: ['umfeld'] };
+const W15 = {};
+const abReihe = (a) => { const d = a.f.filter((x) => abSec(x)), k = AB_KLEIN[a.id] || []; return d.filter((x) => !k.includes(x)).concat(d.filter((x) => k.includes(x))); };
 try { const x = JSON.parse(lies('abEigen') || '[]'); if (Array.isArray(x)) AB.eigen = x.map(abPruefen).filter(Boolean).slice(0, 12); } catch (e) {   }
 function abPruefen(a) {
 if (!a || typeof a !== 'object') return null;
@@ -16064,16 +16084,18 @@ const m = document.querySelector('main.raster'); if (!m) return 1;
 return innerWidth >= 1400 ? 3 : innerWidth >= 1000 ? 2 : 1;
 }
 function abFlaeche() {
+if (W15.flaeche) { const x = W15.flaeche(); if (x != null) return x; }
 const a = abFinden(AB.id); if (!a || !a.f || abSpalten() < 2) return '';
-const sp = abSpalten(), z = [], reihe = (l) => z.push(l.join(' ')), drin = a.f.filter((x) => abSec(x)), rest = abFelder().filter((x) => !drin.includes(x));
+const sp = abSpalten(), z = [], reihe = (l) => z.push(l.join(' ')), drin = abReihe(a), rest = abFelder().filter((x) => !drin.includes(x));
 if (document.getElementById('willkommen')) reihe(Array(sp).fill('abband'));
 const legen = (liste) => {
-let schmal = [];
+let schmal = [], vorKlein = false;
 const weg = () => { if (!schmal.length) return; const l = schmal.slice(); while (l.length < sp) l.splice(l.length - 1, 0, l[l.length > 1 ? 0 : 0]); reihe(l.slice(0, sp)); schmal = []; };
 for (const id of liste) {
 const s = abSec(id); if (!s || s.classList.contains('ab-zu')) continue;
+const kl = s.classList.contains('ab-klein'); if (kl && !vorKlein) weg(); vorKlein = kl;
 if (s.hidden) { weg(); reihe(Array(sp).fill(id)); continue; }
-if (AB_SCHMAL.has(id)) { schmal.push(id); if (schmal.length === sp) weg(); } else { weg(); reihe(Array(sp).fill(id)); }
+if (AB_SCHMAL.has(id) || kl) { schmal.push(id); if (schmal.length === sp) weg(); } else { weg(); reihe(Array(sp).fill(id)); }
 }
 weg();
 };
@@ -16082,7 +16104,7 @@ return z.map((x) => `"${x}"`).join(' ');
 }
 function abAnwenden() {
 const m = document.querySelector('main.raster'); if (!m) return;
-const a = abFinden(AB.id), aktiv = !!(a && a.f), drin = aktiv ? a.f.filter((x) => abSec(x)) : [], alle = abFelder();
+const a = abFinden(AB.id), aktiv = !!(a && a.f), drin = aktiv ? abReihe(a) : [], alle = abFelder(), klein = aktiv && !a.eigen && !a.geteilt ? AB_KLEIN[a.id] || [] : [];
 let tr0 = document.getElementById('ab-trenner');
 if (aktiv && !tr0) { tr0 = document.createElement('div'); tr0.id = 'ab-trenner'; tr0.className = 'ab-trenner'; m.append(tr0); }
 m.classList.toggle('ab-aktiv', aktiv);
@@ -16092,19 +16114,27 @@ const s = abSec(id); if (!s) return;
 const k = drin.indexOf(id);
 s.style.order = aktiv ? String(k >= 0 ? k + 1 : drin.length + 2 + i) : '';
 s.style.gridArea = aktiv && abSpalten() >= 2 ? id : '';
-const weg = einst && k < 0 && !AB.offen.has(id);
+const weg = aktiv && k < 0 && !AB.offen.has(id) && !AB.alleZeigen;
 s.classList.toggle('ab-zu', weg); if (weg && !s.hidden) zu.push(s);
+const kl = klein.includes(id), kopf = s.querySelector(':scope > .feld-kopf'); let kb = kopf && kopf.querySelector(':scope > .ab-klappe');
+s.classList.toggle('ab-klein', kl && !AB.kleinAuf.has(id));
+if (kl && kopf && !kb) { kb = hdEl('button', 'ab-klappe', ''); kb.type = 'button'; kopf.append(kb); kb.addEventListener('click', () => { if (AB.kleinAuf.has(id)) AB.kleinAuf.delete(id); else AB.kleinAuf.add(id); abAnwenden(); requestAnimationFrame(() => dispatchEvent(new Event('resize'))); }); }
+if (kb) { kb.hidden = !kl; kb.textContent = AB.kleinAuf.has(id) ? 'Einklappen' : 'Aufklappen'; kb.setAttribute('aria-expanded', String(AB.kleinAuf.has(id))); }
 });
 const band = document.getElementById('willkommen'); if (band) { band.style.order = aktiv ? '0' : ''; band.style.gridArea = aktiv && abSpalten() >= 2 ? 'abband' : ''; }
 if (tr0) {
 tr0.hidden = !aktiv; tr0.style.order = String(drin.length + 1); tr0.style.gridArea = aktiv && abSpalten() >= 2 ? 'abtrenn' : '';
 if (aktiv) {
 const t = hdEl('span', '', einst ? befT('weitere', zu.length) : 'Weitere Felder');
-tr0.replaceChildren(t, ...(einst ? zu.map((s) => { const b = hdEl('button', 'ab-auf', (s.querySelector('h2') || {}).textContent || ''); b.type = 'button'; b.dataset.feld = [...s.classList].find((c) => alle.includes(c)) || ''; return b; }) : []));
+const az = hdEl('button', 'ab-auf', AB.alleZeigen ? 'Ausblenden' : 'Alle zeigen'); az.type = 'button'; az.addEventListener('click', () => { AB.alleZeigen = !AB.alleZeigen; abAnwenden(); requestAnimationFrame(() => dispatchEvent(new Event('resize'))); });
+if (!einst && zu.length) t.append(` (${zu.length})`);
+tr0.replaceChildren(t, ...(einst ? zu.map((s) => { const b = hdEl('button', 'ab-auf', (s.querySelector('h2') || {}).textContent || ''); b.type = 'button'; b.dataset.feld = [...s.classList].find((c) => alle.includes(c)) || ''; return b; }) : []), ...(einst || (!zu.length && !AB.alleZeigen) ? [] : [az]));
+if (W15.trenner) W15.trenner(tr0, zu);
 }
 }
 for (const id of [...AB.hilfeAuf]) if (!einst || !drin.includes(id)) { const b = abSec(id) && abSec(id).querySelector('.feld-kopf .was[aria-expanded="true"]'); if (b) b.click(); AB.hilfeAuf.delete(id); }
 if (einst) for (const id of drin) { const b = abSec(id) && abSec(id).querySelector('.feld-kopf .was[aria-expanded="false"]'); if (b && !AB.hilfeAuf.has(id)) { b.click(); AB.hilfeAuf.add(id); } }
+if (W15.anwenden) W15.anwenden();
 swingRaster();
 abLeiste();
 }
@@ -16114,7 +16144,7 @@ if (a.hd) { hdBereich('handeln'); abLeiste(); return true; }
 AB.id = a.id; if (merken && !a.geteilt) merke('ab', a.id);
 if (HD.bereich !== 'daten') hdBereich('daten');
 if (modus && a.modus && a.modus !== MODUS) modusSetzen(a.modus);
-AB.offen.clear(); abAnwenden();
+AB.offen.clear(); AB.kleinAuf.clear(); AB.alleZeigen = false; abAnwenden();
 if (!still) window.scrollTo(0, 0);
 requestAnimationFrame(() => dispatchEvent(new Event('resize')));
 return true;
@@ -16163,51 +16193,7 @@ knopf('Link kopieren', { a: 'teilen' }, null, 'Adresse dieser Ansicht kopieren (
 l.replaceChildren(...teile);
 const z = l.querySelector('[data-a="zurueck"]'), v = l.querySelector('[data-a="vor"]'); if (z) z.disabled = NAV.i <= 0; if (v) v.disabled = NAV.i >= NAV.stapel.length - 1;
 }
-function abEditor(a) {
-let box = document.getElementById('ab-editor');
-if (!box) { box = document.createElement('section'); box.id = 'ab-editor'; box.className = 'einstieg was-neu ab-editor'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'ab-editor-titel'); document.body.append(box); }
-const basis = a && a.f ? a : abFinden(AB.id), vorher = basis && basis.f ? basis.f.filter((x) => abSec(x)) : [];
-const liste = vorher.concat(abFelder().filter((x) => !vorher.includes(x)));
-const an = new Set(a && a.f ? a.f : vorher.length ? vorher : ['chart', 'analyse', 'werte']);
-const kopf = hdEl('div', 'einstieg-kopf'), zu = hdEl('button', 'einstieg-weg', 'Schließen'); zu.type = 'button'; zu.addEventListener('click', () => abEditorZu());
-kopf.append(hdEl('span', 'einstieg-nr', 'Arbeitsbereich'), zu);
-const h = hdEl('h3', '', a && a.eigen ? 'Arbeitsbereich bearbeiten' : 'Eigener Arbeitsbereich'); h.id = 'ab-editor-titel';
-const name = document.createElement('input'); name.type = 'text'; name.maxLength = 24; name.id = 'ab-name'; name.value = a && a.eigen ? a.n : ''; name.placeholder = 'Name, z. B. Mein Setup'; name.setAttribute('aria-label', 'Name'); name.autocomplete = 'off';
-const nk = hdEl('div', 'auswahl-kopf'); nk.append(name);
-const ul = hdEl('ul', 'ab-felder');
-const zeile = (id) => {
-const li = hdEl('li', ''); li.dataset.feld = id;
-const lab = document.createElement('label'), cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = an.has(id);
-const sec = abSec(id); lab.append(cb, hdEl('span', '', feldName(id) !== id ? feldName(id) : (sec && sec.querySelector('h2') ? sec.querySelector('h2').textContent : id)));
-const hoch = hdEl('button', 'leise-knopf', '▲'), runter = hdEl('button', 'leise-knopf', '▼'); hoch.type = runter.type = 'button'; hoch.setAttribute('aria-label', 'Nach oben'); runter.setAttribute('aria-label', 'Nach unten');
-hoch.addEventListener('click', () => { if (li.previousElementSibling) li.previousElementSibling.before(li); });
-runter.addEventListener('click', () => { if (li.nextElementSibling) li.nextElementSibling.after(li); });
-li.append(lab, hoch, runter); return li;
-};
-ul.append(...liste.map(zeile));
-const gewaehlt = () => [...ul.children].filter((li) => li.querySelector('input').checked).map((li) => li.dataset.feld);
-const meldung = hdEl('p', 'leise'); meldung.setAttribute('aria-live', 'polite');
-const k = (t, kl, f) => { const b = hdEl('button', kl, t); b.type = 'button'; b.addEventListener('click', f); return b; };
-const datei = document.createElement('input'); datei.type = 'file'; datei.accept = '.json,application/json'; datei.hidden = true;
-datei.addEventListener('change', () => { const f = datei.files && datei.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { const n = abImport(String(r.result)); meldung.textContent = n ? 'Arbeitsbereich importiert.' : 'Datei nicht lesbar.'; if (n) { abEditorZu(); abSetzen(n.id); } }; r.readAsText(f); datei.value = ''; });
-let zuruecksetzen = 0;
-const unten = hdEl('div', 'einstieg-unten ab-unten');
-unten.append(
-k('Speichern', 'einstieg-weiter', () => { const n = abSpeichern(name.value || 'Mein Setup', gewaehlt(), (basis && basis.modus) || '', a && a.eigen ? a.id : ''); if (!n) { meldung.textContent = 'Mindestens ein Feld wählen.'; return; } abEditorZu(); abSetzen(n.id); befMelden(befT('gespeichert', n.n)); }),
-...(a && a.eigen ? [k('Löschen', 'leise-knopf', () => { abLoeschen(a.id); abEditorZu(); })] : []),
-k('Als Datei', 'leise-knopf', () => { const x = abPruefen({ n: name.value || 'Mein Setup', f: gewaehlt() }); if (!x) { meldung.textContent = 'Mindestens ein Feld wählen.'; return; } abExport(x); }),
-k('Datei laden', 'leise-knopf', () => datei.click()),
-k('Link kopieren', 'leise-knopf', () => { const x = abPruefen({ n: name.value || 'Mein Setup', f: gewaehlt() }); if (!x) { meldung.textContent = 'Mindestens ein Feld wählen.'; return; } linkKopieren(abKodieren(x)); meldung.textContent = 'Link kopiert.'; }),
-k('Zurücksetzen', 'leise-knopf', (e) => { if (!zuruecksetzen) { zuruecksetzen = 1; e.currentTarget.textContent = 'Wirklich alle eigenen löschen?'; return; } AB.eigen = []; merke('abEigen', '[]'); stufeSetzen('voll'); abSetzen('alle', { modus: false }); abEditorZu(); }));
-box.replaceChildren(kopf, h, nk, ul, meldung, unten, datei, hdEl('p', 'einstieg-fuss', 'Nur in diesem Browser gespeichert · keine Anlageberatung'));
-dialogAuf(box); box.hidden = false; try { name.focus({ preventScroll: true }); } catch (e) {   }
-}
 function abEditorZu() { const box = document.getElementById('ab-editor'); if (!box || box.hidden) return; dialogZu(box); box.hidden = true; }
-function abExport(a) {
-const text = JSON.stringify({ ryvo: 'arbeitsbereich', v: 1, n: a.n, f: a.f, modus: a.modus || '' }, null, 1);
-try { const u = URL.createObjectURL(new Blob([text], { type: 'application/json' })), l = document.createElement('a'); l.href = u; l.download = 'ryvo-arbeitsbereich-' + befNorm(a.n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.json'; document.body.append(l); l.click(); l.remove(); setTimeout(() => URL.revokeObjectURL(u), 5000); } catch (e) {   }
-return text;
-}
 function abImport(text) { try { const j = JSON.parse(text); if (!j || j.ryvo !== 'arbeitsbereich') return null; return abSpeichern(j.n, j.f, j.modus); } catch (e) { return null; } }
 window.__ryvoBefehle.abExportText = (id) => { const a = abFinden(id); return a && a.f ? JSON.stringify({ ryvo: 'arbeitsbereich', v: 1, n: a.n, f: a.f, modus: a.modus || '' }) : null; };
 window.__ryvoBefehle.abImport = (t) => { const a = abImport(t); if (a) abLeiste(); return a && a.id; };
@@ -16332,6 +16318,8 @@ for (let i = 0; i < 15 && sec.hidden; i++) await befWarte(100);
 if (sec.hidden) return { ok: false, ziel: null, text: befT('nichtDa', tr(r.n), anzeige(coin)) };
 if (sec.classList.contains('swing-zu')) { sec.classList.add('swing-offen'); swingFelder(); }
 if (sec.classList.contains('ab-zu')) { AB.offen.add(r.feld); abAnwenden(); }
+if (sec.classList.contains('ab-klein')) { AB.kleinAuf.add(r.feld); abAnwenden(); }
+if (W15.auf) W15.auf(r.feld);
 if (r.ansicht) { const b = document.querySelector(`#ch-ansicht [data-ansicht="${r.ansicht}"]`); if (b && b.getAttribute('aria-pressed') !== 'true') b.click(); }
 if (r.id === 'scr' && p.rest && p.rest.length) { const f = $('ueb-filter'); if (f) { f.value = p.rest.join(' '); f.dispatchEvent(new Event('input')); } }
 if (r.id === 'bafin') bhNewsQuelle('BaFin');
@@ -16397,6 +16385,7 @@ case 'okette': case 'oskew': case 'ovix': case 'ogeld': case 'oblock': case 'oia
 case 'bewegung': case 'quellstatus': case 'verzoegerung': case 'quer': { const e = w10Befehl(r, p); return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'app': { const e = await w10App(); return fertig(e.ok, e.text, e.ziel); }
 case 'stable': case 'grossueb': case 'wallet': case 'dexneu': case 'paar': case 'devcheck': case 'narrativ': case 'friedhof': case 'solpnl': case 'listung': case 'releases': case 'medienton': { const e = await w11Befehl(r, p); NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
+case 'lebenszyklus': case 'dexblasen': case 'dexpapier': { const e = await w14Befehl(r, p); NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'tick': case 'formel': case 'muster': case 'mikro': case 'regeltest': case 'fspalte': case 'optall': case 'replay': { const e = await w12Befehl(r, p); NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'erklaer': case 'tageslage': case 'frage': case 'ablauf': case 'lernen': case 'charttext': { const e = await w9Befehl(r, p); NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'jnotiz': case 'pnlkal': case 'portf': case 'lesekonto': case 'rechner': case 'jimport': case 'mnotiz': case 'pkarte': case 'export': case 'sicherung': case 'ueben': case 'studie': case 'oco': { const e = await w8Befehl(r, p); NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
@@ -16512,7 +16501,7 @@ async function befLos(fo) {
 const ein = $('befehl-ein'); if (!ein) return;
 let t = ein.value.trim();
 const v = befListe[befWahl], pt = befParsen(t, BEF_K);
-if (W2_BEREIT && v && v.art === 'such' && (befWahl > 0 || !t || pt.unbekannt.length || (!pt.fn && !pt.markt && pt.tf == null) || (pt.fn && pt.fn.id === 'finden'))) { befehlZu(); await w2SucheOeffnen(v); return; }
+if (W2_BEREIT && v && v.art === 'such' && (befWahl > 0 || !t || pt.unbekannt.length || (!pt.fn && !pt.markt && pt.tf == null) || (pt.fn && pt.fn.id === 'finden') || (pt.ungeprueft && !pt.fn))) { befehlZu(); await w2SucheOeffnen(v); return; }
 if (v && (!t || befWahl > 0 || pt.unbekannt.length || (!pt.fn && !pt.markt && pt.tf == null))) t = v.cmd;
 if (!t) return;
 const p = befParsen(t, BEF_K);
@@ -16523,50 +16512,6 @@ if (v && v.art === 'klartext' && t === v.cmd && r.ok) befMelden(befT('klartext',
 if (!r.ok && r.text) { befehlAuf(befVon); $('befehl-ein').value = t; befZeigen(); $('befehl-stand').textContent = r.text; }
 }
 
-function verzeichnis(filter = '', lex = false) {
-let box = $('verzeichnis');
-if (!box) {
-box = document.createElement('section'); box.id = 'verzeichnis'; box.className = 'einstieg was-neu verzeichnis'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'verzeichnis-titel');
-const kopf = hdEl('div', 'einstieg-kopf'), zu = hdEl('button', 'einstieg-weg', 'Schließen'); zu.type = 'button'; zu.addEventListener('click', () => verzeichnisZu());
-kopf.append(hdEl('span', 'einstieg-nr', 'Befehlszeile: / oder Strg/⌘+K'), zu);
-const h = hdEl('h3', '', 'Funktions-Verzeichnis'); h.id = 'verzeichnis-titel';
-const nk = hdEl('div', 'auswahl-kopf'), ein = document.createElement('input'); ein.type = 'search'; ein.id = 'verzeichnis-ein'; ein.placeholder = 'Funktion suchen, z. B. Gamma'; ein.autocomplete = 'off'; ein.setAttribute('aria-label', 'Funktion suchen'); nk.append(ein);
-const lexBox = hdEl('div', 'verzeichnis-lex'); lexBox.id = 'verzeichnis-lex';
-const liste = hdEl('div', 'was-neu-liste verzeichnis-liste'); liste.id = 'verzeichnis-liste';
-box.append(kopf, h, nk, lexBox, liste, hdEl('p', 'einstieg-fuss', 'Syntax: [Markt] Funktion [Zusatz] [@Zeit] – Reihenfolge und Groß-/Kleinschreibung egal, deutsche und englische Kürzel · keine Anlageberatung'),
-hdEl('p', 'einstieg-fuss', 'Ebenen im Chart (BB, ICHIMOKU, ATR, EMA …): ohne Zusatz umschalten wie der Knopf, mit AN oder AUS (englisch ON oder OFF) fest setzen – z. B. „BB AUS“.'));
-document.body.append(box);
-ein.addEventListener('input', () => verzeichnisFuellen(ein.value));
-liste.addEventListener('click', (e) => { const b = e.target.closest('button[data-cmd]'); if (b) { verzeichnisZu(); befAusfuehren(b.dataset.cmd); } });
-}
-dialogAuf(box); box.hidden = false;
-const ein = $('verzeichnis-ein'); ein.value = lex ? '' : filter; verzeichnisFuellen(lex ? '' : filter);
-const lb = $('verzeichnis-lex'); lb.replaceChildren();
-const w = befNorm(filter); let e = null;
-if (w) { const lexId = Object.keys(LEXIKON).find((k) => befNorm(k) === w) || Object.keys(LEXIKON).find((k) => befNorm(LEXIKON[k].name).startsWith(w)); e = lexId ? LEXIKON[lexId] : null; }
-if (e) lb.append(hdEl('p', 'lex-name', e.name), hdEl('p', 'lex-frage', 'Was ist das?'), hdEl('p', '', e.was), hdEl('p', 'lex-frage', 'Warum bewegt es den Kurs?'), hdEl('p', '', e.warum), hdEl('p', 'leise', 'Nur Erklärung, keine Vorhersage.'));
-else if (lex && w) lb.append(hdEl('p', 'leise', befT('unbekannt', filter)));
-try { ein.focus({ preventScroll: true }); } catch (x) {   }
-}
-function verzeichnisFuellen(f) {
-const liste = $('verzeichnis-liste'); if (!liste) return;
-const w = befNorm(f).trim(), teile = [];
-for (const [g, titel] of BEF_GRUPPEN) {
-const l = BEF_REG.filter((r) => r.g === g && (!w || r.k.concat(r.e).some((a) => befNorm(a).includes(w)) || befNorm(r.n).includes(w) || befNorm(tr(r.n)).includes(w) || befNorm(r.s).includes(w) || befNorm(tr(r.s)).includes(w)));
-if (!l.length) continue;
-teile.push(hdEl('h4', '', titel));
-const ul = hdEl('ul', 'verzeichnis-gruppe');
-for (const r of l) {
-const bsp = (r.bs && r.bs[SPRACHE]) || r.b;
-const li = hdEl('li', ''), b = hdEl('button', 'leise-knopf verzeichnis-bsp'), bt = hdEl('span', '', bsp); bt.dataset.roh = ''; b.append(bt); b.type = 'button'; b.dataset.cmd = bsp; b.title = 'Ausführen';
-const k = hdEl('b', 'befehl-cmd', (SPRACHE === 'de' ? r.k.concat(r.e) : r.e.concat(r.k)).filter((x, i, l) => l.indexOf(x) === i).join(' / ')); k.dataset.roh = '';
-li.append(k, hdEl('span', 'befehl-satz', r.n), hdEl('span', 'leise', r.s), b); ul.append(li);
-}
-teile.push(ul);
-}
-if (!teile.length) teile.push(hdEl('p', 'leise', befT('unbekannt', f)));
-liste.replaceChildren(...teile);
-}
 function verzeichnisZu() { const box = $('verzeichnis'); if (!box || box.hidden) return; dialogZu(box); box.hidden = true; }
 
 let TASTE_EIGEN = {}; try { TASTE_EIGEN = JSON.parse(lies('tasten') || '{}') || {}; } catch (e) { TASTE_EIGEN = {}; }
@@ -16637,6 +16582,16 @@ document.addEventListener('click', (e) => { if (e.target.closest && e.target.clo
 if (Q.get('f')) setTimeout(() => { const r = BEF_REG.find((x) => x.id === Q.get('f')); if (r) befOeffnen(r, {}); }, 1500);
 setInterval(navMerken, 700); setTimeout(navMerken, 300);
 }
+let W15_LAZY = null, W15_F = null;
+function w15Lazy() {
+if (!W15_LAZY) W15_LAZY = new Promise((ok, nein) => { if (window.RYVO_W15_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w15.js?v=9c302639"; s.onload = ok; s.onerror = () => { W15_LAZY = null; nein(new Error("w15.js")); }; document.head.append(s); })
+.then(() => { const f = eval(window.RYVO_W15_CODE); window.RYVO_W15_CODE = null; W15_F = f; return f; });
+return W15_LAZY;
+}
+function w15Start() { w15Lazy().then((f) => f.w15Start()).catch(() => {}); }
+function abEditor(a) { if (W15_F) return W15_F.abEditor(a); w15Lazy().then((f) => f.abEditor(a)).catch(() => {}); }
+function verzeichnis(x, l) { if (W15_F) return W15_F.verzeichnis(x, l); w15Lazy().then((f) => f.verzeichnis(x, l)).catch(() => {}); }
+setTimeout(w15Start, 0);
 w2Start();
 })();
 
