@@ -1,4 +1,5 @@
 window.RYVO_NEU = [
+    { f: 'r146c', tag: '12.11.2026', s: ['Nachbesserungen: Namen neuer Tokens mit beleidigenden oder anstößigen Wörtern werden ausgeblendet – auch in Schreibvarianten; Bilder fremder Tokens lädt die öffentliche Fassung nicht.'] },
     { f: 'r146', tag: '12.11.2026', s: ['Makro wie am Profi-Terminal: Kurven-Regime 2 J–10 J mit Butterflys, implizite Terminzinsen aus der US-Zinskurve und der Fed-Pfad aus den T-Bills je Sitzung – alles eigene Rechnungen mit offener Methode.',
       'Neu: eigener Überraschungs-Index für die USA und den Euro-Raum (ohne Konsens-Schätzungen), Benzin und Diesel mit 10-J-Rendite und Öl, rollende Korrelation beliebiger Paare über 30, 60 oder 120 Tage.',
       'Neue Befehle KURVENREGIME, TERMINKURVE, FEDPFAD, UEBERRASCHUNG, SPRIT, KORRPAAR und ERGEBNISSE; Ergebnis-Trends der US-Aktien kommen am Mac, sobald der Sammler die SEC-Zahlen liefert.'] },

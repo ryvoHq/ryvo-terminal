@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "dda1319b", "es": "6235ed1d", "fr": "e2bce79a", "it": "caf16a2b", "tr": "2a842f24"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "66570350", "es": "f4c2c3a1", "fr": "ea33180f", "it": "df685f38", "tr": "f07840be"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -3279,7 +3279,7 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "dda1319b", "es": "6235ed1d", "fr": "e2bce79a", "it": "caf16a2b", "tr": "2a842f24"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "66570350", "es": "f4c2c3a1", "fr": "ea33180f", "it": "df685f38", "tr": "f07840be"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -5325,25 +5325,7 @@ return d.result;
 }
 let optFremd = null, optRoh = null;
 const OKX_MON = (s6) => Date.UTC(2000 + Number(s6.slice(0, 2)), Number(s6.slice(2, 4)) - 1, Number(s6.slice(4, 6)), 8);
-async function optFremdHolen() {
-const merk = coin; if (DEMO || !OPT_DERIBIT.has(merk) || TEILEN) return;
-const je = new Map(), quellen = [], dazu = (v, k, art, oi) => { if (!v || !(k > 0) || !(oi > 0)) return; const s2 = `${v}|${k}|${art}`; je.set(s2, (je.get(s2) || 0) + oi); };
-const [okx, bybit] = await Promise.allSettled([
-fetch(`https://www.okx.com/api/v5/public/open-interest?instType=OPTION&instFamily=${merk}-USD`, { cache: 'no-store' }).then((r) => r.json()).then((d) => d.data),
-BYBIT_AUS ? Promise.reject(new Error('Bybit hier nicht erreichbar')) : holeJson(`https://api.bybit.com/v5/market/tickers?category=option&baseCoin=${merk}`)]);
-if (okx.status === 'fulfilled' && Array.isArray(okx.value) && okx.value.length) {
-for (const x of okx.value) { const t = String(x.instId || '').split('-'); if (t.length === 5) dazu(OKX_MON(t[2]), Number(t[3]), t[4], Number(x.oiCcy)); }
-quellen.push('OKX');
-}
-if (bybit.status === 'fulfilled' && bybit.value) {
-const liste = Array.isArray(bybit.value) ? bybit.value : bybit.value.list || [];
-for (const x of liste) { const t = String(x.symbol || '').split('-'); if (t.length >= 4) { const z = zerlege(t.slice(0, 4).join('-')); if (z) dazu(z.v, z.k, z.art, Number(x.openInterest)); } }
-if (liste.length) quellen.push('Bybit');
-}
-if (merk !== coin || !quellen.length) return;
-optFremd = { coin: merk, zeit: Date.now(), je, quellen };
-if (optRoh && optRoh.coin === merk) { O = optAuswerten(optRoh.optionen, optRoh.futures, optRoh.index, Date.now()); O.coin = merk; optZeigen(); }
-}
+async function optFremdHolen() { return undefined; }
 let deribitUsdc = null;
 async function optAltHolen(merk) {
 const zeilen = new Map();
@@ -5788,18 +5770,7 @@ return [...alle.values()].sort((a, b) => a[0] - b[0]).slice(-bisAnzahl);
 const GATE_IV = { '5min': '5m', '15min': '15m', '30min': '30m', '1h': '1h', '4h': '4h', '1d': '1d', 5: '5m', 15: '15m', 60: '1h', 240: '4h' };
 const gateCache = new Map();
 function gateVertrag(sym) { const m = /^(1000000|10000|1000)?([A-Z0-9]+?)USDT$/.exec(String(sym)); return m ? { name: `${m[2]}_USDT`, mult: m[1] ? Number(m[1]) : 1 } : null; }
-async function gateStatistik(sym, iv, n) {
-const v = gateVertrag(sym), per = GATE_IV[iv]; if (TEILEN || !v || !per) return [];
-const schl = `${v.name}|${per}|${n}`, alt = gateCache.get(schl); if (alt && Date.now() - alt.zeit < 60e3) return alt.d;
-let d = null;
-for (let i = 0; i < 2 && !Array.isArray(d); i++) {
-try { d = await holeMitFrist(`https://api.gateio.ws/api/v4/futures/usdt/contract_stats?contract=${v.name}&interval=${per}&limit=${Math.min(2000, Math.max(1, n))}`, 12000); }
-catch (e) { d = null; if (!i) await new Promise((ok) => setTimeout(ok, 1500)); }
-}
-const l = (Array.isArray(d) ? d : []).filter((x) => x && x.time > 0).sort((a, b) => a.time - b.time);
-gateCache.set(schl, { zeit: Date.now(), d: l });
-return l;
-}
+async function gateStatistik() { return []; }
 async function gateOi(sym, intervall, bisAnzahl) {
 const v = gateVertrag(sym); if (!v) return [];
 return (await gateStatistik(sym, intervall, bisAnzahl)).map((x) => [x.time, +x.open_interest_usd / +x.mark_price / v.mult]).filter((x) => x[1] > 0 && Number.isFinite(x[1])).slice(-bisAnzahl);
@@ -6552,31 +6523,7 @@ kette.grosse.unshift({ zeit: jetzt, btc, usd: n.kurs_usd ? btc * n.kurs_usd : nu
 kette.grosse = kette.grosse.filter((e) => jetzt - e.zeit < 86400).slice(0, 300);
 if (kette.gesehen.size > 5000) kette.gesehen = new Set([...kette.gesehen].slice(-2000));
 }
-async function ketteStand() {
-if (TEILEN) return null;
-ketteStart();
-if (Date.now() - kette.llamaZeit > 36e5) {
-kette.llamaZeit = Date.now();
-const [st, dx] = await Promise.allSettled([holeMitFrist('https://stablecoins.llama.fi/stablecoins?includePrices=false', 25000),
-holeMitFrist('https://api.llama.fi/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true&dataType=dailyVolume', 25000)]);
-const l = {};
-if (st.status === 'fulfilled') {
-const sum = [0, 0, 0, 0], ein = {}, u = (x) => (x && typeof x === 'object' ? Number(x.peggedUSD) : Number(x));
-for (const a of st.value.peggedAssets || []) {
-if (a.pegType !== 'peggedUSD') continue;
-const w = [u(a.circulating), u(a.circulatingPrevDay), u(a.circulatingPrevWeek), u(a.circulatingPrevMonth)]; if (w.some((v) => !Number.isFinite(v))) continue;
-w.forEach((v, i) => { sum[i] += v; }); if (a.symbol === 'USDT' || a.symbol === 'USDC') ein[a.symbol] = w;
-}
-const form = (w) => ({ jetzt: w[0], tag: w[0] - w[1], woche: w[0] - w[2], monat: w[0] - w[3] });
-if (sum[0]) l.stablecoins = { gesamt: form(sum), ...Object.fromEntries(Object.entries(ein).map(([k, w]) => [k, form(w)])) };
-}
-if (dx.status === 'fulfilled' && dx.value && dx.value.total24h !== undefined) l.dex = { umsatz_24h: Number(dx.value.total24h), aenderung_1t_pct: Number(dx.value.change_1d) || 0 };
-kette.llama = l;
-}
-const g = kette.grosse, l = kette.llama || {};
-if (!g.length && !kette.netz.gebuehr && !l.stablecoins && !l.dex) return null;
-return { zeit: Math.floor(Date.now() / 1000), ...l, btc_netz: kette.netz, grosse: g, grosse_zahl_24h: g.length, grosse_btc_24h: g.reduce((a, e) => a + e.btc, 0), ab: kette.start };
-}
+async function ketteStand() { return null; }
 
 function gexAusO() {
 if (!O || O.coin !== 'BTC' || coin !== 'BTC') return null;
@@ -8491,7 +8438,7 @@ const pz = (td, v) => { if (v === null || v === undefined) { td.textContent = '�
 k.forEach((e, i) => {
 const tr = rumpf.insertRow();
 tr.insertCell().textContent = String(i + 1);
-const a = document.createElement('a'); a.href = `https://app.hyperliquid.xyz/explorer/address/${e.adresse}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = (e.name && !/^\s*0x[0-9a-f]{3,}/i.test(e.name) ? e.name : '') || `${e.adresse.slice(0, 6)}…${e.adresse.slice(-4)}`; a.translate = false; a.dataset.roh = ''; tr.insertCell().append(a);
+const a = document.createElement('a'); a.href = `https://app.hyperliquid.xyz/explorer/address/${e.adresse}`; a.target = '_blank'; a.rel = 'noopener'; a.textContent = (e.name && !/^\s*0x[0-9a-f]{3,}/i.test(e.name) && !dexNameSicher(e.name).aus ? e.name : '') || `${e.adresse.slice(0, 6)}…${e.adresse.slice(-4)}`; a.translate = false; a.dataset.roh = ''; tr.insertCell().append(a);
 const sc = tr.insertCell(); sc.textContent = de(e.score, 0); sc.className = e.score >= 80 ? 'plus stark' : '';
 tr.insertCell().textContent = usd(e.wert);
 const gm = tr.insertCell(); gm.textContent = usd(e.pnl_month, true); gm.className = 'plus';
@@ -10419,6 +10366,25 @@ const rugKurz = (a) => (a && a.length > 10 ? a.slice(0, 4) + '…' + a.slice(-4)
 const rugT = (d, e) => (SPRACHE === 'de' ? d : e);
 const rugAlter = (ms) => { const m = Math.max(0, ms) / 6e4; return m < 60 ? `${Math.round(m)} ${rugT('Min.', 'min')}` : m < 2880 ? `${Math.round(m / 60)} ${rugT('Std.', 'h')}` : `${Math.round(m / 1440)} ${rugT('Tage', 'days')}`; };
 const rugVor = (ms) => (ms < 6e4 ? rugT('gerade eben', 'just now') : rugT(`vor ${rugAlter(ms)}`, `${rugAlter(ms)} ago`));
+const DEX_AUS = { de: 'Name ausgeblendet', en: 'Name hidden', es: 'Nombre oculto', fr: 'Nom masqué', tr: 'Ad gizlendi', it: 'Nome nascosto' };
+const DEX_VON = '013456789@$!|€£¡ıøłđаеорсхуіјкмнтвѕгпԁɡαοικτρευν', DEX_ZU = 'oieasgtbgasiieliioldaeopcxyijkmhtbsrndgaoiktpeuv';
+const dexRot = (s) => s.replace(/[a-z]/g, (c) => String.fromCharCode((c.charCodeAt(0) - 84) % 26 + 97));
+function dexRegeln(liste) {
+const g = (k) => liste.split(/\s+/).filter((w) => (k ? w[0] === k : /^[a-z]/.test(w))).map((w) => w.replace(/^[=^]/, '').replace(/[a-z]/g, '$&+')).join('|') || '$^';
+return [new RegExp(g('')), new RegExp(`(?:^| )(?:(?:${g('=')})(?= |$)|${g('^')})`)];
+}
+function dexNorm(t) {
+const s = [...String(t || '').replace(/([a-z])([A-Z])/g, '$1 $2').normalize('NFKD').toLowerCase().replace(/[\u0300-\u036f]/g, '').replace(/ß/g, 'ss').replace(/æ/g, 'ae').replace(/œ/g, 'oe')]
+.map((c) => { const i = DEX_VON.indexOf(c); return i < 0 ? c : DEX_ZU[i]; }).join('').replace(/[^a-z]+/g, ' ').trim();
+return [s.replace(/\b(?:[a-z] )+[a-z]\b/g, (m) => m.replace(/ /g, '')), s.replace(/ /g, '')];
+}
+function dexTreffer(t, r) { const [w, k] = dexNorm(t); return r[0].test(k) || r[1].test(w) || /(?:^|\D)14\W?88(?!\d)/.test(String(t || '')); }
+let DEX_SPERR = null;
+{ const s = document.createElement('script'); s.src = 'sprachen/dex.js?v=4d1b0210'; s.onload = () => { if (window.RYVO_DEX) { DEX_SPERR = dexRegeln(dexRot(String(window.RYVO_DEX))); rugListen(); } }; document.head.append(s); }
+function dexNameSicher(name, symbol, bild) {
+const aus = !DEX_SPERR || dexTreffer(name, DEX_SPERR) || dexTreffer(symbol, DEX_SPERR), x = DEX_AUS[SPRACHE] || DEX_AUS.en;
+return { name: aus ? x : String(name || ''), sym: aus ? x : String(symbol || ''), aus, bild: aus || TEILEN ? '' : String(bild || '') };
+}
 async function rugJson(u, opt = {}) {
 const r = await fetch(u, { ...opt, signal: AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined });
 if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json();
@@ -10477,7 +10443,7 @@ if (!r && !ds) { box.textContent = rugT('Keine Daten zu dieser Adresse (RugCheck
 const wal = r && r.creator ? await rugWalletAlter(r.creator) : null;
 if (nr !== rugLauf) return;
 const b = rugBewerten(r || {}, ds, wal), meta = (r && r.tokenMeta) || {}, basis = (ds && ds.baseToken) || {};
-const name = meta.name || basis.name || rugKurz(mint), sym = meta.symbol || basis.symbol || '';
+const ns = dexNameSicher(meta.name || basis.name, meta.symbol || basis.symbol), name = ns.aus ? ns.name : meta.name || basis.name || rugKurz(mint), sym = ns.aus ? '' : meta.symbol || basis.symbol || '';
 const el = (tag, kl, txt) => { const e = document.createElement(tag); if (kl) e.className = kl; if (txt != null) e.textContent = txt; return e; };
 const kopf = el('div', 'rug-kopf');
 kopf.append(el('span', `rug-ampel ${b.stufe}`, b.stufe === 'rot' ? rugT('Starke Warnzeichen', 'Strong warning signs') : b.stufe === 'gelb' ? rugT('Vorsicht', 'Caution') : rugT('Keine starken Warnzeichen gefunden', 'No strong warning signs found')),
@@ -10526,7 +10492,7 @@ const stunde = it.filter((x) => Date.now() - x.ruggedAt * 1000 < 3.6e6).length;
 $('rug-ticker-n').textContent = stunde ? `${stunde} in der letzten Stunde (Auswahl)` : '';
 }
 if (n.status === 'fulfilled' && Array.isArray(n.value)) {
-$('rug-neu').replaceChildren(...n.value.slice(0, 8).map((x) => zeile(x.mint, x.symbol ? String(x.symbol).slice(0, 18) : rugKurz(x.mint), x.createAt ? ` ${rugVor(Date.now() - Date.parse(x.createAt))}` : '')));
+$('rug-neu').replaceChildren(...n.value.slice(0, 8).map((x) => zeile(x.mint, x.symbol ? dexNameSicher('', String(x.symbol).slice(0, 18)).sym : rugKurz(x.mint), x.createAt ? ` ${rugVor(Date.now() - Date.parse(x.createAt))}` : '')));
 }
 }
 {
@@ -12643,9 +12609,9 @@ const i = f.indexOf(document.activeElement);
 if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
 }, true);
 
-const FASSUNG = 'r146';
+const FASSUNG = 'r146c';
 let NEU = null;
-function neuLaden(von) { const s = document.createElement("script"); s.src = "sprachen/neu.js?v=c9aa9f59"; s.onload = () => { NEU = window.RYVO_NEU || []; wasNeu(von); }; document.head.append(s); }
+function neuLaden(von) { const s = document.createElement("script"); s.src = "sprachen/neu.js?v=7d7d7244"; s.onload = () => { NEU = window.RYVO_NEU || []; wasNeu(von); }; document.head.append(s); }
 function wasNeu(von) {
 if (!NEU) { neuLaden(von); return; }
 let box = $('was-neu');
@@ -13515,7 +13481,7 @@ verz: () => w10VerzJe(), bewegung: () => ({ wahl: W10.bewegung, ruhig: ruhig() }
 var W10_BEREIT = true;
 let W11_LAZY = null;
 function w11Laden() {
-if (!W11_LAZY) W11_LAZY = new Promise((ok, nein) => { if (window.RYVO_W11_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w11.js?v=12307b54"; s.onload = ok; s.onerror = () => { W11_LAZY = null; nein(new Error("w11.js")); }; document.head.append(s); })
+if (!W11_LAZY) W11_LAZY = new Promise((ok, nein) => { if (window.RYVO_W11_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w11.js?v=1d9e28dc"; s.onload = ok; s.onerror = () => { W11_LAZY = null; nein(new Error("w11.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W11_CODE); window.RYVO_W11_CODE = null; return f; });
 return W11_LAZY;
 }
