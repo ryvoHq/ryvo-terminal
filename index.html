@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "63cabc80", "es": "e05f4feb", "fr": "daacf9db", "it": "db14806b", "tr": "ee178500"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "218ed9a9", "es": "efb5e9dc", "fr": "e556fdee", "it": "0a4eb8e0", "tr": "a01bb066"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2167,6 +2167,8 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
 .hd-saison-wahl { margin: 2px 0 4px; }                                             
 @media (min-width: 1200px) { .hd-raster, .hd-raster.ohne-buch { grid-template-rows: auto 1fr; } }   
 
+@media (min-width: 1000px) { main.raster > section.feld.ofw, main.raster > section.feld.derw, main.raster > section.feld.walw { grid-column: 1 / -1; } }
+
 
 .test-band { grid-column: 1 / -1; border: 1px solid var(--linie); border-radius: 10px; background: var(--feld); font-size: 13px; line-height: 1.5; color: var(--text-2, var(--text)); }
 .test-band summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 10px 14px; -webkit-tap-highlight-color: transparent; }
@@ -2998,6 +3000,84 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
     <div class="tabelle ueb-tabelle" id="wu-tabelle"></div>
     <p class="leise stand" id="wu-sitzung"></p>
   </section>
+  <section class="feld ofw" aria-labelledby="t-ofw">
+    <div class="feld-kopf"><h2 id="t-ofw">Orderflow-Werkzeuge · Tape, Buch, Slippage, Tiefe</h2><span class="stand" id="ofw-stand"></span>
+      <button type="button" class="was" data-hilfe="ofw" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-ofw" hidden>
+      <p>Tape: alle Trades, die das Terminal von den Börsen empfängt, zusammen – Spot und Futures (Perp). Teilausführungen eines Auftrags (gleiche Börse, gleiche Seite, höchstens 50 ms auseinander) stehen als eine Zeile mit „×n“. Filter nach Mindestgröße, Seite und Markt.</p>
+      <p>Buch-Beobachtungen am Live-Orderbuch: Nachfüllung (an einer Stufe wird mehr gehandelt, als dort je sichtbar war – ein Eisberg ist möglich), gezogene Wände (große Aufträge verschwinden, ohne gehandelt zu werden) und ein Muster, das bei Spoofing vorkommt. Das sind Beobachtungen, kein Vorwurf an jemanden.</p>
+      <p>Slippage-Rechner: was eine Order dieser Größe im aktuellen Buch im Schnitt kosten würde – nur Rechnung, nichts wird gesendet, ohne Gebühren. Markttiefe: Dollar im Buch bis ±0,5, 1 und 2 % um die Mitte je Börse; „≥“ heißt, das gelieferte Buch reicht nicht so weit. Töne für große Trades und Liquidationen sind standardmäßig aus.</p>
+    </div>
+    <div class="mz-raster">
+      <article class="mz-block mz-breit" id="ofw-tape-block"><h3>Tape aller Börsen <span class="leise">Spot und Perp · Teilausführungen gebündelt</span></h3>
+        <div class="ueb-filter wk-form"><label for="ofw-min">ab $</label><input type="text" id="ofw-min" maxlength="12" inputmode="decimal" aria-label="Mindestgröße in Dollar" autocomplete="off">
+          <select id="ofw-seite" aria-label="Seite"><option value="">Käufe und Verkäufe</option><option value="kauf">nur Käufe</option><option value="verk">nur Verkäufe</option></select>
+          <select id="ofw-art" aria-label="Markt"><option value="">Spot und Perp</option><option value="spot">nur Spot</option><option value="perp">nur Perp</option></select></div>
+        <p class="leise mz-letzte" id="ofw-tape-info"></p>
+        <div class="tabelle ueb-tabelle" id="ofw-tape"></div></article>
+      <article class="mz-block" id="ofw-buch-block"><h3>Buch-Beobachtungen <span class="leise">Nachfüllung · gezogene Wände · Verdacht</span></h3>
+        <ol class="termine-werte" id="ofw-buch"></ol></article>
+      <article class="mz-block" id="ofw-slip-block"><h3>Slippage-Rechner <span class="leise">nur Rechnung, nichts wird gesendet</span></h3>
+        <div class="ueb-filter wk-form"><label for="ofw-slip-usd">Order $</label><input type="text" id="ofw-slip-usd" maxlength="12" inputmode="decimal" aria-label="Ordergröße in Dollar" autocomplete="off">
+          <select id="ofw-slip-seite" aria-label="Seite"><option value="kauf">Order gegen die Asks</option><option value="verk">Order gegen die Bids</option></select></div>
+        <div class="tabelle ueb-tabelle" id="ofw-slip"></div></article>
+      <article class="mz-block mz-breit" id="ofw-tiefe-block"><h3>Markttiefe <span class="leise">±0,5 / 1 / 2 % je Börse</span></h3>
+        <div class="tabelle ueb-tabelle" id="ofw-tiefe"></div></article>
+      <article class="mz-block" id="ofw-ton-block"><h3>Töne <span class="leise">große Trades und Liquidationen · Standard aus</span></h3>
+        <div class="ueb-filter wk-form"><label><input type="checkbox" id="ofw-ton-an"> Töne an</label><label for="ofw-ton-trade">Trades ab $</label><input type="text" id="ofw-ton-trade" maxlength="12" inputmode="decimal" aria-label="Schwelle Trades in Dollar" autocomplete="off">
+          <label for="ofw-ton-liq">Liquidationen ab $</label><input type="text" id="ofw-ton-liq" maxlength="12" inputmode="decimal" aria-label="Schwelle Liquidationen in Dollar" autocomplete="off"></div>
+        <p class="leise mz-letzte" id="ofw-ton-info" aria-live="polite"></p></article>
+    </div>
+  </section>
+  <section class="feld derw" aria-labelledby="t-derw">
+    <div class="feld-kopf"><h2 id="t-derw">Derivate-Werkzeuge · Basis, Funding, Kaskade, Depeg</h2><span class="stand" id="dw-stand"></span>
+      <button type="button" class="was" data-hilfe="derw" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-derw" hidden>
+      <p>Basis: Abstand des Perpetual-Kurses zum Spot-Kurs und zum Index der Börse. Premium-Index: der Aufschlag, aus dem die Börse das Funding rechnet. Mark − Index ab 0,5 % ist hervorgehoben. Funding: der vorhergesagte Satz für die nächste Zahlung je Börse, aufs Jahr gerechnet, und das nach offenen Positionen gewichtete Mittel.</p>
+      <p>Kaskaden-Rechner: wie viele Positionen laut Liq.-Modell (Feld „Liq.-Karte“) zwischen dem Kurs und −3/−5/−10 % (Longs) bzw. +3/+5/+10 % (Shorts) zwangsgeschlossen würden – ein Modell und Szenario, keine Messung und keine Vorhersage.</p>
+      <p>Depeg-Wache: Stablecoins und gestaktes Ether gegen ihren Bezug. Was eine erlaubte Quelle nicht liefert, fehlt hier ehrlich. Nur beschreibend.</p>
+    </div>
+    <div class="mz-raster">
+      <article class="mz-block mz-breit" id="dw-basis-block"><h3>Basis und Mark/Index <span class="leise">je Börse · alle 30 s</span></h3>
+        <div class="tabelle ueb-tabelle" id="dw-basis"></div></article>
+      <article class="mz-block" id="dw-funding-block"><h3>Funding <span class="leise">vorhergesagt · OI-gewichtet</span></h3>
+        <div class="tabelle ueb-tabelle" id="dw-funding"></div><p class="mz-letzte" id="dw-oi-f"></p></article>
+      <article class="mz-block" id="dw-kaskade-block"><h3>Kaskaden-Rechner <span class="leise">Modell, keine Messung</span></h3>
+        <div class="tabelle ueb-tabelle" id="dw-kaskade"></div></article>
+      <article class="mz-block mz-breit" id="dw-depeg-block"><h3>Depeg-Wache <span class="leise">USDC, USDT, stETH</span></h3>
+        <div class="tabelle ueb-tabelle" id="dw-depeg"></div><p class="leise mz-letzte" id="dw-depeg-hinweis"></p></article>
+    </div>
+  </section>
+  <section class="feld walw" aria-labelledby="t-walw">
+    <div class="feld-kopf"><h2 id="t-walw">Wal-Werkzeuge · Kohorten, Trader-Profil, Adressen</h2><span class="stand" id="ww-stand">Hyperliquid</span>
+      <button type="button" class="was" data-hilfe="walw" aria-expanded="false">Was ist das?</button></div>
+    <div class="hilfe" id="h-walw" hidden>
+      <p>Kohorten: Wie große, mittlere und kleine Konten bei Hyperliquid je Markt positioniert sind (netto = Long minus Short, dazu der Long-Anteil). Große Konten aus dem Feld „Wale“, mittlere und kleine als gleichmäßige Stichprobe aus den umsatzstärksten Konten des Monats; Konten mit sehr vielen Märkten (Market-Maker) zählen nicht. Nur beschreibend.</p>
+      <p>Trader-Profil: Kurve, Ergebnis, Sharpe (aus der Konto-Kurve, aufs Jahr, ohne Zins), größter Rückgang, Trefferquote der letzten 30 Tage, Märkte, offene Positionen und letzte Trades eines öffentlichen Kontos. Nur ansehen – kein Kopierhandel. Vergangene Ergebnisse sagen nichts über künftige.</p>
+      <p>Adressen: eigene Beobachtungsliste, bleibt nur in diesem Browser. Kontonamen sind Texte der Konten selbst.</p>
+    </div>
+    <div class="mz-raster">
+      <article class="mz-block mz-breit" id="ww-koh-block"><h3>Kohorten-Lage <span class="leise">netto long oder short je Markt · antippen öffnet</span></h3>
+        <p class="leise mz-letzte" id="ww-koh-info"></p>
+        <div class="tabelle ueb-tabelle" id="ww-koh"></div></article>
+      <article class="mz-block mz-breit" id="ww-profil-block"><h3>Trader-Profil <span class="leise">nur ansehen, kein Kopierhandel</span></h3>
+        <div class="ueb-filter wk-form"><input type="text" id="ww-profil-ein" maxlength="42" placeholder="0x… Adresse" aria-label="Hyperliquid-Adresse" autocomplete="off" spellcheck="false"><button type="button" id="ww-profil-los" class="mehr">Profil zeigen</button>
+          <a id="ww-profil-link" class="mehr" href="https://app.hyperliquid.xyz/explorer" target="_blank" rel="noopener">im Hyperliquid-Explorer</a></div>
+        <p class="leise mz-letzte" id="ww-profil-info" aria-live="polite"></p>
+        <div id="ww-profil" class="mz-raster" hidden>
+          <dl class="kacheln mz-kacheln mz-breit" id="ww-profil-kacheln"></dl>
+          <div class="mz-breit"><div class="ch-schalter" id="ww-profil-zeit" role="group" aria-label="Zeitraum"><button type="button" data-z="week" aria-pressed="false">Woche</button><button type="button" data-z="month" aria-pressed="true">Monat</button><button type="button" data-z="allTime" aria-pressed="false">Seit Beginn</button></div>
+            <div class="leinwand-mz klein"><canvas id="ww-profil-kurve" role="img" aria-label="Ergebnis-Kurve des Kontos"></canvas></div></div>
+          <div><h4>Offene Positionen des Kontos</h4><div class="tabelle ueb-tabelle" id="ww-profil-pos"></div></div>
+          <div><h4>Märkte (30 Tage)</h4><div class="tabelle ueb-tabelle" id="ww-profil-maerkte"></div></div>
+          <div class="mz-breit"><h4>Letzte Trades</h4><div class="tabelle ueb-tabelle" id="ww-profil-trades"></div></div>
+        </div></article>
+      <article class="mz-block mz-breit" id="ww-adr-block"><h3>Adressen beobachten <span class="leise">nur in diesem Browser · antippen zeigt das Profil</span></h3>
+        <div class="ueb-filter wk-form"><input type="text" id="ww-adr-ein" maxlength="42" placeholder="0x… Adresse" aria-label="Adresse dazu" autocomplete="off" spellcheck="false"><input type="text" id="ww-adr-name" maxlength="24" placeholder="eigener Name" aria-label="Eigener Name" autocomplete="off"><button type="button" id="ww-adr-dazu" class="mehr">Dazu</button></div>
+        <p class="leise mz-letzte" id="ww-adr-info" aria-live="polite"></p>
+        <div class="tabelle ueb-tabelle" id="ww-adr"></div></article>
+    </div>
+  </section>
 </main>
 
 <main class="handeln" id="handeln" aria-labelledby="t-handeln" hidden>
@@ -3093,7 +3173,7 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "63cabc80", "es": "e05f4feb", "fr": "daacf9db", "it": "db14806b", "tr": "ee178500"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "218ed9a9", "es": "efb5e9dc", "fr": "e556fdee", "it": "0a4eb8e0", "tr": "a01bb066"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -3876,6 +3956,7 @@ const uhrKurz = (t) => new Date(t).toLocaleTimeString(LOC, { hour: '2-digit', mi
 
 function trade(quelle, art, seite, p, menge, ts) {
 if (!(p > 0) || !(menge > 0) || !S) return;
+if (W5_BEREIT) w5Trade(quelle, art, seite, p, menge, ts);
 const wert = p * menge, c = S.cur;
 if (!S.ersterTrade) S.ersterTrade = ts || Date.now();
 S.preise[quelle] = p; S.preisZeit[quelle] = Date.now();
@@ -3911,6 +3992,7 @@ S.bandNeu = true;
 function liquidation(quelle, wer, p, menge, ts) {
 if (!(p > 0) || !(menge > 0) || !S) return;
 if (!S.ersteLiq) S.ersteLiq = ts || Date.now();
+if (W5_BEREIT) w5Liq(wer, p * menge);
 S.liq.unshift({ t: ts || Date.now(), quelle, wer, p, wert: p * menge });
 if (S.liq.length > 200) S.liq.length = 200;
 const la = S.liqArchiv || (S.liqArchiv = []); la.unshift({ t: ts || Date.now(), quelle, wer, p, wert: p * menge }); if (la.length > 5000) la.length = 5000;
@@ -6070,12 +6152,14 @@ return d;
 }
 
 let hlListe = null, hlListeP = null;
-let hlListeJa = false;
-const hlListeKlick = () => { if (hlListeJa || DEMO || macBasis() !== null) return false; let eng = false;
+let hlListeJa = false, hlListeGanz = false, hlRangeFehlt = false;
+const hlListeEng = () => { let eng = false;
 try { const n = navigator.connection; eng = matchMedia('(pointer: coarse)').matches || innerWidth < 700 || !!(n && (n.saveData || /(^|-)(2g|3g)$/.test(String(n.effectiveType || '')))); } catch (e) {   }
 return eng; };
+const hlListeSpar = () => { try { const n = navigator.connection; return !!(n && (n.saveData || /(^|-)(2g|3g)$/.test(String(n.effectiveType || '')))); } catch (e) { return false; } };
+const hlListeKlick = () => { if (hlListeJa || DEMO || macBasis() !== null) return false; return hlListeSpar() || (hlRangeFehlt && hlListeEng()); };
 function hlListeKnopf() {
-const b = document.createElement('button'); b.type = 'button'; b.className = 'leise-knopf'; b.textContent = 'Bestenliste laden (rund 40 MB)';
+const b = document.createElement('button'); b.type = 'button'; b.className = 'leise-knopf'; b.textContent = hlRangeFehlt ? 'Bestenliste laden (rund 40 MB)' : 'Bestenliste laden (rund 3,5 MB)';
 b.addEventListener('click', () => { hlListeJa = true; b.disabled = true; hlRang = null; try { rangLaden(); } catch (e) {   } try { wal.stand = null; macLaden(); } catch (e) {   } });
 return b;
 }
@@ -6099,15 +6183,21 @@ if (hlListe && Date.now() - hlListe.zeit < 6 * 36e5) return hlListe;
 const alt = gemerkt('hlListe', 6 * 36e5); if (alt && alt.pool) return (hlListe = alt);
 if (!hlListeP && hlListeKlick()) { const f = new Error('Bestenliste erst auf Tippen'); f.klick = true; throw f; }
 if (!hlListeP) hlListeP = (async () => {
-const r = await holeMitFrist('https://stats-data.hyperliquid.xyz/Mainnet/leaderboard', 120000), zeilen = r.leaderboardRows || [];
+let zeilen = null, teil = false, bytes = 0;
+if (!hlListeGanz) try { const t = await w5TeilHolen(); zeilen = t.zeilen; teil = !t.ganz; bytes = t.bytes; } catch (e) { hlRangeFehlt = true; zeilen = null; }
+if (!zeilen) {
+if (hlListeKlick()) { const f = new Error('Bestenliste erst auf Tippen'); f.klick = true; throw f; }
+const r = await holeMitFrist('https://stats-data.hyperliquid.xyz/Mainnet/leaderboard', 120000); zeilen = r.leaderboardRows || []; bytes = 39.4e6;
+}
 const alle = zeilen.map((z) => ({ adresse: z.ethAddress, wert: Number(z.accountValue) || 0, monat_pnl: Number((Object.fromEntries(z.windowPerformances || []).month || {}).pnl) || 0 })).filter((w) => w.adresse).sort((a, b) => b.wert - a.wert);
-const pool = alle.slice(0, 150), drin = new Set(pool.map((w) => w.adresse));
-for (const w of alle.filter((x) => x.wert >= 1e6 && x.monat_pnl > 0).sort((a, b) => b.monat_pnl - a.monat_pnl)) { if (pool.length >= 200) break; if (!drin.has(w.adresse)) { pool.push(w); drin.add(w.adresse); } }
-hlListe = { zeit: Date.now(), pool, rang: rangAus(zeilen) }; merkeJson('hlListe', hlListe); return hlListe;
+const pool = alle.slice(0, 48), drin = new Set(pool.map((w) => w.adresse));
+for (const w of alle.filter((x) => x.wert >= 1e6 && x.monat_pnl > 0).sort((a, b) => b.monat_pnl - a.monat_pnl)) { if (pool.length >= 64) break; if (!drin.has(w.adresse)) { pool.push(w); drin.add(w.adresse); } }
+const stich = { mittel: w5Stichprobe(alle, 'mittel', 30).map((w) => w.adresse), klein: w5Stichprobe(alle, 'klein', 30).map((w) => w.adresse) };
+hlListe = { zeit: Date.now(), pool, rang: rangAus(zeilen), teil, n: zeilen.length, bytes, stich }; merkeJson('hlListe', hlListe); return hlListe;
 })().finally(() => { hlListeP = null; });
 return hlListeP;
 }
-async function rangDirekt() { const l = await hlBestenliste(); return { direkt: true, zeit: l.zeit / 1000, konten: l.rang }; }
+async function rangDirekt() { const l = await hlBestenliste(); return { direkt: true, zeit: l.zeit / 1000, konten: l.rang, teil: !!l.teil, n: l.n, bytes: l.bytes }; }
 const wal = { aktive: null, vorher: null, echt: new Set(), zeit: 0, d: null, laeuft: null };
 function posAus(r) {
 const out = {};
@@ -6135,10 +6225,14 @@ return ev.sort((a, b) => Math.max(Math.abs(b.vorher_usd), Math.abs(b.jetzt_usd))
 }
 async function waleDirekt() {
 const liste = await hlBestenliste(), adressen = wal.aktive || liste.pool.map((w) => w.adresse);
-const antw = await parallel(adressen, 4, (a) => hl({ type: 'clearinghouseState', user: a }, 15000, 2));
+const erst = !wal.aktive, antw = new Array(adressen.length).fill(null);
+const alle = parallel(adressen, erst ? 12 : 4, (a, i) => hl({ type: 'clearinghouseState', user: a }, 15000, erst ? 0 : 2).then((r) => { antw[i] = r; return r; }));
+if (erst) await Promise.race([alle, new Promise((ok) => setTimeout(ok, 7000))]); else await alle;
+const da = antw.filter(Boolean).length, teil = da < adressen.length ? { n: da, von: adressen.length } : null;
 const pos = {}; antw.forEach((r, i) => { const p = posAus(r); if (Object.keys(p).length) pos[adressen[i]] = p; });
+wal.pos = pos;
 if (!Object.keys(pos).length) throw new Error('keine Positionen');
-if (!wal.aktive) wal.aktive = Object.keys(pos).sort((a, b) => Object.values(pos[b]).reduce((s, p) => s + Math.abs(p.usd), 0) - Object.values(pos[a]).reduce((s, p) => s + Math.abs(p.usd), 0)).slice(0, 80);
+if (!wal.aktive && !teil) wal.aktive = Object.keys(pos).sort((a, b) => Object.values(pos[b]).reduce((s, p) => s + Math.abs(p.usd), 0) - Object.values(pos[a]).reduce((s, p) => s + Math.abs(p.usd), 0)).slice(0, 80);
 const rl = rollen(); rollenHolen(Object.keys(pos));
 const arten = Object.fromEntries(Object.entries(pos).map(([a, p]) => [a, kontoArt(p, rl[a])])), echt = {}, weg = {};
 for (const [a, p] of Object.entries(pos)) {
@@ -6150,9 +6244,9 @@ const gewinn = new Set(liste.pool.filter((w) => w.monat_pnl > 0).map((w) => w.ad
 for (const [a, p] of Object.entries(echt)) for (const [c, x] of Object.entries(p)) { if (!x.liq || Math.abs(x.usd) < 250000) continue; (liq[c] || (liq[c] = [])).push([x.liq, Math.abs(x.usd), x.usd > 0 ? 'long' : 'short', a.slice(0, 6) + '…' + a.slice(-4), x.einstieg, x.hebel, gewinn.has(a)]); }
 for (const c of Object.keys(liq)) liq[c] = liq[c].sort((a, b) => b[1] - a[1]).slice(0, 40);
 const zeit = Math.floor(Date.now() / 1000), blick = [...new Set([...Object.keys(echt), ...wal.echt])];
-const ereignisse = wal.vorher ? walEreignisse(Object.fromEntries(blick.map((a) => [a, wal.vorher[a] || {}])), Object.fromEntries(blick.map((a) => [a, pos[a] || {}])), zeit) : [];
-wal.vorher = pos; wal.echt = new Set(Object.keys(echt));
-return { wale: { zeit, wale: walSummen(echt), gewinner: walSummen(Object.fromEntries(Object.entries(echt).filter(([a]) => gewinn.has(a)))), gezaehlt: Object.keys(echt).length, liq, aussortiert: weg }, ereignisse };
+const ereignisse = wal.vorher && !teil && !wal.vorherTeil ? walEreignisse(Object.fromEntries(blick.map((a) => [a, wal.vorher[a] || {}])), Object.fromEntries(blick.map((a) => [a, pos[a] || {}])), zeit) : [];
+wal.vorher = pos; wal.vorherTeil = !!teil; wal.echt = new Set(Object.keys(echt));
+return { wale: { zeit, wale: walSummen(echt), gewinner: walSummen(Object.fromEntries(Object.entries(echt).filter(([a]) => gewinn.has(a)))), gezaehlt: Object.keys(echt).length, liq, aussortiert: weg, teil }, ereignisse };
 }
 const ZINS_FELDER = [['1M', 'BC_1MONTH'], ['1,5M', 'BC_1_5MONTH'], ['2M', 'BC_2MONTH'], ['3M', 'BC_3MONTH'], ['4M', 'BC_4MONTH'], ['6M', 'BC_6MONTH'], ['1J', 'BC_1YEAR'], ['2J', 'BC_2YEAR'], ['3J', 'BC_3YEAR'], ['5J', 'BC_5YEAR'], ['7J', 'BC_7YEAR'], ['10J', 'BC_10YEAR'], ['20J', 'BC_20YEAR'], ['30J', 'BC_30YEAR']];
 async function zinsDirekt() {
@@ -6184,12 +6278,18 @@ async function macDirekt() {
 if (wal.stand && Date.now() - wal.stand.zeit < 24e4) return wal.stand.d;
 if (wal.laeuft) return wal.laeuft;
 wal.laeuft = (async () => {
-if (!wal.walP && (!wal.d || Date.now() - wal.dZeit > 24e4)) wal.walP = waleDirekt().then((x) => { wal.d = x; wal.dZeit = Date.now(); wal.stand = null; setTimeout(macLaden, 0); }).catch(() => {   }).finally(() => { wal.walP = null; });
+if (!wal.walP && (!wal.d || Date.now() - wal.dZeit > 24e4)) wal.walP = waleDirekt().then((x0) => { let x = x0;
+if (x0.wale.teil && x0.wale.teil.n < x0.wale.teil.von / 2) { const alt = gemerkt('w5Wale', 6 * 36e5); let z = 0; try { z = JSON.parse(lies('w5Wale')).zeit; } catch (e) {   }
+if (alt && alt.wale) x = { wale: { ...alt.wale, teil: { ...x0.wale.teil, gemerkt: z } }, ereignisse: [] }; }
+else if (!x0.wale.teil) merkeJson('w5Wale', { wale: x0.wale });
+wal.d = x; wal.dZeit = x.wale.teil ? Date.now() - 24e4 + 45000 : Date.now();
+const d0 = wal.stand && wal.stand.d ? wal.stand.d : { direkt: true, letzte: { zeit: Math.floor(Date.now() / 1000), basis: {}, termine: null } }; d0.wale = x.wale; d0.ereignisse = x.ereignisse;
+if (wal.stand && wal.stand.d) wal.stand.zeit = x.wale.teil ? Date.now() - 24e4 + 45000 : Date.now(); try { macZeigen(d0); } catch (e) { setTimeout(macLaden, 0); } }).catch(() => {   }).finally(() => { wal.walP = null; });
 const [w, m, cb, bb, be, z] = await Promise.allSettled([wal.d ? Promise.resolve(wal.d) : Promise.reject(new Error('Wale laden')), hl({ type: 'metaAndAssetCtxs' }),
 Promise.all(['https://api.exchange.coinbase.com/products/BTC-USD/ticker', 'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT', 'https://api.exchange.coinbase.com/products/USDT-USD/ticker'].map((u) => holeMitFrist(u, 10000))),
 deribitBasis('BTC'), deribitBasis('ETH'), zinsDirekt()]);
 const d = { direkt: true, ereignisse: [], letzte: { zeit: Math.floor(Date.now() / 1000), basis: {}, termine: null } };
-if (w.status === 'fulfilled') { d.wale = w.value.wale; d.ereignisse = w.value.ereignisse; }
+if (w.status === 'fulfilled') { d.wale = w.value.wale; d.ereignisse = w.value.ereignisse; } else if (wal.d) { d.wale = wal.d.wale; d.ereignisse = wal.d.ereignisse; }
 if (m.status === 'fulfilled' && Array.isArray(m.value)) { const out = {}; (m.value[0].universe || []).forEach((u, i) => { const x = m.value[1][i] || {}, p = Number(x.markPx) || 0, f = Number(x.funding) || 0; out[u.name] = { preis: p, funding_h: f, funding_jahr: f * 24 * 365, oi_usd: Math.round((Number(x.openInterest) || 0) * p) }; }); d.letzte.hl_maerkte = out; }
 if (cb.status === 'fulfilled') { const [c, b, u] = cb.value.map((x) => Number(x.price) || 0); if (c && b && u) d.letzte.coinbase = { praemie_pct: (c / (b * u) - 1) * 100 }; }
 if (bb.status === 'fulfilled') d.letzte.basis.BTC = bb.value;
@@ -6641,7 +6741,7 @@ labels.forEach((l, i) => { if (i % jede) return; text(ctx, l, links + (i + 0.5) 
 
 let lkarte = null, lkStunden = Number(lies('lkStunden')) || 72, lkNr = 0;
 async function lkLaden() {
-if (spaeter(lkLaden, 'lkarte')) return;
+if (spaeter(lkLaden, 'lkarte', 'derw')) return;
 const nr = ++lkNr, merk = coin, basis = macBasis();
 if (DEMO) { lkarte = demoLk(); lkZeigen(); return; }
 if (!lkarte || lkLaden.coin !== merk) { lkarte = null; lkZeigen(); }
@@ -8237,7 +8337,7 @@ async function rangLaden() {
 if (spaeter(rangLaden, 'rangliste')) return;
 const basis = macBasis();
 if (DEMO) { hlRang = { zeit: Date.now() / 1000, konten: Array.from({ length: 30 }, (_, i) => ({ adresse: '0x' + (0xabc123 + i * 7919).toString(16).padEnd(40, '0'), name: i % 7 ? null : 'Demo-' + i, wert: 2e7 / (i + 1), score: 95 - i * 1.5, pnl_day: 1e4 * Math.sin(i), pnl_week: 5e4, pnl_month: 4e6 / (i + 1), roi_month: 0.6 / (i + 1) + 0.05, roi_week: 0.03, roi_day: 0.004 * Math.sin(i), pnl_allTime: 9e6 / (i + 1), roi_allTime: 2 / (i + 1), umsatz_monat: 3e8 / (i + 1) })) }; rangZeigen(); return; }
-if (basis === null) { if (!hlRang || hlRang.fehler) { hlRang = null; rangZeigen(); $('rang-tabelle').firstChild.textContent = 'Lade die Hyperliquid-Bestenliste (rund 40 MB, nur alle 6 Std.) …'; } try { hlRang = await rangDirekt(); } catch (e) { hlRang = e && e.klick ? { fehler: 'Die Rangliste kommt aus der Hyperliquid-Bestenliste (rund 40 MB). Am Handy lädt sie erst auf Tippen – wegen des Datenvolumens.', klick: true } : { fehler: 'Hyperliquid gerade nicht erreichbar' }; } rangZeigen(); return; }
+if (basis === null) { if (!hlRang || hlRang.fehler) { hlRang = null; rangZeigen(); $('rang-tabelle').firstChild.textContent = 'Hole die Hyperliquid-Bestenliste (Anfang, rund 3,5 MB, alle 6 Std.) …'; } try { hlRang = await rangDirekt(); } catch (e) { hlRang = e && e.klick ? { fehler: 'Die Rangliste kommt aus der Hyperliquid-Bestenliste. Mit Datensparen lädt sie erst auf Tippen.', klick: true } : { fehler: 'Hyperliquid gerade nicht erreichbar' }; } rangZeigen(); return; }
 try { hlRang = await holeMitFrist(`${basis}/api/profi/rangliste`, 20000); } catch (e) { hlRang = { fehler: 'Mac nicht erreichbar' }; }
 rangZeigen();
 }
@@ -8248,7 +8348,7 @@ if (!hlRang) return leer('Lade …');
 if (hlRang.fehler) { leer(hlRang.fehler); if (hlRang.klick) box.append(hlListeKnopf()); return; }
 const k = hlRang.konten || []; if (!k.length) return leer('Keine Konten erfüllen gerade die Bedingungen.');
 const tab = document.createElement('table'), kopf = tab.createTHead().insertRow(), rumpf = tab.createTBody();
-for (const t of ['#', 'Konto', 'Score', 'Kontowert', 'Gewinn Monat', 'Rendite Monat', 'Woche', 'Tag', 'Gewinn gesamt', 'Rendite gesamt', 'Umsatz Monat']) { const th = document.createElement('th'); th.textContent = t; if (t === 'Konto') th.title = 'Name, den sich das Konto bei Hyperliquid selbst gegeben hat – wird nicht übersetzt.'; kopf.append(th); }
+for (const t of ['#', 'Konto', 'Score', 'Kontowert', 'Gewinn Monat', 'Rendite Monat', 'Woche', 'Tag', 'Gewinn gesamt', 'Rendite gesamt', 'Umsatz Monat', 'Sharpe', 'Rückgang', 'Trefferquote', '']) { const th = document.createElement('th'); th.textContent = t; if (t === 'Konto') th.title = 'Name, den sich das Konto bei Hyperliquid selbst gegeben hat – wird nicht übersetzt.'; kopf.append(th); }
 const pz = (td, v) => { if (v === null || v === undefined) { td.textContent = '–'; return; } td.textContent = proz(v * 100, 1); td.className = v > 0 ? 'plus' : v < 0 ? 'minus' : ''; };
 k.forEach((e, i) => {
 const tr = rumpf.insertRow();
@@ -8260,9 +8360,18 @@ const gm = tr.insertCell(); gm.textContent = usd(e.pnl_month, true); gm.classNam
 pz(tr.insertCell(), e.roi_month); pz(tr.insertCell(), e.roi_week); pz(tr.insertCell(), e.roi_day);
 tr.insertCell().textContent = usd(e.pnl_allTime, true); pz(tr.insertCell(), e.roi_allTime);
 tr.insertCell().textContent = e.umsatz_monat ? usd(e.umsatz_monat) : '–';
+{ const kn = W5_BEREIT ? W5.kenn.get(e.adresse) : null, c1 = tr.insertCell(), c2 = tr.insertCell(), c3 = tr.insertCell();
+c1.textContent = kn && Number.isFinite(kn.sharpe) ? de(kn.sharpe, 2) : '–'; c2.textContent = kn && Number.isFinite(kn.rueckgang) ? proz(-kn.rueckgang, 1) : '–';
+c3.textContent = kn && Number.isFinite(kn.treffer) ? `${de(kn.treffer, 0)} % (${de(kn.n)})` : '–'; if (kn && kn.treffer != null) c3.title = w5T('treffer', kn.g, kn.n);
+const pb = document.createElement('button'); pb.type = 'button'; pb.className = 'leise-knopf'; pb.textContent = 'Profil'; pb.addEventListener('click', () => { const r = BEF_REG.find((y) => y.id === 'tprofil'); if (r) befOeffnen(r, {}).then(() => w5ProfilLaden(e.adresse)); });
+tr.insertCell().append(pb); }
 });
 box.replaceChildren(tab);
-$('rang-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `${k.length} Konten · Stand ${tagUhr(hlRang.zeit * 1000)} · Hyperliquid-Bestenliste, alle 6 Std.${hlRang.direkt ? ' (direkt geladen)' : ''}`;
+if (W5_BEREIT && konten5Fehlen(k)) w5KennLaden(k).then(() => { if (DEMO) rangZeigen(); });
+$('rang-stand').textContent = (DEMO ? 'Demo-Daten · ' : '') + `${k.length} Konten · Stand ${tagUhr(hlRang.zeit * 1000)} · Hyperliquid-Bestenliste, alle 6 Std.${hlRang.direkt ? ' (direkt geladen)' : ''}`
++ (hlRang.teil ? ' · ' + w5T('teil', de(hlRang.n), `${de(hlRang.bytes / 1e6, 1)} MB`) : '') + ' · ' + tr('Sharpe und Rückgang aus der Konto-Kurve, Trefferquote 30 Tage – erste 10 Konten, nach und nach');
+if (hlRang.teil && !hlListeGanz) { const g = document.createElement('button'); g.type = 'button'; g.className = 'leise-knopf'; g.textContent = 'Ganze Bestenliste laden (rund 40 MB)';
+g.addEventListener('click', () => { hlListeGanz = true; hlListeJa = true; hlListe = null; merke('hlListe', ''); g.disabled = true; hlRang = null; rangLaden(); }); const pz = document.createElement('p'); pz.className = 'leise'; pz.append(g); box.append(pz); }
 }
 
 const NV = (x) => { const t = 1 / (1 + 0.2316419 * Math.abs(x)), d = 0.3989423 * Math.exp(-x * x / 2), p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return x > 0 ? 1 - p : p; };
@@ -8621,7 +8730,7 @@ const namen = { absicherer: 'Absicherer', market_maker: 'Market-Maker', vault: '
 const filter = document.createElement('p'); filter.className = 'leise';
 const wegText = Object.entries(weg).map(([k, v]) => `${v.konten} ${k === 'vault' && v.konten === 1 ? 'Vault' : (namen[k] || k)}`).join(', ');
 filter.textContent = d.wale.gezaehlt != null
-? `${d.wale.gezaehlt} echte Wale mit Richtung` + (wegText ? ` · aussortiert: ${wegText}` : '') + ' · Gewinner = mit Monatsgewinn'
+? `${d.wale.gezaehlt} echte Wale mit Richtung` + (wegText ? ` · aussortiert: ${wegText}` : '') + ' · Gewinner = mit Monatsgewinn' + (d.wale.teil && W5_BEREIT ? ' · ' + (d.wale.teil.gemerkt ? w5T('walGemerkt', uhrKurz(d.wale.teil.gemerkt)) : w5T('walTeil', d.wale.teil.n, d.wale.teil.von)) : '')
 : '';
 let reihen = Object.entries(w).sort((a, b) => (b[1].long + b[1].short) - (a[1].long + a[1].short)).slice(0, 8);
 if (w[coin] && !reihen.some(([c]) => c === coin)) reihen = [[coin, w[coin]], ...reihen.slice(0, 7)];
@@ -8682,8 +8791,8 @@ teile.push(h);
 }
 if (!w && d.direkt) {
 const klick = hlListeKlick(), h = karte('Echte Wale · Hyperliquid', klick ? '' : 'lädt'); const p = document.createElement('p'); p.className = 'leise';
-p.textContent = klick ? 'Die Wale kommen aus der Hyperliquid-Bestenliste (rund 40 MB). Am Handy lädt sie erst auf Tippen – wegen des Datenvolumens.'
-: 'Wird geladen: Hyperliquid-Bestenliste (rund 40 MB) und die Positionen der größten Konten – beim ersten Mal je nach Verbindung 1 bis 4 Minuten, danach 6 Std. aus dem Speicher dieses Browsers.';
+p.textContent = klick ? 'Die Wale kommen aus der Hyperliquid-Bestenliste. Mit Datensparen lädt sie erst auf Tippen.'
+: 'Wird geholt: Anfang der Hyperliquid-Bestenliste (rund 3,5 MB) und die Positionen der größten Konten – meist in wenigen Sekunden, danach 6 Std. aus dem Speicher dieses Browsers.';
 h.append(p); if (klick) h.append(hlListeKnopf()); teile.push(h);
 }
 const g = gexFuerKarte(d);
@@ -10332,7 +10441,8 @@ const SPRUNG_NAMEN = { behoerden: 'Makro & Behörden', rug: 'Rug-Check', heat: '
 liq: 'Liquidationen', mac: 'Wale', uebersicht: 'Übersicht', markt: 'Börsen', geschichte: 'Geschichte', umfeld: 'Umfeld', rangliste: 'Rangliste', meldungen: 'Meldungen',
 lkarte: 'Liq.-Karte', ofluss: 'Options-Fluss', olab: 'Options-Labor', danach: 'Was danach', bericht: 'Lagebild', vol: 'Volatilität', opt: 'Optionen', kurve: 'Terminkurve', makro: 'Zinsen',
 hmap: 'Heatmap', weltm: 'Weltmärkte', scanner: 'Ausreißer', wecker: 'Alarme',
-meintag: 'Mein Tag', wlisten: 'Listen', weltuhr: 'Weltuhr' };
+meintag: 'Mein Tag', wlisten: 'Listen', weltuhr: 'Weltuhr',
+ofw: 'Orderflow-Werkzeuge', derw: 'Derivate-Werkzeuge', walw: 'Wal-Werkzeuge' };
 function sprungleiste() {
 const kopf = document.querySelector('.leiste'); if (!kopf || document.querySelector('.sprungleiste')) return;
 const leiste = document.createElement('div'); leiste.className = 'sprungleiste';
@@ -12365,8 +12475,12 @@ const i = f.indexOf(document.activeElement);
 if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
 }, true);
 
-const FASSUNG = 'r137';
+const FASSUNG = 'r138';
 const NEU = [
+{ f: 'r138', tag: '12.11.2026', s: ['Neu: Tape aller Börsen (Spot und Perp) mit Filtern und gebündelten Teilausführungen, Töne für große Trades und Liquidationen (Standard aus), Slippage-Rechner und Markttiefe ±0,5/1/2 % je Börse (TAPEFILTER, TOENE, SLIPPAGE, TIEFE).',
+'Buch-Beobachtungen: Nachfüllung (Eisberg möglich), gezogene Wände und ein Muster, das bei Spoofing vorkommt – beschreibend, als Verdacht, nie als Vorwurf (EISBERG, GEZOGEN).',
+'Derivate: Basis Perp gegen Spot und Index je Börse mit Premium-Index, vorhergesagtes und OI-gewichtetes Funding, Kaskaden-Rechner aus dem Liq.-Modell, Depeg-Wache (BASIS, FUNDVOR, KASKADE, DEPEG).',
+'Wale in Sekunden statt Minuten (3,5 statt 40 MB), Bestenliste mit Sharpe, Rückgang und Trefferquote, Trader-Profil, Kohorten-Lage und eigene Adressen (RANG, TRADERPROFIL, KOHORTEN, ADRESSEN).'] },
 { f: 'r137', tag: '11.11.2026', s: ['Text-Werkzeug im Chart zeichnet wieder (bleibt nach Neuladen); Bereichs- und Sitzungs-Profile nennen Bereich bzw. Sitzung und Tag, laufende Sitzung mit wenig Kerzen ohne Schein-Wertbereich.',
 'Stufen-Hinweis nur einmal je Annäherung; Ebenen-Befehle schalten wie die Knöpfe um, mit AN oder AUS fest (z. B. BB AUS); DICHTE ändert nur die Dichte.',
 'Umfeld sagt nach wenigen Sekunden, worauf es wartet oder welche Quelle nicht antwortet; Gamma-Karte über die Zeit zeigt Fortschritt und Minuten bis zum Verlauf.',
@@ -12852,6 +12966,147 @@ const bybitBekannt = DEMO || BYBIT_TEST || (() => { try { const x = JSON.parse(l
 if (bybitBekannt) { start(); bybitPruefen(); }
 else Promise.race([bybitPruefen().catch(() => null), new Promise((ok) => setTimeout(ok, 1500))]).then(() => { if (!S) start(); });
 setInterval(bybitPruefen, 10 * 6e4);
+
+function w5Kurve(av, pnl) {
+const n0 = Math.min((av || []).length, (pnl || []).length), werte = [];
+for (let i = 0; i < n0; i++) { const a = +av[i][1]; if (a > 0) werte.push(a); }
+werte.sort((x, y) => x - y); const boden = Math.max(100, 0.05 * (werte.length ? werte[Math.floor(werte.length / 2)] : 0));
+const r = [];
+for (let i = 1; i < n0; i++) { const a0 = +av[i - 1][1], d = +pnl[i][1] - +pnl[i - 1][1], ein = Math.max(0, +av[i][1] - a0 - d); if (a0 >= boden && Number.isFinite(d)) r.push([+pnl[i][0], Math.max(-1, d / (a0 + ein))]); }
+let idx = 1, hoch = 1, dd = 0; for (const [, x] of r) { idx *= 1 + x; if (idx > hoch) hoch = idx; if (1 - idx / hoch > dd) dd = 1 - idx / hoch; }
+const n = r.length, rendite = n ? (idx - 1) * 100 : null;
+if (n < 5) return { n, sharpe: null, rueckgang: n ? dd * 100 : null, rendite };
+const m = r.reduce((s, x) => s + x[1], 0) / n, sd = Math.sqrt(r.reduce((s, x) => s + (x[1] - m) ** 2, 0) / (n - 1)), dt = (r[n - 1][0] - r[0][0]) / (n - 1);
+return { n, sharpe: sd > 0 && dt > 0 ? m / sd * Math.sqrt(365 * 864e5 / dt) : null, rueckgang: dd * 100, rendite };
+}
+function w5Treffer(fills) {
+const je = new Map(), maerkte = new Map();
+for (const f of fills || []) {
+const c = +f.closedPnl, coinN = String(f.coin || '?'), mk = maerkte.get(coinN) || { coin: coinN, n: 0, umsatz: 0, ergebnis: 0 };
+mk.n++; mk.umsatz += (+f.px || 0) * (+f.sz || 0); mk.ergebnis += Number.isFinite(c) ? c : 0; maerkte.set(coinN, mk);
+if (!c) continue; const k = f.oid != null ? String(f.oid) : String(f.hash || f.tid); je.set(k, (je.get(k) || 0) + c);
+}
+const w = [...je.values()], gew = w.filter((x) => x > 0).length, ver = w.filter((x) => x < 0).length;
+return { n: gew + ver, gewinne: gew, verluste: ver, quote: gew + ver ? gew / (gew + ver) * 100 : null, maerkte: [...maerkte.values()].sort((a, b) => b.umsatz - a.umsatz) };
+}
+const w5Gruppe = (wert) => (wert >= 1e6 ? 'wale' : wert >= 1e5 ? 'mittel' : wert >= 1e4 ? 'klein' : null);
+function w5Stichprobe(zeilen, gruppe, n) {
+const z = zeilen.filter((x) => w5Gruppe(x.wert) === gruppe).sort((a, b) => b.wert - a.wert); if (z.length <= n) return z;
+return Array.from({ length: n }, (_, i) => z[Math.floor(i * z.length / n)]);
+}
+function w5Teilliste(text) {
+const s = String(text || ''), i = s.indexOf('['); if (i < 0) return [];
+let tiefe = 0, inStr = false, esc = false, ende = -1;
+for (let j = i + 1; j < s.length; j++) {
+const ch = s.charCodeAt(j);
+if (inStr) { if (esc) esc = false; else if (ch === 92) esc = true; else if (ch === 34) inStr = false; continue; }
+if (ch === 34) inStr = true; else if (ch === 123 || ch === 91) tiefe++; else if (ch === 125 || ch === 93) { if (tiefe === 0) break; tiefe--; if (tiefe === 0 && ch === 125) ende = j; }
+}
+if (ende < 0) return [];
+try { return JSON.parse('[' + s.slice(i + 1, ende + 1) + ']'); } catch (e) { return []; }
+}
+const w5Depeg = (kurs, bezug = 1) => { if (!(kurs > 0) || !(bezug > 0)) return null; const a = (kurs / bezug - 1) * 100; return { abw: a, stufe: Math.abs(a) < 0.3 ? 0 : Math.abs(a) < 1 ? 1 : 2 }; };
+function w5TonPlan(e, cfg) {
+if (!cfg || !cfg.an) return null;
+if (e.art === 'liq') return e.wert >= cfg.liq ? { hz: e.wer === 'long' ? 196 : 294, ms: 240, typ: 'square' } : null;
+return e.wert >= cfg.trade ? { hz: e.seite === 'kauf' ? 880 : 523, ms: 90, typ: 'sine' } : null;
+}
+const w5Adresse = (t) => { const m = /^\s*(0x[0-9a-f]{40})\s*$/i.exec(String(t || '')); return m ? m[1].toLowerCase() : null; };
+const W5_T = {
+stand: { de: (q, t) => `${q} · Stand ${t}`, en: (q, t) => `${q} · as of ${t}`, es: (q, t) => `${q} · a las ${t}`, fr: (q, t) => `${q} · à ${t}`, tr: (q, t) => `${q} · ${t} itibarıyla`, it: (q, t) => `${q} · alle ${t}` },
+teil: { de: (n, mb) => `aus den ${n} umsatzstärksten Konten des Monats (${mb} statt rund 40 MB)`, en: (n, mb) => `from the month’s ${n} highest-volume accounts (${mb} instead of about 40 MB)`,
+es: (n, mb) => `de las ${n} cuentas con más volumen del mes (${mb} en lugar de unos 40 MB)`, fr: (n, mb) => `parmi les ${n} comptes au plus gros volume du mois (${mb} au lieu d’environ 40 Mo)`,
+tr: (n, mb) => `ayın en yüksek hacimli ${n} hesabından (yaklaşık 40 MB yerine ${mb})`, it: (n, mb) => `dai ${n} conti con più volume del mese (${mb} invece di circa 40 MB)` },
+treffer: { de: (g, n) => `${g} von ${n} Trades im Plus`, en: (g, n) => `${g} of ${n} trades in profit`, es: (g, n) => `${g} de ${n} operaciones en positivo`,
+fr: (g, n) => `${g} sur ${n} trades gagnants`, tr: (g, n) => `${n} işlemden ${g} kârda`, it: (g, n) => `${g} su ${n} trade in positivo` },
+walGemerkt: { de: (t) => `Stand ${t} (in diesem Browser gemerkt) – Hyperliquid bremst gerade, frische Daten in etwa 1 Min.`, en: (t) => `as of ${t} (saved in this browser) – Hyperliquid is throttling, fresh data in about 1 min`,
+es: (t) => `datos de las ${t} (guardados en este navegador) – Hyperliquid está frenando, datos nuevos en 1 min aprox.`, fr: (t) => `état de ${t} (gardé dans ce navigateur) – Hyperliquid freine, données fraîches dans 1 min environ`,
+tr: (t) => `${t} itibarıyla (bu tarayıcıda saklandı) – Hyperliquid yavaşlatıyor, yeni veriler yaklaşık 1 dk içinde`, it: (t) => `dati delle ${t} (salvati in questo browser) – Hyperliquid sta rallentando, dati nuovi tra circa 1 min` },
+walTeil: { de: (n, v) => `erst ${n} von ${v} Konten – Hyperliquid bremst gerade, der Rest folgt in etwa 1 Min.`, en: (n, v) => `only ${n} of ${v} accounts so far – Hyperliquid is throttling, the rest follows in about 1 min`,
+es: (n, v) => `por ahora ${n} de ${v} cuentas – Hyperliquid está frenando, el resto llega en 1 min aprox.`, fr: (n, v) => `pour l’instant ${n} comptes sur ${v} – Hyperliquid freine, le reste suit dans 1 min environ`,
+tr: (n, v) => `şimdilik ${v} hesaptan ${n} – Hyperliquid yavaşlatıyor, kalanı yaklaşık 1 dk içinde gelir`, it: (n, v) => `per ora ${n} conti su ${v} – Hyperliquid sta rallentando, il resto arriva tra circa 1 min` },
+};
+const w5T = (art, ...w) => (W5_T[art][SPRACHE] || W5_T[art].en)(...w);
+const W5 = { ring: [], erk: null, erkCoin: '', erkSchluessel: '', buchLog: [], letzterSchritt: 0, tradesSeit: [], strom: [], stromCoin: '', stromZeit: 0,
+f: Object.assign({ min: 0, seite: '', art: '', boerse: '' }, (() => { try { const x = JSON.parse(lies('w5Filter') || '{}'); return x && typeof x === 'object' ? x : {}; } catch (e) { return {}; } })()),
+ton: Object.assign({ an: false, trade: 1e6, liq: 5e5 }, (() => { try { const x = JSON.parse(lies('w5Ton') || '{}'); return x && typeof x === 'object' ? x : {}; } catch (e) { return {}; } })()),
+tonZeit: 0, tonN: 0, ctx: null, slip: { usd: 100000, seite: 'kauf' }, buecher: {}, buchZeit: 0, der: null, derZeit: 0, derLaeuft: false, dep: null, depZeit: 0,
+kenn: new Map(), kennLaeuft: false, profil: null, profilAdr: '', profilZeit: 'month', koh: null, kohLaeuft: false, kohZeit: 0, adr: null, adrZeit: 0 };
+W5.ton.an = W5.ton.an === true;
+try { const x = JSON.parse(lies('w5Kenn') || '{}'); if (x && x.zeit && Date.now() - x.zeit < 6 * 36e5) for (const [a, v] of Object.entries(x.d || {})) W5.kenn.set(a, v); } catch (e) {   }
+const w5Merken = (k, v) => merke(k, JSON.stringify(v));
+const w5Liste = () => { try { const x = JSON.parse(lies('w5Adressen') || '[]'); return Array.isArray(x) ? x.filter((a) => a && w5Adresse(a.a)).slice(0, 20) : []; } catch (e) { return []; } };
+function w5Tab(box, kopf, zeilen, klick) {
+if (!box) return;
+const tab = document.createElement('table'), k = tab.createTHead().insertRow(), rumpf = tab.createTBody();
+for (const t of kopf) { const th = document.createElement('th'); th.textContent = t; k.append(th); }
+for (const z of zeilen) { const tr = rumpf.insertRow(); if (z.d) { tr.dataset.w5 = z.d; tr.style.cursor = 'pointer'; } if (z.k) tr.className = z.k;
+for (const c of z.z) { const td = tr.insertCell(); if (c instanceof Node) td.append(c); else if (Array.isArray(c)) { td.textContent = c[0]; if (c[1]) td.className = c[1]; } else td.textContent = c; } }
+box.replaceChildren(tab);
+if (klick && !box.dataset.w5k) { box.dataset.w5k = '1'; box.addEventListener('click', (e) => { const r = e.target.closest('tr[data-w5]'); if (r && !e.target.closest('a')) klick(r.dataset.w5); }); }
+}
+const w5Leer = (box, t) => { if (!box) return; const p = document.createElement('p'); p.className = 'leise mz-letzte'; p.textContent = t; box.replaceChildren(p); };
+const w5Pz = (x, nk = 2) => (x === null || x === undefined || !Number.isFinite(x) ? ['–', ''] : [proz(x, nk), x > 0 ? 'plus' : x < 0 ? 'minus' : '']);
+const w5Kurz = (a) => a.slice(0, 6) + '…' + a.slice(-4);
+const w5Dauer = (ms) => { const s = Math.max(1, Math.round(ms / 1000)); return s < 60 ? `${s} s` : `${Math.round(s / 60)} ${EN ? 'min' : 'Min.'}`; };
+
+function w5Trade(quelle, art, seite, p, menge, ts) {
+const t = ts || Date.now(), w = p * menge; if (!(w > 0)) return;
+W5.ring.push({ t, quelle, art, seite, p, menge, wert: w }); if (W5.ring.length > 6000) W5.ring.splice(0, 1000);
+if (quelle === W5.buchQuelle) W5.tradesSeit.push({ p, menge, seite });
+if (W5.ton.an && w >= W5.ton.trade) w5Ton({ art: 'trade', seite, wert: w });
+}
+function w5Liq(wer, wert) { if (W5.ton.an && wert >= W5.ton.liq) w5Ton({ art: 'liq', wer, wert }); }
+function w5Ton(e) {
+const plan = w5TonPlan(e, W5.ton); if (!plan || document.hidden) return;
+const jetzt = Date.now(); if (jetzt - W5.tonZeit > 1000) { W5.tonZeit = jetzt; W5.tonN = 0; } if (++W5.tonN > 4) return;
+try {
+const A = window.AudioContext || window.webkitAudioContext; if (!A) return; if (!W5.ctx) W5.ctx = new A(); const c = W5.ctx; if (c.state === 'suspended') c.resume();
+const o = c.createOscillator(), g = c.createGain(); o.type = plan.typ; o.frequency.value = plan.hz; g.gain.setValueAtTime(0.0001, c.currentTime);
+g.gain.exponentialRampToValueAtTime(0.08, c.currentTime + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + plan.ms / 1000);
+o.connect(g); g.connect(c.destination); o.start(); o.stop(c.currentTime + plan.ms / 1000 + 0.02);
+} catch (x) {   }
+}
+const konten5Fehlen = (k) => k.slice(0, 10).some((e) => !W5.kenn.has(e.adresse));
+const W5_TEIL_BYTES = 3500000;
+async function w5TeilHolen() {
+const ab = new AbortController(), t = setTimeout(() => ab.abort(), 20000);
+try {
+const r = await fetch('https://stats-data.hyperliquid.xyz/Mainnet/leaderboard', { headers: { Range: `bytes=0-${W5_TEIL_BYTES - 1}` }, signal: ab.signal, cache: 'no-store' });
+if (!r.ok) throw new Error('HTTP ' + r.status);
+const text = await r.text(), ganz = r.status === 200;
+const zeilen = ganz ? (JSON.parse(text).leaderboardRows || []) : w5Teilliste(text);
+if (!zeilen.length) throw new Error('leer');
+return { zeilen, bytes: text.length, ganz };
+} finally { clearTimeout(t); }
+}
+
+async function w5KennLaden(konten) {
+if (DEMO) { konten.slice(0, 10).forEach((e, i) => { if (!W5.kenn.has(e.adresse)) W5.kenn.set(e.adresse, { sharpe: 2.4 - i * 0.15, rueckgang: 8 + i * 1.5, treffer: 58 - i, n: 120 + i * 7, g: Math.round((120 + i * 7) * (58 - i) / 100) }); }); return; }
+if (W5.kennLaeuft) return; W5.kennLaeuft = true;
+try {
+for (const [i, e] of konten.slice(0, 10).entries()) {
+if (W5.kenn.has(e.adresse) || !feldInSicht(['rangliste'])) continue;
+const [pf, fi] = await Promise.all([hl({ type: 'portfolio', user: e.adresse }, 15000, 0).catch(() => null),
+hlListeEng() || i >= 5 ? null : hl({ type: 'userFillsByTime', user: e.adresse, startTime: Date.now() - 30 * 864e5, aggregateByTime: true }, 20000, 0).catch(() => null)]);
+const ag = Array.isArray(pf) ? Object.fromEntries(pf) : {}, k = ag.allTime ? w5Kurve(ag.allTime.accountValueHistory, ag.allTime.pnlHistory) : null, t = Array.isArray(fi) ? w5Treffer(fi) : null;
+W5.kenn.set(e.adresse, { sharpe: k && k.sharpe, rueckgang: k && k.rueckgang, treffer: t && t.quote, n: t ? t.n : null, g: t ? t.gewinne : null });
+w5Merken('w5Kenn', { zeit: Date.now(), d: Object.fromEntries(W5.kenn) });
+if (typeof rangZeigen === 'function') rangZeigen();
+}
+} finally { W5.kennLaeuft = false; }
+}
+
+let W5_LAZY = null;
+function w5Laden() {
+if (!W5_LAZY) W5_LAZY = new Promise((ok, nein) => { if (window.RYVO_W5_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w5.js?v=bf28b3e1"; s.onload = ok; s.onerror = () => { W5_LAZY = null; nein(new Error("w5.js")); }; document.head.append(s); })
+.then(() => { const f = eval(window.RYVO_W5_CODE); window.RYVO_W5_CODE = null; return f; });
+return W5_LAZY;
+}
+function w5Befehl(r, p) { return w5Laden().then((f) => f.w5Befehl(r, p)); }
+function w5ProfilLaden(a) { return w5Laden().then((f) => f.w5ProfilLaden(a)); }
+function w5Start() { let t = 0; const los = () => { if (!feldInSicht(["ofw", "derw", "walw"])) return; clearInterval(t); w5Laden().then((f) => f.w5Start()).catch(() => { t = setInterval(los, 5000); }); }; t = setInterval(los, 1500); setTimeout(los, 900); }
+var W5_BEREIT = true;
 
 function rasterPacken(items, sp) {
 sp = Math.max(1, Math.floor(sp) || 1);
@@ -15135,6 +15390,7 @@ kurve: BH.kurve && BH.kurve.heute, teile: BH.teile, fehler: BH.fehler, laeuft: B
 nsStart(); bhLaden(); setInterval(bhLaden, 10 * 6e4); setInterval(bhUhren, 30000);
 w3Start();
 w4Start();
+w5Start();
 
 /*BEFEHL-KERN-ANFANG*/
 const BEF_REG = [
@@ -15163,7 +15419,7 @@ const BEF_REG = [
 { id: 'ofluss', k: ['OFLUSS', 'GELDFLUSS'], e: ['OPTFLOW', 'FLOW'], n: 'Options-Fluss', s: 'Optionen: Geldfluss und Gamma', b: 'BTC OFLUSS', feld: 'ofluss', g: 'opt' },
 { id: 'olab', k: ['OLAB', 'LABOR'], e: ['OPTLAB', 'LAB'], n: 'Options-Labor', s: 'Options-Labor: Verteilung und Szenarien', b: 'BTC OLAB', feld: 'olab', g: 'opt' },
 { id: 'wal', k: ['WAL', 'WALE'], e: ['WHALE', 'WHALES'], n: 'Wale', s: 'Wale, eigene Alarme und Hyperliquid', b: 'WAL BTC', feld: 'mac', hd: 'wale', g: 'wal' },
-{ id: 'rang', k: ['RANG', 'BESTE'], e: ['RANK', 'LEADERBOARD'], n: 'Rangliste', s: 'Beste Trader bei Hyperliquid', b: 'RANG', feld: 'rangliste', g: 'wal' },
+{ id: 'rang', k: ['RANG', 'BESTE'], e: ['RANK', 'LEADERBOARD'], n: 'Rangliste', s: 'Beste Trader bei Hyperliquid mit Sharpe, Rückgang und Trefferquote', b: 'RANG', feld: 'rangliste', g: 'wal' },
 { id: 'rug', k: ['RUG', 'RUGCHECK'], e: ['RUGPULL', 'MEMECHECK'], n: 'Rug-Check', s: 'Rug-Check für Solana-Memecoins', b: 'RUG', feld: 'rug', g: 'wal' },
 { id: 'regeln', k: ['REGELN', 'EIGENEREGELN'], e: ['MYRULES', 'CUSTOMRULES'], n: 'Eigene Alarme', s: 'Eigene Alarme im Feld „Wale“', b: 'REGELN', feld: 'mac', ziel: '.alarme-kopf', g: 'wal' },
 { id: 'meld', k: ['MELD', 'MELDUNGEN'], e: ['LIST', 'LISTINGS'], n: 'Meldungen', s: 'Börsen-Meldungen: Listungen und Delistings', b: 'MELD', feld: 'meldungen', g: 'news' },
@@ -15277,6 +15533,20 @@ const BEF_REG = [
 { id: 'listeteilen', k: ['LISTETEILEN'], e: ['SHARELIST'], n: 'Liste teilen', s: 'Link mit der Liste im Link selbst – kein Konto, kein Server', b: 'LISTETEILEN', g: 'alr' },
 { id: 'finden', k: ['FINDEN', 'VOLLTEXT'], e: ['FIND', 'LOOKUP'], n: 'Suche überall', s: 'Märkte, Befehle, Hilfetexte, Lexikon, Kacheln und Meldungen', b: 'FINDEN gamma', par: 'text', g: 'nav' },
 { id: 'weltuhr', k: ['WELTUHR', 'BOERSENZEITEN'], e: ['CLOCK', 'WORLDCLOCK'], n: 'Weltuhr', s: 'Börsenzeiten mit Countdown, Sommerzeit je Region', b: 'WELTUHR', feld: 'weltuhr', g: 'mak' },
+{ id: 'gesamttape', k: ['GESAMTTAPE', 'ALLEBOERSEN'], e: ['AGGTRADES', 'ALLVENUES'], n: 'Tape aller Börsen', s: 'Trades aller Börsen zusammen, Spot und Perp', b: 'BTC GESAMTTAPE', feld: 'ofw', ziel: '#ofw-tape-block', g: 'of' },
+{ id: 'tapefilter', k: ['TAPEFILTER', 'BUENDEL'], e: ['TAPEFILTERS', 'BUNDLED'], n: 'Tape-Filter', s: 'Tape mit Mindestgröße, Seite und gebündelten Teilausführungen', b: 'TAPEFILTER 100000', feld: 'ofw', ziel: '#ofw-tape-block', par: 'text', g: 'of' },
+{ id: 'eisberg', k: ['EISBERG', 'NACHFUELLUNG'], e: ['ICEBERG', 'REFILL'], n: 'Nachfüllung', s: 'Stufen, an denen mehr gehandelt wird, als dort sichtbar war (Eisberg möglich)', b: 'EISBERG', feld: 'ofw', ziel: '#ofw-buch-block', g: 'of' },
+{ id: 'gezogen', k: ['GEZOGEN', 'WANDZUG'], e: ['PULLED', 'SPOOFWATCH'], n: 'Gezogene Wände', s: 'Wände, die ohne Handel verschwinden, und Spoofing-Verdacht', b: 'GEZOGEN', feld: 'ofw', ziel: '#ofw-buch-block', g: 'of' },
+{ id: 'toene', k: ['TOENE', 'KLANG'], e: ['SOUNDS', 'AUDIO'], n: 'Töne', s: 'Töne für große Trades und Liquidationen (TOENE AN, TOENE AUS, TOENE 500000)', b: 'TOENE AUS', feld: 'ofw', ziel: '#ofw-ton-block', par: 'text', g: 'of' },
+{ id: 'slip', k: ['SLIPPAGE', 'ORDERKOSTEN'], e: ['SLIP', 'IMPACT'], n: 'Slippage-Rechner', s: 'Was eine Order von X $ im Buch kosten würde – nur Rechnung', b: 'SLIPPAGE 250000 VERKAUF', feld: 'ofw', ziel: '#ofw-slip-block', par: 'text', g: 'of' },
+{ id: 'tiefe', k: ['TIEFE', 'MARKTTIEFE'], e: ['DEPTH', 'MARKETDEPTH'], n: 'Markttiefe', s: 'Dollar im Buch bis ±0,5, 1 und 2 % je Börse', b: 'ETH TIEFE', feld: 'ofw', ziel: '#ofw-tiefe-block', g: 'of' },
+{ id: 'basis', k: ['BASIS', 'PRAEMIENINDEX'], e: ['BASISLIVE', 'PREMIUMINDEX'], n: 'Basis je Börse', s: 'Perp gegen Spot und Index je Börse, Premium-Index, Mark − Index', b: 'BTC BASIS', feld: 'derw', ziel: '#dw-basis-block', g: 'der' },
+{ id: 'fundvor', k: ['FUNDVOR', 'OIFUNDING'], e: ['PREDFUNDING', 'OIWEIGHTED'], n: 'Funding vorhergesagt', s: 'Vorhergesagtes Funding je Börse und OI-gewichtetes Mittel', b: 'SOL FUNDVOR', feld: 'derw', ziel: '#dw-funding-block', g: 'der' },
+{ id: 'kaskade', k: ['KASKADE', 'LIQSZENARIO'], e: ['CASCADE', 'LIQSCENARIO'], n: 'Kaskaden-Rechner', s: 'Liquidationen bei −3/−5/−10 % laut Modell', b: 'BTC KASKADE', feld: 'derw', ziel: '#dw-kaskade-block', g: 'der' },
+{ id: 'depeg', k: ['DEPEG', 'STABLES'], e: ['PEG', 'STABLEWATCH'], n: 'Depeg-Wache', s: 'USDC, USDT und stETH gegen ihren Bezug', b: 'DEPEG', feld: 'derw', ziel: '#dw-depeg-block', g: 'der' },
+{ id: 'kohorten', k: ['KOHORTEN', 'GRUPPEN'], e: ['COHORTS', 'COHORT'], n: 'Kohorten-Lage', s: 'Große, mittlere und kleine Konten netto long oder short je Markt', b: 'KOHORTEN', feld: 'walw', ziel: '#ww-koh-block', g: 'wal' },
+{ id: 'tprofil', k: ['TRADERPROFIL', 'KONTOPROFIL'], e: ['TRADERPROFILE', 'WALLETPROFILE'], n: 'Trader-Profil', s: 'Kurve, Kennzahlen, Märkte und Trades eines Hyperliquid-Kontos', b: 'TRADERPROFIL', feld: 'walw', ziel: '#ww-profil-block', par: 'text', g: 'wal' },
+{ id: 'adressen', k: ['ADRESSEN', 'WALLETS'], e: ['ADDRESSES', 'WALLETWATCH'], n: 'Adressen beobachten', s: 'Eigene Liste von Hyperliquid-Adressen (nur in diesem Browser)', b: 'ADRESSEN', feld: 'walw', ziel: '#ww-adr-block', par: 'text', g: 'wal' },
 ];
 const BEF_WAHL = { art: ['kerzen', 'ha', 'linie', 'flaeche', 'renko', 'range'], thema: ['dunkel', 'bernstein', 'graphit', 'hell'], farben: ['bo', 'gr', 'sw'], sprache: ['de', 'en', 'es', 'fr', 'tr', 'it'], layout: ['1', '2', '4'], dichte: ['kompakt', 'normal', 'gross'], raster: ['aus'], koppeln: ['aus', '2', '4'], reiter: ['neu', 'zu', 'name'] };
 const BEF_WAHL_ALIAS = { DARK: 'dunkel', AMBER: 'bernstein', GRAPHITE: 'graphit', LIGHT: 'hell', WHITE: 'hell', BLAU: 'bo', BLUE: 'bo', GRUEN: 'gr', GREEN: 'gr', ROT: 'gr', SCHWARZ: 'sw', BLACK: 'sw' };
@@ -15412,8 +15682,8 @@ const AB_VOR = [
 { id: 'scalper', n: 'Scalper', modus: 'profi', f: ['chart', 'dom', 'band', 'liq', 'cvd', 'heat', 'jetzt', 'lkarte', 'werte'] },
 { id: 'swing', n: 'Swing', modus: 'swing', f: ['chart', 'analyse', 'bericht', 'geschichte', 'umfeld', 'makro', 'danach', 'multi'] },
 { id: 'optionen', n: 'Optionen', f: ['gex', 'gamma', 'ofluss', 'olab', 'opt', 'vol', 'kurve', 'chart'] },
-{ id: 'derivate', n: 'Derivate', f: ['werte', 'uebersicht', 'geschichte', 'lkarte', 'markt', 'liq', 'kurve', 'cvd'] },
-{ id: 'onchain', n: 'On-Chain & Wale', f: ['mac', 'rangliste', 'lkarte', 'rug', 'band', 'liq'] },
+{ id: 'derivate', n: 'Derivate', f: ['werte', 'derw', 'uebersicht', 'geschichte', 'lkarte', 'markt', 'liq', 'kurve', 'cvd'] },
+{ id: 'onchain', n: 'On-Chain & Wale', f: ['mac', 'rangliste', 'walw', 'lkarte', 'rug', 'band', 'liq'] },
 { id: 'makro', n: 'Makro', f: ['mz', 'behoerden', 'makro', 'umfeld', 'news', 'geschichte', 'meldungen'] },
 { id: 'news', n: 'News', f: ['news', 'meldungen', 'jetzt', 'danach', 'bericht', 'analyse'] },
 { id: 'einsteiger', n: 'Einsteiger', f: ['chart', 'analyse', 'bericht', 'jetzt', 'werte', 'umfeld'] },
@@ -15752,6 +16022,7 @@ case 'neu': wasNeu(); return fertig(true, hinweis, $('was-neu'));
 case 'vorlesen': { const ok = vorlesenStart(); if (!ok && !meld) meldLaden(); return fertig(ok, ok ? hinweis : w4T(window.speechSynthesis && typeof SpeechSynthesisUtterance !== 'undefined' ? 'vlLeer' : 'vlStimme')); }
 case 'alarm': case 'stumm': case 'technik': case 'perpspot': case 'bspread': case 'stichwort': { const e = await w4Befehl(r, p); if (e.ok) NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'raster': case 'zuruecksetzen': case 'dichte': case 'koppeln': case 'fenster': case 'reiter': case 'listeteilen': case 'finden': { const e = await w2Befehl(r, p); return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
+case 'toene': case 'slip': case 'tprofil': case 'adressen': case 'tapefilter': { const e = await w5Befehl(r, p); NAV.f = r.id; return fertig(e.ok, e.text || (e.ok ? hinweis : ''), e.ziel); }
 case 'vgl': case 'ratio': case 'spread': case 'art': case 'vorlage': case 'bild': { const e = await w3Befehl(r, p); NAV.f = r.id; return fertig(e.ok, hinweis, e.ziel); }
 case 'einstieg': einstieg(0); return fertig(true, hinweis, $('einstieg'));
 case 'hilfe': verzeichnis(p.rest.join(' ')); return fertig(true, hinweis, $('verzeichnis'));
