@@ -2,7 +2,7 @@
 <html lang="de" class="teilen">
 <head>
 <meta charset="utf-8">
-<script>(function () { var V = {"en": "46c19eca", "es": "7af09883", "fr": "72304546", "it": "461cb371", "tr": "a61561e1"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "acccc5d4", "es": "9efe4f01", "fr": "19450a1d", "it": "a5e1be19", "tr": "0c840ce1"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -2116,7 +2116,7 @@ body.fokus-an { overflow: hidden; }
 #ueb-bedingungen code, #wk-worte code { font: 500 12px var(--mono); }
 
 
-@media (min-width: 1000px) { main.raster > section.fortg { grid-column: 1 / -1; } }
+@media (min-width: 1000px) { main.raster > section.fortg, main.raster > section.stat { grid-column: 1 / -1; } }
 .fortg #w12-formel, .fortg #w12-sp-formel { flex: 1 1 240px; min-width: 0; }
 .fortg #w12-rep-pos { flex: 1 1 220px; min-width: 120px; }
 .fortg .wk-form label { display: inline-flex; align-items: center; gap: 6px; }
@@ -3081,6 +3081,10 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
     <div class="tabelle ueb-tabelle" id="wu-tabelle"></div>
     <p class="leise stand" id="wu-sitzung"></p>
   </section>
+  <section class="feld stat" aria-labelledby="t-w16">
+    <div class="feld-kopf"><h2 id="t-w16">Statistik mit Gegenprobe</h2><span class="stand" id="w16-stand" data-roh></span>
+      <button type="button" class="was" data-hilfe="w16" aria-expanded="false">Was ist das?</button></div>
+  </section>
   <section class="feld fortg" aria-labelledby="t-w12">
     <div class="feld-kopf"><h2 id="t-w12">Fortgeschritten · Tick-Kerzen, Formeln, Muster, Mikrostruktur, Regel-Test, Optionen, Replay</h2><span class="stand" id="w12-stand" data-roh></span>
       <button type="button" class="was" data-hilfe="w12" aria-expanded="false">Was ist das?</button></div>
@@ -3202,7 +3206,7 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
   <div class="hd-werkzeug hd-blatt" id="hd-werkzeug" role="toolbar" aria-label="Werkzeuge">
     <div class="hd-blatt-kopf"><h3>Ebenen &amp; Werkzeuge</h3><button type="button" class="hd-blatt-zu" data-blatt-zu aria-label="Schließen">×</button></div>
     <div class="hd-gruppe" id="hd-layout" role="group" aria-label="Layout"><span class="hd-gt">Layout</span><button type="button" data-layout="1" title="Ein großer Chart">1</button><button type="button" data-layout="2" title="Zwei Charts nebeneinander">2</button><button type="button" data-layout="4" title="Vier Charts">4</button></div>
-    <div class="hd-gruppe hd-ebenen" id="hd-ebenen" role="group" aria-label="Ebenen im Chart"><span class="hd-gt">Ebenen</span><button type="button" data-ebene="ema" aria-pressed="false" title="Gleitende Durchschnitte EMA 20, 50 und 200 über den Kerzen">EMA</button><button type="button" data-ebene="wma" aria-pressed="false" title="Gewichteter Durchschnitt WMA 20 (jüngste Kerze am stärksten)">WMA</button><button type="button" data-ebene="rsi" aria-pressed="false" title="RSI 14 (Wilder) unter dem Chart mit 30/70-Linien">RSI</button><button type="button" data-ebene="macd" aria-pressed="false" title="MACD 12/26/9 unter dem Chart: Linie, Signal und Histogramm">MACD</button><button type="button" data-ebene="vp" aria-pressed="false" title="Volumen je Preis mit POC und 70-%-Wertbereich (VAH/VAL), aus den Kerzen geschätzt">Profil</button><button type="button" data-ebene="vwap" aria-pressed="false" title="Volumengewichteter Durchschnittspreis seit Tagesbeginn (UTC) mit ±1σ und ±2σ">VWAP</button><button type="button" data-ebene="heat" aria-pressed="false" title="Liquidität im Orderbuch hinter den Kerzen (Aufzeichnung am Mac, sonst ab Öffnen der Seite)">Heatmap</button><button type="button" data-ebene="fp" aria-pressed="false" title="Footprint: Kauf × Verkauf je Preisstufe beim Hineinzoomen, Delta je Kerze">Footprint</button><button type="button" data-ebene="cvd" aria-pressed="false" title="Kaufdruck: Delta je Kerze und aufsummiert (CVD) unter dem Chart">CVD</button><button type="button" data-ebene="liq" aria-pressed="false" title="Liquidations-Zonen aus der Liq.-Karte als Bänder an der Preisachse, große Wal-Liquidationen als Linien">Liq.-Zonen</button><button type="button" data-ebene="marken" aria-pressed="false" title="Absorption und Stop-Jagd nach festen Regeln markieren – Beobachtung, kein Signal">Orderflow</button><button type="button" data-ebene="gamma" aria-pressed="false" title="Gamma-Wände, Kipp-Punkt und Max-Pain aus den Optionen (BTC, ETH)">Gamma</button><button type="button" class="hd-mehr-teil" data-ebene="termine" aria-pressed="false" title="Termine als senkrechte Marken: Zinsentscheide, Inflation, Arbeitsmarkt, Quartalszahlen, Listungen – beschreibend">Termine</button><button type="button" class="hd-mehr-teil" data-ebene="bb" aria-pressed="false" title="Bollinger-Bänder 20/2 um den gleitenden Durchschnitt">Bollinger</button><button type="button" class="hd-mehr-teil" data-ebene="ichi" aria-pressed="false" title="Ichimoku 9/26/52: Tenkan, Kijun, Wolke, Chikou">Ichimoku</button><button type="button" class="hd-mehr-teil" data-ebene="atr" aria-pressed="false" title="Average True Range 14 unter dem Chart">ATR</button><button type="button" class="hd-mehr-teil" data-ebene="stoch" aria-pressed="false" title="Stochastik 14/3/3 unter dem Chart mit 20/80-Linien">Stochastik</button><button type="button" class="hd-mehr-teil" data-ebene="obv" aria-pressed="false" title="On-Balance-Volumen unter dem Chart">OBV</button><button type="button" class="hd-mehr-teil" data-ebene="sitzung" aria-pressed="false" title="Sitzungen Asien, London, New York (mit Sommerzeit je Region) und Wochenende als Hintergrund, Wochenend-Lücke">Sitzungen</button><button type="button" class="hd-mehr-teil" data-ebene="amt" aria-pressed="false" title="Volumenprofil je Tag oder Sitzung mit POC und Wertbereich (Art und % unter „Profil“)">Profile je Sitzung</button><button type="button" class="hd-mehr-teil" data-ebene="npoc" aria-pressed="false" title="Unberührte POC, VAH und VAL früherer Sitzungen nach rechts verlängert, bis der Kurs sie berührt">Nackte POCs</button><button type="button" class="hd-mehr-teil" data-ebene="ib" aria-pressed="false" title="Initial Balance: Hoch und Tief der ersten Stunde mit Erweiterungen 1,5× und 2×">IB</button><button type="button" class="hd-mehr-teil" data-ebene="pd" aria-pressed="false" title="Über dem Wertbereich des Vortags (Premium) bzw. darunter (Discount) schattiert – beschreibend">Premium/Discount</button><button type="button" class="hd-mehr-teil" data-ebene="muster" aria-pressed="false" title="Kerzenmuster beschreibend markieren: nur der Name der Form, keine Richtung">Kerzenmuster</button><button type="button" class="hd-mehr-teil" data-ebene="formel" aria-pressed="false" title="Eigene Formel als Linie unter dem Chart (Feld „Fortgeschritten“)">Formel</button><button type="button" data-ebene="bot" aria-pressed="false" hidden title="Positionen und Trades deines Bots (Hauptkonto und Gewinn-Lehrer, Papier) im Chart">Bot</button></div>
+    <div class="hd-gruppe hd-ebenen" id="hd-ebenen" role="group" aria-label="Ebenen im Chart"><span class="hd-gt">Ebenen</span><button type="button" data-ebene="ema" aria-pressed="false" title="Gleitende Durchschnitte EMA 20, 50 und 200 über den Kerzen">EMA</button><button type="button" data-ebene="wma" aria-pressed="false" title="Gewichteter Durchschnitt WMA 20 (jüngste Kerze am stärksten)">WMA</button><button type="button" data-ebene="rsi" aria-pressed="false" title="RSI 14 (Wilder) unter dem Chart mit 30/70-Linien">RSI</button><button type="button" data-ebene="macd" aria-pressed="false" title="MACD 12/26/9 unter dem Chart: Linie, Signal und Histogramm">MACD</button><button type="button" data-ebene="vp" aria-pressed="false" title="Volumen je Preis mit POC und 70-%-Wertbereich (VAH/VAL), aus den Kerzen geschätzt">Profil</button><button type="button" data-ebene="vwap" aria-pressed="false" title="Volumengewichteter Durchschnittspreis seit Tagesbeginn (UTC) mit ±1σ und ±2σ">VWAP</button><button type="button" data-ebene="heat" aria-pressed="false" title="Liquidität im Orderbuch hinter den Kerzen (Aufzeichnung am Mac, sonst ab Öffnen der Seite)">Heatmap</button><button type="button" data-ebene="fp" aria-pressed="false" title="Footprint: Kauf × Verkauf je Preisstufe beim Hineinzoomen, Delta je Kerze">Footprint</button><button type="button" data-ebene="cvd" aria-pressed="false" title="Kaufdruck: Delta je Kerze und aufsummiert (CVD) unter dem Chart">CVD</button><button type="button" data-ebene="liq" aria-pressed="false" title="Liquidations-Zonen aus der Liq.-Karte als Bänder an der Preisachse, große Wal-Liquidationen als Linien">Liq.-Zonen</button><button type="button" data-ebene="marken" aria-pressed="false" title="Absorption und Stop-Jagd nach festen Regeln markieren – Beobachtung, kein Signal">Orderflow</button><button type="button" data-ebene="gamma" aria-pressed="false" title="Gamma-Wände, Kipp-Punkt und Max-Pain aus den Optionen (BTC, ETH)">Gamma</button><button type="button" class="hd-mehr-teil" data-ebene="termine" aria-pressed="false" title="Termine als senkrechte Marken: Zinsentscheide, Inflation, Arbeitsmarkt, Quartalszahlen, Listungen – beschreibend">Termine</button><button type="button" class="hd-mehr-teil" data-ebene="bb" aria-pressed="false" title="Bollinger-Bänder 20/2 um den gleitenden Durchschnitt">Bollinger</button><button type="button" class="hd-mehr-teil" data-ebene="ichi" aria-pressed="false" title="Ichimoku 9/26/52: Tenkan, Kijun, Wolke, Chikou">Ichimoku</button><button type="button" class="hd-mehr-teil" data-ebene="atr" aria-pressed="false" title="Average True Range 14 unter dem Chart">ATR</button><button type="button" class="hd-mehr-teil" data-ebene="stoch" aria-pressed="false" title="Stochastik 14/3/3 unter dem Chart mit 20/80-Linien">Stochastik</button><button type="button" class="hd-mehr-teil" data-ebene="obv" aria-pressed="false" title="On-Balance-Volumen unter dem Chart">OBV</button><button type="button" class="hd-mehr-teil" data-ebene="sitzung" aria-pressed="false" title="Sitzungen Asien, London, New York (mit Sommerzeit je Region) und Wochenende als Hintergrund, Wochenend-Lücke">Sitzungen</button><button type="button" class="hd-mehr-teil" data-ebene="amt" aria-pressed="false" title="Volumenprofil je Tag oder Sitzung mit POC und Wertbereich (Art und % unter „Profil“)">Profile je Sitzung</button><button type="button" class="hd-mehr-teil" data-ebene="npoc" aria-pressed="false" title="Unberührte POC, VAH und VAL früherer Sitzungen nach rechts verlängert, bis der Kurs sie berührt">Nackte POCs</button><button type="button" class="hd-mehr-teil" data-ebene="ib" aria-pressed="false" title="Initial Balance: Hoch und Tief der ersten Stunde mit Erweiterungen 1,5× und 2×">IB</button><button type="button" class="hd-mehr-teil" data-ebene="pd" aria-pressed="false" title="Über dem Wertbereich des Vortags (Premium) bzw. darunter (Discount) schattiert – beschreibend">Premium/Discount</button><button type="button" class="hd-mehr-teil" data-ebene="muster" aria-pressed="false" title="Kerzenmuster beschreibend markieren: nur der Name der Form, keine Richtung">Kerzenmuster</button><button type="button" class="hd-mehr-teil" data-ebene="formel" aria-pressed="false" title="Eigene Formel als Linie unter dem Chart (Feld „Fortgeschritten“)">Formel</button><button type="button" class="hd-mehr-teil" data-ebene="sigma" aria-pressed="false" title="σ-Spanne ab Tagesopen: 0,5 / 1 / 1,5 / 2 σ aus der realisierten Tagesvola (Feld „Statistik mit Gegenprobe“)">σ-Spanne</button><button type="button" data-ebene="bot" aria-pressed="false" hidden title="Positionen und Trades deines Bots (Hauptkonto und Gewinn-Lehrer, Papier) im Chart">Bot</button></div>
     <div class="hd-gruppe hd-mehr-teil" id="hd-art" role="group" aria-label="Chart-Art"><span class="hd-gt">Chart-Art</span><button type="button" data-art="kerzen">Kerzen</button><button type="button" data-art="ha" title="Heikin-Ashi: geglättete Kerzen">Heikin-Ashi</button><button type="button" data-art="linie">Linie</button><button type="button" data-art="flaeche">Fläche</button><button type="button" data-art="renko" title="Renko: Kästchen in Größe der ATR 14 aus den Schlusskursen">Renko</button><button type="button" data-art="range" title="Range-Bars: feste Preisspanne je Balken (aus den Kerzen), Footprint je Balken zusammengezählt">Range</button><button type="button" data-range="20">20 Ticks</button><button type="button" data-range="40">40 Ticks</button><button type="button" data-range="100">100 Ticks</button></div>
     <div class="hd-gruppe hd-mehr-teil" id="hd-skala" role="group" aria-label="Skala"><span class="hd-gt">Skala</span><button type="button" data-skala="lin">Normal</button><button type="button" data-skala="log">Log</button><button type="button" data-skala="pct" title="Preisachse in % ab der ersten sichtbaren Kerze">%</button></div>
     <div class="hd-gruppe hd-mehr-teil" id="hd-profil" role="group" aria-label="Profil"><span class="hd-gt">Profil</span><button type="button" data-amt="tag">Je Tag</button><button type="button" data-amt="sitzung" title="Asien, London, New York (mit Sommerzeit je Region) getrennt">Je Sitzung</button><button type="button" data-amt="composite" title="Ein Profil über alles Sichtbare">Composite</button><button type="button" data-va="68">VA 68 %</button><button type="button" data-va="70">VA 70 %</button><button type="button" data-va="80">VA 80 %</button></div>
@@ -3284,7 +3288,7 @@ html[data-dichte="gross"] main.raster > section.feld .kacheln dd { font-size: 26
   <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
   <span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "46c19eca", "es": "7af09883", "fr": "72304546", "it": "461cb371", "tr": "a61561e1"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "acccc5d4", "es": "9efe4f01", "fr": "19450a1d", "it": "a5e1be19", "tr": "0c840ce1"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
 <script>window.RYVO_TEILEN = true;</script>
 <script>
@@ -3877,8 +3881,10 @@ const halten = { '1m': 15000, '5m': 30000, '1d': 3e5 }[iv] || 45000;
 const vr = anz > 1000 || !eilig ? 1 : typeof eilig === 'function' ? -1 : 0;
 let p = alt && alt.n >= anz && Date.now() - alt.zeit < halten && (alt.fertig || (alt.vr <= vr && !alt.abbrechbar)) ? alt.p : null;
 if (!p) {
-p = hl({ type: 'candleSnapshot', req: { coin: name, interval: iv, startTime: Date.now() - anz * ms, endTime: Date.now() } }, 20000, vr, typeof eilig === 'function' ? eilig : null)
-.then((k) => (k || []).map((x) => [x.t / 1000, +x.o, +x.h, +x.l, +x.c, +x.v * +x.c]).sort((a, b) => a[0] - b[0]));
+const holen = (von, bis) => hl({ type: 'candleSnapshot', req: { coin: name, interval: iv, startTime: von, endTime: bis } }, 20000, vr, typeof eilig === 'function' ? eilig : null);
+const e0 = Date.now(), a0 = e0 - anz * ms;
+p = (anz <= 1000 ? holen(a0, e0) : (async () => { const aus = []; for (let ab = a0; ab < e0; ab += 1000 * ms) aus.push(...((await holen(ab, Math.min(e0, ab + 1000 * ms - 1))) || [])); return aus; })())
+.then((k) => [...new Map((k || []).map((x) => [x.t, x])).values()].map((x) => [x.t / 1000, +x.o, +x.h, +x.l, +x.c, +x.v * +x.c]).sort((a, b) => a[0] - b[0]));
 const ein = { zeit: Date.now(), n: anz, p, vr, fertig: false, abbrechbar: typeof eilig === 'function' };
 p.then(() => { ein.fertig = true; }, () => {});
 hlKerzenCache.set(schl, ein);
@@ -8372,7 +8378,7 @@ const teile = [['alternative.me', 'alternative.me'], ['Binance', u.btcHl ? 'Bina
 ['CFTC', 'CFTC'], ['blockchain.com', 'blockchain.com']].filter(([k]) => q.has(k)).map(([, t]) => t);
 const fehlt = ['alternative.me', 'Binance', 'Hyperliquid', 'CFTC'].filter((k) => !q.has(k));
 return (teile.length ? ' · direkt geladen: ' + teile.join(', ') : '') + (fehlt.length ? ' · noch ohne Antwort: ' + fehlt.join(', ') : '')
-+ (TEILEN ? ' · VIX und Dollar-Index fehlen hier: CBOE-Daten nur zur eigenen Nutzung, die Hyperliquid-Kontrakte wurden gestrichen' : '');
++ (TEILEN ? ' · VIX und Dollar-Index fehlen hier: die Daten des VIX-Anbieters sind nur zur eigenen Nutzung freigegeben, die Hyperliquid-Kontrakte wurden gestrichen' : '');
 }
 function umfZeigen() {
 const ids = ['umf-angst', 'umf-vergleich', 'umf-cot', 'umf-vix', 'umf-zyklus', 'umf-puell'], u = umf;
@@ -9683,6 +9689,7 @@ for (const [k, g] of l) { const w = Math.abs(g) / mx * breit; ctx.fillStyle = mi
 return l.length;
 }
 function hvnZonen(profil, schritt) {
+if (lies('w16.prom') === '1') { if (W16_Z) return W16_Z.prom(profil, schritt); w16Vorladen(); }
 if (!profil || profil.length < 8) return [];
 const v = profil.map((z) => z[1] + z[2]), glatt = v.map((_, i) => (v[i - 1] || 0) * 0.25 + v[i] * 0.5 + (v[i + 1] || 0) * 0.25);
 const sort = [...glatt].filter((x) => x > 0).sort((a, b) => a - b), median = sort[Math.floor(sort.length / 2)] || 0;
@@ -10376,7 +10383,11 @@ const s = [...String(t || '').replace(/([a-z])([A-Z])/g, '$1 $2').normalize('NFK
 .map((c) => { const i = DEX_VON.indexOf(c); return i < 0 ? c : DEX_ZU[i]; }).join('').replace(/[^a-z]+/g, ' ').trim();
 return [s.replace(/\b(?:[a-z] )+[a-z]\b/g, (m) => m.replace(/ /g, '')), s.replace(/ /g, '')];
 }
-function dexTreffer(t, r) { const [w, k] = dexNorm(t); return r[0].test(k) || r[1].test(w) || /(?:^|\D)14\W?88(?!\d)/.test(String(t || '')); }
+function dexTreffer(t, r) { const [w, k] = dexNorm(t); return r[0].test(k) || r[1].test(w) || /(?:^|\D)14\W?88(?!\d)/.test(String(t || '')) || dexGeteilt(w, r[1]); }
+function dexGeteilt(w, re) {
+const l = w.split(' '); for (let i = 0; i < l.length - 1; i++) for (let n = 2; n <= 3 && i + n <= l.length; n++) { const m = l.slice(i, i + n).join(''); if (m.length >= 4 && re.test(m)) return true; }
+return false;
+}
 let DEX_SPERR = null;
 { const s = document.createElement('script'); s.src = 'sprachen/dex.js?v=d66d7549'; s.onload = () => { if (window.RYVO_DEX) { DEX_SPERR = dexRegeln(dexRot(String(window.RYVO_DEX))); rugListen(); } }; document.head.append(s); }
 function dexNameSicher(name, symbol, bild) {
@@ -10552,6 +10563,7 @@ Object.assign(SPRUNG_NAMEN, { jour: 'Journal & Portfolio', ueben: 'Üben & Studi
 Object.assign(SPRUNG_NAMEN, { lern: 'Erklären & Lernen' });
 Object.assign(SPRUNG_NAMEN, { onchain: 'On-Chain & DEX' });
 Object.assign(SPRUNG_NAMEN, { fortg: 'Fortgeschritten' });
+Object.assign(SPRUNG_NAMEN, { stat: 'Statistik mit Gegenprobe' });
 function sprungleiste() {
 const kopf = document.querySelector('.leiste'); if (!kopf || document.querySelector('.sprungleiste')) return;
 const leiste = document.createElement('div'); leiste.className = 'sprungleiste';
@@ -10605,6 +10617,7 @@ eb: { vp: true, vwap: true, heat: true, fp: true, cvd: true, liq: true, marken: 
 };
 Object.defineProperty(HD, 'vp', { get: () => HD.eb.vp, set: (v) => { HD.eb.vp = !!v; } });
 const HD_EBENEN = ['vp', 'vwap', 'heat', 'fp', 'cvd', 'liq', 'marken', 'gamma', 'ema', 'wma', 'rsi', 'macd', 'termine', 'bb', 'ichi', 'atr', 'stoch', 'obv', 'sitzung', 'amt', 'npoc', 'ib', 'pd', 'muster', 'formel'], HD_TOOLS = ['lage', 'buch', 'tape', 'liq', 'wale', 'live', 'analyse', 'opt', 'saison'];
+HD_EBENEN.push('sigma');
 const W3_ZEICHEN = new Set(['rechteck', 'kanal', 'text', 'strahl', 'mess', 'avwap', 'frvp', 'long', 'short']), W3_KLICK = new Set(['text', 'strahl', 'avwap']);
 const HD_EB_PROFI = { vp: true, vwap: true, heat: true, fp: true, cvd: true, liq: true, marken: true, gamma: true, ema: false, wma: false, rsi: false, macd: false, termine: false };
 const HD_EB_SWING = { vp: false, vwap: false, heat: false, fp: false, cvd: false, liq: false, marken: false, gamma: true, ema: true, wma: false, rsi: true, macd: true, termine: false };
@@ -11357,6 +11370,7 @@ this.w3Hinter(ctx, K, a, b, Y, xi, cw, d, f, L);
 if (HD.vp) this.profil(ctx, K, a, b, lo, hi, Y, d, f, L);
 if (eb.liq && haupt) info.liq = this.liqZeichnen(ctx, lo, hi, Y, d, f, L, kursJetzt || K[K.length - 1].c);
 if (eb.vwap) info.vwap = this.vwapZeichnen(ctx, K, a, b, Y, xi, d, f, L);
+if (eb.sigma) w16HdSigma(this, ctx, K, a, b, Y, xi, cw, d, f, L);
 const fpVoll = eb.fp && haupt ? this.fpMitRange(ctx, K, a, b, Y, xi, cw, d, f, L) : false;
 const bb = fpVoll ? Math.max(1, Math.round(2 * d)) : Math.max(1, Math.min(cw * 0.72, cw - 2 * d)), lw = Math.max(1, Math.round(d));
 if (f.glow) { ctx.shadowBlur = f.glow * d; }
@@ -12608,9 +12622,9 @@ const i = f.indexOf(document.activeElement);
 if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
 }, true);
 
-const FASSUNG = 'r148';
+const FASSUNG = 'r149';
 let NEU = null;
-function neuLaden(von) { const s = document.createElement("script"); s.src = "sprachen/neu.js?v=4a1c9724"; s.onload = () => { NEU = window.RYVO_NEU || []; wasNeu(von); }; document.head.append(s); }
+function neuLaden(von) { const s = document.createElement("script"); s.src = "sprachen/neu.js?v=38f1b45f"; s.onload = () => { NEU = window.RYVO_NEU || []; wasNeu(von); }; document.head.append(s); }
 function wasNeu(von) {
 if (!NEU) { neuLaden(von); return; }
 let box = $('was-neu');
@@ -13239,7 +13253,7 @@ var W5_BEREIT = true;
 
 let W6_LAZY = null;
 function w6Laden() {
-if (!W6_LAZY) W6_LAZY = new Promise((ok, nein) => { if (window.RYVO_W6_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w6.js?v=5cce2df7"; s.onload = ok; s.onerror = () => { W6_LAZY = null; nein(new Error("w6.js")); }; document.head.append(s); })
+if (!W6_LAZY) W6_LAZY = new Promise((ok, nein) => { if (window.RYVO_W6_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w6.js?v=149c18cc"; s.onload = ok; s.onerror = () => { W6_LAZY = null; nein(new Error("w6.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W6_CODE); window.RYVO_W6_CODE = null; return f; });
 return W6_LAZY;
 }
@@ -13361,7 +13375,8 @@ W10_TEXT.set(sec, { t: Date.now(), x }); return x;
 function w10Status(sec) {
 if (DEMO) return { z: 'demo', titel: w10T('tDemo') };
 const id = w2Id(sec), inhalt = w10Inhalt(sec), jetzt = Date.now();
-const echt = [...sec.querySelectorAll('td,dd')].some((x) => /\d/.test(x.textContent)) || [...sec.querySelectorAll('canvas')].some((c) => c.__lw && !c.__lw.nurLade);
+const bedienbar = !!sec.querySelector(':scope > :not(.feld-kopf):not(.hilfe):not([hidden]) :is(input, select, textarea):not([disabled]):not([type=hidden])');
+const echt = bedienbar || [...sec.querySelectorAll('td,dd')].some((x) => /\d/.test(x.textContent)) || [...sec.querySelectorAll('canvas')].some((c) => c.__lw && !c.__lw.nurLade);
 if (!echt && W10_RE.gesperrt.test(inhalt)) return { z: 'gesperrt', titel: w10T('tGesperrt') };
 if (W10_LIVE.has(id)) {
 const li = [...document.querySelectorAll('#quellen > li')], an = li.filter((x) => x.className !== 'fehlt'), live = an.filter((x) => x.className === 'live');
@@ -13372,7 +13387,7 @@ const titel = w10T('tLive', live.map((x) => x.textContent).join(', ')) + ersatz 
 return { z: t && jetzt - t > 15000 ? 'verzoegert' : 'live', alter: t ? jetzt - t : null, verz: v, titel };
 }
 const st = Number(sec.dataset.qsStand) || 0, t = Math.max(st, W10_ZEIT.get(sec) || 0);
-if (!t) return { z: 'laedt', titel: '' };
+if (!t) return bedienbar ? { z: 'aktuell', titel: '' } : { z: 'laedt', titel: '' };
 if (W10_RE.aus.test(inhalt)) return { z: 'aus', alter: jetzt - t, titel: w10T('tAus') };
 return { z: jetzt - t <= 120000 ? 'aktuell' : 'verzoegert', alter: jetzt - t, titel: w10T('tAlt') };
 }
@@ -13481,7 +13496,7 @@ verz: () => w10VerzJe(), bewegung: () => ({ wahl: W10.bewegung, ruhig: ruhig() }
 var W10_BEREIT = true;
 let W11_LAZY = null;
 function w11Laden() {
-if (!W11_LAZY) W11_LAZY = new Promise((ok, nein) => { if (window.RYVO_W11_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w11.js?v=afcbb62a"; s.onload = ok; s.onerror = () => { W11_LAZY = null; nein(new Error("w11.js")); }; document.head.append(s); })
+if (!W11_LAZY) W11_LAZY = new Promise((ok, nein) => { if (window.RYVO_W11_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w11.js?v=6aff5227"; s.onload = ok; s.onerror = () => { W11_LAZY = null; nein(new Error("w11.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W11_CODE); window.RYVO_W11_CODE = null; return f; });
 return W11_LAZY;
 }
@@ -15624,7 +15639,7 @@ try { return this.fpZeichnen(ctx, K, a, b, Y, xi, cw, d, f, L); } finally { HX.f
 const BH = { r: {}, kurve: null, auk: null, kal: null, sec: null, gl: null, ev: null, zeit: 0, fehler: '', laeuft: false, nr: 0, teile: {}, evPlan: null };
 let W7_LAZY = null, W7_F = null;
 function w7Lazy() {
-if (!W7_LAZY) W7_LAZY = new Promise((ok, nein) => { if (window.RYVO_W7_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w7.js?v=4005dffe"; s.onload = ok; s.onerror = () => { W7_LAZY = null; nein(new Error("w7.js")); }; document.head.append(s); })
+if (!W7_LAZY) W7_LAZY = new Promise((ok, nein) => { if (window.RYVO_W7_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w7.js?v=8ed15975"; s.onload = ok; s.onerror = () => { W7_LAZY = null; nein(new Error("w7.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W7_CODE); window.RYVO_W7_CODE = null; W7_F = f; return f; });
 return W7_LAZY;
 }
@@ -15635,11 +15650,22 @@ function w7Plan() { }
 function w7Vorladen() { if (!W7_LAZY) w7Lazy().then((f) => f.w7Plan()).catch(() => {}); }
 let W13_LAZY = null;
 function w13Lazy() {
-if (!W13_LAZY) W13_LAZY = new Promise((ok, nein) => { if (window.RYVO_W13_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w13.js?v=3cb08549"; s.onload = ok; s.onerror = () => { W13_LAZY = null; nein(new Error("w13.js")); }; document.head.append(s); })
+if (!W13_LAZY) W13_LAZY = new Promise((ok, nein) => { if (window.RYVO_W13_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w13.js?v=7a53ec0b"; s.onload = ok; s.onerror = () => { W13_LAZY = null; nein(new Error("w13.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W13_CODE); window.RYVO_W13_CODE = null; return f; });
 return W13_LAZY;
 }
 function w13Holen() { w13Lazy().then((f) => f.w13Holen()).catch(() => {}); }
+var W16_Z = null;
+function w16HdSigma(c, ctx, K, a, b, Y, xi, cw, d, f, L) { if (W16_Z) W16_Z.sigma(c, ctx, K, a, b, Y, xi, cw, d, f, L); else w16Vorladen(); }
+let W16_LAZY = null;
+function w16Holen() {
+if (!W16_LAZY) W16_LAZY = new Promise((ok, nein) => { if (window.RYVO_W16_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w16.js?v=0f3e659e"; s.onload = ok; s.onerror = () => { W16_LAZY = null; nein(new Error("w16.js")); }; document.head.append(s); })
+.then(() => { const f = eval(window.RYVO_W16_CODE); window.RYVO_W16_CODE = null; return f; });
+return W16_LAZY;
+}
+function w16Vorladen() { w16Holen().then((f) => f.w16Vorladen()).catch(() => {}); }
+function w16Start() { let t = 0; const los = () => { if (!feldInSicht(["stat"])) return; clearInterval(t); w16Holen().then((f) => f.w16Start()).catch(() => { t = setInterval(los, 5000); }); }; t = setInterval(los, 1500); setTimeout(los, 900); }
+var W16_BEREIT = true;
 const BH_KURZ = { zins: 'Fed', inflation: 'CPI', erzeugerpreise: 'PPI', arbeitsmarkt: 'Jobs', pce: 'PCE', wachstum: 'BIP', auktion: 'Auktion', ezb: 'EZB' };
 function bhMarken(markt) {
 const l = [];
@@ -15688,6 +15714,7 @@ w10Start();
 w11Start();
 w14Start();
 w12Start();
+w16Start();
 
 /*BEFEHL-KERN-ANFANG*/
 const BEF_REG = [
@@ -15722,6 +15749,8 @@ const BEF_REG = [
 { id: 'meld', k: ['MELD', 'MELDUNGEN'], e: ['LIST', 'LISTINGS'], n: 'Meldungen', s: 'Börsen-Meldungen: Listungen und Delistings', b: 'MELD', feld: 'meldungen', g: 'news' },
 { id: 'lage', k: ['LAGE', 'LAGEBILD'], e: ['BRIEF', 'BRIEFING'], n: 'Lagebild', s: 'Lagebild: alles Wichtige in einer Ansicht', b: 'LAGE ETH', feld: 'bericht', hd: 'lage', g: 'news' },
 { id: 'analyse', k: ['ANALYSE', 'TA'], e: ['ANALYSIS', 'AUTO'], n: 'Analyse', s: 'Automatische Analyse in Klartext', b: 'BTC ANALYSE', feld: 'analyse', hd: 'analyse', g: 'news' },
+{ id: 'statistik', k: ['STATISTIK', 'GEGENPROBE'], e: ['STATISTICS', 'CONTROLTEST'], n: 'Statistik mit Gegenprobe', s: 'Hoch/Tief-Uhr, Zonen-Prüfstand gegen Zufallszonen, Volumen-Grat, Vola-Karte', b: 'STATISTIK', feld: 'stat', g: 'eb' },
+{ id: 'zonentest', k: ['ZONENTEST', 'PRUEFSTAND'], e: ['ZONETEST', 'ZONECHECK'], n: 'Zonen-Prüfstand', s: 'Wie oft Zonen hielten – neben Zufallszonen als Gegenprobe', b: 'BTC ZONENTEST', feld: 'stat', ziel: '#w16-zonen-block', g: 'eb' },
 { id: 'danach', k: ['DANACH', 'RUECKBLICK'], e: ['AFTER', 'REPLAY'], n: 'Was danach', s: 'Was nach Ereignissen passierte (Rückblick)', b: 'DANACH', feld: 'danach', g: 'news' },
 { id: 'umfeld', k: ['UMFELD', 'STIMMUNG', 'COT'], e: ['SENTIMENT', 'CME'], n: 'Umfeld', s: 'Stimmung, Aktien, Gold und CME-Positionen', b: 'UMFELD', feld: 'umfeld', g: 'mak' },
 { id: 'zins', k: ['ZINS', 'ZINSEN', 'KAL'], e: ['RATES', 'CAL', 'CALENDAR'], n: 'Zinsen', s: 'US-Zinsen und Termine', b: 'ZINS', feld: 'makro', g: 'mak' },
@@ -16061,7 +16090,7 @@ const abFelder = () => [...document.querySelectorAll('main.raster > section.feld
 const abSec = (id) => document.querySelector(`main.raster > section.feld.${id}`);
 var AB_BEREIT = false;
 const AB = { id: 'alle', eigen: [], geteilt: null, stufe: lies('stufe') === 'einsteiger' ? 'einsteiger' : 'voll', offen: new Set(), hilfeAuf: new Set(), alleZeigen: false, kleinAuf: new Set() };
-const AB_KLEIN = { scalper: ['heat', 'lkarte'], swing: ['umfeld', 'danach', 'multi'], optionen: ['olab', 'chart'], derivate: ['uebersicht', 'lkarte', 'markt'], onchain: ['lkarte', 'walw'], makro: ['behoerden'], scanner: ['hmap', 'weltm'], einsteiger: ['umfeld'] };
+const AB_KLEIN = { scalper: ['heat', 'lkarte'], swing: ['umfeld', 'danach', 'multi'], optionen: ['olab', 'chart', 'gamma', 'kurve'], derivate: ['uebersicht', 'lkarte', 'markt'], onchain: ['lkarte', 'walw'], makro: ['behoerden', 'geschichte', 'meldungen'], scanner: ['hmap', 'weltm'], einsteiger: ['umfeld'] };
 const W15 = {};
 const abReihe = (a) => { const d = a.f.filter((x) => abSec(x)), k = AB_KLEIN[a.id] || []; return d.filter((x) => !k.includes(x)).concat(d.filter((x) => k.includes(x))); };
 try { const x = JSON.parse(lies('abEigen') || '[]'); if (Array.isArray(x)) AB.eigen = x.map(abPruefen).filter(Boolean).slice(0, 12); } catch (e) {   }
@@ -16584,7 +16613,7 @@ setInterval(navMerken, 700); setTimeout(navMerken, 300);
 }
 let W15_LAZY = null, W15_F = null;
 function w15Lazy() {
-if (!W15_LAZY) W15_LAZY = new Promise((ok, nein) => { if (window.RYVO_W15_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w15.js?v=9c302639"; s.onload = ok; s.onerror = () => { W15_LAZY = null; nein(new Error("w15.js")); }; document.head.append(s); })
+if (!W15_LAZY) W15_LAZY = new Promise((ok, nein) => { if (window.RYVO_W15_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w15.js?v=4ace690f"; s.onload = ok; s.onerror = () => { W15_LAZY = null; nein(new Error("w15.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W15_CODE); window.RYVO_W15_CODE = null; W15_F = f; return f; });
 return W15_LAZY;
 }

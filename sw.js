@@ -2,8 +2,8 @@
 // Hält NUR die eigenen Dateien dieser Seite für den Start ohne Netz bereit (Netz zuerst). Börsen-Antworten und alle fremden Adressen gehen
 // unverändert ans Netz und werden nie gespeichert; ebenso alles außer GET und eigene Pfade, die nicht in der Liste stehen.
 'use strict';
-const STAND = 'ryvo-b9a5c7aecf6d';
-const EIGENE = ["./", "index.html", "manifest.webmanifest", "sprachen/en.js", "sprachen/es.js", "sprachen/fr.js", "sprachen/tr.js", "sprachen/it.js", "sprachen/w5.js", "sprachen/w6.js", "sprachen/w8.js", "sprachen/w9.js", "sprachen/w11.js", "sprachen/w12.js", "sprachen/w7.js", "sprachen/neu.js", "sprachen/w13.js", "sprachen/w14.js", "sprachen/dex.js", "sprachen/w15.js", "schrift/Geist-Variable.woff2", "schrift/GeistMono-Variable.woff2", "symbole/180.png", "symbole/192.png", "symbole/512.png", "symbole/512-maskable.png"];
+const STAND = 'ryvo-519579d173e8';
+const EIGENE = ["./", "index.html", "manifest.webmanifest", "sprachen/en.js", "sprachen/es.js", "sprachen/fr.js", "sprachen/tr.js", "sprachen/it.js", "sprachen/w5.js", "sprachen/w6.js", "sprachen/w8.js", "sprachen/w9.js", "sprachen/w11.js", "sprachen/w12.js", "sprachen/w7.js", "sprachen/neu.js", "sprachen/w13.js", "sprachen/w14.js", "sprachen/dex.js", "sprachen/w15.js", "sprachen/w16.js", "schrift/Geist-Variable.woff2", "schrift/GeistMono-Variable.woff2", "symbole/180.png", "symbole/192.png", "symbole/512.png", "symbole/512-maskable.png"];
 const BASIS = new URL('./', self.location.href);
 const PFADE = new Set(EIGENE.map((x) => new URL(x, BASIS).pathname));
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(STAND).then((c) => Promise.all(EIGENE.map((x) => c.add(new URL(x, BASIS).href).catch(() => null)))).then(() => self.skipWaiting())); });
