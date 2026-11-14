@@ -1,0 +1,154 @@
+{
+ "format": 1,
+ "stand": 1794670200,
+ "recherche_schnitt": 1794670200,
+ "titel": {
+  "de": "Lage-Bericht · Nachmittag 14.11.2026 15:30 UTC",
+  "en": "Situation report · Afternoon 14.11.2026 15:30 UTC"
+ },
+ "abschnitte": [
+  {
+   "id": "lage",
+   "zeilen": [
+    {
+     "id": "lage-1",
+     "text": {
+      "de": "BTC 66.303 $, 24 h −3,9 %, Woche −12,7 %, −17,4 % unter 50-Tage-Mittel.",
+      "en": "BTC $66,303, 24h −3.9%, week −12.7%, −17.4% below the 50-day average."
+     },
+     "quellen": [
+      {
+       "name": "Hyperliquid",
+       "url": "https://app.hyperliquid.xyz/",
+       "zeit": 1794666360,
+       "genau": true
+      }
+     ],
+     "zeit": 1794666360,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-2",
+     "text": {
+      "de": "ETH 1.858 $, Woche −17,3 %.",
+      "en": "ETH $1,858, week −17.3%."
+     },
+     "quellen": [
+      {
+       "name": "Hyperliquid",
+       "url": "https://app.hyperliquid.xyz/",
+       "zeit": 1794666360,
+       "genau": true
+      }
+     ],
+     "zeit": 1794666360,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-3",
+     "text": {
+      "de": "Angst & Gier 13 (Extreme Fear), vor 1 Monat 53.",
+      "en": "Fear & Greed 13 (Extreme Fear), one month ago 53."
+     },
+     "quellen": [
+      {
+       "name": "alternative.me",
+       "url": "https://alternative.me/crypto/fear-and-greed-index/",
+       "zeit": 1794666360,
+       "genau": true
+      }
+     ],
+     "zeit": 1794666360,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-4",
+     "text": {
+      "de": "BTC-ETFs 5 Tage −1,44 Mrd. $, 5 Abflusstage in Folge.",
+      "en": "BTC ETFs 5 days −$1.44 billion, 5 outflow days in a row."
+     },
+     "quellen": [
+      {
+       "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
+       "url": "https://tftc.io/bitcoin-etf-flows",
+       "zeit": 1794666360,
+       "genau": true
+      }
+     ],
+     "zeit": 1794666360,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-5",
+     "text": {
+      "de": "US-Zinsen: 10 Jahre 5,15 %, 2 Jahre 4,88 %.",
+      "en": "US yields: 10 years 5.15%, 2 years 4.88%."
+     },
+     "quellen": [
+      {
+       "name": "U.S. Treasury",
+       "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
+       "zeit": 1794666360,
+       "genau": true
+      }
+     ],
+     "zeit": 1794666360,
+     "schnitt": "vor"
+    }
+   ]
+  },
+  {
+   "id": "termine",
+   "zeilen": [
+    {
+     "id": "termine-1",
+     "text": {
+      "de": "Im Kalender stehen für die nächsten 72 Std. keine großen US-Termine (Inflation, Erzeugerpreise, Arbeitsmarkt, Zinsentscheid, BIP, PCE, große Quartalszahlen).",
+      "en": "The calendar shows no major US events in the next 72 hours (inflation, producer prices, labor market, rate decision, GDP, PCE, major earnings)."
+     },
+     "quellen": [
+      {
+       "name": "Kalender: BLS, Federal Reserve, BEA, SEC",
+       "url": "https://www.bls.gov/schedule/",
+       "zeit": 1791892800,
+       "genau": false
+      }
+     ],
+     "zeit": 1791892800,
+     "schnitt": "vor"
+    }
+   ]
+  },
+  {
+   "id": "entscheidet",
+   "zeilen": [
+    {
+     "id": "entscheidet-1",
+     "text": {
+      "de": "Nvidia-Quartalszahlen (Tag geschätzt aus SEC-Meldungen des Vorjahrs) – 18.11.",
+      "en": "Nvidia quarterly results (date estimated from last year’s SEC filings) – 18.11."
+     },
+     "quellen": [
+      {
+       "name": "SEC EDGAR",
+       "url": "https://www.sec.gov/edgar/search/",
+       "zeit": 1794657600,
+       "genau": false
+      }
+     ],
+     "zeit": 1794657600,
+     "schnitt": "vor",
+     "termin": 1795003200
+    }
+   ]
+  }
+ ],
+ "pflichtsatz": {
+  "de": "Beschreibung der Lage, keine Anlageberatung, keine Prognose, kein Signal.",
+  "en": "A description of the situation – not investment advice, not a forecast, not a signal.",
+  "es": "Descripción de la situación: no es asesoramiento de inversión, ni previsión, ni señal.",
+  "fr": "Description de la situation : ni conseil en investissement, ni prévision, ni signal.",
+  "it": "Descrizione della situazione: non è consulenza finanziaria, né previsione, né segnale.",
+  "tr": "Durumun açıklamasıdır; yatırım tavsiyesi, tahmin veya sinyal değildir."
+ }
+}
