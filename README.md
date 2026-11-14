@@ -15,6 +15,10 @@ Die Seite ist statisch (GitHub Pages). Alle Marktdaten lädt der Browser der Nut
 RugCheck, DexScreener und öffentliche Solana-Knoten). Es gibt keinen eigenen Server, keine Cookies und kein Tracking.
 Einstellungen und Übungskonto bleiben im Browser (localStorage).
 
+Schlagzeilen: Ein Zeitplan-Job (GitHub Actions, `.github/workflows/schlagzeilen.yml`) liest alle 15 Minuten die GDELT Article List
+und legt nur Titel, Quelle und Link als `daten/schlagzeilen.json` neben die Seite – auch dafür gibt es keinen eigenen Server.
+Quelle: GDELT Project, https://www.gdeltproject.org/
+
 ## Wichtig
 
 Nur zum Beobachten und Üben mit Spielgeld. Keine Anlageberatung, keine Anlageempfehlung, keine Kauf- oder

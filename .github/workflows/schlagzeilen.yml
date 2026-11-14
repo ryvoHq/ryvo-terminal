@@ -1,0 +1,68 @@
+# RYVO Terminal Beta – Schlagzeilen-Job (Mios Ja 14.11.2026 14:54). Vorbereitet im Repo trading-bot-suche unter beta-job/;
+# main kopiert beta-job/.github und beta-job/job in das öffentliche Repo ryvo-terminal (Anleitung: release/N1-SCHLAGZEILEN.md).
+#
+# Alle 15 Min.: GDELT Article List (RSS) lesen, filtern, daten/schlagzeilen.json schreiben. Nur Python-Standardbibliothek, keine
+# Geheimnisse (nur das automatische GITHUB_TOKEN des Laufs), nur actions/checkout und actions/setup-python mit fester Commit-Kennung.
+# Commit nur bei geänderter Datei und gedrosselt (≥ 3 neue Titel oder ≥ 60 Min. seit dem letzten Stand, nie öfter als alle 15 Min.) –
+# GitHub Pages hat eine weiche Grenze von 10 Builds je Stunde. Der Zustand (ETag, Backoff, noch nicht veröffentlichte Titel) liegt
+# als ein einziger Commit im Zweig schlagzeilen-zustand; dieser Zweig ist nicht die Pages-Quelle, ein Push dorthin baut die Seite nicht.
+name: Schlagzeilen (GDELT, alle 15 Min.)
+
+on:
+  schedule:
+    - cron: '5,20,35,50 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: schlagzeilen
+  cancel-in-progress: false
+
+jobs:
+  schlagzeilen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Repo holen
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: '3.12'
+
+      - name: Zustand holen
+        run: |
+          mkdir -p "$RUNNER_TEMP/zustand"
+          if git fetch -q --depth 1 origin schlagzeilen-zustand 2>/dev/null; then
+            git show FETCH_HEAD:zustand.json > "$RUNNER_TEMP/zustand/zustand.json" || rm -f "$RUNNER_TEMP/zustand/zustand.json"
+          fi
+
+      - name: Schlagzeilen holen und filtern
+        id: job
+        run: python3 job/schlagzeilen.py --ausgabe daten/schlagzeilen.json --zustand "$RUNNER_TEMP/zustand/zustand.json"
+
+      - name: Commit (nur bei Änderung, gedrosselt)
+        if: steps.job.outputs.commit == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add daten/schlagzeilen.json
+          if git diff --cached --quiet; then echo 'keine Änderung'; exit 0; fi
+          git commit -q -m "Schlagzeilen: ${{ steps.job.outputs.neu }} neu, ${{ steps.job.outputs.eintraege }} gesamt (GDELT Project)"
+          git pull -q --rebase origin "$GITHUB_REF_NAME"
+          git push -q origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Zustand sichern (ein Commit, Zweig schlagzeilen-zustand)
+        if: always() && steps.job.outcome == 'success'
+        run: |
+          blob=$(git hash-object -w "$RUNNER_TEMP/zustand/zustand.json")
+          baum=$(printf '100644 blob %s\tzustand.json\n' "$blob" | git mktree)
+          stand=$(GIT_AUTHOR_NAME='github-actions[bot]' GIT_AUTHOR_EMAIL='41898282+github-actions[bot]@users.noreply.github.com' \
+                  GIT_COMMITTER_NAME='github-actions[bot]' GIT_COMMITTER_EMAIL='41898282+github-actions[bot]@users.noreply.github.com' \
+                  git commit-tree "$baum" -m 'Zustand Schlagzeilen-Job')
+          git push -q --force origin "$stand:refs/heads/schlagzeilen-zustand"
