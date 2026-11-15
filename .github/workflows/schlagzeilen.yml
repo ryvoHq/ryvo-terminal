@@ -6,7 +6,7 @@
 # Commit nur bei geänderter Datei und gedrosselt (≥ 3 neue Titel oder ≥ 60 Min. seit dem letzten Stand, nie öfter als alle 15 Min.) –
 # GitHub Pages hat eine weiche Grenze von 10 Builds je Stunde. Der Zustand (ETag, Backoff, noch nicht veröffentlichte Titel) liegt
 # als ein einziger Commit im Zweig schlagzeilen-zustand; dieser Zweig ist nicht die Pages-Quelle, ein Push dorthin baut die Seite nicht.
-name: Schlagzeilen (GDELT, alle 15 Min.)
+name: Schlagzeilen (GDELT, etwa stündlich)
 
 on:
   schedule:

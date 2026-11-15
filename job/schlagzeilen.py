@@ -81,6 +81,7 @@ _NICHT_EN_BETA = {'dalam', 'dan', 'yang', 'untuk', 'dengan', 'perlu', 'ini', 'it
                   'aktie', 'aktien', 'meldung', 'eingereicht', 'kurs', 'anleger', 'börse',                                           # Deutsch, ohne Funktionswort
                   'och', 'att', 'för', 'og', 'til', 'ikke', 'wa', 'ya', 'kwa', 'na'}                                                  # Skandinavisch, Swahili
 _KRYPTON = re.compile(r'\bkrypton\w*', re.I)
+_CFTC_FREMD = re.compile(r'Competition and Fair Trading|\bMalawi', re.I)   # N2 (15.11.): CFTC in Malawi = Wettbewerbsbehörde, nicht die US-Aufsicht
 _REGULAT = re.compile(r'\bregulat\w+\b', re.I)
 
 
@@ -90,7 +91,8 @@ def themen_zuordnen(titel, host=''):
     coins, markt = F.coins_zuordnen(t, host)
     ohne_krypton = _KRYPTON.sub(' ', t)                                     # „Krypton“ (Superman) passt sonst auf krypto\w*
     krypto = bool(F.GAL_SUCHE.search(ohne_krypton)) and bool(coins or markt or F.KRYPTO.search(ohne_krypton))    # wie am Mac: GAL_SUCHE + Krypto-Bezug
-    gef = {name for name, muster in THEMEN.items() if any(m.search(t) for m in muster)}
+    t_reg = re.sub(r'\bCFTC\b', ' ', t) if _CFTC_FREMD.search(t + ' ' + str(host or '')) else t
+    gef = {name for name, muster in THEMEN.items() if any(m.search(t_reg if name == 'regulierung' else t) for m in muster)}
     if krypto:
         gef.add('krypto')
     if _REGULAT.search(t) and (krypto or _FINANZ.search(t)):
