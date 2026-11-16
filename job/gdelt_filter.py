@@ -1,8 +1,9 @@
 """GDELT-Schlagzeilen-Filter – AUTOMATISCH ERZEUGT, nicht von Hand ändern.
 
 Quelle: Repo trading-bot-suche, deep/sammler/nachrichten.py (+ trader/nachrichten.py, labor/nachrichten/wache.py),
-gebaut mit `python3 -m deep.teilen.schlagzeilen_filter`. Dieselben Regeln wie der Mac-Sammler: Werbung/Glücksspiel/Artikel-Fabriken
-weg, CoinDesk/Cointelegraph/Decrypt gesperrt, Sprache aus dem Titel, Coins nur bei eindeutigem Krypto-Bezug. Nur Standardbibliothek.
+gebaut mit `python3 -m deep.teilen.schlagzeilen_filter`. Dieselben Regeln wie der Mac-Sammler: Werbung/Glücksspiel/Artikel-Fabriken/Pressemitteilungen
+weg, CoinDesk/Cointelegraph/Decrypt gesperrt, Sprache aus dem Titel, Coins nur bei eindeutigem Krypto-Bezug; r155 dazu Positivliste der Medien,
+alte Artikel (Jahr in Titel/Adresse, 3 Tage) und Rubrik-/Listen-Seiten. Nur Standardbibliothek.
 """
 from __future__ import annotations
 
@@ -15,7 +16,7 @@ from urllib.parse import urlparse, urlsplit
 
 
 TAG = 86400
-SCHLAGZEILE_TAGE = 7
+SCHLAGZEILE_TAGE = 3
 GESPERRT = ('coindesk.com', 'cointelegraph.com', 'decrypt.co')
 NAMEN = {'AAVE': 'Aave', 'ADA': 'Cardano', 'ALGO': 'Algorand', 'APT': 'Aptos', 'ARB': 'Arbitrum', 'ASTER': 'Aster', 'ATOM': 'Cosmos', 'AVAX': 'Avalanche', 'BCH': 'Bitcoin Cash', 'BNB': 'BNB', 'BOME': 'Book of Meme', 'BONK': 'Bonk', 'BTC': 'Bitcoin', 'CC': 'Canton Network', 'DOGE': 'Dogecoin', 'DOT': 'Polkadot', 'ENA': 'Ethena', 'ETH': 'Ethereum', 'FET': 'Fetch.ai', 'FIL': 'Filecoin', 'GRASS': 'Grass', 'HBAR': 'Hedera', 'HYPE': 'Hyperliquid', 'ICP': 'Internet Computer', 'INJ': 'Injective', 'JUP': 'Jupiter', 'LINK': 'Chainlink', 'LTC': 'Litecoin', 'MON': 'Monad', 'MORPHO': 'Morpho', 'NEAR': 'NEAR Protocol', 'NIGHT': 'Midnight', 'OKB': 'OKB', 'ONDO': 'Ondo Finance', 'OP': 'Optimism', 'PENGU': 'Pudgy Penguins', 'PEPE': 'Pepe', 'PUMP': 'Pump.fun', 'RAY': 'Raydium', 'RENDER': 'Render', 'SOL': 'Solana', 'STRK': 'Starknet', 'STX': 'Stacks', 'SUI': 'Sui', 'TAO': 'Bittensor', 'TIA': 'Celestia', 'TRUMP': 'Official Trump', 'TRX': 'Tron', 'UNI': 'Uniswap', 'VIRTUAL': 'Virtuals Protocol', 'WLD': 'Worldcoin', 'XLM': 'Stellar', 'XPL': 'Plasma', 'XRP': 'XRP', 'ZEC': 'Zcash', 'ZRO': 'LayerZero'}
 ALIAS = {'ETH': ('Ether',)}
@@ -23,12 +24,13 @@ NICHT_KUERZEL = {'AI', 'AND', 'API', 'BTC', 'CEO', 'ETF', 'ETFS', 'EU', 'EUR', '
 GAL_SUCHE = re.compile('\\b(bitcoin|btc|ethereum|ether|crypto\\w*|cryptocurrenc\\w*|krypto(?!n(?:it|ian|\\b))\\w*|stablecoins?|solana|xrp|ripple|dogecoin|tether|usdc|blockchains?|altcoins?|memecoins?|defi|web3|binance|coinbase|spot\\s+etfs?)\\b', re.I)
 FABRIK_HOST = ('dailypolitical.com', 'tickerreport.com', 'themarketsdaily.com', 'etfdailynews.com', 'thelincolnianonline.com', 'modernreaders.com', 'americanbankingnews.com', 'wkrb13.com', 'thecerbatgem.com', 'theenterpriseleader.com', 'zolmax.com', 'dispatchtribunal.com', 'com-unik.info', 'transcriptdaily.com', 'marketbeat.com', 'thestockobserver.com', 'tickerdaily.com', 'rivertonroll.com', 'thewellesleysnews.com', 'baseballnewssource.com', 'stocknewstimes.com', 'financial-market-news.com')
 _EN = {'a', 'after', 'amid', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'could', 'for', 'from', 'has', 'her', 'his', 'how', 'in', 'into', 'is', 'its', 'may', 'new', 'of', 'on', 'over', 'says', 'than', 'the', 'this', 'to', 'was', 'what', 'why', 'will', 'with'}
-_NICHT_EN = {'achter', 'auch', 'auf', 'avec', 'bedrijf', 'bij', 'bir', 'boekt', 'che', 'com', 'como', 'dankzij', 'dans', 'das', 'del', 'della', 'der', 'des', 'deze', 'di', 'die', 'dit', 'door', 'dopo', 'een', 'ein', 'eine', 'el', 'em', 'est', 'hebben', 'heeft', 'het', 'icin', 'il', 'ile', 'ist', 'jetzt', 'kan', 'koers', 'la', 'las', 'le', 'les', 'los', 'maar', 'meer', 'mit', 'naar', 'nao', 'nel', 'nicht', 'niet', 'nog', 'och', 'ook', 'para', 'per', 'por', 'pour', 'que', 'sich', 'sobre', 'som', 'sono', 'sous', 'sur', 'tegen', 'tras', 'una', 'und', 'une', 'unter', 'van', 'voor', 'werd', 'wie', 'winst', 'wird', 'wordt', 'zal', 'zijn'}
+_NICHT_EN = {'achter', 'auch', 'auf', 'avec', 'bedrijf', 'bij', 'bir', 'boekt', 'che', 'com', 'como', 'dankzij', 'dans', 'das', 'dat', 'del', 'della', 'der', 'des', 'deze', 'di', 'die', 'directielid', 'dit', 'door', 'dopo', 'een', 'ein', 'eine', 'el', 'em', 'est', 'geen', 'hebben', 'heeft', 'het', 'hun', 'icin', 'il', 'ile', 'ist', 'jaar', 'jetzt', 'kan', 'koers', 'la', 'las', 'le', 'les', 'los', 'maar', 'mag', 'meer', 'mit', 'moet', 'naar', 'nao', 'nel', 'nicht', 'niet', 'nieuwe', 'nog', 'och', 'ons', 'onze', 'ook', 'para', 'per', 'por', 'pour', 'que', 'sich', 'sobre', 'som', 'sono', 'sous', 'sur', 'tegen', 'tras', 'una', 'und', 'une', 'unter', 'van', 'voor', 'wel', 'werd', 'wie', 'wij', 'winst', 'wird', 'wordt', 'zal', 'zeggen', 'zegt', 'zijn'}
 _DE = {'anleger', 'auch', 'auf', 'aus', 'bei', 'bitcoin-kurs', 'börse', 'das', 'dem', 'den', 'der', 'des', 'die', 'droht', 'ein', 'eine', 'einen', 'fällt', 'für', 'gegen', 'im', 'ist', 'jetzt', 'kurs', 'kurse', 'milliarden', 'millionen', 'mit', 'nach', 'neue', 'neuer', 'neues', 'nicht', 'noch', 'oder', 'schon', 'sich', 'sinkt', 'steigt', 'und', 'vom', 'von', 'wegen', 'wie', 'wird', 'zum', 'zur', 'über'}
 _DE_BUCHST = {'Ä', 'Ö', 'Ü', 'ß', 'ä', 'ö', 'ü'}
 KRYPTO = re.compile('\\b(crypto\\w*|krypto(?!n(?:it|ian|\\b))\\w*|binance|coinbase|bybit|meme-?coins?|digital[- ]assets?|stablecoins?|bitcoin|ether(eum)?|blockchain|tokens?|tokeni[sz]\\w*|DLT|virtual assets?|MiCA|DeFi|web3|NFTs?|digital euro|CBDC)\\b', re.I)
 WERBUNG = re.compile('\\b(?:casinos?|kasinos?|cas[ií]nos?|cassinos?|spielbank\\w*|spielhalle\\w*|gambl(?:e|es|ed|er|ers|ing)|i-?gaming|gl[üu]cksspiel\\w*|sportsbooks?|bookmakers?|bookies?|buchmacher\\w*|wettanbieter\\w*|sportwetten|wettb[üu]ro\\w*|betting|bettors?|online[\\s-]+slots?|slots?[\\s-]+(?:games?|sites?|machines?|online|bonus\\w*)|slot[\\s-]+machines?|spielautomat\\w*|tragamonedas|tragaperras|machines?\\s+[àa]\\s+sous|poker|roulette|blackjack|baccarat|jackpots?|lotter(?:y|ies)|lotto|apuestas?|casas?\\s+de\\s+apuestas|paris\\s+sportifs|scommess[ae]|apostas?|weddenschap\\w*|gokken|bet365|1xbet|betway|betfair|betmgm|draftkings|fanduel|roobet|cloudbet|bitstarz|bc\\.game|stake\\.(?:com|us)|rollbit|free\\s*spins?|freispiele|giros\\s+gratis|tours\\s+gratuits|giri\\s+gratis|rodadas\\s+gr[áa]tis|no[\\s-]deposit|(?:deposit|welcome|sign[\\s-]?up|signup|reload|casino)\\s+bonus(?:es)?|(?:bonus|promo(?:tional)?|coupon|referral|voucher)\\s+codes?|bonuscodes?|gutscheincodes?|c[óo]digos?\\s+promocionale?s?|codes?\\s+promo|codice\\s+promo\\w*|sponsored|advertorial|paid\\s+(?:post|content|partnership|promotion)|werbung|publicidad|publireportage|pre-?sales?|\\d{3,4}x|\\d{2}x\\s+(?:gains?|potential|returns?)|to\\s+buy\\s+(?:now|today|this\\s+week)|(?:best|top)\\s+(?:\\w+\\s+){0,3}(?:to\\s+buy|presales?)|giveaways?|kaufen\\s+f[üu]r\\s+anf[äa]nger|schritt[\\s-]+f[üu]r[\\s-]+schritt|anleitung|ratgeber|so\\s+kaufen\\s+sie|jetzt\\s+kaufen|kaufen\\s+oder\\s+nicht)\\b', re.I)
 WERBUNG_HOST = ('casino', 'gambl', 'poker', 'sportsbook', 'betting', 'bookmaker', 'slots', 'lotto', 'lottery', 'freespin', 'bonus')
+PRESSE_HOST = ('openpr.com', 'prnewswire.com', 'globenewswire.com', 'einpresswire.com', 'accessnewswire.com', 'newsfilecorp.com', 'businesswire.com', 'prweb.com', 'newswire.com', 'issuewire.com', 'prlog.org', 'markets.financialcontent.com')
 STELLEN = re.compile('\\b(?:vacanc(?:y|ies)|job (?:vacanc\\w*|openings? at|adverts?|advertisement|offer)|jobs? at|now hiring|is hiring|we are hiring|apply now|internship at)\\b|^\\s*(?:[\\w&/().-]+\\s+){0,3}(?:officers?|analysts?|economists?|accountants?|assistants?|clerks?|drivers?|interns?|secretar(?:y|ies)|coordinators?|managers?|specialists?)\\s+(?:job\\s+)?at\\b(?!.*\\b(?:says?|said|sees?|expects?|warns?|predicts?|thinks?|believes?|calls?|told|according)\\b)', re.I)
 STELLEN_HOST = ('malawi24.com', 'job', 'career', 'vacanc', 'recruit')
 RUBRIK = re.compile("\\bon [\\w .&,'’-]{2,60}['’]s? site\\s*$", re.I)
@@ -42,6 +44,13 @@ MEINUNG = re.compile("\\b(?:price\\s+predictions?|predictions?|forecasts?|progno
 _MONATE_KURZ = {'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6, 'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12}
 _MONATE_DE = {'januar': 1, 'februar': 2, 'märz': 3, 'april': 4, 'mai': 5, 'juni': 6, 'juli': 7, 'august': 8, 'september': 9, 'oktober': 10, 'november': 11, 'dezember': 12}
 _KUERZEL = re.compile('\\$([A-Z][A-Z0-9]{1,9})\\b|\\(([A-Z][A-Z0-9]{1,9})\\)')
+_JAHR_TITEL = re.compile('(?<![\\w$€£.,/-])((?:19[5-9]|20\\d)\\d)(?![\\w%.,/-]|\\.\\d)')
+_JAHR_AUSNAHME = re.compile('\\b(?:since|than|from|before|until|till|vs\\.?|versus|seit|als|gegenüber|record set in)\\s+(?:early\\s+|late\\s+|mid-?)?$', re.I)
+_JAHR_PFAD = re.compile('(?:^|/)((?:19[5-9]|20\\d)\\d)(?:/(?:0?[1-9]|1[0-2])(?=/|$)|(?=/|$))|(?<!\\d)((?:19[5-9]|20\\d)\\d)[-_]?(0[1-9]|1[0-2])[-_]?([0-3]\\d)(?!\\d)')
+LISTE_TITEL = re.compile('\\|\\s*Latest\\b|\\bNews Today\\b|\\bReports and Video\\b|\\bCourses?\\b|\\bPrix\\b|\\bCours\\b|\\bLatest (?:News|Headlines|Updates|Stories)\\b|\\bNews,? (?:Analysis|Videos?|Photos)\\b|\\bBreaking News\\s*[|:–-]|\\bArchives?\\s*$|\\bTopics?\\s*$|\\bLive (?:Prices?|Charts?|Rates?)\\b|\\bPrice (?:Today|Chart|Index)\\b|\\b(?:Kurs|Preis) (?:aktuell|heute)\\b|\\bNachrichten (?:und|&) (?:Analysen|Videos?)\\b|^\\s*[\\w&,. ]{3,40}\\s+[-–|]\\s+(?:Wealth|Markets?|Business|Economy|Money|Finance|News)\\s*$', re.I)
+LISTE_ABSCHNITT = {'author', 'authors', 'autor', 'categories', 'category', 'cours', 'courses', 'dossier', 'h', 'hub', 'kategorie', 'kurs', 'kurse', 'prix', 'quote', 'quotes', 'schlagworte', 'search', 'section', 'sections', 'suche', 'tag', 'tags', 'thema', 'themen', 'topic', 'topics'}
+SERIOES_HOST = ('reuters.com', 'apnews.com', 'cnbc.com', 'marketwatch.com', 'fortune.com', 'businessinsider.com', 'barrons.com', 'ft.com', 'wsj.com', 'bloomberg.com', 'axios.com', 'yahoo.com', 'nytimes.com', 'washingtonpost.com', 'economist.com', 'morningstar.com', 'npr.org', 'abcnews.com', 'abcnews.go.com', 'cbsnews.com', 'nbcnews.com', 'cnn.com', 'politico.com', 'politico.eu', 'upi.com', 'kitco.com', 'spglobal.com', 'rigzone.com', 'foxbusiness.com', 'usatoday.com', 'usnews.com', 'voanews.com', 'pbs.org', 'latimes.com', 'seattletimes.com', 'startribune.com', 'chicagotribune.com', 'bostonglobe.com', 'sfchronicle.com', 'houstonchronicle.com', 'dallasnews.com', 'denverpost.com', 'miamiherald.com', 'tampabay.com', 'wtop.com', 'theblock.co', 'bitcoinmagazine.com', 'blockworks.co', 'dlnews.com', 'bbc.com', 'bbc.co.uk', 'theguardian.com', 'irishtimes.com', 'rte.ie', 'independent.co.uk', 'independent.ie', 'telegraph.co.uk', 'thetimes.co.uk', 'cityam.com', 'news.sky.com', 'euronews.com', 'dw.com', 'france24.com', 'swissinfo.ch', 'lemonde.fr', 'asia.nikkei.com', 'scmp.com', 'japantimes.co.jp', 'straitstimes.com', 'businesstimes.com.sg', 'channelnewsasia.com', 'economictimes.indiatimes.com', 'livemint.com', 'thehindubusinessline.com', 'business-standard.com', 'abc.net.au', 'afr.com', 'smh.com.au', 'hindustantimes.com', 'thehindu.com', 'moneycontrol.com', 'financialexpress.com', 'koreaherald.com', 'koreatimes.co.kr', 'japantoday.com', 'businesstoday.in', 'tribune.com.pk', 'dawn.com', 'bangkokpost.com', 'thestar.com.my', 'theedgemalaysia.com', 'inquirer.net', 'nzherald.co.nz', 'rnz.co.nz', 'news.com.au', 'theaustralian.com.au', 'aljazeera.com', 'thenationalnews.com', 'arabnews.com', 'gulfnews.com', 'khaleejtimes.com', 'zawya.com', 'businesslive.co.za', 'theglobeandmail.com', 'cbc.ca', 'financialpost.com', 'bnnbloomberg.ca', 'thestar.com', 'globalnews.ca', 'ctvnews.ca', 'handelsblatt.com', 'faz.net', 'spiegel.de', 'tagesschau.de', 'zeit.de', 'sueddeutsche.de', 'wiwo.de', 'manager-magazin.de', 'boerse-zeitung.de', 'n-tv.de', 'deutschlandfunk.de')
+DEUTSCH_HOST = ('handelsblatt.com', 'faz.net', 'spiegel.de', 'tagesschau.de', 'zeit.de', 'sueddeutsche.de', 'wiwo.de', 'manager-magazin.de', 'boerse-zeitung.de', 'n-tv.de', 'deutschlandfunk.de', 'dw.com')
 
 
 def gesperrt(url, quelle=''):
@@ -78,6 +87,9 @@ def werbung(titel, url='', medium=''):
     for w in WERBUNG_HOST:
         if w in host:
             return 'Medium: ' + w
+    for w in PRESSE_HOST:
+        if _host_passt(host.split(' ')[0], (w,)) or _host_passt(host.split(' ')[-1], (w,)):
+            return 'Medium: Pressemitteilung ' + w
     if re.search(r'(?:^|[.\-\s])bets?(?:[.\-]|$)', host):
         return 'Medium: bet'
     m = STELLEN.search(str(titel or ''))
@@ -141,13 +153,56 @@ def titel_datum(titel):
             dazu(j, m, d)
     return aus
 
-def zu_alt(titel, zeit, jetzt, tage=SCHLAGZEILE_TAGE):
-    """Schlagzeile älter als `tage`: Veröffentlichung oder (alle Lesarten) Datum im Titel."""
+def zu_alt(titel, zeit, jetzt, tage=SCHLAGZEILE_TAGE, url=''):
+    """Schlagzeile älter als `tage`: Veröffentlichung oder (alle Lesarten) Datum im Titel – r155 auch ein vergangenes Jahr in Titel oder Adresse."""
     grenze = jetzt - tage * TAG
     if zeit and zeit < grenze:
         return True
     d = titel_datum(titel)
-    return bool(d) and max(d) < grenze - TAG
+    return (bool(d) and max(d) < grenze - TAG) or altes_jahr(titel, url, jetzt)
+
+def altes_jahr(titel, url, jetzt):
+    """True, wenn Titel oder Adresse ein Jahr vor dem laufenden nennt (siehe oben)."""
+    g = time.gmtime(jetzt)
+    t = str(titel or '')
+    for m in _JAHR_TITEL.finditer(t):
+        j = int(m.group(1))
+        if j >= g.tm_year or _JAHR_AUSNAHME.search(t[:m.start()]):
+            continue
+        if j == g.tm_year - 1 and g.tm_mon == 1 and g.tm_mday <= 15:
+            continue
+        return True
+    pfad = urlsplit(str(url or '')).path or ''
+    for m in _JAHR_PFAD.finditer(pfad):
+        j = int(m.group(1) or m.group(2))
+        if j < g.tm_year and not (j == g.tm_year - 1 and g.tm_mon == 1 and g.tm_mday <= 15):
+            return True
+    return False
+
+def listenseite(titel, url='', streng=True):
+    """True, wenn Titel oder Adresse eine Rubrik-, Listen-, Kurs- oder Kursangebots-Seite zeigt (keine einzelne Nachricht).
+    streng=False (Mac, nur Krypto-Titel): ohne die Regel „kurzer Pfad ohne Ziffern“ – nur Titel-Muster und Rubrik-Abschnitte."""
+    if LISTE_TITEL.search(str(titel or '')):
+        return True
+    pfad = (urlsplit(str(url or '')).path or '').strip('/')
+    teile = [x for x in pfad.split('/') if x]
+    if not teile:
+        return streng
+    if any(x.lower() in LISTE_ABSCHNITT for x in teile[:-1]) or (len(teile) == 1 and teile[0].lower() in LISTE_ABSCHNITT):
+        return True
+    if not streng:
+        return False
+    letzter = re.sub(r'\.(?:html?|php|aspx?|ece|cms)$', '', teile[-1], flags=re.I)
+    return not re.search(r'\d', pfad) and len(teile) <= 2 and len([w for w in re.split(r'[-+_]', letzter) if w]) <= 3
+
+def _host_passt(host, liste):
+    h = str(host or '').lower().split(':')[0]
+    h = h[4:] if h.startswith('www.') else h
+    return any(h == d or h.endswith('.' + d) for d in liste)
+
+def serioes(url, medium=''):
+    """True, wenn das Medium auf der Positivliste steht (Host der Adresse oder angegebenes Medium)."""
+    return _host_passt(urlsplit(str(url or '')).hostname or medium, SERIOES_HOST)
 
 def sprache(titel):
     """'English', 'Deutsch' oder None (andere Sprache) – grob aus Schrift und kleinen Wörtern (Article-List-RSS hat keine Sprachangabe)."""
@@ -159,7 +214,8 @@ def sprache(titel):
     de, en = len(woerter & _DE), len(woerter & _EN)
     if all(c.isascii() or c in _DE_BUCHST for c in buchst) and de >= 1 and de > en:
         return 'Deutsch'
-    if all(c.isascii() for c in buchst) and (woerter & _EN or not (woerter & _NICHT_EN)):
+    fremd = woerter & _NICHT_EN
+    if all(c.isascii() for c in buchst) and (woerter & _EN or not fremd) and not (len(fremd) >= 2 and len(fremd) >= len(woerter & _EN)):   # r155
         return 'English'
     return None
 

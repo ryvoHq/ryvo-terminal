@@ -1,4 +1,13 @@
-"""Schlagzeilen für die RYVO-Terminal-Beta (Zeitplan-Job, alle 15 Min.; Mios Ja 14.11.2026 14:54).
+"""Schlagzeilen für die RYVO-Terminal-Beta (Zeitplan-Job, mehrmals täglich; Mios Ja 14.11.2026 14:54; r155 Behörden + Positivliste).
+
+r155 (Abnahme A16, B1 „Wortfilter allein reichen nicht“): Zwei Quellen.
+  1. **Behörden** (amtlich, zuerst): Pressemitteilungen von Federal Reserve, SEC, CFTC, BEA und EZB als RSS – nur Titel, Link, Quelle, Zeit
+     (Rechte: release/DATENRECHTE.md, Abschnitt „R13“). BLS nur, wenn eine Kontaktadresse in RYVO_KONTAKT steht (die BLS lehnt Skripte ohne
+     Kontakt im User-Agent ab). Je Quelle ein Abruf je Lauf mit ETag/If-Modified-Since, eigener Backoff. In der Oberfläche: Filter „Behörden“.
+  2. **GDELT** nur noch von einer Positivliste seriöser Wirtschafts- und Nachrichtenmedien (SERIOES_HOST aus deep/sammler/nachrichten.py); dazu
+     Themen nur mit Kontext (Fed nicht „fed her“, SEC nicht als Sportliga, „crude“ nur mit oil/Brent/WTI), alte Artikel (Jahr in Titel/Adresse,
+     älter als 3 Tage), Rubrik-/Listen-/Kursseiten und fremde Sprachen raus. Englisch; Deutsch nur von deutschen Medien der Liste.
+  Bei jedem Lauf wird auch der Bestand mit den aktuellen Regeln neu geprüft – eine Filter-Änderung räumt die Datei sofort auf.
 
 Liest die GDELT Article List (RSS, https://data.gdeltproject.org/gdeltv3/gal/feed.rss – ein GDELT-Datensatz, „unlimited and
 unrestricted use“ mit Quellenangabe und Link, https://www.gdeltproject.org/about.html) und schreibt daten/schlagzeilen.json neben
@@ -16,7 +25,10 @@ UND (mindestens 3 neue Titel ODER mindestens 60 Min. seit dem letzten Stand) –
 bleibt im Zustand (eigener Zweig, kein Pages-Build) und erscheint beim nächsten Commit. Ein Lauf ohne Änderung erzeugt genau dieselbe
 Datei (stabile Sortierung, `stand` = Zeit der letzten Inhaltsänderung).
 
-Aufruf: python3 job/schlagzeilen.py --ausgabe daten/schlagzeilen.json --zustand <zustand.json> [--rss <datei>] [--jetzt <unix>]
+Aufruf: python3 job/schlagzeilen.py --ausgabe daten/schlagzeilen.json --zustand <zustand.json> [--rss <datei>] [--amtlich id=datei,…] [--jetzt <unix>]
+Herzschlag (r155): Spätestens 2 Std. 30 Min. nach dem letzten Stand wird auch ohne Inhaltsänderung committet (`stand` = jetzt), damit die Datei
+in der Oberfläche nie „veraltet“ (ab 4 Std.) zeigt, solange der Job läuft.
+
 Ausgabe: eine Zeile „commit=true|false …“, dazu commit=… in $GITHUB_OUTPUT. Nur Python-Standardbibliothek (3.9+).
 """
 from __future__ import annotations
@@ -38,8 +50,26 @@ import gdelt_filter as F  # noqa: E402
 
 GAL = 'https://data.gdeltproject.org/gdeltv3/gal/feed.rss'
 GAL_MINUTE = 'https://data.gdeltproject.org/gdeltv3/gal/{}.gal.json.gz'
-UA = 'RYVO-Terminal-Beta-Schlagzeilen/1.0 (+https://ryvohq.github.io/ryvo-terminal/; GitHub Actions, alle 15 Min.)'
-QUELLE_SATZ = 'Schlagzeilen: GDELT Project, https://www.gdeltproject.org/ – nur Titel und Link'
+KONTAKT = re.sub(r'[^\w@.+:/ -]', '', os.environ.get('RYVO_KONTAKT', ''))[:80].strip()      # optional (Repo-Variable), nie geraten
+UA = 'RYVO-Terminal-Beta-Schlagzeilen/1.1 (+https://ryvohq.github.io/ryvo-terminal/; GitHub Actions, mehrmals täglich' + ('; ' + KONTAKT if KONTAKT else '') + ')'
+QUELLE_SATZ = 'Schlagzeilen: GDELT Project, https://www.gdeltproject.org/ – nur Titel und Link · Behörden: amtliche Pressemitteilungen (Titel und Link)'
+# r155: amtliche Feeds (id, Anzeige-Name, Adresse, braucht Kontakt im User-Agent). Rechte und Prüfdatum: release/DATENRECHTE.md („R13“).
+# Nicht dabei: US Treasury – home.treasury.gov bietet keinen Feed der Pressemitteilungen (rss.xml enthält nur Programm-Seiten, 15.11.2026 geprüft).
+AMTLICH = (
+    ('fed', 'Federal Reserve', 'https://www.federalreserve.gov/feeds/press_all.xml', 'federalreserve.gov', False),
+    ('fed-reden', 'Federal Reserve', 'https://www.federalreserve.gov/feeds/speeches.xml', 'federalreserve.gov', False),
+    ('sec', 'SEC', 'https://www.sec.gov/news/pressreleases.rss', 'sec.gov', False),
+    ('sec-erklaerungen', 'SEC', 'https://www.sec.gov/news/statements.rss', 'sec.gov', False),
+    ('cftc', 'CFTC', 'https://www.cftc.gov/RSS/RSSGP/rssgp.xml', 'cftc.gov', False),
+    ('cftc-durchsetzung', 'CFTC', 'https://www.cftc.gov/RSS/RSSENF/rssenf.xml', 'cftc.gov', False),
+    ('bea', 'BEA', 'https://apps.bea.gov/rss/rss.xml', 'bea.gov', False),
+    ('ezb', 'EZB', 'https://www.ecb.europa.eu/rss/press.html', 'ecb.europa.eu', False),
+    ('bls', 'BLS', 'https://www.bls.gov/feed/bls_latest.rss', 'bls.gov', True),
+)
+AMTLICH_HOST = {q: h for q, _n, _u, h, _k in AMTLICH}
+AMTLICH_FENSTER = 3 * 24 * 3600     # amtliche Mitteilungen bis 3 Tage (am Wochenende veröffentlicht keine Behörde)
+AMTLICH_MAX = 20
+HERZSCHLAG = 9000                   # 2 Std. 30 Min.: die Oberfläche nennt die Datei ab 4 Std. „veraltet“ (main stößt alle 3 Std. an)
 MAX_EINTRAEGE = 80
 FENSTER = 24 * 3600
 GESEHEN_MERKEN = 48 * 3600
@@ -48,32 +78,53 @@ NACHHOLEN_MAX_S, NACHHOLEN_MAX_ABRUFE = 2 * 3600, 24
 COMMIT_NEU, COMMIT_ABSTAND, COMMIT_MIN = 3, 3600, 900
 STOERUNG_MELDEN = 1800          # erst nach 30 Min. Störung steht ein Satz in `fehler` (ein einzelner 429 ist noch keine Störung)
 MAX_BYTES = 8 * 1024 * 1024
-THEMEN_REIHE = ('regulierung', 'krypto', 'zinsen', 'inflation', 'arbeitsmarkt', 'oel')
+THEMEN_REIHE = ('behoerden', 'regulierung', 'krypto', 'zinsen', 'inflation', 'arbeitsmarkt', 'oel')
 
 # ------------------------------------------------------------------ Themen (Makro dazu; Krypto genau wie am Mac)
+# r155 (A16 B1): Themen nur mit Wortgrenzen UND Kontext. Groß-/Kleinschreibung zählt bei Kürzeln (SEC, Fed, FOMC, WTI …).
 _FINANZ = re.compile(r'\b(?:banks?|banking|securities|stablecoins?|exchanges?|fintech|derivatives|brokers?|crypto\w*|digital assets?|tokens?)\b', re.I)
+# „Fed“ nur als Notenbank: „the/ahead of/after … Fed“, „Fed's …“, „Fed“ + typisches Folgewort – nie „She Fed Her Baby“, „fed up“, „Fed-Batch“
+_FED = re.compile(r"\bFed['’]s\b|\b(?i:the|ahead of|after|before|from|by|at|on|of|for|US|U\.S\.)\s+Fed\b(?!-)|"
+                  r"\bFed\s+(?i:chair\w*|chief|officials?|governors?|minutes|meeting|meets|decision|rates?|cuts?|hikes?|policy|holds|held|raises|raised|"
+                  r"lowers|lowered|signals?|says|said|pause\w*|watch\w*|speakers?|funds|balance|Powell|Waller|Williams|Bowman|Jefferson|Cook|Barr|"
+                  r"Musalem|Goolsbee|Hammack|Logan|Kashkari|Daly|Bostic|Schmid|Miran|Hassett|Warsh|independence|nominee|pick|easing|tightening|outlook|"
+                  r"path|bets?|expectations?|moves?|stance|statement|survey|report|data|president|board|seen|expected|likely|could|may|will|to)\b(?!-)")
+_POWELL = re.compile(r'\bJerome Powell\b|\bPowell\b(?=.*\b(?:rates?|inflation|economy|markets?|stocks?|yields?|dollar|Treasur\w+|policy|cuts?|hikes?|'
+                     r'Fed|Federal Reserve|bitcoin|crypto|jobs|labor|tariffs?|recession)\b)|\b(?:rates?|inflation|Fed|Federal Reserve|policy)\b.*\bPowell\b')
+_SEC_KONTEXT = re.compile(r'\b(?:crypto\w*|bitcoin|ether(?:eum)?|ETFs?|securities|stocks?|shares|investors?|filings?|fraud|charge[sd]?|sues?|sued|'
+                          r'lawsuits?|settle\w*|enforcement|fine[sd]?|penalt\w+|chair\w*|Atkins|Gensler|Peirce|commissioners?|rules?|rulings?|'
+                          r'rulemaking|approv\w+|reject\w*|disclos\w+|IPOs?|exchanges?|Wall Street|broker\w*|funds?|tokens?|stablecoins?|insider|'
+                          r'Ponzi|probe|investigation|subpoena\w*|regulat\w+|compliance|Nasdaq|NYSE|10-K|8-K|13F|prospectus|listings?|'
+                          r'custody|staking|tokeniz\w+|market structure|whistleblower|accounting|audit\w*)\b', re.I)
+_SEC_SPORT = re.compile(r'\b(?:football|basketball|baseball|softball|volleyball|soccer|bowl|quarterback|coach\w*|season|seasons|playoffs?|'
+                        r'tournament|championship|game|games|skid|stuns?|upset|beats?|rout\w*|win|wins|won|loss|losses|vs\.?|ranked|'
+                        r'No\.\s*\d+|Ole Miss|Alabama|Georgia|LSU|Tennessee|Auburn|Oklahoma|Texas A&M|Arkansas|Razorbacks|Hogs|Gamecocks|'
+                        r'Crimson Tide|Volunteers|Bulldogs|Wildcats|Tigers|Gators|Aggies|Commodores|Rebels|Longhorns|Sooners|Kentucky|Missouri|'
+                        r'Vanderbilt|Florida|Mississippi State|South Carolina|media days)\b', re.I)
+_SPORT_HOST = ('sport', 'espn', '247sports', 'on3.com', 'rivals.com', 'thescore', 'si.com', 'athletic', 'yardbarker', 'saturdaydownsouth', 'secsports',
+               'secnetwork', 'gamecock', 'razorback')
 THEMEN = {
-    'regulierung': (re.compile(r'\b(?:SEC|CFTC|FINRA|FinCEN|ESMA|BaFin|MiCA)\b(?!\s+(?:regular|football|basketball|baseball|softball|'
-                               r'volleyball|soccer|title|championship|tournament|game|games|play|team|teams|school|schools|coach\w*|media days))'),
+    'regulierung': (re.compile(r'\b(?:CFTC|FINRA|FinCEN|ESMA|BaFin|MiCA)\b'),
                     re.compile(r'\b(?:Securities and Exchange Commission|Commodity Futures Trading Commission|GENIUS Act|CLARITY Act|'
-                               r'market[- ]structure bill|stablecoin (?:bill|law|laws|rules?|regulation))\b', re.I)),
-    'zinsen': (re.compile(r'\bFed\b(?!\s+[Uu]p\b)|\bFed[’\']s\b|\bFOMC\b|\bECB\b|\bBOJ\b'),
-               re.compile(r'\b(?:Federal Reserve|interest[- ]rates?|rate[- ](?:cut|cuts|hike|hikes|decision|path)|(?:Treasury|bond|gilt|bund) yields?|'
-                          r'\d+-year (?:Treasury |bond )?yields?|central bank\w*|Bank of England|Bank of Japan|European Central Bank)\b', re.I)),
+                               r'market[- ]structure bill|stablecoin (?:bill|law|laws|rules?|regulation)|Finanzaufsicht|Kryptoregulierung)\b', re.I)),
+    'zinsen': (_FED, _POWELL, re.compile(r'\bFOMC\b|\bECB\b|\bEZB\b|\bBOJ\b|\bBoE\b'),
+               re.compile(r'\b(?:Federal Reserve|Federal Open Market Committee|monetary policy|interest[- ]rates?|rate[- ](?:cut|cuts|hike|hikes|decision|path)|(?:Treasury|bond|gilt|bund) yields?|'
+                          r'\d+-year (?:Treasury |bond )?yields?|central bank\w*|Bank of England|Bank of Japan|European Central Bank|'
+                          r'Leitzins\w*|Zinsentscheid\w*|Zinssenkung\w*|Zinserhöhung\w*|Notenbank\w*|Zentralbank\w*|Bundesbank)\b', re.I)),
     'inflation': (re.compile(r'\b(?:CPI|PPI|PCE)\b(?!\s*[-(]\s*[MLm])'),                    # nicht CPI(M) (Partei in Indien)
-                  re.compile(r'\b(?:inflation|disinflation|deflation|consumer prices?|producer prices?)\b(?<!grade inflation)', re.I)),
+                  re.compile(r'\b(?:inflation|disinflation|deflation|consumer prices?|producer prices?|Inflationsrate|Verbraucherpreise)\b'
+                             r'(?<!grade inflation)(?!\s+Reduction\s+Act)', re.I)),
     'arbeitsmarkt': (re.compile(r'\bJOLTS\b'),
                      re.compile(r'\b(?:non-?farm payrolls?|payrolls|jobs report|jobless claims|unemployment (?:rate|claims|benefits)|'
-                                r'labou?r market|(?:US|U\.S\.) job openings|job growth)\b', re.I)),   # „payroll“ (Lohnbuchhaltung, Stellenanzeigen) nicht
+                                r'labou?r market|(?:US|U\.S\.) job openings|job growth|Arbeitslos\w*|Arbeitsmarkt\w*)\b', re.I)),   # „payroll“ (Lohnbuchhaltung, Stellenanzeigen) nicht
     'oel': (re.compile(r'\bOPEC\+?|\bWTI\b'),
             re.compile(r'\boil (?:price|prices|futures|market|markets|output|supply|supplies|production|demand|exports?|imports?|inventor\w+|'
-                       r'tankers?|majors?|rally|slump|shock)\b|\bcrude(?: oil)?\b(?!\s+(?:joke|humou?r|remark|remarks|language|comments?|drawings?))|'
-                       r'\bBrent\b(?=\s+(?:crude|oil|futures|prices?))', re.I)),
+                       r'tankers?|majors?|rally|slump|shock)\b|\bcrude oil\b|\bBrent\b(?=\s+(?:crude|oil|futures|prices?))|\bÖlpreis\w*|\bRohöl\w*', re.I)),
 }
-# Strenger als der Mac (nie lockerer – Test: alles, was hier bleibt, ließe auch der Mac-Filter durch): Uni-Sport-Liga „SEC“,
-# Titel mit typischen Wörtern anderer Sprachen (Indonesisch, Deutsch ohne Funktionswort … kamen als „English“ durch), Meinungs-Rubriken und Kauf-Ratgeber.
-_SEC_SPORT = re.compile(r'\b(?:football|basketball|baseball|softball|volleyball|bowl|quarterback|coach\w*|season|seasons|playoffs?|'
-                        r'tournament|Ole Miss|Alabama|Georgia|LSU|Tennessee|Auburn|Oklahoma|Texas A&M|Gamecocks|Crimson Tide)\b', re.I)
+_CRUDE = re.compile(r'\bcrude\b', re.I)
+_CRUDE_KONTEXT = re.compile(r'\boil\b|\bBrent\b|\bWTI\b', re.I)
+# Strenger als der Mac (nie lockerer – Test: alles, was hier bleibt, ließe auch der Mac-Filter durch): Titel mit typischen Wörtern anderer
+# Sprachen (Indonesisch, Deutsch ohne Funktionswort … kamen als „English“ durch), Meinungs-Rubriken und Kauf-Ratgeber.
 _MEINUNG_BETA = re.compile(r'^\s*(?:POINT|COUNTERPOINT|OPINION|EDITORIAL|COLUMN|LETTERS?|ANALYSIS|VIEWPOINT|COMMENT)\s*[:|]|'
                            r'\bbuying opportunit\w*|\b(?:stocks?|coins?|cryptos?|tokens?) to (?:buy|sell|own)\b|\bshould you (?:buy|sell)\b', re.I)
 _WORT = re.compile(r'[a-zäöüß]+')
@@ -85,6 +136,16 @@ _CFTC_FREMD = re.compile(r'Competition and Fair Trading|\bMalawi', re.I)   # N2 
 _REGULAT = re.compile(r'\bregulat\w+\b', re.I)
 
 
+def _sec_regulierung(t, host):
+    """„SEC“ zählt nur mit Börsen-/Regulierungs-Kontext und nie bei Sport-Medien oder Sportwörtern (A16: „Arkansas ends 10-game home SEC skid“)."""
+    if not re.search(r'\bSEC\b', t):
+        return False
+    h = str(host or '').lower()
+    if any(w in h for w in _SPORT_HOST) or _SEC_SPORT.search(t):
+        return False
+    return bool(_SEC_KONTEXT.search(re.sub(r'\bSEC\b', ' ', t)))
+
+
 def themen_zuordnen(titel, host=''):
     """(Themen in fester Reihenfolge, Coins mit BTC) – leer, wenn der Titel zu keinem Thema gehört."""
     t = str(titel or '')
@@ -93,6 +154,10 @@ def themen_zuordnen(titel, host=''):
     krypto = bool(F.GAL_SUCHE.search(ohne_krypton)) and bool(coins or markt or F.KRYPTO.search(ohne_krypton))    # wie am Mac: GAL_SUCHE + Krypto-Bezug
     t_reg = re.sub(r'\bCFTC\b', ' ', t) if _CFTC_FREMD.search(t + ' ' + str(host or '')) else t
     gef = {name for name, muster in THEMEN.items() if any(m.search(t_reg if name == 'regulierung' else t) for m in muster)}
+    if _sec_regulierung(t, host):
+        gef.add('regulierung')
+    if _CRUDE.search(t) and _CRUDE_KONTEXT.search(t):                      # „crude“ nur mit oil/Brent/WTI (nicht „crude joke“, „crude bomb“)
+        gef.add('oel')
     if krypto:
         gef.add('krypto')
     if _REGULAT.search(t) and (krypto or _FINANZ.search(t)):
@@ -101,32 +166,65 @@ def themen_zuordnen(titel, host=''):
     return [x for x in THEMEN_REIHE if x in gef], coins[:8]
 
 
+def _medium(url):
+    host = (urlsplit(url).hostname or '').lower()
+    return host[4:] if host.startswith('www.') else host
+
+
 def eintrag(titel_roh, url_roh, zeit, jetzt):
-    """Roher Artikel → Eintrag oder (None, Grund). Dieselbe Reihenfolge wie gal_lesen am Mac, nur Englisch, ohne Meinung."""
+    """Roher GDELT-Artikel → Eintrag oder (None, Grund). Reihenfolge wie gal_lesen am Mac; r155: nur Medien der Positivliste, ohne
+    Rubrik-/Listen-Seiten, ohne alte Artikel (3 Tage, Jahr in Titel/Adresse), Englisch – Deutsch nur von deutschen Medien der Liste."""
     titel = F.glaetten(F._text(titel_roh, 200))
-    if not titel or F.sprache(titel) != 'English':
-        return None, 'sprache'
     url = F._link(url_roh)
     if not url:
         return None, 'link'
-    host = (urlsplit(url).hostname or '').lower()
-    medium = host[4:] if host.startswith('www.') else host
+    medium = _medium(url)
+    spr = F.sprache(titel) if titel else None
+    deutsch = spr == 'Deutsch' and F._host_passt(medium, F.DEUTSCH_HOST)
+    if not titel or (spr != 'English' and not deutsch):
+        return None, 'sprache'
     if F.gesperrt(url, medium):
         return None, 'gesperrt'
+    if not F.serioes(url, medium):
+        return None, 'medium'
     if F.werbung(titel, url, medium):
         return None, 'werbung'
-    if not zeit or zeit > jetzt + 600 or zeit < jetzt - FENSTER or F.zu_alt(titel, zeit, jetzt):
+    if F.listenseite(titel, url):
+        return None, 'rubrik'
+    if not zeit or zeit > jetzt + 600 or zeit < jetzt - FENSTER or F.zu_alt(titel, zeit, jetzt, url=url):
         return None, 'zeit'
     themen, coins = themen_zuordnen(titel, medium)
     if not themen:
         return None, 'thema'
     if F.meinung(titel) or _MEINUNG_BETA.search(titel):
         return None, 'meinung'
-    if set(_WORT.findall(titel.lower())) & _NICHT_EN_BETA:
+    if not deutsch and set(_WORT.findall(titel.lower())) & _NICHT_EN_BETA:
         return None, 'sprache'
-    if themen == ['regulierung'] and _SEC_SPORT.search(titel):
-        return None, 'thema'
-    return dict(titel=titel, url=url, quelle=medium[:60], zeit=int(zeit), themen=themen, coins=coins), None
+    e = dict(titel=titel, url=url, quelle=medium[:60], zeit=int(zeit), themen=themen, coins=coins)
+    if deutsch:
+        e['sprache'] = 'de'
+    return e, None
+
+
+def amtlich_eintrag(titel_roh, url_roh, zeit, qid, name, jetzt):
+    """Amtliche Pressemitteilung → Eintrag (Thema „behoerden“ zuerst, dazu die Themen aus dem Titel) oder (None, Grund).
+    Nur https-Links auf den Host der Behörde, nur Titel – keine Beschreibung, kein Text."""
+    titel = F.glaetten(F._text(titel_roh, 200))
+    url = F._link(url_roh)
+    if not titel or not url:
+        return None, 'link'
+    if not F._host_passt(_medium(url), (AMTLICH_HOST.get(qid, '-'),)):
+        return None, 'link'
+    if not zeit or zeit > jetzt + 600 or zeit < jetzt - AMTLICH_FENSTER:
+        return None, 'zeit'
+    # Name der Behörde zählt nicht als Thema („Federal Reserve Board issues enforcement action …“ ist keine Zins-Meldung)
+    ohne_name = re.sub(r'\b(?:Federal Reserve(?: Board| System)?|Board of Governors|SEC|Securities and Exchange Commission|CFTC|Commodity Futures Trading '
+                       r'Commission|European Central Bank|ECB|Bureau of Economic Analysis|BEA|Bureau of Labor Statistics|BLS)\b', ' ', titel)
+    themen, coins = themen_zuordnen(ohne_name, AMTLICH_HOST.get(qid, ''))
+    themen = ['behoerden'] + [x for x in themen if x != 'behoerden']
+    if qid.split('-')[0] in ('sec', 'cftc') and 'regulierung' not in themen:
+        themen.insert(1, 'regulierung')
+    return dict(titel=titel, url=url, quelle=name, zeit=int(zeit), themen=[x for x in THEMEN_REIHE if x in themen], coins=coins), None
 
 
 # ------------------------------------------------------------------ Lesen
@@ -194,7 +292,7 @@ def nachhol_minuten(von, bis):
 def datei_text(stand, fehler, eintraege):
     """Stabil: feste Feld-Reihenfolge, ein Eintrag je Zeile (kleine Diffs im Repo)."""
     kopf = json.dumps(dict(stand=stand, quelle_satz=QUELLE_SATZ, fehler=fehler), ensure_ascii=False, separators=(',', ':'))[:-1]
-    zeilen = [json.dumps({k: e[k] for k in ('titel', 'url', 'quelle', 'zeit', 'themen', 'coins')}, ensure_ascii=False, separators=(',', ':'))
+    zeilen = [json.dumps({k: e[k] for k in ('titel', 'url', 'quelle', 'zeit', 'themen', 'coins', 'sprache') if k in e}, ensure_ascii=False, separators=(',', ':'))
               for e in eintraege]
     return kopf + ',"eintraege":[\n' + ',\n'.join(zeilen) + ('\n' if zeilen else '') + ']}\n'
 
@@ -207,11 +305,11 @@ def _lies_json(pfad, standard):
 
 
 def zusammenfuehren(bestand, neu, jetzt):
-    """Bestand + neue Einträge → Liste neueste zuerst (höchstens 80, nur 24 Std.). Doppelte = gleiche Adresse (ohne www/amp/Query)
-    oder gleicher Titel (ab 20 Zeichen) – der zuerst gesehene bleibt."""
+    """Bestand + neue Einträge → Liste neueste zuerst (höchstens 80, GDELT nur 24 Std., Behörden 3 Tage und höchstens 20). Doppelte = gleiche
+    Adresse (ohne www/amp/Query) oder gleicher Titel (ab 20 Zeichen) – der zuerst gesehene bleibt."""
     nach_url, nach_titel, liste = set(), set(), []
     for e in sorted(bestand, key=lambda e: (e['zeit'], e['url'])) + sorted(neu, key=lambda e: (e['zeit'], e['url'])):
-        if e['zeit'] < jetzt - FENSTER:
+        if e['zeit'] < jetzt - (AMTLICH_FENSTER if 'behoerden' in e['themen'] else FENSTER):
             continue
         uk, tk = F.url_schluessel(e['url']), F.titel_schluessel(e['titel'])
         if uk in nach_url or (len(tk) >= 20 and tk in nach_titel):
@@ -221,30 +319,95 @@ def zusammenfuehren(bestand, neu, jetzt):
             nach_titel.add(tk)
         liste.append(e)
     liste.sort(key=lambda e: (-e['zeit'], e['url']))
-    return liste[:MAX_EINTRAEGE]
+    amt = [e for e in liste if 'behoerden' in e['themen']][:AMTLICH_MAX]
+    rest = [e for e in liste if 'behoerden' not in e['themen']][:MAX_EINTRAEGE - len(amt)]
+    return sorted(amt + rest, key=lambda e: (-e['zeit'], e['url']))
 
 
 def soll_committen(geaendert, neue_titel, seit_letztem_s):
-    """Drossel: höchstens 4 Commits je Stunde, kleine Änderungen höchstens stündlich."""
+    """Drossel: höchstens 4 Commits je Stunde, kleine Änderungen höchstens stündlich; r155 Herzschlag: nach 2 Std. 30 Min. auch ohne Änderung."""
+    if seit_letztem_s >= HERZSCHLAG:
+        return True
     if not geaendert or seit_letztem_s < COMMIT_MIN:
         return False
     return neue_titel >= COMMIT_NEU or seit_letztem_s >= COMMIT_ABSTAND
+
+
+def bestand_pruefen(bestand, jetzt):
+    """r155: Bestand mit den aktuellen Regeln neu prüfen (A16: die Datei vom 15.11. 08:35 enthielt noch Titel, die neue Filter schon verwarfen)."""
+    aus = []
+    nach_host = {h: (q, n) for q, n, _u, h, _k in reversed(AMTLICH)}
+    for e in bestand:
+        if 'behoerden' in e['themen']:
+            q = next((nach_host[h] for h in nach_host if F._host_passt(_medium(e['url']), (h,))), None)
+            neu, _g = amtlich_eintrag(e['titel'], e['url'], e['zeit'], q[0], q[1], jetzt) if q else (None, 'link')
+        else:
+            neu, _g = eintrag(e['titel'], e['url'], e['zeit'], jetzt)
+        if neu:
+            aus.append(neu)
+    return aus
+
+
+def amtlich_runde(z, jetzt, holen, warten, bericht, dateien=None):
+    """Behörden-Feeds lesen (je Quelle ETag/If-Modified-Since, Backoff 15 Min. … 6 Std.) → neue Einträge. `dateien`: {id: Pfad} für Tests/Probelauf."""
+    zs, neu = z.setdefault('amtlich', {}), []
+    for i, (qid, name, url, _host, braucht_kontakt) in enumerate(AMTLICH):
+        q = zs.setdefault(qid, {})
+        if dateien is not None:
+            if qid not in dateien:
+                continue
+            status, daten, k = 200, Path(dateien[qid]).read_bytes(), {}
+        elif braucht_kontakt and not KONTAKT:
+            bericht['amtlich'][qid] = 'aus (Kontakt fehlt)'
+            continue
+        elif jetzt < (q.get('naechster') or 0):
+            bericht['amtlich'][qid] = 'backoff'
+            continue
+        else:
+            if i:
+                warten(1.0)
+            kopf = {}
+            if q.get('etag'):
+                kopf['If-None-Match'] = q['etag']
+            if q.get('lm'):
+                kopf['If-Modified-Since'] = q['lm']
+            try:
+                status, daten, k = holen(url, kopf)
+            except Exception as e:  # noqa: BLE001 – Netzfehler = Störung dieser Quelle, Backoff
+                status, daten, k = 0, b'', {'fehler': type(e).__name__}
+        _bau, roh = rss_lesen(daten) if status == 200 and daten else (None, None)
+        if status == 304 or (status == 200 and roh is not None):
+            q.update(fehler_n=0, naechster=0, status=status)
+            if status == 200 and dateien is None:
+                q.update(etag=k.get('etag'), lm=k.get('last-modified'))
+            n = 0
+            for titel, link, zeit in roh or []:
+                e, _g = amtlich_eintrag(titel, link, zeit, qid, name, jetzt)
+                if e:
+                    neu.append(e)
+                    n += 1
+            bericht['amtlich'][qid] = f'{status}:{n}'
+        else:
+            n = int(q.get('fehler_n') or 0) + 1
+            q.update(fehler_n=n, naechster=int(jetzt + min(BACKOFF[1], BACKOFF[0] * 2 ** (n - 1))), status=status)
+            bericht['amtlich'][qid] = f'HTTP {status}' if status else (k.get('fehler') or 'Netzfehler')
+    return neu
 
 
 def _uhr(t):
     return time.strftime('%d.%m. %H:%M UTC', time.gmtime(t))
 
 
-def lauf(ausgabe, zustand_pfad, jetzt, holen=holen_echt, warten=time.sleep, rss_datei=None):
+def lauf(ausgabe, zustand_pfad, jetzt, holen=holen_echt, warten=time.sleep, rss_datei=None, amtlich_dateien=None):
     ausgabe, zustand_pfad = Path(ausgabe), Path(zustand_pfad)
     alt = _lies_json(ausgabe, None)
     alt = alt if isinstance(alt, dict) and isinstance(alt.get('eintraege'), list) else None
     z = _lies_json(zustand_pfad, {})
     z = z if isinstance(z, dict) else {}
-    bestand = [e for e in (z.get('liste') if isinstance(z.get('liste'), list) else (alt or {}).get('eintraege') or [])
-               if isinstance(e, dict) and all(k in e for k in ('titel', 'url', 'quelle', 'zeit', 'themen', 'coins'))]
+    bestand = bestand_pruefen([e for e in (z.get('liste') if isinstance(z.get('liste'), list) else (alt or {}).get('eintraege') or [])
+                               if isinstance(e, dict) and all(k in e for k in ('titel', 'url', 'quelle', 'zeit', 'themen', 'coins'))], jetzt)
     gesehen = {k: t for k, t in (z.get('gesehen') or {}).items() if jetzt - t <= GESEHEN_MERKEN}
-    bericht = dict(abruf=None, roh=0, neu=0, verworfen={}, nachgeholt=0)
+    bericht = dict(abruf=None, roh=0, neu=0, verworfen={}, nachgeholt=0, amtlich={})
 
     roh = []
     if rss_datei:                                                            # Test/Probelauf mit Datei
@@ -308,6 +471,8 @@ def lauf(ausgabe, zustand_pfad, jetzt, holen=holen_echt, warten=time.sleep, rss_
         gesehen.setdefault(k, int(jetzt))
         neu.append(e)
     bericht['roh'] = len(roh)
+    if not rss_datei or amtlich_dateien:
+        neu += amtlich_runde(z, jetzt, holen, warten, bericht, amtlich_dateien)
     liste = zusammenfuehren(bestand, neu, jetzt)
 
     seit = z.get('gestoert_seit')
@@ -338,9 +503,11 @@ def main(argv):
         print(__doc__)
         return 2
     jetzt = int(arg('--jetzt') or time.time())
-    r = lauf(arg('--ausgabe'), arg('--zustand'), jetzt, rss_datei=arg('--rss'))
+    amt = dict(x.split('=', 1) for x in (arg('--amtlich') or '').split(',') if '=' in x) or None    # Probelauf: --amtlich fed=datei.xml,sec=…
+    r = lauf(arg('--ausgabe'), arg('--zustand'), jetzt, rss_datei=arg('--rss'), amtlich_dateien=amt)
     zeile = (f"commit={'true' if r['commit'] else 'false'} eintraege={r['eintraege']} neu={r['neu']} roh={r['roh']} "
-             f"abruf={r['abruf']} nachgeholt={r['nachgeholt']} verworfen={json.dumps(r['verworfen'], sort_keys=True)}")
+             f"abruf={r['abruf']} nachgeholt={r['nachgeholt']} verworfen={json.dumps(r['verworfen'], sort_keys=True)} "
+             f"amtlich={json.dumps(r['amtlich'], sort_keys=True)}")
     print(zeile, flush=True)
     if os.environ.get('GITHUB_OUTPUT'):
         with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:

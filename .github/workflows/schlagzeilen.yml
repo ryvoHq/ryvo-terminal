@@ -1,12 +1,13 @@
 # RYVO Terminal Beta – Schlagzeilen-Job (Mios Ja 14.11.2026 14:54). Vorbereitet im Repo trading-bot-suche unter beta-job/;
 # main kopiert beta-job/.github und beta-job/job in das öffentliche Repo ryvo-terminal (Anleitung: release/N1-SCHLAGZEILEN.md).
 #
-# Alle 15 Min.: GDELT Article List (RSS) lesen, filtern, daten/schlagzeilen.json schreiben. Nur Python-Standardbibliothek, keine
+# Alle 15 Min. (dazu stündlich von main angestoßen): GDELT Article List (RSS) – nur Medien der Positivliste – und die amtlichen Feeds
+# (Fed, SEC, CFTC, BEA, EZB; r155) lesen, filtern, daten/schlagzeilen.json schreiben. Nur Python-Standardbibliothek, keine
 # Geheimnisse (nur das automatische GITHUB_TOKEN des Laufs), nur actions/checkout und actions/setup-python mit fester Commit-Kennung.
 # Commit nur bei geänderter Datei und gedrosselt (≥ 3 neue Titel oder ≥ 60 Min. seit dem letzten Stand, nie öfter als alle 15 Min.) –
 # GitHub Pages hat eine weiche Grenze von 10 Builds je Stunde. Der Zustand (ETag, Backoff, noch nicht veröffentlichte Titel) liegt
 # als ein einziger Commit im Zweig schlagzeilen-zustand; dieser Zweig ist nicht die Pages-Quelle, ein Push dorthin baut die Seite nicht.
-name: Schlagzeilen (GDELT, etwa stündlich)
+name: Schlagzeilen (GDELT, mehrmals täglich)
 
 on:
   schedule:
@@ -44,6 +45,8 @@ jobs:
 
       - name: Schlagzeilen holen und filtern
         id: job
+        env:
+          RYVO_KONTAKT: ${{ vars.RYVO_KONTAKT }}   # optional (Repo-Variable): Kontakt im User-Agent; ohne ihn bleibt BLS aus
         run: python3 job/schlagzeilen.py --ausgabe daten/schlagzeilen.json --zustand "$RUNNER_TEMP/zustand/zustand.json"
 
       - name: Commit (nur bei Änderung, gedrosselt)

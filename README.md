@@ -15,7 +15,7 @@ Die Seite ist statisch (GitHub Pages). Alle Marktdaten lädt der Browser der Nut
 RugCheck, DexScreener und öffentliche Solana-Knoten). Es gibt keinen eigenen Server, keine Cookies und kein Tracking.
 Einstellungen und Übungskonto bleiben im Browser (localStorage).
 
-Schlagzeilen: Ein Zeitplan-Job (GitHub Actions, `.github/workflows/schlagzeilen.yml`) liest etwa stündlich die GDELT Article List (geplant alle 15 Min., GitHub führt geplante Läufe aber oft verspätet aus; zusätzlich stündlich angestoßen)
+Schlagzeilen: Ein Zeitplan-Job (GitHub Actions, `.github/workflows/schlagzeilen.yml`) liest mehrmals täglich amtliche Pressemitteilungen (Fed, SEC, CFTC, BEA, EZB) und die GDELT Article List (nur eine Positivliste seriöser Medien)
 und legt nur Titel, Quelle und Link als `daten/schlagzeilen.json` neben die Seite – auch dafür gibt es keinen eigenen Server.
 Quelle: GDELT Project, https://www.gdeltproject.org/
 
