@@ -1,10 +1,10 @@
 {
  "format": 1,
- "stand": 1794713400,
- "recherche_schnitt": 1794713400,
+ "stand": 1794843000,
+ "recherche_schnitt": 1794843000,
  "titel": {
-  "de": "Lage-Bericht · Morgen 15.11.2026 03:30 UTC",
-  "en": "Situation Report · Morning 15.11.2026 03:30 UTC"
+  "de": "Lage-Bericht · Nachmittag 16.11.2026 15:30 UTC",
+  "en": "Situation Report · Afternoon 11/16/2026 15:30 UTC"
  },
  "abschnitte": [
   {
@@ -13,86 +13,86 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 65.186 $, 24 h −2,3 %, Woche −14,1 %, −18,3 % unter 50-Tage-Mittel.",
-      "en": "BTC $65,186, 24 h −2.3%, week −14.1%, −18.3% below the 50-day average."
+      "de": "BTC 64.291 $, 24 h −0,7 %, Woche −14,9 %, 19 % unter 50-Tage-Mittel.",
+      "en": "BTC $64,291, 24h −0.7%, week −14.9%, 19% below 50-day average."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1794712380,
+       "zeit": 1794842280,
        "genau": true
       }
      ],
-     "zeit": 1794712380,
+     "zeit": 1794842280,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.822 $, Woche −18,5 %.",
-      "en": "ETH $1,822, week −18.5%."
+      "de": "ETH 1.813 $, Woche −15,6 %.",
+      "en": "ETH $1,813, week −15.6%."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1794712380,
+       "zeit": 1794842280,
        "genau": true
       }
      ],
-     "zeit": 1794712380,
+     "zeit": 1794842280,
      "schnitt": "vor"
     },
     {
      "id": "lage-3",
      "text": {
-      "de": "Angst & Gier 10 (Extreme Fear), Vortag 13, vor 1 Monat 63.",
-      "en": "Fear & Greed 10 (Extreme Fear), previous day 13, 1 month ago 63."
+      "de": "Angst & Gier 10 (Extreme Fear), vor 1 Woche 29, vor 1 Monat 55.",
+      "en": "Fear & Greed 10 (Extreme Fear), 1 week ago 29, 1 month ago 55."
      },
      "quellen": [
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1794712380,
+       "zeit": 1794842280,
        "genau": true
       }
      ],
-     "zeit": 1794712380,
+     "zeit": 1794842280,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
-      "de": "BTC-ETFs 13.11. −185,5 Mio. $, 5 Tage −1,07 Mrd. $.",
-      "en": "BTC ETFs 13.11. −$185.5 million, 5 days −$1.07 billion."
+      "de": "BTC-ETFs 13.11. −185,5 Mio. $, 5 Handelstage −1,07 Mrd. $.",
+      "en": "BTC ETFs 11/13 −$185.5M, 5 trading days −$1.07B."
      },
      "quellen": [
       {
        "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
        "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1794712380,
+       "zeit": 1794842280,
        "genau": true
       }
      ],
-     "zeit": 1794712380,
+     "zeit": 1794842280,
      "schnitt": "vor"
     },
     {
      "id": "lage-5",
      "text": {
       "de": "US-Zinsen: 10 Jahre 5,15 %, 2 Jahre 4,88 %.",
-      "en": "US yields: 10-year 5.15%, 2-year 4.88%."
+      "en": "US rates: 10-year 5.15%, 2-year 4.88%."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1794712380,
+       "zeit": 1794842280,
        "genau": true
       }
      ],
-     "zeit": 1794712380,
+     "zeit": 1794842280,
      "schnitt": "vor"
     }
    ]
@@ -103,40 +103,18 @@
     {
      "id": "termine-1",
      "text": {
-      "de": "Im Kalender stehen für die nächsten 72 Std. keine großen US-Termine (Inflation, Erzeugerpreise, Arbeitsmarkt, Zinsentscheid, BIP, PCE, große Quartalszahlen).",
-      "en": "The calendar shows no major US events for the next 72 hours (inflation, producer prices, labor market, rate decision, GDP, PCE, major quarterly earnings)."
-     },
-     "quellen": [
-      {
-       "name": "Kalender: BLS, Federal Reserve, BEA, SEC",
-       "url": "https://www.bls.gov/schedule/",
-       "zeit": 1791892800,
-       "genau": false
-      }
-     ],
-     "zeit": 1791892800,
-     "schnitt": "vor"
-    }
-   ]
-  },
-  {
-   "id": "entscheidet",
-   "zeilen": [
-    {
-     "id": "entscheidet-1",
-     "text": {
       "de": "Nvidia-Quartalszahlen (Tag geschätzt aus SEC-Meldungen des Vorjahrs) – 18.11.",
-      "en": "Nvidia quarterly earnings (date estimated from prior-year SEC filings) – 18.11."
+      "en": "Nvidia quarterly results (date estimated from prior-year SEC filings) – 11/18."
      },
      "quellen": [
       {
        "name": "SEC EDGAR",
        "url": "https://www.sec.gov/edgar/search/",
-       "zeit": 1794713400,
+       "zeit": 1794830400,
        "genau": false
       }
      ],
-     "zeit": 1794713400,
+     "zeit": 1794830400,
      "schnitt": "vor",
      "termin": 1795003200
     }
