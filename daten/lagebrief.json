@@ -1,10 +1,10 @@
 {
  "format": 1,
- "stand": 1794843000,
- "recherche_schnitt": 1794843000,
+ "stand": 1794886200,
+ "recherche_schnitt": 1794886200,
  "titel": {
-  "de": "Lage-Bericht · Nachmittag 16.11.2026 15:30 UTC",
-  "en": "Situation Report · Afternoon 11/16/2026 15:30 UTC"
+  "de": "Lage-Bericht · Morgen 17.11.2026 03:30 UTC",
+  "en": "Situation Report · Morning 17.11.2026 03:30 UTC"
  },
  "abschnitte": [
   {
@@ -13,35 +13,35 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 64.291 $, 24 h −0,7 %, Woche −14,9 %, 19 % unter 50-Tage-Mittel.",
-      "en": "BTC $64,291, 24h −0.7%, week −14.9%, 19% below 50-day average."
+      "de": "BTC 64.650 $, 24 h −0,8 %, Woche −13,6 %, 18 % unter 50-Tage-Mittel.",
+      "en": "BTC $64,650, 24 h −0.8%, week −13.6%, 18% below the 50-day average."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1794842280,
+       "zeit": 1794881340,
        "genau": true
       }
      ],
-     "zeit": 1794842280,
+     "zeit": 1794881340,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.813 $, Woche −15,6 %.",
-      "en": "ETH $1,813, week −15.6%."
+      "de": "ETH 1.818 $, Woche −14,3 %.",
+      "en": "ETH $1,818, week −14.3%."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1794842280,
+       "zeit": 1794881340,
        "genau": true
       }
      ],
-     "zeit": 1794842280,
+     "zeit": 1794881340,
      "schnitt": "vor"
     },
     {
@@ -54,45 +54,45 @@
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1794842280,
+       "zeit": 1794881340,
        "genau": true
       }
      ],
-     "zeit": 1794842280,
+     "zeit": 1794881340,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
       "de": "BTC-ETFs 13.11. −185,5 Mio. $, 5 Handelstage −1,07 Mrd. $.",
-      "en": "BTC ETFs 11/13 −$185.5M, 5 trading days −$1.07B."
+      "en": "BTC ETFs 13.11. −$185.5M, 5 trading days −$1.07B."
      },
      "quellen": [
       {
        "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
        "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1794842280,
+       "zeit": 1794881340,
        "genau": true
       }
      ],
-     "zeit": 1794842280,
+     "zeit": 1794881340,
      "schnitt": "vor"
     },
     {
      "id": "lage-5",
      "text": {
-      "de": "US-Zinsen: 10 Jahre 5,15 %, 2 Jahre 4,88 %.",
-      "en": "US rates: 10-year 5.15%, 2-year 4.88%."
+      "de": "US-Zinsen: 10 Jahre 5,12 %, 2 Jahre 4,83 %.",
+      "en": "US yields: 10 years 5.12%, 2 years 4.83%."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1794842280,
+       "zeit": 1794881340,
        "genau": true
       }
      ],
-     "zeit": 1794842280,
+     "zeit": 1794881340,
      "schnitt": "vor"
     }
    ]
@@ -104,7 +104,7 @@
      "id": "termine-1",
      "text": {
       "de": "Nvidia-Quartalszahlen (Tag geschätzt aus SEC-Meldungen des Vorjahrs) – 18.11.",
-      "en": "Nvidia quarterly results (date estimated from prior-year SEC filings) – 11/18."
+      "en": "Nvidia quarterly results (day estimated from prior-year SEC filings) – 18.11."
      },
      "quellen": [
       {
