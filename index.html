@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://api.alternative.me https://api.binance.com https://api.bls.gov https://api.bybit.com https://api.dexscreener.com https://api.fiscaldata.treasury.gov https://api.gdeltproject.org https://api.github.com https://api.hyperliquid.xyz wss://api.hyperliquid.xyz https://api.mainnet-beta.solana.com https://api.rugcheck.xyz https://api.statistiken.bundesbank.de https://api.worldbank.org https://arbitrum-one-rpc.publicnode.com https://base-rpc.publicnode.com https://data-api.ecb.europa.eu https://ec.europa.eu https://ethereum-rpc.publicnode.com https://fapi.binance.com wss://fstream.binance.com https://home.treasury.gov https://markets.newyorkfed.org https://publicreporting.cftc.gov https://sdmx.oecd.org https://solana-rpc.publicnode.com https://stats-data.hyperliquid.xyz wss://stream.binance.com:9443 wss://stream.bybit.com https://tron-evm-rpc.publicnode.com https://www.federalregister.gov; worker-src 'self'; manifest-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'">
-<script>(function () { var V = {"en": "487479ea", "es": "3d468559", "fr": "44a3fe79", "it": "753f0b46", "tr": "b186d578"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
+<script>(function () { var V = {"en": "62c4adde", "es": "99b765c4", "fr": "ef0bbb77", "it": "3dcbd2cc", "tr": "b7e87e7d"}, W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "de" || location.protocol === "file:") return; var k = document.createElement("link"); k.rel = "preload"; k.as = "script"; k.href = "sprachen/" + l + ".js?v=" + V[l]; document.head.appendChild(k); })();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>RYVO Terminal · Beta</title>
@@ -145,9 +145,9 @@
 <div class="hilfe" id="h-analyse" hidden></div>
 <div class="analyse-kopf"><div class="analyse-zeiger" id="an-zeiger" aria-hidden="true"></div><p class="analyse-satz" id="an-satz">Lade …</p></div>
 <div class="analyse-raster">
-<article><h3><i class="gruen"></i>Was den Kurs stützt</h3><ul id="an-plus"></ul></article>
-<article><h3><i class="rot"></i>Was den Kurs belastet</h3><ul id="an-minus"></ul></article>
-<article><h3><i class="gelb"></i>Worauf achten</h3><ul id="an-achten"></ul></article>
+<article><h3><i class="gruen"></i>Bausteine im Plus</h3><ul id="an-plus"></ul></article>
+<article><h3><i class="rot"></i>Bausteine im Minus</h3><ul id="an-minus"></ul></article>
+<article><h3><i class="gelb"></i>Marken und Termine</h3><ul id="an-achten"></ul></article>
 </div>
 <p class="leise stand" id="an-stand"></p>
 </section>
@@ -343,7 +343,7 @@
 <div class="tabelle korr-tabelle" id="umf-korr" data-teil="umf-korr"></div>
 </section>
 <section class="feld rangliste" aria-labelledby="t-rang">
-<div class="feld-kopf"><h2 id="t-rang">Hyperliquid: beste Trader</h2><span class="stand" id="rang-stand"></span>
+<div class="feld-kopf"><h2 id="t-rang">Hyperliquid: Konten nach Ergebnis</h2><span class="stand" id="rang-stand"></span>
 <button type="button" class="was" data-hilfe="rang" aria-expanded="false">Was ist das?</button></div>
 <div class="hilfe" id="h-rang" hidden></div>
 <div class="tabelle rang-tabelle" id="rang-tabelle"></div>
@@ -726,7 +726,7 @@
 <div class="mz-raster">
 <article class="mz-block mz-breit" id="dw-basis-block"><h3>Basis und Mark/Index <span class="leise">je Börse · alle 30 s</span></h3>
 <div class="tabelle ueb-tabelle" id="dw-basis"></div></article>
-<article class="mz-block" id="dw-funding-block"><h3>Funding <span class="leise">vorhergesagt · OI-gewichtet</span></h3>
+<article class="mz-block" id="dw-funding-block"><h3>Funding <span class="leise">vorläufig · OI-gewichtet</span></h3>
 <div class="tabelle ueb-tabelle" id="dw-funding"></div><p class="mz-letzte" id="dw-oi-f"></p></article>
 <article class="mz-block" id="dw-kaskade-block"><h3>Kaskaden-Rechner <span class="leise">Modell, keine Messung</span></h3>
 <div class="tabelle ueb-tabelle" id="dw-kaskade"></div></article>
@@ -855,16 +855,17 @@
 <span class="w17-spielgeld" id="w17-spielgeld" data-roh>Spielgeld</span>
 <span class="w17-kern" id="w17-kern" data-roh>Nur Beobachtung · keine Anlageberatung · keine Kauf- oder Verkaufssignale · Spielgeld</span>
 <span class="w17-kern w17-kern-kurz" id="w17-kern-kurz" data-roh>Beobachtung · keine Anlageberatung · keine Signale · Spielgeld</span>
+<button type="button" class="ki-marke w17-ki" id="w17-ki" data-roh hidden></button>
 <span id="uhr" class="zahl"></span>
 <span class="w17-recht" id="w17-recht" data-roh></span>
 <span id="fuss-daten">Daten live von Bybit, Binance, OKX, Coinbase, Deribit, Hyperliquid · nur zur eigenen Nutzung, nichts wird gespeichert oder weitergegeben · ohne Gewähr</span>
 <span class="rechts">Nur Beobachtung · keine Anlageberatung, keine Anlageempfehlung, nicht auf deine persönliche Lage zugeschnitten · Papier-Ergebnisse sind simuliert · Totalverlust möglich · kein Gewinnversprechen</span>
 <span class="ryvo-fuss"><span>Gebaut von RYVO – Websites, Tools, Dashboards</span> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/kontakt.html">Kontakt und Fehler melden</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/impressum.html">Impressum</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/datenschutz.html">Datenschutz</a> · <a href="https://ryvohq.github.io/ryvo-terminal/recht/hinweise.html">Risikohinweis und Nutzungsbedingungen</a></span>
-<span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
+<span class="lizenzen" id="fuss-lizenzen">Schrift Geist © Vercel (SIL OFL 1.1) · Übersetzungen mit KI erstellt, nicht von Muttersprachlern geprüft (teils offline mit Argos Translate und OPUS-MT-Modellen, J. Tiedemann u. a., CC BY 4.0) · Zinsen: U.S. Treasury · CFTC · Angst-und-Gier-Index: alternative.me</span>
 </footer>
-<script>window.RYVO_SPRACH_V = {"en": "487479ea", "es": "3d468559", "fr": "44a3fe79", "it": "753f0b46", "tr": "b186d578"};</script>
+<script>window.RYVO_SPRACH_V = {"en": "62c4adde", "es": "99b765c4", "fr": "ef0bbb77", "it": "3dcbd2cc", "tr": "b7e87e7d"};</script>
 <script>(function () { var W = ["es", "fr", "tr", "it"], A = ["de", "en"].concat(W), l = null; try { var x = new URLSearchParams(location.search).get("lang") || localStorage.getItem("profi.sprache"); if (A.indexOf(x) >= 0) l = x; } catch (e) {} if (!l) { var n = String(navigator.language || "").slice(0, 2).toLowerCase(); l = A.indexOf(n) >= 0 ? n : "en"; } if (l === "en" || (W.indexOf(l) >= 0 && location.protocol === "file:")) document.write('<script src="sprachen/en.js?v=' + (window.RYVO_SPRACH_V || {}).en + '"><\/script>'); if (W.indexOf(l) >= 0 && location.protocol !== "file:") document.write('<script src="sprachen/' + l + '.js?v=' + (window.RYVO_SPRACH_V || {})[l] + '"><\/script>'); })();</script>
-<script>window.RYVO_TEILEN = true; window.RYVO_HILFE_V = "79ea16a2";</script>
+<script>window.RYVO_TEILEN = true; window.RYVO_HILFE_V = "4915a651";</script>
 <script>
 'use strict';
 (() => {
@@ -1017,7 +1018,7 @@ a.target = '_blank'; a.rel = 'noopener'; a.style.color = 'inherit'; a.textConten
 b.replaceChildren('Fehler – bitte melden: ', was, ' · ', a);
 } else b.textContent = (EN ? 'Error (please send a screenshot to Mio): ' : 'Fehler (bitte Bildschirmfoto an Mio): ') + was; } catch (x) {   }
 });
-const BETA_TEXTE = /*BETA-TEXTE*/{"ersatz":[["wk-wort","Börsen-Meldungen und Schlagzeilen","Börsen-Meldungen (Schlagzeilen nur in der Vollversion)"],["fuss-daten","Daten live von Bybit, Binance, OKX, Coinbase, Deribit, Hyperliquid · nur zur eigenen Nutzung, nichts wird gespeichert oder weitergegeben · ohne Gewähr","Daten holt dein Browser selbst live von Bybit, Binance, Hyperliquid und Behörden-Seiten · nichts geht an unseren Server · ohne Gewähr"],["zins-hinweis","Die Zinskurve kommt vom Mac (Sammler profi.py, einmal am Tag) – nur über die Ansicht am Mac oder die App mit Tailscale.","Die Zinskurve lädt dein Browser direkt vom US-Finanzministerium – gerade keine Antwort, neuer Versuch in wenigen Minuten."],["fuss-lizenzen","Übersetzung offline: Argos Translate mit OPUS-MT-Modellen (J. Tiedemann u. a., CC BY 4.0)","Übersetzungen von Hand geprüft (Grundlage teils Argos Translate mit OPUS-MT-Modellen, J. Tiedemann u. a., CC BY 4.0)"]],"absatz":[["konto-form","Nur lesen: Hyperliquid braucht nur deine öffentliche Adresse.","Nur lesen: In der Beta nur deine öffentliche Hyperliquid-Adresse – keine Börsen-Schlüssel. Die Adresse bleibt nur auf diesem Gerät, abgerufen werden nur öffentliche Daten direkt bei Hyperliquid. Aus dem Terminal wird nie gehandelt."]],"weg":[],"attr":[["#umf-vergleich","aria-label","Bitcoin, S&P 500, Nasdaq 100 und Gold im Vergleich"],["#hd-ebenen [data-ebene=\"heat\"]","title","Liquidität im Orderbuch hinter den Kerzen (ab Öffnen der Seite)"],["#ueb-filter","placeholder","z. B. ae24h > 5 und funding < 0"]]};
+const BETA_TEXTE = /*BETA-TEXTE*/{"ersatz":[["wk-wort","Börsen-Meldungen und Schlagzeilen","Börsen-Meldungen (Schlagzeilen nur in der Vollversion)"],["fuss-daten","Daten live von Bybit, Binance, OKX, Coinbase, Deribit, Hyperliquid · nur zur eigenen Nutzung, nichts wird gespeichert oder weitergegeben · ohne Gewähr","Daten holt dein Browser selbst live von Bybit, Binance, Hyperliquid und Behörden-Seiten · nichts geht an unseren Server · ohne Gewähr"],["zins-hinweis","Die Zinskurve kommt vom Mac (Sammler profi.py, einmal am Tag) – nur über die Ansicht am Mac oder die App mit Tailscale.","Die Zinskurve lädt dein Browser direkt vom US-Finanzministerium – gerade keine Antwort, neuer Versuch in wenigen Minuten."]],"absatz":[["konto-form","Nur lesen: Hyperliquid braucht nur deine öffentliche Adresse.","Nur lesen: In der Beta nur deine öffentliche Hyperliquid-Adresse – keine Börsen-Schlüssel. Die Adresse bleibt nur auf diesem Gerät, abgerufen werden nur öffentliche Daten direkt bei Hyperliquid. Aus dem Terminal wird nie gehandelt."]],"weg":[],"attr":[["#umf-vergleich","aria-label","Bitcoin, S&P 500, Nasdaq 100 und Gold im Vergleich"],["#hd-ebenen [data-ebene=\"heat\"]","title","Liquidität im Orderbuch hinter den Kerzen (ab Öffnen der Seite)"],["#ueb-filter","placeholder","z. B. ae24h > 5 und funding < 0"]]};
 function betaTexte(B) {
 const fehlt = [], p = (id, anfang) => [...document.querySelectorAll('#' + id + ' p, p#' + id)].filter((x) => x.textContent.trim().startsWith(anfang));
 for (const [id, alt, neu] of B.ersatz) {
@@ -1230,7 +1231,7 @@ const o = W10.offen || {}; W10.offen = null; W10.plan = false; W10.gebucht = Dat
 for (const [q, [ts, tw]] of Object.entries(o)) { const d = tw - ts; if (d > 60000) continue; const a = W10.verz[q] || (W10.verz[q] = []); a.push(d); if (a.length > 700) a.splice(0, a.length - 600); }
 }
 
-const LEXIKON = /*LEXIKON*/{"funding":{"name":"Funding (Finanzierungssatz)","was":"Bei Dauer-Futures ohne Verfall zahlen sich Käufer (Long) und Verkäufer (Short) regelmäßig eine kleine Gebühr, damit der Future-Preis nah am echten Preis bleibt.","warum":"Hohes positives Funding heißt: sehr viele wetten auf Steigen und zahlen dafür – kippt der Kurs, müssen viele zugleich raus, das kann den Fall beschleunigen."},"oi":{"name":"Open Interest (offene Kontrakte)","was":"Der Wert aller Future-Wetten, die gerade offen sind – nicht wie viel gehandelt wurde, sondern wie viel noch läuft.","warum":"Steigt der Kurs und das Open Interest zugleich, kommt neues Geld mit Hebel dazu; viel Hebel macht starke Ausschläge in beide Richtungen wahrscheinlicher."},"vol":{"name":"Implizite Volatilität (ATM-Vol., ~30 Tage)","was":"Wie stark der Optionsmarkt den Kurs in den nächsten 30 Tagen schwanken sieht, als Prozent im Jahr.","warum":"Hohe Vol. heißt: der Markt erwartet große Bewegungen und Absicherung ist teuer; sehr niedrige Vol. geht oft einem Ausbruch voraus."},"skew":{"name":"Skew (Schiefe, ±10 %)","was":"Der Preisunterschied zwischen Absicherung nach unten (Puts 10 % unter dem Kurs) und Wetten nach oben (Calls 10 % darüber).","warum":"Zahlen viele mehr für Puts, haben sie Angst vor einem Fall; das zeigt die Stimmung der Profis, die Geld dafür ausgeben."},"putcall":{"name":"Put/Call-Verhältnis","was":"Wie viele Absicherungs-Optionen (Puts) auf eine Steigen-Option (Call) offen sind.","warum":"Viele Puts = viel Vorsicht; extrem viele gelten oft als Zeichen, dass schon viel Angst im Preis steckt."},"maxpain":{"name":"Max-Pain","was":"Der Kurs, bei dem am Verfallstag die meisten Optionen wertlos verfallen – also der Preis, an dem Options-Käufer zusammen am wenigsten bekommen.","warum":"Manche glauben, der Kurs wird vor dem Verfall dorthin „gezogen“; belegt ist das nicht – wir messen es in VORAB-7 (H4)."},"basis":{"name":"Basis (Termin-Aufschlag)","was":"Wie viel teurer ein Future mit festem Verfall ist als Bitcoin selbst, umgerechnet auf ein Jahr.","warum":"Großer Aufschlag = viele wollen mit Hebel long sein (Gier); Abschlag = Angst oder Absicherung."},"gamma":{"name":"Gamma (GEX, Händler-Absicherung)","was":"Grob: wie stark die Options-Händler kaufen oder verkaufen müssen, um sich abzusichern, wenn der Kurs sich um 1 % bewegt.","warum":"Positives Gamma: Händler verkaufen in Anstiege und kaufen in Rückgänge – das bremst. Negatives Gamma: sie laufen mit – das verstärkt."},"praemie":{"name":"Coinbase-Prämie","was":"Der Preisunterschied von Bitcoin auf Coinbase (vor allem US-Käufer und Fonds) gegenüber anderen Börsen.","warum":"Ist Coinbase teurer, kaufen US-Käufer stärker als der Rest der Welt – oft ein Zeichen für echte Nachfrage."},"fng":{"name":"Fear & Greed (Angst-und-Gier-Index)","was":"Eine Zahl von 0 (große Angst) bis 100 (große Gier) aus Schwankung, Handel, sozialen Medien und Bitcoin-Anteil.","warum":"Extreme halten nicht ewig: große Angst kommt oft nach starken Rückgängen, große Gier nach starken Anstiegen."},"cot":{"name":"COT-Bericht (CME-Positionen)","was":"Wöchentlicher Bericht der US-Aufsicht, wie Hedgefonds, Vermögensverwalter und Händler an der CME in Bitcoin-Futures stehen.","warum":"Zeigt, ob große Profis netto auf Steigen oder Fallen stehen – oft sind Hedgefonds dort aber nur abgesichert (Basis-Handel)."},"liquidation":{"name":"Liquidation (Zwangs-Schließung)","was":"Wer mit Hebel handelt und zu viel verliert, wird von der Börse automatisch geschlossen.","warum":"Viele Liquidationen auf einmal sind Zwangsverkäufe (oder -käufe), die den Kurs weiter treiben – eine Welle."},"orderbuch":{"name":"Orderbuch, Liquidität und Wände","was":"Die Liste aller wartenden Kauf- und Verkaufsaufträge; eine „Wand“ ist ein besonders großer Auftrag auf einem Preis.","warum":"Große Wände können den Kurs aufhalten wie ein Deckel oder Boden – sie können aber auch schnell zurückgezogen werden."},"cvd":{"name":"Orderflow und CVD (aufsummiertes Kauf-minus-Verkauf-Volumen)","was":"Zählt, ob die Händler, die sofort kaufen, mehr waren als die, die sofort verkaufen, und summiert das auf.","warum":"Steigt der Kurs, aber das CVD fällt, kaufen nur wenige aggressiv – der Anstieg steht auf dünnen Beinen."},"wand":{"name":"Wand (Call-Wand, Put-Wand) – kein Kaufsignal","was":"Eine Preis-Stufe, an der besonders viel liegt: bei Optionen die Stufe mit dem meisten Gamma über dem Kurs (Call-Wand) oder darunter (Put-Wand), im Orderbuch ein sehr großer wartender Auftrag.","warum":"An einer Wand bremst der Kurs oft oder prallt ab, weil sich dort Absicherungen und Aufträge ballen – sie ist eine Zone zum Beobachten, kein Kauf- oder Verkaufssignal: ob der Kurs dreht oder durchbricht, weiß vorher niemand."},"zerogamma":{"name":"Zero-Gamma (Kipp-Punkt)","was":"Der Kurs, an dem das geschätzte Gamma der Options-Händler von positiv zu negativ kippt.","warum":"Darüber sichern Händler eher gegen die Bewegung ab (das bremst), darunter eher mit ihr (das verstärkt) – unter dem Kipp-Punkt werden Schwankungen oft größer."},"footprint":{"name":"Orderflow und Footprint","was":"Orderflow zeigt jeden einzelnen Trade – wer sofort kauft oder verkauft und auf welchem Preis; der Footprint zählt das je Kerze und Preisstufe (Kauf × Verkauf).","warum":"Das hilft Daytradern im Minutentakt; für Swing-Trading über Tage und Wochen ist es meist Rauschen – darum ist es in der Swing-Ansicht eingeklappt."},"rsi":{"name":"RSI (Relative Stärke, 14)","was":"Vergleicht die Anstiege mit den Rückgängen der letzten 14 Kerzen (Wilder-Glättung) und zeigt das als Zahl von 0 bis 100.","warum":"Über 70 gilt ein Markt als heiß gelaufen, unter 30 als stark gefallen – in starken Trends kann er aber lange dort bleiben; allein sagt der RSI nichts über die nächste Bewegung."},"macd":{"name":"MACD (12, 26, 9)","was":"Der Abstand zweier gleitender Durchschnitte (EMA 12 minus EMA 26), dazu die Signallinie (EMA 9 davon) und das Histogramm (Abstand beider).","warum":"Liegt die MACD-Linie über der Signallinie, hat der Aufwärtsschwung zuletzt zugenommen, darunter der Abwärtsschwung; Kreuzungen zeigen einen Wechsel – oft erst, wenn die Bewegung schon läuft."},"ema":{"name":"Gleitende Durchschnitte (EMA 20/50/200, WMA)","was":"Durchschnittskurs der letzten 20, 50 oder 200 Kerzen; der EMA gewichtet neue Kerzen stärker (exponentiell), der WMA linear (jüngste Kerze am stärksten).","warum":"Viele Händler lesen den Trend daran ab: Kurs über EMA 50 und 200 im Tageschart gilt als Aufwärtstrend, darunter als Abwärtstrend; die Linien wirken oft als Stufen."},"stablecoins":{"name":"Stablecoin-Menge","was":"Wie viele Dollar-Münzen (USDT, USDC) es insgesamt gibt.","warum":"Wächst die Menge, liegt mehr „Kaufgeld“ an den Börsen bereit; schrumpft sie, fließt Geld aus Krypto ab."}}/*LEXIKON-ENDE*/;
+const LEXIKON = /*LEXIKON*/{"funding":{"name":"Funding (Finanzierungssatz)","was":"Bei Dauer-Futures ohne Verfall zahlen sich Käufer (Long) und Verkäufer (Short) regelmäßig eine kleine Gebühr, damit der Future-Preis nah am echten Preis bleibt.","warum":"Hohes positives Funding heißt: sehr viele wetten auf Steigen und zahlen dafür – kippt der Kurs, müssen viele zugleich raus, das kann den Fall beschleunigen."},"oi":{"name":"Open Interest (offene Kontrakte)","was":"Der Wert aller Future-Wetten, die gerade offen sind – nicht wie viel gehandelt wurde, sondern wie viel noch läuft.","warum":"Steigt der Kurs und das Open Interest zugleich, kommt neues Geld mit Hebel dazu; viel Hebel macht starke Ausschläge in beide Richtungen wahrscheinlicher."},"vol":{"name":"Implizite Volatilität (ATM-Vol., ~30 Tage)","was":"Wie stark der Optionsmarkt den Kurs in den nächsten 30 Tagen schwanken sieht, als Prozent im Jahr.","warum":"Hohe Vol. heißt: der Markt erwartet große Bewegungen und Absicherung ist teuer; sehr niedrige Vol. ging in der Vergangenheit oft größeren Bewegungen voraus."},"skew":{"name":"Skew (Schiefe, ±10 %)","was":"Der Preisunterschied zwischen Absicherung nach unten (Puts 10 % unter dem Kurs) und Wetten nach oben (Calls 10 % darüber).","warum":"Zahlen viele mehr für Puts, haben sie Angst vor einem Fall; das zeigt die Stimmung der Profis, die Geld dafür ausgeben."},"putcall":{"name":"Put/Call-Verhältnis","was":"Wie viele Absicherungs-Optionen (Puts) auf eine Steigen-Option (Call) offen sind.","warum":"Viele Puts = viel Vorsicht; extrem viele gelten oft als Zeichen, dass schon viel Angst im Preis steckt."},"maxpain":{"name":"Max-Pain","was":"Der Kurs, bei dem am Verfallstag die meisten Optionen wertlos verfallen – also der Preis, an dem Options-Käufer zusammen am wenigsten bekommen.","warum":"Manche glauben, der Kurs wird vor dem Verfall dorthin „gezogen“; belegt ist das nicht – wir messen es in VORAB-7 (H4)."},"basis":{"name":"Basis (Termin-Aufschlag)","was":"Wie viel teurer ein Future mit festem Verfall ist als Bitcoin selbst, umgerechnet auf ein Jahr.","warum":"Großer Aufschlag = viele wollen mit Hebel long sein (Gier); Abschlag = Angst oder Absicherung."},"gamma":{"name":"Gamma (GEX, Händler-Absicherung)","was":"Grob: wie stark die Options-Händler kaufen oder verkaufen müssen, um sich abzusichern, wenn der Kurs sich um 1 % bewegt.","warum":"Positives Gamma: Händler verkaufen in Anstiege und kaufen in Rückgänge – das bremst. Negatives Gamma: sie laufen mit – das verstärkt."},"praemie":{"name":"Coinbase-Prämie","was":"Der Preisunterschied von Bitcoin auf Coinbase (vor allem US-Käufer und Fonds) gegenüber anderen Börsen.","warum":"Ist Coinbase teurer, kaufen US-Käufer stärker als der Rest der Welt – oft ein Zeichen für echte Nachfrage."},"fng":{"name":"Fear & Greed (Angst-und-Gier-Index)","was":"Eine Zahl von 0 (große Angst) bis 100 (große Gier) aus Schwankung, Handel, sozialen Medien und Bitcoin-Anteil.","warum":"Extreme halten nicht ewig: große Angst kommt oft nach starken Rückgängen, große Gier nach starken Anstiegen."},"cot":{"name":"COT-Bericht (CME-Positionen)","was":"Wöchentlicher Bericht der US-Aufsicht, wie Hedgefonds, Vermögensverwalter und Händler an der CME in Bitcoin-Futures stehen.","warum":"Zeigt, ob große Profis netto auf Steigen oder Fallen stehen – oft sind Hedgefonds dort aber nur abgesichert (Basis-Handel)."},"liquidation":{"name":"Liquidation (Zwangs-Schließung)","was":"Wer mit Hebel handelt und zu viel verliert, wird von der Börse automatisch geschlossen.","warum":"Viele Liquidationen auf einmal sind Zwangsverkäufe (oder -käufe), die den Kurs weiter treiben – eine Welle."},"orderbuch":{"name":"Orderbuch, Liquidität und Wände","was":"Die Liste aller wartenden Kauf- und Verkaufsaufträge; eine „Wand“ ist ein besonders großer Auftrag auf einem Preis.","warum":"Große Wände können den Kurs aufhalten wie ein Deckel oder Boden – sie können aber auch schnell zurückgezogen werden."},"cvd":{"name":"Orderflow und CVD (aufsummiertes Kauf-minus-Verkauf-Volumen)","was":"Zählt, ob die Händler, die sofort kaufen, mehr waren als die, die sofort verkaufen, und summiert das auf.","warum":"Steigt der Kurs, aber das CVD fällt, kaufen nur wenige aggressiv – der Anstieg steht auf dünnen Beinen."},"wand":{"name":"Wand (Call-Wand, Put-Wand) – kein Kaufsignal","was":"Eine Preis-Stufe, an der besonders viel liegt: bei Optionen die Stufe mit dem meisten Gamma über dem Kurs (Call-Wand) oder darunter (Put-Wand), im Orderbuch ein sehr großer wartender Auftrag.","warum":"An einer Wand bremst der Kurs oft oder prallt ab, weil sich dort Absicherungen und Aufträge ballen – sie ist eine Zone zum Beobachten, kein Kauf- oder Verkaufssignal: ob der Kurs dreht oder durchbricht, weiß vorher niemand."},"zerogamma":{"name":"Zero-Gamma (Kipp-Punkt)","was":"Der Kurs, an dem das geschätzte Gamma der Options-Händler von positiv zu negativ kippt.","warum":"Darüber sichern Händler eher gegen die Bewegung ab (das bremst), darunter eher mit ihr (das verstärkt) – unter dem Kipp-Punkt werden Schwankungen oft größer."},"footprint":{"name":"Orderflow und Footprint","was":"Orderflow zeigt jeden einzelnen Trade – wer sofort kauft oder verkauft und auf welchem Preis; der Footprint zählt das je Kerze und Preisstufe (Kauf × Verkauf).","warum":"Das hilft Daytradern im Minutentakt; für Swing-Trading über Tage und Wochen ist es meist Rauschen – darum ist es in der Swing-Ansicht eingeklappt."},"rsi":{"name":"RSI (Relative Stärke, 14)","was":"Vergleicht die Anstiege mit den Rückgängen der letzten 14 Kerzen (Wilder-Glättung) und zeigt das als Zahl von 0 bis 100.","warum":"Über 70 gilt ein Markt als heiß gelaufen, unter 30 als stark gefallen – in starken Trends kann er aber lange dort bleiben; allein sagt der RSI nichts über die nächste Bewegung."},"macd":{"name":"MACD (12, 26, 9)","was":"Der Abstand zweier gleitender Durchschnitte (EMA 12 minus EMA 26), dazu die Signallinie (EMA 9 davon) und das Histogramm (Abstand beider).","warum":"Liegt die MACD-Linie über der Signallinie, hat der Aufwärtsschwung zuletzt zugenommen, darunter der Abwärtsschwung; Kreuzungen zeigen einen Wechsel – oft erst, wenn die Bewegung schon läuft."},"ema":{"name":"Gleitende Durchschnitte (EMA 20/50/200, WMA)","was":"Durchschnittskurs der letzten 20, 50 oder 200 Kerzen; der EMA gewichtet neue Kerzen stärker (exponentiell), der WMA linear (jüngste Kerze am stärksten).","warum":"Viele Händler lesen den Trend daran ab: Kurs über EMA 50 und 200 im Tageschart gilt als Aufwärtstrend, darunter als Abwärtstrend; die Linien wirken oft als Stufen."},"stablecoins":{"name":"Stablecoin-Menge","was":"Wie viele Dollar-Münzen (USDT, USDC) es insgesamt gibt.","warum":"Wächst die Menge, liegt mehr „Kaufgeld“ an den Börsen bereit; schrumpft sie, fließt Geld aus Krypto ab."}}/*LEXIKON-ENDE*/;
 const LEX_MUSTER = [[/^Funding/, 'funding'], [/^Offene Positionen/, 'oi'], [/^(Futures über Kassa|Futures-Kurve|Mark \/ Index)/, 'basis'],
 [/^Coinbase-Prämie/, 'praemie'], [/^Liquidiert/, 'liquidation'], [/^ATM-Vol/, 'vol'], [/^Skew/, 'skew'], [/^Put\/Call/, 'putcall'],
 [/^Max-Pain/, 'maxpain']];
@@ -2001,7 +2002,7 @@ const ds = nun.spot - vor300.spot, dp = nun.perp - vor300.perp, d = (nun.preis /
 if (ds > g * 8 && dp < -g * 8) melde('div-spot', 300, 'kauf', 'Spot kauft, Futures verkaufen',
 `5 Min.: Spot ${usd(ds, true)}, Futures ${usd(dp, true)}. Echte Käufer nehmen, was gehebelte Händler abgeben.`);
 if (ds < -g * 8 && dp > g * 8) melde('div-perp', 300, 'verk', 'Futures kaufen, Spot verkauft',
-`5 Min.: Futures ${usd(dp, true)}, Spot ${usd(ds, true)}. Der Druck kommt aus Hebel-Wetten – oft wackelig.`);
+`5 Min.: Futures ${usd(dp, true)}, Spot ${usd(ds, true)}. Der Druck kommt aus Hebel-Wetten, nicht von Spot-Käufern.`);
 if (d > 0.25 && ds + dp < 0) melde('ohne-kauf', 300, 'verk', 'Kurs steigt ohne Kaufdruck',
 `Kurs ${proz(d)} in 5 Min., aber netto wurde ${usd(ds + dp, true)} gehandelt. Er steigt eher, weil Verkäufer fehlen.`);
 if (d < -0.25 && ds + dp > 0) melde('ohne-verk', 300, 'kauf', 'Kurs fällt ohne Verkaufsdruck',
@@ -2009,7 +2010,7 @@ if (d < -0.25 && ds + dp > 0) melde('ohne-verk', 300, 'kauf', 'Kurs fällt ohne 
 }
 let l = 0, s = 0;
 for (const x of S.liq) { if (jetzt - x.t > 60000) break; if (x.alt) continue; if (x.wer === 'long') l += x.wert; else s += x.wert; }
-if (l > g * 12) melde('liq-long', 120, 'verk', 'Liquidations-Welle: Longs', `${usd(l)} Long-Positionen in 60 s zwangsweise verkauft. Beschleunigt Abwärts, markiert oft aber auch das Ende.`);
+if (l > g * 12) melde('liq-long', 120, 'verk', 'Liquidations-Welle: Longs', `${usd(l)} Long-Positionen in 60 s zwangsweise verkauft. Das beschleunigt Abwärtsbewegungen; in der Vergangenheit lagen solche Wellen oft auch nahe am Ende einer Bewegung.`);
 if (s > g * 12) melde('liq-short', 120, 'kauf', 'Liquidations-Welle: Shorts', `${usd(s)} Short-Positionen in 60 s zwangsweise gekauft (Short Squeeze).`);
 if (bins && S.mid) {
 const werte = [], nah = S.mid * 0.005;
@@ -2028,7 +2029,7 @@ if (!getroffen && S.wandSeit && jetzt - (S.wandSeit.get(b) || jetzt) >= WAND_MIN
 if (!getroffen) melde('zug-' + (unten ? 'kauf' : 'verk'), 180, 'wal', `${unten ? 'Kaufwand' : 'Verkaufswand'} gezogen`,
 `${zeitText('bei', usd(v), preis(p))} verschwanden aus dem Buch, ohne gehandelt zu werden. Wände sind oft nur Schau („Spoofing“) – oder jemand hat es sich anders überlegt.`);
 else melde('fress-' + (unten ? 'kauf' : 'verk'), 120, unten ? 'verk' : 'kauf', `${unten ? 'Kaufwand' : 'Verkaufswand'} aufgefressen`,
-`Die Wand bei ${preis(p)} (${usd(v)}) wurde durchgehandelt. Hält sie nicht, läuft der Kurs oft weiter.`);
+`Die Wand bei ${preis(p)} (${usd(v)}) wurde durchgehandelt. In der Vergangenheit lief der Kurs danach oft in dieselbe Richtung weiter.`);
 }
 }
 for (const [b, v] of jetztGross) {
@@ -3992,7 +3993,7 @@ const ab = [], g = ueb && ueb.gesamt, w = macStand && macStand.wale && macStand.
 if (g && g.funding_gewichtet !== undefined) {
 const f = g.funding_gewichtet, zc = (ueb.coins || []).find((z) => z.coin === coin);
 ab.push({ titel: ueb.quelle === 'Hyperliquid' ? 'Hebel (Funding, offene Positionen · Hyperliquid)' : 'Hebel (Funding, offene Positionen · Bybit)', ampel: 'gruen', zeilen: [`Funding im Mittel aufs Jahr: **${proz(f, 1)}**`, `Offene Positionen aller Coins: ${usd(g.oi)}`, ...(zc && zc.funding !== null ? [`${anzeige(coin)}: Funding ${proz(zc.funding, 1)} · OI ${usd(zc.oi)}${C().tf ? ' (Hyperliquid)' : ''}`] : [])],
-deutung: f > 30 ? 'Viele zahlen viel für Long-Hebel – anfällig für schnelle Rücksetzer.' : f < 0 ? 'Shorts zahlen – die Masse ist vorsichtig oder short.' : 'Hebel im normalen Bereich, keine Überhitzung.', kurz: f > 30 ? 'Hebel hoch' : f < 0 ? 'Shorts zahlen' : 'Hebel normal' });
+deutung: f > 30 ? 'Viele zahlen viel für Long-Hebel – historisch folgten darauf öfter schnelle Rücksetzer.' : f < 0 ? 'Shorts zahlen – die Masse ist vorsichtig oder short.' : 'Hebel im normalen Bereich, keine Überhitzung.', kurz: f > 30 ? 'Hebel hoch' : f < 0 ? 'Shorts zahlen' : 'Hebel normal' });
 }
 if (w && w[coin]) {
 const x = w[coin], gw = ((macStand.wale.gewinner || {})[coin] || {}).netto;
@@ -4152,12 +4153,12 @@ const m = markt && markt.coin === coin && !markt.fehler ? markt : null;
 if (m && m.cvd) {
 const sp = (m.cvd['Binance Spot'] || []).slice(-1)[0], fu = (m.cvd['Binance Futures'] || []).slice(-1)[0], h = m.stunden;
 if (sp !== undefined && Math.abs(sp) > 1e6) dazu(sp > 0 ? 0.8 : -0.8, `Spot-Käufer ${sp > 0 ? 'kaufen' : 'verkaufen'} unterm Strich aggressiv: ${usd(sp, true)} in ${h} Std. (Binance Spot) – echtes Geld statt Hebel.`);
-if (fu !== undefined && sp !== undefined && Math.sign(fu) !== Math.sign(sp) && Math.abs(fu) > 1e6) achten.push(`Spot und Futures uneins: Spot ${usd(sp, true)}, Futures ${usd(fu, true)} (${h} Std.). Führt der Futures-Markt allein, sind Bewegungen oft weniger nachhaltig.`);
+if (fu !== undefined && sp !== undefined && Math.sign(fu) !== Math.sign(sp) && Math.abs(fu) > 1e6) achten.push(`Spot und Futures uneins: Spot ${usd(sp, true)}, Futures ${usd(fu, true)} (${h} Std.). Führt der Futures-Markt allein, hielten Bewegungen in der Vergangenheit oft kürzer.`);
 }
 if (m && m.funding) {
 const f = mw(Object.values(m.funding).map((r) => letzter(r)).filter((v) => v !== null));
 if (f !== null) {
-if (f > 30) dazu(-1, `Funding hoch (${proz(f, 1)} aufs Jahr): viele zahlen viel für Long-Hebel – anfällig für schnelle Rücksetzer, wenn Longs aufgeben.`);
+if (f > 30) dazu(-1, `Funding hoch (${proz(f, 1)} aufs Jahr): viele zahlen viel für Long-Hebel – in der Vergangenheit folgten auf solche Lagen öfter schnelle Rücksetzer, wenn Longs aufgaben.`);
 else if (f < 0) dazu(0.7, `Funding negativ (${proz(f, 1)} aufs Jahr): Shorts zahlen – die Masse ist vorsichtig, Short-Eindeckungen können Anstiege beschleunigen.`);
 else plus.push([0.1, `Funding normal (${proz(f, 1)} aufs Jahr) – keine Überhitzung.`, 0]);
 }
@@ -4166,8 +4167,8 @@ if (ia >= 0 && oiS[ia] && pa && pe) {
 const doi = (oiS[oiS.length - 1] / oiS[ia] - 1) * 100, dp = (pe / pa - 1) * 100;
 if (doi > 3 && dp > 0.5) dazu(0.5, `Offene Positionen +${de(doi, 1)} % bei steigendem Kurs (${proz(dp, 1)}): neues Geld geht mit dem Anstieg.`);
 else if (doi > 3 && dp < -0.5) dazu(-0.5, `Offene Positionen +${de(doi, 1)} % bei fallendem Kurs (${proz(dp, 1)}): neue Shorts drücken.`);
-else if (doi < -3 && dp > 0.5) achten.push(`Anstieg bei sinkenden offenen Positionen (${proz(doi, 1)}): eher Short-Eindeckung als neues Geld – solche Anstiege laufen oft aus.`);
-else if (doi < -3 && dp < -0.5) achten.push(`Rückgang bei sinkenden offenen Positionen (${proz(doi, 1)}): Longs werden abgebaut – nach so einem Abbau ist der Druck oft raus.`);
+else if (doi < -3 && dp > 0.5) achten.push(`Anstieg bei sinkenden offenen Positionen (${proz(doi, 1)}): eher Short-Eindeckung als neues Geld – solche Anstiege liefen in der Vergangenheit oft aus.`);
+else if (doi < -3 && dp < -0.5) achten.push(`Rückgang bei sinkenden offenen Positionen (${proz(doi, 1)}): Longs werden abgebaut – nach so einem Abbau ließ der Druck in der Vergangenheit oft nach.`);
 }
 }
 const ls = gesch && gesch.coin === coin && (gesch.ls || []).length ? gesch.ls[gesch.ls.length - 1][1] : null;
@@ -4184,7 +4185,7 @@ if (!krypto && k.length > 40 && umf && (umf.spx || []).length > 30 && !['SP500',
 const a = (k[k.length - 1] / k[Math.max(0, k.length - 31)] - 1) * 100, b = aenderung(umf.spx, 30);
 if (b !== null && Math.abs(a - b) > 4) dazu(a > b ? 0.5 : -0.5, `${a > b ? 'Stärker' : 'Schwächer'} als der Gesamtmarkt: 30 Tage ${proz(a, 1)} gegen S&P 500 ${proz(b, 1)}.`);
 const hoch = Math.max(...k.slice(-252)), ab = (k[k.length - 1] / hoch - 1) * 100;
-achten.push(ab > -3 ? `Nahe am 52-Wochen-Hoch (${preis(hoch)}): Ausbrüche über Jahreshochs ziehen oft weitere Käufer an.` : `${proz(ab, 1)} unter dem 52-Wochen-Hoch (${preis(hoch)}).`);
+achten.push(ab > -3 ? `Nahe am 52-Wochen-Hoch (${preis(hoch)}): das Jahreshoch ist eine Marke, die viele Marktteilnehmer beobachten.` : `${proz(ab, 1)} unter dem 52-Wochen-Hoch (${preis(hoch)}).`);
 }
 if (umf && (umf.vix || []).length) { const v = umf.vix[umf.vix.length - 1][1]; if (v > 25) dazu(-0.4, `VIX ${de(v, 1)}: Angst an der Aktienbörse.`); }
 const w = krypto && macStand && macStand.wale && macStand.wale.wale && macStand.wale.wale[coin];
@@ -4199,7 +4200,7 @@ const lk = lkarte && lkarte.coin !== undefined && lkarte.coin !== coin ? null : 
 if (lk && lk.stufen && lk.preis && kurs) {
 const unter = lk.stufen.filter((z) => z[0] < kurs && z[0] > kurs * 0.95), ueber = lk.stufen.filter((z) => z[0] > kurs && z[0] < kurs * 1.05);
 const L = unter.reduce((a, z) => a + z[1], 0), Sh = ueber.reduce((a, z) => a + z[2], 0);
-if (L + Sh > 0 && (L > Sh * 1.5 || Sh > L * 1.5)) dazu(Sh > L ? 0.3 : -0.3, `Bis ±5 % liegen geschätzt mehr ${Sh > L ? 'Short' : 'Long'}-Liquidationen (${usd(Math.max(L, Sh))} gegen ${usd(Math.min(L, Sh))}) – Kurse werden oft dorthin gezogen.`);
+if (L + Sh > 0 && (L > Sh * 1.5 || Sh > L * 1.5)) dazu(Sh > L ? 0.3 : -0.3, `Bis ±5 % liegen geschätzt mehr ${Sh > L ? 'Short' : 'Long'}-Liquidationen (${usd(Math.max(L, Sh))} gegen ${usd(Math.min(L, Sh))}) – erreicht der Kurs diese Stufen, lösen die Zwangsschließungen dort weitere Orders aus.`);
 const gs = ueber.reduce((a, z) => (z[2] > (a ? a[2] : 0) ? z : a), null), gl = unter.reduce((a, z) => (z[1] > (a ? a[1] : 0) ? z : a), null);
 if (gs) achten.push(`Darüber: bei ${preis(gs[0])} (${proz((gs[0] / kurs - 1) * 100, 1)}) würden geschätzt Shorts für ${usd(gs[2])} zwangsgeschlossen – erreicht der Kurs die Stelle, kann das den Anstieg beschleunigen.`);
 if (gl) achten.push(`Darunter: bei ${preis(gl[0])} (${proz((gl[0] / kurs - 1) * 100, 1)}) Longs für ${usd(gl[1])} – ein Fall dorthin kann sich durch Zwangsverkäufe beschleunigen.`);
@@ -4219,8 +4220,8 @@ const r = S.reihe, a = r[0], z = r[r.length - 1], ds = z.spot - a.spot, dp2 = z.
 if (Math.abs(ds + dp2) > gr) achten.push(`Letzte ${Math.round(r.length / 60)} Min. live: Spot ${usd(ds, true)}, Futures ${usd(dp2, true)} netto aggressiv ${ds + dp2 > 0 ? 'gekauft' : 'verkauft'}.`);
 }
 const tn = termineListe.find((x) => x.zeit * 1000 > Date.now() && x.zeit * 1000 - Date.now() < 48 * 36e5);
-if (tn) achten.push(`Termin: ${TERMIN_ART[tn.art] || 'Termin'} ${new Date(tn.zeit * 1000).toLocaleString(LOC, { weekday: 'short', hour: '2-digit', minute: '2-digit' })} – ${tn.text}. Um solche Termine schwankt der Kurs oft stärker.`);
-if (m && m.funding && kurs) achten.push('Grundregel: Mit Hebel entscheidet der Stop, nicht die Meinung. Diese Analyse ist eine Momentaufnahme und kann sich in Minuten drehen.');
+if (tn) achten.push(`Termin: ${TERMIN_ART[tn.art] || 'Termin'} ${new Date(tn.zeit * 1000).toLocaleString(LOC, { weekday: 'short', hour: '2-digit', minute: '2-digit' })} – ${tn.text}. Um solche Termine schwankte der Kurs in der Vergangenheit oft stärker.`);
+if (m && m.funding && kurs) achten.push('Hinweis: Mit Hebel kann schon eine kleine Gegenbewegung die ganze Marge kosten. Diese Übersicht ist eine Momentaufnahme und ändert sich mit den Daten.');
 const summe = [...plus, ...minus].reduce((a, x) => a + x[2], 0), gewicht = [...plus, ...minus].reduce((a, x) => a + Math.abs(x[2]), 0);
 const wert = gewicht ? Math.round(summe / Math.max(gewicht, 3) * 100) : 0, n = [...plus, ...minus].filter((x) => x[2]).length;
 return { wert, n, plus: plus.sort((a, b) => b[0] - a[0]), minus: minus.sort((a, b) => b[0] - a[0]), achten, zeit: Date.now() };
@@ -4230,7 +4231,7 @@ function analyseZeigen() {
 const box = $('an-satz'); if (!box) return;
 if (!anKurs()) { box.textContent = 'Sammle Daten …'; return; }
 const a = analyseRechnen();
-const urteil = a.n < 3 ? 'noch zu wenig Daten für ein Bild' : a.wert >= 35 ? 'deutlich freundlich' : a.wert >= 12 ? 'eher freundlich' : a.wert <= -35 ? 'deutlich schwach' : a.wert <= -12 ? 'eher schwach' : 'gemischt';
+const urteil = a.n < 3 ? 'noch zu wenig Daten für ein Bild' : a.wert >= 35 ? 'Bausteine überwiegend im Plus' : a.wert >= 12 ? 'Bausteine eher im Plus' : a.wert <= -35 ? 'Bausteine überwiegend im Minus' : a.wert <= -12 ? 'Bausteine eher im Minus' : 'gemischt';
 const zeiger = $('an-zeiger'); zeiger.replaceChildren(); const spur = document.createElement('span'), punkt = document.createElement('i');
 punkt.style.left = `${(a.wert + 100) / 2}%`; punkt.className = a.wert >= 12 ? 'plus' : a.wert <= -12 ? 'minus' : ''; spur.append(punkt); zeiger.append(spur);
 box.replaceChildren(); const b = document.createElement('b'); b.textContent = `${anzeige(coin)}${(C().tf || C().tdm) && C().lang ? ' (' + C().lang + ')' : ''}: ${urteil}`; box.append(b, ` · Wert ${a.wert > 0 ? '+' : ''}${a.wert} von −100 bis +100 · aus ${a.n} Bausteinen`);
@@ -4713,7 +4714,7 @@ for (const h of ['5', '15', '60']) zelle(tr, d.basis[h], null, 0);
 box.replaceChildren(tab);
 btZeigen();
 const tageDa = d.von ? Math.max(1, Math.round((Date.now() / 1000 - d.von) / 86400)) : null;
-$('danach-stand').textContent = DEMO ? 'Demo-Daten' : d.direkt ? `Aus ${de(d.minuten)} Minuten ${d.quelle} (Kurs${d.quelle === 'Binance-Futures' ? ', Kaufdruck' : ''})${d.oiQuelle === 'Gate.io' ? ' und Gate.io (offene Positionen, etwa 7 Tage)' : ['Hyperliquid', 'Twelve Data'].includes(d.quelle) || d.oiQuelle === '' ? '' : ' und Bybit (offene Positionen)'}, direkt geladen · Liquidations-Wellen ab einem Tag Aufzeichnung in diesem Browser · Vergangenheit, kein Versprechen · Stand ${uhrKurz(Date.now())}` : `Aus ${de(d.minuten)} Minuten Aufzeichnung am Mac${tageDa && tageDa < d.tage ? ` (erst ${tageDa} ${tageDa === 1 ? 'Tag' : 'Tage'} vorhanden – wird mit jedem Tag genauer)` : ''} · Vergangenheit, kein Versprechen · Stand ${uhrKurz(Date.now())}`;
+$('danach-stand').textContent = DEMO ? 'Demo-Daten' : d.direkt ? `Aus ${de(d.minuten)} Minuten ${d.quelle} (Kurs${d.quelle === 'Binance-Futures' ? ', Kaufdruck' : ''})${d.oiQuelle === 'Gate.io' ? ' und Gate.io (offene Positionen, etwa 7 Tage)' : ['Hyperliquid', 'Twelve Data'].includes(d.quelle) || d.oiQuelle === '' ? '' : ' und Bybit (offene Positionen)'}, direkt geladen · Liquidations-Wellen ab einem Tag Aufzeichnung in diesem Browser · Vergangenheit, kein Versprechen · Stand ${uhrKurz(Date.now())}` : `Aus ${de(d.minuten)} Minuten Aufzeichnung am Mac${tageDa && tageDa < d.tage ? ` (erst ${tageDa} ${tageDa === 1 ? 'Tag' : 'Tage'} vorhanden – wächst mit jedem Tag)` : ''} · Vergangenheit, kein Versprechen · Stand ${uhrKurz(Date.now())}`;
 }
 
 function fettText(el, t) {
@@ -5701,7 +5702,7 @@ const MAC_NACHRICHTEN = !TEILEN && (DEMO || macBasis() !== null);
 const NEWS_KATEGORIEN = ['regulierung', 'boerse', 'schlagzeile'];
 const NEWS_KAT_NAME = { regulierung: 'Regulierung', boerse: 'Börse', schlagzeile: 'Schlagzeile' };
 const NEWS_ART_NAME = { hack: 'Hack', streichung: 'Streichung', klage: 'Klage/Strafe', freigabe: 'Token-Freigabe', ausfall: 'Ausfall', abfluss: 'Abfluss',
-etf: 'ETF', listing: 'Listung', zukauf: 'Kauf/Zukauf', partnerschaft: 'Partnerschaft', neuerung: 'Neuerung', kursfall: 'Kursrückgang', kursanstieg: 'Kursanstieg', meinung: 'Meinung/Prognose' };
+etf: 'ETF', listing: 'Listung', zukauf: 'Kauf/Zukauf', partnerschaft: 'Partnerschaft', neuerung: 'Neuerung', kursfall: 'Kursrückgang', kursanstieg: 'Kursanstieg', meinung: 'Meinung/Einschätzung' };
 const NEWS_MEINUNG = /\?/;
 const MZ_TERMIN = { zins: 'Fed-Zinsentscheid', arbeitsmarkt: 'Arbeitsmarkt', inflation: 'Inflation (CPI)', erzeugerpreise: 'Erzeugerpreise (PPI)', pce: 'PCE-Preise', wachstum: 'Wirtschaftsleistung (BIP)' };
 const ALTER_TEXT = {
@@ -6085,8 +6086,8 @@ const kach = [['Mitte (50 %)', q50 ? preis(q50) : '–', `am ${tagKurz(e.v)}`, '
 ['Wahrscheinlichkeit +10 %', proz((chanceUeber(vt, jetzt * 1.1) || 0) * 100, 1, false), `über ${preis(jetzt * 1.1)}`, 'plus'], ['Wahrscheinlichkeit −10 %', proz((1 - (chanceUeber(vt, jetzt * 0.9) ?? 1)) * 100, 1, false), `unter ${preis(jetzt * 0.9)}`, 'minus']];
 $('ol-kacheln').replaceChildren(...kach.map(([k, v, klein, kl]) => { const div = document.createElement('div'); const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; if (kl) dd.className = kl; const sm = document.createElement('small'); sm.textContent = klein; div.append(dt, dd, sm); return div; }));
 const ch = $('ol-chance'); ch.replaceChildren();
-if (K0) { const p = chanceUeber(vt, K0); if (p !== null) { const b1 = document.createElement('b'); b1.textContent = proz(p * 100, 1, false); const b2 = document.createElement('b'); b2.textContent = proz((1 - p) * 100, 1, false); ch.append('Chance, dass der Kurs am ', tagKurz(e.v), ' über ', preis(K0), ' steht: ', b1, ' · darunter: ', b2); } }
-else ch.textContent = 'Kurs eingeben → Chance darüber/darunter am Verfall (Einschätzung des Marktes)';
+if (K0) { const p = chanceUeber(vt, K0); if (p !== null) { const b1 = document.createElement('b'); b1.textContent = proz(p * 100, 1, false); const b2 = document.createElement('b'); b2.textContent = proz((1 - p) * 100, 1, false); ch.append('Wahrscheinlichkeit laut Optionspreisen, dass der Kurs am ', tagKurz(e.v), ' über ', preis(K0), ' steht: ', b1, ' · darunter: ', b2); } }
+else ch.textContent = 'Kurs eingeben → Wahrscheinlichkeit darüber/darunter am Verfall (aus Optionspreisen)';
 }
 function eng0(sp) { return sp < 170 * (window.devicePixelRatio || 1); }
 function olPosition() {
@@ -7498,7 +7499,7 @@ const tf = [...TF.entries()].filter(([, e]) => e.name === sym).sort((a, b) => (a
 return tf ? tf[0] : (!aktie && /^[A-Z0-9]{1,15}$/.test(sym) ? sym : null);
 }
 let journalTopf = lies('journalTopf') || null;
-const JOURNAL_NAMEN = [['selbst', 'Selbst gehandelt'], ['haupt', 'Hauptkonto'], ['gewinn', 'Gewinn-Lehrer'], ['hebel', 'Hebel-Schule'], ['lern', 'Lern-Topf'], ['schnell', 'Schnell-Topf'], ['tages', 'Tages-Topf']];
+const JOURNAL_NAMEN = [['selbst', 'Selbst gehandelt'], ['haupt', 'Hauptkonto'], ['gewinn', 'Gewinn-Lehrer'], ['hebel', 'Hebel-Schule'], ['lern', 'Lern-Topf'], ['schnell', 'Schnell-Topf'], ['tages', 'Tages-Topf'], ['lang', 'Nur-Long'], ['meme', 'Meme-Lotterie']];
 function journalZeigen() {
 const sec = document.querySelector('section.feld.journal'); if (!sec) return;
 const bj = botZeigen && konto && konto.journal && typeof konto.journal === 'object' ? konto.journal : {}, sj = typeof selbstJournal === 'function' ? selbstJournal() : null;
@@ -7661,87 +7662,15 @@ addEventListener('storage', (e) => { if (e.key === 'profi.selbst') { selbst = se
 }
 }
 const AN_FARBE = { hoeher: 'plus', tiefer: 'minus' };
-function analystBlock(kompakt) {
-const a = eigenerBot() && konto && konto.analyst; if (!a || (!a.analyse && !a.buch)) return null;
-const el = (tag, kl, txt) => { const e = document.createElement(tag); if (kl) e.className = kl; if (txt != null) e.textContent = txt; return e; };
-const an = a.analyse, b = a.buch, box = el('div', 'analyst-block' + (kompakt ? ' kompakt' : ''));
-const seite = kompakt ? box : el('div', 'analyst-seite');
-const pz = (x) => (x == null ? '–' : proz(x * 100, 0, false)), br = (x) => (x == null ? '–' : de(x, 3));
-if (b) {
-const dl = el('dl', kompakt ? 'hd-tool-werte' : 'kacheln analyst-kacheln'), kach = (t, w, klein, kl) => { const d = el('div'); d.append(el('dt', '', t), el('dd', kl || '', w)); if (klein && !kompakt) d.append(el('small', '', klein)); dl.append(d); };
-const fr = b.markt.n < b.markt.ab;
-kach('Markt-Calls', `${b.markt.n} / ${b.markt.ab}`, fr ? `noch zu früh – Urteil ab ${b.markt.ab} ausgezählten · ${b.markt.offen} offen` : b.markt.urteil_text, fr ? '' : b.markt.urteil ? 'plus' : 'minus');
-kach('Treffer Markt', pz(b.markt.quote), `Brier ${br(b.markt.brier)} (0 = perfekt, 0,25 = Münzwurf)`);
-kach('Termin-Calls', `${b.termin.n} · ${pz(b.termin.quote)}`, `${b.termin.treffer} Treffer · Brier ${br(b.termin.brier)} · ${b.termin.offen} offen`);
-kach('Offen', String(b.offen_gesamt), 'Calls mit Stichtag in der Zukunft');
-box.append(dl);
-if (kompakt && fr) box.append(el('p', 'leise hd-klein', `Noch zu früh für ein Urteil – ab ${b.markt.ab} ausgezählten Markt-Calls (jetzt ${b.markt.n}).`));
-}
-if (an) {
-if (!kompakt) box.append(el('p', 'analyst-titel', an.titel || 'Analyse'));
-const raster = el('div', kompakt ? 'analyst-kurz' : 'analyse-raster analyst-raster');
-const nur = kompakt ? ['szenario', 'hoeher', 'tiefer', 'widerspruch'] : null;
-const abschnitte = (an.abschnitte || []).filter((x) => x.art !== 'quote' && (!nur || nur.includes(x.art))).sort((x, y) => (nur ? nur.indexOf(x.art) - nur.indexOf(y.art) : 0));
-for (const x of abschnitte) {
-const art = kompakt ? el('div', 'analyst-teil') : el('article', 'analyst-teil' + ((x.tabelle || []).length > 1 ? ' breit' : ''));
-const h = el(kompakt ? 'h4' : 'h3', AN_FARBE[x.art] || ''); if (!kompakt) { const i = el('i', x.art === 'hoeher' ? 'gruen' : x.art === 'tiefer' ? 'rot' : 'gelb'); h.append(i); } h.append(x.titel);
-art.append(h);
-const punkte = kompakt ? (x.punkte || []).slice(0, x.art === 'szenario' ? 3 : 2) : x.punkte || [];
-if (punkte.length) { const ul = el('ul', kompakt ? 'hd-text-liste' : ''); for (const z of punkte) ul.append(el('li', '', z)); art.append(ul); }
-if (!kompakt && (x.tabelle || []).length > 1) {
-const t = document.createElement('table'), kopf = t.createTHead().insertRow(), rumpf = t.createTBody();
-for (const c of x.tabelle[0]) { const th = document.createElement('th'); th.textContent = c; kopf.append(th); }
-for (const r of x.tabelle.slice(1)) { const tr = rumpf.insertRow(); for (const c of r) tr.insertCell().textContent = c; }
-const tw = el('div', 'tabelle'); tw.append(t); art.append(tw);
-}
-raster.append(art);
-}
-box.append(raster);
-}
-if (b && (b.offen || []).length) {
-const offen = kompakt ? b.offen.filter((c) => c.art === 'markt').concat(b.offen.filter((c) => c.art !== 'markt')).slice(0, 5) : b.offen;
-seite.append(el(kompakt ? 'h4' : 'h3', 'analyst-h', `Offene Calls (${b.offen_gesamt})`));
-const ol = el('ol', 'hd-zeilen hd-text analyst-calls');
-for (const c of offen) {
-const li = document.createElement('li'); li.append(el('b', '', c.wert), el('span', 'analyst-art', c.art === 'markt' ? 'Markt' : 'Termin'),
-el('span', c.richtung === 'hoeher' ? 'plus' : 'minus', `${c.richtung === 'hoeher' ? '↑ höher' : '↓ tiefer'} bis ${tagKurz(Date.parse(c.bis + 'T00:00:00Z'))}`), el('span', 'leise', `${pz(c.sicherheit)} sicher`));
-if (!kompakt && c.ereignis) li.append(el('small', 'leise', c.ereignis));
-ol.append(li);
-}
-seite.append(ol);
-}
-if (b && (b.fertig || []).length && !kompakt) {
-seite.append(el('h3', 'analyst-h', 'Zuletzt ausgezählt'));
-const ol = el('ol', 'hd-zeilen hd-text analyst-calls');
-for (const c of b.fertig) {
-const li = document.createElement('li'); li.append(el('b', '', c.wert), el('span', 'analyst-art', c.art === 'markt' ? 'Markt' : 'Termin'),
-el('span', '', `${c.richtung === 'hoeher' ? '↑' : '↓'} bis ${tagKurz(Date.parse(c.bis + 'T00:00:00Z'))}`), el('span', c.treffer ? 'plus' : 'minus', `${c.treffer ? '✓ Treffer' : '✗ daneben'}${c.bewegung != null ? ` (${proz(c.bewegung * 100, 1)})` : ''}`));
-ol.append(li);
-}
-seite.append(ol);
-}
-if (seite !== box && seite.childElementCount) box.append(seite);
-box.append(el('p', 'leise hd-klein', 'Nur Messung: ein Call ist kein Trade und ändert keine Regel. Kein Anlageberater, kein Gewinnversprechen.'));
-return box;
-}
-function analystZeigen() {
-const sec = document.querySelector('section.feld.analyst'); if (!sec) return;
-const blk = analystBlock(false); sec.hidden = !blk || DEMO;
-if (!blk) return;
-$('analyst-inhalt').replaceChildren(blk);
-const a = konto.analyst, z = [];
-if (a.analyse && a.analyse.geaendert) z.push(`Analyse geschrieben ${tagUhr(a.analyse.geaendert * 1000)}`);
-if (a.buch && a.buch.geaendert) z.push(`Prognose-Buch ${tagUhr(a.buch.geaendert * 1000)}`);
-if (a.analyse && a.analyse.quellen) z.push(`Quellen: ${a.analyse.quellen}`);
-$('analyst-stand').textContent = z.join(' · ');
-}
+function analystBlock() { return null; }
+function analystZeigen() { const s = document.querySelector('section.feld.analyst'); if (s) s.hidden = true; }
 function kontoZeigen() {
 journalZeigen();
 analystZeigen();
 const box = $('konto'); if (!box) return;
 const bot = botZeigen && !!(konto && (konto.trader || konto.haupt || konto.schnell || konto.hebel || konto.lern)), kp = kontenPositionen(), kl = konten();
 box.hidden = DEMO; $('konto-bot').hidden = !bot; $('konto-eigen').hidden = bot && !kl.length;
-const toepfe = bot ? (altTrader() ? [['Hauptkonto', konto.trader]] : [['Hauptkonto', konto.haupt]]).concat([['Gewinn-Lehrer', konto.gewinn], ['Schnell-Topf', konto.schnell], ['Hebel-Schule', konto.hebel], ['Lern-Topf', konto.lern]], altTrader() ? [] : [['Altes Konto (archiviert)', konto.trader]]).filter(([, t]) => t && t.stand_eur != null) : [];
+const toepfe = bot ? (altTrader() ? [['Hauptkonto', konto.trader]] : [['Hauptkonto', konto.haupt]]).concat([['Gewinn-Lehrer', konto.gewinn], ['Schnell-Topf', konto.schnell], ['Hebel-Schule', konto.hebel], ['Lern-Topf', konto.lern], ['Nur-Long', konto.lang], ['Meme-Lotterie', konto.meme]], altTrader() ? [] : [['Altes Konto (archiviert)', konto.trader]]).filter(([, t]) => t && t.stand_eur != null) : [];
 $('konto-toepfe').replaceChildren(...toepfe.map(([name, t]) => {
 const d = document.createElement('div'), a = document.createElement('dt'), b = document.createElement('dd'), s = document.createElement('small');
 a.textContent = name; b.textContent = eurK(t.stand_eur);
@@ -7760,10 +7689,15 @@ const pos = bot ? [...((altTrader() || {}).positionen || []).map((p) => ({ ...p,
 const teile = pos.map((p) => { const sym = String(p.symbol || '?').toUpperCase(), kurz = p.seite === 'short';
 return chip(kurz ? `${sym} ↓` : sym, kontoMarkt(sym, p.markt), p.stand != null ? proz(p.stand * 100, 1) : '–', p.stand > 0 ? 'plus' : p.stand < 0 ? 'minus' : '', p.topf,
 `${sym} · ${p.topf === 'Haupt' ? (EN ? 'main account' : 'Hauptkonto') : (EN ? 'fast pot' : 'Schnell-Topf')}${kurz ? ' · short' : ''} · ${EN ? 'stake' : 'Einsatz'} ${eurK(p.einsatz_eur)}${p.stop ? ' · Stop ' + de(p.stop, p.stop < 10 ? 4 : 2) : ''}`); });
-for (const [topf, t] of bot ? [['Haupt', konto.haupt], ['Lehrer', konto.gewinn], ['Hebel', konto.hebel], ['Lern', konto.lern]] : []) for (const p of ((t || {}).positionen || [])) {
+for (const [topf, t] of bot ? [['Haupt', konto.haupt], ['Lehrer', konto.gewinn], ['Hebel', konto.hebel], ['Lern', konto.lern], ['Long', konto.lang]] : []) for (const p of ((t || {}).positionen || [])) {
 const sym = String(p.symbol || '?').toUpperCase(), kurz = p.seite === 'short' ? '↓' : '↑', st = hebelLive(p);
 teile.push(chip(`${sym} ${kurz}`, kontoMarkt(sym, 'krypto'), st != null ? proz(st * 100, 1) : '–', st > 0 ? 'plus' : st < 0 ? 'minus' : '', `${topf} ${p.hebel || ''}×`,
-`${sym} · ${topf === 'Hebel' ? 'Hebel-Schule' : topf === 'Haupt' ? (EN ? 'main account' : 'Hauptkonto') : topf === 'Lehrer' ? 'Gewinn-Lehrer' : 'Lern-Topf'} · ${p.seite} ${p.hebel || ''}×${p.muster ? ' · ' + p.muster : ''} · ${EN ? 'margin' : 'Marge'} ${eurK(p.einsatz_eur)}${p.stop ? ' · Stop ' + de(p.stop, p.stop < 10 ? 4 : 2) : ''}`));
+`${sym} · ${topf === 'Hebel' ? 'Hebel-Schule' : topf === 'Haupt' ? (EN ? 'main account' : 'Hauptkonto') : topf === 'Lehrer' ? 'Gewinn-Lehrer' : topf === 'Long' ? 'Nur-Long' : 'Lern-Topf'} · ${p.seite} ${p.hebel || ''}×${p.muster ? ' · ' + p.muster : ''} · ${EN ? 'margin' : 'Marge'} ${eurK(p.einsatz_eur)}${p.stop ? ' · Stop ' + de(p.stop, p.stop < 10 ? 4 : 2) : ''}`));
+}
+for (const p of bot ? ((konto.meme || {}).positionen || []) : []) {
+const sym = String(p.symbol || '?').toUpperCase();
+teile.push(chip(sym, null, p.stand != null ? proz(p.stand * 100, 1) : '–', p.stand > 0 ? 'plus' : p.stand < 0 ? 'minus' : '', 'Meme',
+`${sym} · ${EN ? 'meme lottery' : 'Meme-Lotterie'} · ${EN ? 'stake' : 'Einsatz'} ${eurK(p.einsatz_eur)} · ${EN ? 'price since entry, before costs' : 'Kurs seit Einstieg, vor Kosten'}`));
 }
 for (const k of kp) teile.push(chip(`${k.markt.split('-')[0]} ${k.seite === 'long' ? '↑' : '↓'}`, coinDaten(k.markt) || COINS[k.markt] || /^[A-Z0-9]{1,15}$/.test(k.markt) ? k.markt : null,
 usd(k.pnl, true), k.pnl > 0 ? 'plus' : k.pnl < 0 ? 'minus' : '', k.quelle, `${k.sym} · ${k.quelle} · ${k.seite} · ${EN ? 'entry' : 'Einstieg'} ${de(k.einstieg, k.einstieg < 10 ? 4 : 2)}${k.liq ? ' · Liq. ' + de(k.liq, k.liq < 10 ? 4 : 2) : ''} · ${usd(k.wert)}`));
@@ -7797,7 +7731,7 @@ async function kontoLaden() {
 const basis = !window.RYVO_TEILEN && typeof window.RYVO_KONTO === 'string' && window.RYVO_KONTO ? window.RYVO_KONTO.replace(/\/$/, '') : macBasis();
 if (basis === null || DEMO) { kontoZeigen(); return; }
 if (basis === '' && !/^\/profi(\/|$)/.test(location.pathname)) { kontoZeigen(); return; }
-try { const d = await holeMitFrist(basis + '/api/kurz', 25000);   if (d && (d.trader || d.schnell || d.hebel || d.lern)) { konto = d; kontoZeit = Date.now(); merke('konto', JSON.stringify({ zeit: kontoZeit, d })); } }
+try { const d = await holeMitFrist(basis + '/api/kurz', 25000);   if (d && (d.trader || d.schnell || d.hebel || d.lern || d.lang || d.meme)) { konto = d; kontoZeit = Date.now(); merke('konto', JSON.stringify({ zeit: kontoZeit, d })); } }
 catch (e) { if (!konto) { try { const x = JSON.parse(lies('konto') || 'null'); if (x && x.d) { konto = x.d; kontoZeit = x.zeit; } } catch (e2) {   } } }
 kontoZeigen();
 if (konto && !TF.size) tfLaden().then(kontoZeigen).catch(() => {   });
@@ -9988,11 +9922,11 @@ const ab = analystBlock(true);
 if (ab) teile.push(hdEl('h4', 'analyst-kopf', 'Dein Analyst'), ab, hdEl('h4', 'analyst-trenner', `Automatische Analyse · ${anzeige(coin)}`));
 if (!anKurs()) teile.push(hdEl('p', 'leise', 'Sammle Daten …'));
 else {
-const a = analyseRechnen(), urteil = a.n < 3 ? 'noch zu wenig Daten für ein Bild' : a.wert >= 35 ? 'deutlich freundlich' : a.wert >= 12 ? 'eher freundlich' : a.wert <= -35 ? 'deutlich schwach' : a.wert <= -12 ? 'eher schwach' : 'gemischt';
+const a = analyseRechnen(), urteil = a.n < 3 ? 'noch zu wenig Daten für ein Bild' : a.wert >= 35 ? 'Bausteine überwiegend im Plus' : a.wert >= 12 ? 'Bausteine eher im Plus' : a.wert <= -35 ? 'Bausteine überwiegend im Minus' : a.wert <= -12 ? 'Bausteine eher im Minus' : 'gemischt';
 const z = hdEl('div', 'analyse-zeiger'), sp = document.createElement('span'), pk = document.createElement('i'); pk.style.left = `${(a.wert + 100) / 2}%`; pk.className = a.wert >= 12 ? 'plus' : a.wert <= -12 ? 'minus' : ''; sp.append(pk); z.append(sp);
 const kopf = hdEl('p', 'hd-tool-satz'); kopf.append(hdEl('b', '', `${anzeige(coin)}: ${urteil}`), ` · Wert ${a.wert > 0 ? '+' : ''}${a.wert} · ${a.n} Bausteine`);
 teile.push(kopf, z);
-for (const [titel, l, kl] of [['Dafür', a.plus, 'plus'], ['Dagegen', a.minus, 'minus'], ['Worauf achten', a.achten.map((x) => [0, x]), '']]) {
+for (const [titel, l, kl] of [['Dafür', a.plus, 'plus'], ['Dagegen', a.minus, 'minus'], ['Marken und Termine', a.achten.map((x) => [0, x]), '']]) {
 if (!l.length) continue; teile.push(hdEl('h4', kl, titel)); const ul = hdEl('ul', 'hd-text-liste'); for (const [, x] of l.slice(0, 3)) ul.append(hdEl('li', '', x)); teile.push(ul);
 }
 teile.push(hdEl('p', 'leise hd-klein', 'Automatische Momentaufnahme öffentlicher Daten – keine Anlageberatung, keine Kauf- oder Verkaufsempfehlung.'));
@@ -10075,7 +10009,7 @@ for (const s of liste) { const li = hdZeile([[LAGE_STUFE[s.art] || s.art, ''], [
 teile.push(ol);
 }
 teile.push(hdEl('p', 'hd-lage-hinweis', 'Beobachtung, kein Signal · keine Anlageberatung'));
-teile.push(hdEl('p', 'leise hd-klein', `${l.n} Tageskerzen. Stufen sind Zonen, an denen der Kurs oft bremst oder abprallt – ob er dreht oder durchbricht, weiß vorher niemand. Kein Anlageberater, kein Gewinnversprechen.`));
+teile.push(hdEl('p', 'leise hd-klein', `${l.n} Tageskerzen. Stufen sind Preise, auf die viele Marktteilnehmer schauen – ob der Kurs dort dreht oder durchbricht, weiß vorher niemand. Kein Anlageberater, kein Gewinnversprechen.`));
 return teile;
 }
 
@@ -10165,9 +10099,9 @@ const i = f.indexOf(document.activeElement);
 if (i < 0 || (e.shiftKey && i === 0) || (!e.shiftKey && i === f.length - 1)) { e.preventDefault(); (e.shiftKey ? f[f.length - 1] : f[0]).focus(); }
 }, true);
 
-const FASSUNG = 'r161';
+const FASSUNG = 'r162';
 let NEU = null;
-function neuLaden(von) { const s = document.createElement("script"); s.src = "sprachen/neu.js?v=b8293c22"; s.onload = () => { NEU = window.RYVO_NEU || []; wasNeu(von); }; document.head.append(s); }
+function neuLaden(von) { const s = document.createElement("script"); s.src = "sprachen/neu.js?v=0fd8a45f"; s.onload = () => { NEU = window.RYVO_NEU || []; wasNeu(von); }; document.head.append(s); }
 function wasNeu(von) {
 if (!NEU) { neuLaden(von); return; }
 let box = $('was-neu');
@@ -10797,7 +10731,7 @@ if (typeof rangZeigen === 'function') rangZeigen();
 
 var W5_LAZY;
 function w5Laden() {
-if (!W5_LAZY) W5_LAZY = new Promise((ok, nein) => { if (window.RYVO_W5_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w5.js?v=da58d3b4"; s.onload = ok; s.onerror = () => { W5_LAZY = null; nein(new Error("w5.js")); }; document.head.append(s); })
+if (!W5_LAZY) W5_LAZY = new Promise((ok, nein) => { if (window.RYVO_W5_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w5.js?v=e4bc6d51"; s.onload = ok; s.onerror = () => { W5_LAZY = null; nein(new Error("w5.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W5_CODE); window.RYVO_W5_CODE = null; return f; });
 return W5_LAZY;
 }
@@ -10828,7 +10762,7 @@ var W8_BEREIT = true;
 
 var W9_LAZY, W9_F;
 function w9Laden() {
-if (!W9_LAZY) W9_LAZY = new Promise((ok, nein) => { if (window.RYVO_W9_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w9.js?v=3c66dd00"; s.onload = ok; s.onerror = () => { W9_LAZY = null; nein(new Error("w9.js")); }; document.head.append(s); })
+if (!W9_LAZY) W9_LAZY = new Promise((ok, nein) => { if (window.RYVO_W9_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w9.js?v=67f57193"; s.onload = ok; s.onerror = () => { W9_LAZY = null; nein(new Error("w9.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W9_CODE); window.RYVO_W9_CODE = null; W9_F = f; return f; });
 return W9_LAZY;
 }
@@ -11084,7 +11018,7 @@ function w12HdFormel(c, ctx, K, a, b, xi, d, f, L, oben, unten, mi) { if (W12_Z)
 function w12UebDazu(tab, zeilen) { if (W12_Z) W12_Z.spalten(tab, zeilen); else if ((lies('w12.spalten') || '[]') !== '[]') w12Vorladen(); }
 var W12_LAZY;
 function w12Laden() {
-if (!W12_LAZY) W12_LAZY = new Promise((ok, nein) => { if (window.RYVO_W12_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w12.js?v=66f9a98a"; s.onload = ok; s.onerror = () => { W12_LAZY = null; nein(new Error("w12.js")); }; document.head.append(s); })
+if (!W12_LAZY) W12_LAZY = new Promise((ok, nein) => { if (window.RYVO_W12_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w12.js?v=733938b4"; s.onload = ok; s.onerror = () => { W12_LAZY = null; nein(new Error("w12.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W12_CODE); window.RYVO_W12_CODE = null; return f; });
 return W12_LAZY;
 }
@@ -13241,14 +13175,14 @@ if (!W19_LAZY) W19_LAZY = w19Skript("w19").catch((e) => { W19_LAZY = null; throw
 return W19_LAZY.then(() => (window.RYVO_W19_TEXTE && window.RYVO_W19_TEXTE[sp] ? null : w19Skript("w19-" + sp))).then(() => window.RYVO_W19);
 }
 var W21_LAZY;
-const w21Skript = (n) => new Promise((ok, nein) => { const s = document.createElement("script"); s.src = "sprachen/" + n + ".js?v=4048e73a"; s.onload = ok; s.onerror = () => nein(new Error(n)); document.head.append(s); });
+const w21Skript = (n) => new Promise((ok, nein) => { const s = document.createElement("script"); s.src = "sprachen/" + n + ".js?v=f53054f5"; s.onload = ok; s.onerror = () => nein(new Error(n)); document.head.append(s); });
 function w21Holen() {
 const sp = ["de", "en", "es", "fr", "it", "tr"].includes(SPRACHE) ? SPRACHE : "en";
 if (!W21_LAZY) W21_LAZY = w21Skript("w21-" + sp).then(() => w21Skript("w21")).catch((e) => { W21_LAZY = null; throw e; });
 return W21_LAZY.then(() => window.RYVO_W21);
 }
 var N1_LAZY;
-const n1Skript = (n) => new Promise((ok, nein) => { const s = document.createElement("script"); s.src = "sprachen/" + n + ".js?v=c3f593e1"; s.onload = ok; s.onerror = () => nein(new Error(n)); document.head.append(s); });
+const n1Skript = (n) => new Promise((ok, nein) => { const s = document.createElement("script"); s.src = "sprachen/" + n + ".js?v=c7f063ed"; s.onload = ok; s.onerror = () => nein(new Error(n)); document.head.append(s); });
 function n1Holen() {
 const sp = ["de", "en", "es", "fr", "it", "tr"].includes(SPRACHE) ? SPRACHE : "en";
 if (!N1_LAZY) N1_LAZY = n1Skript("n1-" + sp).then(() => n1Skript("n1")).catch((e) => { N1_LAZY = null; throw e; });
@@ -13333,7 +13267,7 @@ const BEF_REG = [
 { id: 'ofluss', k: ['OFLUSS', 'GELDFLUSS'], e: ['OPTFLOW', 'FLOW'], n: 'Options-Fluss', s: 'Optionen: Geldfluss und Gamma', b: 'BTC OFLUSS', feld: 'ofluss', g: 'opt' },
 { id: 'olab', k: ['OLAB', 'LABOR'], e: ['OPTLAB', 'LAB'], n: 'Options-Labor', s: 'Options-Labor: Verteilung und Szenarien', b: 'BTC OLAB', feld: 'olab', g: 'opt' },
 { id: 'wal', k: ['WAL', 'WALE'], e: ['WHALE', 'WHALES'], n: 'Wale', s: 'Wale, eigene Alarme und Hyperliquid', b: 'WAL BTC', feld: 'mac', hd: 'wale', g: 'wal' },
-{ id: 'rang', k: ['RANG', 'BESTE'], e: ['RANK', 'LEADERBOARD'], n: 'Rangliste', s: 'Beste Trader bei Hyperliquid mit Sharpe, Rückgang und Trefferquote', b: 'RANG', feld: 'rangliste', g: 'wal' },
+{ id: 'rang', k: ['RANG', 'BESTE'], e: ['RANK', 'LEADERBOARD'], n: 'Rangliste', s: 'Hyperliquid-Konten nach Ergebnis mit Sharpe, Rückgang und Trefferquote', b: 'RANG', feld: 'rangliste', g: 'wal' },
 { id: 'rug', k: ['RUG', 'RUGCHECK'], e: ['RUGPULL', 'MEMECHECK'], n: 'Rug-Check', s: 'Rug-Check für Solana-Memecoins', b: 'RUG', feld: 'rug', g: 'wal' },
 { id: 'regeln', k: ['REGELN', 'EIGENEREGELN'], e: ['MYRULES', 'CUSTOMRULES'], n: 'Eigene Alarme', s: 'Eigene Alarme im Feld „Wale“', b: 'REGELN', feld: 'mac', ziel: '.alarme-kopf', g: 'wal' },
 { id: 'meld', k: ['MELD', 'MELDUNGEN'], e: ['LIST', 'LISTINGS'], n: 'Meldungen', s: 'Börsen-Meldungen: Listungen und Delistings', b: 'MELD', feld: 'meldungen', g: 'news' },
@@ -13465,7 +13399,7 @@ const BEF_REG = [
 { id: 'slip', k: ['SLIPPAGE', 'ORDERKOSTEN'], e: ['SLIP', 'IMPACT'], n: 'Slippage-Rechner', s: 'Was eine Order von X $ im Buch kosten würde – nur Rechnung', b: 'SLIPPAGE 250000 VERKAUF', feld: 'ofw', ziel: '#ofw-slip-block', par: 'text', g: 'of' },
 { id: 'tiefe', k: ['TIEFE', 'MARKTTIEFE'], e: ['DEPTH', 'MARKETDEPTH'], n: 'Markttiefe', s: 'Dollar im Buch bis ±0,5, 1 und 2 % je Börse', b: 'ETH TIEFE', feld: 'ofw', ziel: '#ofw-tiefe-block', g: 'of' },
 { id: 'basis', k: ['BASIS', 'PRAEMIENINDEX'], e: ['BASISLIVE', 'PREMIUMINDEX'], n: 'Basis je Börse', s: 'Perp gegen Spot und Index je Börse, Premium-Index, Mark − Index', b: 'BTC BASIS', feld: 'derw', ziel: '#dw-basis-block', g: 'der' },
-{ id: 'fundvor', k: ['FUNDVOR', 'OIFUNDING'], e: ['PREDFUNDING', 'OIWEIGHTED'], n: 'Funding vorhergesagt', s: 'Vorhergesagtes Funding je Börse und OI-gewichtetes Mittel', b: 'SOL FUNDVOR', feld: 'derw', ziel: '#dw-funding-block', g: 'der' },
+{ id: 'fundvor', k: ['FUNDVOR', 'OIFUNDING'], e: ['PREDFUNDING', 'OIWEIGHTED'], n: 'Funding vorläufig', s: 'Vorläufiges Funding je Börse und OI-gewichtetes Mittel', b: 'SOL FUNDVOR', feld: 'derw', ziel: '#dw-funding-block', g: 'der' },
 { id: 'kaskade', k: ['KASKADE', 'LIQSZENARIO'], e: ['CASCADE', 'LIQSCENARIO'], n: 'Kaskaden-Rechner', s: 'Liquidationen bei −3/−5/−10 % laut Modell', b: 'BTC KASKADE', feld: 'derw', ziel: '#dw-kaskade-block', g: 'der' },
 { id: 'depeg', k: ['DEPEG', 'STABLES'], e: ['PEG', 'STABLEWATCH'], n: 'Depeg-Wache', s: 'USDC, USDT und stETH gegen ihren Bezug', b: 'DEPEG', feld: 'derw', ziel: '#dw-depeg-block', g: 'der' },
 { id: 'kohorten', k: ['KOHORTEN', 'GRUPPEN'], e: ['COHORTS', 'COHORT'], n: 'Kohorten-Lage', s: 'Große, mittlere und kleine Konten netto long oder short je Markt', b: 'KOHORTEN', feld: 'walw', ziel: '#ww-koh-block', g: 'wal' },
@@ -14105,14 +14039,19 @@ const x = AB.stufe === 'einsteiger' && p && Number.isFinite(ch) ? w17T('lage', a
 if (e.textContent !== x) e.textContent = x; e.hidden = !x;
 }
 // Statuszeile unten: Kernsatz und Rechts-Links immer sichtbar (Beta: Adressen aus der RYVO-Zeile), „Hinweise“ klappt den ganzen Text auf
+const KI_UEB = ['KI · übersetzt', 'Diese Sprachfassung ist mit KI aus dem Deutschen übersetzt, nicht von Muttersprachlern geprüft; maßgeblich ist Deutsch.'];
 function w17Fuss() {
 const f = document.querySelector('footer.fuss'), box = $('w17-recht'); if (!f || !box) return;
+const ki = $('w17-ki'); if (ki && ki.dataset.s !== SPRACHE) { ki.dataset.s = SPRACHE; ki.hidden = SPRACHE === 'de'; ki.textContent = tr(KI_UEB[0]); ki.title = tr(KI_UEB[1]); ki.setAttribute('aria-label', ki.title);
+const sel = document.querySelector('#sprache select'); if (sel && SPRACHE !== 'de') sel.title = ki.title;
+if (!ki.dataset.an) { ki.dataset.an = '1'; ki.addEventListener('click', () => { w17HinweiseAuf(true); const t = $('w17-ki-text'); if (t) t.scrollIntoView({ block: 'nearest' }); }); } }
 const k = $('w17-kern'); if (k && k.dataset.s !== SPRACHE) { k.dataset.s = SPRACHE; k.textContent = w17T('kern'); k.title = w17T('kern'); const kk = $('w17-kern-kurz'); if (kk) { kk.textContent = w17T('kernKurz'); kk.title = w17T('kern'); } }
 if (!$('w17-mehr')) {
 const mehr = hdEl('div', 'w17-mehr'); mehr.id = 'w17-mehr'; const w = $('willkommen'), hh = document.querySelector('#handeln .hd-hinweis');
 if (w) { w.open = true; mehr.append(w); }
 mehr.append(...f.querySelectorAll(':scope > #fuss-daten, :scope > .rechts, :scope > .ryvo-fuss, :scope > .lizenzen'));
 if (hh) { const c = hh.cloneNode(true); c.className = 'leise w17-papier-hinweis'; mehr.append(c); }
+if (SPRACHE !== 'de') { const kt = hdEl('p', 'leise', tr(KI_UEB[1])); kt.id = 'w17-ki-text'; kt.dataset.roh = ''; mehr.append(kt); }
 f.append(mehr);
 }
 if (box.dataset.s === SPRACHE) return; box.dataset.s = SPRACHE;
@@ -14779,7 +14718,7 @@ setInterval(navMerken, 700); setTimeout(navMerken, 300);
 }
 var W15_LAZY, W15_F;
 function w15Lazy() {
-if (!W15_LAZY) W15_LAZY = new Promise((ok, nein) => { if (window.RYVO_W15_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w15.js?v=b46ffadb"; s.onload = ok; s.onerror = () => { W15_LAZY = null; nein(new Error("w15.js")); }; document.head.append(s); })
+if (!W15_LAZY) W15_LAZY = new Promise((ok, nein) => { if (window.RYVO_W15_CODE) { ok(); return; } const s = document.createElement("script"); s.src = "sprachen/w15.js?v=bc9d7f3b"; s.onload = ok; s.onerror = () => { W15_LAZY = null; nein(new Error("w15.js")); }; document.head.append(s); })
 .then(() => { const f = eval(window.RYVO_W15_CODE); window.RYVO_W15_CODE = null; W15_F = f; return f; });
 return W15_LAZY;
 }

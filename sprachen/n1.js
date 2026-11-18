@@ -98,11 +98,18 @@ b.addEventListener('click', () => beiWahl(wert)); g.append(b);
 }
 return g;
 }
-function kopf(el, titel, sp, hilfeKey, standEl) {
+function kiMarke(sp) {
+const b = E('button', 'ki-marke'), h = E('p', 'ki-hilfe', T(sp, 'ki.hilfe')); b.append(E('span', '', T(sp, 'ki.marke')));
+b.type = 'button'; b.title = T(sp, 'ki.hilfe'); b.setAttribute('aria-label', T(sp, 'ki.label')); b.setAttribute('aria-expanded', 'false'); h.hidden = true; h.setAttribute('role', 'note');
+b.addEventListener('click', (e) => { e.stopPropagation(); h.hidden = !h.hidden; b.setAttribute('aria-expanded', String(!h.hidden)); });
+return [b, h];
+}
+function kopf(el, titel, sp, hilfeKey, standEl, ki) {
 const k = E('div', 'feld-kopf'), h = E('h2', '', titel), was = E('button', 'was', T(sp, 'was')), hilfe = E('div', 'hilfe');
 was.type = 'button'; was.setAttribute('aria-expanded', 'false'); hilfe.hidden = true; hilfe.append(E('p', '', T(sp, hilfeKey)));
 was.addEventListener('click', () => { hilfe.hidden = !hilfe.hidden; was.setAttribute('aria-expanded', String(!hilfe.hidden)); });
-k.append(h); if (standEl) k.append(standEl); k.append(was); el.append(k, hilfe);
+const m = ki ? kiMarke(sp) : null; if (m) h.append(' ', m[0]);
+k.append(h); if (standEl) k.append(standEl); k.append(was); el.append(k, hilfe); if (m) el.append(m[1]);
 }
 function pflichtGdelt(sp) {
 const p = E('p', 'leise stand n1-pflicht'), teile = T(sp, 'pflicht.gdelt', '\u0000').split('\u0000');
@@ -194,12 +201,12 @@ const sp = spr(o), jetzt = o.jetzt || (() => Date.now() / 1000), holen = o.laden
 let d = null;
 el.replaceChildren(); el.classList.add('n1-lage');
 const stand = E('span', 'stand');
-kopf(el, T(sp, 'titel.lage'), sp, 'hilfe.lage', stand);
+kopf(el, T(sp, 'titel.lage'), sp, 'hilfe.lage', stand, true);
 const meldung = E('p', 'ausfall-text'), hinweis = E('p', 'leise'), privat = E('p', 'n1-privat'), inhalt = E('div', 'n1-lage-inhalt'), fuss = E('p', 'leise stand n1-pflicht');
 meldung.setAttribute('role', 'status'); meldung.hidden = hinweis.hidden = privat.hidden = true;
 privat.style.cssText = 'margin:6px 0;padding:6px 10px;border:1px solid var(--linie-hell);border-radius:8px;font-weight:600';
 inhalt.style.cssText = 'overflow:auto;min-height:0';
-el.append(privat, meldung, hinweis, inhalt, fuss);
+el.append(fuss, privat, meldung, hinweis, inhalt);
 function zeigen() {
 const j = jetzt();
 meldung.hidden = hinweis.hidden = true; privat.hidden = !(d && d.privat);
@@ -241,8 +248,9 @@ function startkarte(el, o = {}) {
 const sp = spr(o), jetzt = o.jetzt || (() => Date.now() / 1000), holen = o.laden || (() => laden(o.pfad || 'daten/lagebrief.json'));
 let d = null;
 el.replaceChildren(); el.classList.add('n1-start');
-const h = E('h3', '', T(sp, 'titel.start')), inhalt = E('div'), fuss = E('p', 'leise stand', T(sp, 'pflicht.lage'));
-el.append(h, inhalt, fuss);
+const h = E('h3', '', T(sp, 'titel.start')), inhalt = E('div'), fuss = E('p', 'leise stand n1-pflicht', T(sp, 'pflicht.lage')), ki = kiMarke(sp);
+h.append(' ', ki[0]);
+el.append(h, ki[1], fuss, inhalt);
 function zeigen() {
 const j = jetzt();
 if (!d || !d.abschnitte.length) { inhalt.replaceChildren(E('p', 'leise', T(sp, 'start.leer'))); return; }
