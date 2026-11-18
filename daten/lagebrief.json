@@ -1,10 +1,10 @@
 {
  "format": 1,
- "stand": 1794929400,
- "recherche_schnitt": 1794929400,
+ "stand": 1794972600,
+ "recherche_schnitt": 1794972600,
  "titel": {
-  "de": "Lage-Bericht · Nachmittag 17.11.2026 15:30 UTC",
-  "en": "Situation report · Afternoon Nov 17, 2026 15:30 UTC"
+  "de": "Lage-Bericht · Morgen 18.11.2026 03:30 UTC",
+  "en": "Situation Report · Morning 18.11.2026 03:30 UTC"
  },
  "abschnitte": [
   {
@@ -13,35 +13,35 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 64.631 $, 24 h +0,3 %, Woche −11,7 %, 18 % unter 50-Tage-Mittel.",
-      "en": "BTC $64,631, 24 h +0.3%, week −11.7%, 18% below the 50-day average."
+      "de": "BTC 64.441 $, 24 h −0,1 %, Woche −12,5 %, 18 % unter 50-Tage-Mittel.",
+      "en": "BTC $64,441, 24 h −0.1%, week −12.5%, 18% below the 50-day average."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1794928440,
+       "zeit": 1794969420,
        "genau": true
       }
      ],
-     "zeit": 1794928440,
+     "zeit": 1794969420,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.800 $, Woche −11,0 %.",
-      "en": "ETH $1,800, week −11.0%."
+      "de": "ETH 1.807 $, Woche −12,2 %.",
+      "en": "ETH $1,807, week −12.2%."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1794928440,
+       "zeit": 1794969420,
        "genau": true
       }
      ],
-     "zeit": 1794928440,
+     "zeit": 1794969420,
      "schnitt": "vor"
     },
     {
@@ -54,121 +54,29 @@
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1794928440,
+       "zeit": 1794969420,
        "genau": true
       }
      ],
-     "zeit": 1794928440,
+     "zeit": 1794969420,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
-      "de": "US-Zinsen 10 Jahre 5,12 %, 2 Jahre 4,83 %.",
-      "en": "US yields: 10-year 5.12%, 2-year 4.83%."
+      "de": "US-Zinsen 10 Jahre 5,10 %, 2 Jahre 4,80 %.",
+      "en": "US yields 10 years 5.10%, 2 years 4.80%."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1794928440,
+       "zeit": 1794969420,
        "genau": true
       }
      ],
-     "zeit": 1794928440,
+     "zeit": 1794969420,
      "schnitt": "vor"
-    },
-    {
-     "id": "lage-5",
-     "text": {
-      "de": "BTC-ETFs in den 5 Handelstagen bis 13.11. −1,07 Mrd. $.",
-      "en": "BTC ETFs in the 5 trading days through Nov 13: −$1.07 bn."
-     },
-     "quellen": [
-      {
-       "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
-       "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1794928440,
-       "genau": true
-      }
-     ],
-     "zeit": 1794928440,
-     "schnitt": "vor"
-    },
-    {
-     "id": "lage-6",
-     "text": {
-      "de": "Nach Schnitt: US-Einzelhandel Oktober +0,2 % wie erwartet, Kerngruppe +0,6 % statt +0,4 % erwartet.",
-      "en": "After cut-off: US retail sales October +0.2% as expected, control group +0.6% versus +0.4% expected."
-     },
-     "quellen": [
-      {
-       "name": "Reuters",
-       "url": "https://investing.com/news/economy-news/us-retail-sales-increase-moderately-in-october-5033051",
-       "zeit": 1794873600,
-       "genau": false
-      }
-     ],
-     "zeit": 1794873600,
-     "schnitt": "vor"
-    },
-    {
-     "id": "lage-7",
-     "text": {
-      "de": "September Kerngruppe auf +0,5 % hochgesetzt.",
-      "en": "September control group revised up to +0.5%."
-     },
-     "quellen": [
-      {
-       "name": "Reuters",
-       "url": "https://investing.com/news/economy-news/us-retail-sales-increase-moderately-in-october-5033051",
-       "zeit": 1794873600,
-       "genau": false
-      }
-     ],
-     "zeit": 1794873600,
-     "schnitt": "vor"
-    }
-   ]
-  },
-  {
-   "id": "beide_seiten",
-   "zeilen": [
-    {
-     "id": "beide_seiten-1",
-     "text": {
-      "de": "Starker Konsum stützt die Dezember-Zinserhöhung.",
-      "en": "Strong consumer spending supports the December rate hike."
-     },
-     "quellen": [
-      {
-       "name": "Reuters",
-       "url": "https://investing.com/news/economy-news/us-retail-sales-increase-moderately-in-october-5033051",
-       "zeit": 1794873600,
-       "genau": false
-      }
-     ],
-     "zeit": 1794873600,
-     "schnitt": "vor",
-     "seite": "dafuer"
-    },
-    {
-     "id": "beide_seiten-2",
-     "text": {
-      "de": "Einzelhandel-Kerngruppe stark, Konsum hält.",
-      "en": "Retail sales control group strong, consumer spending holding up."
-     },
-     "quellen": [
-      {
-       "name": "Reuters",
-       "url": "https://investing.com/news/economy-news/us-retail-sales-increase-moderately-in-october-5033051",
-       "zeit": 1794873600,
-       "genau": false
-      }
-     ],
-     "zeit": 1794873600,
-     "schnitt": "vor",
-     "seite": "dagegen"
     }
    ]
   },
@@ -178,30 +86,30 @@
     {
      "id": "termine-1",
      "text": {
-      "de": "Nvidia-Quartalszahlen (Tag geschätzt aus SEC-Meldungen des Vorjahrs) – 18.11.",
-      "en": "Nvidia quarterly results (date estimated from prior-year SEC filings) – Nov 18."
+      "de": "Im Kalender stehen für die nächsten 72 Std. keine großen US-Termine (Inflation, Erzeugerpreise, Arbeitsmarkt, Zinsentscheid, BIP, PCE, große Quartalszahlen).",
+      "en": "The calendar shows no major US events for the next 72 hours (inflation, producer prices, labor market, rate decision, GDP, PCE, major quarterly earnings)."
      },
      "quellen": [
       {
-       "name": "SEC EDGAR",
-       "url": "https://www.sec.gov/edgar/search/",
-       "zeit": 1794916800,
+       "name": "BLS · Federal Reserve · BEA · SEC",
+       "url": "https://www.bls.gov/schedule/",
+       "zeit": 1794972600,
        "genau": false
       }
      ],
-     "zeit": 1794916800,
-     "schnitt": "vor",
-     "termin": 1795003200
+     "zeit": 1794972600,
+     "schnitt": "vor"
     }
    ]
   }
  ],
  "pflichtsatz": {
-  "de": "Beschreibung der Lage, keine Anlageberatung, keine Prognose, kein Signal.",
-  "en": "A description of the situation – not investment advice, not a forecast, not a signal.",
-  "es": "Descripción de la situación: no es asesoramiento de inversión, ni previsión, ni señal.",
-  "fr": "Description de la situation : ni conseil en investissement, ni prévision, ni signal.",
-  "it": "Descrizione della situazione: non è consulenza finanziaria, né previsione, né segnale.",
-  "tr": "Durumun açıklamasıdır; yatırım tavsiyesi, tahmin veya sinyal değildir."
- }
+  "de": "Automatisch mit KI erstellt und nicht von Menschen geprüft. Beschreibung der Lage, keine Anlageberatung, keine Prognose, kein Signal.",
+  "en": "Generated automatically with AI and not reviewed by a human. A description of the situation – not investment advice, not a forecast, not a signal.",
+  "es": "Generado automáticamente con IA y sin revisión humana. Descripción de la situación: no es asesoramiento de inversión, ni previsión, ni señal.",
+  "fr": "Généré automatiquement par IA, sans relecture humaine. Description de la situation : ni conseil en investissement, ni prévision, ni signal.",
+  "it": "Generato automaticamente con IA e non rivisto da una persona. Descrizione della situazione: non è consulenza finanziaria, né previsione, né segnale.",
+  "tr": "Yapay zekâ ile otomatik olarak oluşturuldu, bir insan tarafından gözden geçirilmedi. Durumun açıklamasıdır; yatırım tavsiyesi, tahmin veya sinyal değildir."
+ },
+ "ki_erzeugt": true
 }
