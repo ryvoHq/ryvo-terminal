@@ -1,10 +1,10 @@
 {
  "format": 1,
- "stand": 1794972600,
- "recherche_schnitt": 1794972600,
+ "stand": 1795015800,
+ "recherche_schnitt": 1795015800,
  "titel": {
-  "de": "Lage-Bericht · Morgen 18.11.2026 03:30 UTC",
-  "en": "Situation Report · Morning 18.11.2026 03:30 UTC"
+  "de": "Lage-Bericht · Nachmittag 18.11.2026 15:30 UTC",
+  "en": "Market Report · Afternoon 18.11.2026 15:30 UTC"
  },
  "abschnitte": [
   {
@@ -13,52 +13,52 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 64.441 $, 24 h −0,1 %, Woche −12,5 %, 18 % unter 50-Tage-Mittel.",
-      "en": "BTC $64,441, 24 h −0.1%, week −12.5%, 18% below the 50-day average."
+      "de": "BTC 63.777 $, 24 h −0,5 %, Woche −13,8 %, 18,9 % unter 50-Tage-Mittel.",
+      "en": "BTC $63,777, 24 h −0.5%, week −13.8%, 18.9% below the 50-day average."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1794969420,
+       "zeit": 1795014000,
        "genau": true
       }
      ],
-     "zeit": 1794969420,
+     "zeit": 1795014000,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.807 $, Woche −12,2 %.",
-      "en": "ETH $1,807, week −12.2%."
+      "de": "ETH 1.778 $, Woche −14,3 %.",
+      "en": "ETH $1,778, week −14.3%."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1794969420,
+       "zeit": 1795014000,
        "genau": true
       }
      ],
-     "zeit": 1794969420,
+     "zeit": 1795014000,
      "schnitt": "vor"
     },
     {
      "id": "lage-3",
      "text": {
-      "de": "Angst & Gier 12 (Extreme Fear), Vortag 10, vor 1 Woche 32.",
-      "en": "Fear & Greed 12 (Extreme Fear), previous day 10, 1 week ago 32."
+      "de": "Angst & Gier 11 (Extreme Fear), Vortag 12, vor 1 Woche 29.",
+      "en": "Fear & Greed 11 (Extreme Fear), previous day 12, 1 week ago 29."
      },
      "quellen": [
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1794969420,
+       "zeit": 1795014000,
        "genau": true
       }
      ],
-     "zeit": 1794969420,
+     "zeit": 1795014000,
      "schnitt": "vor"
     },
     {
@@ -71,11 +71,28 @@
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1794969420,
+       "zeit": 1795014000,
        "genau": true
       }
      ],
-     "zeit": 1794969420,
+     "zeit": 1795014000,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-5",
+     "text": {
+      "de": "BTC-ETFs am 17.11. −239,9 Mio. $, 5 Handelstage −1,0 Mrd. $.",
+      "en": "BTC ETFs on 17.11. −$239.9 million, 5 trading days −$1.0 billion."
+     },
+     "quellen": [
+      {
+       "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
+       "url": "https://tftc.io/bitcoin-etf-flows",
+       "zeit": 1795014000,
+       "genau": true
+      }
+     ],
+     "zeit": 1795014000,
      "schnitt": "vor"
     }
    ]
@@ -93,11 +110,11 @@
       {
        "name": "BLS · Federal Reserve · BEA · SEC",
        "url": "https://www.bls.gov/schedule/",
-       "zeit": 1794972600,
+       "zeit": 1795015800,
        "genau": false
       }
      ],
-     "zeit": 1794972600,
+     "zeit": 1795015800,
      "schnitt": "vor"
     }
    ]
