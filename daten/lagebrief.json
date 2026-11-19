@@ -1,10 +1,14 @@
 {
  "format": 1,
- "stand": 1795058700,
- "recherche_schnitt": 1795058700,
+ "stand": 1795101900,
+ "recherche_schnitt": 1795101900,
  "titel": {
-  "de": "Lage-Bericht · Morgen 19.11.2026 03:25 UTC",
-  "en": "Situation Report · Morning 19.11.2026 03:25 UTC"
+  "de": "Lage-Bericht · Nachmittag 19.11.2026 15:25 UTC",
+  "en": "Market brief · afternoon 19.11.2026 15:25 UTC",
+  "es": "Boletín del mercado · tarde 19.11.2026 15:25 UTC",
+  "fr": "Point de marché · après-midi 19.11.2026 15:25 UTC",
+  "it": "Quadro di mercato · pomeriggio 19.11.2026 15:25 UTC",
+  "tr": "Piyasa raporu · öğleden sonra 19.11.2026 15:25 UTC"
  },
  "abschnitte": [
   {
@@ -13,137 +17,106 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 62.463 $, 24 h −3,1 %, Woche −15,3 %, 20,1 % unter 50-Tage-Mittel.",
-      "en": "BTC $62,463, 24 h −3.1%, week −15.3%, 20.1% below the 50-day average."
+      "de": "BTC 63.524 $, 24 h −0,2 %, Woche −11,3 %, 18,8 % unter 50-Tage-Mittel.",
+      "en": "BTC at $63,524: −0.2% over 24 h, −11.3% on the week, 18.8% below its 50-day average.",
+      "es": "BTC en 63.524 $: −0,2 % en 24 h, −11,3 % en la semana y un 18,8 % por debajo de su media de 50 días.",
+      "fr": "BTC à 63 524 $ : −0,2 % sur 24 h, −11,3 % sur la semaine, 18,8 % sous sa moyenne à 50 jours.",
+      "it": "BTC a 63.524 $: −0,2 % nelle 24 h, −11,3 % sulla settimana, 18,8 % sotto la media a 50 giorni.",
+      "tr": "BTC 63.524 $: 24 saatte %−0,2, haftalık %−11,3, 50 günlük ortalamanın %18,8 altında."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795057980,
+       "zeit": 1795100280,
        "genau": true
       }
      ],
-     "zeit": 1795057980,
+     "zeit": 1795100280,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.766 $, Woche −14,0 %.",
-      "en": "ETH $1,766, week −14.0%."
+      "de": "ETH 1.798 $, 24 h +1,3 %, Woche −10,3 %.",
+      "en": "ETH at $1,798: +1.3% over 24 h, −10.3% on the week.",
+      "es": "ETH en 1.798 $: +1,3 % en 24 h, −10,3 % en la semana.",
+      "fr": "ETH à 1 798 $ : +1,3 % sur 24 h, −10,3 % sur la semaine.",
+      "it": "ETH a 1.798 $: +1,3 % nelle 24 h, −10,3 % sulla settimana.",
+      "tr": "ETH 1.798 $: 24 saatte %+1,3, haftalık %−10,3."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795057980,
+       "zeit": 1795100280,
        "genau": true
       }
      ],
-     "zeit": 1795057980,
+     "zeit": 1795100280,
      "schnitt": "vor"
     },
     {
      "id": "lage-3",
      "text": {
-      "de": "Angst & Gier 11 (Extreme Fear), vor 1 Woche 29.",
-      "en": "Fear & Greed 11 (Extreme Fear), 1 week ago 29."
+      "de": "Angst & Gier 10 (Extreme Fear), vor 1 Woche 28.",
+      "en": "Fear & Greed sits at 10 (Extreme Fear), down from 28 a week ago.",
+      "es": "El índice de miedo y codicia marca 10 (Extreme Fear); hace una semana estaba en 28.",
+      "fr": "L’indice peur et cupidité est à 10 (Extreme Fear), contre 28 il y a une semaine.",
+      "it": "L’indice paura e avidità è a 10 (Extreme Fear), contro 28 di una settimana fa.",
+      "tr": "Korku ve Açgözlülük Endeksi 10 (Extreme Fear); bir hafta önce 28’di."
      },
      "quellen": [
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1795057980,
+       "zeit": 1795100280,
        "genau": true
       }
      ],
-     "zeit": 1795057980,
+     "zeit": 1795100280,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
       "de": "US-Zinsen 10 Jahre 5,07 %, 2 Jahre 4,80 %.",
-      "en": "US yields 10-year 5.07%, 2-year 4.80%."
+      "en": "US yields: 10-year at 5.07%, 2-year at 4.80%.",
+      "es": "Tipos en EE. UU.: el bono a 10 años rinde un 5,07 % y el de 2 años, un 4,80 %.",
+      "fr": "Taux américains : 5,07 % à 10 ans, 4,80 % à 2 ans.",
+      "it": "Tassi USA: decennale al 5,07 %, biennale al 4,80 %.",
+      "tr": "ABD faizleri: 10 yıllık tahvil %5,07, 2 yıllık %4,80."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1795057980,
+       "zeit": 1795100280,
        "genau": true
       }
      ],
-     "zeit": 1795057980,
+     "zeit": 1795100280,
      "schnitt": "vor"
     },
     {
      "id": "lage-5",
      "text": {
-      "de": "Nach Schnitt: Fast alle Fed-Mitglieder halten weitere Zinserhöhungen für wahrscheinlich angemessen.",
-      "en": "After cut-off: Almost all Fed members consider further rate hikes likely appropriate."
-     },
-     "quellen": [
-      {
-       "name": "Bloomberg",
-       "url": "https://www.bloomberg.com/news/articles/2026-11-18/fed-minutes-show-almost-all-officials-expect-more-rate-hikes",
-       "zeit": 1794960000,
-       "genau": false
-      }
-     ],
-     "zeit": 1794960000,
-     "schnitt": "vor"
-    },
-    {
-     "id": "lage-6",
-     "text": {
-      "de": "der S&P 500 schloss nach dem Protokoll im Minus.",
-      "en": "the S&P 500 closed lower after the minutes."
-     },
-     "quellen": [
-      {
-       "name": "Reuters",
-       "url": "https://www.reuters.com/business/nasdaq-futures-jump-nvidia-forecast-lifts-ai-trade-ahead-anthropic-pricing-2026-11-18/",
-       "zeit": 1794960000,
-       "genau": false
-      }
-     ],
-     "zeit": 1794960000,
-     "schnitt": "vor"
-    },
-    {
-     "id": "lage-7",
-     "text": {
-      "de": "US-Öl hatte am Vortag auf einem 3-Monats-Tief geschlossen.",
-      "en": "US oil had closed at a 3-month low the previous day."
-     },
-     "quellen": [
-      {
-       "name": "MarketWatch",
-       "url": "https://www.marketwatch.com/livecoverage/stock-market-today-s-p-500-nasdaq-dow-nvidia-q3-results-anthropic-expected-price-ipo",
-       "zeit": 1794960000,
-       "genau": false
-      }
-     ],
-     "zeit": 1794960000,
-     "schnitt": "vor"
-    },
-    {
-     "id": "lage-8",
-     "text": {
-      "de": "BTC-ETFs am 17.11. −239,9 Mio. $, 5 Handelstage −1,0 Mrd. $.",
-      "en": "BTC ETFs on 17.11. −$239.9M, 5 trading days −$1.0B."
+      "de": "BTC-ETFs am 18.11. −306,4 Mio. $, 5 Handelstage −1,0 Mrd. $, zweiter Abflusstag in Folge.",
+      "en": "Spot BTC ETFs saw −$306.4M on 18 Nov and −$1.0B over 5 sessions – the second straight day of outflows.",
+      "es": "Los ETF de BTC al contado registraron −306,4 M$ el 18/11 y −1.000 M$ en 5 sesiones: segundo día seguido de salidas.",
+      "fr": "Les ETF BTC spot ont enregistré −306,4 M$ le 18/11 et −1,0 Md$ sur 5 séances, deuxième jour de sorties d’affilée.",
+      "it": "Gli ETF spot su BTC hanno segnato −306,4 mln $ il 18/11 e −1,0 mld $ in 5 sedute: secondo giorno di deflussi di fila.",
+      "tr": "Spot BTC ETF’lerinde 18.11.’de −306,4 milyon $, son 5 seansta −1,0 milyar $ çıkış oldu; üst üste ikinci çıkış günü."
      },
      "quellen": [
       {
        "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
        "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1795057980,
+       "zeit": 1795100280,
        "genau": true
       }
      ],
-     "zeit": 1795057980,
+     "zeit": 1795100280,
      "schnitt": "vor"
     }
    ]
@@ -155,17 +128,21 @@
      "id": "termine-1",
      "text": {
       "de": "Im Kalender stehen für die nächsten 72 Std. keine großen US-Termine (Inflation, Erzeugerpreise, Arbeitsmarkt, Zinsentscheid, BIP, PCE, große Quartalszahlen).",
-      "en": "The calendar shows no major US events for the next 72 hours (inflation, producer prices, labor market, rate decision, GDP, PCE, major earnings)."
+      "en": "The calendar lists no major US events for the next 72 hours (inflation, producer prices, jobs, rate decision, GDP, PCE, major earnings).",
+      "es": "El calendario no recoge citas importantes en EE. UU. en las próximas 72 horas (inflación, precios de producción, empleo, decisión de tipos, PIB, PCE, grandes resultados trimestrales).",
+      "fr": "Le calendrier n’affiche aucun rendez-vous américain majeur dans les 72 prochaines heures (inflation, prix à la production, emploi, décision de taux, PIB, PCE, grands résultats trimestriels).",
+      "it": "Il calendario non riporta appuntamenti USA di rilievo nelle prossime 72 ore (inflazione, prezzi alla produzione, lavoro, decisione sui tassi, PIL, PCE, grandi trimestrali).",
+      "tr": "Takvimde önümüzdeki 72 saat için önemli bir ABD verisi yok (enflasyon, üretici fiyatları, istihdam, faiz kararı, GSYH, PCE, büyük şirket bilançoları)."
      },
      "quellen": [
       {
        "name": "BLS · Federal Reserve · BEA · SEC",
        "url": "https://www.bls.gov/schedule/",
-       "zeit": 1795058700,
+       "zeit": 1795101900,
        "genau": false
       }
      ],
-     "zeit": 1795058700,
+     "zeit": 1795101900,
      "schnitt": "vor"
     }
    ]
