@@ -1,10 +1,10 @@
 {
  "format": 1,
- "stand": 1795015800,
- "recherche_schnitt": 1795015800,
+ "stand": 1795058700,
+ "recherche_schnitt": 1795058700,
  "titel": {
-  "de": "Lage-Bericht · Nachmittag 18.11.2026 15:30 UTC",
-  "en": "Market Report · Afternoon 18.11.2026 15:30 UTC"
+  "de": "Lage-Bericht · Morgen 19.11.2026 03:25 UTC",
+  "en": "Situation Report · Morning 19.11.2026 03:25 UTC"
  },
  "abschnitte": [
   {
@@ -13,86 +13,137 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 63.777 $, 24 h −0,5 %, Woche −13,8 %, 18,9 % unter 50-Tage-Mittel.",
-      "en": "BTC $63,777, 24 h −0.5%, week −13.8%, 18.9% below the 50-day average."
+      "de": "BTC 62.463 $, 24 h −3,1 %, Woche −15,3 %, 20,1 % unter 50-Tage-Mittel.",
+      "en": "BTC $62,463, 24 h −3.1%, week −15.3%, 20.1% below the 50-day average."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795014000,
+       "zeit": 1795057980,
        "genau": true
       }
      ],
-     "zeit": 1795014000,
+     "zeit": 1795057980,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.778 $, Woche −14,3 %.",
-      "en": "ETH $1,778, week −14.3%."
+      "de": "ETH 1.766 $, Woche −14,0 %.",
+      "en": "ETH $1,766, week −14.0%."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795014000,
+       "zeit": 1795057980,
        "genau": true
       }
      ],
-     "zeit": 1795014000,
+     "zeit": 1795057980,
      "schnitt": "vor"
     },
     {
      "id": "lage-3",
      "text": {
-      "de": "Angst & Gier 11 (Extreme Fear), Vortag 12, vor 1 Woche 29.",
-      "en": "Fear & Greed 11 (Extreme Fear), previous day 12, 1 week ago 29."
+      "de": "Angst & Gier 11 (Extreme Fear), vor 1 Woche 29.",
+      "en": "Fear & Greed 11 (Extreme Fear), 1 week ago 29."
      },
      "quellen": [
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1795014000,
+       "zeit": 1795057980,
        "genau": true
       }
      ],
-     "zeit": 1795014000,
+     "zeit": 1795057980,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
-      "de": "US-Zinsen 10 Jahre 5,10 %, 2 Jahre 4,80 %.",
-      "en": "US yields 10 years 5.10%, 2 years 4.80%."
+      "de": "US-Zinsen 10 Jahre 5,07 %, 2 Jahre 4,80 %.",
+      "en": "US yields 10-year 5.07%, 2-year 4.80%."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1795014000,
+       "zeit": 1795057980,
        "genau": true
       }
      ],
-     "zeit": 1795014000,
+     "zeit": 1795057980,
      "schnitt": "vor"
     },
     {
      "id": "lage-5",
      "text": {
+      "de": "Nach Schnitt: Fast alle Fed-Mitglieder halten weitere Zinserhöhungen für wahrscheinlich angemessen.",
+      "en": "After cut-off: Almost all Fed members consider further rate hikes likely appropriate."
+     },
+     "quellen": [
+      {
+       "name": "Bloomberg",
+       "url": "https://www.bloomberg.com/news/articles/2026-11-18/fed-minutes-show-almost-all-officials-expect-more-rate-hikes",
+       "zeit": 1794960000,
+       "genau": false
+      }
+     ],
+     "zeit": 1794960000,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-6",
+     "text": {
+      "de": "der S&P 500 schloss nach dem Protokoll im Minus.",
+      "en": "the S&P 500 closed lower after the minutes."
+     },
+     "quellen": [
+      {
+       "name": "Reuters",
+       "url": "https://www.reuters.com/business/nasdaq-futures-jump-nvidia-forecast-lifts-ai-trade-ahead-anthropic-pricing-2026-11-18/",
+       "zeit": 1794960000,
+       "genau": false
+      }
+     ],
+     "zeit": 1794960000,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-7",
+     "text": {
+      "de": "US-Öl hatte am Vortag auf einem 3-Monats-Tief geschlossen.",
+      "en": "US oil had closed at a 3-month low the previous day."
+     },
+     "quellen": [
+      {
+       "name": "MarketWatch",
+       "url": "https://www.marketwatch.com/livecoverage/stock-market-today-s-p-500-nasdaq-dow-nvidia-q3-results-anthropic-expected-price-ipo",
+       "zeit": 1794960000,
+       "genau": false
+      }
+     ],
+     "zeit": 1794960000,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-8",
+     "text": {
       "de": "BTC-ETFs am 17.11. −239,9 Mio. $, 5 Handelstage −1,0 Mrd. $.",
-      "en": "BTC ETFs on 17.11. −$239.9 million, 5 trading days −$1.0 billion."
+      "en": "BTC ETFs on 17.11. −$239.9M, 5 trading days −$1.0B."
      },
      "quellen": [
       {
        "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
        "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1795014000,
+       "zeit": 1795057980,
        "genau": true
       }
      ],
-     "zeit": 1795014000,
+     "zeit": 1795057980,
      "schnitt": "vor"
     }
    ]
@@ -104,17 +155,17 @@
      "id": "termine-1",
      "text": {
       "de": "Im Kalender stehen für die nächsten 72 Std. keine großen US-Termine (Inflation, Erzeugerpreise, Arbeitsmarkt, Zinsentscheid, BIP, PCE, große Quartalszahlen).",
-      "en": "The calendar shows no major US events for the next 72 hours (inflation, producer prices, labor market, rate decision, GDP, PCE, major quarterly earnings)."
+      "en": "The calendar shows no major US events for the next 72 hours (inflation, producer prices, labor market, rate decision, GDP, PCE, major earnings)."
      },
      "quellen": [
       {
        "name": "BLS · Federal Reserve · BEA · SEC",
        "url": "https://www.bls.gov/schedule/",
-       "zeit": 1795015800,
+       "zeit": 1795058700,
        "genau": false
       }
      ],
-     "zeit": 1795015800,
+     "zeit": 1795058700,
      "schnitt": "vor"
     }
    ]
