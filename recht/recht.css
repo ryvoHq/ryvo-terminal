@@ -13,12 +13,11 @@ a { color: var(--gold); text-underline-offset: 2px; }
 .rahmen { width: min(820px, 100% - 32px); margin-inline: auto; }
 header .rahmen { width: min(1160px, 100% - 32px); display: flex; align-items: center; gap: 8px 12px; min-height: 60px; flex-wrap: wrap; padding-block: 10px; }
 .marke { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 15px; letter-spacing: .02em; text-decoration: none; color: var(--t1); }
-.marke i { width: 20px; height: 20px; border-radius: 5px; background: linear-gradient(135deg, var(--gold) 0 50%, #b88232 50%); display: block; }
-header nav { margin-left: auto; display: flex; gap: 2px; align-items: center; flex-wrap: wrap; }
+header nav { order: 3; flex-basis: 100%; margin-left: -10px; display: flex; gap: 2px 2px; align-items: center; flex-wrap: wrap; }
 header nav a { font-size: 13px; color: var(--t2); text-decoration: none; padding: 7px 10px; border-radius: 7px; }
 header nav a:hover { color: var(--t1); background: var(--f1); }
 header nav a[aria-current="page"] { color: var(--t1); background: var(--f2); }
-.sprache { display: inline-flex; background: var(--f1); border-radius: 8px; padding: 3px; margin-left: 6px; }
+.sprache { display: inline-flex; background: var(--f1); border-radius: 8px; padding: 3px; margin-left: auto; }
 .sprache button { font: 500 12px var(--sans); min-width: 34px; height: 28px; padding: 0 8px; background: transparent; color: var(--leise); border: 0; border-radius: 6px; cursor: pointer; }
 .sprache button[aria-pressed="true"] { background: var(--f2); color: var(--t1); }
 main { padding: 36px 0 64px; }
@@ -51,7 +50,16 @@ footer .kern { flex-basis: 100%; color: var(--leise); }
 .meldung { font-size: 13px; color: var(--leise); min-height: 1.4em; margin: 8px 0 0; }
 label, .marke-feld { display: block; font-weight: 600; color: var(--t1); margin: 18px 0 6px; }
 [data-sprache-block][hidden], [data-l][hidden] { display: none; }
-@media (max-width: 1000px) { header nav { flex-basis: 100%; margin-left: -10px; } .sprache { margin-left: 10px; } }
+/* r166: Abo-Seiten – Entwurfs-Hinweis, ruhiger Hinweis ohne Kasse, Muster-Formular, Kassen-Knöpfe im Fuß */
+.entwurf b { color: var(--gold); }
+.ruhig { color: var(--leise); }
+p.ruhig { font-size: 14px; }
+.formular ul { list-style: none; padding-left: 0; margin: 10px 0; }
+.formular li { margin: 7px 0; padding-left: 16px; text-indent: -16px; }
+.formular li::before { content: "– "; color: var(--leise); }
+footer .kasse-zeile { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+footer a.kasse { color: var(--gold); font-weight: 600; }
+@media (max-width: 420px) { .sprache button { min-width: 30px; padding: 0 6px; } header nav a { padding: 7px 8px; } }
 html[data-sprache="de"] [data-sprache-block]:not([data-sprache-block="de"]), html[data-sprache="de"] [data-l]:not([data-l="de"]) { display: none !important; }
 html[data-sprache="de"] [data-sprache-block="de"] { display: block !important; }
 html[data-sprache="de"] [data-l="de"] { display: inline !important; }

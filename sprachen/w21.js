@@ -428,12 +428,12 @@ const tf = new Map(maerkte().filter((m) => m.art === 'Index').map((m) => [m.name
 const zeilen = BOERSEN.map((b) => { const m = b[7].map((n) => tf.get(n)).find(Boolean) || null; return { b, m, s: boerseStatus(b) }; });
 let karte = box.querySelector('.w21-karte');
 if (!karte) { karte = el('canvas', 'w21-karte'); karte.setAttribute('role', 'img'); }
-karte.setAttribute('aria-label', T('wb.karteL', zeilen.filter((z) => z.s.offen).map((z) => z.b[1]).join(', ') || T('wb.keine')));
+karte.setAttribute('aria-label', T('wb.karteL', zeilen.filter((z) => z.s.offen).map((z) => A.tr(z.b[1])).join(', ') || T('wb.keine')));
 const tab = el('table', 'w21-tab w21-wb'), tb = el('tbody'); tab.append(tb);
 for (const reg of ['am', 'eu', 'as']) {
 const kopf = el('tr', 'w21-reg'); const th = el('th', '', T('wb.' + reg)); th.colSpan = 4; kopf.append(th); tb.append(kopf);
 for (const z of zeilen.filter((x) => x.b[6] === reg)) {
-const tr = el('tr'), n = el('td'); n.append(el('span', 'w21-punkt ' + (z.s.offen ? 'offen' : 'zu')), D.createTextNode(' ' + z.b[1]));
+const tr = el('tr'), n = el('td'); n.append(el('span', 'w21-punkt ' + (z.s.offen ? 'offen' : 'zu')), D.createTextNode(' ' + A.tr(z.b[1])));
 const idx = el('td');
 if (z.m) { const b = el('button', 'w21-link', nameVon(z.m)); b.type = 'button'; b.addEventListener('click', () => A.oeffne(z.m.id)); idx.append(b); } else idx.append(el('span', 'leise', '–'));
 tr.append(n, idx, el('td', 'mono r ' + (z.m && z.m.ae > 0 ? 'plus' : z.m && z.m.ae < 0 ? 'minus' : ''), z.m ? proz(z.m.ae) : ''),

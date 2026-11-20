@@ -56,10 +56,13 @@ const z = new Map(); for (const e of ein) for (const c of e.coins) z.set(c, (z.g
 return [...z.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).slice(0, n).map((x) => x[0]);
 }
 function lageSprache(d, sp) {
-const hat = (s) => d && d.abschnitte && d.abschnitte.every((a) => (a.zeilen || []).every((z) => z.text && typeof z.text[s] === 'string' && z.text[s]));
-if (sp === 'de') return { sp: 'de', hinweis: '' };
-if (hat('en')) return { sp: 'en', hinweis: sp === 'en' ? '' : 'lage.nur_en' };
-return { sp: 'de', hinweis: 'lage.nur_de' };
+if (!d) return { quelle: null, sp, hinweis: 'lage.fehlt' };
+if (d.privat) {
+const f = sp === 'de' ? d : (d.fassungen || {})[sp];
+return f && f.abschnitte && f.abschnitte.length ? { quelle: f, sp, hinweis: '' } : { quelle: null, sp, hinweis: 'lage.kommt.privat' };
+}
+const hat = (s) => d.abschnitte && d.abschnitte.length && d.abschnitte.every((a) => (a.zeilen || []).every((z) => z.text && typeof z.text[s] === 'string' && z.text[s]));
+return hat(sp) ? { quelle: d, sp, hinweis: '' } : { quelle: null, sp, hinweis: 'lage.kommt' };
 }
 const frisch = (stand, jetzt, max) => !!stand && jetzt - stand <= max;
 
@@ -176,7 +179,7 @@ for (const a of d.abschnitte.slice(0, 12)) {
 if (!a || (!ABSCHNITTE.includes(a.id) && !d.privat)) continue;
 const zeilen = [];
 for (const z of (a.zeilen || []).slice(0, 20)) {
-const text = txt(z && z.text); if (!text.de) continue;
+const text = txt(z && z.text); if (!text.de && !(d.privat && Object.keys(text).length)) continue;
 zeilen.push({ text, seite: z.seite === 'dafuer' || z.seite === 'dagegen' ? z.seite : null, termin: typeof z.termin === 'number' ? z.termin : null,
 schnitt: z.schnitt === 'nach' ? 'nach' : z.schnitt === 'vor' ? 'vor' : null,
 quellen: (z.quellen || []).slice(0, 4).filter((q) => q && typeof q.name === 'string').map((q) => ({ name: q.name.slice(0, 80), url: sicherUrl(q.url), zeit: typeof q.zeit === 'number' ? q.zeit : null, genau: q.genau !== false })) });
@@ -184,10 +187,14 @@ quellen: (z.quellen || []).slice(0, 4).filter((q) => q && typeof q.name === 'str
 if (zeilen.length || (d.privat && a.tabelle)) abschnitte.push({ id: String(a.id).slice(0, 30), titel: d.privat ? String(a.titel || a.id).slice(0, 120) : null, zeilen,
 tabelle: d.privat && Array.isArray(a.tabelle) ? a.tabelle.slice(0, 14).map((r) => (Array.isArray(r) ? r.slice(0, 8).map((c) => String(c).slice(0, 120)) : [])) : null });
 }
-return { stand: typeof d.stand === 'number' ? d.stand : 0, schnitt: typeof d.recherche_schnitt === 'number' ? d.recherche_schnitt : null, titel: txt(d.titel), abschnitte, privat: !!d.privat };
+const fassungen = {};
+if (d.privat && d.fassungen && typeof d.fassungen === 'object') {
+for (const s of SPRACHEN) { if (s === 'de' || !d.fassungen[s]) continue; const f = lageSaeubern(Object.assign({}, d.fassungen[s], { privat: true, fassungen: null })); if (f && f.abschnitte.length) fassungen[s] = f; }
+}
+return { stand: typeof d.stand === 'number' ? d.stand : 0, schnitt: typeof d.recherche_schnitt === 'number' ? d.recherche_schnitt : null, titel: txt(d.titel), abschnitte, privat: !!d.privat, fassungen };
 }
 function lageZeile(z, s, sp, mitSchnitt) {
-const li = E('li', 'n1-lz'), t = E('div', '', z.text[s] || z.text.de);
+const li = E('li', 'n1-lz'), t = E('div', '', z.text[s] || '');
 li.append(t);
 const q = E('small', 'leise');
 z.quellen.forEach((x, i) => { if (i) q.append(document.createTextNode(' · ')); if (x.url) { const a = link(x.url, x.name, sp); a.style.color = 'inherit'; q.append(a); } else q.append(document.createTextNode(x.name)); if (x.zeit) q.append(document.createTextNode(' ' + datum(x.zeit, x.genau))); });
@@ -213,13 +220,14 @@ meldung.hidden = hinweis.hidden = true; privat.hidden = !(d && d.privat);
 if (d && d.privat) privat.textContent = T(sp, 'privat') + ' – ' + T(sp, 'privat.hinweis');
 fuss.textContent = T(sp, 'pflicht.lage');
 if (!d || !d.abschnitte.length) { meldung.textContent = T(sp, 'lage.fehlt'); meldung.hidden = false; inhalt.replaceChildren(); stand.textContent = ''; return; }
-const wahl = d.privat ? { sp: 'de', hinweis: sp === 'de' ? '' : 'lage.nur_de' } : lageSprache(d, sp);
+const wahl = lageSprache(d, sp), q = wahl.quelle;
 stand.textContent = T(sp, 'stand', uhr(d.stand, true)) + (d.schnitt ? ' · ' + T(sp, 'lage.schnitt', uhr(d.schnitt, false)) : '');
 if (!frisch(d.stand, j, L_MAX_ALTER)) { meldung.textContent = T(sp, 'lage.alt', uhr(d.stand, true)); meldung.hidden = false; }
 if (wahl.hinweis && T(sp, wahl.hinweis)) { hinweis.textContent = T(sp, wahl.hinweis); hinweis.hidden = false; }
+if (!q) { inhalt.replaceChildren(); return; }
 const teile = [];
-if (d.titel[wahl.sp] || d.titel.de) teile.push(E('h3', 'n1-lt', d.titel[wahl.sp] || d.titel.de));
-for (const a of d.abschnitte) {
+if (q.titel[sp]) teile.push(E('h3', 'n1-lt', q.titel[sp]));
+for (const a of q.abschnitte) {
 const h = E('h3', '', a.titel || T(sp, 'abschnitt.' + a.id)), ul = E('ul', 'n1-lage-liste');
 ul.style.cssText = 'list-style:none;padding:0;margin:0 0 10px';
 h.style.cssText = 'margin:10px 0 2px;font-size:12px;letter-spacing:.04em;color:var(--leise)';
@@ -254,9 +262,10 @@ el.append(h, ki[1], fuss, inhalt);
 function zeigen() {
 const j = jetzt();
 if (!d || !d.abschnitte.length) { inhalt.replaceChildren(E('p', 'leise', T(sp, 'start.leer'))); return; }
-const wahl = d.privat ? { sp: 'de' } : lageSprache(d, sp), teile = [];
+const wahl = lageSprache(d, sp), q = wahl.quelle, teile = [];
+if (!q) { inhalt.replaceChildren(E('p', 'leise', T(sp, wahl.hinweis))); return; }
 if (!frisch(d.stand, j, L_MAX_ALTER)) teile.push(E('p', 'ausfall-text', T(sp, 'lage.alt', uhr(d.stand, true))));
-const lage = d.abschnitte.find((a) => a.id === 'lage'), termine = d.abschnitte.find((a) => a.id === 'termine');
+const lage = q.abschnitte.find((a) => a.id === 'lage'), termine = q.abschnitte.find((a) => a.id === 'termine');
 const ul = E('ul'); ul.style.cssText = 'list-style:none;padding:0;margin:0';
 for (const z of (lage ? lage.zeilen : []).slice(0, 3)) ul.append(lageZeile(z, wahl.sp, sp, false));
 if (termine && termine.zeilen[0]) { const z = termine.zeilen[0], li = lageZeile(z, wahl.sp, sp, false); li.prepend(E('b', '', T(sp, 'termin'))); ul.append(li); }
@@ -280,8 +289,11 @@ return { stand: api.zeit || 0, fehler: api.schlagzeilen && api.schlagzeilen.ok =
 },
 analyst(a) {
 const an = a && a.analyse; if (!an || !Array.isArray(an.abschnitte)) return null;
-return { privat: true, stand: an.geaendert || 0, titel: { de: an.titel || '' }, abschnitte: an.abschnitte.map((x) => ({ id: x.art || 'sonst', titel: x.titel,
-zeilen: (x.punkte || []).map((p) => ({ text: { de: p }, quellen: [] })), tabelle: x.tabelle && x.tabelle.length ? x.tabelle : null })) };
+const form = (x, s) => ({ privat: true, stand: x.geaendert || 0, titel: { [s]: x.titel || '' }, abschnitte: x.abschnitte.map((b) => ({ id: b.art || 'sonst', titel: b.titel,
+zeilen: (b.punkte || []).map((p) => ({ text: { [s]: p }, quellen: [] })), tabelle: b.tabelle && b.tabelle.length ? b.tabelle : null })) });
+const fassungen = {};
+for (const [s, x] of Object.entries(a.analyse_sprachen || {})) if (SPRACHEN.includes(s) && s !== 'de' && x && Array.isArray(x.abschnitte)) fassungen[s] = form(x, s);
+return Object.assign(form(an, 'de'), { fassungen });
 },
 };
 
