@@ -1,14 +1,14 @@
 {
  "format": 1,
- "stand": 1795188600,
- "recherche_schnitt": 1795188600,
+ "stand": 1795231800,
+ "recherche_schnitt": 1795231800,
  "titel": {
-  "de": "Lage-Bericht · Nachmittag 20.11.2026 15:30 UTC",
-  "en": "Market brief · afternoon 20.11.2026 15:30 UTC",
-  "es": "Boletín del mercado · tarde 20.11.2026 15:30 UTC",
-  "fr": "Point de marché · après-midi 20.11.2026 15:30 UTC",
-  "it": "Quadro di mercato · pomeriggio 20.11.2026 15:30 UTC",
-  "tr": "Piyasa raporu · öğleden sonra 20.11.2026 15:30 UTC"
+  "de": "Lage-Bericht · Morgen 21.11.2026 03:30 UTC",
+  "en": "Market brief · morning 21.11.2026 03:30 UTC",
+  "es": "Boletín del mercado · mañana 21.11.2026 03:30 UTC",
+  "fr": "Point de marché · matin 21.11.2026 03:30 UTC",
+  "it": "Quadro di mercato · mattina 21.11.2026 03:30 UTC",
+  "tr": "Piyasa raporu · sabah 21.11.2026 03:30 UTC"
  },
  "abschnitte": [
   {
@@ -17,106 +17,148 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 60.212 $, 24 h −4,6 %, Woche −12,6 %, 22,5 % unter 50-Tage-Mittel.",
-      "en": "BTC at $60,212, down 4.6% over 24 h and 12.6% on the week, trading 22.5% below its 50-day average.",
-      "es": "BTC en 60.212 $, cae un 4,6 % en 24 h y un 12,6 % en la semana, un 22,5 % por debajo de su media de 50 días.",
-      "fr": "BTC à 60 212 $, en recul de 4,6 % sur 24 h et de 12,6 % sur la semaine, 22,5 % sous sa moyenne 50 jours.",
-      "it": "BTC a 60.212 $, in calo del 4,6 % nelle 24 h e del 12,6 % nella settimana, il 22,5 % sotto la media a 50 giorni.",
-      "tr": "BTC 60.212 $’da; 24 saatte %4,6, haftada %12,6 düştü, 50 günlük ortalamanın %22,5 altında."
+      "de": "BTC 58.424 $, 24 h −6,0 %, Woche −12,4 %, 24,3 % unter 50-Tage-Mittel.",
+      "en": "BTC at $58,424, down 6.0% over 24 h and 12.4% on the week, now 24.3% below its 50-day average.",
+      "es": "BTC en 58.424 $, cae un 6,0 % en 24 h y un 12,4 % en la semana, un 24,3 % por debajo de su media de 50 días.",
+      "fr": "BTC à 58 424 $, −6,0 % sur 24 h et −12,4 % sur la semaine, soit 24,3 % sous sa moyenne 50 jours.",
+      "it": "BTC a 58.424 $, −6,0 % nelle 24 ore e −12,4 % in settimana, il 24,3 % sotto la media a 50 giorni.",
+      "tr": "BTC 58.424 $’da; 24 saatte %−6,0, haftada %−12,4, 50 günlük ortalamanın %24,3 altında."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795187880,
+       "zeit": 1795230120,
        "genau": true
       }
      ],
-     "zeit": 1795187880,
+     "zeit": 1795230120,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.679 $, 24 h −5,7 %, Woche −13,2 %.",
-      "en": "ETH at $1,679, down 5.7% over 24 h and 13.2% on the week.",
-      "es": "ETH en 1.679 $, cae un 5,7 % en 24 h y un 13,2 % en la semana.",
-      "fr": "ETH à 1 679 $, en recul de 5,7 % sur 24 h et de 13,2 % sur la semaine.",
-      "it": "ETH a 1.679 $, in calo del 5,7 % nelle 24 h e del 13,2 % nella settimana.",
-      "tr": "ETH 1.679 $’da; 24 saatte %5,7, haftada %13,2 düştü."
+      "de": "ETH 1.615 $, 24 h −7,5 %, Woche −14,2 %.",
+      "en": "ETH at $1,615, down 7.5% over 24 h and 14.2% on the week.",
+      "es": "ETH en 1.615 $, cae un 7,5 % en 24 h y un 14,2 % en la semana.",
+      "fr": "ETH à 1 615 $, −7,5 % sur 24 h et −14,2 % sur la semaine.",
+      "it": "ETH a 1.615 $, −7,5 % nelle 24 ore e −14,2 % in settimana.",
+      "tr": "ETH 1.615 $’da; 24 saatte %−7,5, haftada %−14,2."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795187880,
+       "zeit": 1795230120,
        "genau": true
       }
      ],
-     "zeit": 1795187880,
+     "zeit": 1795230120,
      "schnitt": "vor"
     },
     {
      "id": "lage-3",
      "text": {
-      "de": "Angst & Gier 12 (extreme Angst), Vortag 10, vor 1 Monat 63.",
-      "en": "Fear & Greed sits at 12 (extreme fear), from 10 the day before and 63 a month ago.",
-      "es": "El índice de miedo y codicia marca 12 (miedo extremo), frente a 10 el día anterior y 63 hace un mes.",
-      "fr": "L’indice peur et cupidité est à 12 (peur extrême), contre 10 la veille et 63 il y a un mois.",
-      "it": "L’indice paura e avidità è a 12 (paura estrema), contro 10 il giorno prima e 63 un mese fa.",
-      "tr": "Korku ve açgözlülük endeksi 12’de (aşırı korku); bir gün önce 10, bir ay önce 63’tü."
+      "de": "Angst & Gier 12 (extreme Angst), Vortag 12, vor 1 Monat 68.",
+      "en": "Fear & Greed at 12 (extreme fear), 12 the day before, 68 a month ago.",
+      "es": "Miedo y codicia en 12 (miedo extremo), 12 el día anterior, 68 hace un mes.",
+      "fr": "Indice peur et cupidité à 12 (peur extrême), 12 la veille, 68 il y a un mois.",
+      "it": "Indice paura e avidità a 12 (paura estrema), 12 il giorno prima, 68 un mese fa.",
+      "tr": "Korku ve Açgözlülük Endeksi 12 (aşırı korku), bir gün önce 12, bir ay önce 68."
      },
      "quellen": [
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1795187880,
+       "zeit": 1795230120,
        "genau": true
       }
      ],
-     "zeit": 1795187880,
+     "zeit": 1795230120,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
-      "de": "US-Zinsen 10 Jahre 5,04 %, 2 Jahre 4,76 % am 19.11.",
-      "en": "US yields on 19 Nov: 10-year at 5.04%, 2-year at 4.76%.",
-      "es": "Rentabilidades en EE. UU. el 19/11: bono a 10 años al 5,04 %, a 2 años al 4,76 %.",
-      "fr": "Taux américains le 19/11 : 10 ans à 5,04 %, 2 ans à 4,76 %.",
-      "it": "Rendimenti USA il 19/11: decennale al 5,04 %, biennale al 4,76 %.",
-      "tr": "19 Kasım itibarıyla ABD faizleri: 10 yıllık %5,04, 2 yıllık %4,76."
+      "de": "US-Zinsen 10 Jahre 4,92 %, 2 Jahre 4,63 % am 20.11., beide in 5 Tagen gut −0,2 Pkt.",
+      "en": "US 10-year yield at 4.92%, 2-year at 4.63% on 20 Nov, each down just over 0.2 pts in 5 days.",
+      "es": "Bono a 10 años de EE. UU. al 4,92 %, a 2 años al 4,63 % el 20/11; ambos algo más de 0,2 puntos abajo en 5 días.",
+      "fr": "Taux US à 10 ans à 4,92 %, à 2 ans à 4,63 % le 20/11 ; chacun en repli d’un peu plus de 0,2 point sur 5 jours.",
+      "it": "Treasury USA a 10 anni al 4,92 %, a 2 anni al 4,63 % il 20/11; entrambi giù di poco più di 0,2 punti in 5 giorni.",
+      "tr": "ABD 10 yıllık tahvil faizi %4,92, 2 yıllık %4,63 (20.11.); ikisi de 5 günde 0,2 puandan biraz fazla geriledi."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1795187880,
+       "zeit": 1795230120,
        "genau": true
       }
      ],
-     "zeit": 1795187880,
+     "zeit": 1795230120,
      "schnitt": "vor"
     },
     {
      "id": "lage-5",
      "text": {
+      "de": "Nach Schnitt: Nasdaq 100 −5,6 %, schlechteste Woche seit März 2020.",
+      "en": "After cut-off: Nasdaq 100 down 5.6%, its worst week since March 2020.",
+      "es": "Tras el corte: el Nasdaq 100 se deja un 5,6 % y firma su peor semana desde marzo de 2020.",
+      "fr": "Après la coupure : le Nasdaq 100 lâche 5,6 % et signe sa pire semaine depuis mars 2020.",
+      "it": "Dopo il taglio: il Nasdaq 100 cede il 5,6 % e chiude la peggior settimana da marzo 2020.",
+      "tr": "Kesimden sonra: Nasdaq 100 %5,6 düştü, Mart 2020’den beri en kötü haftasını yaşadı."
+     },
+     "quellen": [
+      {
+       "name": "Bloomberg",
+       "url": "https://www.bloomberg.com/news/articles/2026-11-19/stock-market-today-dow-s-p-live-updates",
+       "zeit": 1795132800,
+       "genau": false
+      }
+     ],
+     "zeit": 1795132800,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-6",
+     "text": {
       "de": "BTC-ETFs am 19.11. −582,2 Mio. $, 5 Handelstage −1,31 Mrd. $, dritter Abflusstag in Folge.",
-      "en": "Spot BTC ETFs saw −$582.2M on 19 Nov and −$1.31B over 5 sessions – a third straight day of outflows.",
-      "es": "Los ETF de BTC al contado registraron −582,2 M$ el 19/11 y −1.310 M$ en 5 sesiones: tercer día seguido de salidas.",
-      "fr": "Les ETF BTC spot ont enregistré −582,2 M$ le 19/11 et −1,31 Md$ sur 5 séances : troisième jour de sorties d’affilée.",
-      "it": "Gli ETF spot su BTC hanno segnato −582,2 mln $ il 19/11 e −1,31 mld $ in 5 sedute: terzo giorno di fila di deflussi.",
-      "tr": "Spot BTC ETF’lerinden 19 Kasım’da 582,2 milyon $, son 5 seansta 1,31 milyar $ çıktı; üst üste üçüncü çıkış günü."
+      "en": "Spot BTC ETFs saw −$582.2m on 19 Nov, −$1.31bn over 5 sessions, a third straight day of outflows.",
+      "es": "ETF de BTC al contado: −582,2 M$ el 19/11, −1.310 M$ en 5 sesiones, tercer día seguido de salidas.",
+      "fr": "ETF BTC spot : −582,2 M$ le 19/11, −1,31 Md$ sur 5 séances, troisième jour de sorties d’affilée.",
+      "it": "ETF spot su BTC: −582,2 mln $ il 19/11, −1,31 mld $ in 5 sedute, terzo giorno consecutivo di deflussi.",
+      "tr": "Spot BTC ETF’leri 19.11.’de −582,2 milyon $, 5 seansta −1,31 milyar $; üst üste üçüncü çıkış günü."
      },
      "quellen": [
       {
        "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
        "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1795187880,
+       "zeit": 1795230120,
        "genau": true
       }
      ],
-     "zeit": 1795187880,
+     "zeit": 1795230120,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-7",
+     "text": {
+      "de": "Nach Schnitt: US-Finanzministerium sanktioniert vier iranische „Öl-Treuhänder“, die Einnahmen am US-Seeblockade vorbei sammeln.",
+      "en": "After cut-off: the US Treasury sanctioned four Iranian \"oil trustees\" who were collecting revenue around the US naval blockade.",
+      "es": "Tras el corte: el Tesoro de EE. UU. sanciona a cuatro «fiduciarios del petróleo» iraníes que cobraban ingresos esquivando el bloqueo naval estadounidense.",
+      "fr": "Après la coupure : le Trésor américain sanctionne quatre « fiduciaires pétroliers » iraniens qui encaissaient des recettes en contournant le blocus naval américain.",
+      "it": "Dopo il taglio: il Tesoro USA sanziona quattro «fiduciari del petrolio» iraniani che incassavano proventi aggirando il blocco navale americano.",
+      "tr": "Kesimden sonra: ABD Hazinesi, ABD deniz ablukasını aşarak petrol geliri toplayan dört İranlı «petrol emanetçisine» yaptırım getirdi."
+     },
+     "quellen": [
+      {
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/middle-east/us-treasury-sanctions-iranian-trustees-collecting-oil-revenues-2026-11-20/",
+       "zeit": 1795132800,
+       "genau": false
+      }
+     ],
+     "zeit": 1795132800,
      "schnitt": "vor"
     }
    ]
@@ -138,11 +180,11 @@
       {
        "name": "BLS · Federal Reserve · BEA · SEC",
        "url": "https://www.bls.gov/schedule/",
-       "zeit": 1795188600,
+       "zeit": 1795231800,
        "genau": false
       }
      ],
-     "zeit": 1795188600,
+     "zeit": 1795231800,
      "schnitt": "vor"
     }
    ]
