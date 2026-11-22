@@ -1,14 +1,14 @@
 {
  "format": 1,
- "stand": 1795318200,
- "recherche_schnitt": 1795318200,
+ "stand": 1795361400,
+ "recherche_schnitt": 1795361400,
  "titel": {
-  "de": "Lage-Bericht · Morgen 22.11.2026 03:30 UTC",
-  "en": "Market brief · morning 22.11.2026 03:30 UTC",
-  "es": "Boletín del mercado · mañana 22.11.2026 03:30 UTC",
-  "fr": "Point de marché · matin 22.11.2026 03:30 UTC",
-  "it": "Quadro di mercato · mattina 22.11.2026 03:30 UTC",
-  "tr": "Piyasa raporu · sabah 22.11.2026 03:30 UTC"
+  "de": "Lage-Bericht · Nachmittag 22.11.2026 15:30 UTC",
+  "en": "Market brief · afternoon 22.11.2026 15:30 UTC",
+  "es": "Boletín del mercado · tarde 22.11.2026 15:30 UTC",
+  "fr": "Point de marché · après-midi 22.11.2026 15:30 UTC",
+  "it": "Quadro di mercato · pomeriggio 22.11.2026 15:30 UTC",
+  "tr": "Piyasa raporu · öğleden sonra 22.11.2026 15:30 UTC"
  },
  "abschnitte": [
   {
@@ -17,43 +17,43 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 59.451 $, 24 h +1,5 %, Woche −8,4 %, 22,5 % unter 50-Tage-Mittel.",
-      "en": "BTC at $59,451, +1.5% over 24 h, −8.4% on the week, 22.5% below its 50-day average.",
-      "es": "BTC en 59.451 $, +1,5 % en 24 h, −8,4 % en la semana, un 22,5 % por debajo de su media de 50 días.",
-      "fr": "BTC à 59 451 $, +1,5 % sur 24 h, −8,4 % sur la semaine, 22,5 % sous sa moyenne 50 jours.",
-      "it": "BTC a 59.451 $, +1,5% nelle 24 ore, −8,4% nella settimana, 22,5% sotto la media a 50 giorni.",
-      "tr": "BTC 59.451 $, 24 saatte %+1,5, haftalık %−8,4, 50 günlük ortalamanın %22,5 altında."
+      "de": "BTC 60.693 $, 24 h +0,6 %, Woche −6,2 %, 20,9 % unter 50-Tage-Mittel.",
+      "en": "BTC at $60,693, +0.6% over 24h, −6.2% on the week, 20.9% below its 50-day average.",
+      "es": "BTC en 60.693 $, +0,6 % en 24 h, −6,2 % en la semana, un 20,9 % por debajo de su media de 50 días.",
+      "fr": "BTC à 60 693 $, +0,6 % sur 24 h, −6,2 % sur la semaine, 20,9 % sous sa moyenne 50 jours.",
+      "it": "BTC a 60.693 $, +0,6% in 24 h, −6,2% nella settimana, 20,9% sotto la media a 50 giorni.",
+      "tr": "BTC 60.693 $, 24 saatte %0,6 artı, haftalık %6,2 eksi, 50 günlük ortalamanın %20,9 altında."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795315680,
+       "zeit": 1795358460,
        "genau": true
       }
      ],
-     "zeit": 1795315680,
+     "zeit": 1795358460,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.668 $, 24 h +3,0 %, Woche −8,1 %.",
-      "en": "ETH at $1,668, +3.0% over 24 h, −8.1% on the week.",
-      "es": "ETH en 1.668 $, +3,0 % en 24 h, −8,1 % en la semana.",
-      "fr": "ETH à 1 668 $, +3,0 % sur 24 h, −8,1 % sur la semaine.",
-      "it": "ETH a 1.668 $, +3,0% nelle 24 ore, −8,1% nella settimana.",
-      "tr": "ETH 1.668 $, 24 saatte %+3,0, haftalık %−8,1."
+      "de": "ETH 1.704 $, 24 h +0,8 %, Woche −5,7 %.",
+      "en": "ETH at $1,704, +0.8% over 24h, −5.7% on the week.",
+      "es": "ETH en 1.704 $, +0,8 % en 24 h, −5,7 % en la semana.",
+      "fr": "ETH à 1 704 $, +0,8 % sur 24 h, −5,7 % sur la semaine.",
+      "it": "ETH a 1.704 $, +0,8% in 24 h, −5,7% nella settimana.",
+      "tr": "ETH 1.704 $, 24 saatte %0,8 artı, haftalık %5,7 eksi."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795315680,
+       "zeit": 1795358460,
        "genau": true
       }
      ],
-     "zeit": 1795315680,
+     "zeit": 1795358460,
      "schnitt": "vor"
     },
     {
@@ -61,7 +61,7 @@
      "text": {
       "de": "Angst & Gier 11 (extreme Angst), Vortag 12, vor 1 Monat 50.",
       "en": "Fear & Greed at 11 (extreme fear), 12 the day before, 50 a month ago.",
-      "es": "Índice de Miedo y Codicia en 11 (miedo extremo), 12 el día anterior, 50 hace un mes.",
+      "es": "Miedo y Codicia en 11 (miedo extremo), 12 el día anterior, 50 hace un mes.",
       "fr": "Indice Peur et Avidité à 11 (peur extrême), 12 la veille, 50 il y a un mois.",
       "it": "Indice Paura e Avidità a 11 (paura estrema), 12 il giorno prima, 50 un mese fa.",
       "tr": "Korku ve Açgözlülük Endeksi 11 (aşırı korku), bir gün önce 12, bir ay önce 50."
@@ -70,32 +70,116 @@
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1795315680,
+       "zeit": 1795358460,
        "genau": true
       }
      ],
-     "zeit": 1795315680,
+     "zeit": 1795358460,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
       "de": "US-Zinsen 10 Jahre 4,92 %, 2 Jahre 4,63 % am 20.11.",
-      "en": "US 10-year yield at 4.92%, 2-year at 4.63% on 20 Nov.",
-      "es": "Rentabilidad del bono a 10 años de EE. UU. en el 4,92 %, a 2 años en el 4,63 % el 20 nov.",
-      "fr": "Taux US à 10 ans à 4,92 %, à 2 ans à 4,63 % le 20 nov.",
-      "it": "Rendimento USA a 10 anni al 4,92%, a 2 anni al 4,63% il 20 nov.",
-      "tr": "ABD 10 yıllık tahvil faizi %4,92, 2 yıllık %4,63 (20 Kasım)."
+      "en": "US yields on 20 Nov: 10-year at 4.92%, 2-year at 4.63%.",
+      "es": "Rentabilidades en EE. UU. el 20 nov: 10 años al 4,92 %, 2 años al 4,63 %.",
+      "fr": "Taux américains le 20 nov. : 10 ans à 4,92 %, 2 ans à 4,63 %.",
+      "it": "Rendimenti USA al 20 nov: decennale al 4,92%, biennale al 4,63%.",
+      "tr": "20 Kasım itibarıyla ABD faizleri: 10 yıllık %4,92, 2 yıllık %4,63."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1795315680,
+       "zeit": 1795358460,
        "genau": true
       }
      ],
-     "zeit": 1795315680,
+     "zeit": 1795358460,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-5",
+     "text": {
+      "de": "BTC-ETFs am 19.11. −582,2 Mio. $, 5 Handelstage −1.306 Mio. $, 3 Tage Abfluss in Folge.",
+      "en": "Spot BTC ETFs: −$582.2M on 19 Nov, −$1,306M over 5 sessions, third straight day of outflows.",
+      "es": "ETF de BTC al contado: −582,2 M$ el 19 nov, −1.306 M$ en 5 sesiones, tercer día seguido de salidas.",
+      "fr": "ETF BTC au comptant : −582,2 M$ le 19 nov., −1 306 M$ sur 5 séances, troisième jour de sorties d’affilée.",
+      "it": "ETF spot su BTC: −582,2 mln $ il 19 nov, −1.306 mln $ in 5 sedute, terzo giorno di deflussi di fila.",
+      "tr": "Spot BTC ETF’leri: 19 Kasım’da 582,2 milyon $ çıkış, 5 seansta 1.306 milyon $ eksi, üst üste üçüncü çıkış günü."
+     },
+     "quellen": [
+      {
+       "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
+       "url": "https://tftc.io/bitcoin-etf-flows",
+       "zeit": 1795358460,
+       "genau": true
+      }
+     ],
+     "zeit": 1795358460,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-6",
+     "text": {
+      "de": "Nach Schnitt: Saudi-Arabien fing eine Huthi-Drohne und eine Rakete ab, in Bahrain traf ein iranisches Geschoss eine Industrieanlage.",
+      "en": "Since the last update: Saudi Arabia intercepted a Houthi drone and a missile, and an Iranian projectile hit an industrial site in Bahrain.",
+      "es": "Desde la última actualización: Arabia Saudí interceptó un dron hutí y un misil, y un proyectil iraní impactó en una planta industrial de Baréin.",
+      "fr": "Depuis la dernière mise à jour : l’Arabie saoudite a intercepté un drone houthi et un missile, et un projectile iranien a touché un site industriel à Bahreïn.",
+      "it": "Dall’ultimo aggiornamento: l’Arabia Saudita ha intercettato un drone houthi e un missile, e un proiettile iraniano ha colpito un impianto industriale in Bahrein.",
+      "tr": "Son güncellemeden bu yana: Suudi Arabistan bir Husi İHA’sını ve bir füzeyi önledi, Bahreyn’de bir sanayi tesisine İran mermisi isabet etti."
+     },
+     "quellen": [
+      {
+       "name": "CNBC",
+       "url": "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html",
+       "zeit": 1795353900,
+       "genau": true
+      }
+     ],
+     "zeit": 1795353900,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-7",
+     "text": {
+      "de": "Iran nennt die Absichtserklärung von Islamabad hinfällig, bleibt aber offen für ein Abkommen mit den USA.",
+      "en": "Iran considers the Islamabad memorandum void but says it remains open to a deal with the US.",
+      "es": "Irán da por nulo el memorando de Islamabad, pero dice que sigue abierto a un acuerdo con EE. UU.",
+      "fr": "L’Iran juge caduc le protocole d’Islamabad, mais se dit toujours ouvert à un accord avec les États-Unis.",
+      "it": "L’Iran considera decaduto il memorandum di Islamabad, ma resta aperto a un accordo con gli USA.",
+      "tr": "İran, İslamabad mutabakatını geçersiz sayıyor ama ABD ile bir anlaşmaya hâlâ açık olduğunu söylüyor."
+     },
+     "quellen": [
+      {
+       "name": "CNBC",
+       "url": "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html",
+       "zeit": 1795353900,
+       "genau": true
+      }
+     ],
+     "zeit": 1795353900,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-8",
+     "text": {
+      "de": "Brent fiel in der Woche 3,4 %, US-Öl 5,2 %, drei Wochen in Folge.",
+      "en": "Brent lost 3.4% on the week and US crude 5.2%, the third week in a row.",
+      "es": "El Brent cedió un 3,4 % en la semana y el crudo estadounidense un 5,2 %, por tercera semana consecutiva.",
+      "fr": "Le Brent a cédé 3,4 % sur la semaine et le brut américain 5,2 %, pour la troisième semaine d’affilée.",
+      "it": "Il Brent ha ceduto il 3,4% nella settimana e il greggio USA il 5,2%, per la terza settimana di fila.",
+      "tr": "Brent haftada %3,4, ABD ham petrolü %5,2 geriledi; üst üste üçüncü hafta."
+     },
+     "quellen": [
+      {
+       "name": "CNBC",
+       "url": "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html",
+       "zeit": 1795353900,
+       "genau": true
+      }
+     ],
+     "zeit": 1795353900,
      "schnitt": "vor"
     }
    ]
@@ -106,44 +190,44 @@
     {
      "id": "beide_seiten-1",
      "text": {
-      "de": "BTC-ETFs 19.11. −582,2 Mio. $.",
-      "en": "Spot BTC ETFs saw net outflows of $582.2m on 19 Nov.",
-      "es": "Los ETF de BTC al contado registraron salidas netas de 582,2 millones de $ el 19 nov.",
-      "fr": "Les ETF BTC spot ont enregistré 582,2 M$ de sorties nettes le 19 nov.",
-      "it": "Gli ETF spot su BTC hanno registrato deflussi netti per 582,2 milioni di $ il 19 nov.",
-      "tr": "Spot BTC ETF’lerinden 19 Kasım’da net 582,2 milyon $ çıkış oldu."
+      "de": "neue Angriffe am Golf übers Wochenende.",
+      "en": "Fresh attacks in the Gulf over the weekend.",
+      "es": "Nuevos ataques en el Golfo durante el fin de semana.",
+      "fr": "Nouvelles attaques dans le Golfe ce week-end.",
+      "it": "Nuovi attacchi nel Golfo durante il fine settimana.",
+      "tr": "Hafta sonu Körfez’de yeni saldırılar."
      },
      "quellen": [
       {
-       "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
-       "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1795315680,
+       "name": "CNBC",
+       "url": "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html",
+       "zeit": 1795353900,
        "genau": true
       }
      ],
-     "zeit": 1795315680,
+     "zeit": 1795353900,
      "schnitt": "vor",
      "seite": "dafuer"
     },
     {
      "id": "beide_seiten-2",
      "text": {
-      "de": "Lange Zinsen 5 Tage −0,23 Pkt.",
-      "en": "Long-dated yields are 23 bp lower over 5 days.",
-      "es": "Las rentabilidades a largo plazo acumulan −23 pb en 5 días.",
-      "fr": "Les taux longs ont perdu 23 pb en 5 jours.",
-      "it": "I rendimenti a lunga hanno perso 23 pb in 5 giorni.",
-      "tr": "Uzun vadeli faizler 5 günde 23 baz puan geriledi."
+      "de": "Öl drei Wochen in Folge billiger trotz Angriffen am Golf.",
+      "en": "Oil cheaper for a third straight week despite the Gulf attacks.",
+      "es": "Petróleo más barato por tercera semana seguida pese a los ataques en el Golfo.",
+      "fr": "Pétrole moins cher pour la troisième semaine d’affilée malgré les attaques dans le Golfe.",
+      "it": "Petrolio più economico per la terza settimana di fila nonostante gli attacchi nel Golfo.",
+      "tr": "Körfez’deki saldırılara rağmen petrol üst üste üçüncü hafta ucuzladı."
      },
      "quellen": [
       {
-       "name": "U.S. Treasury",
-       "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1795315680,
+       "name": "CNBC",
+       "url": "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html",
+       "zeit": 1795353900,
        "genau": true
       }
      ],
-     "zeit": 1795315680,
+     "zeit": 1795353900,
      "schnitt": "vor",
      "seite": "dagegen"
     }
@@ -166,11 +250,11 @@
       {
        "name": "BLS · Federal Reserve · BEA · SEC",
        "url": "https://www.bls.gov/schedule/",
-       "zeit": 1795318200,
+       "zeit": 1795361400,
        "genau": false
       }
      ],
-     "zeit": 1795318200,
+     "zeit": 1795361400,
      "schnitt": "vor"
     }
    ]
