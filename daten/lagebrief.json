@@ -1,14 +1,14 @@
 {
  "format": 1,
- "stand": 1795361400,
- "recherche_schnitt": 1795361400,
+ "stand": 1795404600,
+ "recherche_schnitt": 1795404600,
  "titel": {
-  "de": "Lage-Bericht · Nachmittag 22.11.2026 15:30 UTC",
-  "en": "Market brief · afternoon 22.11.2026 15:30 UTC",
-  "es": "Boletín del mercado · tarde 22.11.2026 15:30 UTC",
-  "fr": "Point de marché · après-midi 22.11.2026 15:30 UTC",
-  "it": "Quadro di mercato · pomeriggio 22.11.2026 15:30 UTC",
-  "tr": "Piyasa raporu · öğleden sonra 22.11.2026 15:30 UTC"
+  "de": "Lage-Bericht · Morgen 23.11.2026 03:30 UTC",
+  "en": "Market brief · morning 23.11.2026 03:30 UTC",
+  "es": "Boletín del mercado · mañana 23.11.2026 03:30 UTC",
+  "fr": "Point de marché · matin 23.11.2026 03:30 UTC",
+  "it": "Quadro di mercato · mattina 23.11.2026 03:30 UTC",
+  "tr": "Piyasa raporu · sabah 23.11.2026 03:30 UTC"
  },
  "abschnitte": [
   {
@@ -17,169 +17,211 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 60.693 $, 24 h +0,6 %, Woche −6,2 %, 20,9 % unter 50-Tage-Mittel.",
-      "en": "BTC at $60,693, +0.6% over 24h, −6.2% on the week, 20.9% below its 50-day average.",
-      "es": "BTC en 60.693 $, +0,6 % en 24 h, −6,2 % en la semana, un 20,9 % por debajo de su media de 50 días.",
-      "fr": "BTC à 60 693 $, +0,6 % sur 24 h, −6,2 % sur la semaine, 20,9 % sous sa moyenne 50 jours.",
-      "it": "BTC a 60.693 $, +0,6% in 24 h, −6,2% nella settimana, 20,9% sotto la media a 50 giorni.",
-      "tr": "BTC 60.693 $, 24 saatte %0,6 artı, haftalık %6,2 eksi, 50 günlük ortalamanın %20,9 altında."
+      "de": "BTC 60.862 $, 24 h +2,6 %, Woche −6,5 %, 20,1 % unter 50-Tage-Mittel.",
+      "en": "BTC at $60,862, +2.6% over 24h, −6.5% on the week, 20.1% below its 50-day average.",
+      "es": "BTC en 60.862 $, +2,6 % en 24 h, −6,5 % en la semana, un 20,1 % por debajo de su media de 50 días.",
+      "fr": "BTC à 60 862 $, +2,6 % sur 24 h, −6,5 % sur la semaine, 20,1 % sous sa moyenne à 50 jours.",
+      "it": "BTC a 60.862 $, +2,6 % nelle 24 h, −6,5 % sulla settimana, 20,1 % sotto la media a 50 giorni.",
+      "tr": "BTC 60.862 $, 24 saatte %2,6 artı, haftalık %6,5 eksi, 50 günlük ortalamanın %20,1 altında."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795358460,
+       "zeit": 1795403040,
        "genau": true
       }
      ],
-     "zeit": 1795358460,
+     "zeit": 1795403040,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.704 $, 24 h +0,8 %, Woche −5,7 %.",
-      "en": "ETH at $1,704, +0.8% over 24h, −5.7% on the week.",
-      "es": "ETH en 1.704 $, +0,8 % en 24 h, −5,7 % en la semana.",
-      "fr": "ETH à 1 704 $, +0,8 % sur 24 h, −5,7 % sur la semaine.",
-      "it": "ETH a 1.704 $, +0,8% in 24 h, −5,7% nella settimana.",
-      "tr": "ETH 1.704 $, 24 saatte %0,8 artı, haftalık %5,7 eksi."
+      "de": "ETH 1.713 $, 24 h +3,2 %, Woche −6,2 %.",
+      "en": "ETH at $1,713, +3.2% over 24h, −6.2% on the week.",
+      "es": "ETH en 1.713 $, +3,2 % en 24 h, −6,2 % en la semana.",
+      "fr": "ETH à 1 713 $, +3,2 % sur 24 h, −6,2 % sur la semaine.",
+      "it": "ETH a 1.713 $, +3,2 % nelle 24 h, −6,2 % sulla settimana.",
+      "tr": "ETH 1.713 $, 24 saatte %3,2 artı, haftalık %6,2 eksi."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795358460,
+       "zeit": 1795403040,
        "genau": true
       }
      ],
-     "zeit": 1795358460,
+     "zeit": 1795403040,
      "schnitt": "vor"
     },
     {
      "id": "lage-3",
      "text": {
-      "de": "Angst & Gier 11 (extreme Angst), Vortag 12, vor 1 Monat 50.",
-      "en": "Fear & Greed at 11 (extreme fear), 12 the day before, 50 a month ago.",
-      "es": "Miedo y Codicia en 11 (miedo extremo), 12 el día anterior, 50 hace un mes.",
-      "fr": "Indice Peur et Avidité à 11 (peur extrême), 12 la veille, 50 il y a un mois.",
-      "it": "Indice Paura e Avidità a 11 (paura estrema), 12 il giorno prima, 50 un mese fa.",
-      "tr": "Korku ve Açgözlülük Endeksi 11 (aşırı korku), bir gün önce 12, bir ay önce 50."
+      "de": "Angst & Gier 11 (extreme Angst), vor 1 Woche 10, vor 1 Monat 50.",
+      "en": "Fear & Greed at 11 (extreme fear), 10 a week ago, 50 a month ago.",
+      "es": "Miedo y codicia en 11 (miedo extremo), 10 hace una semana, 50 hace un mes.",
+      "fr": "Indice peur et cupidité à 11 (peur extrême), 10 il y a une semaine, 50 il y a un mois.",
+      "it": "Indice paura e avidità a 11 (paura estrema), 10 una settimana fa, 50 un mese fa.",
+      "tr": "Korku ve Açgözlülük Endeksi 11 (aşırı korku), bir hafta önce 10, bir ay önce 50."
      },
      "quellen": [
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1795358460,
+       "zeit": 1795403040,
        "genau": true
       }
      ],
-     "zeit": 1795358460,
+     "zeit": 1795403040,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
       "de": "US-Zinsen 10 Jahre 4,92 %, 2 Jahre 4,63 % am 20.11.",
-      "en": "US yields on 20 Nov: 10-year at 4.92%, 2-year at 4.63%.",
-      "es": "Rentabilidades en EE. UU. el 20 nov: 10 años al 4,92 %, 2 años al 4,63 %.",
-      "fr": "Taux américains le 20 nov. : 10 ans à 4,92 %, 2 ans à 4,63 %.",
-      "it": "Rendimenti USA al 20 nov: decennale al 4,92%, biennale al 4,63%.",
-      "tr": "20 Kasım itibarıyla ABD faizleri: 10 yıllık %4,92, 2 yıllık %4,63."
+      "en": "US yields on 20 Nov: 10-year 4.92%, 2-year 4.63%.",
+      "es": "Tipos en EE. UU. el 20 nov.: bono a 10 años 4,92 %, a 2 años 4,63 %.",
+      "fr": "Taux US au 20 nov. : 10 ans à 4,92 %, 2 ans à 4,63 %.",
+      "it": "Tassi USA al 20 nov: decennale 4,92 %, biennale 4,63 %.",
+      "tr": "20 Kasım ABD faizleri: 10 yıllık %4,92, 2 yıllık %4,63."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1795358460,
+       "zeit": 1795403040,
        "genau": true
       }
      ],
-     "zeit": 1795358460,
+     "zeit": 1795403040,
      "schnitt": "vor"
     },
     {
      "id": "lage-5",
      "text": {
       "de": "BTC-ETFs am 19.11. −582,2 Mio. $, 5 Handelstage −1.306 Mio. $, 3 Tage Abfluss in Folge.",
-      "en": "Spot BTC ETFs: −$582.2M on 19 Nov, −$1,306M over 5 sessions, third straight day of outflows.",
-      "es": "ETF de BTC al contado: −582,2 M$ el 19 nov, −1.306 M$ en 5 sesiones, tercer día seguido de salidas.",
-      "fr": "ETF BTC au comptant : −582,2 M$ le 19 nov., −1 306 M$ sur 5 séances, troisième jour de sorties d’affilée.",
-      "it": "ETF spot su BTC: −582,2 mln $ il 19 nov, −1.306 mln $ in 5 sedute, terzo giorno di deflussi di fila.",
-      "tr": "Spot BTC ETF’leri: 19 Kasım’da 582,2 milyon $ çıkış, 5 seansta 1.306 milyon $ eksi, üst üste üçüncü çıkış günü."
+      "en": "Spot BTC ETFs saw −$582.2M on 19 Nov, −$1,306M over 5 sessions, a third straight day of outflows.",
+      "es": "Los ETF spot de BTC registraron −582,2 M$ el 19 nov., −1.306 M$ en 5 sesiones, tercer día seguido de salidas.",
+      "fr": "Les ETF spot BTC ont enregistré −582,2 M$ le 19 nov., −1 306 M$ sur 5 séances, troisième jour de sorties d’affilée.",
+      "it": "Gli ETF spot su BTC hanno segnato −582,2 mln $ il 19 nov, −1.306 mln $ in 5 sedute, terzo giorno di fila di deflussi.",
+      "tr": "Spot BTC ETF’lerinde 19 Kasım’da 582,2 milyon $ çıkış, 5 seansta 1.306 milyon $ eksi, üst üste üçüncü çıkış günü."
      },
      "quellen": [
       {
        "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
        "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1795358460,
+       "zeit": 1795403040,
        "genau": true
       }
      ],
-     "zeit": 1795358460,
+     "zeit": 1795403040,
      "schnitt": "vor"
     },
     {
      "id": "lage-6",
      "text": {
-      "de": "Nach Schnitt: Saudi-Arabien fing eine Huthi-Drohne und eine Rakete ab, in Bahrain traf ein iranisches Geschoss eine Industrieanlage.",
-      "en": "Since the last update: Saudi Arabia intercepted a Houthi drone and a missile, and an Iranian projectile hit an industrial site in Bahrain.",
-      "es": "Desde la última actualización: Arabia Saudí interceptó un dron hutí y un misil, y un proyectil iraní impactó en una planta industrial de Baréin.",
-      "fr": "Depuis la dernière mise à jour : l’Arabie saoudite a intercepté un drone houthi et un missile, et un projectile iranien a touché un site industriel à Bahreïn.",
-      "it": "Dall’ultimo aggiornamento: l’Arabia Saudita ha intercettato un drone houthi e un missile, e un proiettile iraniano ha colpito un impianto industriale in Bahrein.",
-      "tr": "Son güncellemeden bu yana: Suudi Arabistan bir Husi İHA’sını ve bir füzeyi önledi, Bahreyn’de bir sanayi tesisine İran mermisi isabet etti."
+      "de": "Nach Schnitt: Nasdaq-100-Futures zum Wochenstart fast +3 %, S&P-500-Futures +2 %.",
+      "en": "Since the last update: Nasdaq 100 futures up almost 3% as the week opens, S&P 500 futures +2%.",
+      "es": "Desde la última actualización: los futuros del Nasdaq 100 abren la semana con casi +3 %, los del S&P 500 con +2 %.",
+      "fr": "Depuis la dernière mise à jour : les futures Nasdaq 100 ouvrent la semaine à près de +3 %, les futures S&P 500 à +2 %.",
+      "it": "Dall’ultimo aggiornamento: i futures sul Nasdaq 100 aprono la settimana a quasi +3 %, quelli sull’S&P 500 a +2 %.",
+      "tr": "Son güncellemeden bu yana: Nasdaq 100 vadelileri haftayı yaklaşık %3 artıyla, S&P 500 vadelileri %2 artıyla açtı."
      },
      "quellen": [
       {
-       "name": "CNBC",
-       "url": "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html",
-       "zeit": 1795353900,
-       "genau": true
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/middle-east/dollar-edges-off-19-month-high-after-market-rout-yen-softens-2026-11-22/",
+       "zeit": 1795392000,
+       "genau": false
       }
      ],
-     "zeit": 1795353900,
+     "zeit": 1795392000,
      "schnitt": "vor"
     },
     {
      "id": "lage-7",
      "text": {
-      "de": "Iran nennt die Absichtserklärung von Islamabad hinfällig, bleibt aber offen für ein Abkommen mit den USA.",
-      "en": "Iran considers the Islamabad memorandum void but says it remains open to a deal with the US.",
-      "es": "Irán da por nulo el memorando de Islamabad, pero dice que sigue abierto a un acuerdo con EE. UU.",
-      "fr": "L’Iran juge caduc le protocole d’Islamabad, mais se dit toujours ouvert à un accord avec les États-Unis.",
-      "it": "L’Iran considera decaduto il memorandum di Islamabad, ma resta aperto a un accordo con gli USA.",
-      "tr": "İran, İslamabad mutabakatını geçersiz sayıyor ama ABD ile bir anlaşmaya hâlâ açık olduğunu söylüyor."
+      "de": "Südkorea zeitweise −4 % auf ein 10-Monats-Tief, Hongkong und China auf Mehrmonatstiefs, Behörden in Taiwan, China und Südkorea stützen ihre Börsen.",
+      "en": "South Korea down as much as 4% to a 10-month low, Hong Kong and China at multi-month lows, with authorities in Taiwan, China and South Korea stepping in to support their markets.",
+      "es": "Corea del Sur llegó a caer un 4 % hasta mínimos de 10 meses, Hong Kong y China en mínimos de varios meses, y las autoridades de Taiwán, China y Corea del Sur salen a sostener sus bolsas.",
+      "fr": "La Corée du Sud a lâché jusqu’à 4 % vers un plus bas de 10 mois, Hong Kong et la Chine touchent des plus bas de plusieurs mois, et les autorités de Taïwan, de Chine et de Corée du Sud interviennent pour soutenir leurs marchés.",
+      "it": "La Corea del Sud è arrivata a −4 % toccando i minimi di 10 mesi, Hong Kong e Cina ai minimi di diversi mesi, e le autorità di Taiwan, Cina e Corea del Sud intervengono a sostegno delle loro borse.",
+      "tr": "Güney Kore bir ara %4 düşerek 10 ayın dibini gördü, Hong Kong ve Çin birkaç ayın en düşüğünde; Tayvan, Çin ve Güney Kore’de yetkililer borsaları desteklemek için devrede."
      },
      "quellen": [
       {
-       "name": "CNBC",
-       "url": "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html",
-       "zeit": 1795353900,
-       "genau": true
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/middle-east/dollar-edges-off-19-month-high-after-market-rout-yen-softens-2026-11-22/",
+       "zeit": 1795392000,
+       "genau": false
       }
      ],
-     "zeit": 1795353900,
+     "zeit": 1795392000,
      "schnitt": "vor"
     },
     {
      "id": "lage-8",
      "text": {
-      "de": "Brent fiel in der Woche 3,4 %, US-Öl 5,2 %, drei Wochen in Folge.",
-      "en": "Brent lost 3.4% on the week and US crude 5.2%, the third week in a row.",
-      "es": "El Brent cedió un 3,4 % en la semana y el crudo estadounidense un 5,2 %, por tercera semana consecutiva.",
-      "fr": "Le Brent a cédé 3,4 % sur la semaine et le brut américain 5,2 %, pour la troisième semaine d’affilée.",
-      "it": "Il Brent ha ceduto il 3,4% nella settimana e il greggio USA il 5,2%, per la terza settimana di fila.",
-      "tr": "Brent haftada %3,4, ABD ham petrolü %5,2 geriledi; üst üste üçüncü hafta."
+      "de": "der Nasdaq verlor letzte Woche 10 %, so viel wie seit März 2020 nicht.",
+      "en": "The Nasdaq lost 10% last week, its worst week since March 2020.",
+      "es": "El Nasdaq cedió un 10 % la semana pasada, su peor semana desde marzo de 2020.",
+      "fr": "Le Nasdaq a perdu 10 % la semaine dernière, sa pire semaine depuis mars 2020.",
+      "it": "Il Nasdaq ha perso il 10 % la settimana scorsa, la peggior settimana da marzo 2020.",
+      "tr": "Nasdaq geçen hafta %10 kaybetti, Mart 2020’den beri en kötü haftası."
      },
      "quellen": [
       {
-       "name": "CNBC",
-       "url": "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html",
-       "zeit": 1795353900,
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/middle-east/dollar-edges-off-19-month-high-after-market-rout-yen-softens-2026-11-22/",
+       "zeit": 1795392000,
+       "genau": false
+      }
+     ],
+     "zeit": 1795392000,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-9",
+     "text": {
+      "de": "Nach Schnitt: Der Dollar rückt vom 19-Monats-Hoch ab.",
+      "en": "Since the last update: the dollar is backing off its 19-month high.",
+      "es": "Desde la última actualización: el dólar se aleja de su máximo de 19 meses.",
+      "fr": "Depuis la dernière mise à jour : le dollar recule de son plus haut de 19 mois.",
+      "it": "Dall’ultimo aggiornamento: il dollaro si allontana dai massimi di 19 mesi.",
+      "tr": "Son güncellemeden bu yana: dolar 19 ayın zirvesinden geri çekiliyor."
+     },
+     "quellen": [
+      {
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/middle-east/dollar-edges-off-19-month-high-after-market-rout-yen-softens-2026-11-22/",
+       "zeit": 1795390980,
        "genau": true
       }
      ],
-     "zeit": 1795353900,
+     "zeit": 1795390980,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-10",
+     "text": {
+      "de": "Fed-Futures preisen 88,6 % für +0,25 Pkt. am 09.12., eine Erhöhung um 0,5 Pkt. (vor einer Woche 11,5 %) ist ganz ausgepreist.",
+      "en": "Fed funds futures price an 88.6% chance of a 25 bp hike on 9 Dec; a 50 bp hike (11.5% a week ago) is now fully priced out.",
+      "es": "Los futuros de fondos federales descuentan un 88,6 % para una subida de 25 pb el 9 dic.; la de 50 pb (11,5 % hace una semana) ya está totalmente fuera de precio.",
+      "fr": "Les futures sur les fed funds intègrent 88,6 % pour une hausse de 25 pb le 9 déc. ; une hausse de 50 pb (11,5 % il y a une semaine) est totalement sortie des prix.",
+      "it": "I futures sui fed funds prezzano all’88,6 % un rialzo di 25 pb il 9 dic; uno da 50 pb (11,5 % una settimana fa) è completamente uscito dai prezzi.",
+      "tr": "Fed fonu vadelileri 9 Aralık’ta 25 baz puanlık artışa %88,6 olasılık veriyor; 50 baz puanlık artış (bir hafta önce %11,5) fiyatlamadan tamamen çıktı."
+     },
+     "quellen": [
+      {
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/middle-east/dollar-edges-off-19-month-high-after-market-rout-yen-softens-2026-11-22/",
+       "zeit": 1795390980,
+       "genau": true
+      }
+     ],
+     "zeit": 1795390980,
      "schnitt": "vor"
     }
    ]
@@ -190,44 +232,154 @@
     {
      "id": "beide_seiten-1",
      "text": {
-      "de": "neue Angriffe am Golf übers Wochenende.",
-      "en": "Fresh attacks in the Gulf over the weekend.",
-      "es": "Nuevos ataques en el Golfo durante el fin de semana.",
-      "fr": "Nouvelles attaques dans le Golfe ce week-end.",
-      "it": "Nuovi attacchi nel Golfo durante il fine settimana.",
-      "tr": "Hafta sonu Körfez’de yeni saldırılar."
+      "de": "ETF-Abflüsse 3 Tage in Folge.",
+      "en": "ETF outflows three days running.",
+      "es": "Salidas de los ETF tres días seguidos.",
+      "fr": "Sorties des ETF trois jours de suite.",
+      "it": "Deflussi dagli ETF tre giorni di fila.",
+      "tr": "ETF’lerden üç gündür üst üste çıkış."
      },
      "quellen": [
       {
-       "name": "CNBC",
-       "url": "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html",
-       "zeit": 1795353900,
+       "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
+       "url": "https://tftc.io/bitcoin-etf-flows",
+       "zeit": 1795403040,
        "genau": true
       }
      ],
-     "zeit": 1795353900,
+     "zeit": 1795403040,
      "schnitt": "vor",
      "seite": "dafuer"
     },
     {
      "id": "beide_seiten-2",
      "text": {
-      "de": "Öl drei Wochen in Folge billiger trotz Angriffen am Golf.",
-      "en": "Oil cheaper for a third straight week despite the Gulf attacks.",
-      "es": "Petróleo más barato por tercera semana seguida pese a los ataques en el Golfo.",
-      "fr": "Pétrole moins cher pour la troisième semaine d’affilée malgré les attaques dans le Golfe.",
-      "it": "Petrolio più economico per la terza settimana di fila nonostante gli attacchi nel Golfo.",
-      "tr": "Körfez’deki saldırılara rağmen petrol üst üste üçüncü hafta ucuzladı."
+      "de": "die Erhöhung am 09.12. bleibt zu 88,6 % eingepreist.",
+      "en": "The 9 Dec hike is still 88.6% priced in.",
+      "es": "La subida del 9 dic. sigue descontada al 88,6 %.",
+      "fr": "La hausse du 9 déc. reste intégrée à 88,6 %.",
+      "it": "Il rialzo del 9 dic resta prezzato all’88,6 %.",
+      "tr": "9 Aralık artışı hâlâ %88,6 fiyatlanmış durumda."
      },
      "quellen": [
       {
-       "name": "CNBC",
-       "url": "https://www.cnbc.com/2026/11/22/saudi-houthi-bahrain-iran-attacks-araghchi-talks.html",
-       "zeit": 1795353900,
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/middle-east/dollar-edges-off-19-month-high-after-market-rout-yen-softens-2026-11-22/",
+       "zeit": 1795390980,
        "genau": true
       }
      ],
-     "zeit": 1795353900,
+     "zeit": 1795390980,
+     "schnitt": "vor",
+     "seite": "dafuer"
+    },
+    {
+     "id": "beide_seiten-3",
+     "text": {
+      "de": "BTC 20 % unter dem 50-Tage-Mittel.",
+      "en": "BTC sits 20% below its 50-day average.",
+      "es": "BTC está un 20 % por debajo de su media de 50 días.",
+      "fr": "BTC se situe 20 % sous sa moyenne à 50 jours.",
+      "it": "BTC si trova 20 % sotto la media a 50 giorni.",
+      "tr": "BTC 50 günlük ortalamanın %20 altında."
+     },
+     "quellen": [
+      {
+       "name": "Hyperliquid",
+       "url": "https://app.hyperliquid.xyz/",
+       "zeit": 1795403040,
+       "genau": true
+      }
+     ],
+     "zeit": 1795403040,
+     "schnitt": "vor",
+     "seite": "dafuer"
+    },
+    {
+     "id": "beide_seiten-4",
+     "text": {
+      "de": "Nach Schnitt: Asien bleibt schwach, Südkorea auf 10-Monats-Tief.",
+      "en": "Since the last update: Asia remains weak, South Korea at a 10-month low.",
+      "es": "Desde la última actualización: Asia sigue floja, Corea del Sur en mínimos de 10 meses.",
+      "fr": "Depuis la dernière mise à jour : l’Asie reste faible, la Corée du Sud à un plus bas de 10 mois.",
+      "it": "Dall’ultimo aggiornamento: l’Asia resta debole, Corea del Sud ai minimi di 10 mesi.",
+      "tr": "Son güncellemeden bu yana: Asya zayıf kalıyor, Güney Kore 10 ayın dibinde."
+     },
+     "quellen": [
+      {
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/middle-east/dollar-edges-off-19-month-high-after-market-rout-yen-softens-2026-11-22/",
+       "zeit": 1795392000,
+       "genau": false
+      }
+     ],
+     "zeit": 1795392000,
+     "schnitt": "vor",
+     "seite": "dafuer"
+    },
+    {
+     "id": "beide_seiten-5",
+     "text": {
+      "de": "Nach Schnitt: Aktien-Futures erholen sich kräftig.",
+      "en": "Since the last update: equity futures are rebounding sharply.",
+      "es": "Desde la última actualización: los futuros de bolsa rebotan con fuerza.",
+      "fr": "Depuis la dernière mise à jour : les futures actions rebondissent fortement.",
+      "it": "Dall’ultimo aggiornamento: i futures azionari rimbalzano con forza.",
+      "tr": "Son güncellemeden bu yana: hisse vadelileri sert toparlanıyor."
+     },
+     "quellen": [
+      {
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/middle-east/dollar-edges-off-19-month-high-after-market-rout-yen-softens-2026-11-22/",
+       "zeit": 1795392000,
+       "genau": false
+      }
+     ],
+     "zeit": 1795392000,
+     "schnitt": "vor",
+     "seite": "dagegen"
+    },
+    {
+     "id": "beide_seiten-6",
+     "text": {
+      "de": "große Fed-Erhöhung ausgepreist, Dollar gibt nach.",
+      "en": "A jumbo Fed hike is priced out and the dollar is easing.",
+      "es": "La subida grande de la Fed queda fuera de precio y el dólar afloja.",
+      "fr": "Une grosse hausse de la Fed est sortie des prix et le dollar se détend.",
+      "it": "Un maxi-rialzo della Fed è uscito dai prezzi e il dollaro cede.",
+      "tr": "Fed’den büyük bir artış fiyatlamadan çıktı, dolar gevşiyor."
+     },
+     "quellen": [
+      {
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/middle-east/dollar-edges-off-19-month-high-after-market-rout-yen-softens-2026-11-22/",
+       "zeit": 1795390980,
+       "genau": true
+      }
+     ],
+     "zeit": 1795390980,
+     "schnitt": "vor",
+     "seite": "dagegen"
+    },
+    {
+     "id": "beide_seiten-7",
+     "text": {
+      "de": "lange US-Zinsen 5 Tage −0,23 Pkt.",
+      "en": "Long-end US yields −0.23 pts over 5 days.",
+      "es": "Tipos largos en EE. UU. −0,23 pts en 5 días.",
+      "fr": "Taux longs US −0,23 pt sur 5 jours.",
+      "it": "Tassi lunghi USA −0,23 punti in 5 giorni.",
+      "tr": "ABD uzun vadeli faizleri 5 günde 0,23 puan geriledi."
+     },
+     "quellen": [
+      {
+       "name": "U.S. Treasury",
+       "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
+       "zeit": 1795403040,
+       "genau": true
+      }
+     ],
+     "zeit": 1795403040,
      "schnitt": "vor",
      "seite": "dagegen"
     }
@@ -250,11 +402,11 @@
       {
        "name": "BLS · Federal Reserve · BEA · SEC",
        "url": "https://www.bls.gov/schedule/",
-       "zeit": 1795361400,
+       "zeit": 1795404600,
        "genau": false
       }
      ],
-     "zeit": 1795361400,
+     "zeit": 1795404600,
      "schnitt": "vor"
     }
    ]
