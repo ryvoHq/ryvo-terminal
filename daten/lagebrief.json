@@ -1,14 +1,14 @@
 {
  "format": 1,
- "stand": 1795447800,
- "recherche_schnitt": 1795447800,
+ "stand": 1795533900,
+ "recherche_schnitt": 1795533900,
  "titel": {
-  "de": "Lage-Bericht · Nachmittag 23.11.2026 15:30 UTC",
-  "en": "Market brief · afternoon 23.11.2026 15:30 UTC",
-  "es": "Boletín del mercado · tarde 23.11.2026 15:30 UTC",
-  "fr": "Point de marché · après-midi 23.11.2026 15:30 UTC",
-  "it": "Quadro di mercato · pomeriggio 23.11.2026 15:30 UTC",
-  "tr": "Piyasa raporu · öğleden sonra 23.11.2026 15:30 UTC"
+  "de": "Lage-Bericht · Nachmittag 24.11.2026 15:25 UTC",
+  "en": "Market brief · afternoon 24.11.2026 15:25 UTC",
+  "es": "Boletín del mercado · tarde 24.11.2026 15:25 UTC",
+  "fr": "Point de marché · après-midi 24.11.2026 15:25 UTC",
+  "it": "Quadro di mercato · pomeriggio 24.11.2026 15:25 UTC",
+  "tr": "Piyasa raporu · öğleden sonra 24.11.2026 15:25 UTC"
  },
  "abschnitte": [
   {
@@ -17,106 +17,106 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 63.009 $, 24 h +3,5 %, Woche −2,2 %, 17,4 % unter dem 50-Tage-Mittel.",
-      "en": "BTC at $63,009, up 3.5% over 24h, down 2.2% on the week, 17.4% below its 50-day average.",
-      "es": "BTC en 63.009 $, +3,5 % en 24 h, −2,2 % en la semana, un 17,4 % por debajo de su media de 50 días.",
-      "fr": "BTC à 63 009 $, +3,5 % sur 24 h, −2,2 % sur la semaine, 17,4 % sous sa moyenne 50 jours.",
-      "it": "BTC a 63.009 $, +3,5 % nelle 24 ore, −2,2 % sulla settimana, 17,4 % sotto la media a 50 giorni.",
-      "tr": "BTC 63.009 $, 24 saatte %3,5 artı, haftalık %2,2 eksi, 50 günlük ortalamanın %17,4 altında."
+      "de": "BTC 60.400 $, 24 h −3,9 %, Woche −7,1 %, 20,2 % unter dem 50-Tage-Mittel.",
+      "en": "BTC at $60,400, −3.9% over 24 hours and −7.1% on the week, sitting 20.2% under its 50-day average.",
+      "es": "BTC en 60.400 $, −3,9 % en 24 horas y −7,1 % en la semana, un 20,2 % por debajo de su media de 50 días.",
+      "fr": "BTC à 60 400 $, −3,9 % sur 24 heures et −7,1 % sur la semaine, soit 20,2 % sous sa moyenne mobile 50 jours.",
+      "it": "BTC a 60.400 $, −3,9 % nelle 24 ore e −7,1 % nella settimana, il 20,2 % sotto la media mobile a 50 giorni.",
+      "tr": "BTC 60.400 $’da; 24 saatte %−3,9, haftalık %−7,1 ve 50 günlük ortalamanın %20,2 altında."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795446660,
+       "zeit": 1795531920,
        "genau": true
       }
      ],
-     "zeit": 1795446660,
+     "zeit": 1795531920,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.781 $, 24 h +3,7 %, Woche −2,1 %.",
-      "en": "ETH at $1,781, up 3.7% over 24h, down 2.1% on the week.",
-      "es": "ETH en 1.781 $, +3,7 % en 24 h, −2,1 % en la semana.",
-      "fr": "ETH à 1 781 $, +3,7 % sur 24 h, −2,1 % sur la semaine.",
-      "it": "ETH a 1.781 $, +3,7 % nelle 24 ore, −2,1 % sulla settimana.",
-      "tr": "ETH 1.781 $, 24 saatte %3,7 artı, haftalık %2,1 eksi."
+      "de": "ETH 1.694 $, 24 h −4,8 %, Woche −6,6 %.",
+      "en": "ETH at $1,694, −4.8% over 24 hours and −6.6% on the week.",
+      "es": "ETH en 1.694 $, −4,8 % en 24 horas y −6,6 % en la semana.",
+      "fr": "ETH à 1 694 $, −4,8 % sur 24 heures et −6,6 % sur la semaine.",
+      "it": "ETH a 1.694 $, −4,8 % nelle 24 ore e −6,6 % nella settimana.",
+      "tr": "ETH 1.694 $’da; 24 saatte %−4,8, haftalık %−6,6."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795446660,
+       "zeit": 1795531920,
        "genau": true
       }
      ],
-     "zeit": 1795446660,
+     "zeit": 1795531920,
      "schnitt": "vor"
     },
     {
      "id": "lage-3",
      "text": {
-      "de": "Angst & Gier 11 (extreme Angst), vor 1 Woche 10, vor 1 Monat 51.",
-      "en": "Fear & Greed at 11 (extreme fear), 10 a week ago, 51 a month ago.",
-      "es": "Índice de Miedo y Codicia en 11 (miedo extremo); hace una semana marcaba 10 y hace un mes, 51.",
-      "fr": "Indice Peur et Avidité à 11 (peur extrême), contre 10 il y a une semaine et 51 il y a un mois.",
-      "it": "Indice Paura e Avidità a 11 (paura estrema), 10 una settimana fa, 51 un mese fa.",
-      "tr": "Korku ve Açgözlülük Endeksi 11 (aşırı korku); bir hafta önce 10, bir ay önce 51."
+      "de": "Angst & Gier 11 (extreme Angst), vor 1 Monat 54.",
+      "en": "Fear & Greed reads 11 (extreme fear), against 54 a month ago.",
+      "es": "El índice de miedo y codicia marca 11 (miedo extremo); hace un mes estaba en 54.",
+      "fr": "L’indice peur et cupidité est à 11 (peur extrême), contre 54 il y a un mois.",
+      "it": "L’indice paura e avidità segna 11 (paura estrema), contro 54 di un mese fa.",
+      "tr": "Korku ve Açgözlülük Endeksi 11’de (aşırı korku); bir ay önce 54’tü."
      },
      "quellen": [
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1795446660,
+       "zeit": 1795531920,
        "genau": true
       }
      ],
-     "zeit": 1795446660,
+     "zeit": 1795531920,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
-      "de": "US-Zinsen 10 Jahre 4,92 %, 2 Jahre 4,63 % am 20.11.",
-      "en": "US Treasury yields on Nov 20: 10-year at 4.92%, 2-year at 4.63%.",
-      "es": "Rentabilidad de la deuda de EE. UU. el 20 nov: 10 años al 4,92 %, 2 años al 4,63 %.",
-      "fr": "Taux américains le 20 nov. : 10 ans à 4,92 %, 2 ans à 4,63 %.",
-      "it": "Rendimenti dei titoli di Stato USA il 20 nov: 10 anni al 4,92 %, 2 anni al 4,63 %.",
-      "tr": "20 Kasım’da ABD tahvil getirileri: 10 yıllık %4,92, 2 yıllık %4,63."
+      "de": "US-Zinsen 10 Jahre 4,92 %, 2 Jahre 4,63 %.",
+      "en": "US Treasury yields: 10-year at 4.92%, 2-year at 4.63%.",
+      "es": "Rentabilidad de la deuda de EE. UU.: 4,92 % a 10 años y 4,63 % a 2 años.",
+      "fr": "Taux américains : 4,92 % à 10 ans, 4,63 % à 2 ans.",
+      "it": "Rendimenti dei titoli di Stato USA: 4,92 % a 10 anni, 4,63 % a 2 anni.",
+      "tr": "ABD tahvil faizleri: 10 yıllık %4,92, 2 yıllık %4,63."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1795446660,
+       "zeit": 1795531920,
        "genau": true
       }
      ],
-     "zeit": 1795446660,
+     "zeit": 1795531920,
      "schnitt": "vor"
     },
     {
      "id": "lage-5",
      "text": {
-      "de": "BTC-ETFs am 20.11. −669,2 Mio. $, 5 Handelstage −1.789,7 Mio. $, 4 Tage Abfluss in Folge.",
-      "en": "Spot BTC ETFs saw $669.2M in outflows on Nov 20, $1,789.7M out over 5 sessions, the fourth straight day of outflows.",
-      "es": "Los ETF spot de BTC registraron salidas de 669,2 M$ el 20 nov y de 1.789,7 M$ en 5 sesiones; cuarto día seguido de salidas.",
-      "fr": "Les ETF spot BTC ont subi 669,2 M$ de sorties le 20 nov., 1 789,7 M$ sur 5 séances, quatrième jour de sorties d’affilée.",
-      "it": "Gli ETF spot su BTC hanno registrato deflussi per 669,2 mln $ il 20 nov e per 1.789,7 mln $ in 5 sedute, quarto giorno di fila in uscita.",
-      "tr": "Spot BTC ETF’lerinden 20 Kasım’da 669,2 milyon $, 5 seansta 1.789,7 milyon $ çıktı; üst üste dördüncü çıkış günü."
+      "de": "BTC-ETFs am 23.11. −569,7 Mio. $, 5 Tage Abfluss in Folge.",
+      "en": "Spot BTC ETFs saw −$569.7M on Nov 23, the fifth straight day of net outflows.",
+      "es": "Los ETF spot de BTC registraron −569,7 M$ el 23 de noviembre, quinto día seguido de salidas netas.",
+      "fr": "Les ETF spot BTC affichent −569,7 M$ le 23 novembre, cinquième séance d’affilée de sorties nettes.",
+      "it": "Gli ETF spot su BTC segnano −569,7 mln $ il 23 novembre, quinta seduta consecutiva di deflussi netti.",
+      "tr": "Spot BTC ETF’lerinde 23 Kasım’da 569,7 milyon $ net çıkış oldu; üst üste beşinci çıkış günü."
      },
      "quellen": [
       {
        "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
        "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1795446660,
+       "zeit": 1795531920,
        "genau": true
       }
      ],
-     "zeit": 1795446660,
+     "zeit": 1795531920,
      "schnitt": "vor"
     }
    ]
@@ -138,11 +138,11 @@
       {
        "name": "BLS · Federal Reserve · BEA · SEC",
        "url": "https://www.bls.gov/schedule/",
-       "zeit": 1795447800,
+       "zeit": 1795533900,
        "genau": false
       }
      ],
-     "zeit": 1795447800,
+     "zeit": 1795533900,
      "schnitt": "vor"
     }
    ]
