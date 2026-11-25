@@ -1,14 +1,14 @@
 {
  "format": 1,
- "stand": 1795533900,
- "recherche_schnitt": 1795533900,
+ "stand": 1795577400,
+ "recherche_schnitt": 1795577400,
  "titel": {
-  "de": "Lage-Bericht · Nachmittag 24.11.2026 15:25 UTC",
-  "en": "Market brief · afternoon 24.11.2026 15:25 UTC",
-  "es": "Boletín del mercado · tarde 24.11.2026 15:25 UTC",
-  "fr": "Point de marché · après-midi 24.11.2026 15:25 UTC",
-  "it": "Quadro di mercato · pomeriggio 24.11.2026 15:25 UTC",
-  "tr": "Piyasa raporu · öğleden sonra 24.11.2026 15:25 UTC"
+  "de": "Lage-Bericht · Morgen 25.11.2026 03:30 UTC",
+  "en": "Market brief · morning 25.11.2026 03:30 UTC",
+  "es": "Boletín del mercado · mañana 25.11.2026 03:30 UTC",
+  "fr": "Point de marché · matin 25.11.2026 03:30 UTC",
+  "it": "Quadro di mercato · mattina 25.11.2026 03:30 UTC",
+  "tr": "Piyasa raporu · sabah 25.11.2026 03:30 UTC"
  },
  "abschnitte": [
   {
@@ -17,106 +17,148 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 60.400 $, 24 h −3,9 %, Woche −7,1 %, 20,2 % unter dem 50-Tage-Mittel.",
-      "en": "BTC at $60,400, −3.9% over 24 hours and −7.1% on the week, sitting 20.2% under its 50-day average.",
-      "es": "BTC en 60.400 $, −3,9 % en 24 horas y −7,1 % en la semana, un 20,2 % por debajo de su media de 50 días.",
-      "fr": "BTC à 60 400 $, −3,9 % sur 24 heures et −7,1 % sur la semaine, soit 20,2 % sous sa moyenne mobile 50 jours.",
-      "it": "BTC a 60.400 $, −3,9 % nelle 24 ore e −7,1 % nella settimana, il 20,2 % sotto la media mobile a 50 giorni.",
-      "tr": "BTC 60.400 $’da; 24 saatte %−3,9, haftalık %−7,1 ve 50 günlük ortalamanın %20,2 altında."
+      "de": "BTC 59.283 $, 24 h −1,3 %, Woche −7,8 %, 21,1 % unter dem 50-Tage-Mittel.",
+      "en": "BTC at $59,283, −1.3% over 24h and −7.8% on the week, 21.1% below its 50-day average.",
+      "es": "BTC en 59.283 $, −1,3 % en 24 h y −7,8 % en la semana, un 21,1 % por debajo de su media de 50 días.",
+      "fr": "BTC à 59 283 $, −1,3 % sur 24 h et −7,8 % sur la semaine, 21,1 % sous sa moyenne 50 jours.",
+      "it": "BTC a 59.283 $, −1,3 % nelle 24 h e −7,8 % in settimana, 21,1 % sotto la media a 50 giorni.",
+      "tr": "BTC 59.283 $, 24 saatte %−1,3, haftalık %−7,8; 50 günlük ortalamanın %21,1 altında."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795531920,
+       "zeit": 1795574040,
        "genau": true
       }
      ],
-     "zeit": 1795531920,
+     "zeit": 1795574040,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.694 $, 24 h −4,8 %, Woche −6,6 %.",
-      "en": "ETH at $1,694, −4.8% over 24 hours and −6.6% on the week.",
-      "es": "ETH en 1.694 $, −4,8 % en 24 horas y −6,6 % en la semana.",
-      "fr": "ETH à 1 694 $, −4,8 % sur 24 heures et −6,6 % sur la semaine.",
-      "it": "ETH a 1.694 $, −4,8 % nelle 24 ore e −6,6 % nella settimana.",
-      "tr": "ETH 1.694 $’da; 24 saatte %−4,8, haftalık %−6,6."
+      "de": "ETH 1.661 $, 24 h −1,4 %, Woche −7,9 %.",
+      "en": "ETH at $1,661, −1.4% over 24h and −7.9% on the week.",
+      "es": "ETH en 1.661 $, −1,4 % en 24 h y −7,9 % en la semana.",
+      "fr": "ETH à 1 661 $, −1,4 % sur 24 h et −7,9 % sur la semaine.",
+      "it": "ETH a 1.661 $, −1,4 % nelle 24 h e −7,9 % in settimana.",
+      "tr": "ETH 1.661 $, 24 saatte %−1,4, haftalık %−7,9."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795531920,
+       "zeit": 1795574040,
        "genau": true
       }
      ],
-     "zeit": 1795531920,
+     "zeit": 1795574040,
      "schnitt": "vor"
     },
     {
      "id": "lage-3",
      "text": {
       "de": "Angst & Gier 11 (extreme Angst), vor 1 Monat 54.",
-      "en": "Fear & Greed reads 11 (extreme fear), against 54 a month ago.",
+      "en": "Fear & Greed sits at 11 (extreme fear); a month ago it was 54.",
       "es": "El índice de miedo y codicia marca 11 (miedo extremo); hace un mes estaba en 54.",
-      "fr": "L’indice peur et cupidité est à 11 (peur extrême), contre 54 il y a un mois.",
-      "it": "L’indice paura e avidità segna 11 (paura estrema), contro 54 di un mese fa.",
-      "tr": "Korku ve Açgözlülük Endeksi 11’de (aşırı korku); bir ay önce 54’tü."
+      "fr": "L’indice peur et avidité est à 11 (peur extrême) ; il y a un mois, il était à 54.",
+      "it": "L’indice paura e avidità è a 11 (paura estrema); un mese fa era a 54.",
+      "tr": "Korku ve Açgözlülük Endeksi 11 (aşırı korku); bir ay önce 54’tü."
      },
      "quellen": [
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1795531920,
+       "zeit": 1795574040,
        "genau": true
       }
      ],
-     "zeit": 1795531920,
+     "zeit": 1795574040,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
-      "de": "US-Zinsen 10 Jahre 4,92 %, 2 Jahre 4,63 %.",
-      "en": "US Treasury yields: 10-year at 4.92%, 2-year at 4.63%.",
-      "es": "Rentabilidad de la deuda de EE. UU.: 4,92 % a 10 años y 4,63 % a 2 años.",
-      "fr": "Taux américains : 4,92 % à 10 ans, 4,63 % à 2 ans.",
-      "it": "Rendimenti dei titoli di Stato USA: 4,92 % a 10 anni, 4,63 % a 2 anni.",
-      "tr": "ABD tahvil faizleri: 10 yıllık %4,92, 2 yıllık %4,63."
+      "de": "US-Zinsen 10 Jahre 4,91 %, 2 Jahre 4,63 %.",
+      "en": "US yields: 10-year at 4.91%, 2-year at 4.63%.",
+      "es": "Tipos en EE. UU.: el bono a 10 años al 4,91 %, el de 2 años al 4,63 %.",
+      "fr": "Taux US : 10 ans à 4,91 %, 2 ans à 4,63 %.",
+      "it": "Tassi USA: 10 anni al 4,91 %, 2 anni al 4,63 %.",
+      "tr": "ABD faizleri: 10 yıllık %4,91, 2 yıllık %4,63."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1795531920,
+       "zeit": 1795574040,
        "genau": true
       }
      ],
-     "zeit": 1795531920,
+     "zeit": 1795574040,
      "schnitt": "vor"
     },
     {
      "id": "lage-5",
      "text": {
       "de": "BTC-ETFs am 23.11. −569,7 Mio. $, 5 Tage Abfluss in Folge.",
-      "en": "Spot BTC ETFs saw −$569.7M on Nov 23, the fifth straight day of net outflows.",
-      "es": "Los ETF spot de BTC registraron −569,7 M$ el 23 de noviembre, quinto día seguido de salidas netas.",
-      "fr": "Les ETF spot BTC affichent −569,7 M$ le 23 novembre, cinquième séance d’affilée de sorties nettes.",
-      "it": "Gli ETF spot su BTC segnano −569,7 mln $ il 23 novembre, quinta seduta consecutiva di deflussi netti.",
-      "tr": "Spot BTC ETF’lerinde 23 Kasım’da 569,7 milyon $ net çıkış oldu; üst üste beşinci çıkış günü."
+      "en": "Spot BTC ETFs saw −$569.7M on 23 Nov, the fifth straight day of net outflows.",
+      "es": "Los ETF spot de BTC registraron −569,7 M$ el 23 nov, quinto día seguido de salidas netas.",
+      "fr": "Les ETF spot BTC ont enregistré −569,7 M$ le 23 nov., cinquième jour d’affilée de sorties nettes.",
+      "it": "Gli ETF spot su BTC hanno segnato −569,7 mln $ il 23 nov, quinto giorno di fila di deflussi netti.",
+      "tr": "Spot BTC ETF’lerinde 23 Kas’ta −569,7 milyon $, üst üste beşinci net çıkış günü."
      },
      "quellen": [
       {
        "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
        "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1795531920,
+       "zeit": 1795574040,
        "genau": true
       }
      ],
-     "zeit": 1795531920,
+     "zeit": 1795574040,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-6",
+     "text": {
+      "de": "Nach Schnitt: Nasdaq −1,48 % auf 23.733,54, S&P 500 −0,50 % auf 7.201,09, Dow +0,85 % auf 50.018,70.",
+      "en": "Since the last check: Nasdaq −1.48% to 23,733.54, S&P 500 −0.50% to 7,201.09, Dow +0.85% to 50,018.70.",
+      "es": "Desde el último vistazo: Nasdaq −1,48 % hasta 23.733,54, S&P 500 −0,50 % hasta 7.201,09, Dow +0,85 % hasta 50.018,70.",
+      "fr": "Depuis le dernier point : Nasdaq −1,48 % à 23 733,54, S&P 500 −0,50 % à 7 201,09, Dow +0,85 % à 50 018,70.",
+      "it": "Dall’ultimo sguardo: Nasdaq −1,48 % a 23.733,54, S&P 500 −0,50 % a 7.201,09, Dow +0,85 % a 50.018,70.",
+      "tr": "Son bakıştan bu yana: Nasdaq %−1,48 ile 23.733,54, S&P 500 %−0,50 ile 7.201,09, Dow %+0,85 ile 50.018,70."
+     },
+     "quellen": [
+      {
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/us/trump-administration-set-unveil-new-tariffs-after-probe-on-excess-factory-2026-11-24/",
+       "zeit": 1795478400,
+       "genau": false
+      }
+     ],
+     "zeit": 1795478400,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-7",
+     "text": {
+      "de": "Nach Schnitt: Die US-Regierung will neue Zölle gegen 16 Handelspartner vorschlagen, darunter China, EU, Japan und Mexiko, nach einer Prüfung zu Überkapazitäten.",
+      "en": "Since the last check: Washington plans to propose new tariffs on 16 trading partners, including China, the EU, Japan and Mexico, following a probe into excess capacity.",
+      "es": "Desde el último vistazo: Washington prevé proponer nuevos aranceles a 16 socios comerciales, entre ellos China, la UE, Japón y México, tras una investigación sobre exceso de capacidad.",
+      "fr": "Depuis le dernier point : Washington compte proposer de nouveaux droits de douane contre 16 partenaires commerciaux, dont la Chine, l’UE, le Japon et le Mexique, à l’issue d’une enquête sur les surcapacités.",
+      "it": "Dall’ultimo sguardo: Washington intende proporre nuovi dazi contro 16 partner commerciali, tra cui Cina, UE, Giappone e Messico, dopo un’indagine sull’eccesso di capacità.",
+      "tr": "Son bakıştan bu yana: Washington, aşırı kapasite incelemesinin ardından Çin, AB, Japonya ve Meksika dahil 16 ticaret ortağına yeni gümrük vergileri önermeyi planlıyor."
+     },
+     "quellen": [
+      {
+       "name": "Reuters",
+       "url": "https://www.reuters.com/world/us/trump-administration-set-unveil-new-tariffs-after-probe-on-excess-factory-2026-11-24/",
+       "zeit": 1795478400,
+       "genau": false
+      }
+     ],
+     "zeit": 1795478400,
      "schnitt": "vor"
     }
    ]
@@ -138,11 +180,11 @@
       {
        "name": "BLS · Federal Reserve · BEA · SEC",
        "url": "https://www.bls.gov/schedule/",
-       "zeit": 1795533900,
+       "zeit": 1795577400,
        "genau": false
       }
      ],
-     "zeit": 1795533900,
+     "zeit": 1795577400,
      "schnitt": "vor"
     }
    ]
