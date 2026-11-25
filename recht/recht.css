@@ -1,14 +1,14 @@
 /* Rechtsseiten RYVO Terminal – Stil A „Instrument“ (Graphit + Gold, Flächen statt Rahmen). Erzeugt von deep/teilen/recht.py. */
 @font-face { font-family: "Geist"; src: url("../start/schrift/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
 @font-face { font-family: "Geist Mono"; src: url("../start/schrift/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
-:root { --bg: #17181b; --f1: #1f2024; --f2: #26282d; --trenn: #2b2d32; --t1: #ecebe6; --t2: #a7a59e; --leise: #8f8d86; --gold: #e0a64e;
+:root { --bg: #000000; --f1: #0a0a0b; --f2: #111113; --trenn: #202225; --t1: #f2f2f0; --t2: #a2a4a9; --leise: #8c8e93; --akzent: #f4f4f1;
   --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif; --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; color-scheme: dark; }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--t1); font: 400 16px/1.65 var(--sans); font-feature-settings: "tnum" 1, "ss01" 1; -webkit-font-smoothing: antialiased; }
-a { color: var(--gold); text-underline-offset: 2px; }
-:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
-.sprung { position: absolute; left: 8px; top: -60px; background: var(--gold); color: var(--bg); padding: 8px 12px; border-radius: 7px; font-weight: 600; text-decoration: none; z-index: 9; }
+a { color: var(--akzent); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; border-radius: 4px; }
+.sprung { position: absolute; left: 8px; top: -60px; background: var(--akzent); color: var(--bg); padding: 8px 12px; border-radius: 7px; font-weight: 600; text-decoration: none; z-index: 9; }
 .sprung:focus { top: 8px; }
 .rahmen { width: min(820px, 100% - 32px); margin-inline: auto; }
 header .rahmen { width: min(1160px, 100% - 32px); display: flex; align-items: center; gap: 8px 12px; min-height: 60px; flex-wrap: wrap; padding-block: 10px; }
@@ -28,7 +28,7 @@ p, li { color: var(--t2); }
 ul { padding-left: 20px; }
 b { color: var(--t1); font-weight: 550; }
 .stand { font-size: 13px; color: var(--leise); margin: 0 0 24px; }
-.offen { color: var(--gold); font-style: italic; }
+.offen { color: var(--akzent); font-style: italic; }
 .kasten { background: var(--f1); border-radius: 10px; padding: 14px 18px; margin: 18px 0; }
 .kasten p:first-child { margin-top: 0; } .kasten p:last-child { margin-bottom: 0; }
 table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 10px 0 4px; }
@@ -46,19 +46,19 @@ footer .kern { flex-basis: 100%; color: var(--leise); }
 .knoepfe { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .knoepfe button, .knoepfe a { font: 600 14px var(--sans); padding: 10px 16px; border-radius: 8px; border: 0; background: var(--f2); color: var(--t1); cursor: pointer; text-decoration: none; }
 .knoepfe a[hidden] { display: none; }
-.knoepfe .haupt { background: var(--gold); color: var(--bg); }
+.knoepfe .haupt { background: var(--akzent); color: var(--bg); }
 .meldung { font-size: 13px; color: var(--leise); min-height: 1.4em; margin: 8px 0 0; }
 label, .marke-feld { display: block; font-weight: 600; color: var(--t1); margin: 18px 0 6px; }
 [data-sprache-block][hidden], [data-l][hidden] { display: none; }
 /* r166: Abo-Seiten – Entwurfs-Hinweis, ruhiger Hinweis ohne Kasse, Muster-Formular, Kassen-Knöpfe im Fuß */
-.entwurf b { color: var(--gold); }
+.entwurf b { color: var(--akzent); }
 .ruhig { color: var(--leise); }
 p.ruhig { font-size: 14px; }
 .formular ul { list-style: none; padding-left: 0; margin: 10px 0; }
 .formular li { margin: 7px 0; padding-left: 16px; text-indent: -16px; }
 .formular li::before { content: "– "; color: var(--leise); }
 footer .kasse-zeile { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px 18px; }
-footer a.kasse { color: var(--gold); font-weight: 600; }
+footer a.kasse { color: var(--akzent); font-weight: 600; }
 @media (max-width: 420px) { .sprache button { min-width: 30px; padding: 0 6px; } header nav a { padding: 7px 8px; } }
 html[data-sprache="de"] [data-sprache-block]:not([data-sprache-block="de"]), html[data-sprache="de"] [data-l]:not([data-l="de"]) { display: none !important; }
 html[data-sprache="de"] [data-sprache-block="de"] { display: block !important; }

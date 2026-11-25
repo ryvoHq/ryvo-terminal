@@ -1,4 +1,4 @@
-{ const s = document.createElement("style"); s.id = "w23-stil"; s.textContent = ".w23-kopf { display: flex; align-items: center; gap: 6px; margin-left: auto; min-width: 0; }\nhtml.w23-fenster header.leiste { position: relative; }\nhtml.w23-fenster .w23-kopf { position: absolute; top: 12px; right: 14px; z-index: 5; }\n\n@media (max-width: 699px) { html.w23-fenster .w23-kopf { position: static; min-width: 0; flex: 1 1 auto; grid-column: 3 / 5; grid-row: 1; justify-self: end; } html.w23-fenster body.w17 .leiste > .kurs { display: none; } html.w23-fenster .w23-kopf .w23-zurueck { overflow: hidden; text-overflow: ellipsis; } }\n.w23-gruppe { font: inherit; font-size: 12px; color: var(--text); background: var(--feld-2); border: 1px solid var(--linie); border-left: 4px solid var(--w23-g, var(--akzent)); border-radius: var(--radius-klein, 4px); padding: 3px 6px; }\n.w23-schild, .w23-zurueck { font: inherit; font-size: 12px; color: var(--text-2); background: none; border: 1px solid var(--linie); border-radius: var(--radius-klein, 4px); padding: 3px 8px; cursor: pointer; white-space: nowrap; }\n.w23-schild { max-width: 230px; overflow: hidden; text-overflow: ellipsis; }\n.w23-schild[data-z=\"aus\"] { color: var(--verk); border-color: var(--verk); }\n.w23-zurueck:hover, .w23-schild:hover { color: var(--text-stark); border-color: var(--akzent); }\nhtml.w23-fenster #r12-zeile, html.w23-fenster #w17-neu, html.w23-fenster #w21-band, html.w23-fenster #r12-start { display: none !important; }\nhtml.w23-kachel #w17-reiter, html.w23-kachel #w17-plus, html.w23-kachel #ab-leiste { display: none !important; }\n.feld-kopf > .qs[role=\"button\"] { cursor: pointer; }\n.feld-kopf > .qs[role=\"button\"]:hover { color: var(--text-stark); text-decoration: underline dotted; text-underline-offset: 3px; }\n.w23-erkl, .w23-tafel { position: fixed; z-index: 90; background: var(--feld); color: var(--text); border: 1px solid var(--feld-rahmen, var(--linie)); border-radius: var(--radius, 6px);\n  box-shadow: 0 10px 30px rgba(0, 0, 0, .45); padding: 12px 14px; font-size: 12.5px; line-height: 1.45; }\n.w23-erkl > b { display: block; padding-right: 24px; font-size: 13px; color: var(--text-stark); }\n.w23-erkl dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 8px 0; }\n.w23-erkl dt { color: var(--leise); }\n.w23-erkl dd { margin: 0; font-variant-numeric: tabular-nums; }\n.w23-erkl p { margin: 0 0 8px; }\n.w23-x { position: absolute; top: 6px; right: 8px; font: inherit; font-size: 16px; line-height: 1; color: var(--leise); background: none; border: 0; padding: 4px; cursor: pointer; }\n.w23-tafel { right: 16px; bottom: 64px; width: min(400px, calc(100vw - 32px)); }\n.w23-tafel p { margin: 0 24px 10px 0; }\n.w23-weiter { font: inherit; color: var(--grund); background: var(--akzent); border: 0; border-radius: var(--radius-klein, 4px); padding: 7px 12px; cursor: pointer; }\n.w23-bk { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text-2); text-decoration: none; border: 1px solid var(--linie); border-radius: var(--radius-klein, 4px); padding: 3px 8px; white-space: nowrap; }\n.w23-bk:hover, .w23-bk:focus-visible { color: var(--text-stark); border-color: var(--akzent); }\n.w23-bk-kurz { align-self: center; margin-left: 8px; }\n.w23-boerse { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 8px; }\n.w23-bk-wahl { font: inherit; font-size: 12px; color: var(--text); background: var(--feld-2); border: 1px solid var(--linie); border-radius: var(--radius-klein, 4px); padding: 3px 4px; }\n.w23-bk-satz { flex-basis: 100%; margin: 0; font-size: 11px; }\n.dquellen-tab { width: 100%; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; }\n.dquellen-tab th { text-align: left; font-weight: 500; color: var(--leise); border-bottom: 1px solid var(--linie); padding: 4px 8px 4px 0; }\n.dquellen-tab td { border-bottom: 1px solid var(--linie); padding: 4px 8px 4px 0; vertical-align: top; }\n.dquellen-stoer td:last-child { color: var(--verk); }\n#dquellen-inhalt { overflow: auto; max-height: 100%; }\n@media (max-width: 699px), (hover: none) and (pointer: coarse) { #w23-bk-kopf { display: none; } .w23-erkl { font-size: 13px; } }"; document.head.append(s); }
+{ const s = document.createElement("style"); s.id = "w23-stil"; s.textContent = ".w23-kopf { display: flex; align-items: center; gap: 6px; margin-left: auto; min-width: 0; }\nhtml.w23-fenster header.leiste { position: relative; }\nhtml.w23-fenster .w23-kopf { position: absolute; top: 12px; right: 14px; z-index: 5; }\n\n@media (max-width: 699px) { html.w23-fenster .w23-kopf { position: static; min-width: 0; flex: 1 1 auto; grid-column: 3 / 5; grid-row: 1; justify-self: end; } html.w23-fenster body.w17 .leiste > .kurs { display: none; } html.w23-fenster .w23-kopf .w23-zurueck { overflow: hidden; text-overflow: ellipsis; } }\n.w23-gruppe { font: inherit; font-size: 12px; color: var(--text); background: var(--feld-2); border: 1px solid var(--linie); border-left: 4px solid var(--w23-g, var(--akzent)); border-radius: var(--radius-klein, 4px); padding: 3px 6px; }\n.w23-schild, .w23-zurueck { font: inherit; font-size: 12px; color: var(--text-2); background: none; border: 1px solid var(--linie); border-radius: var(--radius-klein, 4px); padding: 3px 8px; cursor: pointer; white-space: nowrap; }\n.w23-schild { max-width: 230px; overflow: hidden; text-overflow: ellipsis; }\n.w23-schild[data-z=\"aus\"] { color: var(--verk); border-color: var(--verk); }\n.w23-zurueck:hover, .w23-schild:hover { color: var(--text-stark); border-color: var(--akzent); }\nhtml.w23-fenster #r12-zeile, html.w23-fenster #w17-neu, html.w23-fenster #w21-band, html.w23-fenster #r12-start { display: none !important; }\nhtml.w23-kachel #w17-reiter, html.w23-kachel #w17-plus, html.w23-kachel #ab-leiste { display: none !important; }\n.feld-kopf > .qs[role=\"button\"] { cursor: pointer; }\n.feld-kopf > .qs[role=\"button\"]:hover { color: var(--text-stark); text-decoration: underline dotted; text-underline-offset: 3px; }\n.w23-erkl, .w23-tafel { position: fixed; z-index: 90; background: var(--feld); color: var(--text); border: 1px solid var(--feld-rahmen, var(--linie)); border-radius: var(--radius, 6px);\n  box-shadow: 0 10px 30px rgba(0, 0, 0, .45); padding: 12px 14px; font-size: 12.5px; line-height: 1.45; }\n.w23-erkl > b { display: block; padding-right: 24px; font-size: 13px; color: var(--text-stark); }\n.w23-erkl dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 8px 0; }\n.w23-erkl dt { color: var(--leise); }\n.w23-erkl dd { margin: 0; font-variant-numeric: tabular-nums; }\n.w23-erkl p { margin: 0 0 8px; }\n.w23-x { position: absolute; top: 6px; right: 8px; font: inherit; font-size: 16px; line-height: 1; color: var(--leise); background: none; border: 0; padding: 4px; cursor: pointer; }\n.w23-tafel { right: 16px; bottom: 64px; width: min(400px, calc(100vw - 32px)); }\n.w23-tafel p { margin: 0 24px 10px 0; }\n.w23-weiter { font: inherit; color: var(--grund); background: var(--akzent); border: 0; border-radius: var(--radius-klein, 4px); padding: 7px 12px; cursor: pointer; }\n.w23-bk { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text-2); text-decoration: none; border: 1px solid var(--linie); border-radius: var(--radius-klein, 4px); padding: 3px 8px; white-space: nowrap; }\n.w23-bk:hover, .w23-bk:focus-visible { color: var(--text-stark); border-color: var(--akzent); }\n.w23-bk-kurz { align-self: center; margin-left: 8px; }\n\n.hd-ticket > .hd-feld-kopf { display: flex; align-items: center; gap: 8px; } .hd-ticket > .hd-feld-kopf b { font: 700 13px var(--mono); } .hd-ticket > .hd-feld-kopf .zahl { margin-left: auto; font-size: 12.5px; }\n.hd-plattform { display: grid; gap: 7px; margin-top: 8px; }\n.hd-plattform p { margin: 0; }\n.pf-frage { font-size: 12.5px; line-height: 1.45; } .pf-frage:empty, .pf-hinweis:empty, .pf-was:empty { display: none; }\n.pf-los { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 42px; padding: 8px 12px; border-radius: 8px; background: var(--hd-kauf); color: #fff; font: 700 13.5px var(--sans); text-decoration: none; text-align: center; }\n.pf-los:hover, .pf-los:focus-visible { filter: brightness(1.08); } .pf-los[hidden] { display: none; }\n.pf-was { font: 500 11.5px var(--mono); text-align: center; }\n.pf-hinweis { font-size: 12px; line-height: 1.4; color: var(--text); background: color-mix(in srgb, var(--akzent) 14%, transparent); padding: 5px 7px; border-radius: 6px; }\n.pf-wechsel { justify-self: start; font: 500 12px var(--sans); color: var(--text-2, var(--text)); background: none; border: 1px solid var(--linie); border-radius: 6px; padding: 4px 10px; cursor: pointer; }\n.pf-ohne .pf-wechsel { display: none; }\n.pf-wahl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }\n.pf-wahl button { font: 600 12.5px var(--sans); color: var(--text); background: var(--feld-2, var(--feld)); border: 1px solid var(--linie); border-radius: 7px; padding: 8px 6px; min-height: 36px; cursor: pointer; }\n.pf-wahl button:hover { border-color: var(--text); } .pf-wahl button[aria-pressed=\"true\"] { border-color: var(--akzent); box-shadow: inset 0 0 0 1px var(--akzent); }\n.pf-satz { font-size: 11px; line-height: 1.4; }\nhtml.w17-fest body.w17 .hd-ticket.w17-zu .hd-plattform > :is(.pf-wahl, .pf-satz, .pf-frage) { display: none; }\nhtml.w17-fest body.w17 .hd-ticket.w17-zu .pf-ohne > .pf-wahl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }\nhtml.w17-fest body.w17 .hd-ticket.w17-zu .pf-ohne > .pf-frage { display: block; font-size: 12px; }\nhtml.w17-fest body.w17 .hd-ticket.w17-zu .pf-ohne .pf-wahl button { min-height: 30px; padding: 4px 2px; font-size: 11.5px; }\nhtml.w17-fest body.w17 .hd-ticket:not(.w17-zu) .pf-wechsel { display: none; }\nmain.handeln .hd-aktion { grid-template-columns: minmax(0, 1fr) auto !important; }\nmain.handeln .hd-aktion .pf-los { min-height: 44px; font-size: 14px; }\n.pf-blatt { font: 600 13px var(--sans); color: var(--text); background: var(--feld-2, var(--feld)); border: 1px solid var(--linie); border-radius: 8px; padding: 0 14px; min-height: 44px; }\n.pf-blatt.pf-erst { grid-column: 1 / -1; background: var(--hd-kauf); color: #fff; border: 0; }\n.dquellen-tab { width: 100%; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; }\n.dquellen-tab th { text-align: left; font-weight: 500; color: var(--leise); border-bottom: 1px solid var(--linie); padding: 4px 8px 4px 0; }\n.dquellen-tab td { border-bottom: 1px solid var(--linie); padding: 4px 8px 4px 0; vertical-align: top; }\n.dquellen-stoer td:last-child { color: var(--verk); }\n#dquellen-inhalt { overflow: auto; max-height: 100%; }\n@media (max-width: 699px), (hover: none) and (pointer: coarse) { #w23-bk-kopf { display: none; } .w23-erkl { font-size: 13px; } }"; document.head.append(s); }
 
 (function (W) {
 'use strict';
@@ -167,47 +167,89 @@ if (s.textContent !== t) s.textContent = t; if (s.dataset.z !== z) s.dataset.z =
 const ti = T('fensterTitel', fensterTitel() + ' · ' + A.anzeige(A.coin())); if (D.title !== ti) D.title = ti;
 }
 
-const BOERSEN = [
-{ id: 'hyperliquid', n: 'Hyperliquid', url: (m) => 'https://app.hyperliquid.xyz/trade/' + m.hl, alle: true },
-{ id: 'okx', n: 'OKX', url: (m) => 'https://www.okx.com/trade-spot/' + m.basis.toLowerCase() + '-usdt' },
-{ id: 'bybit', n: 'Bybit', url: (m) => 'https://www.bybit.com/en/trade/spot/' + m.basis + '/USDT' },
+const PLATTFORMEN = [
+{ id: 'tradingview', n: 'TradingView', url: (m) => (m.tv ? 'https://www.tradingview.com/chart/?symbol=' + m.tv : null), was: (m) => (m.tf ? 'pfBasis' : 'pfChart'), zeig: (m) => m.tv },
+{ id: 'hyperliquid', n: 'Hyperliquid', url: (m) => 'https://app.hyperliquid.xyz/trade/' + m.hl, was: () => 'pfPerp', zeig: (m) => m.name },
+{ id: 'binance', n: 'Binance', url: (m) => 'https://www.binance.com/en/trade/' + m.basis + '_USDT', paar: (m) => m.basis + '/USDT' },
+{ id: 'bybit', n: 'Bybit', url: (m) => 'https://www.bybit.com/en/trade/spot/' + m.basis + '/USDT', paar: (m) => m.basis + '/USDT' },
+{ id: 'okx', n: 'OKX', url: (m) => 'https://www.okx.com/trade-spot/' + m.basis.toLowerCase() + '-usdt', paar: (m) => m.basis + '/USDT' },
+{ id: 'coinbase', n: 'Coinbase', url: (m) => 'https://www.coinbase.com/advanced-trade/spot/' + m.basis + '-USD', paar: (m) => m.basis + '/USD' },
+{ id: 'bitget', n: 'Bitget', url: (m) => 'https://www.bitget.com/spot/' + m.basis + 'USDT', paar: (m) => m.basis + '/USDT' },
+{ id: 'kraken', n: 'Kraken', url: (m) => 'https://pro.kraken.com/app/trade/' + m.basis.toLowerCase() + '-usd', paar: (m) => m.basis + '/USD' },
 ];
-function boerseWahl() { const x = A.lies('w23.boerse'); return BOERSEN.find((b) => b.id === x) || BOERSEN[0]; }
-function boerseFuer(id) {
-const m = A.markt(id), w = boerseWahl(), nurHl = !!m.tf, b = nurHl && !w.alle ? BOERSEN[0] : w;
+const TV_FEST = { XYZ100: 'NASDAQ:NDX', USA100: 'NASDAQ:NDX', USTECH: 'NASDAQ:NDX', SP500: 'SP:SPX', USA500: 'SP:SPX', US500: 'SP:SPX', SMALL2000: 'TVC:RUT', JP225: 'TVC:NI225',
+JPN225: 'TVC:NI225', GOLD: 'TVC:GOLD', SILVER: 'TVC:SILVER', PLATINUM: 'TVC:PLATINUM', CL: 'TVC:USOIL', WTI: 'TVC:USOIL', USOIL: 'TVC:USOIL', OIL: 'TVC:USOIL', BRENTOIL: 'TVC:UKOIL',
+NATGAS: 'NYMEX:NG1!', GAS: 'NYMEX:NG1!', COPPER: 'COMEX:HG1!', EUR: 'FX:EURUSD', JPY: 'FX:USDJPY', GBP: 'FX:GBPUSD', DXY: 'TVC:DXY', VIX: 'TVC:VIX' };
+const TV_ETF = new Set(['EWY', 'EWJ', 'EWZ', 'EWT', 'XLE', 'URNM', 'KWEB']);
+const TV_NICHT = new Set(['SMSN', 'SKHX', 'HYUNDAI', 'SOFTBANK', 'KIOXIA', 'TENCENT', 'XIAOMI', 'SPACEX', 'OPENAI', 'ANTHROPIC']);
+function tvSymbol(m) {
+if (!m.tf) return 'BINANCE:' + m.basis + 'USDT';
+if (TV_FEST[m.basis]) return TV_FEST[m.basis];
+return (m.art === 'Aktie' && /^[A-Z]{1,5}$/.test(m.basis) && !TV_NICHT.has(m.basis)) || TV_ETF.has(m.basis) ? m.basis : null;
+}
+function plattformWahl() { const x = A.lies('w23.boerse'); return PLATTFORMEN.find((b) => b.id === x) || null; }
+function plattformMarkt(id) {
+const m = A.markt(id);
 if (!/^[A-Za-z0-9:]{1,30}$/.test(m.hl) || !/^[A-Z0-9]{1,20}$/.test(m.basis)) return null;
-return { b, url: b.url(m), nurHl: nurHl && b !== w, markt: m.name };
+m.tv = tvSymbol(m); return m;
+}
+function boerseFuer(id, wahl) {
+const m = plattformMarkt(id), w = wahl ? PLATTFORMEN.find((b) => b.id === wahl) : plattformWahl(); if (!m || !w) return null;
+const hl = PLATTFORMEN[1], cex = !w.was, nurHl = cex && m.tf, keinTv = w.id === 'tradingview' && !m.tv, b = nurHl || keinTv ? hl : w;
+return { b, gewaehlt: w, url: b.url(m), was: b.was ? T(b.was(m), b.zeig(m)) : T('pfSpot', b.paar(m)), nurHl, keinTv, markt: m.name };
+}
+const tvIntervall = (tf) => (tf >= 43200 ? 'M' : tf >= 10080 ? 'W' : tf >= 1440 ? 'D' : String(Math.round(tf)));
+function klickZiel(id, tf) {
+const x = boerseFuer(id, plattformWahl() ? undefined : 'tradingview'); if (!x || !x.url) return null;
+return { id: x.b.id, n: x.b.n, url: x.url + (x.b.id === 'tradingview' && tf > 0 ? '&interval=' + tvIntervall(tf) : ''), markt: x.markt };
+}
+const pfPfeil = () => '<svg viewBox="0 0 10 10" width="9" height="9" aria-hidden="true"><path d="M2 8 8 2M3.5 2H8v4.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>';
+function pfLink(a, x, t) {
+a.href = x.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+if (a.dataset.t !== t) { a.dataset.t = t; a.replaceChildren(); a.insertAdjacentHTML('beforeend', pfPfeil()); a.append(t); }
+a.title = T('bMarkt', x.markt, x.b.n) + ' – ' + T('pfSatz'); a.setAttribute('aria-label', T('pfLos', x.markt, x.b.n) + ' (' + T('pfTab') + ')');
 }
 function boerseLink(a, id) {
-const x = boerseFuer(id); if (!x) { a.hidden = true; return; }
-a.hidden = false; a.href = x.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-const t = a.classList.contains('w23-bk-kurz') ? T('bKurz', x.b.n) : T('bOeffnen', x.b.n);
-if (a.dataset.t !== t) {
-a.dataset.t = t; const k = t.replace(/^\u2197\s*/, ''); a.replaceChildren();
-if (k !== t) a.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 10 10" width="9" height="9" aria-hidden="true" style="margin-right:4px"><path d="M2 8 8 2M3.5 2H8v4.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>');
-a.append(k);
-}
-a.title = T('bMarkt', x.markt, x.b.n) + ' – ' + T('bSatz') + (x.nurHl ? ' ' + T('bNurHl') : '');
-a.setAttribute('aria-label', T('bOeffnen', x.b.n) + ': ' + x.markt);
+const x = boerseFuer(id); a.hidden = !x; if (x) pfLink(a, x, x.b.n);
 }
 function boerseBauen() {
 const kurs = D.querySelector('header.leiste .kurs');
 if (kurs && !D.getElementById('w23-bk-kopf')) { const a = roh(el('a', 'w23-bk w23-bk-kurz')); a.id = 'w23-bk-kopf'; kurs.after(a); }
-const form = D.getElementById('hd-form'), senden0 = D.getElementById('hd-senden');
-if (form && senden0 && !D.getElementById('w23-bk-ticket')) {
-const box = roh(el('div', 'w23-boerse')), a = roh(el('a', 'w23-bk')), s = roh(el('select', 'w23-bk-wahl')), p = roh(el('p', 'leise w23-bk-satz', T('bSatz')));
-a.id = 'w23-bk-ticket'; s.id = 'w23-bk-wahl'; s.setAttribute('aria-label', T('bWahl')); s.title = T('bWahl');
-for (const b of BOERSEN) { const o = roh(el('option', '', b.n)); o.value = b.id; s.append(o); }
-s.value = boerseWahl().id;
-s.addEventListener('change', () => { A.merke('w23.boerse', s.value); boerseAuffrischen(); });
-box.append(a, s, p); senden0.after(box);
+const box = D.getElementById('hd-plattform');
+if (box && !box.dataset.w23) {
+box.dataset.w23 = '1'; roh(box);
+const frage = roh(el('p', 'pf-frage')), los = roh(el('a', 'pf-los')), was = roh(el('p', 'leise pf-was')), wechsel = roh(el('button', 'pf-wechsel')), hin = roh(el('p', 'pf-hinweis'));
+const wahl = roh(el('div', 'pf-wahl')); wahl.setAttribute('role', 'group');
+for (const b of PLATTFORMEN) { const k = roh(el('button', '', b.n)); k.type = 'button'; k.dataset.pf = b.id; wahl.append(k); }
+los.id = 'w23-pf-los'; wechsel.type = 'button'; wechsel.id = 'w23-pf-wechsel';
+box.append(frage, los, was, hin, wechsel, wahl, roh(el('p', 'leise pf-satz')));
+wahl.addEventListener('click', (e) => { const k = e.target.closest('button[data-pf]'); if (!k) return; A.merke('w23.boerse', k.dataset.pf); boerseAuffrischen(); });
+}
+const leiste = D.getElementById('hd-aktion');
+if (leiste && !leiste.dataset.w23) {
+leiste.dataset.w23 = '1'; const a = roh(el('a', 'pf-los')), k = roh(el('button', 'pf-blatt')); a.id = 'w23-pf-leiste'; k.type = 'button'; k.dataset.blatt = '1';
+leiste.replaceChildren(a, k);
 }
 boerseAuffrischen();
 }
 function boerseAuffrischen() {
-const k = D.getElementById('w23-bk-kopf'); if (k) boerseLink(k, A.coin());
-const t = D.getElementById('w23-bk-ticket'); if (t) boerseLink(t, A.ticketMarkt() || A.coin());
-const s = D.getElementById('w23-bk-wahl'); if (s && s.value !== boerseWahl().id) s.value = boerseWahl().id;
+const kopf = D.getElementById('w23-bk-kopf'); if (kopf) boerseLink(kopf, A.coin());
+const id = A.ticketMarkt() || A.coin(), w = plattformWahl(), x = boerseFuer(id), box = D.getElementById('hd-plattform');
+const setz = (e, t) => { if (e && e.textContent !== t) e.textContent = t; };
+if (box && box.dataset.w23) {
+box.classList.toggle('pf-ohne', !w);
+setz(box.querySelector('.pf-frage'), w ? '' : T('pfFrage'));
+const los = box.querySelector('.pf-los'); los.hidden = !x; if (x) pfLink(los, x, T('pfLos', x.markt, x.b.n));
+setz(box.querySelector('.pf-was'), x ? x.was + ' · ' + T('pfTab') : '');
+setz(box.querySelector('.pf-hinweis'), !x ? '' : x.nurHl ? T('pfNurHl', x.gewaehlt.n) : x.keinTv ? T('pfKeinTv') : '');
+setz(box.querySelector('.pf-wechsel'), T(w ? 'pfAendern' : 'pfWaehlen'));
+setz(box.querySelector('.pf-satz'), T('pfSatz'));
+const g = box.querySelector('.pf-wahl'); if (g.getAttribute('aria-label') !== T('pfWaehlen')) g.setAttribute('aria-label', T('pfWaehlen'));
+for (const k of g.children) { const an = !!w && k.dataset.pf === w.id; if (k.getAttribute('aria-pressed') !== String(an)) k.setAttribute('aria-pressed', String(an)); }
+}
+const a = D.getElementById('w23-pf-leiste'), k = a && a.nextElementSibling;
+if (a) { a.hidden = !x; if (x) pfLink(a, x, T('pfLos', x.markt, x.b.n)); }
+if (k) { setz(k, T(w ? 'pfKurz' : 'pfWaehlen')); k.classList.toggle('pf-erst', !w); }
 }
 
 const FEST = {
@@ -377,7 +419,7 @@ start, T, schild, fassung: 'w23-1',
 kachelFenster, bereichFenster, flaecheSpeichern, flaecheOeffnen, naechstes, alleZu, bildschirme, zurueck, gruppeSetzen,
 tiefeVon: (wo, c) => { const x = F.tiefe[wo]; return !ichLeiter() && !!x && x.c === c && Date.now() - x.at < 9000; },
 tiefeTeilen: (wo, c, d) => { if (!ichLeiter() || !d || !lebend().some((x) => x.coin === c)) return false; senden({ t: 'tiefe', wo, c, d }, true); return true; },
-boerseFuer, boersen: () => BOERSEN.map((b) => ({ id: b.id, n: b.n })), quellen: quellenZeilen,
+boerseFuer, klickZiel, boersen: () => PLATTFORMEN.map((b) => ({ id: b.id, n: b.n })), plattform: boerseAuffrischen, quellen: quellenZeilen,
 zustand: () => ({ id: F.id, rolle: F.rolle, gruppe: F.gruppe, leiter: ichLeiter(), andere: lebend().map((x) => ({ id: x.von, rolle: x.rolle, g: x.g, coin: x.coin, ziel: x.ziel })), warte: F.warte ? F.warte.length : 0 }),
 };
 })(window);

@@ -119,7 +119,7 @@ const preis = (sp, x) => (ok(x) ? zf(sp, x, x >= 1000 ? 0 : x >= 1 ? 2 : 4) + ' 
 const pz = (sp, x, nk = 0) => (sp === 'tr' ? '%' : '') + zf(sp, x, nk) + (sp === 'en' ? '%' : sp === 'tr' ? '' : ' %');
 const datum = (sp, t) => new Date(t * 1000).toLocaleDateString(ORT[sp], { day: '2-digit', month: '2-digit', year: '2-digit', timeZone: 'UTC' });
 
-const GOLD = '#e0a64e', LEISE = '#8b8e96', TEXT = '#ecebe6', GRAU = '200,203,210';
+const GOLD = '#f4f4f1', LEISE = '#8b8e96', TEXT = '#ecebe6', GRAU = '200,203,210';
 const MONO = '500 11px/1.2 var(--mono, ui-monospace, monospace)', SANS = 'var(--sans, system-ui, sans-serif)';
 function stil(el, s) { for (const k in s) el.style[k] = s[k]; return el; }
 function neu(tag, s, text) { const e = stil(document.createElement(tag), s || {}); if (text !== undefined) e.textContent = text; return e; }
@@ -304,7 +304,7 @@ entferne() { if (raf) cancelAnimationFrame(raf); raf = 0; uhr = null; rech = nul
 }
 
 const SKALEN = {
-ryvo: (t) => { const S = [[0, 34, 36, 42], [0.3, 46, 58, 82], [0.55, 88, 104, 132], [0.8, 224, 166, 78], [1, 251, 238, 211]]; let i = 1; while (i < S.length - 1 && t > S[i][0]) i++; const a = S[i - 1], b = S[i], u = (t - a[0]) / (b[0] - a[0]); return [a[1] + (b[1] - a[1]) * u, a[2] + (b[2] - a[2]) * u, a[3] + (b[3] - a[3]) * u]; },
+ryvo: (t) => { const S = [[0, 34, 36, 42], [0.3, 46, 58, 82], [0.55, 88, 104, 132], [0.8, 159, 192, 245], [1, 255, 255, 255]]; let i = 1; while (i < S.length - 1 && t > S[i][0]) i++; const a = S[i - 1], b = S[i], u = (t - a[0]) / (b[0] - a[0]); return [a[1] + (b[1] - a[1]) * u, a[2] + (b[2] - a[2]) * u, a[3] + (b[3] - a[3]) * u]; },
 spektrum: (t) => [
 255 * (0.13572138 + t * (4.6153926 + t * (-42.66032258 + t * (132.13108234 + t * (-152.94239396 + t * 59.28637943))))),
 255 * (0.09140261 + t * (2.19418839 + t * (4.84296658 + t * (-14.18503333 + t * (4.27729857 + t * 2.82956604))))),

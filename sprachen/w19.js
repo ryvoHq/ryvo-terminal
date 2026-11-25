@@ -220,7 +220,9 @@ const a = STOPS[i - 1], b = STOPS[i], u = (t - a[0]) / (b[0] - a[0] || 1);
 return [a[1] + (b[1] - a[1]) * u, a[2] + (b[2] - a[2]) * u, a[3] + (b[3] - a[3]) * u];
 }
 const rgb = (c, f = 1, al = 1) => `rgba(${Math.round(Math.min(255, c[0] * f))},${Math.round(Math.min(255, c[1] * f))},${Math.round(Math.min(255, c[2] * f))},${al})`;
-const GOLD = '#e0a64e', LEISE = '#8b8e96', TEXT = '#ecebe6', LINIE = 'rgba(236,235,230,0.07)', LINIE2 = 'rgba(236,235,230,0.16)';
+let grundZeit = 0, grundWert = '#000000';
+const grundFarbe = () => { const j = Date.now(); if (j - grundZeit > 1500) { grundZeit = j; try { const r = document.documentElement, c = r.dataset.thema === 'hell' ? '' : getComputedStyle(r).getPropertyValue('--chart').trim(); grundWert = /^#[0-9a-f]{6}$/i.test(c) ? c : '#17181b'; } catch (e) { grundWert = '#17181b'; } } return grundWert; };
+const GOLD = '#f4f4f1', LEISE = '#8b8e96', TEXT = '#ecebe6', LINIE = 'rgba(236,235,230,0.07)', LINIE2 = 'rgba(236,235,230,0.16)';
 
 const KAM = { vola: [-0.72, 0.5], uhr: [-0.62, 0.55], grat: [-0.22, 0.62], optionen: [-0.82, 0.45], zinsen: [-0.7, 0.48], liquiditaet: [-0.62, 0.55] };
 function stil(el, s) { for (const k in s) el.style[k] = s[k]; return el; }
@@ -236,7 +238,7 @@ const kopf = stil(document.createElement('div'), { display: o.kopf ? 'flex' : 'n
 const titel = stil(document.createElement('strong'), { font: '600 12px/1.2 var(--sans, system-ui, sans-serif)', letterSpacing: '.02em', marginRight: 'auto', flex: '1 1 0', minWidth: '0', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' });
 const buehne = stil(document.createElement('div'), { position: 'relative', flex: '1 1 auto', minHeight: '180px', touchAction: 'none', cursor: 'grab', outline: 'none' });
 const cv = stil(document.createElement('canvas'), { position: 'absolute', inset: '0', width: '100%', height: '100%', display: 'block' });
-const tipp = stil(document.createElement('div'), { position: 'absolute', pointerEvents: 'none', background: 'rgba(23,24,27,0.94)', border: '1px solid rgba(224,166,78,0.45)', borderRadius: '6px', padding: '6px 8px', font: '500 11px/1.45 var(--mono, ui-monospace, monospace)', color: TEXT, maxWidth: '300px', display: 'none', zIndex: '2' });
+const tipp = stil(document.createElement('div'), { position: 'absolute', pointerEvents: 'none', background: 'rgba(23,24,27,0.94)', border: '1px solid rgba(244,244,241,0.35)', borderRadius: '6px', padding: '6px 8px', font: '500 11px/1.45 var(--mono, ui-monospace, monospace)', color: TEXT, maxWidth: '300px', display: 'none', zIndex: '2' });
 const fuss = stil(document.createElement('div'), { display: o.fuss === false ? 'none' : 'block', font: '11px/1.45 var(--sans, system-ui, sans-serif)', color: LEISE });
 buehne.tabIndex = 0; buehne.setAttribute('role', 'img');
 buehne.append(cv, tipp); wurzel.append(kopf, buehne, fuss); el.append(wurzel);
@@ -311,7 +313,7 @@ if (w !== cv.width || h !== cv.height) { cv.width = w; cv.height = h; } z.W = w;
 function schrift(px, gew = 500) { ctx.font = `${gew} ${Math.round(px * z.dpr * (o.textMass || 1))}px ${o.schrift || 'Geist Mono, ui-monospace, SFMono-Regular, Menlo, monospace'}`; }
 function szene() {
 groesse(); const { W: w, H: h, dpr } = z;
-ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = o.grund || '#17181b'; ctx.fillRect(0, 0, w, h);
+ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = o.grund || grundFarbe(); ctx.fillRect(0, 0, w, h);
 if (!G || !V || !V.ny || !V.nx) { schrift(12); ctx.fillStyle = LEISE; ctx.textAlign = 'center'; ctx.fillText(tx(sp, 'leer'), w / 2, h / 2); return; }
 const p = z.flach ? 'f' : z.pitch.toFixed(3);
 if (!fit || fit.p !== p || fit.hz !== V.hz) {
@@ -422,7 +424,7 @@ ctx.beginPath(); ctx.moveTo(pts[0], pts[1]); for (let k = 2; k < pts.length; k +
 ctx.globalAlpha = i === neu ? 1 : 0.45 + 0.55 * (i / Math.max(1, neu)); ctx.strokeStyle = i === neu ? GOLD : verlauf; ctx.lineWidth = (i === neu ? 2.2 : 1.2) * z.dpr; ctx.stroke(); ctx.globalAlpha = 1;
 hp.push([pts, l0, r0]); hr.push(i);
 }
-ctx.setLineDash([4 * z.dpr, 4 * z.dpr]); ctx.strokeStyle = 'rgba(224,166,78,0.55)'; ctx.lineWidth = z.dpr; ctx.beginPath(); proj(0, -1, 0); ctx.moveTo(P[0], P[1]); proj(0, 1, 0); ctx.lineTo(P[0], P[1]); ctx.stroke(); ctx.setLineDash([]);
+ctx.setLineDash([4 * z.dpr, 4 * z.dpr]); ctx.strokeStyle = 'rgba(244,244,241,0.5)'; ctx.lineWidth = z.dpr; ctx.beginPath(); proj(0, -1, 0); ctx.moveTo(P[0], P[1]); proj(0, 1, 0); ctx.lineTo(P[0], P[1]); ctx.stroke(); ctx.setLineDash([]);
 z.hit = { grat: hp, ref: hr, art: 'grat' };
 }
 function etikett(s, x, y, al, farbeT, pflicht) {

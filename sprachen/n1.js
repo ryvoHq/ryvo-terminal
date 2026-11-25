@@ -51,6 +51,15 @@ if (thema || coin) return f.sort(neu);
 const oben = f.filter((e) => e.themen.includes('behoerden') && e.zeit >= jetzt - 86400).sort(neu).slice(0, AMT_OBEN);
 return oben.concat(f.filter((e) => !oben.includes(e)).sort(neu));
 }
+const ART_MARKT = /\b(bitcoin|btc|ether(eum)?|eth|crypto(currenc(y|ies))?|solana|xrp|altcoins?|gold|silver|copper|oil|crude|brent|wti|stocks?|shares|equit(y|ies)|nasdaq|s&p|dow|dax|nikkei|yields?|bonds?|treasur(y|ies)|dollar|euro|yen|yuan|rupee|futures|markets?|sensex|nifty|ölpreis\w*|rohöl|aktien|anleihe\w*|rendite\w*|kurse?)\b/i;
+const ART_KURZ = /\b(rises?|rose|rising|falls?|fell|falling|slips?|slipped|slid(es)?|dips?|dipped|edges?|edged|ticks?|gains?|gained|climbs?|climbed|drops?|dropped|declines?|declined|eases?|eased|pares?|pared|rebounds?|rebounded|recovers?|recovered|steadies|steadied|steady|firms?|firmed|weakens?|strengthens?|inches?|hovers?|extends?|reclaims?|retreats?|bounces?|wavers?|higher|lower|flat|selling pressure|buying pressure|sell-?off|profit[- ]taking|short squeeze|liquidations?|intraday|early trade|marginally|slightly|steigt|steigen|fällt|fallen|nachgeben|gibt|geben|legt|legen|verliert|verlieren|erholt|erholen|leicht|etwas|verkaufsdruck|kaufdruck|gewinnmitnahmen)\b/i;
+const ART_GROSS = /\b(crash\w*|plunge\w*|plummet\w*|soar\w*|surge\w*|skyrocket\w*|record|all-time|wipeout|collapse\w*|slump\w*|tumble\w*|rout|biggest|worst|weekly|monthly|yearly|quarterly|annual|week|month|year|\d+-(day|week|month|year)|lowest|highest|bear market|bull market|rekord\w*|absturz|einbruch|bricht|woche\w*|monat\w*|jahr\w*)\b/i;
+function art(e) {
+if (!e || (e.themen || []).includes('behoerden')) return 'gross';
+const t = String(e.titel || '');
+const pz = Math.max(0, ...[...t.matchAll(/(\d+(?:[.,]\d+)?)\s?(?:%|per ?cent|prozent)/gi)].map((m) => +m[1].replace(',', '.')));
+return ART_MARKT.test(t) && ART_KURZ.test(t) && !ART_GROSS.test(t) && pz < 10 ? 'kurz' : 'gross';
+}
 function coinsZaehlen(ein, n = 8) {
 const z = new Map(); for (const e of ein) for (const c of e.coins) z.set(c, (z.get(c) || 0) + 1);
 return [...z.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).slice(0, n).map((x) => x[0]);
@@ -123,7 +132,10 @@ return p;
 
 function schlagzeilen(el, o = {}) {
 const sp = spr(o), jetzt = o.jetzt || (() => Date.now() / 1000), holen = o.laden || (() => laden(o.pfad || 'daten/schlagzeilen.json'));
-const zustand = { d: null, thema: '', coin: '', altZeigen: false, fehler: null, alle: false };
+const zustand = { d: null, thema: '', coin: '', altZeigen: false, fehler: null, alle: false, modus: '' };
+const modus = () => { try { return (o.modus && o.modus()) === 'swing' ? 'swing' : 'profi'; } catch (e) { return 'profi'; } };
+const grossLies = () => { let x = null; try { x = o.lies ? o.lies('n1.gross.' + modus()) : null; } catch (e) {   } return x === null || x === undefined || x === '' ? modus() === 'swing' : x === '1'; };
+const grossMerke = (an) => { try { if (o.merke) o.merke('n1.gross.' + modus(), an ? '1' : '0'); } catch (e) {   } };
 el.replaceChildren(); el.classList.add('n1-schlagzeilen');
 const stand = E('span', 'stand'); kopf(el, T(sp, 'titel.schlagzeilen') + (o.privat ? ' · ' + T(sp, 'privat') : ''), sp, 'hilfe.schlagzeilen', stand);
 const filter = E('div', 'news-filter'), meldung = E('p', 'ausfall-text'), liste = E('ol', 'ereignisse news-liste n1-liste'), fuss = pflichtGdelt(sp);
@@ -146,14 +158,16 @@ if (!d) { meldung.textContent = T(sp, 'fehlt'); meldung.hidden = false; }
 else if (!ok) { meldung.textContent = T(sp, 'alt', uhr(d.stand, true)); meldung.hidden = false; }
 else if (d.fehler) { meldung.textContent = T(sp, 'gestoert'); meldung.title = d.fehler; meldung.hidden = false; }
 if (o.beiAusfall) try { o.beiAusfall(!ok); } catch (e) {   }
-const ein = d ? d.eintraege : [];
+if (zustand.modus !== modus()) { zustand.modus = modus(); zustand.gross = grossLies(); }
+const alleEin = d ? d.eintraege : [], ein = zustand.gross ? alleEin.filter((e) => art(e) === 'gross') : alleEin, weg = alleEin.length - ein.length;
 const themen = THEMEN.filter((x) => ein.some((e) => e.themen.includes(x))), coins = coinsZaehlen(ein);
 if (zustand.thema && !themen.includes(zustand.thema)) zustand.thema = '';
 if (zustand.coin && !coins.includes(zustand.coin)) zustand.coin = '';
 filter.replaceChildren(
+knopfGruppe(T(sp, 'filter.art'), [['gross', T(sp, 'art.gross', alleEin.length - alleEin.filter((e) => art(e) === 'kurz').length)], ['alle', T(sp, 'art.alle', alleEin.length)]], zustand.gross ? 'gross' : 'alle', (w) => { zustand.gross = w === 'gross'; grossMerke(zustand.gross); zeigen(); }),
 knopfGruppe(T(sp, 'filter.thema'), [['', T(sp, 'thema.alle')], ...themen.map((x) => [x, T(sp, 'thema.' + x)])], zustand.thema, (w) => { zustand.thema = w; zeigen(); }),
 ...(coins.length ? [knopfGruppe(T(sp, 'filter.coin'), [['', T(sp, 'coin.alle')], ...coins.map((c) => [c, c])], zustand.coin, (w) => { zustand.coin = w; zeigen(); })] : []));
-filter.hidden = !ein.length || (!ok && !zustand.altZeigen);
+filter.hidden = !alleEin.length || (!ok && !zustand.altZeigen);
 if (d && !ok && !zustand.altZeigen && ein.length) {
 const b = E('button', 'mehr', T(sp, 'alt.zeigen')); b.type = 'button'; b.addEventListener('click', () => { zustand.altZeigen = true; zeigen(); });
 const li = E('li', 'leise'); li.append(b); liste.replaceChildren(li); return;
@@ -161,14 +175,17 @@ const li = E('li', 'leise'); li.append(b); liste.replaceChildren(li); return;
 const reihe = ordnen(ein.slice(), zustand.thema, zustand.coin, j);
 const n = zustand.alle ? 80 : S_ERST, zeilen = reihe.slice(0, n).map((e) => zeile(e, j));
 if (reihe.length > n && n < 80) { const b = E('button', 'mehr', T(sp, 'mehr.schlagzeilen', Math.min(80, reihe.length) - n)); b.type = 'button'; b.addEventListener('click', () => { zustand.alle = true; zeigen(); }); const li = E('li', 'leise'); li.append(b); zeilen.push(li); }
+if (weg && ok) zeilen.unshift(E('li', 'leise n1-art-hinweis', T(sp, 'art.hinweis', weg)));
 liste.replaceChildren(...(reihe.length ? zeilen : d ? [E('li', 'leise', T(sp, 'leer'))] : []));
 liste.style.opacity = ok ? '' : '0.6';
 }
 const tg = o.laden === false ? null : taktgeber(el, holen, (roh) => { zustand.d = schlagzeilenSaeubern(roh); zeigen(); }, () => { if (!zustand.d) zeigen(); });
 if (o.daten !== undefined) { zustand.d = schlagzeilenSaeubern(o.daten); zeigen(); } else if (tg) tg.pruefe();
+let modusIo = null;
+if (W.IntersectionObserver && o.modus) { modusIo = new IntersectionObserver((x) => { if (x.some((y) => y.isIntersecting) && zustand.d && zustand.modus !== modus()) zeigen(); }); modusIo.observe(el); }
 const uhrTakt = setInterval(() => { if (zustand.d && sichtbar(el)) for (const t of liste.querySelectorAll('time')) { const z = Date.parse(t.dateTime) / 1000; if (z) t.textContent = alter(z, jetzt(), sp); } }, 60000);
 return { element: el, aktualisiere(d) { zustand.d = schlagzeilenSaeubern(d); zeigen(); }, zustand: () => ({ ...zustand, n: zustand.d ? zustand.d.eintraege.length : 0 }),
-entferne() { if (tg) tg.stopp(); clearInterval(uhrTakt); el.replaceChildren(); el.classList.remove('n1-schlagzeilen'); } };
+entferne() { if (tg) tg.stopp(); clearInterval(uhrTakt); if (modusIo) modusIo.disconnect(); el.replaceChildren(); el.classList.remove('n1-schlagzeilen'); } };
 }
 
 function lageSaeubern(d) {
@@ -298,6 +315,6 @@ return Object.assign(form(an, 'de'), { fassungen });
 };
 
 W.RYVO_N1 = { schlagzeilen, lagebrief, startkarte, ausMac, laden,
-rechne: { sicherUrl, alter, ordnen, coinsZaehlen, lageSprache, frisch, schlagzeilenSaeubern, lageSaeubern, uhr }, THEMEN, ABSCHNITTE };
+rechne: { sicherUrl, alter, ordnen, art, coinsZaehlen, lageSprache, frisch, schlagzeilenSaeubern, lageSaeubern, uhr }, THEMEN, ABSCHNITTE };
 })(window);
 

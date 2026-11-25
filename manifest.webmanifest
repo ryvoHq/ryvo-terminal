@@ -2,14 +2,14 @@
  "id": "./",
  "name": "RYVO Terminal",
  "short_name": "RYVO",
- "description": "Marktdaten beobachten und mit Spielgeld üben – keine Anlageberatung, keine Signale.",
+ "description": "Marktdaten beobachten, kaufen bei der eigenen Plattform – keine Anlageberatung, keine Signale.",
  "lang": "de",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
  "orientation": "any",
- "background_color": "#17181b",
- "theme_color": "#17181b",
+ "background_color": "#000000",
+ "theme_color": "#000000",
  "icons": [
   {
    "src": "symbole/192.png",
