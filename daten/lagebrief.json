@@ -1,14 +1,14 @@
 {
  "format": 1,
- "stand": 1795663800,
- "recherche_schnitt": 1795663800,
+ "stand": 1795706700,
+ "recherche_schnitt": 1795706700,
  "titel": {
-  "de": "Lage-Bericht · Morgen 26.11.2026 03:30 UTC",
-  "en": "Market brief · morning 26.11.2026 03:30 UTC",
-  "es": "Boletín del mercado · mañana 26.11.2026 03:30 UTC",
-  "fr": "Point de marché · matin 26.11.2026 03:30 UTC",
-  "it": "Quadro di mercato · mattina 26.11.2026 03:30 UTC",
-  "tr": "Piyasa raporu · sabah 26.11.2026 03:30 UTC"
+  "de": "Lage-Bericht · Nachmittag 26.11.2026 15:25 UTC",
+  "en": "Market brief · afternoon 26.11.2026 15:25 UTC",
+  "es": "Boletín del mercado · tarde 26.11.2026 15:25 UTC",
+  "fr": "Point de marché · après-midi 26.11.2026 15:25 UTC",
+  "it": "Quadro di mercato · pomeriggio 26.11.2026 15:25 UTC",
+  "tr": "Piyasa raporu · öğleden sonra 26.11.2026 15:25 UTC"
  },
  "abschnitte": [
   {
@@ -17,107 +17,177 @@
     {
      "id": "lage-1",
      "text": {
-      "de": "BTC 60.956 $, 24 h +3,0 %, Woche −2,6 %, 18,5 % unter dem 50-Tage-Mittel.",
-      "en": "BTC is at $60,956: up 3.0% over 24 hours, down 2.6% on the week and 18.5% below its 50-day average.",
-      "es": "BTC cotiza a 60.956 $: +3,0 % en 24 horas, −2,6 % en la semana y un 18,5 % por debajo de su media de 50 días.",
-      "fr": "Le BTC s’échange à 60 956 $ : +3,0 % sur 24 heures, −2,6 % sur la semaine et 18,5 % sous sa moyenne mobile à 50 jours.",
-      "it": "BTC quota 60.956 $: +3,0 % nelle 24 ore, −2,6 % sulla settimana e il 18,5 % sotto la media a 50 giorni.",
-      "tr": "BTC 60.956 $ seviyesinde: 24 saatte %3,0 yukarıda, haftalık bazda %2,6 aşağıda ve 50 günlük ortalamasının %18,5 altında."
+      "de": "BTC 60.240 $, 24 h +3,3 %, Woche −4,5 %, 19,4 % unter dem 50-Tage-Mittel.",
+      "en": "BTC at $60,240, +3.3% on the day, −4.5% on the week, 19.4% below its 50-day average.",
+      "es": "BTC en 60.240 $, +3,3 % en 24 h, −4,5 % en la semana, un 19,4 % por debajo de su media de 50 días.",
+      "fr": "BTC à 60 240 $, +3,3 % sur 24 h, −4,5 % sur la semaine, 19,4 % sous sa moyenne 50 jours.",
+      "it": "BTC a 60.240 $, +3,3% in 24 ore, −4,5% nella settimana, 19,4% sotto la media a 50 giorni.",
+      "tr": "BTC 60.240 $, 24 saatte %3,3 artıda, haftalık %4,5 ekside, 50 günlük ortalamanın %19,4 altında."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795660020,
+       "zeit": 1795705680,
        "genau": true
       }
      ],
-     "zeit": 1795660020,
+     "zeit": 1795705680,
      "schnitt": "vor"
     },
     {
      "id": "lage-2",
      "text": {
-      "de": "ETH 1.703 $, 24 h +2,9 %, Woche −3,8 %.",
-      "en": "ETH is at $1,703: up 2.9% over 24 hours and down 3.8% on the week.",
-      "es": "ETH cotiza a 1.703 $: +2,9 % en 24 horas y −3,8 % en la semana.",
-      "fr": "L’ETH s’échange à 1 703 $ : +2,9 % sur 24 heures et −3,8 % sur la semaine.",
-      "it": "ETH quota 1.703 $: +2,9 % nelle 24 ore e −3,8 % sulla settimana.",
-      "tr": "ETH 1.703 $ seviyesinde: 24 saatte %2,9 yukarıda, haftalık bazda %3,8 aşağıda."
+      "de": "ETH 1.679 $, 24 h +1,9 %, Woche −5,8 %.",
+      "en": "ETH at $1,679, +1.9% on the day, −5.8% on the week.",
+      "es": "ETH en 1.679 $, +1,9 % en 24 h, −5,8 % en la semana.",
+      "fr": "ETH à 1 679 $, +1,9 % sur 24 h, −5,8 % sur la semaine.",
+      "it": "ETH a 1.679 $, +1,9% in 24 ore, −5,8% nella settimana.",
+      "tr": "ETH 1.679 $, 24 saatte %1,9 artıda, haftalık %5,8 ekside."
      },
      "quellen": [
       {
        "name": "Hyperliquid",
        "url": "https://app.hyperliquid.xyz/",
-       "zeit": 1795660020,
+       "zeit": 1795705680,
        "genau": true
       }
      ],
-     "zeit": 1795660020,
+     "zeit": 1795705680,
      "schnitt": "vor"
     },
     {
      "id": "lage-3",
      "text": {
       "de": "Angst & Gier 11 (extreme Angst), Vortag 13, vor 1 Monat 48.",
-      "en": "The Fear & Greed Index reads 11 (extreme fear), after 13 the day before and 48 a month ago.",
-      "es": "El índice de miedo y codicia marca 11 (miedo extremo); ayer estaba en 13 y hace un mes en 48.",
-      "fr": "L’indice peur et cupidité affiche 11 (peur extrême), contre 13 la veille et 48 il y a un mois.",
-      "it": "L’indice paura e avidità segna 11 (paura estrema), dopo il 13 di ieri e il 48 di un mese fa.",
-      "tr": "Korku ve Açgözlülük Endeksi 11’de (aşırı korku); bir gün önce 13, bir ay önce 48’di."
+      "en": "Fear & Greed at 11 (extreme fear), 13 the day before, 48 a month ago.",
+      "es": "Miedo y codicia en 11 (miedo extremo), la víspera 13, hace un mes 48.",
+      "fr": "Indice peur et cupidité à 11 (peur extrême), 13 la veille, 48 il y a un mois.",
+      "it": "Indice paura e avidità a 11 (paura estrema), il giorno prima 13, un mese fa 48.",
+      "tr": "Korku ve Açgözlülük Endeksi 11 (aşırı korku), bir gün önce 13, bir ay önce 48."
      },
      "quellen": [
       {
        "name": "alternative.me",
        "url": "https://alternative.me/crypto/fear-and-greed-index/",
-       "zeit": 1795660020,
+       "zeit": 1795705680,
        "genau": true
       }
      ],
-     "zeit": 1795660020,
+     "zeit": 1795705680,
      "schnitt": "vor"
     },
     {
      "id": "lage-4",
      "text": {
       "de": "10-jährige US-Rendite 4,85 %, 5 Tage −0,22 Pkt.",
-      "en": "The US 10-year yield stands at 4.85%, down 0.22 points over five days.",
-      "es": "La rentabilidad del bono estadounidense a 10 años está en el 4,85 %, 0,22 puntos menos en cinco días.",
-      "fr": "Le rendement du Trésor américain à 10 ans s’établit à 4,85 %, en repli de 0,22 point sur cinq jours.",
-      "it": "Il rendimento del Treasury USA a 10 anni è al 4,85 %, in calo di 0,22 punti in cinque giorni.",
-      "tr": "ABD 10 yıllık tahvil faizi %4,85; beş günde 0,22 puan geriledi."
+      "en": "US 10-year yield at 4.85%, −0.22 pts over five days.",
+      "es": "Rentabilidad del bono a 10 años de EE. UU. en el 4,85 %, −0,22 puntos en cinco días.",
+      "fr": "Taux américain à 10 ans à 4,85 %, −0,22 point sur cinq jours.",
+      "it": "Rendimento del decennale USA al 4,85%, −0,22 punti in cinque giorni.",
+      "tr": "ABD 10 yıllık tahvil faizi %4,85, beş günde −0,22 puan."
      },
      "quellen": [
       {
        "name": "U.S. Treasury",
        "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
-       "zeit": 1795660020,
+       "zeit": 1795705680,
        "genau": true
       }
      ],
-     "zeit": 1795660020,
+     "zeit": 1795705680,
      "schnitt": "vor"
     },
     {
      "id": "lage-5",
      "text": {
-      "de": "BTC-ETFs am 24.11. −231,6 Mio. $, 5 Tage Abfluss in Folge.",
-      "en": "US spot bitcoin ETFs saw $231.6M in net outflows on Nov 24, their fifth straight day of outflows.",
-      "es": "Los ETF de bitcoin al contado en EE. UU. registraron salidas netas de 231,6 millones de dólares el 24 de noviembre, quinta sesión seguida con salidas.",
-      "fr": "Les ETF bitcoin au comptant américains ont enregistré 231,6 millions de dollars de sorties nettes le 24 novembre, cinquième séance de sorties d’affilée.",
-      "it": "Gli ETF spot su bitcoin quotati negli USA hanno registrato deflussi netti per 231,6 milioni di dollari il 24 novembre, la quinta seduta consecutiva in uscita.",
-      "tr": "ABD’deki spot bitcoin ETF’lerinden 24 Kasım’da net 231,6 milyon dolar çıkış oldu; bu, üst üste beşinci çıkış günü."
+      "de": "Nach Schnitt: Stoxx 600 +1,6 %, DAX +1,9 %, Nikkei +0,86 %; Anleger nehmen die neuen US-Zölle gelassen, sie fielen milder aus als befürchtet.",
+      "en": "After the cut-off: Stoxx 600 +1.6%, DAX +1.9%, Nikkei +0.86%; investors are taking the new US tariffs in stride, as they came in milder than feared.",
+      "es": "Tras el corte: Stoxx 600 +1,6 %, DAX +1,9 %, Nikkei +0,86 %; los inversores se toman con calma los nuevos aranceles de EE. UU., más suaves de lo que se temía.",
+      "fr": "Après le point : Stoxx 600 +1,6 %, DAX +1,9 %, Nikkei +0,86 % ; les investisseurs encaissent sans broncher les nouveaux droits de douane américains, moins durs que prévu.",
+      "it": "Dopo il taglio: Stoxx 600 +1,6%, DAX +1,9%, Nikkei +0,86%; gli investitori digeriscono senza scossoni i nuovi dazi USA, più leggeri del temuto.",
+      "tr": "Kesimden sonra: Stoxx 600 %1,6, DAX %1,9, Nikkei %0,86 artıda; yatırımcılar beklenenden yumuşak gelen yeni ABD gümrük vergilerini sakin karşılıyor."
+     },
+     "quellen": [
+      {
+       "name": "CNBC",
+       "url": "https://www.cnbc.com/2026/11/26/stock-markets-today-.html",
+       "zeit": 1795695720,
+       "genau": true
+      }
+     ],
+     "zeit": 1795695720,
+     "schnitt": "vor"
+    },
+    {
+     "id": "lage-6",
+     "text": {
+      "de": "BTC-ETFs am 25.11. −453,1 Mio. $, 5 Tage Abfluss in Folge.",
+      "en": "BTC ETFs saw −$453.1M on Nov 25, the fifth straight day of outflows.",
+      "es": "Los ETF de BTC registraron −453,1 M$ el 25 de noviembre, quinto día seguido de salidas.",
+      "fr": "Les ETF BTC ont enregistré −453,1 M$ le 25 novembre, cinquième jour de sorties d'affilée.",
+      "it": "Gli ETF su BTC hanno segnato −453,1 mln $ il 25 novembre, quinto giorno di fila in uscita.",
+      "tr": "BTC ETF’lerinde 25 Kasım’da −453,1 milyon $, üst üste beşinci çıkış günü."
      },
      "quellen": [
       {
        "name": "The Commoner Bitcoin ETF Tracker by TFTC (CC BY 4.0)",
        "url": "https://tftc.io/bitcoin-etf-flows",
-       "zeit": 1795660020,
+       "zeit": 1795705680,
        "genau": true
       }
      ],
-     "zeit": 1795660020,
+     "zeit": 1795705680,
      "schnitt": "vor"
+    }
+   ]
+  },
+  {
+   "id": "beide_seiten",
+   "zeilen": [
+    {
+     "id": "beide_seiten-1",
+     "text": {
+      "de": "BTC fast 20 % unter dem 50-Tage-Mittel.",
+      "en": "BTC is sitting almost 20% below its 50-day average.",
+      "es": "BTC cotiza casi un 20 % por debajo de su media de 50 días.",
+      "fr": "BTC évolue près de 20 % sous sa moyenne 50 jours.",
+      "it": "BTC viaggia quasi il 20% sotto la media a 50 giorni.",
+      "tr": "BTC, 50 günlük ortalamasının neredeyse %20 altında işlem görüyor."
+     },
+     "quellen": [
+      {
+       "name": "Hyperliquid",
+       "url": "https://app.hyperliquid.xyz/",
+       "zeit": 1795705680,
+       "genau": true
+      }
+     ],
+     "zeit": 1795705680,
+     "schnitt": "vor",
+     "seite": "dafuer"
+    },
+    {
+     "id": "beide_seiten-2",
+     "text": {
+      "de": "Weltweite Erholung, Europa und Asien im Plus.",
+      "en": "Global rebound, with Europe and Asia in the green.",
+      "es": "Rebote global, con Europa y Asia en verde.",
+      "fr": "Rebond mondial, l'Europe et l'Asie dans le vert.",
+      "it": "Rimbalzo globale, con Europa e Asia in verde.",
+      "tr": "Küresel toparlanma, Avrupa ve Asya artıda."
+     },
+     "quellen": [
+      {
+       "name": "CNBC",
+       "url": "https://www.cnbc.com/2026/11/26/stock-markets-today-.html",
+       "zeit": 1795651200,
+       "genau": false
+      }
+     ],
+     "zeit": 1795651200,
+     "schnitt": "vor",
+     "seite": "dagegen"
     }
    ]
   },
@@ -138,11 +208,11 @@
       {
        "name": "BLS · Federal Reserve · BEA · SEC",
        "url": "https://www.bls.gov/schedule/",
-       "zeit": 1795663800,
+       "zeit": 1795706700,
        "genau": false
       }
      ],
-     "zeit": 1795663800,
+     "zeit": 1795706700,
      "schnitt": "vor"
     }
    ]
